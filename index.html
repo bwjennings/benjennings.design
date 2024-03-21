@@ -3,44 +3,29 @@
   <head>
     <title>This is the title of the webpage!</title>
     <link href="style.css" rel="stylesheet">
+    
+    <script type="module" src="components/index.js"></script>
+    <script src="components/Card/card.js" defer></script>
+
   </head>
   <body>
+   
     <div class="example">
-        <div class="frame-275">
-            <div class="frame-274">
-                <div class="cards"> Cards </div>
-                <div class="a-collection-of-experiments-by-ben-jennings"> A collection of experiments by Ben Jennings </div>
-            </div>
-            <div class="frame-273">
-                <div class="card-home">
-                    <div class="frame-272">
-                        <div class="basics"> Basics </div>
-                        <div class="learn-about-ben"> Learn about Ben </div>
-                    </div>
-                    <div class="my-button">
-                        <div class="button"> Let&#039;s Go! </div>
-                    </div>
-                </div>
-                <div class="card-home">
-                    <div class="frame-272">
-                        <div class="basics"> Basics </div>
-                        <div class="learn-about-ben"> Learn about Ben </div>
-                    </div>
-                    <div class="my-button">
-                        <div class="button"> Let&#039;s Go! </div>
-                    </div>
-                </div>
-                <div class="card-home">
-                    <div class="frame-272">
-                        <div class="basics"> Basics </div>
-                        <div class="learn-about-ben"> Learn about Ben </div>
-                    </div>
-                    <div class="my-button">
-                        <div class="button"> Let&#039;s Go! </div>
-                    </div>
-                </div>
-            </div>
+      <div class="header">
+        <div class="cards">Cards</div>
+        <div class="collection-of-experiments-by-ben-jennings">
+          Collection of experiments by Ben Jennings
         </div>
+      </div>
+      <div class="card-container">
+        <my-card title="Example Title" body="This is the body text of the card."></my-card>
+        <my-card title="Example Title" body="This is the body text of the card."></my-card>
+        <my-card title="Example Title" body="This is the body text of the card."></my-card>
+
+        
+      </div>
     </div>
+   
   </body>
 </html>
+

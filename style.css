@@ -1,167 +1,94 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap')
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap");
 h1 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-size: 80px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
+  line-height: 100%; /* 80px */
 }
 
-h4{
-    font-family: "Noto Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-size: 1.5rem;
-
-}
-.example,
-.example * {
-    box-sizing: border-box;
+h4 {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 1.5rem;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .example {
-    background: #ffffff;
-    padding: var(--spacing-large, 40px);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-large, 40px);
-    align-items: center;
-    justify-content: center;
-    height: 1024px;
-    position: relative;
-    overflow: hidden;
-}
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
 
-.frame-275 {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    flex-shrink: 0;
-    max-width: 1000px;
-    position: relative;
+  position: relative;
+  overflow: hidden;
+  flex-wrap: wrap;
 }
+.header {
+  padding: var(--spacing-large, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small, 16px);
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
 
-.frame-274 {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-x-small, 8px);
-    align-items: flex-start;
-    justify-content: center;
-    flex-shrink: 0;
-    position: relative;
+  width: 400px;
+  position: relative;
+  height: auto;
 }
-
 .cards {
-    color: #000000;
-    text-align: left;
-    font-family: "Space Grotesk", sans-serif;
-    font-size: var(--heading-font-size, 80px);
-    line-height: var(--heading-line-height, 100%);
-    font-weight: var(--heading-font-weight, 500);
-    ;
-    position: relative;
+  color: #000000;
+  text-align: left;
+  font-family: var(--heading-font-family, "Inter-Medium", sans-serif);
+  font-size: var(--heading-font-size, 80px);
+  line-height: var(--heading-line-height, 100%);
+  font-weight: var(--heading-font-weight, 500);
+  position: relative;
+  align-self: stretch;
+}
+.collection-of-experiments-by-ben-jennings {
+  color: #000000;
+  text-align: left;
+  font-family: var(--body-font-family, "Inter-Regular", sans-serif);
+  font-size: var(--body-font-size, 16px);
+  line-height: var(--body-line-height);
+  font-weight: var(--body-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.card-container {
+  padding: var(--spacing-large, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 53px;
+  align-items: stretch;
+  justify-content: stretch;
+
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
+  height: 100dvh;
+  overflow: auto;
+  -webkit-scroll-snap-type: y mandatory;
+  -ms-scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory;
+  min-width: 600px;
 }
 
-.a-collection-of-experiments-by-ben-jennings {
-    color: #000000;
-    text-align: left;
-    font-family: "Noto Sans", sans-serif;
-    font-size: var(--subtitle-font-size, 24px);
-    line-height: var(--subtitle-line-height, );
-    font-weight: var(--subtitle-font-weight, 400);
-    ;
-    position: relative;
-}
-
-.frame-273 {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    align-items: center;
-    justify-content: flex-start;
-    align-self: stretch;
-    flex-shrink: 0;
-    position: relative;
-}
-
-.card-home {
-    background: var(--background-neutral, #f1f1f1);
-    border-style: solid;
-    border-color: var(--border-neutral, #bfbfbf);
-    border-width: 1px;
-    padding: var(--spacing-large, 40px);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-large, 40px);
-    align-items: flex-end;
-    justify-content: flex-start;
-    align-self: stretch;
-    flex-shrink: 0;
-    width: 600px;
-    min-width: 300px;
-    max-width: 600px;
-    position: relative;
-}
-
-.frame-272 {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-x-small, 8px);
-    align-items: flex-start;
-    justify-content: flex-start;
-    align-self: stretch;
-    flex-shrink: 0;
-    position: relative;
-}
-
-.basics {
-    color: var(--text-neutral, #2b2b2b);
-    text-align: left;
-    font-family: "Space Grotesk", sans-serif;
-    font-size: var(--title-font-size, 40px);
-    line-height: var(--title-line-height, );
-    font-weight: var(--title-font-weight, 500);
-    ;
-    position: relative;
-    align-self: stretch;
-}
-
-.learn-about-ben {
-    color: var(--text-neutral, #2b2b2b);
-    text-align: left;
-    font-family: "Noto Sans", sans-serif;
-    font-size: var(--subtitle-font-size, 24px);
-    line-height: var(--subtitle-line-height, );
-    font-weight: var(--subtitle-font-weight, 400);
-    ;
-    position: relative;
-    align-self: stretch;
-}
-
-.my-button {
-    background: var(--background-brand, #1e2de8);
-    border-radius: var(--radius-small, 8px);
-    border-style: solid;
-    border-color: var(--border-brand, #0d19a1);
-    border-width: 1px;
-    padding: var(--spacing-small, 16px);
-    display: flex;
-    flex-direction: row;
-    gap: var(--spacing-x-small, 8px);
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.button {
-    color: var(--text-brand-inset, #ffffff);
-    text-align: left;
-    font-family: 'RobotoFlex-Medium', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    position: relative;
+.sentiment-very-satisfied {
+  color: var(--text-neutral-inset, #505050);
+  text-align: left;
+  font-family: "MaterialSymbolsSharp-Regular", sans-serif;
+  font-size: 40px;
+  line-height: 100%;
+  font-weight: 400;
+  position: relative;
 }
