@@ -8,7 +8,8 @@ class Card extends HTMLElement {
       const styles = `
       <style>
       .card {
-        background: var(--background-neutral, #f1f1f1);
+        color: var(--text-neutral);
+        background: var(--container-background-neutral);
         border-radius: 40px;
         border-style: solid;
         border-color: var(--border-neutral, #bfbfbf);
