@@ -1,31 +1,28 @@
 <!doctype html>
-<html>
-  <head>
-    <title>ben.cards</title>
-    <link href="style.css" rel="stylesheet">
-    <link rel="icon" href="/favicon.png" type="image/svg+xml">
-    <script type="module" src="components/index.js"></script>
-    <script src="components/Card/card.js" defer></script>
+<html lang="en">
 
-  </head>
-  <body>
-   
-    <div class="example">
-      <div class="header">
-        <div class="cards">Cards</div>
-        <div class="collection-of-experiments-by-ben-jennings">
-          Collection of experiments by Ben Jennings
-        </div>
-      </div>
-      <div class="card-container">
-        <my-card title="Example Title" body="This is the body text of the card."></my-card>
-        <my-card title="Example Title" body="This is the body text of the card."></my-card>
-        <my-card title="Example Title" body="This is the body text of the card."></my-card>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="Description" content="Put your description here.">
+  <base href="/">
 
-        
-      </div>
-    </div>
-   
-  </body>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ededed;
+    }
+  </style>
+  <title>ben-cards</title>
+</head>
+
+<body>
+  <ben-cards></ben-cards>
+
+  <script type="module" src="./out-tsc/src/ben-cards.js"></script>
+</body>
+
 </html>
-
