@@ -1,28 +1,42 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ben.cards</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="icon" href="/favicon.png" />
+    <script type="module" src="components/index.js"></script>
+    
+    <script src="components/Card/card.js" defer></script>
+  </head>
+  <body>
+    <a href="portfolio.html">portfolio</a>
+    <card-component title="Welcome" icon="🏠"></card-component>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Put your description here.">
-  <base href="/">
-
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #ededed;
-    }
-  </style>
-  <title>ben-cards</title>
-</head>
-
-<body>
-  <ben-cards></ben-cards>
-
-  <script type="module" src="./out-tsc/src/ben-cards.js"></script>
-</body>
-
+   
+    <div class="card-container">
+      <div class="header">
+        <h1>Cards</h1>
+        <h4>Collection of experiments by Ben Jennings</h4>
+      </div>
+      <my-card
+        icon="home"
+        title="Example Title"
+        body="This is the body text of the card."
+      >
+        
+      </my-card>
+      <my-card
+        title="Example Title"
+        body="This is the body text of the card."
+      ></my-card>
+      <my-card
+        title="Example Title"
+        body="This is the body text of the card."
+      ></my-card>
+    </div>
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
+    ></script>
+  </body>
 </html>
