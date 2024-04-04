@@ -164,6 +164,8 @@ h4 {
 }
 
 body {
+  background-color: var(--background-neutral);
+  color: var(--text-neutral);
 }
 .example {
   background: var(--background-neutral);
