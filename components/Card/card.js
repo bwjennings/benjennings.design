@@ -29,6 +29,9 @@ class CardComponent extends HTMLElement {
           display: flex;
           align-items: center;
         }
+        .card:hover{
+          background-color: var(--container-background-neutral-hover)
+        };
         .icon {
           margin-right: 15px;
         }

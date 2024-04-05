@@ -163,10 +163,58 @@ h4 {
   box-sizing: border-box;
 }
 
+@keyframes fadeIn {
+
+    from {
+        transform: translateY(100px);
+        opacity:0
+    }
+
+    to {
+      transform: translateY(0px);
+        opacity: 1
+    }
+}
+
 body {
   background-color: var(--background-neutral);
   color: var(--text-neutral);
+  
 }
+
+.page-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  height: 100dvh;
+  overflow: hidden;
+  }
+  .sidebar {
+  background:var(--container-background-neutral);
+  align-self: stretch;
+flex-shrink: 0;
+width: 250px;
+
+overflow: hidden;
+position:relative;
+z-index: 1;
+top: 0;
+left: 0;
+  }
+  .main-content {
+  background: #ffffff;
+  flex: 1;
+  padding: 64px;
+  position: relative;
+  overflow-y:scroll;
+  height: 100%;
+  
+  animation: fadeIn 300ms;
+  }
+
 .example {
   background: var(--background-neutral);
   display: flex;
