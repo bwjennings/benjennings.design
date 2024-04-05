@@ -71,10 +71,9 @@
   --text-success-inset: var(--white);
   --text-success-inset-hover: var(--green-1);
 
-  --icon-font-family:"Material Symbols Rounded";
-  --icon-weight:normal;
+  --icon-font-family: "Material Symbols Rounded";
+  --icon-weight: normal;
   --icon-size: 24px;
-
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -118,31 +117,27 @@
 }
 
 :root {
-    --shadow-color: 0deg 0% 73%;
-    --shadow-elevation-low:
-      -0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.18),
-      -0.4px 0.8px 1.1px -0.9px hsl(var(--shadow-color) / 0.22),
-      -0.9px 1.8px 2.4px -1.9px hsl(var(--shadow-color) / 0.25);
-    --shadow-elevation-medium:
-      -0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.15),
-      -0.7px 1.4px 1.9px -0.5px hsl(var(--shadow-color) / 0.17),
-      -1.2px 2.5px 3.4px -0.9px hsl(var(--shadow-color) / 0.19),
-      -2.3px 4.7px 6.4px -1.4px hsl(var(--shadow-color) / 0.21),
-      -4.3px 8.8px 11.9px -1.9px hsl(var(--shadow-color) / 0.22);
-    --shadow-elevation-high:
-      -0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.14),
-      -1.1px 2.2px 3px -0.2px hsl(var(--shadow-color) / 0.15),
-      -1.8px 3.7px 5px -0.4px hsl(var(--shadow-color) / 0.16),
-      -2.7px 5.5px 7.4px -0.6px hsl(var(--shadow-color) / 0.16),
-      -3.7px 7.7px 10.4px -0.8px hsl(var(--shadow-color) / 0.17),
-      -5.2px 10.6px 14.3px -1.1px hsl(var(--shadow-color) / 0.18),
-      -7.1px 14.6px 19.7px -1.3px hsl(var(--shadow-color) / 0.19),
-      -9.7px 19.9px 26.9px -1.5px hsl(var(--shadow-color) / 0.2),
-      -13.2px 26.9px 36.4px -1.7px hsl(var(--shadow-color) / 0.21),
-      -17.5px 35.8px 48.4px -1.9px hsl(var(--shadow-color) / 0.22);
-  }
+  --shadow-color: 0deg 0% 73%;
+  --shadow-elevation-low: -0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.18),
+    -0.4px 0.8px 1.1px -0.9px hsl(var(--shadow-color) / 0.22),
+    -0.9px 1.8px 2.4px -1.9px hsl(var(--shadow-color) / 0.25);
+  --shadow-elevation-medium: -0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.15),
+    -0.7px 1.4px 1.9px -0.5px hsl(var(--shadow-color) / 0.17),
+    -1.2px 2.5px 3.4px -0.9px hsl(var(--shadow-color) / 0.19),
+    -2.3px 4.7px 6.4px -1.4px hsl(var(--shadow-color) / 0.21),
+    -4.3px 8.8px 11.9px -1.9px hsl(var(--shadow-color) / 0.22);
+  --shadow-elevation-high: -0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.14),
+    -1.1px 2.2px 3px -0.2px hsl(var(--shadow-color) / 0.15),
+    -1.8px 3.7px 5px -0.4px hsl(var(--shadow-color) / 0.16),
+    -2.7px 5.5px 7.4px -0.6px hsl(var(--shadow-color) / 0.16),
+    -3.7px 7.7px 10.4px -0.8px hsl(var(--shadow-color) / 0.17),
+    -5.2px 10.6px 14.3px -1.1px hsl(var(--shadow-color) / 0.18),
+    -7.1px 14.6px 19.7px -1.3px hsl(var(--shadow-color) / 0.19),
+    -9.7px 19.9px 26.9px -1.5px hsl(var(--shadow-color) / 0.2),
+    -13.2px 26.9px 36.4px -1.7px hsl(var(--shadow-color) / 0.21),
+    -17.5px 35.8px 48.4px -1.9px hsl(var(--shadow-color) / 0.22);
+}
 
-  
 h1 {
   font-family: "Noto Sans", sans-serif;
   font-size: 80px;
@@ -164,22 +159,20 @@ h4 {
 }
 
 @keyframes fadeIn {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
 
-    from {
-        transform: translateY(100px);
-        opacity:0
-    }
-
-    to {
-      transform: translateY(0px);
-        opacity: 1
-    }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
 }
 
 body {
   background-color: var(--background-neutral);
   color: var(--text-neutral);
-  
 }
 
 .page-container {
@@ -191,29 +184,33 @@ body {
   position: relative;
   height: 100dvh;
   overflow: hidden;
-  }
-  .sidebar {
-  background:var(--container-background-neutral);
+}
+.sidebar {
+  background: var(--container-background-neutral);
   align-self: stretch;
-flex-shrink: 0;
-width: 250px;
+  flex-shrink: 0;
+  width: 250px;
 
-overflow: hidden;
-position:relative;
-z-index: 1;
-top: 0;
-left: 0;
-  }
-  .main-content {
-  background: #ffffff;
-  flex: 1;
-  padding: 64px;
+  overflow: hidden;
   position: relative;
-  overflow-y:scroll;
-  height: 100%;
-  
-  animation: fadeIn 300ms;
-  }
+  z-index: 1;
+  top: 0;
+  left: 0;
+  padding: 24px;
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20dvh;
+  padding:20dvh;
+  overflow-y: auto;
+  align-self: stretch;
+  scroll-snap-type: y mandatory;
+}
 
 .example {
   background: var(--background-neutral);
@@ -260,11 +257,11 @@ left: 0;
   padding: var(--spacing-large, 40px);
   display: flex;
   flex-direction: column;
-  gap:5dvh;
+  gap: 5dvh;
   flex-shrink: 0;
   align-self: stretch;
   height: 100dvh;
-align-content: stretch;
+  align-content: stretch;
   overflow-y: auto;
 
   overflow: auto;

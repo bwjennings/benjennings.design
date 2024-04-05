@@ -1,7 +1,7 @@
 class CardComponent extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
@@ -9,7 +9,7 @@ class CardComponent extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['title', 'icon'];
+    return ["title", "icon"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -17,17 +17,20 @@ class CardComponent extends HTMLElement {
   }
 
   render() {
-    const title = this.getAttribute('title') || 'This is a card';
-    const icon = this.getAttribute('icon') || 'home';
+    const title = this.getAttribute("title") || "This is a card";
+    const icon = this.getAttribute("icon") || "home";
     this.shadowRoot.innerHTML = `
       <style>
         .card {
           border: 1px solid #ccc;
           border-radius: 5px;
           padding: 20px;
-          margin: 10px 0;
+          
           display: flex;
-          align-items: center;
+          max-width: 500px;
+          width:100%;
+          scroll-snap-align: center;
+          
         }
         .card:hover{
           background-color: var(--container-background-neutral-hover)
@@ -47,4 +50,4 @@ class CardComponent extends HTMLElement {
   }
 }
 
-window.customElements.define('card-component', CardComponent);
+window.customElements.define("card-component", CardComponent);
