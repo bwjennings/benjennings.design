@@ -54,8 +54,8 @@
   --border-neutral-hover: var(--gray-4);
   --container-background-brand: var(--blue-6);
   --container-background-brand-hover: var(--blue-7);
-  --container-background-neutral: var(--gray-1);
-  --container-background-neutral-hover: var(--gray-2);
+  --container-background-neutral: var(--white);
+  --container-background-neutral-hover: var(--gray-1);
   --container-background-success: var(--green-6);
   --container-background-success-hover: var(--green-7);
   --text-brand: var(--blue-6);
@@ -70,10 +70,11 @@
   --text-success-hover: var(--green-6);
   --text-success-inset: var(--white);
   --text-success-inset-hover: var(--green-1);
-
+--text-font-family: "Noto Sans";
   --icon-font-family: "Material Symbols Rounded";
   --icon-weight: normal;
-  --icon-size: 24px;
+  --icon-size-small: 24px;
+  --icon-size-large: 40px;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -197,6 +198,7 @@ body {
   top: 0;
   left: 0;
   padding: 24px;
+  
 }
 .main-content {
   display: flex;
@@ -210,6 +212,7 @@ body {
   overflow-y: auto;
   align-self: stretch;
   scroll-snap-type: y mandatory;
+animation: fadeIn 600ms cubic-bezier(0.45, 1.45, 0.8, 1);
 }
 
 .example {

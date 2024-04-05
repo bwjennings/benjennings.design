@@ -18,7 +18,7 @@ class CardComponent extends HTMLElement {
 
   render() {
     const title = this.getAttribute("title") || "This is a card";
-    const icon = this.getAttribute("icon") || "home";
+    const icon = this.getAttribute("icon") || "design_services";
     this.shadowRoot.innerHTML = `
       <style>
         .card {
@@ -30,16 +30,29 @@ class CardComponent extends HTMLElement {
           max-width: 500px;
           width:100%;
           scroll-snap-align: center;
-          
+          transition:100ms;
+        }
+        .card:active{
+          transform: scale(90%);
         }
         .card:hover{
           background-color: var(--container-background-neutral-hover)
-        };
+        }
         .icon {
           margin-right: 15px;
+          font-family: var(--icon-font-family);
+          font-size: var(--icon-size-large);
+          line-height:100%;
+          
         }
+
+        .card:hover .icon {
+          color: var(--text-brand) ;
+        }
+
         .title {
           font-size: 20px;
+          font-family: var(--text-font-family);
         }
       </style>
       <div class="card">
