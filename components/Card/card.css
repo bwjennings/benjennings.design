@@ -1,0 +1,12 @@
+
+:host {
+    display: flex;
+    flex-grow:1;
+    
+  
+    width: 100%; // Stretches to the width of the container
+}
+.nav-card {
+    width: 100%; 
+    background:blue;
+}
