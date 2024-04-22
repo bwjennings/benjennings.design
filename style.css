@@ -105,7 +105,7 @@ body{
 main{
   grid-area: main-content;
   overflow-y: scroll;
-  height: 100dvh;
+  
   scroll-snap-type: y mandatory;
 
 }
@@ -147,26 +147,7 @@ main{
   }
 }
 
-.card {
-  background-color: beige;
-}
 
-.nav-card {
-  border-radius: var(--radius-small,);
-  width: 100%;
-
-  border: 1px solid var(--Gray-5, #e1eaf8);
-
-  padding: var(--spacing-medium, 24px);
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  align-items: center;
-  justify-content: flex-start;
-
-  align-self: stretch;
-  position: relative;
-}
 
 .material-symbols-rounded {
   font-size: 64px;
@@ -176,21 +157,19 @@ main{
 @media screen and (max-width: 900px) {
   body{
     overflow: hidden;
-  height: 100vh;
+  height: 100dvh;
   }
   
   .page-container {
    height: 100%;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 80px;
+    grid-template-rows: 1fr 80px;
     grid-template-areas:
       "main-content"
       "sidebar";
   }
 
-  main{
-    height: 100%;
-  }
+  
   .sidebar {
     display: flex;
 
