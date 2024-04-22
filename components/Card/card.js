@@ -44,6 +44,8 @@ a {
   border: 1px solid var(--Gray-5, #e1eaf8);
   flex-direction: row;
   justify-content: flex-start;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .nav-card:hover {
