@@ -32,7 +32,7 @@ a{
 
 .nav-card {
   
-  font-family: var(--text-font-family);
+  
   flex: 1;
   border-radius: var(--radius-small, );
 
@@ -52,7 +52,8 @@ a{
 
   &:active {
     /* Styles for the hover state */
-    .icon {
+    .material-symbols-rounded {
+      
       color: var(--border-neutral-hover);
     }
   }
@@ -73,6 +74,7 @@ a{
 
 
 .title-group {
+  font-family: var(--text-font-family);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -107,10 +109,9 @@ a{
 }
 
 .icon {
+  font-family:var(--icon-font-family);
   color: var(--text-secondary, #54575d);
   text-align: left;
-  font-family: var(--icon-font-family);
-
   font-variation-settings:
     "FILL" 1,
     "wght" 400,
@@ -123,7 +124,7 @@ a{
 }
 
 
-@media (max-width: 700px) {
+@media (max-width: 834px) {
   :host{
     display:flex;
     flex-grow:1;
