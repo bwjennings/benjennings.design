@@ -22,59 +22,46 @@ customElements.define(
 
       
 <style>
-:host{
-  align-self: stretch;
-  
-}
-a{
-  text-decoration: none;
-}
-
-.nav-card {
-  
-  
-  flex: 1;
-  border-radius: var(--radius-small, );
-
-  border: 1px solid var(--Gray-5, #E1EAF8);
-  
-  padding: var(--spacing-medium, 24px);
+:host {
   display: flex;
-  flex-direction: row;
-  gap: 24px;
-  align-items: center;
-  justify-content: flex-start;
-
-  &:hover{
-    border-color: var(--border-neutral-hover);
-  cursor: pointer;
-  }
-
-  &:active {
-    /* Styles for the hover state */
-    .material-symbols-rounded {
-      
-      color: var(--border-neutral-hover);
-    }
-  }
-  
-  
+  align-items: flex-start;
+  align-self: stretch;
 }
 
-.current{
-  border-color: var(--border-neutral, #CACFD9);
-    background: var(--container-primary, #F8FDFF);
+a {
+  text-decoration: none;
+  width: 100%;
 }
+
 .nav-card {
-  /* Existing styles */
-
+  display: flex;
+  padding: var(--spacing-medium, 24px);
+  align-items: center;
+  gap: 24px;
+  flex: 1 0 0;
+  border-radius: var(--radius-small);
   
+  border: 1px solid var(--Gray-5, #e1eaf8);
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
+.nav-card:hover {
+  border-color: var(--border-neutral-hover);
+  cursor: pointer;
+}
 
+.nav-card:active .icon {
+  color: var(--border-neutral-hover);
+}
+
+.current {
+ 
+  border-color: var(--border-brand) ;
+  background: var(--container-background-neutral);
+}
 
 .title-group {
-  font-family: var(--text-font-family);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -82,26 +69,26 @@ a{
   justify-content: flex-end;
   flex: 1;
   position: relative;
+  font-family: var(--text-font-family);
+}
+
+.title, .description {
+  text-align: left;
+  position: relative;
 }
 
 .title {
   color: var(--text-neutral, #06080e);
-  text-align: left;
-
   font-size: 20px;
   line-height: 100%;
   font-weight: 600;
-  position: relative;
 }
 
 .description {
   color: var(--text-secondary, #54575d);
-  text-align: left;
- 
   font-size: 14px;
   line-height: 100%;
   font-weight: 400;
-  position: relative;
   align-self: stretch;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -109,57 +96,51 @@ a{
 }
 
 .icon {
-  font-family:var(--icon-font-family);
+  font-family: var(--icon-font-family);
   color: var(--text-secondary, #54575d);
-  text-align: left;
-  font-variation-settings:
-    "FILL" 1,
-    "wght" 400,
-    "GRAD" 0;
-
   font-size: 40px;
   line-height: 100%;
   font-weight: 600;
-  position: relative;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
 }
 
-
 @media screen and (max-width: 900px) {
-  :host{
-    display:flex;
-    flex-grow:1;
-  }
-  
-
-  .nav-card{
-    width:100%;
+  :host, a, .nav-card {
     display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  :host, .nav-card {
+    flex-grow: 1;
+  }
+
+  .nav-card {
     padding: var(--spacing-x-small, 8px) var(--spacing-medium, 24px);
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0px;
-    flex: 1 0 0;
+    gap: 4px;
     border-color: transparent;
   }
+
   .current{
-    border-color: var(--border-neutral, #CACFD9);
-    background: var(--container-primary, #F8FDFF);
+    border-color: var(--border-brand) ;
+  background: var(--container-background-neutral);
   }
-  .nav-card {
-    .title{
-      font-size: 12px;
-    }
-    .description {
-      display: none;
-    }
-    .icon{
-      font-size: var(--Icon-Size-Medium, 24px);
-    }
+  .title {
+    font-size: 12px;
+    font-weight:500;
   }
-  
-  
+
+  .description {
+    display: none;
   }
+
+  .icon {
+    font-size: var(--Icon-Size-Medium, 24px);
+  }
+}
+
 </style>
 <a href="${page}">
 <div  class="nav-card ${state}">

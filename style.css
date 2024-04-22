@@ -137,6 +137,13 @@ section{
   justify-content: center;
 }
 
+@media screen and (max-width: 900px) {
+  .sidebar{
+    padding: 16px;
+  }
+  
+}
+
 
 .card {
   background-color: beige;
@@ -144,6 +151,7 @@ section{
 
 .nav-card {
   border-radius: var(--radius-small, );
+  width: 100%;
 
   border: 1px solid var(--Gray-5, #E1EAF8);
   
@@ -181,7 +189,7 @@ section{
 
   .sidebar {
     display: flex;
-  
+ 
     flex-direction: row;
     padding: var(--font-size-1, 12px) 16px 16px 16px;
     justify-content: center;
@@ -189,6 +197,7 @@ section{
     gap: 2px;
     flex-shrink: 0;
     align-self: stretch;
+    
       
       
   }
