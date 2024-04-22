@@ -169,7 +169,7 @@ section{
   font-size: 64px;
 }
 
-@media (max-width: 834px) {
+@media screen and (max-width: 900px) {
   .page-container {
     height: 100dvh;
       grid-template-columns: 1fr;

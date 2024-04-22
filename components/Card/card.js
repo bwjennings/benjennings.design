@@ -124,7 +124,7 @@ a{
 }
 
 
-@media (max-width: 834px) {
+@media screen and (max-width: 900px) {
   :host{
     display:flex;
     flex-grow:1;
