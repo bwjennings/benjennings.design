@@ -107,6 +107,9 @@ a {
 }
 
 @media screen and (max-width: 900px) {
+  :host{
+    height:56px;
+  }
   :host, a, .nav-card {
     display: flex;
     align-items: center;
@@ -119,6 +122,7 @@ a {
   }
 
   .nav-card {
+    height:100%;
     padding: var(--spacing-x-small, 8px) var(--spacing-medium, 24px);
     flex-direction: column;
     gap: 4px;
