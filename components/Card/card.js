@@ -39,29 +39,28 @@ a {
   align-items: center;
   gap: 24px;
   flex: 1 0 0;
-  
   border-radius: var(--radius-large, 16px);
   border: 1px solid var(--container-border-neutral, #CACFD9);
   flex-direction: row;
   justify-content: flex-start;
   -webkit-user-select: none;
   user-select: none;
+
+  :hover{
+    border-color: var(--container-border-neutral-hover)
+  }
 }
 
 
 
 
 .current {
- 
   border-color: var(--container-border-brand) ;
   background: var(--container-background-primary, #F8FDFF);
 
   .icon{
     color: var(--text-brand, #1800FF);
 color: var(--text-brand, color(display-p3 0.0706 0 1));
-
-
-
   }
 }
 
@@ -83,9 +82,9 @@ color: var(--text-brand, color(display-p3 0.0706 0 1));
 
 .title {
   color: var(--text-neutral, #06080e);
-  font-size: 20px;
+  font-size: var(--text-text-body-large);
   line-height: 100%;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .description {
@@ -103,8 +102,8 @@ color: var(--text-brand, color(display-p3 0.0706 0 1));
   font-family: var(--icon-font-family, "Material Symbols Sharp");
   font-size: var(--icon-size-large, 32px);
   font-style: normal;
-  font-weight: 500;
-  line-height: 100%; /* 32px */
+  font-weight: var(--icon-weight-large, 500);
+  line-height: 100%; 
 
   color: var(--text-secondary, #52575F);
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;

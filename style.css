@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
 @import "./vars.css";
 
 * {
@@ -77,7 +77,7 @@ h4 {
 
 body{
   overflow: hidden;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .page-container {
@@ -115,7 +115,7 @@ main{
   flex-direction: column;
   justify-content: start;
   padding: 24px;
-  gap: 24px;
+  gap: 48px;
   
   
 
@@ -130,21 +130,21 @@ main{
 
 
 section {
-  height: calc(100dvh - 84px);
+  box-sizing: border-box;
+  height: calc(80dvh - 84px);
   display: flex;
   align-items: start;
   justify-content: start;
-  scroll-margin: 20px;
-  scroll-snap-align: start;
-  background-color: gainsboro;
+  
+  scroll-margin: 48px;
   padding: 40px;
+  
+  scroll-snap-align: start;
+  border-radius: var(--radius-large);
+  border: 1px solid var(--container-border-neutral);
 }
 
-.main-content {
-  section {
-    animation: fadeIn 600ms cubic-bezier(0.45, 1.45, 0.8, 1);
-  }
-}
+
 
 
 
@@ -187,11 +187,11 @@ section {
     align-items: center;
     gap: 2px;
     flex-shrink: 0;
+   
+    border-top: 1px solid var(--container-border-neutral, #CACFD9);
+
     
     
   }
 
  
-  .section{
-    height: 90%;
-  }
