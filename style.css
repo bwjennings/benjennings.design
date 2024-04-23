@@ -113,10 +113,11 @@ main{
 .main-content {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
+  align-items: center;
   padding: 24px;
   gap: 48px;
-  
+  scroll-padding: 24px;
   
 
 
@@ -133,15 +134,15 @@ section {
   box-sizing: border-box;
   height: calc(80dvh - 84px);
   display: flex;
-  align-items: start;
-  justify-content: start;
+  align-items: center;
+  justify-content: center;
   
   scroll-margin: 48px;
   padding: 40px;
   
   scroll-snap-align: start;
   border-radius: var(--radius-large);
-  border: 1px solid var(--container-border-neutral);
+  
 }
 
 
