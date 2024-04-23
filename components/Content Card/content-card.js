@@ -25,6 +25,11 @@ customElements.define(
     scroll-snap-align: center;
     scroll-padding: 24px;
     scroll-margin:24px;
+    display: flex;
+    max-width: 800px;
+    width:100%;
+flex-direction: column;
+    
   }
   .card,
 .card * {
@@ -43,7 +48,7 @@ customElements.define(
     align-items: flex-start;
     justify-content: flex-start;
     height: 100%;
-    max-width: 600px;
+    
     position: relative;
     box-shadow: 0px 10px 100px 0px rgba(250, 253, 255, 1.00);
     overflow: hidden;
