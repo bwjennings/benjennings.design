@@ -177,10 +177,10 @@ dialog::backdrop {
         <div class="subtitle"> ${subtitle} </div>
     </div>
     <div class="content">
-        <div class="p"> Purus quam ac ut in pretium vel ullamcorper turpis faucibus. Hendrerit id habitasse enim mattis amet purus. Est mattis scelerisque nulla mauris blandit. Donec fusce in ullamcorper orci mauris velit. Tempus dolor sed elit velit mauris eu augue placerat. </div>
+        
         <slot></slot>
         <dialog id="dialog">
-        <slot style="height:100%" name="dialogContent"></slot> 
+        <slot name="dialogContent"></slot> 
         <button id="closeBtn">Close</button>
       </dialog>
     </div>
