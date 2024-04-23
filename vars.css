@@ -3,122 +3,132 @@
 
 
 :root {
-    /* colors */
-    --black: #000000;
-    --white: #ffffff;
-    --blue-1: #e6e8fb;
-    --blue-10: #091051;
-    --blue-2: #b7bef4;
-    --blue-3: #8894ee;
-    --blue-4: #606ceb;
-    --blue-5: #3d4ce9;
-    --blue-6: #1e2de8;
-    --blue-7: #0f1ecf;
-    --blue-8: #0d19a1;
-    --blue-9: #0b1575;
-    --gray-1: #f1f1f1;
-    --gray-10: #2b2b2b;
-    --gray-2: #d7d7d7;
-    --gray-3: #bfbfbf;
-    --gray-4: #a7a7a7;
-    --gray-5: #8d8d8d;
-    --gray-6: #767676;
-    --gray-7: #626262;
-    --gray-8: #505050;
-    --gray-9: #3c3c3c;
-    --green-1: #f0f8ed;
-    --green-10: #2c4121;
-    --green-2: #d5eacb;
-    --green-3: #bbdca9;
-    --green-4: #a2ce8a;
-    --green-5: #8cc271;
-    --green-6: #79b55c;
-    --green-7: #679d4a;
-    --green-8: #517a3b;
-    --green-9: #3e5c2d;
-    --pink-1: #f5eaf2;
-    --pink-10: #3a192f;
-    --pink-2: #e1c4db;
-    --pink-3: #cfa0c4;
-    --pink-4: #bf7dad;
-    --pink-5: #b26198;
-    --pink-6: #a64983;
-    --pink-7: #8e386e;
-    --pink-8: #6f2d59;
-    --pink-9: #542344;
-  
-    --background-neutral: var(--white);
-    --border-brand: var(--blue-8);
-    --border-brand-hover: var(--blue-8);
-    --border-neutral: var(--gray-3);
-    --border-neutral-hover: var(--gray-2);
-    --container-background-brand: var(--blue-6);
-    --container-background-brand-hover: var(--blue-7);
-    --container-background-neutral: var(--gray-1);
-    --container-background-neutral-hover: var(--gray-1);
-    --container-background-success: var(--green-6);
-    --container-background-success-hover: var(--green-7);
+  /* Collection: Colors */
+
+  --background-default: var(--White);
+  --text-neutral: var(--Gray-100);
+  --text-on-neutral: var(--Gray-90);
+  --text-secondary: var(--Gray-60);
+  --text-on-secondary: var(--Gray-80);
+  --text-brand: var(--Blue-60);
+  --text-on-brand: var(--White);
+  --text-success: var(--Green-60);
+  --text-on-success: var(--White);
+  --background-secondary: var(--Gray-0);
+  --container-background-primary: var(--Gray-0);
+  --container-background-secondary: var(--Gray-5);
+  --container-background-brand: var(--Blue-50);
+  --container-background-success: var(--Green-50);
+  --container-border-brand: var(--Blue-50);
+  --container-border-neutral: var(--Gray-10);
 
 
-    --text-brand: var(--blue-6);
-    --text-brand-hover: var(--blue-7);
-    --text-brand-inset: var(--white);
-    --text-brand-inset-hover: var(--blue-1);
-    --text-neutral: var(--gray-10);
-    --text-neutral-hover: var(--black);
-    --text-neutral-inset: var(--gray-8);
-    --text-neutral-inset-hover: var(--gray-9);
-    --text-success: var(--green-5);
-    --text-success-hover: var(--green-6);
-    --text-success-inset: var(--white);
-    --text-success-inset-hover: var(--green-1);
-    --text-font-family: "Inter", sans-serif;
+/* Collection: Numbers */
+
+  --radius-none: 0px;
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 16px;
+  --spacing-none: 0px;
+  --spacing-x-small: 8px;
+  --spacing-small: 16px;
+  --spacing-medium: 24px;
+  --spacing-large: 40px;
+  --font-size-1: 12px;
+  --font-size-2: 14px;
+  --font-size-3: 16px;
+  --font-size-4: 18px;
+  --font-size-5: 20px;
+  --font-size-6: 24px;
+  --font-size-7: 32px;
+  --font-size-8: 40px;
+  --font-size-9: 48px;
+  --font-size-10: 64px;
 
 
-    --icon-font-family: "Material Symbols Rounded", sans-serif;
-    --icon-weight: normal;
-    --icon-size-small: 24px;
-    --icon-size-large: 40px;
-  
-    --radius-none: 0rem;
-    --radius-small: 0.5rem;
-    --radius-medium: 1rem;
-    --radius-large: 1.5rem;
-    --spacing-none: 0rem;
-    --spacing-x-small: 0.5rem;
-    --spacing-small: 1rem;
-    --spacing-medium: 1.5rem;
-    --spacing-large: 2.5rem;
+/* Collection: Palette */
 
-    --breakpoint-mobile:500px;
+  --Blue-0: rgba(236,254,255,1);
+  --Blue-5: rgba(189,231,255,1);
+  --Blue-10: rgba(140,199,255,1);
+  --Blue-20: rgba(99,166,255,1);
+  --Blue-30: rgba(64,130,255,1);
+  --Blue-40: rgba(41,97,255,1);
+  --Blue-50: rgba(24,62,255,1);
+  --Blue-60: rgba(18,0,255,1);
+  --Blue-70: rgba(24,0,226,1);
+  --Blue-80: rgba(33,0,197,1);
+  --Blue-90: rgba(40,0,168,1);
+  --Blue-95: rgba(16,0,106,1);
+  --Blue-100: rgba(7,0,71,1);
+  --Red-0: rgba(255,248,215,1);
+  --Red-5: rgba(255,217,125,1);
+  --Red-10: rgba(255,177,0,1);
+  --Red-20: rgba(255,138,0,1);
+  --Red-30: rgba(255,97,0,1);
+  --Red-40: rgba(238,61,0,1);
+  --Red-50: rgba(209,11,0,1);
+  --Red-60: rgba(181,0,0,1);
+  --Red-70: rgba(152,0,0,1);
+  --Red-80: rgba(123,0,0,1);
+  --Red-90: rgba(94,0,0,1);
+  --Red-95: rgba(61,0,0,1);
+  --Red-100: rgba(40,0,0,1);
+  --Green-0: rgba(221,255,245,1);
+  --Green-5: rgba(133,255,211,1);
+  --Green-10: rgba(0,249,173,1);
+  --Green-20: rgba(0,229,139,1);
+  --Green-30: rgba(0,207,107,1);
+  --Green-40: rgba(0,181,81,1);
+  --Green-50: rgba(0,155,57,1);
+  --Green-60: rgba(0,128,33,1);
+  --Green-70: rgba(0,102,2,1);
+  --Green-80: rgba(0,77,0,1);
+  --Green-90: rgba(0,52,0,1);
+  --Green-95: rgba(0,35,0,1);
+  --Green-100: rgba(0,21,0,1);
+  --Gray-0: rgba(250,253,255,1);
+  --Gray-5: rgba(228,234,246,1);
+  --Gray-10: rgba(204,207,215,1);
+  --Gray-20: rgba(178,182,189,1);
+  --Gray-30: rgba(153,157,164,1);
+  --Gray-40: rgba(129,133,140,1);
+  --Gray-50: rgba(106,109,116,1);
+  --Gray-60: rgba(84,87,93,1);
+  --Gray-70: rgba(62,65,71,1);
+  --Gray-80: rgba(42,45,50,1);
+  --Gray-90: rgba(23,25,31,1);
+  --Gray-95: rgba(13,16,24,1);
+  --Gray-100: rgba(6,8,14,1);
+  --Black: rgba(0,0,0,1);
+  --White: rgba(255,255,255,1);
+
+
+/* Collection: Text */
+
+--text-heading-size-small: var(--font-size-6);
+--text-heading-size-medium: var(--font-size-8);
+--text-heading-size-large: var(--font-size-10);
+--text-heading-weight: 700px;
+--text-font-family: 'Inter';
+--text-text-body-small: var(--font-size-3);
+--text-text-body-medium: var(--font-size-4);
+--text-text-body-large: var(--font-size-5);
+--icon-font-family: 'Material Symbols Sharp';
+--icon-weight-small: 300px;
+--icon-size-small: 16px;
+--icon-weight-medium: 400px;
+--icon-weight-large: 500px;
+--icon-size-medium: 24px;
+--icon-size-large: 32px;
+--text-subhead-size-small: var(--font-size-3);
+--text-subhead-size-medium: var(--font-size-6);
+--text-subhead-size-large: var(--font-size-7);
+--text-subhead-Weight: 400px;
+
+
+
 
   
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      /* colors */
-      --background-neutral: var(--gray-10);
-      --border-brand: var(--blue-8);
-      --border-brand-hover: var(--blue-8);
-      --border-neutral: var(--gray-7);
-      --border-neutral-hover: var(--gray-8);
-      --container-background-brand: var(--blue-6);
-      --container-background-brand-hover: var(--blue-7);
-      --container-background-neutral: var(--gray-9);
-      --container-background-neutral-hover: var(--gray-10);
-      --container-background-success: var(--green-6);
-      --container-background-success-hover: var(--green-7);
-      --text-brand: var(--blue-6);
-      --text-brand-hover: var(--blue-7);
-      --text-brand-inset: var(--white);
-      --text-brand-inset-hover: var(--blue-1);
-      --text-neutral: var(--white);
-      --text-neutral-hover: var(--gray-1);
-      --text-neutral-inset: var(--gray-1);
-      --text-neutral-inset-hover: var(--gray-2);
-      --text-success: var(--green-5);
-      --text-success-hover: var(--green-6);
-      --text-success-inset: var(--white);
-      --text-success-inset-hover: var(--green-1);
-    }
-  }
+  
