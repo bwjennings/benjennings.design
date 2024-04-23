@@ -158,6 +158,17 @@ customElements.define(
     font-weight: 500;
     position: relative;
 }
+dialog{
+    height:100dvh;
+    width:100dvh;
+    border-radius: var(--radius-large, 16px);
+border: 1px solid var(--container-border-neutral, #CACFD9);
+border: 1px solid var(--container-border-neutral, color(display-p3 0.8 0.8118 0.8431));
+}
+
+dialog::backdrop {
+    background-color: rgba(6, 6, 6, 0.30);
+  }
   
   </style>
   <div class="card">
@@ -168,9 +179,13 @@ customElements.define(
     <div class="content">
         <div class="p"> Purus quam ac ut in pretium vel ullamcorper turpis faucibus. Hendrerit id habitasse enim mattis amet purus. Est mattis scelerisque nulla mauris blandit. Donec fusce in ullamcorper orci mauris velit. Tempus dolor sed elit velit mauris eu augue placerat. </div>
         <slot></slot>
+        <dialog id="dialog">
+        <slot style="height:100%" name="dialogContent"></slot> 
+        <button id="closeBtn">Close</button>
+      </dialog>
     </div>
     <div class="footer">
-        
+    <button id="openBtn">Open Dialog</button>
             <button> Edit </button>
             <button>Button </button>
         
@@ -178,10 +193,25 @@ customElements.define(
 </div>
       `;
       
-      }
+      this.openBtn = shadowRoot.getElementById('openBtn');
+      this.closeBtn = shadowRoot.getElementById('closeBtn');
+      this.dialog = shadowRoot.getElementById('dialog');
+    }
   
-      
-        
+    connectedCallback() {
+      this.openBtn.addEventListener('click', () => this.dialog.showModal());
+      this.closeBtn.addEventListener('click', () => this.dialog.close());
+      this.updateButtonVisibility(); // Check visibility on initialization
+    }
+  
+    // Function to update button visibility based on slot content
+    updateButtonVisibility() {
+      const dialogSlot = this.shadowRoot.querySelector('slot[name="dialogContent"]');
+      const assignedNodes = dialogSlot.assignedNodes();
+      const hasContent = assignedNodes.some(node => node.nodeType !== Node.TEXT_NODE || node.textContent.trim() !== '');
+  
+      this.openBtn.style.display = hasContent ? 'block' : 'none';
+    }
       
   
       
