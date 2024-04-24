@@ -43,6 +43,7 @@ a {
   border: 1px solid var(--container-border-neutral, #CACFD9);
   flex-direction: row;
   justify-content: flex-start;
+  height: 100px;
   -webkit-user-select: none;
   user-select: none;
 
@@ -151,15 +152,15 @@ color: var(--text-brand, color(display-p3 0.0706 0 1));
 }
 
 </style>
-<a href="${page}">
-<div  class="nav-card ${state}">
+
+<div  class="nav-card ${state}" id="${this.getAttribute('target')}">
 <div class="icon">${icon}</div>
 <div class="title-group">
     <div class="title">${title}</div>
     <div class="description">${description}</div>
 </div>
 </div>
-</a>
+
     `;
     
     }
@@ -168,35 +169,31 @@ color: var(--text-brand, color(display-p3 0.0706 0 1));
      * Runs each time the element is appended to or moved in the DOM
      */
     connectedCallback() {
-      console.log("connected!", this);
+      this.shadowRoot.querySelector('.nav-card').addEventListener('click', () => this.toggleTab());
 
       
     }
+    toggleTab() {
+      const targetId = this.getAttribute('target');
+      const allTabs = document.querySelectorAll('nav-tab');
+      const contentAreas = document.querySelectorAll('.tab-content');
 
-    /**
-     * Runs when the element is removed from the DOM
-     */
-    disconnectedCallback() {
-      console.log("disconnected", this);
-    }
+      // Remove active state from all tabs and hide all content areas
+      allTabs.forEach(tab => {
+          tab.shadowRoot.querySelector('.nav-card').classList.remove('current');
+      });
+      contentAreas.forEach(content => {
+          content.style.display = 'none';
+      });
 
-    /**
-     * Runs when the value of an attribute is changed on the component
-     * @requires observedAttributes() method
-     * @param  {String} name     The attribute name
-     * @param  {String} oldValue The old attribute value
-     * @param  {String} newValue The new attribute value
-     */
-    attributeChangedCallback(name, oldValue, newValue) {
-      console.log("changed", name, oldValue, newValue, this);
-    }
+      // Add active state to clicked tab and show associated content
+      this.shadowRoot.querySelector('.nav-card').classList.add('current');
+      document.getElementById(targetId).style.display = 'block';
+  }
 
-    /**
-     * Create a list of attributes to observe
-     * @return  {Array} The attributes to observe
-     */
-    static get observedAttributes() {
-      return ["greeting"];
-    }
+    
+    
+
+    
   }
 );

@@ -1,5 +1,6 @@
 
 @import "./vars.css";
+@import "./components/Card/card.css";
 
 * {
   margin: 0;
@@ -28,6 +29,10 @@
     -17.5px 35.8px 48.4px -1.9px hsl(var(--shadow-color) / 0.22);
 }
 
+
+
+
+
 h1 {
   font-family: var(--text-font-family);
   font-size: 80px;
@@ -49,12 +54,41 @@ h4 {
 
 @keyframes fadeIn {
   from {
-    transform: translateY(100px);
-    opacity: 0;
+    transform: translateY(20dvh);
+    opacity: 0.5;
   }
 
   to {
     transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+ @-webkit-keyframes slide-in-bck-center {
+  0% {
+    -webkit-transform: translateZ(200px);
+            transform: translateZ(200px);
+    -webkit-transform: translateY(200px);
+            transform: translateY(200px);       
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-transform: translateY(0px);
+            transform: translateY(0x); 
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bck-center {
+  0% {
+    -webkit-transform: translateZ(200px);
+            transform: translateZ(200px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
     opacity: 1;
   }
 }
@@ -105,7 +139,8 @@ body{
 main{
   grid-area: main-content;
   overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
+  perspective: 1000px;
  
 
 }
@@ -116,12 +151,12 @@ main{
   justify-content: center;
   align-items: center;
   padding: 24px;
-  gap: 48px;
+  gap: 20dvh;
   scroll-padding: 24px;
-  
+  -webkit-animation: slide-in-bck-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-in-bck-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
 
-  
   
   
  
@@ -199,3 +234,5 @@ section {
 
  
 
+
+  

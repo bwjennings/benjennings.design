@@ -21,7 +21,7 @@ customElements.define(
         
   <style>
   :host{
-    height:calc(80dvh - 84px);
+    height:calc(60dvh - 84px);
     scroll-snap-align: center;
     scroll-padding: 24px;
     scroll-margin:24px;
@@ -164,8 +164,8 @@ flex-direction: column;
     position: relative;
 }
 dialog{
-    height:100dvh;
-    width:100dvh;
+    height:80dvh;
+    width:80dvh;
     border-radius: var(--radius-large, 16px);
 border: 1px solid var(--container-border-neutral, #CACFD9);
 border: 1px solid var(--container-border-neutral, color(display-p3 0.8 0.8118 0.8431));
@@ -175,6 +175,14 @@ dialog::backdrop {
     background-color: rgba(6, 6, 6, 0.30);
   }
   
+
+  @media screen and (max-width: 900px) {
+    :host{
+      height:calc(80dvh - 84px);
+      
+    }
+  }
+
   </style>
   <div class="card">
     <div class="header">

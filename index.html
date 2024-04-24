@@ -9,75 +9,76 @@
 
     <script src="components/OptionCard/OptionCard.js" defer></script>
     <script src="components/Content Card/content-card.js" defer></script>
+    <script src="components/Nav Item/NavItem.js" defer></script>
+    <script src="index.js" defer></script>
   </head>
   <body>
  
     <div class="page-container">
       <nav class="sidebar">
-        <nav-card
-          title="Title"
-          description="Projects and things"
-          icon="design_services"
-          page="index.html"
-          state="current"
-        ></nav-card>
-        <nav-card
-          title="Experiments"
-          description="This is a second card"
-          icon="experiment"
-          page="experiments.html"
-        ></nav-card>
-        <nav-card
-          title="More"
-          description="This is a second card"
-          icon="category"
-        ></nav-card>
+        
+          <div class="nav-card" onclick="openCity(event, 'Designs')" id="defaultOpen">
+            <div class="icon">design_services</div>
+              <div class="title-group">
+                  <div class="title">Designs</div>
+                  <div class="description">Some of my work</div>
+              </div>
+            </div>
+          <div class="nav-card" onclick="openCity(event, 'Experiments')">
+            <div class="icon">experiment</div>
+              <div class="title-group">
+                  <div class="title">Experiments</div>
+                  <div class="description">Extra Things</div>
+              </div>
+          </div>
+          <div class="nav-card" onclick="openCity(event, 'Tokyo')">
+            <div class="icon">category</div>
+              <div class="title-group">
+                  <div class="title">Resources</div>
+                  <div class="description">Files and more</div>
+              </div>
+          </div>
+        
       </nav>
       
       <main>
-        <div class="main-content">
-          
-            <content-card title="This is my title" subtitle="And a subtitle">
-              <script
-              type="module"
-              src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-            ></script>
-            
-            <!-- Use it like any other HTML element -->
-            <model-viewer
-            camera-controls 
-            touch-action="pan-y" 
-            camera-orbit="calc(-1.5rad + env(window-scroll-y) * 4rad) calc(0deg + env(window-scroll-y) * 180deg) calc(5m - env(window-scroll-y) * 10m)"
-              style="width: 100%; height: 100%"
-              id="mv-shark"
-              src="Scaniverse 2024-04-17 203757.glb"
-              camera-controls
-            ></model-viewer>
-            
+        <div id="Designs" class="tabcontent main-content">
+          <section>
+            <h1>Designs</h1>
+          </section>
+          <content-card title="Here is a card"</content-card>
+          I made this
+          </content-card>
 
+          <content-card title="Here is a card"</content-card>
+            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="100%" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Ftype%3Ddesign%26node-id%3D45%253A610%26mode%3Ddev" allowfullscreen></iframe>
             </content-card>
-            <content-card title="This is my title" subtitle="And a subtitle">
-              <div slot="dialogContent">
-
-                <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%"; height="100%" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FA0Fn4YP27d6fPjPMvoycyA%2FUntitled%3Ftype%3Ddesign%26node-id%3D1%253A2%26mode%3Ddesign%26t%3DidYCLnryeqR7Lz8O-1" allowfullscreen></iframe>
-              </div>
-  
-
-            </content-card>
-            <content-card title="This is my title" subtitle="And a subtitle">
-              <div slot="dialogContent">
-                This is some extra information if you wanted to know about it
-              </div>
-            </content-card>
-            <content-card title="This is my title" subtitle="And a subtitle"></content-card>
-            <content-card title="This is my title" subtitle="And a subtitle"></content-card>
-          
-          
-          
+         
         </div>
-      </div>
-    </div>
-    
+
+
+        <div id="Experiments" class="tabcontent main-content">
+          <section>
+           
+            <h1>Experiments</h1>
+          </section>
+          <content-card title="This is an extra item for fun"</content-card>
+          Isn't this fun?
+          </content-card>
+
+          <content-card title="This is an extra item for fun"</content-card>
+            Isn't this fun?
+            </content-card>
+
+
+         
+        </div>
+      </main>
+      
+   
+    <script>
+     
+  </script>
     <script src="components/Card/card.js"></script>
   </body>
 </html>
