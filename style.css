@@ -31,8 +31,29 @@
 
 
 
+button{
+  all: unset;
+  display: flex;
+padding: var(--spacing-x-small, 8px);
+justify-content: center;
+align-items: center;
+gap: var(--spacing-x-small, 8px);
+border-radius: var(--radius-small, 4px);
+border: 1px solid var(--container-border-neutral, #CACFD9);
+border: 1px solid var(--container-border-neutral, color(display-p3 0.8 0.8118 0.8431));
 
+  
 
+ .icon{
+  font-size: var(--icon-size-small, 16px);
+ }
+}
+
+button:hover{
+  
+    background-color: #CACFD9;
+  
+}
 h1 {
   font-family: var(--text-font-family);
   font-size: 80px;
@@ -139,7 +160,7 @@ body{
 main{
   grid-area: main-content;
   overflow-y: scroll;
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
   perspective: 1000px;
  
 
@@ -234,5 +255,3 @@ section {
 
  
 
-
-  
