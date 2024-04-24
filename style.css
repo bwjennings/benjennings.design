@@ -211,6 +211,7 @@ section {
   height: calc(40dvh - 84px);
   scroll-margin: 20dvh;
   display: flex;
+  gap: var(--spacing-small);
   flex-direction: column;
   justify-content: start;
   align-items: start;
