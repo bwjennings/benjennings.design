@@ -100,7 +100,7 @@
     }
   
     .active{
-      border-color: var(--border-brand) ;
+      border-color: var(--container-border-brand) ;
     
     }
     .title {
