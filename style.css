@@ -5,6 +5,7 @@
 * {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -33,6 +34,7 @@
 
 button{
   all: unset;
+  font-family: var(--text-font-family);
   display: flex;
 padding: var(--spacing-x-small, 8px);
 justify-content: center;
@@ -61,6 +63,8 @@ h1 {
   font-weight: 500;
   line-height: 100%; /* 80px */
 }
+
+
 
 h4 {
   font-family: "Noto Sans", sans-serif;
@@ -155,6 +159,7 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-right: 1px solid var(--container-border-neutral);
 }
 
 main{
@@ -167,13 +172,14 @@ main{
 }
 
 .main-content {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px;
+  padding: 20dvh;
   gap: 20dvh;
-  scroll-padding: 24px;
+  
   -webkit-animation: slide-in-bck-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   animation: slide-in-bck-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
@@ -193,7 +199,7 @@ section {
   align-items: center;
   justify-content: center;
   
-  scroll-margin: 48px;
+  
   padding: 40px;
   
   scroll-snap-align: start;
@@ -201,6 +207,23 @@ section {
   
 }
 
+.page-title{
+  height: calc(40dvh - 84px);
+  scroll-margin: 20dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+
+  h1{
+    text-align: left;
+  }
+  .subhead{
+    font-family: var(--text-font-family);
+    font-size: var(--text-subhead-size-medium);
+   
+  }
+}
 
 
 

@@ -43,7 +43,7 @@ a {
   border: 1px solid var(--container-border-neutral, #CACFD9);
   flex-direction: row;
   justify-content: flex-start;
-  height: 100px;
+  
   -webkit-user-select: none;
   user-select: none;
 

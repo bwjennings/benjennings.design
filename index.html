@@ -17,6 +17,8 @@
     <div class="page-container">
       <nav class="sidebar">
         
+         
+         </button>
           <div class="nav-card" onclick="openCity(event, 'Designs')" id="defaultOpen">
             <div class="icon">design_services</div>
               <div class="title-group">
@@ -43,10 +45,12 @@
       
       <main>
         <div id="Designs" class="tabcontent main-content">
-          <section>
-            <h1>Designs</h1>
+          <section class="page-title">
+            <h1>Your time is valuable </h1>
+            <div class="subhead">Here is some bit size information about me and my work </div>
           </section>
-          <content-card title="Here is a card"</content-card>
+         
+          <content-card  title="Here is a card"</content-card>
           I made this
           </content-card>
 
@@ -58,12 +62,18 @@
 
 
         <div id="Experiments" class="tabcontent main-content">
-          <section>
+          <section class="page-title">
            
             <h1>Experiments</h1>
           </section>
-          <content-card title="This is an extra item for fun"</content-card>
-          Isn't this fun?
+          <content-card 
+          title="This is an extra item for fun">
+
+          <div slot="dialogContent">Testing</div>
+        
+        
+        </content-card>
+           
           </content-card>
 
           <content-card title="This is an extra item for fun"</content-card>
@@ -75,18 +85,20 @@
         </div>
 
         <div id="Resources" class="tabcontent main-content">
-          <section>
+          
+          <section class="page-title">
            
             <h1>Resources</h1>
           </section>
+          
           <content-card title="This is an extra item for fun"</content-card>
           Isn't this fun?
           </content-card>
 
-          <content-card title="This is an extra item for fun"</content-card>
+          <content-card  title="This is an extra item for fun"</content-card>
             Isn't this fun?
             </content-card>
-
+        
 
          
         </div>
