@@ -165,31 +165,9 @@ color: var(--text-brand, color(display-p3 0.0706 0 1));
     
     }
 
-    /**
-     * Runs each time the element is appended to or moved in the DOM
-     */
-    connectedCallback() {
-      this.shadowRoot.querySelector('.nav-card').addEventListener('click', () => this.toggleTab());
-
-      
-    }
-    toggleTab() {
-      const targetId = this.getAttribute('target');
-      const allTabs = document.querySelectorAll('nav-tab');
-      const contentAreas = document.querySelectorAll('.tab-content');
-
-      // Remove active state from all tabs and hide all content areas
-      allTabs.forEach(tab => {
-          tab.shadowRoot.querySelector('.nav-card').classList.remove('current');
-      });
-      contentAreas.forEach(content => {
-          content.style.display = 'none';
-      });
-
-      // Add active state to clicked tab and show associated content
-      this.shadowRoot.querySelector('.nav-card').classList.add('current');
-      document.getElementById(targetId).style.display = 'block';
-  }
+   
+    
+    
 
     
     

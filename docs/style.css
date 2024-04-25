@@ -1,6 +1,6 @@
 
 @import "./vars.css";
-@import "./components/Card/card.css";
+@import "card.css";
 
 * {
   margin: 0;
