@@ -9,62 +9,67 @@
     <link rel="prefetch" href="/docs/designs.html" as="document"/>
     <link rel="prefetch" href="/docs/experiments.html" as="document"/>
     <link rel="prefetch" href="/docs/resources.html" as="document"/>
-    <script src="components/OptionCard/OptionCard.js" defer></script>
+    <script src="./components/OptionCard/OptionCard.js" defer></script>
+    <script src="./components/Content Card/content-card.js" defer></script>
   </head>
   <body>
     <div class="page-container">
       <nav class="sidebar">
-       
-        
-        
-        <div class="nav-card " onclick="location.href='designs.html'" >
+
+        <div class="nav-card  " onclick="location.href='designs.html'" >
           <div class="icon">design_services</div>
             <div class="title-group">
                 <div class="title">Designs</div>
                 <div class="description">Some of my work</div>
             </div>
-          </div>
+        </div>
+
         <div class="nav-card active" onclick="location.href='experiments.html'">
           <div class="icon">experiment</div>
             <div class="title-group">
                 <div class="title">Experiments</div>
                 <div class="description">Extra Things</div>
             </div>
-          </div>
-        <li class="nav-card" onclick="location.href='resources.html'">
+        </div>
+
+        <div class="nav-card" onclick="location.href='resources.html'">
           <div class="icon">category</div>
             <div class="title-group">
                 <div class="title">Resources</div>
                 <div class="description">Files and more</div>
             </div>
-          </li>
+          </div>
       
     </nav>
         
         <main>
-          <div id="Experiments" class="tabcontent main-content">
-            <section class="page-title">
+          <div class="main-content">
+           
+                <section class="page-title">
+                
+                  <h1>Experiments</h1>
+                </section>
+
+                <content-card title="This is an extra item for fun">
+      
+                  <div slot="dialogContent">Testing</div>
+              
+              
+                </content-card>
+                <content-card  title="Here is a card"></content-card>
+          <content-card  title="Here is a card"></content-card>
+          <content-card  title="Here is a card"></content-card>
+          <content-card  title="Here is a card"></content-card>
              
-              <h1>Experiments</h1>
-            </section>
-            <content-card 
-            title="This is an extra item for fun">
+            
   
-            <div slot="dialogContent">Testing</div>
-          
-          
-          </content-card>
-             
-            </content-card>
-  
-            <content-card title="This is an extra item for fun"</content-card>
-              Isn't this fun?
-              </content-card>
+            
   
   
            
           </div>
-        </div>
+        </main>
+        
       </div>
       <script
         type="module"

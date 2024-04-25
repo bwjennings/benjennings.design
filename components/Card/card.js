@@ -1,4 +1,4 @@
-// JavaScript
+
 customElements.define(
   "nav-card",
   class extends HTMLElement {
