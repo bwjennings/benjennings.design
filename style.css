@@ -117,6 +117,7 @@ body{
 }
 .sidebar {
  
+ 
   grid-area: sidebar;
   padding: 24px;
   gap: 24px;
@@ -146,7 +147,7 @@ main{
   justify-content: center;
   align-items: center;
   padding: 20dvh 40px;
-  gap: 20dvh;
+  gap: 10dvh;
   
   
 
@@ -176,19 +177,25 @@ section {
 
 .page-title{
   
-  height: auto;
-  
+  height: calc(60dvh - 84px);
+  padding: 5dvh;
+  z-index: 2;
+  background: white;
   scroll-margin: 20dvh;
   display: flex;
   gap: var(--spacing-small);
   flex-direction: column;
   justify-content: start;
-  align-items: start;
+  align-items: flex-start;
   width: 100%;
-  max-width: 60dvh;
+  max-width: 50dvw;
+  
 
   h1{
     text-align: left;
+   
+  word-wrap: break-all;
+    
   }
   .subhead{
     font-family: var(--text-font-family);
@@ -223,6 +230,7 @@ section {
     gap: 5dvh;
   }
   .page-container {
+
    height: 100%;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 84px;
@@ -231,7 +239,9 @@ section {
       "sidebar";
   }
 
-  
+  .page-title{
+    max-width: none;
+  }
   .sidebar {
     display: flex;
     height: auto;

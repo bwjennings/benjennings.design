@@ -39,6 +39,7 @@ customElements.define(
     </div>
     <div class="footer">
     <button id="openBtn">See Designs</button>
+    <button>Button Text</button>
             
         
     </div>
