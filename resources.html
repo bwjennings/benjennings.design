@@ -1,0 +1,78 @@
+<!doctype html>
+  <html>
+    <head>
+      <title>ben.cards</title>
+      <link href="style.css" rel="stylesheet" />
+      <link rel="icon" href="/favicon.png" />
+      <script type="module" src="components/index.js"></script>
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+      <script src="components/OptionCard/OptionCard.js" defer></script>
+      <script src="components/Content Card/content-card.js" defer></script>
+      <script src="components/Nav Item/NavItem.js" defer></script>
+      <script src="index.js" defer></script>
+    </head>
+    <body>
+   
+      <div class="page-container">
+        <nav class="sidebar">
+          
+           <ul></ul>
+          
+            <div class="nav-card " href="/stuff" id="defaultOpen">
+              <div class="icon">design_services</div>
+                <div class="title-group">
+                    <div class="title">Designs</div>
+                    <div class="description">Some of my work</div>
+                </div>
+              </div>
+            <div class="nav-card" href="/experiments.html">
+              <div class="icon">experiment</div>
+                <div class="title-group">
+                    <div class="title">Experiments</div>
+                    <div class="description">Extra Things</div>
+                </div>
+            </div>
+            <div class="nav-card active" href="/stuff.html">
+              <div class="icon">category</div>
+                <div class="title-group">
+                    <div class="title">Resources</div>
+                    <div class="description">Files and more</div>
+                </div>
+            </div>
+          
+        </nav>
+        
+        <main>
+            <div id="Resources" class="tabcontent main-content">
+          
+                <section class="page-title">
+                 
+                  <h1>Resources</h1>
+                </section>
+                
+                <content-card title="This is an extra item for fun"</content-card>
+                Isn't this fun?
+                </content-card>
+            
+                <content-card  title="This is an extra item for fun"</content-card>
+                  Isn't this fun?
+                  </content-card>
+              
+            
+               
+              </div>
+  
+          
+  
+         
+        </main>
+        
+     
+      <script>
+       
+    </script>
+      <script src="components/Card/card.js"></script>
+    </body>
+  </html>
+  

@@ -32,7 +32,7 @@
 
 
 
-button{
+content-card::part(button){
   all: unset;
   font-family: var(--text-font-family);
   display: flex;
@@ -77,58 +77,23 @@ h4 {
   padding: 0;
 }
 
-@keyframes fadeIn {
-  from {
-    transform: translateY(20dvh);
-    opacity: 0.5;
-  }
 
-  to {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
-
- @-webkit-keyframes slide-in-bck-center {
-  0% {
-    -webkit-transform: translateZ(200px);
-            transform: translateZ(200px);
-    -webkit-transform: translateY(200px);
-            transform: translateY(200px);       
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            -webkit-transform: translateY(0px);
-            transform: translateY(0x); 
-    opacity: 1;
-  }
-}
+ 
 @keyframes slide-in-bck-center {
   0% {
-    -webkit-transform: translateZ(200px);
-            transform: translateZ(200px);
-    opacity: 0;
+    
+      filter: blur(20px);
+      opacity: 0;
+  }
   }
   100% {
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+    
+    filter: blur(0px);
     opacity: 1;
   }
 }
 
-@keyframes fadeLeft {
-  from {
-    transform: translateX(100px);
-    opacity: 0;
-  }
 
-  to {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-}
 
 .icon-font {
   font-family: var(--icon-font-family);
@@ -180,8 +145,8 @@ main{
   padding: 20dvh;
   gap: 20dvh;
   
-  -webkit-animation: slide-in-bck-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  animation: slide-in-bck-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  /*-webkit-animation: slide-in-bck-center 200ms cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-in-bck-center 200ms cubic-bezier(0.250, 0.460, 0.450, 0.940) both;*/
 
 
   

@@ -1,4 +1,4 @@
-@import "style.css";
+@import "/style.css";
 :host {
   height: calc(60dvh - 84px);
   scroll-snap-align: center;
