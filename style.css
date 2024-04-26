@@ -235,6 +235,9 @@ section {
     overflow: hidden;
   height: 100dvh;
   }
+  main{
+    scroll-snap-type: y mandatory;
+  }
   .main-content{
     padding: 10dvh 16px;
     gap: 5dvh;
