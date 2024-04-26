@@ -8,6 +8,7 @@
   max-width: 50dvw;
   width: 100%;
   flex-direction: column;
+  min-height: 400px;
 }
 .card,
 .card * {
@@ -20,6 +21,8 @@ button{
 border: 1px solid var(--container-border-neutral, #CACFD9);
 font-family: var(--text-font-family);
 font-size: 16px;
+color: var(--text-on-neutral);
+cursor: pointer;
 }
 .card {
   background: white;

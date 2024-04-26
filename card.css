@@ -12,9 +12,11 @@
     align-self: stretch;
     -webkit-user-select: none;
     user-select: none;
+    cursor: pointer;
   
-    :hover{
-      border-color: var(--container-border-neutral-hover)
+    &:hover:not(.active){
+      border-color: var(--container-border-neutral-hover);
+      background-color: var(--container-background-primary);
     }
   }
   
@@ -28,6 +30,7 @@
     .icon{
       color: var(--text-brand, #1800FF);
   color: var(--text-brand, color(display-p3 0.0706 0 1));
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 200;
     }
   }
   
@@ -93,19 +96,26 @@
   
     .nav-card {
       
-      padding: var(--spacing-x-small, 8px) var(--spacing-medium, 24px);
+      padding: 0px;
       flex-direction: column;
       gap: 4px;
       border-color: transparent;
+      background: transparent;
+      
     }
   
     .active{
-      border-color: var(--container-border-brand) ;
+      border-color: transparent ;
+      .title{
+      color: var(--text-brand);
+      }
+
     
     }
     .title {
       font-size: 12px;
-      font-weight:500;
+      font-weight:400;
+      
     }
   
     .description {
@@ -114,5 +124,6 @@
   
     .icon {
       font-size: var(--Icon-Size-Medium, 24px);
+      font-variation-settings: 'g';
     }
   }
