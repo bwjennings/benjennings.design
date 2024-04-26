@@ -2,8 +2,8 @@
 :host {
   height: calc(60dvh - 84px);
   scroll-snap-align: center;
-  scroll-padding: 24px;
-  scroll-margin: 24px;
+  scroll-padding: 100px;
+  
   display: flex;
   max-width: 50dvw;
   width: 100%;
