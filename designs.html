@@ -1,87 +1,93 @@
 <!doctype html>
 <html>
-  <head>
-    <title>ben.cards</title>
-    <link href="style.css" rel="stylesheet" />
-    <link rel="icon" href="/favicon.png" />
-    <script type="module" src="components/index.js"></script>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <script src="/components/OptionCard/OptionCard.js" defer></script>
-    <script src="/components/Content Card/content-card.js" defer></script>
-    <script src="/components/Nav Item/NavItem.js" defer></script>
-    <script src="/components/Card/card.js" defer></script>
-   
-    <script src="./components/Content Card/content-card.js" defer></script>
-    <script src="index.js" defer></script>
-    <link rel="prefetch" href="/docs/designs.html" as="document"/>
-    <link rel="prefetch" href="/docs/experiments.html" as="document"/>
-    <link rel="prefetch" href="/docs/resources.html" as="document"/>
-  </head>
-  <body>
-    
-    <div class="page-container">
-      <nav class="sidebar">
-       
+<head>
+  <title>ben.cards</title>
+  <link href="style.css" rel="stylesheet" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module" src="components/index.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="index.js" defer></script>
+  <script src="/components/OptionCard/OptionCard.js" defer></script>
+  <script src="/components/Content Card/content-card.js" defer></script>
+  <script src="/components/Nav Item/NavItem.js" defer></script>
+  <script src="/components/Card/card.js" defer></script>
 
-          <div class="nav-card active " onclick="location.href='designs.html'" >
-            <div class="icon">design_services</div>
-              <div class="title-group">
-                  <div class="title">Designs</div>
-                  <div class="description">Some of my work</div>
-              </div>
-          </div>
+  <script src="./components/Content Card/content-card.js" defer></script>
+  <script src="index.js" defer></script>
+  <link rel="prefetch" href="/docs/designs.html" as="document" />
+  <link rel="prefetch" href="/docs/experiments.html" as="document" />
+  <link rel="prefetch" href="/docs/resources.html" as="document" />
+</head>
 
-          <div class="nav-card " onclick="location.href='experiments.html'">
-            <div class="icon">experiment</div>
-              <div class="title-group">
-                  <div class="title">Experiments</div>
-                  <div class="description">Extra Things</div>
-              </div>
-          </div>
+<body>
 
-          <div class="nav-card" onclick="location.href='resources.html'">
-            <div class="icon">category</div>
-              <div class="title-group">
-                  <div class="title">Resources</div>
-                  <div class="description">Files and more</div>
-              </div>
-            </div>
-        
-      </nav>
-       
-        
-        
-          
-        
-      </nav>
+  <div class="page-container">
+    <nav class="sidebar">
+
       
-      <main>
-        
-        <div class="main-content">
-          <section class="page-title">
-            <h1>Designs </h1>
-            <div class="subhead">Here is some bit size information about me and my work </div>
-          </section>
-         
-          <content-card  title="Here is a card"></content-card>
-          <content-card  title="Here is a card"></content-card>
-          <content-card  title="Here is a card"></content-card>
-          <content-card  title="Here is a card"></content-card>
-          
-          
-
-          
+        <div class="nav-card active " onclick="location.href='designs.html'">
+          <div class="icon">design_services</div>
+          <div class="title-group">
+            <div class="title">Designs</div>
+            <div class="description">Some of my work</div>
+          </div>
         </div>
 
+        <div class="nav-card " onclick="location.href='experiments.html'">
+          <div class="icon">experiment</div>
+          <div class="title-group">
+            <div class="title">Experiments</div>
+            <div class="description">Extra Things</div>
+          </div>
+        </div>
 
-        
+        <div class="nav-card" onclick="location.href='resources.html'">
+          <div class="icon">category</div>
+          <div class="title-group">
+            <div class="title">Resources</div>
+            <div class="description">Files and more</div>
+          </div>
+        </div>
 
-       
-      </main>
       
-   
+    
+
+
+
+
+    </nav>
+
+    <main>
+
+      <div class="main-content">
+        <section class="page-title">
+          <h1>Designs </h1>
+          <div class="subhead">Here is some bit size information about me and my work </div>
+        </section>
+
+        <content-card title="Here is a card">
+          <iframe loading="lazy" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D988-646%26viewport%3D2124%252C116%252C0.55%26t%3DIXz3dmGEwknjuQTC-1%26scaling%3Dscale-down%26starting-point-node-id%3D299%253A893%26show-proto-sidebar%3D1%26mode%3Ddesign&hide-ui=1" allowfullscreen></iframe>      
+        </content-card>
+        <content-card title="Here is a card">
+          <iframe loading="lazy" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Ftype%3Ddesign%26node-id%3D45%253A41%26mode%3Ddesign%26t%3DUMRJZfohOO4HiZD7-1&hide-ui=1" ></iframe>
+        </content-card>
+        <content-card title="Here is a card"></content-card>
+
+
+
+
+      </div>
+
+
+
+
+
+    </main>
+
+
     <script src="/components/navigation/nav-panel.js" defer></script>
-   
-  </body>
+
+</body>
+
 </html>

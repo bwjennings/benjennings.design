@@ -1,6 +1,6 @@
 @import "/style.css";
 :host {
-  height: calc(60dvh - 84px);
+  height: calc(80dvh - 84px);
   scroll-snap-align: center;
   scroll-padding: 100px;
   
@@ -25,7 +25,7 @@ color: var(--text-on-neutral);
 cursor: pointer;
 }
 .card {
-  background: white;
+  background: var( --container-background-secondary);
   border-radius: var(--radius-large, 16px);
   border-style: solid;
   border-color: var(--container-border-neutral, #cccfd7);
@@ -38,7 +38,7 @@ cursor: pointer;
   height: 100%;
 
   position: relative;
-  box-shadow: 0px 10px 100px 0px rgba(250, 253, 255, 1);
+  
   overflow: hidden;
 }
 
