@@ -31,6 +31,50 @@
 }
 
 
+dialog {
+  
+  border: none !important;
+  border-radius: calc(5px * var(--ratio));
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 1.6rem;
+  max-width: 400px;
+animation: hide 300ms ease normal;
+  transition: all 300ms;
+ 
+  
+  
+}
+
+dialog[open] {
+  animation: show 300ms ease normal;
+}
+
+dialog::backdrop {
+  background: rgba(0,0,0,0.5);
+  animation: show 300ms ease normal;
+}
+
+@keyframes show{
+  from {
+    opacity: 0;
+      transform: translateY(-110%);
+  }
+  to {
+    opacity: 1;
+      transform: translateY(0%);
+  }
+}
+
+@keyframes hide{
+  from {
+    opacity: 1;
+      transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+      transform: translateY(-110%);
+  }
+}
 
 content-card::part(button){
   all: unset;
@@ -64,6 +108,11 @@ button:hover{
   
     background-color: #CACFD9;
   
+}
+
+button[variant="brand"]{
+  background:var(--container-background-brand);
+  color:white
 }
 h1 {
   font-family: var(--text-font-family);
@@ -322,4 +371,3 @@ content-card{
   }
 
  
-
