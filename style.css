@@ -84,12 +84,15 @@ h4 {
 * {
   margin: 0;
   padding: 0;
+  color: var(--text-on-neutral);
 }
 
 
  
 
-
+input [type="radio"]{
+  color: var(--text-on-neutral);
+}
 
 
 
@@ -195,8 +198,19 @@ main{
   
 }
 
+.main-content {
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide-left {
+  transform: translateY(-100%);
+}
+
+.slide-right {
+  transform: translateY(100%);
+}
 .main-content :nth-child(n) {
-  animation: loading 400ms ease-in-out;
+  
 }
 
 
