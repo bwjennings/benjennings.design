@@ -21,14 +21,14 @@ button{
 border: 1px solid var(--container-border-neutral, #CACFD9);
 font-family: var(--text-font-family);
 font-size: 16px;
-color: var(--text-on-neutral);
+color: var(--container-foreground-primary);
 cursor: pointer;
 }
 .card {
   background: var( --container-background-secondary);
   border-radius: var(--radius-large, 16px);
   border-style: solid;
-  border-color: var(--container-border-neutral, #cccfd7);
+  border-color: var(--container-border-primary);
   border-width: 1px;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@ cursor: pointer;
   align-items: flex-start;
   justify-content: flex-start;
   height: 100%;
-
+width: 100%;
   position: relative;
   
   overflow: hidden;
@@ -44,9 +44,9 @@ cursor: pointer;
 
 .header {
   border-style: solid;
-  border-color: var(--container-border-neutral, #cccfd7);
+  border-color: var(--container-border-primary);
   border-width: 0px 0px 1px 0px;
-  padding: var(--spacing-small, 16px);
+  padding: var(--spacing-medium);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-none, 0px);
@@ -58,7 +58,7 @@ cursor: pointer;
 }
 
 .title {
-  color: var(--text-on-neutral);
+  color: var(--container-foreground-primary);
   text-align: left;
   font-family: var(--heading-medium-font-family, "Inter-Bold", sans-serif);
   font-size: var(--text-heading-size-small, 24px);
@@ -69,7 +69,7 @@ cursor: pointer;
 }
 
 .subtitle {
-  color: var(--text-on-neutral, #17191f);
+  color: var(--container-foreground-secondary);
   text-align: left;
   font-family: var(--subhead-medium-font-family, "Inter-Regular", sans-serif);
   font-size: var(--text-subhead-size-small, );

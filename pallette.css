@@ -1,0 +1,50 @@
+/* Gray Design palette: https://gray.design/app?lums=93.88,87.19,75.61,61.14,42.57,28.39,18.04,11.21,6.97,4.72,1.63&palettes=%23c596ee,%2320c276,%235899e3&filters=0%7C0,0%7C0,0%7C0&names=,,&labels=,, */
+:root {
+    --gray-50: #f8f8f8;
+    --gray-100: #f0f0f0;
+    --gray-200: #e1e1e1;
+    --gray-300: #cdcdcd;
+    --gray-400: #aeaeae;
+    --gray-500: #919191;
+    --gray-600: #767676;
+    --gray-700: #5e5e5e;
+    --gray-800: #4b4b4b;
+    --gray-900: #3d3d3d;
+    --gray-950: #222222;
+  
+    --purple-50: #fbf7fe;
+    --purple-100: #f5edfc;
+    --purple-200: #ecdcf9;
+    --purple-300: #dec3f5;
+    --purple-400: #c99def;
+    --purple-500: #b376e9;
+    --purple-600: #9d4ee2;
+    --purple-700: #8523da;
+    --purple-800: #6a1cae;
+    --purple-900: #581790;
+    --purple-950: #330e54;
+  
+    --green-50: #ecfcf5;
+    --green-100: #d5f8e8;
+    --green-200: #aaf1d0;
+    --green-300: #61e5a7;
+    --green-400: #21c779;
+    --green-500: #1ba665;
+    --green-600: #168752;
+    --green-700: #126c42;
+    --green-800: #0e5634;
+    --green-900: #0c472b;
+    --green-950: #072818;
+  
+    --blue-50: #f5f9fd;
+    --blue-100: #e8f1fb;
+    --blue-200: #d1e3f7;
+    --blue-300: #b2d0f2;
+    --blue-400: #81b2ea;
+    --blue-500: #5094e2;
+    --blue-600: #2476d4;
+    --blue-700: #1c5ea9;
+    --blue-800: #174b87;
+    --blue-900: #133e6f;
+    --blue-950: #0b233f;
+  }

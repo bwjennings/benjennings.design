@@ -8,7 +8,7 @@ customElements.define("my-component", class extends HTMLElement {
       const shadowRoot = this.attachShadow({ mode: "open" });
       shadowRoot.innerHTML = `
         <style>
-        @import "style.css"
+        @import "style.css";
         
         </style>
         <button id="openBtn">Settings</button>
@@ -19,8 +19,7 @@ customElements.define("my-component", class extends HTMLElement {
     
     
         <form id="themeSelect">
-        <input type="radio" id="default" name="theme" value="default" checked>
-        <label for="default">Default</label><br>
+        
         
         <input type="radio" id="dark" name="theme" value="dark">
         <label for="dark">Dark</label><br>
@@ -28,8 +27,7 @@ customElements.define("my-component", class extends HTMLElement {
         <input type="radio" id="light" name="theme" value="light">
         <label for="light">Light</label><br>
         
-        <input type="radio" id="fun" name="theme" value="fun">
-        <label for="fun">Fun</label>
+        
       </form>
           <button id="closeBtn">Close</button>
         </dialog>

@@ -1,4 +1,9 @@
+:host{
+  
+}
 .nav-card {
+  box-sizing: border-box;
+  height:100px;
     display: flex;
     padding: var(--spacing-medium, 24px);
     align-items: center;
@@ -54,14 +59,14 @@
   }
   
   .title {
-    color: var(--text-neutral, #06080e);
+    color: var(--container-foreground-primary);
     font-size: var(--text-text-body-large);
     line-height: 100%;
     font-weight: 500;
   }
   
   .description {
-    color: var(--text-secondary, #54575d);
+    color: var(--container-foreground-secondary);
     font-size: 14px;
     line-height: 100%;
     font-weight: 400;
@@ -78,7 +83,7 @@
     font-weight: var(--icon-weight-large, 500);
     line-height: 100%; 
   
-    color: var(--text-secondary, #52575F);
+    color: var(--container-foreground-secondary);
     font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
   }
   
@@ -110,7 +115,7 @@
     .active{
       border-color: transparent ;
       .title{
-      color: var(--text-brand);
+      color: var(--container-foreground-primary);
       }
 
     
