@@ -3,7 +3,7 @@
   height: calc(80dvh - 84px);
   scroll-snap-align: center;
   scroll-padding: 100px;
-  
+  font-family: var(--text-font-family);
   display: flex;
   max-width: 50dvw;
   width: 100%;
