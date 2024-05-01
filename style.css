@@ -9,27 +9,30 @@ body {
   background-color: var(--background-default);
   overflow: hidden;
   height: 100dvh;
+  font-family: var(--text-font-family);
 }
 
 button {
-  padding: var(--spacing-small, 16px);
+  padding: var(--spacing-medium);
   border-radius: var(--radius-small, 4px);
   border: 1px solid var(--container-border-primary, #cacfd9);
 
   font-family: var(--text-font-family);
   font-size: 16px;
   color: var(--container-foreground-primary);
-  background-color: var(--container-background-primary);
+  background-color: var(--container-background-secondary);
   cursor: pointer;
 }
 
 button:hover {
-  background-color: var(--container-background-secondary);
+  filter: brightness(.9);
 }
 
 button[variant="brand"] {
-  border-radius: var(--radius-small, 4px);
+  
   background: var(--container-background-brand);
+  color: var(--container-foreground-brand);
+  
 }
 
 h1 {
@@ -79,7 +82,7 @@ h4 {
     var(--container-border-primary, color(display-p3 0.8824 0.8824 0.8824));
 
   &:hover {
-    border-color: var(--container-border-neutral);
+    filter: brightness(0.95);
   }
 }
 
@@ -88,14 +91,9 @@ h4 {
 }
 
 label:has(input:checked) {
-  border: 1px solid var(--container-border-brand, #0062b5);
-  border: 1px solid
-    var(--container-border-brand, color(display-p3 0.1098 0.3686 0.6627));
-  background: var(--container-background-secondary, #f0f0f0);
-  background: var(
-    --container-background-secondary,
-    color(display-p3 0.9412 0.9412 0.9412)
-  );
+  border: 2px solid var(--container-border-brand);
+ 
+  
 }
 
 @media screen and (max-width: 900px) {
@@ -314,15 +312,17 @@ section {
 }
 
 dialog {
-  border: none !important;
+  color: var(--foreground-neutral);
+  border: 1px solid var(--container-border-primary);
   border-radius: var(--radius-large);
-  box-shadow:
-    0 0 #0000,
-    0 0 #0000,
-    0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  padding: 1.6rem;
-min-width: 300px;
+ 
+  padding: 24px;
+min-width: 400px;
   background-color: var(--container-background-primary);
+
+  h2 {
+    margin: 0;
+  }
 }
 
 dialog[open] {
@@ -334,5 +334,37 @@ dialog[open] {
 
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
+  filter: blur(3px);
   animation: 300ms ease-in-out fade;
+}
+
+.welcome-card{
+  display: flex;
+padding: 32px;
+flex-direction: column;
+align-items: flex-start;
+justify-content: start;
+gap: var(--spacing-large, 24px);
+  border-radius: var(--radius-large, 16px);
+border: 2px solid var(--container-border-primary, #E1E1E1);
+border: 2px solid var(--container-border-primary, color(display-p3 0.8824 0.8824 0.8824));
+background: var(--container-background-primary, #F8F8F8);
+background: var(--container-background-primary, color(display-p3 0.9725 0.9725 0.9725));
+width: 43dvw;
+height: 40dvh;
+h1{
+  margin: 0;
+  font-size: var(--text-heading-size-medium);
+  font-weight: var(--text-heading-weight);
+}
+h2{
+  flex-grow: 1;
+  margin: 0;
+  font-size: var(--text-subhead-size-medium);
+  font-weight: var(--text-subhead-weight);
+}
+
+button{
+  align-self: stretch;
+}
 }

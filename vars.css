@@ -48,11 +48,11 @@
   --icon-weight-large: 31.25rem;
 
   --text-font-family: "Inter";
-  --text-heading-weight: 43.75rem;
+  --text-heading-weight: 700;
   --text-heading-size-small: var(--font-size-6);
   --text-heading-size-medium: var(--font-size-8);
   --text-heading-size-large: var(--font-size-10);
-  --text-subhead-weight: 25rem;
+  --text-subhead-weight: 400;
   --text-subhead-size-small: var(--font-size-3);
   --text-subhead-size-medium: var(--font-size-6);
   --text-subhead-size-large: var(--font-size-7);

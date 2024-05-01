@@ -9,7 +9,14 @@ customElements.define(
       shadowRoot.innerHTML = `
         <style>
         @import "style.css";
-        
+        :host {
+            align-self:stretch;
+            justify-self:stretch;
+        }
+
+        button {
+            width:100%;
+        }
         </style>
         <button id="openBtn">Settings</button>
         <dialog id="dialog">
@@ -17,7 +24,7 @@ customElements.define(
         <form id="themeSelect" class="radio-buttons">
         
         <label class="radio-button">
-        <div class="icon">light_mode</div>
+        <div class="icon">contrast</div>
         <input type="radio" id="auto" name="drone" value="auto" checked />
         Auto</label>
 
