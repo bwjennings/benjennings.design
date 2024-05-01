@@ -1,142 +1,138 @@
-:host{
-  
-}
 .nav-card {
   box-sizing: border-box;
-  height:100px;
-    display: flex;
-    padding: var(--spacing-medium, 24px);
-    align-items: center;
-    gap: 24px;
-    
-    border-radius: var(--radius-large, 16px);
-    border: 1px solid var(--container-border-neutral, #CACFD9);
-    flex-direction: row;
-    justify-content: flex-start;
-    
-    align-self: stretch;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: pointer;
-  
-    &:hover:not(.active){
-      border-color: var(--container-border-neutral-hover);
-      background-color: var(--container-background-primary);
-    }
-    &:active{
-      box-shadow: 0px 0px 16px 0px rgba(1, 63, 255, 0.20) inset;
-    }
+  height: 100px;
+  display: flex;
+  padding: var(--spacing-medium, 24px);
+  align-items: center;
+  gap: 24px;
+
+  border-radius: var(--radius-large, 16px);
+  border: 1px solid var(--container-border-neutral, #cacfd9);
+  flex-direction: row;
+  justify-content: flex-start;
+
+  align-self: stretch;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover:not(.active) {
+    border-color: var(--container-border-neutral-hover);
+    background-color: var(--container-background-primary);
   }
-  
-  
-  
-  
-  .active {
-    border-color: var(--container-border-brand) ;
-    background: var(--container-background-primary, #F8FDFF);
-  
-    .icon{
-      color: var(--text-brand, #1800FF);
-  color: var(--text-brand, color(display-p3 0.0706 0 1));
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 200;
-    }
+  &:active {
+    box-shadow: 0px 0px 16px 0px rgba(1, 63, 255, 0.2) inset;
   }
-  
-  .title-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-    justify-content: flex-end;
-   
-    position: relative;
-    font-family: var(--text-font-family);
-  }
-  
-  .title, .description {
-    text-align: left;
-    position: relative;
-  }
-  
-  .title {
-    color: var(--container-foreground-primary);
-    font-size: var(--text-text-body-large);
-    line-height: 100%;
-    font-weight: 500;
-  }
-  
-  .description {
-    color: var(--container-foreground-secondary);
-    font-size: 14px;
-    line-height: 100%;
-    font-weight: 400;
-    align-self: stretch;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  
+}
+
+.active {
+  border-color: var(--container-border-brand);
+  background: var(--container-background-primary, #f8fdff);
+
   .icon {
-    font-family: var(--icon-font-family, "Material Symbols Sharp");
-    font-size: var(--icon-size-large, 32px);
-    font-style: normal;
-    font-weight: var(--icon-weight-large, 500);
-    line-height: 100%; 
-  
-    color: var(--container-foreground-secondary);
-    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
+    color: var(--text-brand, #1800ff);
+    color: var(--text-brand, color(display-p3 0.0706 0 1));
+    font-variation-settings:
+      "FILL" 1,
+      "wght" 400,
+      "GRAD" 200;
   }
-  
-  @media screen and (max-width: 900px) {
-    :host{
-      height:56px;
-    }
-    :host, a, .nav-card {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      justify-content: center;
-    }
-  
-    :host, .nav-card {
-      flex-grow: 1;
-    }
-  
-    .nav-card {
-      
-      padding: 0px;
-      flex-direction: column;
-      gap: 4px;
-      border-color: transparent;
-      background: transparent;
-      
-    }
-  
-    .active{
-      border-color: transparent ;
-      .title{
-      color: var(--container-foreground-primary);
-      }
+}
 
-    
-    }
+.title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: flex-end;
+
+  position: relative;
+  font-family: var(--text-font-family);
+}
+
+.title,
+.description {
+  text-align: left;
+  position: relative;
+}
+
+.title {
+  color: var(--container-foreground-primary);
+  font-size: var(--text-text-body-large);
+  line-height: 100%;
+  font-weight: 500;
+}
+
+.description {
+  color: var(--container-foreground-secondary);
+  font-size: 14px;
+  line-height: 100%;
+  font-weight: 400;
+  align-self: stretch;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.icon {
+  font-family: var(--icon-font-family, "Material Symbols Sharp");
+  font-size: var(--icon-size-large, 32px);
+  font-style: normal;
+  font-weight: var(--icon-weight-large, 500);
+  line-height: 100%;
+
+  color: var(--container-foreground-secondary);
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 400,
+    "GRAD" 0;
+}
+
+@media screen and (max-width: 900px) {
+  
+  :host,
+  a,
+  .nav-card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    height: 56px;
+  }
+
+  :host,
+  .nav-card {
+    flex-grow: 1;
+  }
+
+  .nav-card {
+    padding: 0px;
+    flex-direction: column;
+    gap: 4px;
+    border-color: transparent;
+    background: transparent;
+  }
+
+  .active {
+    border-color: transparent;
     .title {
-      font-size: 12px;
-      font-weight:400;
-      
-    }
-  
-    .description {
-      display: none;
-    }
-  
-    .icon {
-      font-size: var(--Icon-Size-Medium, 24px);
-      font-variation-settings: 'g';
-    }
-    .page-title h1{
-      font-size: 40px;
+      color: var(--container-foreground-primary);
     }
   }
+  .title {
+    font-size: 12px;
+    font-weight: 400;
+  }
 
-  
+  .description {
+    display: none;
+  }
+
+  .icon {
+    font-size: var(--Icon-Size-Medium, 24px);
+    font-variation-settings: "g";
+  }
+  .page-title h1 {
+    font-size: 40px;
+  }
+}

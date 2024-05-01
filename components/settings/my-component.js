@@ -15,20 +15,23 @@ customElements.define("my-component", class extends HTMLElement {
         <dialog id="dialog">
          
        
- 
+     
     
     
-        <form id="themeSelect">
-        
-        
-        <input type="radio" id="dark" name="theme" value="dark">
-        <label for="dark">Dark</label><br>
-        
-        <input type="radio" id="light" name="theme" value="light">
-        <label for="light">Light</label><br>
-        
-        
+        <form id="themeSelect" class="radio-buttons">
+        <label class="radio-button">
+        <div class="icon">light_mode</div>
+        <input type="radio" id="light" name="drone" value="light" checked />
+        Light</label>
+      
+
+        <label class="radio-button">
+        <div class="icon">dark_mode</div>
+      <input type="radio" id="dewey" name="drone" value="dark" />
+      Dark</label>
+    
       </form>
+
           <button id="closeBtn">Close</button>
         </dialog>
       `;
