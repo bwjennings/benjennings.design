@@ -19,14 +19,19 @@
   <link rel="prefetch" href="/docs/experiments.html" as="document" />
   <link rel="prefetch" href="/docs/resources.html" as="document" />
   <script src="theme.js" type="module"></script>
-  
+
+  <link rel="prefetch" href="designs.html" as="document" />
+  <link rel="prefetch" href="experiments.html" as="document" />
+  <link rel="prefetch" href="resources.html" as="document" />
+
 </head>
 
 <body>
- 
+
   <div class="page-container">
     <nav class="sidebar">
-     
+      <h2>ben.cards</h2>
+    
       <div class="nav-card active " data-target="designs.html">
         <div class="icon">design_services</div>
         <div class="title-group">
@@ -34,7 +39,7 @@
           <div class="description">Some of my work</div>
         </div>
       </div>
-
+    
       <div class="nav-card " data-target="experiments.html">
         <div class="icon">experiment</div>
         <div class="title-group">
@@ -42,7 +47,7 @@
           <div class="description">Extra Things</div>
         </div>
       </div>
-
+    
       <div class="nav-card" data-target="resources.html">
         <div class="icon">category</div>
         <div class="title-group">
@@ -50,31 +55,32 @@
           <div class="description">Files and more</div>
         </div>
       </div>
+    
       <my-component></my-component>
-
-
-
-
-
-
-
+    
+    
+    
+    
+    
+    
+    
     </nav>
 
     <main>
 
-      <div class="main-content">
+      <div class="main-content ">
         <section class="page-title">
           <h1>Designs </h1>
           <div class="subhead">Here is some bit size information about me and my work </div>
         </section>
 
-        <content-card title="Here is a card">
-          <iframe loading="lazy" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450"
+        <content-card title="Project Example" subtitle="This is something that I worked on">
+          <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450"
             src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D988-646%26viewport%3D2124%252C116%252C0.55%26t%3DIXz3dmGEwknjuQTC-1%26scaling%3Dscale-down%26starting-point-node-id%3D299%253A893%26show-proto-sidebar%3D1%26mode%3Ddesign&hide-ui=1"
             allowfullscreen></iframe>
         </content-card>
         <content-card title="Here is a card">
-          <iframe loading="lazy" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450"
+          <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450"
             src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Ftype%3Ddesign%26node-id%3D45%253A41%26mode%3Ddesign%26t%3DUMRJZfohOO4HiZD7-1&hide-ui=1"></iframe>
         </content-card>
         <content-card title="Here is a card"></content-card>
@@ -90,7 +96,7 @@
 
     </main>
 
-    <script src="./components/settings/my-component.js" ></script>
+    <script src="./components/settings/my-component.js"></script>
     <script src="/components/navigation/nav-panel.js" defer></script>
 
 </body>

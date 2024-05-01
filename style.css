@@ -52,46 +52,52 @@ h4 {
 
 .radio-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: 1fr;
+  background-color: inherit;
+  gap: var(--spacing-medium);
+  accent-color: var(--container-background-brand);
 }
 
 
 
 .radio-button {
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  padding: 10px 20px;
-  background-color: var(--container-background-primary);
+  padding: var(--spacing-medium);
+  background-color: inherit;
   color: var(--container-foreground-primary);
   font-family: var(--text-font-family);
-  border: 1px solid var(--container-border-primary);
-  border-radius: var(--radius-small);
+  border: 2px solid var(--container-border-primary);
+  border-radius: var(--radius-medium);
   cursor: pointer;
   display: flex;
-  
-  padding: var(--spacing-large, 24px) var(--spacing-large, 24px) var(--spacing-medium, 16px) var(--spacing-large, 24px);
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: var(--spacing-medium, 16px);
-  border-radius: 16px;
-  border: 1px solid var(--container-border-primary, #e1e1e1);
-  border: 1px solid
+ 
     var(--container-border-primary, color(display-p3 0.8824 0.8824 0.8824));
 
   &:hover {
-    filter: brightness(0.95);
+    filter:brightness(.95);
   }
+
+  span {
+    width: 100%;
+  }
+  input{
+    height: 24px;
+    width: 24px;
+  }
+
 }
 
-.radio-button input[type="radio"] {
-  display: none;
-}
+
 
 label:has(input:checked) {
   border: 2px solid var(--container-border-brand);
+  background-color: var(--container-background-primary);
  
   
 }
@@ -122,28 +128,39 @@ label:has(input:checked) {
   grid-area: sidebar;
   padding: 24px;
   gap: 24px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  grid-template-rows: 1fr auto auto auto 1fr;
+ 
+ 
+  
   border-right: 1px solid var(--container-border-primary);
   background: var(--background-secondary,);
+  display: grid;
+  gap: 16px;
+  
+  
+  
+ 
+  box-sizing: border-box;
+
+  h2{
+    font-weight: 400;
+    font-size: 40px;
+  }
 }
 
 .nav-item-group {
   gap: 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-self: center;
+  justify-self: center;
   width: 100%;
 }
 
 main {
   grid-area: main-content;
   overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
 
   mask: linear-gradient(
       to bottom,
@@ -180,10 +197,18 @@ main {
   align-items: center;
   padding: 20dvh 40px;
   gap: 10dvh;
-
+  animation: fadeBlur 300ms ease-out;
   perspective: 200px;
   transform-style: preserve-3d;
   perspective-origin: 50dvh 50px;
+}
+
+.fadeLeft{
+  animation: fadeLeft 200ms ease-out;
+}
+
+.fadeRight{
+  animation: fadeRight 200ms ease-out;
 }
 
 .main-content {
@@ -240,6 +265,11 @@ section {
 @media screen and (max-width: 900px) {
   .sidebar {
     padding: 16px;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: "nav-card settings"
+  }
+  .nav-item-group {
+    flex-direction: row;
   }
 }
 
@@ -260,6 +290,7 @@ section {
   .main-content {
     padding: 10dvh 16px;
     gap: 5dvh;
+    
   }
 
   .page-container {
@@ -311,6 +342,54 @@ section {
   }
 }
 
+@keyframes fadeUp {
+  from {
+    transform: translateY(5dvh) ;
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0dvh) ;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    transform: translateX(5dvh) ;
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0dvh) ;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    transform: translateX(-5dvh) ;
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0dvh) ;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeBlur {
+  from {
+    filter: blur(4px);
+    opacity: 0;
+  }
+
+  to {
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
 dialog {
   color: var(--foreground-neutral);
   border: 1px solid var(--container-border-primary);
@@ -318,7 +397,7 @@ dialog {
  
   padding: 24px;
 min-width: 400px;
-  background-color: var(--container-background-primary);
+  background-color: var(--background-default);
 
   h2 {
     margin: 0;
@@ -339,6 +418,7 @@ dialog::backdrop {
 }
 
 .welcome-card{
+  animation: fadeUp 600ms ease-in-out;
   display: flex;
 padding: 32px;
 flex-direction: column;
@@ -350,7 +430,7 @@ border: 2px solid var(--container-border-primary, #E1E1E1);
 border: 2px solid var(--container-border-primary, color(display-p3 0.8824 0.8824 0.8824));
 background: var(--container-background-primary, #F8F8F8);
 background: var(--container-background-primary, color(display-p3 0.9725 0.9725 0.9725));
-width: 43dvw;
+width: 30dvw;
 height: 40dvh;
 h1{
   margin: 0;

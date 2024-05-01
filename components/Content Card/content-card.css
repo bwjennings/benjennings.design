@@ -9,6 +9,7 @@
   width: 100%;
   flex-direction: column;
   min-height: 400px;
+  box-sizing: border-box;
 }
 .card,
 .card * {
@@ -34,13 +35,11 @@ width: 100%;
 }
 
 .header {
-  border-style: solid;
-  border-color: var(--container-border-primary);
-  border-width: 0px 0px 1px 0px;
+border-bottom: 1px solid var(--container-border-secondary);
   padding: var(--spacing-medium);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-none, 0px);
+  gap: 2px;
   align-items: flex-start;
   justify-content: flex-start;
   align-self: stretch;
@@ -53,8 +52,7 @@ width: 100%;
   text-align: left;
   font-family: var(--heading-medium-font-family, "Inter-Bold", sans-serif);
   font-size: var(--text-heading-size-small, 24px);
-  
-  font-weight: var(--text-heading-weight, 700);
+  font-weight: var(--text-heading-weight);
   position: relative;
   align-self: stretch;
 }
@@ -62,10 +60,10 @@ width: 100%;
 .subtitle {
   color: var(--container-foreground-secondary);
   text-align: left;
-  font-family: var(--subhead-medium-font-family, "Inter-Regular", sans-serif);
+  
   font-size: var(--text-subhead-size-small, );
-  line-height: var(--subhead-medium-line-height,);
-  font-weight: var(--subhead-medium-font-weight, 400);
+  line-height: auto;
+  font-weight: var(--subhead-font-weight);
   position: relative;
   align-self: stretch;
 }
@@ -122,4 +120,8 @@ dialog::backdrop {
     height: calc(80dvh - 84px);
     max-width: none;
   }
+}
+
+::slotted(iframe) {
+  border-radius: var(--radius-large);
 }

@@ -10,8 +10,10 @@ customElements.define(
         <style>
         @import "style.css";
         :host {
-            align-self:stretch;
+            align-self:flex-end;
             justify-self:stretch;
+            grid-row: 5 / 6;
+            
         }
 
         button {
@@ -22,25 +24,30 @@ customElements.define(
         <dialog id="dialog">
       <h2>Settings</h2>
         <form id="themeSelect" class="radio-buttons">
-        
+        <label for themeSelect">Color Mode</label>
         <label class="radio-button">
         <div class="icon">contrast</div>
+        <span>Auto</span>
         <input type="radio" id="auto" name="drone" value="auto" checked />
-        Auto</label>
+       </label>
 
         <label class="radio-button">
         <div class="icon">light_mode</div>
+        <span>Light</span>
         <input type="radio" id="light" name="drone" value="light" />
-        Light</label>
+       </label>
       
 
-        <label class="radio-button">
+        <label  class="radio-button">
         <div class="icon">dark_mode</div>
+        <span>Dark</span>
       <input type="radio" id="dewey" name="drone" value="dark" />
-      Dark</label>
+      
+      </label>
    
        
     </form>
+    
     
 
           <button id="closeBtn">Close</button>
