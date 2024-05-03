@@ -1,0 +1,230 @@
+:host {
+    grid-area: sidebar;
+    flex-grow: 1;
+}
+
+.sidebar {
+    height: 100%;
+    box-sizing: border-box;
+    width: 300px;
+    background: var(--container-background-primary);
+    display: grid;
+    padding: var(--spacing-large);
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 80px 1fr auto auto auto 1fr;
+    gap: var(--spacing-medium);
+    grid-auto-flow: row;
+    grid-template-areas:
+        "title settings"
+        ". ."
+        "item1 item1"
+        "item2 item2"
+        "item3 item3"
+        ". .";
+    align-items: center;
+}
+
+.nav-card {
+    box-sizing: border-box;
+    height: 80px;
+    display: flex;
+    padding: var(--spacing-large);
+    align-items: center;
+    gap: var(--spacing-large);
+    background-color: inherit;
+    flex-direction: row;
+    justify-content: flex-start;
+    -webkit-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius-large);
+    cursor: pointer;
+
+
+    &:active {}
+
+    &:hover:not(.active) {
+        filter: brightness(0.9);
+    }
+}
+
+.active {
+    filter: brightness(1.1);
+    border: 1px solid var(--container-background-brand);
+
+    .icon {
+        color: var(--foreground-brand);
+    }
+}
+
+.title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    position: relative;
+    font-family: var(--text-font-family);
+    transition: all 100ms;
+}
+
+.title,
+.description {
+    text-align: left;
+    position: relative;
+}
+
+.title {
+    color: var(--container-foreground-primary);
+    font-size: var(--text-text-body-large);
+    line-height: 100%;
+    font-weight: 500;
+}
+
+.description {
+    color: var(--container-foreground-secondary);
+    font-size: 14px;
+    line-height: 100%;
+    font-weight: 400;
+    align-self: stretch;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.icon {
+    font-family: var(--icon-font-family, "Material Symbols Sharp");
+    font-size: 32px;
+    font-style: normal;
+    font-weight: var(--icon-weight-large, 500);
+    line-height: 100%;
+
+    color: var(--container-foreground-secondary);
+    font-variation-settings:
+        "FILL" 1,
+        "wght" 400,
+        "GRAD" 0;
+}
+
+.item2 {
+    grid-area: item2;
+}
+
+.item1 {
+    grid-area: item1;
+}
+
+.item3 {
+    grid-area: item3;
+}
+
+.title {
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-area: title;
+}
+
+.site-title {
+    font-size: var(--text-heading-size-small);
+    font-weight: 400;
+
+}
+
+@media screen and (max-width: 900px) {
+
+    :root {
+        height: auto;
+        width: 100%;
+        flex-shrink: 0;
+        flex-grow: 1;
+    }
+
+    .nav-card {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        height: 56px;
+
+
+
+
+        flex-grow: 1;
+
+        padding: 0px;
+        flex-direction: column;
+        gap: 4px;
+        border-color: transparent;
+        background: transparent;
+    }
+
+    .active {
+        border-color: transparent;
+
+        .title {
+            color: var(--container-foreground-primary);
+        }
+    }
+
+
+
+    .description {
+        display: none;
+    }
+
+
+
+    .page-title h1 {
+        font-size: 40px;
+        font
+    }
+
+    .title {
+        font-size: 12px;
+    }
+
+    .icon {
+        font-size: var(--icon-size-medium);
+    }
+
+
+    .nav-item-group {
+        gap: 24px;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        justify-self: center;
+        width: 100%;
+    }
+
+    .nav-item-group {
+        flex-direction: row;
+    }
+
+    .sidebar {
+        padding: 16px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+
+            "item1 item2 item3 settings"
+        ;
+        display: flex;
+
+        flex-direction: row;
+        padding: 12px 16px 16px 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        width: auto;
+
+        border-top: 1px solid var(--container-border-neutral);
+        background-color: var(--container-background-primary);
+
+        .site-title {
+            display: none;
+        }
+    }
+}

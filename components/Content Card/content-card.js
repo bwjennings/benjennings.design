@@ -17,6 +17,7 @@ customElements.define(
        
   
         const shadowRoot = this.attachShadow({ mode: "open" });
+        
         shadowRoot.innerHTML = `
      
   
@@ -38,7 +39,7 @@ customElements.define(
       </dialog>
     </div>
     <div class="footer">
-    <button id="openBtn">See Designs</button>
+    <button size="small" id="openBtn">See Designs</button>
     <button>Button Text</button>
             
         

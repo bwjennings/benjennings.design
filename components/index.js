@@ -1,5 +1,4 @@
-import './LinkCard/LinkCard.js'
-import './Pill/pill.js'
-import './Card/card.js'
-import './Content Card/content-card.js'
+import './navigation/navigation.js';
+import './settings/settings.js';
+import './Content Card/content-card.js';
 

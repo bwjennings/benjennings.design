@@ -7,14 +7,14 @@
   <link rel="icon" href="/favicon.png" />
   <script type="module" src="components/index.js"></script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script src="index.js" defer></script>
+  <script src="index.js"></script>
   <script src="/components/OptionCard/OptionCard.js" defer></script>
   <script src="/components/Content Card/content-card.js" defer></script>
   <script src="/components/Nav Item/NavItem.js" defer></script>
   <script src="/components/Card/card.js" defer></script>
 
   <script src="./components/Content Card/content-card.js" defer></script>
-  <script src="index.js" defer></script>
+  
   <link rel="prefetch" href="/docs/designs.html" as="document" />
   <link rel="prefetch" href="/docs/experiments.html" as="document" />
   <link rel="prefetch" href="/docs/resources.html" as="document" />
@@ -29,42 +29,8 @@
 <body>
 
   <div class="page-container">
-    <nav class="sidebar">
-      <h2>ben.cards</h2>
-    
-      <div class="nav-card active " data-target="designs.html">
-        <div class="icon">design_services</div>
-        <div class="title-group">
-          <div class="title">Designs</div>
-          <div class="description">Some of my work</div>
-        </div>
-      </div>
-    
-      <div class="nav-card " data-target="experiments.html">
-        <div class="icon">experiment</div>
-        <div class="title-group">
-          <div class="title">Experiments</div>
-          <div class="description">Extra Things</div>
-        </div>
-      </div>
-    
-      <div class="nav-card" data-target="resources.html">
-        <div class="icon">category</div>
-        <div class="title-group">
-          <div class="title">Resources</div>
-          <div class="description">Files and more</div>
-        </div>
-      </div>
-    
-      <my-component></my-component>
-    
-    
-    
-    
-    
-    
-    
-    </nav>
+    <custom-sidebar active-item="0"></custom-sidebar>
+
 
     <main>
 
@@ -97,7 +63,9 @@
     </main>
 
     <script src="./components/settings/my-component.js"></script>
-    <script src="/components/navigation/nav-panel.js" defer></script>
+    <script src="/components/navigation/navigation.js"></script>
+    <script src="/components/settings/settings.js"></script>
+    <script src="index.js"></script>
 
 </body>
 

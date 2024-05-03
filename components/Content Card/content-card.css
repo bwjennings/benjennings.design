@@ -5,7 +5,7 @@
   scroll-padding: 100px;
   font-family: var(--text-font-family);
   display: flex;
-  max-width: 50dvw;
+  max-width: 100%;
   width: 100%;
   flex-direction: column;
   min-height: 400px;
@@ -17,7 +17,7 @@
 }
 
 .card {
-  background: var( --container-background-secondary);
+  background: var( --container-background-primary);
   border-radius: var(--radius-large, 16px);
   border-style: solid;
   border-color: var(--container-border-primary);

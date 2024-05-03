@@ -1,0 +1,119 @@
+:host{
+    grid-area: settings;
+}
+footer {
+    display: inline-flex;
+    justify-content: flex-end;
+    gap: var(--spacing-medium);
+    padding-top: var(--spacing-medium);
+    border-top: 1px solid var(--container-border-primary);
+}
+
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right,
+            oklch(60% 0.2 0),
+            oklch(60% 0.2 60),
+            oklch(60% 0.2 120),
+            oklch(60% 0.2 180),
+            oklch(60% 0.2 240),
+            oklch(60% 0.2 300),
+            oklch(60% 0.2 360));
+    cursor: pointer;
+    margin: 0%;
+    width: 100%;
+    border-radius: 100dvh;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    margin: 4px;
+    border-radius: 99px;
+    width: 25px;
+    /* Set a specific slider handle width */
+    height: 25px;
+    /* Slider handle height */
+    opacity: 0.6;
+    background: white;
+    /* Green background */
+    cursor: pointer;
+    /* Cursor on hover */
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 25px;
+    /* Set a specific slider handle width */
+    height: 25px;
+    /* Slider handle height */
+    background: white;
+    /* Green background */
+    cursor: pointer;
+    /* Cursor on hover */
+    margin: 4px;
+    border-radius: 99px;
+    opacity: 0.6;
+}
+
+
+@media screen and (max-width: 900px) {
+
+    :host {
+        flex-grow: 1;
+        width: 100%;
+
+    }
+
+    .nav-card {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        height: 56px;
+        font-weight: 500;
+
+
+
+
+        flex-grow: 1;
+
+        padding: 0px;
+        flex-direction: column;
+        gap: 4px;
+        border-color: transparent;
+        background: transparent;
+        font-size: 12px;
+    }
+
+    .active {
+        border-color: transparent;
+
+        .title {
+            color: var(--container-foreground-primary);
+        }
+    }
+
+
+
+
+
+
+
+    .title {
+        font-size: 12px;
+    }
+
+    .icon {
+        font-size: var(--icon-size-medium);
+    }
+
+
+
+
+
+
+}

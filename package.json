@@ -1,5 +1,7 @@
 {
     "main": "index.js",
     "module": "index.js",
-    // ...
-  }
+    "dependencies": {
+        "lit-element": "^4.0.5"
+    }
+}
