@@ -86,13 +86,10 @@
   --black: oklch(0% 0% 0deg);
   --white: oklch(100% 0% 0deg);
 
-  /* brands */
 
-  /* Grays */
 
-  /* colors */
   --brand-hue: 230;
-  /* Average determined hue for brands */
+ 
   --brand-10: oklch(var(--lightness-10) 6.5% var(--brand-hue));
   --brand-20: oklch(var(--lightness-20) 12.8% var(--brand-hue));
   --brand-30: oklch(var(--lightness-30) 21.9% var(--brand-hue));
@@ -173,8 +170,8 @@
     --background-default: var(--gray-95);
     --background-secondary: var(--gray-90);
     --container-background-brand: var(--brand-70);
-    --container-background-primary: var(--gray-90);
-    --container-background-secondary: var(--gray-80);
+    --container-background-primary: var(--gray-80);
+    --container-background-secondary: var(--gray-70);
     --container-background-success: var(--green-60);
     --container-border-brand: var(--brand-60);
     --container-border-primary: var(--gray-80);
@@ -195,8 +192,8 @@
   --background-default: var(--gray-95);
   --background-secondary: var(--gray-90);
   --container-background-brand: var(--brand-70);
-  --container-background-primary: var(--gray-90);
-  --container-background-secondary: var(--gray-80);
+  --container-background-primary: var(--gray-80);
+  --container-background-secondary: var(--gray-70);
   --container-background-success: var(--green-60);
   --container-border-brand: var(--brand-60);
   --container-border-primary: var(--gray-80);
