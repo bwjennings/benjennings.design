@@ -22,6 +22,7 @@
         "item3 item3"
         ". .";
     align-items: center;
+    border-right: 1px solid var(--container-background-secondary);
 }
 
 .nav-card {
@@ -37,7 +38,7 @@
     -webkit-user-select: none;
     user-select: none;
     border: 1px solid transparent;
-    border-radius: var(--radius-large);
+    border-radius: var(--radius-medium);
     cursor: pointer;
 
 

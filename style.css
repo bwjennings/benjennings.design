@@ -4,7 +4,7 @@
 body {
   margin: 0;
   padding: 0;
-  scroll-behavior:smooth;
+  scroll-behavior: smooth;
   color: var(--foreground-neutral);
   background-color: var(--background-default);
   overflow: hidden;
@@ -14,7 +14,8 @@ body {
 }
 
 button {
-  border-radius: var(--radius-small, 4px);
+  user-select: none;
+  border-radius: var(--radius-medium);
   border: 1px solid var(--container-border-primary);
   background: var(--container-background-primary);
   display: inline-flex;
@@ -27,46 +28,45 @@ button {
   color: var(--container-foreground-primary);
   cursor: pointer;
 
-  .icon{
-   
-      font-family: var(--icon-font-family);
-    
+  .icon {
+    font-family: var(--icon-font-family);
   }
- 
 }
 
-
-
 button[variant="brand"] {
-  
   background: var(--container-background-brand);
   color: var(--container-foreground-brand);
   border: 1px solid var(--container-border-brand);
-
 }
 
 button[size="small"] {
-  
-  
-padding: var(--spacing-small, 8px);
-gap: var(--spacing-x-small, 4px);
-
+  padding: var(--spacing-small, 8px);
+  gap: var(--spacing-x-small, 4px);
 }
-
 
 button:hover {
   filter: brightness(0.9);
 }
 
-
-
 h1 {
+  margin: 0;
   font-family: var(--text-font-family);
-  font-size: 80px;
+  font-size: var(--text-heading-size-medium);
   font-style: normal;
   font-weight: 500;
   line-height: 100%;
-  /* 80px */
+
+  &[size="small"] {
+    font-size: var(--text-heading-size-small);
+  }
+
+  &[size="medium"] {
+    font-size: var(--text-heading-size-medium);
+  }
+}
+
+h2 {
+  font-size:;
 }
 
 h4 {
@@ -74,7 +74,7 @@ h4 {
   font-optical-sizing: auto;
   font-size: 1.5rem;
 }
-form{
+form {
   gap: var(--spacing-xx-large);
   display: flex;
   flex-direction: column;
@@ -92,23 +92,23 @@ label {
   flex-direction: row;
   gap: var(--spacing-small);
   justify-content: center;
-align-items: center;
-padding: var(--spacing-small);
-border-radius: var(--radius-large);
-border: none;
-background: var(--container-background-secondary);
+  align-items: center;
+  padding: var(--spacing-small);
+  border-radius: var(--radius-large);
+  border: none;
+  background: var(--container-background-secondary);
 }
 .radio-button {
- 
   display: flex;
   flex-direction: row;
   background-color: inherit;
-  padding: var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-medium, 12px);
-justify-content: center;
-align-items: center;
-gap: var(--spacing-medium, 12px);
-flex: 1 0 0;
-border-radius: var(--radius-medium, 8px);
+  padding: var(--spacing-large, 16px) var(--spacing-large, 16px)
+    var(--spacing-large, 16px) var(--spacing-medium, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-medium, 12px);
+  flex: 1 0 0;
+  border-radius: var(--radius-medium, 8px);
 
   color: var(--container-foreground-primary);
   font-family: var(--text-font-family);
@@ -120,28 +120,26 @@ border-radius: var(--radius-medium, 8px);
   align-items: center;
   gap: var(--spacing-medium, 16px);
   flex-grow: 1;
- 
+
   span {
     justify-content: center;
-align-items: center;
+    align-items: center;
   }
 
   &:hover {
     filter: brightness(0.95);
   }
 
- 
   input[type="radio"] {
- 
     position: absolute;
     opacity: 0;
   }
 }
 
 .radio-button:has(input:checked) {
-  border-color: var(--container-border-brand);
-  background-color: var(--container-background-brand);
-  color: var(--container-foreground-brand);
+  border-color: var(--container-border-primary);
+  background-color: var(--container-background-primary);
+  color: var(--container-foreground-primary);
 }
 
 @media screen and (max-width: 900px) {
@@ -167,29 +165,31 @@ align-items: center;
   grid-template-areas: "sidebar main-content";
 }
 
-
-
-
 h2 {
   font-weight: 400;
   font-size: 40px;
 }
 
-
-
 main {
   grid-area: main-content;
   overflow-y: scroll;
   scroll-snap-type: y proximity;
+  perspective: 200px;
+  transform-style: preserve-3d;
+  transform-origin: top;
+}
+@keyframes fadeUp {
+  from {
+    transform: translateZ(2dvw);
+    filter: blur(16px);
+    opacity: 0;
+  }
 
-  mask: linear-gradient(
-      to bottom,
-      #00000000 0%,
-      #fff 5%,
-      #fff 95%,
-      #00000000 100%
-    )
-    100% 10% / 100% 100% repeat-x;
+  to {
+    transform: translateZ(0dvw);
+    filter: blur(0px);
+    opacity: 1;
+  }
 }
 
 @keyframes loading {
@@ -217,7 +217,7 @@ main {
   align-items: center;
   padding: 20dvh 40px;
   gap: 10dvh;
-  animation: fadeBlur 300ms ease-out;
+  animation: fadeUp 400ms ease-out;
   perspective: 200px;
   transform-style: preserve-3d;
   perspective-origin: 50dvh 50px;
@@ -255,7 +255,7 @@ section {
 }
 
 .page-title {
-  height: auto;
+  height: 20dvh;
 
   z-index: 2;
 
@@ -267,7 +267,7 @@ section {
   justify-content: start;
   align-items: flex-start;
   width: 100%;
-  max-width: 50dvw;
+  max-width: 60dvw;
 
   h1 {
     margin: 0;
@@ -282,40 +282,14 @@ section {
   }
 }
 
-
 .material-symbols-rounded {
   font-size: 64px;
 }
 
-@media screen and (max-width: 900px) {
-  body {
-    overflow: hidden;
-    height: 100dvh;
-  }
-
-  main {
-    scroll-snap-type: y mandatory;
-  }
-
-  .main-content {
-    padding: 10dvh 16px;
-    gap: 5dvh;
-  }
-
-  .page-container {
-    height: 100%;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 84px;
-    grid-template-areas:
-      "main-content"
-      "sidebar";
-  }
-
-  .page-title {
-    max-width: none;
-  }
-
-  
+.dialog-header {
+  border-bottom: 1px solid var(--container-border-primary);
+  padding-bottom: var(--spacing-medium);
+  font-size: var(--text-heading-size-small);
 }
 
 @keyframes show {
@@ -336,18 +310,6 @@ section {
   }
 
   to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0%);
     opacity: 1;
   }
 }
@@ -394,7 +356,8 @@ dialog {
   border-radius: var(--radius-large);
 
   padding: 24px;
-  min-width: 400px;
+  perspective: 200px;
+  transform-style: preserve-3d;
   background-color: var(--background-default);
 
   h2 {
@@ -403,52 +366,84 @@ dialog {
 }
 
 dialog[open] {
-  animation: show 300ms ease normal;
+  animation: fadeUp 400ms ease-in-out;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-large);
 }
 
 dialog::backdrop {
-  background: var(--container-background-brand);
-  opacity: 0.2;
-  backdrop-filter: blur(16px);
+  background: color(var(--container-background-brand) / 0.8);
 
-  
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .welcome-card {
-  animation: fadeUp 600ms ease-in-out;
+ 
   display: flex;
-  padding: 32px;
+ 
   flex-direction: column;
   align-items: flex-start;
   justify-content: start;
   gap: var(--spacing-large, 24px);
-  border-radius: var(--radius-large, 16px);
-  border: 2px solid var(--container-border-primary, #e1e1e1);
-  border: 2px solid
-    var(--container-border-primary, color(display-p3 0.8824 0.8824 0.8824));
-  background: var(--container-background-primary, #f8f8f8);
-  background: var(
-    --container-background-primary,
-    color(display-p3 0.9725 0.9725 0.9725)
-  );
-  width: 30dvw;
-  height: 40dvh;
-  h1 {
-    margin: 0;
-    font-size: var(--text-heading-size-medium);
-    font-weight: var(--text-heading-weight);
-  }
+  height: 100dvh;
+  width: 100dvw;
+  padding: 20dvw;
+ 
+  
+
+
   h2 {
-    flex-grow: 1;
     margin: 0;
+    margin-bottom: var(--spacing-large);
     font-size: var(--text-subhead-size-medium);
     font-weight: var(--text-subhead-weight);
   }
 
-  button {
-    align-self: stretch;
+  button{
+    align-self: flex-end;
+  }
+
+  
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    overflow: hidden;
+    height: 100dvh;
+  }
+
+  main {
+    scroll-snap-type: y mandatory;
+  }
+
+  .main-content {
+    padding: 10dvh 16px;
+    gap: 5dvh;
+  }
+
+  .page-container {
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 84px;
+    grid-template-areas:
+      "main-content"
+      "sidebar";
+  }
+
+  .page-title {
+    max-width: none;
+  }
+
+  dialog {
+    width: 80dvw;
+
+    min-width: 200px;
+
+    form {
+      flex-grow: 1;
+      padding-block: 40px;
+    }
   }
 }

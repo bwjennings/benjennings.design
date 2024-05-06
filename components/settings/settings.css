@@ -1,11 +1,13 @@
 :host{
     grid-area: settings;
+    perspective: 200px;
+    transform-style: preserve-3d;
 }
 footer {
     display: inline-flex;
     justify-content: flex-end;
     gap: var(--spacing-medium);
-    padding-top: var(--spacing-medium);
+    padding-top: var(--spacing-x-large);
     border-top: 1px solid var(--container-border-primary);
 }
 
@@ -60,6 +62,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
+
 @media screen and (max-width: 900px) {
 
     :host {
@@ -97,11 +100,14 @@ input[type="range"]::-moz-range-thumb {
         }
     }
 
+    footer button{
+flex-grow: 1;
+    }
 
 
 
 
-
+   
 
     .title {
         font-size: 12px;

@@ -5,7 +5,7 @@
   scroll-padding: 100px;
   font-family: var(--text-font-family);
   display: flex;
-  max-width: 100%;
+  max-width: 60dvw;
   width: 100%;
   flex-direction: column;
   min-height: 400px;

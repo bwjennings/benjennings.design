@@ -31,9 +31,7 @@
   --radius-small: 4px;
   --radius-medium: 8px;
   --radius-large: 16px;
- 
-  
- 
+
   --spacing-none: 0px;
   --spacing-x-small: 4px;
   --spacing-small: 8px;
@@ -55,6 +53,7 @@
   --text-heading-size-medium: var(--font-size-8);
   --text-heading-size-large: var(--font-size-10);
   --text-font-family: "Inter";
+
   --icon-font-family: "Material Symbols Sharp";
   --icon-weight-small: 300;
   --icon-size-small: var(--font-size-3);
@@ -62,6 +61,7 @@
   --icon-weight-large: 500;
   --icon-size-medium: var(--font-size-4);
   --icon-size-large: var(--font-size-5);
+
   --text-subhead-weight: 400;
   --text-body-weight: "400";
   --text-body-small: var(--font-size-3);
@@ -73,15 +73,15 @@
 
   --lightness-5: 98%;
   --lightness-10: 95%;
-  --lightness-20: 92%;
-  --lightness-30: 85%;
-  --lightness-40: 74%;
-  --lightness-50: 65%;
-  --lightness-60: 57%;
-  --lightness-70: 51%;
-  --lightness-80: 45%;
-  --lightness-90: 40%;
-  --lightness-95: 24%;
+  --lightness-20: 90%;
+  --lightness-30: 80%;
+  --lightness-40: 70%;
+  --lightness-50: 60%;
+  --lightness-60: 50%;
+  --lightness-70: 40%;
+  --lightness-80: 30%;
+  --lightness-90: 20%;
+  --lightness-95: 10%;
 
   --black: oklch(0% 0% 0deg);
   --white: oklch(100% 0% 0deg);
@@ -106,17 +106,17 @@
   --brand-95: oklch(var(--lightness-95) 16.2% var(--brand-hue));
 
   --gray-hue: 230;
-  --gray-5: oklch(var(--lightness-5) 1% var(--brand-hue));
-  --gray-10: oklch(var(--lightness-10) 1% var(--brand-hue));
-  --gray-20: oklch(var(--lightness-20) 1% var(--brand-hue));
-  --gray-30: oklch(var(--lightness-30) 1% var(--brand-hue));
-  --gray-40: oklch(var(--lightness-40) 1% var(--brand-hue));
-  --gray-50: oklch(var(--lightness-50) 1% var(--brand-hue));
-  --gray-60: oklch(var(--lightness-60) 1% var(--brand-hue));
-  --gray-70: oklch(var(--lightness-70) 1% var(--brand-hue));
-  --gray-80: oklch(var(--lightness-80) 1% var(--brand-hue));
-  --gray-90: oklch(var(--lightness-90) 1% var(--brand-hue));
-  --gray-95: oklch(var(--lightness-95) 1% var(--brand-hue));
+  --gray-5: oklch(var(--lightness-5) 1.5% var(--brand-hue));
+  --gray-10: oklch(var(--lightness-10) 1.5% var(--brand-hue));
+  --gray-20: oklch(var(--lightness-20) 1.5% var(--brand-hue));
+  --gray-30: oklch(var(--lightness-30) 1.5% var(--brand-hue));
+  --gray-40: oklch(var(--lightness-40) 1.5% var(--brand-hue));
+  --gray-50: oklch(var(--lightness-50) 1.5% var(--brand-hue));
+  --gray-60: oklch(var(--lightness-60) 1.5% var(--brand-hue));
+  --gray-70: oklch(var(--lightness-70) 1.5% var(--brand-hue));
+  --gray-80: oklch(var(--lightness-80) 1.5% var(--brand-hue));
+  --gray-90: oklch(var(--lightness-90) 1.5% var(--brand-hue));
+  --gray-95: oklch(var(--lightness-95) 1.5% var(--brand-hue));
 
   --green-hue: 130;
   --green-5: oklch(var(--lightness-5) 1% var(--green-hue));

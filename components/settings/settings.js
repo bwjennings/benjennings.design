@@ -18,17 +18,13 @@ customElements.define(
         </style>
         <button class="nav-card" id="openBtn"><div class="icon">settings</div> Settings</button>
         <dialog id="dialog">
-          <h2>Settings</h2>
+          <h2 class="dialog-header">Settings</h2>
 
           <form id="themeSelect">
           <label>Color Mode
             <fieldset class="radio-buttons">
               
-              <label class="radio-button">
-                  <input type="radio" name="theme" value="" checked> 
-                  <span class="icon">contrast</span> 
-                  <span>Auto</span>
-              </label>
+              
               <label class="radio-button">
                   <input type="radio" name="theme" value="light"> 
                   <span class="icon">light_mode</span> 
@@ -39,17 +35,22 @@ customElements.define(
                   <span class="icon">dark_mode</span> 
                    <span>Dark</span>
               </label>
+              <label class="radio-button">
+                  <input type="radio" name="theme" value="" checked> 
+                  <span class="icon">contrast</span> 
+                  <span>Auto</span>
+              </label>
             </fieldset>
             </label>
             
             <label for="hueSlider">Theme Color:
-            <input type="range" id="hueSlider" name="hue" min="0" max="360" step="1">
+            <input type="range" id="hueSlider" name="hue" min="0" max="360" step="10">
             </label>
           </form>
           
           <footer>
-            <button id="cancelBtn">Cancel</button>
-            <button id="closeBtn">Save</button>
+            <button  id="cancelBtn">Cancel</button>
+            <button variant="brand" id="closeBtn">Save</button>
           </footer>
         </dialog>
       `;
@@ -76,7 +77,7 @@ customElements.define(
 
     applyStoredSettings() {
       const storedTheme = localStorage.getItem("myCustomTheme") || "";
-      const storedHue = localStorage.getItem("selectedColorHue") || "180"; // Default hue if not stored
+      const storedHue = localStorage.getItem("selectedColorHue") || "230"; // Default hue if not stored
 
       if (storedTheme) {
         this.updateTheme(storedTheme);
