@@ -29,21 +29,24 @@ customElements.define(
     <div class="header">
         <div class="title"> ${title} </div>
         <div class="subtitle"> ${subtitle} </div>
+        <p><slot name="body"></slot></p>
     </div>
     <div class="content">
+    <slot></slot>
+    </div>
         
-        <slot></slot>
         <dialog id="dialog">
         <slot name="dialogContent"></slot> 
         <button id="closeBtn">Close</button>
       </dialog>
+    
     </div>
     <div class="footer">
     <button size="small" id="openBtn">See Designs</button>
-    <button>Button Text</button>
+    <button size="small" >Button Text</button>
             
         
-    </div>
+    
 </div>
       `;
       

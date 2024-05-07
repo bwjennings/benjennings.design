@@ -1,6 +1,6 @@
 @import "/style.css";
 :host {
-  height: calc(80dvh - 84px);
+  height: auto;
   scroll-snap-align: center;
   scroll-padding: 100px;
   font-family: var(--text-font-family);
@@ -17,26 +17,30 @@
 }
 
 .card {
-  background: var( --container-background-primary);
-  border-radius: var(--radius-large, 16px);
-  border-style: solid;
-  border-color: var(--container-border-primary);
-  border-width: 1px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-none, 0px);
+min-height: 400px;
+  background-color: var(--container-background-primary);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  
+  grid-template-areas:
+        "header iframe"
+      
+        
+       ;
+  gap: var(--spacing-large);
   align-items: flex-start;
   justify-content: flex-start;
   height: 100%;
 width: 100%;
   position: relative;
-  
+  border-radius: var(--radius-large, 16px);
   overflow: hidden;
 }
 
 .header {
-border-bottom: 1px solid var(--container-border-secondary);
-  padding: var(--spacing-medium);
+  grid-area: header;
+  padding: var(--spacing-large);
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -69,7 +73,6 @@ border-bottom: 1px solid var(--container-border-secondary);
 }
 
 .content {
-  padding: var(--spacing-small, 16px);
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -92,9 +95,7 @@ border-bottom: 1px solid var(--container-border-secondary);
 }
 
 .footer {
-  border-style: solid;
-  border-color: var(--container-border-neutral, #cccfd7);
-  border-width: 1px 0px 0px 0px;
+  
   padding: var(--spacing-small, 16px);
   display: flex;
   flex-direction: row;
@@ -104,6 +105,7 @@ border-bottom: 1px solid var(--container-border-secondary);
   align-self: stretch;
   flex-shrink: 0;
   position: relative;
+  grid-area: footer;
 }
 
 
@@ -117,11 +119,24 @@ dialog::backdrop {
 
 @media screen and (max-width: 900px) {
   :host {
-    height: calc(80dvh - 84px);
+   
     max-width: none;
+  }
+  .card {
+    height: calc(90dvh - 80px);
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    
+    "iframe"
+    "header";
   }
 }
 
+
 ::slotted(iframe) {
-  border-radius: var(--radius-large);
+  grid-area: iframe;
+  width: 100%;
+  padding: 0px;
+  border: none;
 }

@@ -45,7 +45,8 @@
     &:active {}
 
     &:hover:not(.active) {
-        filter: brightness(0.9);
+       filter: brightness(95%);
+     
     }
 }
 
