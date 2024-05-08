@@ -12,7 +12,9 @@ body {
   font-family: var(--text-font-family);
   box-sizing: border-box;
 }
-
+.favicon{
+  fill: rgb(231, 158, 24);
+}
 button {
   user-select: none;
   border-radius: var(--radius-medium);
