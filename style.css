@@ -16,7 +16,7 @@ body {
 button {
   user-select: none;
   border-radius: var(--radius-medium);
-  border: 1px solid var(--container-border-primary);
+  border: 1px solid var(--container-border-secondary);
   background: var(--container-background-primary);
   display: inline-flex;
   padding: var(--spacing-medium, 12px);
@@ -216,7 +216,7 @@ main {
   justify-content: center;
   align-items: center;
   padding: 20dvh 40px;
-  gap: 10dvh;
+  gap: 5dvh;
   animation: fadeUp 400ms ease-out;
   perspective: 200px;
   transform-style: preserve-3d;
