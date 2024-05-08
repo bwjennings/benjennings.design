@@ -55,7 +55,7 @@ h1 {
   font-family: var(--text-font-family);
   font-size: var(--text-heading-size-medium);
   font-style: normal;
-  font-weight: 500;
+  font-weight: var(--text-heading-weight);
   line-height: 100%;
 
   &[size="small"] {
@@ -64,6 +64,10 @@ h1 {
 
   &[size="medium"] {
     font-size: var(--text-heading-size-medium);
+  }
+  &[size="large"] {
+    font-size: var(--text-heading-size-large);
+    
   }
 }
 
@@ -161,10 +165,13 @@ label {
 .page-container {
   display: flex;
   height: 100%;
-
   display: grid;
   grid-template-columns: 300px 1fr;
-  grid-template-areas: "sidebar main-content";
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+  "sidebar title"
+  "sidebar main-content"
+  ;
 }
 
 h2 {
@@ -173,6 +180,9 @@ h2 {
 }
 
 main {
+
+  padding: var(--spacing-large);
+  background-color: var(--container-background-primary);
   grid-area: main-content;
   overflow-y: scroll;
   scroll-snap-type: y proximity;
@@ -212,13 +222,14 @@ main {
 }
 
 .main-content {
+
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20dvh 40px;
-  gap: 5dvh;
+  gap: 10dvh;
   animation: fadeUp 400ms ease-out;
   perspective: 200px;
   transform-style: preserve-3d;
@@ -253,12 +264,13 @@ section {
   justify-content: center;
 
   scroll-snap-align: start;
-  border-radius: var(--radius-large);
 }
 
 .page-title {
-  height: 20dvh;
-
+  height: auto;
+grid-area: title;
+padding: var(--spacing-x-large);
+border-bottom: 1px solid var(--container-border-primary);
   z-index: 2;
 
   color: var(--foreground-neutral);
@@ -269,7 +281,7 @@ section {
   justify-content: start;
   align-items: flex-start;
   width: 100%;
-  max-width: 60dvw;
+  
 
   h1 {
     margin: 0;
@@ -281,6 +293,7 @@ section {
     font-family: var(--text-font-family);
     font-size: var(--text-subhead-size-medium);
     color: var(--foreground-secondary);
+    margin: 0px;
   }
 }
 
@@ -356,7 +369,8 @@ dialog {
   color: var(--foreground-neutral);
   border: 1px solid var(--container-border-primary);
   border-radius: var(--radius-large);
-
+width: 80dvw;
+height: 80dvh;
   padding: 24px;
   perspective: 200px;
   transform-style: preserve-3d;
@@ -429,14 +443,21 @@ dialog::backdrop {
   .page-container {
     height: 100%;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 84px;
+    grid-template-rows: auto 1fr 84px;
     grid-template-areas:
+      "title"
       "main-content"
       "sidebar";
   }
 
   .page-title {
     max-width: none;
+    h1 {
+      font-size: var(--text-heading-size-small);
+    }
+    h2 {
+      display: none;
+    }
   }
 
   dialog {

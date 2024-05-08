@@ -1,3 +1,4 @@
+
 // JavaScript
 customElements.define(
   "content-card",
@@ -40,7 +41,7 @@ customElements.define(
     </div>
 
     <dialog id="dialog">
-      <slot name="dialogContent"></slot>
+      <slot style="flex-grow:1" name="dialogContent"></slot>
       <button id="closeBtn">Close</button>
     </dialog>
 </div>

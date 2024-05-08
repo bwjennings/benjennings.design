@@ -1,13 +1,14 @@
 :host {
     grid-area: sidebar;
     flex-grow: 1;
+    
 }
 
 .sidebar {
+
     height: 100%;
     box-sizing: border-box;
-    width: 300px;
-    background: var(--container-background-primary);
+    width: 100%;
     display: grid;
     padding: var(--spacing-large);
     grid-template-columns: 1fr auto;
@@ -22,7 +23,7 @@
         "item3 item3"
         ". .";
     align-items: center;
-    border-right: 1px solid var(--container-background-secondary);
+    border-right: 1px solid var(--container-border-primary);
 }
 
 .nav-card {
@@ -53,6 +54,7 @@
 .active {
     filter: brightness(1.1);
     border: 1px solid var(--container-background-brand);
+    background-color: var(--container-background-primary);
 
     .icon {
         color: var(--foreground-brand);
@@ -181,7 +183,7 @@
 
     .page-title h1 {
         font-size: 40px;
-        font
+        
     }
 
     .title {
@@ -222,7 +224,7 @@
         gap: 2px;
         width: auto;
 
-        border-top: 1px solid var(--container-border-neutral);
+        border-top: 1px solid var(--container-border-primary);
         background-color: var(--container-background-primary);
 
         .site-title {

@@ -1,12 +1,14 @@
 @import "/style.css";
 :host {
-  height: 80dvh;
-  scroll-snap-align: center;
+  height: 40dvh;
+  scroll-snap-align: start;
+  scroll-margin: 40px;
   scroll-padding: 100px;
   font-family: var(--text-font-family);
   display: flex;
-  max-width: 60dvw;
+ 
   width: 100%;
+  max-width: 80%;
   flex-direction: column;
   min-height: 400px;
   box-sizing: border-box;
@@ -18,10 +20,9 @@
 
 .card {
 min-height: 400px;
-  background-color: var(--container-background-primary);
+  
   display: grid;
   grid-template-columns: 1fr 1fr;
-border: 1px solid var(--container-border-primary);
   
   grid-template-areas:
         " iframe header"
@@ -73,6 +74,7 @@ width: 100%;
 }
 
 .content {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -81,6 +83,9 @@ width: 100%;
   align-self: stretch;
   flex: 1;
   position: relative;
+  height: 100%;
+  border-radius: var(--radius-large);
+  border: 1px solid var(--container-border-primary);
 }
 
 p {
@@ -91,7 +96,7 @@ p {
   line-height: var(--body-medium-line-height,);
   font-weight: var(--body-medium-font-weight, 400);
   position: relative;
-  flex-grow: 1;
+ 
 }
 
 .footer {
@@ -101,8 +106,7 @@ p {
   flex-direction: row;
   gap: var(--spacing-small, 16px);
   align-items: center;
-  justify-content: flex-end;
-  justify-self: flex-end;
+  
   align-self: stretch;
   flex-shrink: 0;
   position: relative;
@@ -110,9 +114,14 @@ p {
 }
 
 
+::slotted( div[slot="dialogContent"] ) { 
+  flex-grow: 1;
+}
 
-
-
+dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
 
 dialog::backdrop {
   background-color: rgba(6, 6, 6, 0.3);
@@ -143,10 +152,11 @@ dialog::backdrop {
   padding: 0px;
   border: none;
   
+  flex-grow: 1;
 }
 
 ::slotted(model-viewer) {
   height: 100%;
   width: 100%;
-  background-color: var(--container-background-secondary);
+  background-color: var(--container-background-primary);
 }
