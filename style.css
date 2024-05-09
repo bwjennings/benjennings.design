@@ -163,15 +163,18 @@ label {
 }
 
 .page-container {
+  box-sizing: border-box;
   display: flex;
   height: 100%;
   display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+ 
   grid-template-areas: 
-  "sidebar title"
   "sidebar main-content"
+  
   ;
+ 
+  
 }
 
 h2 {
@@ -180,25 +183,39 @@ h2 {
 }
 
 main {
-
-  padding: var(--spacing-large);
-  background-color: var(--container-background-primary);
+padding: 40px;
+padding-left: 0px;
   grid-area: main-content;
   overflow-y: scroll;
   scroll-snap-type: y proximity;
   perspective: 200px;
   transform-style: preserve-3d;
   transform-origin: top;
+ 
+
 }
-@keyframes fadeUp {
+@keyframes dialogOpen {
   from {
-    transform: translateZ(2dvw);
+    transform: perspective(300px) translateZ(100px);
     filter: blur(16px);
     opacity: 0;
   }
 
   to {
-    transform: translateZ(0dvw);
+    transform: perspective(300px) translateZ(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes fadeUp {
+  from {
+    transform: translateX(50px);
+    filter: blur(16px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0px);
     filter: blur(0px);
     opacity: 1;
   }
@@ -228,8 +245,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20dvh 40px;
-  gap: 10dvh;
+  gap: var(--spacing-xxx-large);
   animation: fadeUp 400ms ease-out;
   perspective: 200px;
   transform-style: preserve-3d;
@@ -270,7 +286,9 @@ section {
   height: auto;
 grid-area: title;
 padding: var(--spacing-x-large);
-border-bottom: 1px solid var(--container-border-primary);
+background-color: var(--container-background-primary);
+border: 1px solid var(--container-border-primary);
+border-radius: var(--radius-large);
   z-index: 2;
 
   color: var(--foreground-neutral);
@@ -382,7 +400,7 @@ height: 80dvh;
 }
 
 dialog[open] {
-  animation: fadeUp 400ms ease-in-out;
+  animation: dialogOpen 400ms ease-in-out;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-large);
@@ -433,10 +451,12 @@ dialog::backdrop {
 
   main {
     scroll-snap-type: y mandatory;
+    padding: 0px;
   }
 
+  
   .main-content {
-    padding: 10dvh 16px;
+    padding: 16px;
     gap: 5dvh;
   }
 

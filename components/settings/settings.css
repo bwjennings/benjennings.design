@@ -118,6 +118,9 @@ flex-grow: 1;
 
     .icon {
         font-size: var(--icon-size-medium);
+        font-style: normal;
+    font-weight: var(--icon-weight-medium);
+    line-height: 100%;
     }
 
 
