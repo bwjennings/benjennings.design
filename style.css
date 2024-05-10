@@ -1,6 +1,9 @@
 @import "vars.css";
 @import "card.css";
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   padding: 0;
@@ -16,6 +19,7 @@ body {
   fill: rgb(231, 158, 24);
 }
 button {
+  box-sizing: border-box;
   user-select: none;
   border-radius: var(--radius-medium);
   border: 1px solid var(--container-border-secondary);
@@ -29,6 +33,8 @@ button {
   font-size: 16px;
   color: var(--container-foreground-primary);
   cursor: pointer;
+  line-height: 100%;
+  height: 40px;
 
   .icon {
     font-family: var(--icon-font-family);
@@ -42,12 +48,13 @@ button[variant="brand"] {
 }
 
 button[size="small"] {
+  height: 32px;
   padding: var(--spacing-small, 8px);
   gap: var(--spacing-x-small, 4px);
 }
 
 button:hover {
-  filter: brightness(0.9);
+  filter: brightness(1.2);
 }
 
 h1 {

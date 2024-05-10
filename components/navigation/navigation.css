@@ -13,8 +13,8 @@
     display: grid;
     padding: var(--spacing-xxx-large);
     grid-template-columns: 1fr auto;
-    grid-template-rows: 80px  auto auto auto 1fr ;
-    gap: var(--spacing-medium);
+    grid-template-rows: 114px  auto auto auto 1fr ;
+    gap: var(--spacing-large);
     grid-auto-flow: row;
     grid-template-areas:
         "title settings"
@@ -23,8 +23,13 @@
         "item2 item2"
         "item3 item3"
         ". .";
-    align-items: center;
+    align-items: top;
     border-radius: var(--radius-large);
+
+    h2{
+        margin: 0px;
+        line-height: 40px;
+    }
 
 }
 
@@ -43,6 +48,7 @@
     border: 1px solid transparent;
     border-radius: var(--radius-medium);
     cursor: pointer;
+    color: var(--container-foreground-primary);
 
 
     &:active {}
@@ -55,9 +61,13 @@
 
 .active {
     filter: brightness(1.1);
-    border: 1px solid var(--container-background-brand);
-    background-color: var(--container-background-brand);
-color: var(--container-foreground-brand);
+    border: 2px solid var(--container-border-brand);
+    background-color: var(--container-background-secondary);
+color: var(--container-foreground-secondary);
+
+.icon{
+    color: var(--foreground-brand);
+}
     
 }
 
@@ -189,7 +199,7 @@ color: var(--container-foreground-brand);
     }
 
     .icon {
-        font-size: var(--icon-size-medium);
+        font-size: var(--icon-size-large);
     }
 
 
