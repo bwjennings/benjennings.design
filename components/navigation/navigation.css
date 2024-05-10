@@ -1,7 +1,6 @@
 :host {
     grid-area: sidebar;
     flex-grow: 1;
-    padding: 40px;
 
     
 }
@@ -12,22 +11,20 @@
     box-sizing: border-box;
     width: 100%;
     display: grid;
-    padding: var(--spacing-large);
+    padding: var(--spacing-xxx-large);
     grid-template-columns: 1fr auto;
-    grid-template-rows: 80px 1fr auto auto auto 1fr;
+    grid-template-rows: 80px  auto auto auto 1fr ;
     gap: var(--spacing-medium);
     grid-auto-flow: row;
     grid-template-areas:
         "title settings"
-        ". ."
+        
         "item1 item1"
         "item2 item2"
         "item3 item3"
         ". .";
     align-items: center;
-    background-color: var(--container-background-primary);
     border-radius: var(--radius-large);
-    border: 1px solid var(--container-border-primary);
 
 }
 
@@ -38,7 +35,7 @@
     padding: var(--spacing-large);
     align-items: center;
     gap: var(--spacing-large);
-    background-color: inherit;
+    background-color: var(--container-background-primary);
     flex-direction: row;
     justify-content: flex-start;
     -webkit-user-select: none;
@@ -59,11 +56,9 @@
 .active {
     filter: brightness(1.1);
     border: 1px solid var(--container-background-brand);
-    background-color: var(--container-background-primary);
-
-    .icon {
-        color: var(--foreground-brand);
-    }
+    background-color: var(--container-background-brand);
+color: var(--container-foreground-brand);
+    
 }
 
 .title-group {
@@ -85,14 +80,12 @@
 }
 
 .title {
-    color: var(--container-foreground-primary);
     font-size: var(--text-text-body-large);
     line-height: 100%;
     font-weight: 500;
 }
 
 .description {
-    color: var(--container-foreground-secondary);
     font-size: 14px;
     line-height: 100%;
     font-weight: 400;
@@ -104,12 +97,11 @@
 
 .icon {
     font-family: var(--icon-font-family, "Material Symbols Sharp");
-    font-size: 32px;
+    font-size: var(--icon-size-large);
     font-style: normal;
     font-weight: var(--icon-weight-large, 500);
     line-height: 100%;
 
-    color: var(--container-foreground-secondary);
     font-variation-settings:
         "FILL" 1,
         "wght" 400,
@@ -174,9 +166,9 @@
     .active {
         border-color: transparent;
 
-        .title {
-            color: var(--container-foreground-primary);
-        }
+       
+            color: var(--foreground-brand);
+        
     }
 
 
@@ -231,6 +223,7 @@
         width: auto;
         border-radius: 0px;
         border: none;
+        background-color: var(--container-background-primary);
         border-top: 1px solid var(--container-border-primary);
        
 

@@ -2,8 +2,8 @@
 :host {
   height: 80dvh;
   scroll-snap-align: start;
-  scroll-margin: 40px;
-  scroll-padding: 100px;
+  scroll-margin: 132px;
+  scroll-padding: 144px;
   font-family: var(--text-font-family);
   display: flex;
  
@@ -134,9 +134,11 @@ dialog::backdrop {
   :host {
    padding: 4px;
     max-width: none;
+    scroll-margin: 16px;
+
   }
   .card {
-    height: calc(90dvh - 80px);
+    height: calc(90dvh - 84px);
     padding: var(--spacing-large);
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;

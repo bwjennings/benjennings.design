@@ -149,13 +149,7 @@ label {
 }
 
 @media screen and (max-width: 900px) {
-  .radio-buttons {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-small)
-      var(--spacing-medium);
-  }
+  
 }
 
 .icon-font {
@@ -196,13 +190,13 @@ padding-left: 0px;
 }
 @keyframes dialogOpen {
   from {
-    transform: perspective(300px) translateZ(100px);
+    transform: perspective(300px) translateZ(100px) rotateY(20deg) rotateX(20deg);
     filter: blur(16px);
     opacity: 0;
   }
 
   to {
-    transform: perspective(300px) translateZ(0px);
+    transform: perspective(300px) translateZ(0px) rotateY(0deg) rotateX(0deg);
     filter: blur(0px);
     opacity: 1;
   }
@@ -457,7 +451,7 @@ dialog::backdrop {
   
   .main-content {
     padding: 16px;
-    gap: 5dvh;
+    gap: 16px;
   }
 
   .page-container {
@@ -482,7 +476,7 @@ dialog::backdrop {
 
   dialog {
     width: inherit;
-
+height: inherit;
     min-width: 200px;
 
     form {

@@ -13,6 +13,7 @@ customElements.define(
       // Get the value of the 'greeting' attribute, or use a default value if it is not set
       const title = this.getAttribute("title") || "Title";
       const subtitle = this.getAttribute("subtitle") || "Subtitle";
+      const badge = this.getAttribute("badge") || "Badge";
 
       const shadowRoot = this.attachShadow({ mode: "open" });
 
@@ -25,6 +26,7 @@ customElements.define(
   </style>
   <div class="card">
     <div class="header">
+    <my-badge>${badge}</my-badge> 
       <div class="title">${title}</div>
       <div class="subtitle">${subtitle}</div>
       <p>
