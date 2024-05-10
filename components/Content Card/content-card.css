@@ -137,6 +137,7 @@ dialog::backdrop {
   }
   .card {
     height: calc(90dvh - 80px);
+    padding: var(--spacing-large);
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:

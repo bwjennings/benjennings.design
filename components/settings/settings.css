@@ -73,7 +73,9 @@ input[type="range"]::-moz-range-thumb {
         width: 100%;
 
     }
-
+dialog{
+    width: 90dvw;
+}
     .nav-card {
         display: flex;
         align-items: center;

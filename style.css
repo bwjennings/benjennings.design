@@ -393,7 +393,7 @@ height: 80dvh;
   perspective: 200px;
   transform-style: preserve-3d;
   background-color: var(--background-default);
-
+box-sizing: border-box;
   h2 {
     margin: 0;
   }
@@ -481,7 +481,7 @@ dialog::backdrop {
   }
 
   dialog {
-    width: 80dvw;
+    width: inherit;
 
     min-width: 200px;
 
