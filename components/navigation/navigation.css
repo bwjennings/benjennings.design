@@ -56,7 +56,7 @@
   background: radial-gradient(
       73.4% 100.98% at 95.54% 95.05%,
       var(--brand-30) 0%,
-      var(--container-background-brand) 100%
+      var(--brand-50) 100%
     ),
     linear-gradient(197.37deg, var(--brand-20) -0.38%, var(--brand-10) 101.89%);
   background-blend-mode: normal, normal, normal, normal, normal, normal;

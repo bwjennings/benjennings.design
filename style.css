@@ -118,6 +118,7 @@ label {
   border-radius: var(--radius-large);
   border: none;
   background: var(--container-background-secondary);
+  user-select: none;
 }
 
 .radio-button {
@@ -324,7 +325,8 @@ section {
 .dialog-header {
   border-bottom: 1px solid var(--container-border-primary);
   padding-bottom: var(--spacing-medium);
-  font-size: var(--text-heading-size-small);
+  font-size: var(--text-heading-size-medium);
+  font-weight: var(--text-heading-weight);
 }
 
 @keyframes show {

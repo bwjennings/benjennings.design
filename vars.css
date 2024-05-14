@@ -72,16 +72,16 @@
   --text-subhead-size-large: var(--font-size-7);
 
   --lightness-5: 98%;
-  --lightness-10: 95%;
-  --lightness-20: 90%;
-  --lightness-30: 80%;
-  --lightness-40: 70%;
-  --lightness-50: 60%;
-  --lightness-60: 50%;
-  --lightness-70: 40%;
-  --lightness-80: 30%;
-  --lightness-90: 20%;
-  --lightness-95: 10%;
+  --lightness-10: 93.5%;
+  --lightness-20: 88.4%;
+  --lightness-30: 81.1%;
+  --lightness-40: 71%;
+  --lightness-50: 57%;
+  --lightness-60: 40%;
+  --lightness-70: 26%;
+  --lightness-80: 16.5%;
+  --lightness-90: 9.2%;
+  --lightness-95: 4.1%;
 
   --black: oklch(0% 0% 0deg);
   --white: oklch(100% 0% 0deg);

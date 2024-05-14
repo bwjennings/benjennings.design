@@ -37,7 +37,7 @@ customElements.define(
               </label>
               <label class="radio-button">
                   <input type="radio" name="theme" value="" checked> 
-                  <span class="icon">contrast</span> 
+                  <span class="icon">routine</span> 
                   <span>Auto</span>
               </label>
             </fieldset>
