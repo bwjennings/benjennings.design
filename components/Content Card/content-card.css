@@ -1,42 +1,28 @@
 @import "/style.css";
+
 :host {
-  height: 80dvh;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   scroll-margin: 132px;
   scroll-padding: 144px;
   font-family: var(--text-font-family);
   display: flex;
- 
   width: 100%;
- 
+  max-width: 1000px;
   flex-direction: column;
   min-height: 400px;
-  box-sizing: border-box;
-}
-.card,
-.card * {
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 .card {
-min-height: 400px;
-background-color: var(--container-background-primary);
-border: 1px solid var(--container-border-primary);
-
-padding: 40px;
+  height: 50dvh;
+  padding: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  
-  grid-template-areas:
-        "  header iframe"
-      
-        
-       ;
+  grid-template-areas: "header iframe"; 
   gap: var(--spacing-large);
   align-items: flex-start;
   justify-content: flex-start;
-  height: 100%;
-width: 100%;
+  width: 100%;
   position: relative;
   border-radius: var(--radius-large, 16px);
   overflow: hidden;
@@ -47,33 +33,25 @@ width: 100%;
   padding: var(--spacing-large);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--spacing-x-large);
   align-items: flex-start;
   justify-content: flex-start;
   align-self: stretch;
   flex-shrink: 0;
-  position: relative;
+  position: relative; 
 }
 
 .title {
   color: var(--container-foreground-primary);
-  text-align: left;
   font-family: var(--heading-medium-font-family, "Inter-Bold", sans-serif);
-  font-size: var(--text-heading-size-small, 24px);
-  font-weight: var(--text-heading-weight);
-  position: relative;
-  align-self: stretch;
+  font-size: var(--text-heading-size-medium, 24px);
+  font-weight: var(--text-heading-weight); 
 }
 
 .subtitle {
   color: var(--container-foreground-secondary);
-  text-align: left;
-  
-  font-size: var(--text-subhead-size-small, );
-  line-height: auto;
+  font-size: var(--text-subhead-size-small);
   font-weight: var(--subhead-font-weight);
-  position: relative;
-  align-self: stretch;
 }
 
 .content {
@@ -85,37 +63,30 @@ width: 100%;
   justify-content: flex-start;
   align-self: stretch;
   flex: 1;
-  position: relative;
   height: 100%;
   border-radius: var(--radius-large);
   border: 1px solid var(--container-border-primary);
+  background-color: var(--container-background-secondary);
 }
 
 p {
   color: var(--container-foreground-primary);
-  text-align: left;
   font-family: var(--body-medium-font-family, "Inter-Regular", sans-serif);
   font-size: var(--body-medium-font-size, 18px);
-  line-height: var(--body-medium-line-height,);
+  line-height: var(--body-medium-line-height);
   font-weight: var(--body-medium-font-weight, 400);
-  position: relative;
- 
 }
 
 .footer {
-  
   padding: var(--spacing-small, 16px);
   display: flex;
   flex-direction: row;
   gap: var(--spacing-small, 16px);
   align-items: center;
-  
   align-self: stretch;
   flex-shrink: 0;
-  position: relative;
-  grid-area: footer;
+  grid-area: footer; 
 }
-
 
 ::slotted( div[slot="dialogContent"] ) { 
   flex-grow: 1;
@@ -135,29 +106,26 @@ dialog::backdrop {
    padding: 4px;
     max-width: none;
     scroll-margin: 16px;
-
   }
+
   .card {
     height: calc(90dvh - 84px);
     padding: var(--spacing-large);
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-    
-    "iframe"
-    "header";
+    grid-template-areas: "iframe" "header";
   }
 }
 
 .prototype--viewerContainer--8C5YF{
-  margin: 0px;
+  margin: 0px; /* Consider removing if not needed */
 }
+
 ::slotted(iframe) {
   grid-area: iframe;
   width: 100%;
   padding: 0px;
   border: none;
-  
   flex-grow: 1;
 }
 

@@ -7,54 +7,48 @@ customElements.define(
      * The class constructor object
      */
     constructor() {
-      // Always call super first in constructor
       super();
-
-      // Get the value of the 'greeting' attribute, or use a default value if it is not set
+    
       const title = this.getAttribute("title") || "Title";
       const subtitle = this.getAttribute("subtitle") || "Subtitle";
-      const badge = this.getAttribute("badge") || "Badge";
-
+      const badge = this.getAttribute("badge");
+    
       const shadowRoot = this.attachShadow({ mode: "open" });
-
+    
+      const badgeTemplate = badge ? `<my-badge>${badge}</my-badge>` : '';
+    
       shadowRoot.innerHTML = `
-     
-  
-        
-  <style>
-  @import 'components/Content Card/content-card.css';
-  </style>
-  <div class="card">
-    <div class="header">
-    <my-badge>${badge}</my-badge> 
-      <div class="title">${title}</div>
-      <div class="subtitle">${subtitle}</div>
-      <p>
-        <slot name="body"></slot>
-      </p>
-      <div class="footer">
-  <button size="small" id="openBtn">See Designs</button>
-  <button size="small" variant="brand" >Button Text</button>
-</div>
-    </div>
-    <div class="content">
-      <slot></slot>
-      
-    </div>
-
-    <dialog id="dialog">
-      <slot style="flex-grow:1" name="dialogContent"></slot>
-      <button id="closeBtn">Close</button>
-    </dialog>
-</div>
-
-
+        <style>
+          @import 'components/Content Card/content-card.css';
+        </style>
+        <div class="card">
+          <div class="header">
+            ${badgeTemplate}
+            <div class="title">${title}</div>
+            <div class="subtitle">${subtitle}</div>
+            <p>
+              <slot name="body"></slot>
+            </p>
+            <div class="footer">
+              <button  id="openBtn">See Designs</button>
+              <button  variant="brand">Button Text</button>
+            </div>
+          </div>
+          <div class="content">
+            <slot></slot>
+          </div>
+          <dialog id="dialog">
+            <slot style="flex-grow:1" name="dialogContent"></slot>
+            <button id="closeBtn">Close</button>
+          </dialog>
+        </div>
       `;
-
+    
       this.openBtn = shadowRoot.getElementById("openBtn");
       this.closeBtn = shadowRoot.getElementById("closeBtn");
       this.dialog = shadowRoot.getElementById("dialog");
     }
+    
 
     connectedCallback() {
       this.openBtn.addEventListener("click", () => this.dialog.showModal());

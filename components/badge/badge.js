@@ -7,7 +7,7 @@ class BadgeComponent extends HTMLElement {
         const style = document.createElement('style');
         style.textContent = `
             span {
-                padding: 8px 12px;
+                padding: 4px 12px;
                 background-color: var(--accent-5);
                 border: 1px solid var(--accent-10);
                 color: var(--accent-70);

@@ -1,9 +1,12 @@
-@import "vars.css";
-@import "card.css";
 
-*, *::before, *::after {
+
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -15,13 +18,15 @@ body {
   font-family: var(--text-font-family);
   box-sizing: border-box;
 }
-.favicon{
+
+.favicon {
   fill: rgb(231, 158, 24);
 }
+
 button {
   box-sizing: border-box;
   user-select: none;
-  border-radius: var(--radius-medium);
+  border-radius: var(--radius-small);
   border: 1px solid var(--container-border-secondary);
   background: var(--container-background-primary);
   display: inline-flex;
@@ -72,9 +77,9 @@ h1 {
   &[size="medium"] {
     font-size: var(--text-heading-size-medium);
   }
+
   &[size="large"] {
     font-size: var(--text-heading-size-large);
-    
   }
 }
 
@@ -87,11 +92,13 @@ h4 {
   font-optical-sizing: auto;
   font-size: 1.5rem;
 }
+
 form {
   gap: var(--spacing-xx-large);
   display: flex;
   flex-direction: column;
 }
+
 label {
   display: flex;
   flex-direction: column;
@@ -99,6 +106,7 @@ label {
   gap: var(--spacing-small);
   accent-color: var(--container-background-brand);
 }
+
 .radio-buttons {
   box-sizing: border-box;
   display: flex;
@@ -111,6 +119,7 @@ label {
   border: none;
   background: var(--container-background-secondary);
 }
+
 .radio-button {
   display: flex;
   flex-direction: row;
@@ -156,7 +165,6 @@ label {
 }
 
 @media screen and (max-width: 900px) {
-  
 }
 
 .icon-font {
@@ -169,13 +177,8 @@ label {
   height: 100%;
   display: grid;
   grid-template-columns: auto 1fr;
- 
-  grid-template-areas: 
-  "sidebar main-content"
-  
-  ;
- 
-  
+
+  grid-template-areas: "sidebar main-content";
 }
 
 h2 {
@@ -184,30 +187,28 @@ h2 {
 }
 
 main {
-padding: 40px;
-padding-left: 0px;
   grid-area: main-content;
   overflow-y: scroll;
   scroll-snap-type: y proximity;
   perspective: 200px;
   transform-style: preserve-3d;
   transform-origin: top;
- 
-
 }
+
 @keyframes dialogOpen {
   from {
-    transform: perspective(300px) translateZ(100px) rotateY(20deg) rotateX(20deg);
+    transform: perspective(300px) translateZ(100px) rotateX(20deg);
     filter: blur(16px);
     opacity: 0;
   }
 
   to {
-    transform: perspective(300px) translateZ(0px) rotateY(0deg) rotateX(0deg);
+    transform: perspective(300px) translateZ(0px) rotateX(0deg);
     filter: blur(0px);
     opacity: 1;
   }
 }
+
 @keyframes fadeUp {
   from {
     transform: translateX(50px);
@@ -240,6 +241,7 @@ padding-left: 0px;
 }
 
 .main-content {
+  padding: var(--spacing-xxx-large);
 
   box-sizing: border-box;
   display: flex;
@@ -284,23 +286,22 @@ section {
 }
 
 .page-title {
-  height: auto;
-grid-area: title;
-padding: var(--spacing-x-large);
-background-color: var(--container-background-primary);
-border: 1px solid var(--container-border-primary);
-border-radius: var(--radius-large);
+  height: 50dvh;
+  grid-area: title;
+  padding: var(--spacing-x-large);
+
+  border-radius: var(--radius-large);
   z-index: 2;
 
-  color: var(--foreground-neutral);
+  color: var(--container-foreground-primary);
   scroll-margin: 20dvh;
   display: flex;
   gap: var(--spacing-medium);
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   align-items: flex-start;
   width: 100%;
-  
+  max-width: 1000px;
 
   h1 {
     margin: 0;
@@ -311,7 +312,7 @@ border-radius: var(--radius-large);
   .subhead {
     font-family: var(--text-font-family);
     font-size: var(--text-subhead-size-medium);
-    color: var(--foreground-secondary);
+
     margin: 0px;
   }
 }
@@ -388,13 +389,14 @@ dialog {
   color: var(--foreground-neutral);
   border: 1px solid var(--container-border-primary);
   border-radius: var(--radius-large);
-width: 80dvw;
-height: 80dvh;
+  width: 80dvw;
+  height: 80dvh;
   padding: 24px;
   perspective: 200px;
   transform-style: preserve-3d;
-  background-color: var(--background-default);
-box-sizing: border-box;
+  background-color: var(--container-background-primary);
+  box-sizing: border-box;
+
   h2 {
     margin: 0;
   }
@@ -410,15 +412,15 @@ dialog[open] {
 dialog::backdrop {
   background: color(var(--container-background-brand) / 0.8);
 
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .welcome-card {
   background: var(--background-secondary);
 
   display: flex;
- 
+
   flex-direction: column;
   align-items: flex-start;
   justify-content: start;
@@ -426,9 +428,7 @@ dialog::backdrop {
   height: 100dvh;
   width: 100dvw;
   padding: 20dvw;
- border-radius: inherit;
-  
-
+  border-radius: inherit;
 
   h2 {
     margin: 0;
@@ -437,11 +437,9 @@ dialog::backdrop {
     font-weight: var(--text-subhead-weight);
   }
 
-  button{
+  button {
     align-self: flex-end;
   }
-
-  
 }
 
 @media screen and (max-width: 900px) {
@@ -455,7 +453,6 @@ dialog::backdrop {
     padding: 0px;
   }
 
-  
   .main-content {
     padding: 16px;
     gap: 16px;
@@ -473,9 +470,11 @@ dialog::backdrop {
 
   .page-title {
     max-width: none;
+
     h1 {
       font-size: var(--text-heading-size-small);
     }
+
     h2 {
       display: none;
     }
@@ -483,7 +482,7 @@ dialog::backdrop {
 
   dialog {
     width: inherit;
-height: inherit;
+    height: inherit;
     min-width: 200px;
 
     form {
