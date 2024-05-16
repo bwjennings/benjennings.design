@@ -157,7 +157,7 @@
     --container-border-secondary: var(--gray-30);
     --container-border-accent: var(--accent-60);
 
-    --container-foreground-brand: var(--brand-50);
+    --container-foreground-brand: var(--brand-40);
     --container-foreground-onBrand: var(--white);
     --container-foreground-primary: var(--gray-95);
     --container-foreground-secondary: var(--gray-70);
@@ -214,7 +214,7 @@
   --container-border-secondary: var(--gray-30);
   --container-border-accent: var(--accent-60);
 
-  --container-foreground-brand: var(--brand-50);
+  --container-foreground-brand: var(--brand-40);
   --container-foreground-onBrand: var(--white);
   --container-foreground-primary: var(--gray-95);
   --container-foreground-secondary: var(--gray-60);

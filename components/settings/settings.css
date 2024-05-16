@@ -119,13 +119,16 @@ dialog{
     }
 
     footer button{
+        
 flex-grow: 1;
     }
 
 
 
 
-   
+   button{
+    width: 100%;
+   }
 
     .title {
         font-size: 12px;

@@ -24,8 +24,8 @@ customElements.define(
         <div class="card">
           <div class="header">
             ${badgeTemplate}
-            <div class="title">${title}</div>
-            <div class="subtitle">${subtitle}</div>
+            <h2 class="title">${title}</h2>
+            <h3 class="subtitle">${subtitle}</h3>
             <p>
               <slot name="body"></slot>
             </p>

@@ -154,14 +154,7 @@ dialog::backdrop {
 
 }
 
-::slotted(*) {
-  background-color: var(--container-background-secondary);
-  border: 1px solid var(--container-border-primary);
-  border-radius: var(--radius-large);
-  width: 100%;
-  height: 100%;
 
-}
 
 ::slotted(img) {
   max-width: 100%;

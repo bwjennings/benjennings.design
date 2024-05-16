@@ -10,11 +10,14 @@
 
 * {
   margin: 0;
+  
 }
 
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background: var(--background-default);
+
   
 }
 
@@ -29,6 +32,7 @@ input, button, textarea, select {
 
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+  text-wrap: pretty;
 }
 
 
@@ -321,7 +325,7 @@ section {
   h1 {
     margin: 0;
     text-align: left;
-    word-wrap: break-all;
+    text-wrap: pretty;
   }
 
   .subhead {
@@ -485,7 +489,6 @@ dialog[open]::backdrop {
   gap: var(--spacing-medium);
 }
 .welcome-card {
-  background: var(--background-secondary);
 
   display: flex;
 
@@ -493,17 +496,21 @@ dialog[open]::backdrop {
   align-items: flex-start;
   justify-content: start;
   gap: var(--spacing-large, 24px);
-  height: 100dvh;
+  padding: var(--spacing-x-large);
+  height: 100%;
   width: 100dvw;
+  max-width: 60ch;
   align-items: center;
   justify-content: center;
   border-radius: inherit;
+  margin: auto;
 
   h2 {
     margin: 0;
     margin-bottom: var(--spacing-large);
     font-size: var(--text-subhead-size-medium);
     font-weight: var(--text-subhead-weight);
+    text-wrap: pretty;
   }
 
   
@@ -534,7 +541,14 @@ dialog[open]::backdrop {
       "main-content"
       "sidebar";
   }
-
+.button-group{
+  margin-top: auto;
+  flex-direction: column;
+  width: 100%;
+  * {
+    width: 100%;
+  }
+}
   .page-title {
     max-width: none;
 
