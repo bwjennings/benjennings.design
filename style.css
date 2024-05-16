@@ -1,11 +1,38 @@
 
 
 
-*,
-*::before,
-*::after {
+
+
+*, *::before, *::after {
   box-sizing: border-box;
+  transition:
+    all 300ms ease-in-out allow-discrete;
 }
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+
 
 body {
   margin: 0;
@@ -231,7 +258,7 @@ main {
 
 .main-content {
   padding: var(--spacing-xxx-large);
-
+  container-type: inline-size;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -389,9 +416,7 @@ section {
   }
 }
 
-dialog[open] {
-  animation: dialogOpen 300ms ease-in-out;
-}
+
 
 
 dialog[open] {
@@ -405,6 +430,7 @@ dialog[open] {
 
 /*   Closed state of the dialog   */
 dialog {
+  margin: auto;
   opacity: 0;
   transform: perspective(300px) translateZ(20px) rotateX(10deg);
   filter: blur(16px);
@@ -514,7 +540,7 @@ dialog[open]::backdrop {
     max-width: none;
 
     h1 {
-      font-size: var(--text-heading-size-small);
+      font-size: var(--text-heading-size-medium);
     }
 
     h2 {

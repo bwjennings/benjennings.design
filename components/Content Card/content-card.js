@@ -35,7 +35,7 @@ customElements.define(
             </div>
           </div>
           <div class="content">
-            <slot></slot>
+            <slot name="content"></slot>
           </div>
           <dialog id="dialog">
             <slot style="flex-grow:1" name="dialogContent"></slot>

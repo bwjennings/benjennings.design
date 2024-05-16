@@ -1,6 +1,8 @@
 :host {
   grid-area: sidebar;
   flex-grow: 1;
+  transition:
+    all 300ms ease-in-out allow-discrete;
 }
 
 .sidebar {

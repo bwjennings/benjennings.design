@@ -10,9 +10,10 @@
   max-width: 1000px;
   flex-direction: column;
   min-height: 400px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   height: auto;
   justify-content: center;
+  container-type: inline-size;
 }
 
 .card {
@@ -20,8 +21,8 @@
   height: 80dvh;
   padding: 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "header content"; 
+  grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "header content";
   gap: var(--spacing-large);
   align-items: flex-start;
   justify-content: flex-start;
@@ -32,6 +33,17 @@
   overflow: hidden;
 }
 
+@container (max-width: 850px) {
+  .card {
+      grid-template-columns: 1fr;
+     
+    grid-template-rows: 1fr auto;
+    grid-template-areas: "content" "header";
+  }
+  .content{
+    height: auto;
+  }
+}
 .header {
   grid-area: header;
   padding: var(--spacing-large);
@@ -42,7 +54,7 @@
   justify-content: flex-start;
   align-self: stretch;
   flex-shrink: 0;
-  position: relative; 
+  position: relative;
   min-width: 300px;
 }
 
@@ -50,7 +62,7 @@
   color: var(--container-foreground-primary);
   font-family: var(--heading-medium-font-family, "Inter-Bold", sans-serif);
   font-size: var(--text-heading-size-medium, 24px);
-  font-weight: var(--text-heading-weight); 
+  font-weight: var(--text-heading-weight);
 }
 
 .subtitle {
@@ -62,19 +74,26 @@
 .content {
   overflow: hidden;
   display: grid;
-  grid-template-rows: 2fr 1fr;
-  grid-template-columns:  1fr;
+grid-template-columns: 1fr;
+grid-template-rows: repeat(2, 1fr);
   gap: 24px;
   align-items: flex-start;
   justify-content: flex-start;
   align-self: stretch;
   flex: 1;
-  height: 100%;
   grid-area: content;
   min-width: 300px;
 
- 
+
 }
+
+
+::slotted([slot="content"]):first-child {
+
+  background-color: red;
+}
+
+
 
 p {
   color: var(--container-foreground-primary);
@@ -92,10 +111,10 @@ p {
   align-items: center;
   align-self: stretch;
   flex-shrink: 0;
-  grid-area: footer; 
+  grid-area: footer;
 }
 
-::slotted( div[slot="dialogContent"] ) { 
+::slotted(div[slot="dialogContent"]) {
   flex-grow: 1;
 }
 
@@ -117,14 +136,13 @@ dialog::backdrop {
   .card {
     height: calc(90dvh - 84px - 24px);
     padding: var(--spacing-large);
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "content" "header";
+    
   }
 }
 
-.prototype--viewerContainer--8C5YF{
-  margin: 0px; /* Consider removing if not needed */
+.prototype--viewerContainer--8C5YF {
+  margin: 0px;
+  /* Consider removing if not needed */
 }
 
 
@@ -132,11 +150,11 @@ dialog::backdrop {
 ::slotted(model-viewer) {
   height: 100%;
   width: 100%;
-  
+
 
 }
 
-::slotted(*){
+::slotted(*) {
   background-color: var(--container-background-secondary);
   border: 1px solid var(--container-border-primary);
   border-radius: var(--radius-large);
@@ -148,4 +166,6 @@ dialog::backdrop {
 ::slotted(img) {
   max-width: 100%;
   height: 100%;
+  object-fit: contain;
+  padding: var(--spacing-large);
 }
