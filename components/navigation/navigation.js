@@ -17,7 +17,7 @@ class CustomSidebar extends HTMLElement {
     nav.classList.add('sidebar');
 
     nav.innerHTML = `
-      <h2 class="site-title">ben.cards</h2>
+      <h2 class="site-title"onclick="window.location.href='index.html';">ben.cards</h2>
       <div class="nav-card item1" onclick="window.location.href='designs.html';">
         <div class="icon">design_services</div>
         <div class="title-group">

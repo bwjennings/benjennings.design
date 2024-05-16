@@ -31,9 +31,20 @@ input[type="range"] {
     width: 100%;
     padding: 4px;
     border-radius: 100dvh;
+    &:active{
+        cursor: grabbing;
+
+        
+    }
 }
 
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+input[type="range"]:active::-webkit-slider-thumb {
+    
+    transform: scale(1.25);
+            background-color: var(--brand-50);
+    
+}
+
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     /* Override default look */
@@ -47,27 +58,22 @@ background-color: var(--brand-20);
     transition-timing-function: ease-in-out;
  
 }
-input[type="range"]::-webkit-slider-thumb:active {
-    cursor: grabbing;
-    transform: scale(1.4);
-}
+
 
 
 input[type="range"]::-moz-range-thumb {
-    width: 25px;
-    /* Set a specific slider handle width */
-    height: 25px;
-    /* Slider handle height */
-    background: white;
-    /* Green background */
-    
-    /* Cursor on hover */
-    margin: 4px;
+    width: 32px;
+    background-color: var(--brand-20);
+        height: 32px;
+        border: 4px solid var(--brand-80);
+        transition: 100ms;
+        transition-timing-function: ease-in-out;
     border-radius: 99px;
     opacity: 0.6;
 }
 input[type="range"]::-moz-range-thumb {
     cursor: grabbing;
+    transform: scale(1.25);
 }
 
 
@@ -133,6 +139,10 @@ flex-grow: 1;
     }
 
 
+    input[type="range"]::-webkit-slider-thumb {
+        height: 40px;
+        width: 40px;
+    }
 
 
 

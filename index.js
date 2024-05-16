@@ -1,5 +1,4 @@
-import './components/my-element/my-element.js';
-import './components/navigation/navigation.js';
+
 
 document.querySelectorAll('.nav-card').forEach(card => {
     card.addEventListener('click', function(e) {

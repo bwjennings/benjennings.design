@@ -26,7 +26,7 @@ body {
 button {
   box-sizing: border-box;
   user-select: none;
-  border-radius: var(--radius-small);
+  border-radius: var(--radius-medium);
   border: 1px solid var(--container-border-secondary);
   background: var(--container-background-primary);
   display: inline-flex;
@@ -48,7 +48,7 @@ button {
 
 button[variant="brand"] {
   background: var(--container-background-brand);
-  color: var(--container-foreground-brand);
+  color: var(--container-foreground-onBrand);
   border: 1px solid var(--container-border-brand);
 }
 
@@ -59,13 +59,13 @@ button[size="small"] {
 }
 
 button:hover {
-  filter: brightness(1.2);
+  filter: var(--hover);
 }
 
 h1 {
   margin: 0;
   font-family: var(--text-font-family);
-  font-size: var(--text-heading-size-medium);
+  font-size: var(--text-heading-size-large);
   font-style: normal;
   font-weight: var(--text-heading-weight);
   line-height: 100%;
@@ -150,7 +150,7 @@ label {
   }
 
   &:hover {
-    filter: brightness(0.95);
+    filter: var(--hover);
   }
 
   input[type="radio"] {
@@ -196,19 +196,7 @@ main {
   transform-origin: top;
 }
 
-@keyframes dialogOpen {
-  from {
-    transform: perspective(300px) translateZ(100px) rotateX(20deg);
-    filter: blur(16px);
-    opacity: 0;
-  }
 
-  to {
-    transform: perspective(300px) translateZ(0px) rotateX(0deg);
-    filter: blur(0px);
-    opacity: 1;
-  }
-}
 
 @keyframes fadeUp {
   from {
@@ -249,7 +237,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--spacing-xxx-large);
+  gap: 5dvh;
   animation: fadeUp 400ms ease-out;
   perspective: 200px;
   transform-style: preserve-3d;
@@ -323,6 +311,7 @@ section {
 }
 
 .dialog-header {
+  margin: 0px;
   border-bottom: 1px solid var(--container-border-primary);
   padding-bottom: var(--spacing-medium);
   font-size: var(--text-heading-size-medium);
@@ -386,38 +375,90 @@ section {
     opacity: 1;
   }
 }
+@keyframes dialogOpen {
+  from {
+    transform: perspective(300px) translateZ(20px) rotateX(10deg);
+    filter: blur(16px);
+    opacity: 0;
+  }
 
+  to {
+    transform: perspective(300px) translateZ(0px) rotateX(0deg);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+dialog[open] {
+  animation: dialogOpen 300ms ease-in-out;
+}
+
+
+dialog[open] {
+  opacity: 1;
+  transform: perspective(300px) translateZ(0px) rotateX(0deg);
+  filter: blur(0px);
+  display: flex;
+  gap: var(--spacing-large);
+  
+}
+
+/*   Closed state of the dialog   */
 dialog {
+  opacity: 0;
+  transform: perspective(300px) translateZ(20px) rotateX(10deg);
+  filter: blur(16px);
   color: var(--foreground-neutral);
   border: 1px solid var(--container-border-primary);
   border-radius: var(--radius-large);
   width: 80dvw;
   height: 80dvh;
   padding: 24px;
-  perspective: 200px;
-  transform-style: preserve-3d;
   background-color: var(--container-background-primary);
-  box-sizing: border-box;
+  transition:
+    all 300ms ease-in-out allow-discrete;
+  flex-direction: column;
+  transform-style: preserve-3d;
 
-  h2 {
-    margin: 0;
-  }
 }
 
-dialog[open] {
-  animation: dialogOpen 400ms ease-in-out;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-large);
+@starting-style {
+  dialog[open] {
+    animation:none;
+    filter: blur(16px);
+  transform: perspective(300px) translateZ(20px) rotateX(10deg);
+  }
+}
 }
 
 dialog::backdrop {
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: all 300ms allow-discrete; 
   background: color(var(--container-background-brand) / 0.8);
+}
 
+dialog[open]::backdrop {
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
 
+
+@starting-style {
+  dialog[open]::backdrop {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+}
+
+
+
+
+
+.button-group{
+  display: flex;
+  gap: var(--spacing-medium);
+}
 .welcome-card {
   background: var(--background-secondary);
 
@@ -429,7 +470,8 @@ dialog::backdrop {
   gap: var(--spacing-large, 24px);
   height: 100dvh;
   width: 100dvw;
-  padding: 20dvw;
+  align-items: center;
+  justify-content: center;
   border-radius: inherit;
 
   h2 {
@@ -439,9 +481,7 @@ dialog::backdrop {
     font-weight: var(--text-subhead-weight);
   }
 
-  button {
-    align-self: flex-end;
-  }
+  
 }
 
 @media screen and (max-width: 900px) {

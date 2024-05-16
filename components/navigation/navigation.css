@@ -8,7 +8,7 @@
   box-sizing: border-box;
   width: 100%;
   display: grid;
-  padding: var(--spacing-xxx-large);
+  padding: var(--spacing-x-large);
   grid-template-columns: 1fr auto;
   grid-template-rows: 114px auto auto auto 1fr;
   gap: var(--spacing-large);
@@ -21,6 +21,7 @@
     ". .";
   align-items: top;
   border-right: 1px solid var(--container-border-primary);
+  background-color: var(--container-background-primary);
 
   h2 {
     margin: 0px;
@@ -35,33 +36,26 @@
   padding: var(--spacing-large);
   align-items: center;
   gap: var(--spacing-large);
-  background-color: var(--container-background-primary);
+  background-color: transparent;
   flex-direction: row;
   justify-content: flex-start;
   -webkit-user-select: none;
   user-select: none;
   border-radius: var(--radius-small);
   cursor: pointer;
-  color: var(--container-foreground-primary);
+  color: var(--container-foreground-secondary);
 
-  &:active {
-  }
+  
 
   &:hover:not(.active) {
-    filter: brightness(95%);
+    filter: var(--hover);
   }
 }
 
 .active {
-  background: radial-gradient(
-      73.4% 100.98% at 95.54% 95.05%,
-      var(--brand-30) 0%,
-      var(--brand-50) 100%
-    ),
-    linear-gradient(197.37deg, var(--brand-20) -0.38%, var(--brand-10) 101.89%);
-  background-blend-mode: normal, normal, normal, normal, normal, normal;
+  background: var(--container-background-secondary);
 
-  color: var(--container-foreground-brand);
+  color: var(--container-foreground-primary);
 
   .icon {
     color: var(--container-foreground-brand);
@@ -135,6 +129,11 @@
 .site-title {
   font-size: var(--text-heading-size-small);
   font-weight: 400;
+
+  &:hover{
+    cursor: pointer;
+
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -200,11 +199,17 @@
   .nav-item-group {
     flex-direction: row;
   }
-
+site-settings{
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  width: auto;
+}
   .sidebar {
     padding: 16px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "item1 item2 item3 settings";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "item1 item2 item3";
     display: flex;
 
     flex-direction: row;

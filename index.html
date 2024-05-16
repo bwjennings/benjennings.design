@@ -7,16 +7,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
     <script type="module" src="components/index.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="prefetch" href="/docs/designs.html" as="document"/>
-    <link rel="prefetch" href="/docs/experiments.html" as="document"/>
-    <link rel="prefetch" href="/docs/resources.html" as="document"/>
-
-    <script src="components/OptionCard/OptionCard.js" defer></script>
-    <script src="components/Content Card/content-card.js" defer></script>
-    <script src="components/Nav Item/NavItem.js" defer></script>
-    
     <script src="index.js" defer></script>
-    <script src="/components/button.js/button.js" defer></script>
     <link rel="prefetch" href="designs.html" as="document"/>
     <link rel="prefetch" href="experiments.html" as="document"/>
     <link rel="prefetch" href="resources.html" as="document"/>
@@ -26,11 +17,14 @@
     
   
         <section class="welcome-card">
+          <my-badge>Testing</my-badge>
           <h1>Welcome</h1>
           <h2 class="subhead"> I made this tool to introduce myself in quick, easy to digest bits of information </h2>
-          
+          <div class="button-group">
+            <site-settings></site-settings>
           <button variant="brand"   onclick="location.href='designs.html'" > Get Started</button>
-            
+           
+          </div>
         </section>
        
         

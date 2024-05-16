@@ -11,20 +11,24 @@
   flex-direction: column;
   min-height: 400px;
   box-sizing: border-box; 
+  height: auto;
+  justify-content: center;
 }
 
 .card {
-  height: 50dvh;
+  background-color: var(--container-background-primary);
+  height: 80dvh;
   padding: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: "header iframe"; 
+  grid-template-areas: "header content"; 
   gap: var(--spacing-large);
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
   position: relative;
-  border-radius: var(--radius-large, 16px);
+  border: 1px solid var(--container-border-primary);
+  border-radius: var(--radius-medium, 16px);
   overflow: hidden;
 }
 
@@ -39,6 +43,7 @@
   align-self: stretch;
   flex-shrink: 0;
   position: relative; 
+  min-width: 300px;
 }
 
 .title {
@@ -56,17 +61,19 @@
 
 .content {
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  grid-template-columns:  1fr;
   gap: 24px;
   align-items: flex-start;
   justify-content: flex-start;
   align-self: stretch;
   flex: 1;
   height: 100%;
-  border-radius: var(--radius-large);
-  border: 1px solid var(--container-border-primary);
-  background-color: var(--container-background-secondary);
+  grid-area: content;
+  min-width: 300px;
+
+ 
 }
 
 p {
@@ -103,17 +110,16 @@ dialog::backdrop {
 
 @media screen and (max-width: 900px) {
   :host {
-   padding: 4px;
     max-width: none;
     scroll-margin: 16px;
   }
 
   .card {
-    height: calc(90dvh - 84px);
+    height: calc(90dvh - 84px - 24px);
     padding: var(--spacing-large);
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "iframe" "header";
+    grid-template-areas: "content" "header";
   }
 }
 
@@ -121,16 +127,25 @@ dialog::backdrop {
   margin: 0px; /* Consider removing if not needed */
 }
 
-::slotted(iframe) {
-  grid-area: iframe;
-  width: 100%;
-  padding: 0px;
-  border: none;
-  flex-grow: 1;
-}
+
 
 ::slotted(model-viewer) {
   height: 100%;
   width: 100%;
-  background-color: var(--container-background-primary);
+  
+
+}
+
+::slotted(*){
+  background-color: var(--container-background-secondary);
+  border: 1px solid var(--container-border-primary);
+  border-radius: var(--radius-large);
+  width: 100%;
+  height: 100%;
+
+}
+
+::slotted(img) {
+  max-width: 100%;
+  height: 100%;
 }

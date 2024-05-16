@@ -16,7 +16,7 @@ customElements.define(
             font-family: var(--icon-font-family);
           }
         </style>
-        <button class="nav-card" id="openBtn"><div class="icon">settings</div> Settings</button>
+        <button  id="openBtn"><div class="icon">settings</div> Settings</button>
         <dialog id="dialog">
           <h2 class="dialog-header">Settings</h2>
 
@@ -31,15 +31,16 @@ customElements.define(
                   <span>Light</span>
               </label>
               <label class="radio-button">
-                  <input type="radio" name="theme" value="dark">
-                  <span class="icon">dark_mode</span> 
-                   <span>Dark</span>
-              </label>
-              <label class="radio-button">
                   <input type="radio" name="theme" value="" checked> 
                   <span class="icon">routine</span> 
                   <span>Auto</span>
               </label>
+              <label class="radio-button">
+                  <input type="radio" name="theme" value="dark">
+                  <span class="icon">dark_mode</span> 
+                   <span>Dark</span>
+              </label>
+              
             </fieldset>
             </label>
             
