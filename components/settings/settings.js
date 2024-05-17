@@ -8,7 +8,6 @@ customElements.define(
       const shadowRoot = this.attachShadow({ mode: "open" });
       shadowRoot.innerHTML = `
         <style>
-        
           @import "/style.css";
           @import "/components/settings/settings.css";
           
@@ -16,41 +15,35 @@ customElements.define(
             font-family: var(--icon-font-family);
           }
         </style>
-        <button  id="openBtn"><div class="icon">settings</div> Settings</button>
+        <button id="openBtn"><div class="icon">settings</div> Settings</button>
         <dialog id="dialog">
           <h2 class="dialog-header">Settings</h2>
-
           <form id="themeSelect">
-          <label>Color Mode
-            <fieldset class="radio-buttons">
-              
-              
-              <label class="radio-button">
+            <label id="colorMode">Color Mode
+              <fieldset class="radio-buttons">
+                <label class="radio-button">
                   <input type="radio" name="theme" value="light"> 
                   <span class="icon">light_mode</span> 
                   <span>Light</span>
-              </label>
-              <label class="radio-button">
+                </label>
+                <label class="radio-button">
                   <input type="radio" name="theme" value="" checked> 
                   <span class="icon">routine</span> 
                   <span>Auto</span>
-              </label>
-              <label class="radio-button">
+                </label>
+                <label class="radio-button">
                   <input type="radio" name="theme" value="dark">
                   <span class="icon">dark_mode</span> 
-                   <span>Dark</span>
-              </label>
-              
-            </fieldset>
+                  <span>Dark</span>
+                </label>
+              </fieldset>
             </label>
-            
             <label for="hueSlider">Theme Color:
-            <input type="range" id="hueSlider" name="hue" min="0" max="360" step="10">
+              <input type="range" id="hueSlider" name="hue" min="0" max="360" step="10">
             </label>
           </form>
-          
           <footer>
-            <button  id="cancelBtn">Cancel</button>
+            <button id="cancelBtn">Cancel</button>
             <button variant="brand" id="closeBtn">Save</button>
           </footer>
         </dialog>
@@ -61,7 +54,7 @@ customElements.define(
       this.themeSelectForm = shadowRoot.getElementById("themeSelect");
 
       shadowRoot.getElementById("openBtn").addEventListener("click", () => this.dialog.showModal());
-      shadowRoot.getElementById("closeBtn").addEventListener("click", () => this.dialog.close());
+      shadowRoot.getElementById("closeBtn").addEventListener("click", () => this.saveChanges());
       shadowRoot.getElementById("cancelBtn").addEventListener("click", () => this.cancelChanges());
 
       this.hueSlider.addEventListener("input", () => this.updateHue(this.hueSlider.value));
@@ -93,13 +86,28 @@ customElements.define(
     }
 
     updateTheme(theme) {
-      document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("myCustomTheme", theme);
+      
+      if (theme === "light") {
+        document.documentElement.style.setProperty("color-scheme", "light");
+      } else if (theme === "dark") {
+        document.documentElement.style.setProperty("color-scheme", "dark");
+      } else {
+        document.documentElement.style.setProperty("color-scheme", "light dark");
+      }
     }
 
     updateHue(hue) {
       document.documentElement.style.setProperty('--brand-hue', hue);
-      localStorage.setItem("selectedColorHue", hue);
+    }
+
+    saveChanges() {
+      const selectedTheme = this.themeSelectForm.querySelector('input[name="theme"]:checked').value;
+      const selectedHue = this.hueSlider.value;
+
+      localStorage.setItem("myCustomTheme", selectedTheme);
+      localStorage.setItem("selectedColorHue", selectedHue);
+
+      this.dialog.close();
     }
 
     cancelChanges() {

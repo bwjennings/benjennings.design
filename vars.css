@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap");
+
 @font-face {
   font-family: "OpenDyslexic3";
   src: url("/fonts/OpenDyslexic3-Regular.ttf") format("truetype");
@@ -140,116 +141,35 @@
   --purple-95: oklch(var(--lightness-95) 10% var(--purple-hue));
 
   --hover: brightness(0.95);
-}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background-default: var(--white);
-    --background-secondary: var(--gray-5);
+  color-scheme: light dark;
+  --background-default: light-dark(var(--white), var(--gray-95));
+  --background-secondary: light-dark(var(--gray-5), var(--gray-80));
+  --container-background-brand: light-dark(var(--brand-50), var(--brand-70));
+  --container-background-primary: light-dark(var(--gray-5), var(--gray-80));
+  --container-background-secondary: light-dark(var(--gray-10), var(--gray-70));
+  --container-background-accent: light-dark(var(--accent-50), var(--accent-60));
 
-    --container-background-brand: var(--brand-50);
-    --container-background-primary: var(--gray-5);
-    --container-background-secondary: var(--gray-10);
-    --container-background-accent: var(--accent-50);
+  --container-border-brand: light-dark(var(--brand-70), var(--brand-50));
+  --container-border-primary: light-dark(var(--gray-20), var(--gray-70));
+  --container-border-secondary: light-dark(var(--gray-30), var(--gray-60));
+  --container-border-accent: light-dark(var(--accent-60), var(--accent-50));
 
-    --container-border-brand: var(--brand-70);
-    --container-border-primary: var(--gray-20);
-    --container-border-secondary: var(--gray-30);
-    --container-border-accent: var(--accent-60);
+  --container-foreground-brand: light-dark(var(--brand-40), var(--brand-50));
+  --container-foreground-onBrand: light-dark(var(--white),var(--white));
+  --container-foreground-primary: light-dark(var(--gray-95), var(gray-5));
+  --container-foreground-secondary: light-dark(var(--gray-70), var(--gray-20));
+  --container-foreground-accent: light-dark(var(--accent-5), var(--accent-5));
 
-    --container-foreground-brand: var(--brand-40);
-    --container-foreground-onBrand: var(--white);
-    --container-foreground-primary: var(--gray-95);
-    --container-foreground-secondary: var(--gray-70);
-    --container-foreground-accent: var(--accent-5);
-
-    --foreground-brand: var(--brand-60);
-    --foreground-neutral: var(--gray-95);
-    --foreground-secondary: var(--gray-90);
-    --foreground-accent: var(--accent-50);
-  }
+  --foreground-brand: light-dark(var(--brand-60), var(--brand-40));
+  --foreground-neutral: light-dark(var(--gray-95), var(--gray-5));
+  --foreground-secondary: light-dark(var(--gray-90), var(--gray-10));
+  --foreground-accent: light-dark(var(--accent-50), var(--accent-40));
 }
 
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-default: var(--gray-95);
-    --background-secondary: var(--gray-80);
 
-    --container-background-brand: var(--brand-70);
-    --container-background-primary: var(--gray-80);
-    --container-background-secondary: var(--gray-70);
-    --container-background-accent: var(--accent-60);
 
-    --container-border-brand: var(--brand-50);
-    --container-border-primary: var(--gray-70);
-    --container-border-secondary: var(--gray-60);
-    --container-border-accent: var(--accent-50);
-
-    --container-foreground-brand: var(--brand-50);
-
-    --container-foreground-onBrand: var(--white);
-    --container-foreground-primary: var(--gray-5);
-    --container-foreground-secondary: var(--gray-20);
-    --container-foreground-accent: var(--accent-5);
-
-    --foreground-brand: var(--brand-40);
-    --foreground-neutral: var(--gray-5);
-    --foreground-secondary: var(--gray-10);
-    --foreground-accent: var(--accent-40);
-  }
-}
-
-[data-theme="light"] {
-  --background-default: var(--white);
-  --background-secondary: var(--gray-5);
-
-  --container-background-brand: var(--brand-50);
-  --container-background-primary: var(--gray-5);
-  --container-background-secondary: var(--gray-10);
-  --container-background-accent: var(--accent-50);
-
-  --container-border-brand: var(--brand-70);
-  --container-border-primary: var(--gray-20);
-  --container-border-secondary: var(--gray-30);
-  --container-border-accent: var(--accent-60);
-
-  --container-foreground-brand: var(--brand-40);
-  --container-foreground-onBrand: var(--white);
-  --container-foreground-primary: var(--gray-95);
-  --container-foreground-secondary: var(--gray-60);
-  --container-foreground-accent: var(--accent-5);
-
-  --foreground-brand: var(--brand-60);
-  --foreground-neutral: var(--gray-95);
-  --foreground-secondary: var(--gray-90);
-  --foreground-accent: var(--accent-50);
-}
-[data-theme="dark"] {
-  --background-default: var(--gray-95);
-  --background-secondary: var(--gray-80);
-
-  --container-background-brand: var(--brand-70);
-  --container-background-primary: var(--gray-80);
-  --container-background-secondary: var(--gray-70);
-  --container-background-accent: var(--accent-60);
-
-  --container-border-brand: var(--brand-60);
-  --container-border-primary: var(--gray-70);
-  --container-border-secondary: var(--gray-60);
-  --container-border-accent: var(--accent-50);
-
-  --container-foreground-brand: var(--brand-50);
-  --container-foreground-onBrand: var(--white);
-  --container-foreground-primary: var(--gray-5);
-  --container-foreground-secondary: var(--gray-20);
-  --container-foreground-accent: var(--accent-5);
-
-  --foreground-brand: var(--brand-40);
-  --foreground-neutral: var(--gray-5);
-  --foreground-secondary: var(--gray-10);
-  --foreground-accent: var(--accent-40);
-}
 
 [data-theme="dyslexic"] {
   --text-font-family: "OpenDyslexic3", sans-serif;

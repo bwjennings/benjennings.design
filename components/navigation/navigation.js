@@ -3,46 +3,51 @@ class CustomSidebar extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
 
-    const linkElem = document.createElement('link');
-    linkElem.setAttribute('rel', 'stylesheet');
-    linkElem.setAttribute('href', 'components/navigation/navigation.css');
-    linkElem.setAttribute('type', 'text/css');
-    this.shadowRoot.appendChild(linkElem);
+    const template = document.createElement('template');
+    template.innerHTML = `
+      <link rel="stylesheet" href="components/navigation/navigation.css" type="text/css">
+      <nav class="sidebar">
+        <h2 class="site-title" data-link="index.html">ben.cards</h2>
+        <div class="nav-card item1" data-link="designs.html">
+          <div class="icon">design_services</div>
+          <div class="title-group">
+            <div class="title">Designs</div>
+            <div class="description">Some of my work</div>
+          </div>
+        </div>
+        <div class="nav-card item2" data-link="experiments.html">
+          <div class="icon">experiment</div>
+          <div class="title-group">
+            <div class="title">Experiments</div>
+            <div class="description">Extra Things</div>
+          </div>
+        </div>
+        <div class="nav-card item3" data-link="resources.html">
+          <div class="icon">category</div>
+          <div class="title-group">
+            <div class="title">Resources</div>
+            <div class="description">Files and more</div>
+          </div>
+        </div>
+        <site-settings></site-settings>
+      </nav>
+    `;
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.buildContent();
+    this.addEventListeners();
   }
 
-  buildContent() {
-    const nav = document.createElement('nav');
-    nav.classList.add('sidebar');
+  addEventListeners() {
+    this.shadowRoot.querySelectorAll('[data-link]').forEach(element => {
+      element.addEventListener('click', this.handleNavigation.bind(this));
+    });
+  }
 
-    nav.innerHTML = `
-      <h2 class="site-title"onclick="window.location.href='index.html';">ben.cards</h2>
-      <div class="nav-card item1" onclick="window.location.href='designs.html';">
-        <div class="icon">design_services</div>
-        <div class="title-group">
-          <div class="title">Designs</div>
-          <div class="description">Some of my work</div>
-        </div>
-      </div>
-      <div class="nav-card item2" onclick="window.location.href='experiments.html';">
-        <div class="icon">experiment</div>
-        <div class="title-group">
-          <div class="title">Experiments</div>
-          <div class="description">Extra Things</div>
-        </div>
-      </div>
-      <div class="nav-card item3" onclick="window.location.href='resources.html';">
-        <div class="icon">category</div>
-        <div class="title-group">
-          <div class="title">Resources</div>
-          <div class="description">Files and more</div>
-        </div>
-      </div>
-      <site-settings></site-settings>
-    `;
-
-    this.shadowRoot.appendChild(nav);
+  handleNavigation(event) {
+    const link = event.currentTarget.dataset.link;
+    if (link) {
+      window.location.href = link;
+    }
   }
 
   static get observedAttributes() {
@@ -54,9 +59,6 @@ class CustomSidebar extends HTMLElement {
       this.updateActiveItem(newValue);
     }
   }
-
-  
-  
 
   updateActiveItem(index) {
     const cards = this.shadowRoot.querySelectorAll('.nav-card');
