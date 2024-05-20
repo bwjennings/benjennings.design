@@ -71,21 +71,22 @@
   --text-subhead-size-small: var(--font-size-3);
   --text-subhead-size-medium: var(--font-size-6);
   --text-subhead-size-large: var(--font-size-7);
-
-  --lightness-5: 98%;
-  --lightness-10: 93%;
-  --lightness-20: 88.4%;
-  --lightness-30: 81.1%;
-  --lightness-40: 71%;
-  --lightness-50: 57%;
-  --lightness-60: 40%;
-  --lightness-70: 26%;
-  --lightness-80: 16.5%;
-  --lightness-90: 9.2%;
-  --lightness-95: 4.1%;
-
   --black: oklch(0% 0% 0deg);
-  --white: oklch(100% 0% 0deg);
+  --white: oklch(100% 0% 0deg); 
+
+
+ 
+  --lightness-5: 98%;
+  --lightness-10: 93.99%;
+  --lightness-20: 87.97%;
+  --lightness-30: 79.19%;
+  --lightness-40: 66.64%;
+  --lightness-50: 49.00%;
+  --lightness-60: 31.36%;
+  --lightness-70: 18.82%;
+  --lightness-80: 10.04%;
+  --lightness-90: 40.01%;
+  --lightness-95: 0%;
 
   --brand-hue: 230;
 
