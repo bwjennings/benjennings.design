@@ -3,6 +3,7 @@
   <head>
     <title>ben.cards</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="manifest" href="manifest.json" />
     <link href="./vars.css" rel="stylesheet" />
     <link href="./style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -10,10 +11,7 @@
     <script type="module" src="components/index.js"></script>
     <link rel="prefetch" href="designs.html" as="document" />
     <link rel="prefetch" href="resources.html" as="document" />
-    <script
-      type="module"
-      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
-    ></script>
+   
   </head>
   <body>
     <div class="page-container">
@@ -32,27 +30,14 @@
             </div>
          
             <model-viewer slot="content"
-            exposure="1"
-            skybox-image="designs/resources/5_16_2024.jpg"
-              camera-orbit="0deg 75deg 5%"
-              alt="My Desk"
-              src="./Scaniverse 2024-05-08 120226.glb"
-              ar
-              shadow-intensity="1"
-              camera-controls
-              touch-action="pan-y"
-              
-            ></model-viewer>
             
-            <model-viewer slot="content"
-            camera-orbit="0deg 75deg 5%"
-            alt="My Desk"
             src="designs/resources/Scaniverse 2024-04-30 180057.glb"
-            ar
-            shadow-intensity="1"
-            camera-controls
-            touch-action="pan-y"
-          ></model-viewer>
+              ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1" exposure="0.9" camera-orbit="-46.6deg 72.08deg 10.6m" field-of-view="15.14deg" auto-rotate>
+              
+            </model-viewer>
+            
+            
+            
     
           </content-card>
           <content-card title="Here is a card"></content-card>
@@ -62,5 +47,9 @@
         </div>
       </main>
     </div>
+    <script
+      type="module"
+    src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+  ></script>
   </body>
 </html>

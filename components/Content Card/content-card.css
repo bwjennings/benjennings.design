@@ -150,6 +150,7 @@ dialog::backdrop {
 ::slotted(model-viewer) {
   height: 100%;
   width: 100%;
+  border-radius: var(--radius-medium);
 
 
 }
