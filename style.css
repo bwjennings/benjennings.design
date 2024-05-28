@@ -12,6 +12,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background: var(--background-default);
+  
 
 
 }
@@ -139,7 +140,7 @@ label {
   align-items: center;
   padding: var(--spacing-small);
   border-radius: var(--radius-large);
-  border: none;
+  border: 1px solid var(--container-border-primary);
   background: var(--container-background-secondary);
   user-select: none;
 }
@@ -199,7 +200,7 @@ label {
   height: 100%;
   display: grid;
   grid-template-columns: auto 1fr;
-
+  
   grid-template-areas: "sidebar main-content";
 }
 
@@ -510,7 +511,7 @@ dialog[open]::backdrop {
   .page-container {
     height: 100%;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr 84px;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas:
       "title"
       "main-content"

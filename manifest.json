@@ -1,10 +1,25 @@
 {
-    "name": "ben.cards",
+    "name": "cards",
     "short_name": "ben",
     "start_url": ".",
-    "display": "standalone",
+    "display": "fullscreen",
     "background_color": "#005EFF",
+   
     "description": "A set of things made by Ben",
+    "shortcuts": [
+        {
+          "name": "Designs",
+          "url": "/designs.html"
+        },
+        {
+          "name": "Experiments",
+          "url": "/experiments.html"
+        },
+        {
+            "name": "Resources",
+            "url": "/resources.html"
+          }
+      ]
     
 
   }

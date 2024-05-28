@@ -39,7 +39,10 @@ customElements.define(
               </fieldset>
             </label>
             <label for="hueSlider">Theme Color:
-              <input type="range" id="hueSlider" name="hue" min="0" max="360" step="10">
+              <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2">
+            </label>
+            <label for="highContrast">High Contrast:
+              <input type="checkbox" id="highContrast" name="highContrast">
             </label>
           </form>
           <footer>
@@ -52,16 +55,23 @@ customElements.define(
       this.dialog = shadowRoot.getElementById("dialog");
       this.hueSlider = shadowRoot.getElementById("hueSlider");
       this.themeSelectForm = shadowRoot.getElementById("themeSelect");
+      this.highContrastCheckbox = shadowRoot.getElementById("highContrast");
 
       shadowRoot.getElementById("openBtn").addEventListener("click", () => this.dialog.showModal());
       shadowRoot.getElementById("closeBtn").addEventListener("click", () => this.saveChanges());
       shadowRoot.getElementById("cancelBtn").addEventListener("click", () => this.cancelChanges());
 
-      this.hueSlider.addEventListener("input", () => this.updateHue(this.hueSlider.value));
+      this.hueSlider.addEventListener("input", () => {
+        this.updateHue(this.hueSlider.value);
+        this.updateThemeColorMetaTag(this.hueSlider.value);
+      });
       this.themeSelectForm.addEventListener("change", event => {
         if (event.target.name === "theme") {
           this.updateTheme(event.target.value);
         }
+      });
+      this.highContrastCheckbox.addEventListener("change", () => {
+        this.toggleHighContrast(this.highContrastCheckbox.checked);
       });
     }
 
@@ -72,6 +82,7 @@ customElements.define(
     applyStoredSettings() {
       const storedTheme = localStorage.getItem("myCustomTheme") || "";
       const storedHue = localStorage.getItem("selectedColorHue") || "230"; // Default hue if not stored
+      const highContrastEnabled = localStorage.getItem("highContrast") === "";
 
       if (storedTheme) {
         this.updateTheme(storedTheme);
@@ -83,10 +94,13 @@ customElements.define(
 
       this.hueSlider.value = storedHue;
       this.updateHue(storedHue);
+      this.updateThemeColorMetaTag(storedHue);
+
+      this.highContrastCheckbox.checked = highContrastEnabled;
+      this.toggleHighContrast(highContrastEnabled);
     }
 
     updateTheme(theme) {
-      
       if (theme === "light") {
         document.documentElement.style.setProperty("color-scheme", "light");
       } else if (theme === "dark") {
@@ -100,12 +114,22 @@ customElements.define(
       document.documentElement.style.setProperty('--brand-hue', hue);
     }
 
+    toggleHighContrast(enabled) {
+      if (enabled) {
+        document.documentElement.setAttribute("data-mode", "high-contrast");
+      } else {
+        document.documentElement.removeAttribute("data-mode", "high-contrast");
+      }
+    }
+
     saveChanges() {
       const selectedTheme = this.themeSelectForm.querySelector('input[name="theme"]:checked').value;
       const selectedHue = this.hueSlider.value;
+      const highContrastEnabled = this.highContrastCheckbox.checked;
 
       localStorage.setItem("myCustomTheme", selectedTheme);
       localStorage.setItem("selectedColorHue", selectedHue);
+      localStorage.setItem("highContrast", highContrastEnabled);
 
       this.dialog.close();
     }

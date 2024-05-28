@@ -88,6 +88,25 @@
   --lightness-90: 40.01%;
   --lightness-95: 0%;
 
+  
+  --lightness-scale: 1; 
+  
+  
+  
+  --lightness-5: pow(0.99,var(--lightness-scale));
+  --lightness-10: pow(0.9,var(--lightness-scale));
+  --lightness-20: pow(0.8,var(--lightness-scale));
+  --lightness-30: pow(0.7,var(--lightness-scale));
+  --lightness-40: pow(0.6,var(--lightness-scale));
+  --lightness-50: pow(0.5,var(--lightness-scale));
+  --lightness-60: pow(0.4,var(--lightness-scale));
+  --lightness-70: pow(0.3,var(--lightness-scale));
+  --lightness-80: pow(0.2,var(--lightness-scale));
+  --lightness-90: pow(0.1,var(--lightness-scale));
+  --lightness-95: pow(0.05,var(--lightness-scale));
+  
+
+
   --brand-hue: 230;
 
   --brand-5: oklch(var(--lightness-5) 3.8% var(--brand-hue));
@@ -169,7 +188,19 @@
 }
 
 
+[data-mode="high-contrast"] {
+  --background-default: light-dark(var(--white), var(--black));
+  --background-secondary: light-dark(var(--white), var(--black));
+  --container-background-brand: light-dark(var(--brand-60), var(--brand-70));
+  --container-background-primary: light-dark(var(--white), var(--gray-90));
+  --container-background-secondary: light-dark(var(--gray-5), var(--gray-95));
+  --container-background-accent: light-dark(var(--accent-10), var(--accent-90));
 
+  --container-border-brand: light-dark(var(--brand-90), var(--brand-10));
+  --container-border-primary: light-dark(var(--gray-90), var(--gray-10));
+  --container-border-secondary: light-dark(var(--gray-90), var(--gray-10));
+  --container-border-accent: light-dark(var(--accent-90), var(--accent-10));
+}
 
 
 [data-theme="dyslexic"] {

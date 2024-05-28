@@ -12,21 +12,21 @@ class CustomSidebar extends HTMLElement {
           <div class="icon">design_services</div>
           <div class="title-group">
             <div class="title">Designs</div>
-            <div class="description">Some of my work</div>
+            
           </div>
         </div>
         <div class="nav-card item2" data-link="experiments.html">
           <div class="icon">experiment</div>
           <div class="title-group">
             <div class="title">Experiments</div>
-            <div class="description">Extra Things</div>
+            
           </div>
         </div>
         <div class="nav-card item3" data-link="resources.html">
           <div class="icon">category</div>
           <div class="title-group">
             <div class="title">Resources</div>
-            <div class="description">Files and more</div>
+            
           </div>
         </div>
         <site-settings></site-settings>

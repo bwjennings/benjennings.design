@@ -24,7 +24,18 @@ dialog {
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
-  background: linear-gradient(
+  
+  cursor: grab;
+  margin: 0%;
+  width: 100%;
+  padding: 4px;
+  border: 1px solid var(--container-border-primary);
+  border-radius: 100dvh;
+  &:active {
+    cursor: grabbing;
+  }
+  &.theme{
+    background: linear-gradient(
     to right,
     oklch(60% 0.2 0),
     oklch(60% 0.2 60),
@@ -34,13 +45,6 @@ input[type="range"] {
     oklch(60% 0.2 300),
     oklch(60% 0.2 360)
   );
-  cursor: grab;
-  margin: 0%;
-  width: 100%;
-  padding: 4px;
-  border-radius: 100dvh;
-  &:active {
-    cursor: grabbing;
   }
 }
 
