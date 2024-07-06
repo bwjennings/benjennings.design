@@ -22,7 +22,7 @@ customElements.define(
             @import 'components/card/card.css';
             
           </style>
-          <div class="card-container">
+          <a class="card-container">
             <slot class="heading sm"></slot>
             <button class="icon-button">open_in_full</button>
             ${badgeTemplate}
@@ -31,7 +31,7 @@ customElements.define(
               <slot style="flex-grow:1" name="dialogContent"></slot>
               <button class="icon-button" id="closeBtn">Close</button>
             </dialog>
-          </div>
+          </a>
         `;
   
         this.closeBtn = shadowRoot.getElementById("closeBtn");

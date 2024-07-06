@@ -35,6 +35,13 @@
         "GRAD" 100;
     }
   }
+
+  &:visited{
+   
+}
+.card-container:visited{
+    border-color: red;
+}
 }
 
 .title {
