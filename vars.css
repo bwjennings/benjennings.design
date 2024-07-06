@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&display=swap');
 
 @font-face {
   font-family: "OpenDyslexic3";
@@ -42,18 +41,32 @@
   --spacing-xx-large: 32px;
   --spacing-xxx-large: 40px;
 
+ 
+
+  --text-heading-font-family: "Inter Tight";
+  --text-heading-weight: 550;
+ 
+  --text-heading-xl-size: var(--font-size-10);
+  --text-heading-lg-size: var(--font-size-9);
+  --text-heading-lg-line-height: var(--font-size-10);
+  --text-heading-md-size: var(--font-size-8);
+  --text-heading-md-line-height: var(--font-size-9);
+  --text-heading-sm-size: var(--font-size-6);
+  --text-heading-sm-line-height: var(--font-size-7);
+
+ 
+  --text-body-font-family: "Inter";
+  --text-body-weight: "400";
+  --text-body-sm-size: var(--font-size-3);
+  --text-body-md-size: var(--font-size-4);
+  --text-body-lg-size: var(--font-size-5);
+
   --icon-size-small: var(--font-size-3);
   --icon-size-medium: 32px;
   --icon-size-large: 40px;
   --icon-weight-small: 300px;
   --icon-weight-medium: 400px;
   --icon-weight-large: 500px;
-
-  --text-heading-weight: 700;
-  --text-heading-size-small: var(--font-size-6);
-  --text-heading-size-medium: var(--font-size-8);
-  --text-heading-size-large: var(--font-size-10);
-  --text-font-family: "Inter";
 
   --icon-font-family: "Material Symbols Sharp";
   --icon-weight-small: 300;
@@ -63,14 +76,8 @@
   --icon-size-medium: var(--font-size-4);
   --icon-size-large: var(--font-size-6);
 
-  --text-subhead-weight: 400;
-  --text-body-weight: "400";
-  --text-body-small: var(--font-size-3);
-  --text-body-medium: var(--font-size-4);
-  --text-body-large: var(--font-size-5);
-  --text-subhead-size-small: var(--font-size-3);
-  --text-subhead-size-medium: var(--font-size-6);
-  --text-subhead-size-large: var(--font-size-7);
+  
+
   --black: oklch(0% 0% 0deg);
   --white: oklch(100% 0% 0deg); 
 
@@ -83,27 +90,17 @@
   --lightness-40: 66.64%;
   --lightness-50: 49.00%;
   --lightness-60: 31.36%;
-  --lightness-70: 18.82%;
-  --lightness-80: 10.04%;
-  --lightness-90: 40.01%;
-  --lightness-95: 0%;
+  --lightness-70: 37%;
+  --lightness-80: 29%;
+  --lightness-90: 24%;
+  --lightness-95: 13%;
 
   
   --lightness-scale: 1; 
   
   
   
-  --lightness-5: pow(0.99,var(--lightness-scale));
-  --lightness-10: pow(0.9,var(--lightness-scale));
-  --lightness-20: pow(0.8,var(--lightness-scale));
-  --lightness-30: pow(0.7,var(--lightness-scale));
-  --lightness-40: pow(0.6,var(--lightness-scale));
-  --lightness-50: pow(0.5,var(--lightness-scale));
-  --lightness-60: pow(0.4,var(--lightness-scale));
-  --lightness-70: pow(0.3,var(--lightness-scale));
-  --lightness-80: pow(0.2,var(--lightness-scale));
-  --lightness-90: pow(0.1,var(--lightness-scale));
-  --lightness-95: pow(0.05,var(--lightness-scale));
+ 
   
 
 
@@ -163,43 +160,50 @@
   --hover: brightness(0.95);
 
   color-scheme: light dark;
-  --background-default: light-dark(var(--white), var(--gray-95));
-  --background-secondary: light-dark(var(--gray-5), var(--gray-80));
-  --container-background-brand: light-dark(var(--brand-50), var(--brand-70));
-  --container-background-primary: light-dark(var(--gray-5), var(--gray-80));
-  --container-background-secondary: light-dark(var(--gray-10), var(--gray-70));
-  --container-background-accent: light-dark(var(--accent-50), var(--accent-60));
+  --background-page: light-dark(var(--white), var(--gray-95));
+  --background-primary: light-dark(var(--gray-5), var(--gray-80));
+  --background-secondary: light-dark(var(--gray-10), var(--gray-70));
+  --background-brand: light-dark(var(--brand-5), var(--brand-95));
+  --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-70));
+  
+ 
+  --background-accent: light-dark(var(--accent-50), var(--accent-60));
 
-  --container-border-brand: light-dark(var(--brand-70), var(--brand-50));
-  --container-border-primary: light-dark(var(--gray-20), var(--gray-70));
-  --container-border-secondary: light-dark(var(--gray-30), var(--gray-60));
-  --container-border-accent: light-dark(var(--accent-60), var(--accent-50));
 
-  --container-foreground-brand: light-dark(var(--brand-40), var(--brand-50));
-  --container-foreground-onBrand: light-dark(var(--white),var(--white));
-  --container-foreground-primary: light-dark(var(--gray-95), var(gray-5));
-  --container-foreground-secondary: light-dark(var(--gray-70), var(--gray-20));
-  --container-foreground-accent: light-dark(var(--accent-5), var(--accent-5));
 
-  --foreground-brand: light-dark(var(--brand-60), var(--brand-40));
-  --foreground-neutral: light-dark(var(--gray-95), var(--gray-5));
+  --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-90), var(--gray-10));
-  --foreground-accent: light-dark(var(--accent-50), var(--accent-40));
+  --foreground-brand: light-dark(var(--brand-80), var(--brand-20));
+  --foreground-accent: light-dark(var(--accent-5), var(--accent-5));
+  --foreground-onEmphasis: light-dark(var(--white),var(--white));
+  
+  --border-primary: light-dark(var(--gray-20), var(--gray-70));
+  --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
+  --border-secondary: light-dark(var(--gray-30), var(--gray-60));
+  --border-brand: light-dark(var(--brand-20), var(--brand-80));
+  --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-50));
+  
+   
+   --border-accent: light-dark(var(--accent-60), var(--accent-50));
+ 
+ 
+
+  
+
 }
 
 
 [data-mode="high-contrast"] {
-  --background-default: light-dark(var(--white), var(--black));
-  --background-secondary: light-dark(var(--white), var(--black));
-  --container-background-brand: light-dark(var(--brand-60), var(--brand-70));
-  --container-background-primary: light-dark(var(--white), var(--gray-90));
-  --container-background-secondary: light-dark(var(--gray-5), var(--gray-95));
-  --container-background-accent: light-dark(var(--accent-10), var(--accent-90));
+  --background-page: light-dark(var(--white), var(--black));
+  --background-primary: light-dark(var(--white), var(--black));
+  --background-brand: light-dark(var(--brand-60), var(--brand-70));
+  --background-secondary: light-dark(var(--gray-5), var(--gray-95));
+  --background-accent: light-dark(var(--accent-10), var(--accent-90));
 
-  --container-border-brand: light-dark(var(--brand-90), var(--brand-10));
-  --container-border-primary: light-dark(var(--gray-90), var(--gray-10));
-  --container-border-secondary: light-dark(var(--gray-90), var(--gray-10));
-  --container-border-accent: light-dark(var(--accent-90), var(--accent-10));
+  --border-brand: light-dark(var(--brand-90), var(--brand-10));
+ --border-primary: light-dark(var(--gray-90), var(--gray-10));
+  --border-secondary: light-dark(var(--gray-90), var(--gray-10));
+  --border-accent: light-dark(var(--accent-90), var(--accent-10));
 }
 
 

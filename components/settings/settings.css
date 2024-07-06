@@ -8,15 +8,16 @@ footer {
   justify-content: flex-end;
   gap: var(--spacing-medium);
   padding-top: var(--spacing-x-large);
-  border-top: 1px solid var(--container-border-primary);
+  border-top: 1px solid var(--border-primary);
 }
 
 dialog {
-  width: fit-content;
+  width: 60dvw;
+  min-width: 400px;
   height: fit-content;
   
 }
-@supports(color-scheme: light dark;){
+@supports not (color-scheme: light dark){
   #colorMode{
     display: none ;
   }
@@ -29,7 +30,7 @@ input[type="range"] {
   margin: 0%;
   width: 100%;
   padding: 4px;
-  border: 1px solid var(--container-border-primary);
+  border: 1px solid var(--border-primary);
   border-radius: 100dvh;
   &:active {
     cursor: grabbing;
@@ -111,7 +112,7 @@ input[type="range"]::-moz-range-thumb {
     border-color: transparent;
 
     .title {
-      color: var(--container-foreground-primary);
+      color: var(--foreground-primary);
     }
   }
 

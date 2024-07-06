@@ -1,48 +1,78 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-
 }
 
 * {
   margin: 0;
-
 }
 
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background: var(--background-default);
-  
-
-
+  background: var(--background-page);
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
   text-wrap: pretty;
 }
-
-
 
 body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
   color: var(--foreground-neutral);
-  background-color: var(--background-default);
+  background-color: var(--background-page);
   overflow: hidden;
   height: 100dvh;
-  font-family: var(--text-font-family);
+  font-family: var(--text-body-font-family);
+  font-weight: var(--text-body-weight);
   box-sizing: border-box;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--text-heading-font-family);
+  font-size: var(--text-heading-lg-size);
+  font-style: normal;
+  font-weight: var(--text-heading-weight);
+  line-height: var(--text-heading-lg-line-height);
+
+  &.sm {
+    font-size: var(--text-heading-sm-size);
+    line-height: var(--text-heading-sm-line-height);
+  }
+
+  &.md {
+    font-size: var(--text-heading-md-size);
+    line-height: var(--text-heading-md-line-height);
+  }
+
+ 
 }
 
 .favicon {
@@ -52,9 +82,8 @@ body {
 button {
   box-sizing: border-box;
   user-select: none;
-  border-radius: var(--radius-medium);
-  border: 1px solid var(--container-border-secondary);
-  background: var(--container-background-primary);
+  border: 1px solid var(--border-secondary);
+  background: var(--background-primary);
   display: inline-flex;
   padding: var(--spacing-medium, 12px);
   justify-content: center;
@@ -62,20 +91,22 @@ button {
   gap: var(--spacing-x-small, 4px);
   font-family: var(--text-font-family);
   font-size: 16px;
-  color: var(--container-foreground-primary);
+  color: var(--foreground-primary);
   cursor: pointer;
   line-height: 100%;
   height: 40px;
 
   .icon {
     font-family: var(--icon-font-family);
+    font-size: var(--icon-size-medium);
+    line-height: 100%;
   }
 }
 
 button[variant="brand"] {
-  background: var(--container-background-brand);
-  color: var(--container-foreground-onBrand);
-  border: 1px solid var(--container-border-brand);
+  background: var(--background-brand-emphasis);
+  color: var(--foreground-onEmphasis);
+  border: 1px solid var(--border-brand-emphasis);
 }
 
 button[size="small"] {
@@ -88,27 +119,12 @@ button:hover {
   filter: var(--hover);
 }
 
-h1 {
-  margin: 0;
-  font-family: var(--text-font-family);
-  font-size: var(--text-heading-size-large);
-  font-style: normal;
-  font-weight: var(--text-heading-weight);
-  line-height: 100%;
-
-  &[size="small"] {
-    font-size: var(--text-heading-size-small);
-  }
-
-  &[size="medium"] {
-    font-size: var(--text-heading-size-medium);
-  }
-
-  &[size="large"] {
-    font-size: var(--text-heading-size-large);
-  }
+.icon-button{
+  font-family: var(--icon-font-family);
+  font-size: var(--icon-size-large, 24px);
+  height: 48px;
+  width: 48px;
 }
-
 
 
 h4 {
@@ -128,7 +144,7 @@ label {
   flex-direction: column;
   background-color: inherit;
   gap: var(--spacing-small);
-  accent-color: var(--container-background-brand);
+  accent-color: var(--background-brand);
 }
 
 .radio-buttons {
@@ -138,10 +154,9 @@ label {
   gap: var(--spacing-small);
   justify-content: center;
   align-items: center;
-  padding: var(--spacing-small);
-  border-radius: var(--radius-large);
-  border: 1px solid var(--container-border-primary);
-  background: var(--container-background-secondary);
+  padding: 0px;
+  border: 1px solid var(--border-primary);
+  background: var(--background-secondary);
   user-select: none;
 }
 
@@ -149,17 +164,16 @@ label {
   display: flex;
   flex-direction: row;
   background-color: inherit;
-  padding: var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-medium, 12px);
+  padding: var(--spacing-large, 16px) var(--spacing-large, 16px)
+    var(--spacing-large, 16px) var(--spacing-medium, 12px);
   justify-content: center;
   align-items: center;
   gap: var(--spacing-medium, 12px);
   flex: 1 0 0;
-  border-radius: var(--radius-medium, 8px);
-
-  color: var(--container-foreground-primary);
+font-size: var(--text-body-md-size);
+  color: var(--foreground-primary);
   font-family: var(--text-font-family);
   border: 1px solid transparent;
-  border-radius: var(--radius-medium);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -183,12 +197,13 @@ label {
 }
 
 .radio-button:has(input:checked) {
-  border-color: var(--container-border-primary);
-  background-color: var(--container-background-primary);
-  color: var(--container-foreground-primary);
+  border-color: var(--border-primary);
+  background-color: var(--background-brand-emphasis);
+  color: var(--foreground-onEmphasis);
 }
 
-@media screen and (max-width: 900px) {}
+@media screen and (max-width: 900px) {
+}
 
 .icon-font {
   font-family: var(--icon-font-family);
@@ -200,14 +215,11 @@ label {
   height: 100%;
   display: grid;
   grid-template-columns: auto 1fr;
-  
+
   grid-template-areas: "sidebar main-content";
 }
 
-h2 {
-  font-weight: 400;
-  font-size: 40px;
-}
+
 
 main {
   grid-area: main-content;
@@ -218,11 +230,9 @@ main {
   transform-origin: top;
 }
 
-
-
 @keyframes pageLoad {
   from {
-    filter: blur(16px);
+    filter: blur(4px);
     opacity: 0;
   }
 
@@ -261,12 +271,9 @@ main {
   perspective: 200px;
   transform-style: preserve-3d;
   perspective-origin: 50dvh 50px;
-  animation: pageLoad 300ms ease-out;
+  animation: pageLoad 600ms ease-in-out;
+  height: 100%;
 }
-
-
-
-
 
 section {
   box-sizing: border-box;
@@ -282,17 +289,15 @@ section {
   height: 50dvh;
   grid-area: title;
   padding: var(--spacing-x-large);
-
-  border-radius: var(--radius-large);
   z-index: 2;
 
-  color: var(--container-foreground-primary);
+  color: var(--foreground-primary);
   scroll-margin: 20dvh;
   display: flex;
   gap: var(--spacing-medium);
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   max-width: 1000px;
 
@@ -302,12 +307,7 @@ section {
     text-wrap: pretty;
   }
 
-  .subhead {
-    font-family: var(--text-font-family);
-    font-size: var(--text-subhead-size-medium);
-
-    margin: 0px;
-  }
+  
 }
 
 .material-symbols-rounded {
@@ -316,9 +316,9 @@ section {
 
 .dialog-header {
   margin: 0px;
-  border-bottom: 1px solid var(--container-border-primary);
+  border-bottom: 1px solid var(--border-primary);
   padding-bottom: var(--spacing-medium);
-  font-size: var(--text-heading-size-medium);
+  font-size: var(--text-heading-md-size);
   font-weight: var(--text-heading-weight);
 }
 
@@ -394,59 +394,50 @@ section {
   }
 }
 
-
-
-
 dialog[open] {
   opacity: 1;
   transform: perspective(300px) translateZ(0px) rotateX(0deg);
   filter: blur(0px);
   display: flex;
   gap: var(--spacing-large);
-
 }
 
 /*   Closed state of the dialog   */
 dialog {
   margin: auto;
   opacity: 0;
-  transform: perspective(300px) translateZ(20px) rotateX(10deg);
+  transform: perspective(300px) translateY(20px);
   filter: blur(16px);
   color: var(--foreground-neutral);
-  border: 1px solid var(--container-border-primary);
-  border-radius: var(--radius-large);
-  width: 80dvw;
+  border: 1px solid var(--border-primary);
+  width: 50dvw;
   height: 80dvh;
   padding: 24px;
-  background-color: var(--container-background-primary);
-  transition:
-    all 300ms ease-in-out allow-discrete;
+  background-color: var(--background-primary);
+  transition: all 300ms ease-in-out allow-discrete;
   flex-direction: column;
   transform-style: preserve-3d;
-
 }
 
 @starting-style {
   dialog[open] {
     animation: none;
-    filter: blur(16px);
-    transform: perspective(300px) translateZ(20px) rotateX(10deg);
+    filter: blur(8px);
+    transform: perspective(300px) translateY(20px);
   }
 }
-
 
 dialog::backdrop {
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
   transition: all 300ms allow-discrete;
-  background: color(var(--container-background-brand) / 0.8);
+  background: color(var(--background-brand) / 0.8);
 }
 
 dialog[open]::backdrop {
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
-
 
 @starting-style {
   dialog[open]::backdrop {
@@ -455,17 +446,12 @@ dialog[open]::backdrop {
   }
 }
 
-
-
-
-
 .button-group {
   display: flex;
   gap: var(--spacing-medium);
 }
 
 .welcome-card {
-
   display: flex;
 
   flex-direction: column;
@@ -481,15 +467,7 @@ dialog[open]::backdrop {
   border-radius: inherit;
   margin: auto;
 
-  h2 {
-    margin: 0;
-    margin-bottom: var(--spacing-large);
-    font-size: var(--text-subhead-size-medium);
-    font-weight: var(--text-subhead-weight);
-    text-wrap: pretty;
-  }
-
-
+  
 }
 
 @media screen and (max-width: 900px) {
@@ -530,10 +508,9 @@ dialog[open]::backdrop {
 
   .page-title {
     max-width: none;
+    
 
-    h1 {
-      font-size: var(--text-heading-size-medium);
-    }
+   
 
     h2 {
       display: none;
@@ -555,5 +532,3 @@ dialog[open]::backdrop {
 ::part(header) {
   font-size: 100px;
 }
-
-

@@ -14,10 +14,11 @@
   height: auto;
   justify-content: center;
   container-type: inline-size;
+ 
 }
 
 .card {
-  background-color: var(--container-background-primary);
+  background-color: var(--background-primary);
   height: 80dvh;
   padding: 40px;
   display: grid;
@@ -28,7 +29,7 @@
   justify-content: flex-start;
   width: 100%;
   position: relative;
-  border: 1px solid var(--container-border-primary);
+  border: 1px solid var(--border-primary);
   border-radius: var(--radius-medium, 16px);
   overflow: hidden;
 }
@@ -36,8 +37,7 @@
 @container (max-width: 850px) {
   .card {
       grid-template-columns: 1fr;
-     
-    grid-template-rows: 1fr auto;
+    grid-template-rows:auto-fill;
     grid-template-areas: "content" "header";
   }
   .content{
@@ -59,7 +59,7 @@
 }
 
 .title {
-  color: var(--container-foreground-primary);
+  color: var(--foreground-primary);
   font-family: var(--heading-medium-font-family, "Inter-Bold", sans-serif);
   font-size: var(--text-heading-size-medium, 24px);
   font-weight: var(--text-heading-weight);
@@ -83,20 +83,20 @@ grid-template-rows: repeat(2, 1fr);
   flex: 1;
   grid-area: content;
   min-width: 300px;
+  background-color: yellow;
+
 
 
 }
 
 
-::slotted([slot="content"]):first-child {
 
-  background-color: red;
-}
+
 
 
 
 p {
-  color: var(--container-foreground-primary);
+  color: var(--foreground-primary);
   font-family: var(--body-medium-font-family, "Inter-Regular", sans-serif);
   font-size: var(--body-medium-font-size, 18px);
   line-height: var(--body-medium-line-height);
@@ -151,7 +151,7 @@ dialog::backdrop {
   height: 100%;
   width: 100%;
   border-radius: var(--radius-medium);
-
+  
 
 }
 
@@ -162,4 +162,13 @@ dialog::backdrop {
   height: 100%;
   object-fit: contain;
   padding: var(--spacing-large);
+}
+
+
+.content:has(slot:empty) {
+  background-color: green;
+}
+::slotted(div) {
+
+  background-color: red;
 }
