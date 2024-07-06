@@ -51,16 +51,16 @@
   justify-content: flex-start;
   -webkit-user-select: none;
   user-select: none;
-  cursor: pointer;
   color: var(--container-foreground-secondary);
 background: inherit;
 border: 1px solid transparent;
-
+cursor: pointer;
 
   
 
   &:hover:not(.active) {
     border: 1px solid var(--border-primary, #E1E1E1);
+
   }
 }
 
@@ -151,7 +151,6 @@ border: 1px solid transparent;
   font-weight: 400;
 
   &:hover{
-    cursor: pointer;
 
   }
 }

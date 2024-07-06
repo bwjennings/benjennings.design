@@ -16,8 +16,11 @@ customElements.define(
         const badgeTemplate = badge ? `<my-badge>${badge}</my-badge>` : "";
   
         shadowRoot.innerHTML = `
+       
           <style>
+           
             @import 'components/card/card.css';
+            
           </style>
           <div class="card-container">
             <slot class="heading sm"></slot>
