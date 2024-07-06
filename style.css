@@ -219,7 +219,10 @@ font-size: var(--text-body-md-size);
   grid-template-areas: "sidebar main-content";
 }
 
-
+.card-group{
+  display: flex;
+  gap: var(--spacing-x-large);
+}
 
 main {
   grid-area: main-content;

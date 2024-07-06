@@ -1,39 +1,39 @@
 @import "/style.css";
 
-:host {
- 
-  
+.card-container {
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr auto;
   width: 300px;
-  
-  
+
   min-height: 400px;
-  
- 
+
   justify-content: center;
   container-type: inline-size;
- 
 
   background-color: var(--background-primary);
-  
-  padding: 40px;
+
+  padding: var(--spacing-large);
   display: grid;
-  
-   
+
   gap: var(--spacing-large);
   align-items: flex-start;
   justify-content: flex-start;
-  
-  
+
   border: 1px solid var(--border-primary);
 
   overflow: hidden;
+
+  &:hover {
+    border-color: var(--border-primary-hover);
+
+    .icon-button {
+        font-variation-settings:
+        
+        "GRAD" 100;
+    }
+  }
 }
-
-
-
 
 .title {
   color: var(--foreground-primary);
@@ -48,14 +48,6 @@
   font-weight: var(--subhead-font-weight);
 }
 
-
-
-
-
-
-
-
-
 p {
   color: var(--foreground-primary);
   font-family: var(--body-medium-font-family, "Inter-Regular", sans-serif);
@@ -63,8 +55,6 @@ p {
   line-height: var(--body-medium-line-height);
   font-weight: var(--body-medium-font-weight, 400);
 }
-
-
 
 ::slotted(div[slot="dialogContent"]) {
   flex-grow: 1;
@@ -79,21 +69,11 @@ dialog::backdrop {
   background-color: rgba(6, 6, 6, 0.3);
 }
 
-
-
-
-
-
-
 ::slotted(model-viewer) {
   height: 100%;
   width: 100%;
   border-radius: var(--radius-medium);
-  
-
 }
-
-
 
 ::slotted(img) {
   max-width: 100%;
@@ -102,11 +82,10 @@ dialog::backdrop {
   padding: var(--spacing-large);
 }
 
-
 .content:has(slot:empty) {
   background-color: green;
 }
-::slotted(div) {
 
+::slotted(div) {
   background-color: red;
 }
