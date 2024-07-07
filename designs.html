@@ -13,71 +13,80 @@
     <title>Ben Jennings</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="manifest" href="manifest.json" />
-
     <link href="./vars.css" rel="stylesheet" />
     <link href="./style.css" rel="stylesheet" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />    <script type="module" src="components/index.js"></script>
-    <link rel="prefetch" href="experiments.html" as="document" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+        <script type="module" src="components/index.js"></script>
+    <link rel="prefetch" href="designs.html" as="document" />
     <link rel="prefetch" href="resources.html" as="document" />
-    <style>
-      :root {
-        &:has(input[name="color-scheme"][value="light dark"]:checked) {
-          color-scheme: light dark;
-        }
-        &:has(input[name="color-scheme"][value="light"]:checked) {
-          color-scheme: light;
-        }
-        &:has(input[name="color-scheme"][value="dark"]:checked) {
-          color-scheme: dark;
-        }
-      }
-    </style>
-  </head>
-
-<body >
-
-  <div class="page-container">
-    <custom-sidebar active-item="2"></custom-sidebar>
-
-    
-    <main>
-      
-      <div class="main-content ">
-        <section class="page-title">
-          <my-badge>Testing</my-badge>
-          <h1 class="heading">Designs  </h1>
-          
-          <h2 class="heading sm">Here is some bit size information about me and my work </h2>
-         
-        </section>
-        
-        
-        <content-card title="Real Estate Product" subtitle="This is my subtitle about real estate product">
-       
-          
-        </content-card>
-        <content-card title="Here is a card">
-        </content-card>
-       
-        <content-card title="Here is a card">
-        </content-card>
-
-
-
-
-      </div>
-
-
-
-
-
-    </main>
-
    
-    <script src="index.js"></script>
+  </head>
+  <body>
+    <div class="page-container">
+      <custom-sidebar active-item="2"></custom-sidebar>
 
-</body>
+      <main>
+        <div class="main-content">
+          <section class="page-title">
+            <h1 class="heading">Things I have made</h1>
+            <h2 class="heading sm">Some things that I just wanted to try</h2>
+          </section>
 
+          <content-card title="This is an extra item for fun" badge="3D Model">
+            <div slot="dialogContent">
+              hello
+            </div>
+         
+            <model-viewer slot="content"
+            
+            src="designs/resources/Scaniverse 2024-04-30 180057.glb"
+              ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral"  shadow-intensity="1" exposure="0.9" camera-orbit="-46.6deg 72.08deg 10.6m" field-of-view="15.14deg" auto-rotate>
+              
+            </model-viewer>
+            
+            
+            
+    
+          </content-card>
+         
+         
+          <content-card title="Here is a card">
+            <button slot="body" onclick="sendNotification()">Click me</button>
+          </content-card>
+          <script>
+            function sendNotification() {
+                // Check if the browser supports notifications
+                if (!("Notification" in window)) {
+                    alert("This browser does not support desktop notification");
+                }
+            
+                // Check if notification permissions have already been granted
+                else if (Notification.permission === "granted") {
+                    // If it's okay, let's create a notification
+                    new Notification("Hello! You clicked the button.");
+                }
+            
+                // Otherwise, we need to ask the user for permission
+                else if (Notification.permission !== "denied") {
+                    Notification.requestPermission().then(function (permission) {
+                        // If the user accepts, let's create a notification
+                        if (permission === "granted") {
+                            new Notification("Hello! You clicked the button.");
+                        }
+                    });
+                }
+            }
+            </script>
+          <content-card title="Here is a card"></content-card>
+          <content-card title="Here is a card"></content-card>
+          <content-card title="Here is a card"></content-card>
+        </div>
+      </main>
+    </div>
+    <script
+      type="module"
+    src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+  ></script>
+  </body>
 </html>
-

@@ -168,7 +168,7 @@
   
  
   --background-accent: light-dark(var(--accent-50), var(--accent-60));
-
+  --background-backdrop: light-dark(var(--brand-95), var(--brand-90));
 
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
@@ -181,7 +181,7 @@
   --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
   --border-secondary: light-dark(var(--gray-30), var(--gray-60));
   --border-brand: light-dark(var(--brand-20), var(--brand-80));
-  --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-50));
+  --border-brand-emphasis: light-dark(var(--brand-70) / 0.8, var(--brand-50) / 0.8);
   
    
    --border-accent: light-dark(var(--accent-60), var(--accent-50));

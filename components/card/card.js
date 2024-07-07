@@ -8,7 +8,6 @@ customElements.define(
         super();
   
         const title = this.getAttribute("title") || "Title";
-        const subtitle = this.getAttribute("subtitle") || "Subtitle";
         const badge = this.getAttribute("badge");
   
         const shadowRoot = this.attachShadow({ mode: "open" });
@@ -23,13 +22,19 @@ customElements.define(
             
           </style>
           <div class="card-container">
-            <slot class="heading sm"></slot>
+          <h2 class="heading sm">
+          ${title}</h2>
             <button class="icon-button">open_in_full</button>
             ${badgeTemplate}
             <slot name="content"></slot>
             <dialog id="dialog">
-              <slot style="flex-grow:1" name="dialogContent"></slot>
+              <div class="title-group">
+              <h2 class="heading md">${title}</h2>
               <button class="icon-button" id="closeBtn">Close</button>
+              </div>
+              
+              <slot></slot>
+              
             </dialog>
           </div>
         `;

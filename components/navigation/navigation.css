@@ -1,6 +1,7 @@
 :host {
   grid-area: sidebar;
   flex-grow: 1;
+  
  
 }
 
@@ -45,13 +46,12 @@
   display: flex;
   padding: var(--spacing-x-large, 24px) var(--spacing-large, 16px);
   align-items: center;
-  gap: var(--spacing-large);
+  gap: var(--spacing-medium);
   background-color: transparent;
   flex-direction: row;
   justify-content: flex-start;
   -webkit-user-select: none;
   user-select: none;
-  color: var(--container-foreground-secondary);
 background: inherit;
 border: 1px solid transparent;
 cursor: pointer;
@@ -94,9 +94,10 @@ cursor: pointer;
 }
 
 .title {
-  font-size: var(--text-body-lg-size);
-  line-height: 100%;
-  font-weight: 500;
+  font-size: var(--text-heading-sm-size, 24px);
+  font-style: normal;
+  font-weight: var(--text-heading-weight, 550);
+  line-height: var(--text-heading-sm-line-height, 32px);
 }
 
 .description {

@@ -226,7 +226,7 @@ font-size: var(--text-body-md-size);
 main {
   grid-area: main-content;
   overflow-y: scroll;
-  scroll-snap-type: y proximity;
+padding: var(--spacing-medium);
   perspective: 200px;
   transform-style: preserve-3d;
   transform-origin: top;
@@ -267,14 +267,13 @@ main {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  
   gap: 5dvh;
   perspective: 200px;
   transform-style: preserve-3d;
   perspective-origin: 50dvh 50px;
   animation: pageLoad 600ms ease-in-out;
-  height: 100%;
+  
 }
 
 section {
@@ -284,7 +283,7 @@ section {
   align-items: center;
   justify-content: center;
 
-  scroll-snap-align: start;
+  
 }
 
 .page-title {
@@ -322,6 +321,7 @@ section {
   padding-bottom: var(--spacing-medium);
   font-size: var(--text-heading-md-size);
   font-weight: var(--text-heading-weight);
+  
 }
 
 @keyframes show {
@@ -398,7 +398,7 @@ section {
 
 dialog[open] {
   opacity: 1;
-  transform: perspective(300px) translateZ(0px) rotateX(0deg);
+  transform: translateZ(0px) ;
   filter: blur(0px);
   display: flex;
   gap: var(--spacing-large);
@@ -408,15 +408,16 @@ dialog[open] {
 dialog {
   margin: auto;
   opacity: 0;
-  transform: perspective(300px) translateY(20px);
+  transform:  translateY(20px);
   filter: blur(16px);
   color: var(--foreground-neutral);
   border: 1px solid var(--border-primary);
-  width: 50dvw;
+  width: clamp(20rem, 80vw, 1000px);
+ 
   height: 80dvh;
-  padding: 24px;
+  padding: var(--spacing-xxx-large);
   background-color: var(--background-primary);
-  transition: all 300ms ease-in-out allow-discrete;
+  transition: all 400ms ease-in-out allow-discrete;
   flex-direction: column;
   transform-style: preserve-3d;
 }
@@ -425,20 +426,24 @@ dialog {
   dialog[open] {
     animation: none;
     filter: blur(8px);
-    transform: perspective(300px) translateY(20px);
+    transform:  translateY(100%);
   }
 }
 
 dialog::backdrop {
   backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  transition: all 300ms allow-discrete;
-  background: color(var(--background-brand) / 0.8);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 400ms ease-in-out allow-discrete;
+  
 }
 
 dialog[open]::backdrop {
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(8px);
+ 
+  
+  
+
 }
 
 @starting-style {
@@ -479,7 +484,7 @@ dialog[open]::backdrop {
   }
 
   main {
-    scroll-snap-type: y mandatory;
+    
     padding: 0px;
   }
 

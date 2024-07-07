@@ -36,26 +36,23 @@
     }
   }
 
-  &:visited{
-   
-}
-.card-container:visited{
-    border-color: red;
-}
+ 
 }
 
-.title {
-  color: var(--foreground-primary);
-  font-family: var(--heading-medium-font-family, "Inter-Bold", sans-serif);
-  font-size: var(--text-heading-size-medium, 24px);
-  font-weight: var(--text-heading-weight);
+.title-group{
+display: flex;
+justify-content: space-between;
+gap: var(--spacing-large);
+padding-bottom: var(--spacing-xxx-large);
+border-bottom: 1px solid var(--border-primary);
+position:sticky;
+top: 0px;
+background-color: var(--background-primary);
+
 }
 
-.subtitle {
-  color: var(--container-foreground-secondary);
-  font-size: var(--text-subhead-size-small);
-  font-weight: var(--subhead-font-weight);
-}
+
+
 
 p {
   color: var(--foreground-primary);
@@ -96,6 +93,7 @@ dialog::backdrop {
   background-color: green;
 }
 
-::slotted(div) {
+::slotted {
   background-color: red;
+  overflow: scroll;
 }
