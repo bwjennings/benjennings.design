@@ -57,16 +57,32 @@ customElements.define(
       this.themeSelectForm = shadowRoot.getElementById("themeSelect");
       this.highContrastCheckbox = shadowRoot.getElementById("highContrast");
 
-      shadowRoot.getElementById("openBtn").addEventListener("click", () => this.dialog.showModal());
+      shadowRoot.getElementById("openBtn").addEventListener("click", () => {
+        this.dialog.showModal();
+        gtag('event', 'open_dialog', {
+          'event_category': 'Settings',
+          'event_label': 'Open Settings Dialog'
+        });
+      });
       shadowRoot.getElementById("closeBtn").addEventListener("click", () => this.saveChanges());
       shadowRoot.getElementById("cancelBtn").addEventListener("click", () => this.cancelChanges());
 
       this.hueSlider.addEventListener("input", () => {
         this.updateHue(this.hueSlider.value);
+        gtag('event', 'change_theme_color', {
+          'event_category': 'Settings',
+          'event_label': 'Change Theme Color',
+          'value': this.hueSlider.value
+        });
       });
       this.themeSelectForm.addEventListener("change", event => {
         if (event.target.name === "theme") {
           this.updateTheme(event.target.value);
+          gtag('event', 'change_theme', {
+            'event_category': 'Settings',
+            'event_label': 'Change Theme',
+            'value': event.target.value
+          });
         }
       });
       this.highContrastCheckbox.addEventListener("change", () => {
