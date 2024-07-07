@@ -97,7 +97,7 @@ cursor: pointer;
   font-size: var(--text-heading-sm-size, 24px);
   font-style: normal;
   font-weight: var(--text-heading-weight, 550);
-  line-height: var(--text-heading-sm-line-height, 32px);
+  line-height: var(--text-heading-sm-line-height);
 }
 
 .description {
@@ -199,11 +199,12 @@ background: transparent;
   }
 
   .title {
-    font-size: 12px;
+    font-size: 10px;
+    line-height: 100%;
   }
 
   .icon {
-    font-size: var(--icon-size-large);
+    font-size: var(--icon-size-medium);
   }
 
   .nav-item-group {
@@ -227,7 +228,7 @@ site-settings{
 }
   .sidebar {
     
-    padding: 8px 16px calc(12px + env(safe-area-inset-bottom)) 16px;
+    padding: 8px 2px calc(12px + env(safe-area-inset-bottom)) 2px;
     
 height: auto;
     grid-template-columns: 1fr 1fr 1fr;

@@ -25,10 +25,10 @@ class CustomSidebar extends HTMLElement {
         </div>
         <div class="nav-card item3" data-link="designs.html">
           <div class="icon">web</div>
-          <div class="title-group">
+          
             <div class="title">Designs</div>
             
-          </div>
+          
         </div>
         <div class="nav-card item4" data-link="experiments.html">
           <div class="icon">experiment</div>
