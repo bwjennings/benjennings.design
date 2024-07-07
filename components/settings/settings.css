@@ -11,12 +11,7 @@ footer {
   border-top: 1px solid var(--border-primary);
 }
 
-dialog {
-  width: 60dvw;
-  min-width: 400px;
-  height: fit-content;
-  
-}
+
 @supports not (color-scheme: light dark){
   #colorMode{
     display: none ;
@@ -87,9 +82,7 @@ input[type="range"]::-moz-range-thumb {
     flex-grow: 1;
     width: 100%;
   }
-  dialog {
-    width: 90dvw;
-  }
+  
   .nav-card {
     display: flex;
     align-items: center;

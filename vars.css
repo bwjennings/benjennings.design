@@ -172,8 +172,8 @@
 
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
-  --foreground-secondary: light-dark(var(--gray-90), var(--gray-10));
-  --foreground-brand: light-dark(var(--brand-80), var(--brand-20));
+  --foreground-secondary: light-dark(var(--gray-70), var(--gray-10));
+  --foreground-brand: light-dark(var(--brand-60), var(--brand-30));
   --foreground-accent: light-dark(var(--accent-5), var(--accent-5));
   --foreground-onEmphasis: light-dark(var(--white),var(--white));
   

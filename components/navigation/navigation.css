@@ -42,6 +42,7 @@
 
 .nav-card {
  box-sizing: border-box;
+ color: var(--foreground-secondary);
   height: 80px;
   display: flex;
   padding: var(--spacing-x-large, 24px) var(--spacing-large, 16px);
@@ -176,9 +177,14 @@ cursor: pointer;
 
     padding: 0px;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--spacing-small);
     border-color: transparent;
     height: fit-content;
+
+    &:hover:not(.active) {
+      border: none;
+  
+    }
     
   }
 
@@ -204,7 +210,7 @@ background: transparent;
   }
 
   .icon {
-    font-size: var(--icon-size-medium);
+    font-size: var(--icon-size-large);
   }
 
   .nav-item-group {
@@ -228,7 +234,7 @@ site-settings{
 }
   .sidebar {
     
-    padding: 8px 2px calc(12px + env(safe-area-inset-bottom)) 2px;
+    padding: 12px 2px calc(16px + env(safe-area-inset-bottom)) 2px;
     
 height: auto;
     grid-template-columns: 1fr 1fr 1fr;
@@ -239,7 +245,7 @@ height: auto;
    
     justify-content: center;
     align-items: center;
-    gap: 2px;
+    gap: 0px;
     width: auto;
     border-radius: 0px;
     border: none;

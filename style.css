@@ -409,7 +409,7 @@ dialog {
   margin: auto;
   opacity: 0;
   transform:  translateY(20px);
-  filter: blur(16px);
+  filter: blur(8px);
   color: var(--foreground-neutral);
   border: 1px solid var(--border-primary);
   width: clamp(20rem, 80vw, 1000px);
@@ -525,9 +525,13 @@ dialog[open]::backdrop {
   }
 
   dialog {
-    width: inherit;
-    height: inherit;
-    min-width: 200px;
+    margin: 0px;
+    margin-top: auto;
+    padding: var(--spacing-x-large);
+    width: 100dvw;
+    max-width: none;
+    height: fit-content;
+    
 
     form {
       flex-grow: 1;
