@@ -9,6 +9,7 @@ customElements.define(
 
       const title = this.getAttribute("title") || "Title";
       const badge = this.getAttribute("badge");
+      const badgeIcon = this.getAttribute("badge-icon");
 
       const shadowRoot = this.attachShadow({ mode: "open" });
 
@@ -17,22 +18,7 @@ customElements.define(
       style.href = 'components/card/card.css';
       shadowRoot.appendChild(style);
 
-      const badgeTemplate = badge ? `<my-badge>${badge}</my-badge>` : "";
-
-      shadowRoot.innerHTML +=
-        `<div class="card-container">
-          <h2 class="heading sm">${title}</h2>
-          <button class="icon-button">open_in_full</button>
-          ${badgeTemplate}
-          <slot name="content"></slot>
-          <dialog id="dialog" aria-labelledby="dialog-title">
-            <div class="title-group">
-              <h2 class="heading md" id="dialog-title">${title}</h2>
-              <button class="icon-button" id="closeBtn">Close</button>
-            </div>
-            <slot></slot>
-          </dialog>
-        </div>`;
+      this.render();
 
       this.closeBtn = shadowRoot.getElementById("closeBtn");
       this.dialog = shadowRoot.getElementById("dialog");
@@ -75,19 +61,54 @@ customElements.define(
         switch (name) {
           case 'title':
             this.title = newValue;
-            this.shadowRoot.querySelector('.heading.sm').textContent = newValue;
-            this.shadowRoot.querySelector('.heading.md').textContent = newValue;
             break;
           case 'badge':
+          case 'badge-icon':
             // Update badge logic here if needed
             break;
           // handle other attributes if necessary
         }
+        this.render(); // Re-render the component to reflect changes
       }
     }
 
     static get observedAttributes() {
-      return ["title", "badge"];
+      return ["title", "badge", "badge-icon"];
+    }
+
+    render() {
+      const title = this.getAttribute("title") || "Title";
+      const badge = this.getAttribute("badge");
+      const badgeIcon = this.getAttribute("badge-icon");
+
+      const badgeTemplate = badge
+        ? `<my-badge icon="${badgeIcon || ''}">${badge}</my-badge>`
+        : "";
+
+      this.shadowRoot.innerHTML = `
+        <link rel="stylesheet" href="components/card/card.css">
+        <slot name="image"></slot>
+        <div class="card-container">
+          <h2 class="heading sm">${title}</h2>
+          <button class="icon-button">open_in_full</button>
+          ${badgeTemplate}
+          <slot name="content"></slot>
+          <dialog id="dialog" aria-labelledby="dialog-title">
+            <div class="title-group">
+              <h2 class="heading md" id="dialog-title">${title}</h2>
+              <button class="icon-button" id="closeBtn">Close</button>
+            </div>
+            <slot></slot>
+          </dialog>
+        </div>`;
+      
+      // Reattach event listeners to the newly created elements
+      this.closeBtn = this.shadowRoot.getElementById("closeBtn");
+      this.dialog = this.shadowRoot.getElementById("dialog");
+      if (this.hasConnected) {
+        this.closeBtn.addEventListener("click", this.closeDialog);
+        this.dialog.addEventListener("show", this.trackDialogOpen);
+      }
     }
   }
 );

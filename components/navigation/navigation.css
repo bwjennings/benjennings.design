@@ -191,7 +191,7 @@ cursor: pointer;
   .active {
     border-color: transparent;
 background: transparent;
-    color: var(--foreground-brand);
+    color: var(--foreground-primary);
 
     
   }

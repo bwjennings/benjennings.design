@@ -27,23 +27,20 @@
       <custom-sidebar active-item="3"></custom-sidebar>
 
       <main>
-        <div class="main-content">
+        
           <section class="page-title">
             <h1 class="heading">Experiments</h1>
             <h2 class="heading sm">Some things that I just wanted to try</h2>
           </section>
 
+          <section class="page-items">
+
           <content-card title="This is an extra item for fun" badge="3D Model">
-            <div slot="dialogContent">
-              hello
+            <div slot="image">
+              <img src="designs/resources/5_16_2024.jpg">
             </div>
          
-            <model-viewer slot="content"
-            
-            src="designs/resources/Scaniverse 2024-04-30 180057.glb"
-              ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral"  shadow-intensity="1" exposure="0.9" camera-orbit="-46.6deg 72.08deg 10.6m" field-of-view="15.14deg" auto-rotate>
-              
-            </model-viewer>
+           
             
             
             
@@ -81,7 +78,8 @@
           <content-card title="Here is a card"></content-card>
           <content-card title="Here is a card"></content-card>
           <content-card title="Here is a card"></content-card>
-        </div>
+        </section>
+      
       </main>
     </div>
     <script

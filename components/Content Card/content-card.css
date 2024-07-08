@@ -1,96 +1,60 @@
 @import "/style.css";
 
-:host {
-  scroll-snap-align: center;
-  scroll-margin: 132px;
-  scroll-padding: 144px;
-  font-family: var(--text-font-family);
-  display: flex;
-  width: 100%;
-  max-width: 1000px;
-  flex-direction: column;
-  min-height: 400px;
-  box-sizing: border-box;
-  height: auto;
+:host{
+  height: 100%;
+  
+}
+.card-container {
+   cursor:zoom-in;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  
+  height: 100%;
+
+
   justify-content: center;
   container-type: inline-size;
- 
-}
 
-.card {
   background-color: var(--background-primary);
-  height: 80dvh;
-  padding: 40px;
+
+  padding: var(--spacing-large);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: "header content";
+
   gap: var(--spacing-large);
   align-items: flex-start;
   justify-content: flex-start;
-  width: 100%;
-  position: relative;
+
   border: 1px solid var(--border-primary);
-  border-radius: var(--radius-medium, 16px);
+
   overflow: hidden;
-}
 
-@container (max-width: 850px) {
-  .card {
-      grid-template-columns: 1fr;
-    grid-template-rows:auto-fill;
-    grid-template-areas: "content" "header";
+  &:hover {
+    border-color: var(--border-primary-hover);
+    
+
+    .icon-button {
+        font-variation-settings:
+        
+        "GRAD" 100;
+    }
   }
-  .content{
-    height: auto;
-  }
-}
-.header {
-  grid-area: header;
-  padding: var(--spacing-large);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-x-large);
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-  min-width: 300px;
-}
 
-.title {
-  color: var(--foreground-primary);
-  font-family: var(--heading-medium-font-family, "Inter-Bold", sans-serif);
-  font-size: var(--text-heading-size-medium, 24px);
-  font-weight: var(--text-heading-weight);
-}
-
-.subtitle {
-  color: var(--container-foreground-secondary);
-  font-size: var(--text-subhead-size-small);
-  font-weight: var(--subhead-font-weight);
-}
-
-.content {
-  overflow: hidden;
-  display: grid;
-grid-template-columns: 1fr;
-grid-template-rows: repeat(2, 1fr);
-  gap: 24px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex: 1;
-  grid-area: content;
-  min-width: 300px;
-  background-color: yellow;
-
-
-
+ 
 }
 
 
+.title-group{
+display: flex;
+justify-content: space-between;
+gap: var(--spacing-large);
+padding-bottom: var(--spacing-xxx-large);
+border-bottom: 1px solid var(--border-primary);
+position:sticky;
+top: 0px;
+background-color: var(--background-primary);
 
+}
 
 
 
@@ -103,22 +67,12 @@ p {
   font-weight: var(--body-medium-font-weight, 400);
 }
 
-.footer {
-  padding: var(--spacing-small, 16px);
-  display: flex;
-  flex-direction: row;
-  gap: var(--spacing-small, 16px);
-  align-items: center;
-  align-self: stretch;
-  flex-shrink: 0;
-  grid-area: footer;
-}
-
 ::slotted(div[slot="dialogContent"]) {
   flex-grow: 1;
 }
 
 dialog[open] {
+    cursor: initial;
   display: flex;
   flex-direction: column;
 }
@@ -127,35 +81,11 @@ dialog::backdrop {
   background-color: rgba(6, 6, 6, 0.3);
 }
 
-@media screen and (max-width: 900px) {
-  :host {
-    max-width: none;
-    scroll-margin: 16px;
-  }
-
-  .card {
-    height: calc(90dvh - 84px - 24px);
-    padding: var(--spacing-large);
-    
-  }
-}
-
-.prototype--viewerContainer--8C5YF {
-  margin: 0px;
-  /* Consider removing if not needed */
-}
-
-
-
 ::slotted(model-viewer) {
   height: 100%;
   width: 100%;
   border-radius: var(--radius-medium);
-  
-
 }
-
-
 
 ::slotted(img) {
   max-width: 100%;
@@ -164,11 +94,11 @@ dialog::backdrop {
   padding: var(--spacing-large);
 }
 
-
 .content:has(slot:empty) {
   background-color: green;
 }
-::slotted(div) {
 
+::slotted {
   background-color: red;
+  overflow: scroll;
 }

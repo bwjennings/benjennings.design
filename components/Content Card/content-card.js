@@ -22,7 +22,9 @@ customElements.define(
           @import 'components/Content Card/content-card.css';
         </style>
         <div class="card">
-          <div class="header">
+        <div class"image">
+        <slot name="image"></slot>
+          <div class="content">
             ${badgeTemplate}
             <h2 class="title">${title}</h2>
             <h3 class="subtitle">${subtitle}</h3>

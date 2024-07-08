@@ -6,28 +6,51 @@ class BadgeComponent extends HTMLElement {
         // Create a style element and add CSS rules
         const style = document.createElement('style');
         style.textContent = `
-            span {
-                padding: 4px 12px;
-                background-color: var(--background-primary);
-                border: 1px solid var(--border-primary);
-                color: var(--foreground-primary);
+            div {
+                background-color: var(--background-secondary);
+                border: 1px solid var(--border-secondary);
+                color: var(--foreground-secondary);
                 display: inline-flex;
-                padding: var(--spacing-small, 8px);
+                padding: var(--spacing-x-small, 4px) var(--spacing-small, 8px);
                 justify-content: center;
                 align-items: center;
                 gap: var(--spacing-x-small, 4px);
+                font-size: var(--text-body-xs-size);
+            }
+
+            span {
+            color: var(--foreground-accent);
+                font-family: var(--icon-font-family);
                 
-                font-size: 14px;
             }
         `;
 
         // Create a span element and attach the slot for dynamic content
-        const span = document.createElement('span');
+        const span = document.createElement('div');
+
+        // Create an icon element
+        this.iconElement = document.createElement('span');
+        
         const slot = document.createElement('slot');
-        span.appendChild(slot);
+        span.append(this.iconElement, slot);
 
         // Append style and span to the shadow root
         this.shadowRoot.append(style, span);
+    }
+
+    static get observedAttributes() {
+        return ['icon'];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'icon') {
+            if (newValue) {
+                this.iconElement.textContent = newValue;
+                this.iconElement.style.display = 'inline';
+            } else {
+                this.iconElement.style.display = 'none';
+            }
+        }
     }
 }
 

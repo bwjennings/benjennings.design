@@ -219,17 +219,28 @@ font-size: var(--text-body-md-size);
 }
 
 .card-group{
-  display: flex;
-  gap: var(--spacing-x-large);
+ display: grid;
+ grid-template-columns: repeat(2,1fr);
+    gap: var(--spacing-large);
+  container-name: card-group;
+}
+
+@container main-content (max-width: 400px) {
+  .card-group {
+    grid-template-columns: repeat(1,1fr);
+  }
 }
 
 main {
   grid-area: main-content;
+ container-name:main-content ;
+ container-type: inline-size;
   overflow-y: scroll;
-padding: var(--spacing-medium);
+padding: var(--spacing-x-large);
   perspective: 200px;
   transform-style: preserve-3d;
   transform-origin: top;
+  align-items: center;
 }
 
 @keyframes pageLoad {
@@ -262,18 +273,23 @@ padding: var(--spacing-medium);
 }
 
 .main-content {
+  height: 100%;
   padding: var(--spacing-xxx-large);
   container-type: inline-size;
+  container-name: main-content;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  
+  display: grid;
+  grid-template-areas: 
+  "title"
+  "items"
+  ;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50dvh 50dvh;
+  min-height: 100%;
   gap: 5dvh;
   perspective: 200px;
   transform-style: preserve-3d;
-  perspective-origin: 50dvh 50px;
-  animation: pageLoad 600ms ease-in-out;
-  
+ 
 }
 
 section {
@@ -287,11 +303,10 @@ section {
 }
 
 .page-title {
-  height: 50dvh;
   grid-area: title;
   padding: var(--spacing-x-large);
   z-index: 2;
-
+  height: 50dvh;
   color: var(--foreground-primary);
   scroll-margin: 20dvh;
   display: flex;
@@ -300,20 +315,30 @@ section {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1000px;
 
-  h1 {
-    margin: 0;
-    text-align: left;
-    text-wrap: pretty;
-  }
+ 
 
   
 }
 
-.material-symbols-rounded {
-  font-size: 64px;
+.page-items{
+  grid-area: items;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-auto-rows: 300px;
+  gap: var(--spacing-large);
+  max-width: 800px;
+  margin-inline: auto;
+  
 }
+
+@container main-content (max-width: 700px) {
+  .page-items {
+    grid-template-columns:  1fr ;
+  }
+}
+
+
 
 .dialog-header {
   margin: 0px;
@@ -414,10 +439,11 @@ dialog {
   border: 1px solid var(--border-primary);
   width: clamp(20rem, 80vw, 1000px);
  
-  height: 80dvh;
+  height: fit-content;
+
   padding: var(--spacing-xxx-large);
   background-color: var(--background-primary);
-  transition: all 400ms ease-in-out allow-discrete;
+  transition: transform 400ms ease-in-out allow-discrete;
   flex-direction: column;
   transform-style: preserve-3d;
 }
@@ -485,7 +511,7 @@ dialog[open]::backdrop {
 
   main {
     
-    padding: 0px;
+    padding: var(--spacing-large);
   }
 
   .main-content {

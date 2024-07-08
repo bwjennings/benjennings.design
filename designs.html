@@ -1,92 +1,75 @@
 <!doctype html>
 <html>
-  <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-PLX2X0J846');
-</script>
-    <title>Ben Jennings</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="manifest" href="manifest.json" />
-    <link href="./vars.css" rel="stylesheet" />
-    <link href="./style.css" rel="stylesheet" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-        <script type="module" src="components/index.js"></script>
-    <link rel="prefetch" href="designs.html" as="document" />
-    <link rel="prefetch" href="resources.html" as="document" />
-   
-  </head>
-  <body>
-    <div class="page-container">
-      <custom-sidebar active-item="2"></custom-sidebar>
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      <main>
-        <div class="main-content">
-          <section class="page-title">
-            <h1 class="heading">Things I have made</h1>
-            <h2 class="heading sm">Some things that I just wanted to try</h2>
-          </section>
+    gtag('config', 'G-PLX2X0J846');
+  </script>
+  <title>Ben Jennings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="manifest" href="manifest.json" />
+  <link href="./vars.css" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+  <script type="module" src="components/index.js"></script>
+  <link rel="prefetch" href="designs.html" as="document" />
+  <link rel="prefetch" href="resources.html" as="document" />
 
-          <content-card title="This is an extra item for fun" badge="3D Model">
-            <div slot="dialogContent">
-              hello
-            </div>
-         
-            <model-viewer slot="content"
-            
-            src="designs/resources/Scaniverse 2024-04-30 180057.glb"
-              ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral"  shadow-intensity="1" exposure="0.9" camera-orbit="-46.6deg 72.08deg 10.6m" field-of-view="15.14deg" auto-rotate>
-              
-            </model-viewer>
-            
-            
-            
-    
-          </content-card>
-         
-         
-          <content-card title="Here is a card">
-            <button slot="body" onclick="sendNotification()">Click me</button>
-          </content-card>
-          <script>
-            function sendNotification() {
-                // Check if the browser supports notifications
-                if (!("Notification" in window)) {
-                    alert("This browser does not support desktop notification");
-                }
-            
-                // Check if notification permissions have already been granted
-                else if (Notification.permission === "granted") {
-                    // If it's okay, let's create a notification
-                    new Notification("Hello! You clicked the button.");
-                }
-            
-                // Otherwise, we need to ask the user for permission
-                else if (Notification.permission !== "denied") {
-                    Notification.requestPermission().then(function (permission) {
-                        // If the user accepts, let's create a notification
-                        if (permission === "granted") {
-                            new Notification("Hello! You clicked the button.");
-                        }
-                    });
-                }
-            }
-            </script>
-          <content-card title="Here is a card"></content-card>
-          <content-card title="Here is a card"></content-card>
-          <content-card title="Here is a card"></content-card>
-        </div>
-      </main>
-    </div>
-    <script
-      type="module"
-    src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
-  ></script>
-  </body>
+</head>
+
+<body>
+  <div class="page-container">
+    <custom-sidebar active-item="2"></custom-sidebar>
+
+    <main>
+      
+        <section class="page-title">
+          <h1 class="heading">Things I have made</h1>
+          <h2 class="heading sm">Some things that I just wanted to try</h2>
+        </section>
+       
+        <section class="page-items">
+          <simple-card title="Design" badge="3D Model">
+            Don't make it simple, make it clear
+
+
+          </simple-card>
+          <simple-card title="Design" badge="3D Model">
+            Don't make it simple, make it clear
+
+
+          </simple-card>
+          <simple-card title="Design" badge="3D Model">
+            Don't make it simple, make it clear
+
+
+          </simple-card>
+          <simple-card title="Design" badge="3D Model">
+            Don't make it simple, make it clear
+
+
+          </simple-card>
+          <simple-card title="Design" badge="3D Model">
+            Don't make it simple, make it clear
+
+
+          </simple-card>
+
+
+
+
+        </section>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</body>
+
 </html>
