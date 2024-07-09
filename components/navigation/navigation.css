@@ -8,7 +8,7 @@
 .sidebar {
   height: 100%;
   box-sizing: border-box;
-  width: 300px;
+  width: 350px;
   display: grid;
   padding: var(--spacing-x-large);
   grid-template-columns: 1fr auto;

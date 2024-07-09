@@ -89,7 +89,7 @@ customElements.define(
         <link rel="stylesheet" href="components/card/card.css">
         <slot name="image"></slot>
         <div class="card-container">
-          <h2 class="heading sm">${title}</h2>
+          <h2 class="heading sm secondary">${title}</h2>
           <button class="icon-button">open_in_full</button>
           ${badgeTemplate}
           <slot name="content"></slot>

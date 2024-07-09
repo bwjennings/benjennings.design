@@ -2,6 +2,7 @@
 :host {
   perspective: 200px;
   transform-style: preserve-3d;
+  width: 100%;
 }
 footer {
   display: inline-flex;
@@ -117,6 +118,11 @@ input[type="range"]::-moz-range-thumb {
     width: 100%;
   }
 
+  .button-group{
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-medium);
+  }
   .title {
     font-size: 12px;
   }

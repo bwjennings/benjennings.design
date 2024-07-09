@@ -119,18 +119,18 @@
   --brand-90: oklch(var(--lightness-90) 27.7% var(--brand-hue));
   --brand-95: oklch(var(--lightness-95) 16.2% var(--brand-hue));
 
-  --gray-hue: calc(var(--brand-hue) + 90);
-  --gray-5: oklch(var(--lightness-5) 1% var(--gray-hue));
-  --gray-10: oklch(var(--lightness-10) 1% var(--gray-hue));
-  --gray-20: oklch(var(--lightness-20) 1% var(--gray-hue));
-  --gray-30: oklch(var(--lightness-30) 1% var(--gray-hue));
-  --gray-40: oklch(var(--lightness-40) 1% var(--gray-hue));
-  --gray-50: oklch(var(--lightness-50) 1% var(--gray-hue));
-  --gray-60: oklch(var(--lightness-60) 1% var(--gray-hue));
-  --gray-70: oklch(var(--lightness-70) 1% var(--gray-hue));
-  --gray-80: oklch(var(--lightness-80) 1% var(--gray-hue));
-  --gray-90: oklch(var(--lightness-90) 1% var(--gray-hue));
-  --gray-95: oklch(var(--lightness-95) 1% var(--gray-hue));
+  --gray-hue: calc(var(--brand-hue) + 45);
+  --gray-5: oklch(var(--lightness-5) 1.5% var(--gray-hue));
+  --gray-10: oklch(var(--lightness-10) 1.5% var(--gray-hue));
+  --gray-20: oklch(var(--lightness-20) 1.5% var(--gray-hue));
+  --gray-30: oklch(var(--lightness-30) 1.5% var(--gray-hue));
+  --gray-40: oklch(var(--lightness-40) 1.5% var(--gray-hue));
+  --gray-50: oklch(var(--lightness-50) 1.5% var(--gray-hue));
+  --gray-60: oklch(var(--lightness-60) 1.5% var(--gray-hue));
+  --gray-70: oklch(var(--lightness-70) 1.5% var(--gray-hue));
+  --gray-80: oklch(var(--lightness-80) 1.5% var(--gray-hue));
+  --gray-90: oklch(var(--lightness-90) 1.5% var(--gray-hue));
+  --gray-95: oklch(var(--lightness-95) 1.5% var(--gray-hue));
 
   --accent-hue: calc(var(--brand-hue) + 90);
   --accent-5: oklch(var(--lightness-5) 5% var(--accent-hue));

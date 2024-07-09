@@ -15,7 +15,11 @@ customElements.define(
             font-family: var(--icon-font-family);
           }
         </style>
+        <div class="button-group">
+         <button id="randomColorBtn" class="icon-button " aria-label="Random Theme Color">shuffle</button>
         <button id="openBtn" aria-label="Open Settings"><div class="icon">tune</div>Settings</button>
+       
+        </div>
         <dialog id="dialog" role="dialog" aria-modal="true">
           <h2 class="dialog-header">Settings</h2>
           <form id="themeSelect">
@@ -64,6 +68,13 @@ customElements.define(
           'event_label': 'Open Settings Dialog'
         });
       });
+      shadowRoot.getElementById("randomColorBtn").addEventListener("click", () => {
+        this.pickRandomColor();
+        gtag('event', 'random_theme_color', {
+          'event_category': 'Settings',
+          'event_label': 'Random Theme Color'
+        });
+      });
       shadowRoot.getElementById("closeBtn").addEventListener("click", () => this.saveChanges());
       shadowRoot.getElementById("cancelBtn").addEventListener("click", () => this.cancelChanges());
 
@@ -96,6 +107,7 @@ customElements.define(
 
     disconnectedCallback() {
       this.shadowRoot.getElementById("openBtn").removeEventListener("click", () => this.dialog.showModal());
+      this.shadowRoot.getElementById("randomColorBtn").removeEventListener("click", () => this.pickRandomColor());
       this.shadowRoot.getElementById("closeBtn").removeEventListener("click", () => this.saveChanges());
       this.shadowRoot.getElementById("cancelBtn").removeEventListener("click", () => this.cancelChanges());
       this.hueSlider.removeEventListener("input", () => {
@@ -147,6 +159,12 @@ customElements.define(
     toggleHighContrast(enabled) {
       document.documentElement.dataset.mode = enabled ? "high-contrast" : "normal";
       console.log("High contrast mode set to:", document.documentElement.dataset.mode);
+    }
+
+    pickRandomColor() {
+      const randomHue = Math.floor(Math.random() * 361);
+      this.updateHue(randomHue);
+      localStorage.setItem("selectedColorHue", randomHue);
     }
 
     saveChanges() {
