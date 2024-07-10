@@ -53,7 +53,7 @@ body {
   font-family: var(--text-body-font-family);
   font-weight: var(--text-body-weight);
   box-sizing: border-box;
-  animation:gradAnimation 1000ms ;
+  
 }
 
 
@@ -278,6 +278,7 @@ padding: var(--spacing-x-large);
   transform-style: preserve-3d;
   transform-origin: top;
   align-items: center;
+  animation:gradAnimation 1000ms ;
 }
 
 @keyframes pageLoad {
