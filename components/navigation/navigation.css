@@ -1,6 +1,7 @@
 :host {
   grid-area: sidebar;
   flex-grow: 1;
+  width: 350px;
   
  
 }
@@ -26,7 +27,7 @@
     ". .";
   align-items: top;
   border-right: 1px solid var(--border-primary);
-  background-color: var(--background-page);
+  background-color: var(--background-brand);
   box-sizing: border-box;
 
   h2 {
@@ -66,7 +67,7 @@ cursor: pointer;
 }
 
 .active {
-  background: var(--background-brand);
+  background: var(--background-brand-secondary);
   border: 1px solid var(--border-brand);
 
   color: var(--foreground-brand);

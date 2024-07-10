@@ -12,6 +12,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
+  
 }
 
 img,
@@ -52,8 +53,22 @@ body {
   font-family: var(--text-body-font-family);
   font-weight: var(--text-body-weight);
   box-sizing: border-box;
+  animation:gradAnimation 1000ms ;
 }
 
+
+@keyframes gradAnimation {
+  0% {
+    opacity: 90%;
+    font-variation-settings: 'GRAD' -50 ;
+    
+  }
+  100% {
+    opacity: 100%;
+    font-variation-settings: 'GRAD' initial;
+    
+  }
+}
 .heading {
   margin: 0;
   font-family: var(--text-heading-font-family);
@@ -61,15 +76,23 @@ body {
   font-style: normal;
   font-weight: var(--text-heading-weight);
   line-height: var(--text-heading-lg-line-height);
+  font-variation-settings: 'GRAD' 100;
+  font-optical-sizing: auto;
+  animation:gradAnimation 1000ms ;
+
+  font-style: normal;
+  
 
   &.sm {
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
+   
   }
 
   &.md {
     font-size: var(--text-heading-md-size);
     line-height: var(--text-heading-md-line-height);
+    
   }
 
   &.secondary{
@@ -78,6 +101,9 @@ body {
 
  
 }
+
+
+
 
 .favicon {
   fill: rgb(231, 158, 24);
@@ -163,16 +189,15 @@ label {
 }
 
 .radio-buttons {
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  gap: var(--spacing-small);
   justify-content: center;
   align-items: center;
-  padding: 0px;
-  border: 1px solid var(--border-primary);
-  background: var(--background-secondary);
+  padding: 8px;
+  gap: -1px;
   user-select: none;
+  border: 1px solid var(--border-primary);
+  
 }
 
 .radio-button {
@@ -183,18 +208,14 @@ label {
     var(--spacing-large, 16px) var(--spacing-medium, 12px);
   justify-content: center;
   align-items: center;
-  gap: var(--spacing-medium, 12px);
   flex: 1 0 0;
 font-size: var(--text-body-md-size);
   color: var(--foreground-primary);
   font-family: var(--text-font-family);
-  border: 1px solid transparent;
   cursor: pointer;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-medium, 16px);
   flex-grow: 1;
+z-index: 1;  
 
   span {
     justify-content: center;
@@ -212,9 +233,9 @@ font-size: var(--text-body-md-size);
 }
 
 .radio-button:has(input:checked) {
-  border-color: var(--border-primary);
-  background-color: var(--background-brand-emphasis);
-  color: var(--foreground-onEmphasis);
+  border: 1px solid var(--border-brand);
+  background-color: var(--background-brand-secondary);
+  color: var(--foreground-brand);
 }
 
 @media screen and (max-width: 900px) {
@@ -229,7 +250,7 @@ font-size: var(--text-body-md-size);
   display: flex;
   height: 100%;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 350px 1fr;
 
   grid-template-areas: "sidebar main-content";
 }
@@ -261,11 +282,13 @@ padding: var(--spacing-x-large);
 
 @keyframes pageLoad {
   from {
+    transform: perspective(300px) translateY(20px) ;
     filter: blur(4px);
     opacity: 0;
   }
 
   to {
+    transform: perspective(300px) translateY(0px) ;
     filter: blur(0px);
     opacity: 1;
   }
@@ -399,14 +422,14 @@ section {
   }
 }
 
-@keyframes fadeRight {
+@keyframes fadeIn {
   from {
-    transform: translateX(-5dvh);
+    transform: translateZ(-5dvh);
     opacity: 0;
   }
 
   to {
-    transform: translateX(0dvh);
+    transform: translateZ(0dvh);
     opacity: 1;
   }
 }
@@ -453,7 +476,7 @@ dialog {
   filter: blur(8px);
   color: var(--foreground-neutral);
   border: 1px solid var(--border-primary);
-  width: clamp(20rem, 80vw, 1000px);
+  width: clamp(20rem, 800px, 1000px);
  
   height: fit-content;
 
@@ -473,6 +496,7 @@ dialog {
 }
 
 dialog::backdrop {
+  
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(16px);
   transition: all 400ms ease-in-out allow-discrete;

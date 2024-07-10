@@ -14,6 +14,9 @@
   <title>Ben Jennings</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,GRAD@8..144,100..1000,-200..150&family=Roboto+Serif:ital,opsz,wght,GRAD@0,8..144,100..900,-50..100;1,8..144,100..900,-50..100&display=swap" rel="stylesheet">
 
   <link href="./vars.css" rel="stylesheet" />
   <link href="./style.css" rel="stylesheet" />
@@ -22,21 +25,7 @@
   <script type="module" src="components/index.js"></script>
   <link rel="prefetch" href="experiments.html" as="document" />
   <link rel="prefetch" href="resources.html" as="document" />
-  <style>
-    :root {
-      &:has(input[name="color-scheme"][value="light dark"]:checked) {
-        color-scheme: light dark;
-      }
-
-      &:has(input[name="color-scheme"][value="light"]:checked) {
-        color-scheme: light;
-      }
-
-      &:has(input[name="color-scheme"][value="dark"]:checked) {
-        color-scheme: dark;
-      }
-    }
-  </style>
+  
 </head>
 
 <body>
@@ -50,7 +39,7 @@
 
 
       <section class="page-title">
-        <my-badge>Testing</my-badge>
+        <my-badge>Fundamentals</my-badge>
         <h1 class="heading">Some Basic Concepts</h1>
 
         <h2 class="heading sm">Here is some bit size information about me and my work </h2>
@@ -58,7 +47,7 @@
       </section>
 
       <section class="page-items">
-        <simple-card title="Ask tons of questions" badge="User Research" badge-icon="hearing">
+        <simple-card title="There's always something you don't realize" badge="User Research" badge-icon="hearing">
           User research and curiosity are crucial in UX design because they ensure the product meets user needs and
           expectations.
           <iframe style="" width="100%" height="400px"
@@ -70,20 +59,15 @@
 
 
         </simple-card>
-        <simple-card badge="3D Model">
+        <simple-card title="Don't make is simple, make it clear" badge="UX/UI" badge-icon="web">
           
           Don't make it simple,<br> make it clear
           
 
 
         </simple-card>
-        <simple-card badge="Design to Dev
-          " badge-icon="frame_source">
-          Don't make it simple,<br> make it clear
-
-
-        </simple-card>
-        <simple-card badge="3D Model">
+        
+        <simple-card title="A realistic design will always create a better experience" badge="Design to Dev"badge-icon="frame_source">
           Don't make it simple,<br> make it clear
 
         </simple-card>

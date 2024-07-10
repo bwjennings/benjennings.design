@@ -1,19 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,GRAD@8..144,100..1000,-200..150&family=Roboto+Serif:ital,opsz,wdth,wght,GRAD@0,8..144,50..150,100..900,-50..100;1,8..144,50..150,100..900,-50..100&display=swap');
 
-@font-face {
-  font-family: "OpenDyslexic3";
-  src: url("/fonts/OpenDyslexic3-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
 
-@font-face {
-  font-family: "OpenDyslexic3";
-  src: url("/fonts/OpenDyslexic3-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-}
+
+
 
 :root {
   --font-size-1: 12px;
@@ -41,49 +31,11 @@
   --spacing-xx-large: 32px;
   --spacing-xxx-large: 40px;
 
- 
-
-  --text-heading-font-family: "Inter Tight";
-  --text-heading-weight: 550;
- 
-  --text-heading-xl-size: var(--font-size-10);
-  --text-heading-lg-size: var(--font-size-9);
-  --text-heading-lg-line-height: var(--font-size-10);
-  --text-heading-md-size: var(--font-size-8);
-  --text-heading-md-line-height: var(--font-size-9);
-  --text-heading-sm-size: var(--font-size-5);
-  --text-heading-sm-line-height: var(--font-size-6);
-
- 
-  --text-body-font-family: "Inter";
-  --text-body-weight: "400";
-  --text-body-xs-size: var(--font-size-2);
-  --text-body-sm-size: var(--font-size-3);
-  --text-body-md-size: var(--font-size-4);
-  --text-body-lg-size: var(--font-size-5);
-
-  --icon-size-small: var(--font-size-3);
-  --icon-size-medium: 32px;
-  --icon-size-large: 40px;
-  --icon-weight-small: 300px;
-  --icon-weight-medium: 400px;
-  --icon-weight-large: 500px;
-
-  --icon-font-family: "Material Symbols Sharp";
-  --icon-weight-small: 300;
-  --icon-weight-medium: 400;
-  --icon-weight-large: 500;
-  --icon-size-small: var(--font-size-3);
-  --icon-size-medium: var(--font-size-4);
-  --icon-size-large: var(--font-size-6);
-
-  
-
   --black: oklch(0% 0% 0deg);
-  --white: oklch(100% 0% 0deg); 
+  --white: oklch(100% 0% 0deg);
 
 
- 
+
   --lightness-5: 98%;
   --lightness-10: 93.99%;
   --lightness-20: 87.97%;
@@ -96,13 +48,13 @@
   --lightness-90: 24%;
   --lightness-95: 13%;
 
-  
-  --lightness-scale: 1; 
-  
-  
-  
- 
-  
+
+  --lightness-scale: 1;
+
+
+
+
+
 
 
   --brand-hue: 230;
@@ -165,31 +117,63 @@
   --background-primary: light-dark(var(--gray-5), var(--gray-80));
   --background-secondary: light-dark(var(--gray-10), var(--gray-70));
   --background-brand: light-dark(var(--brand-5), var(--brand-90));
+  --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
   --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-60));
-  
- 
+
+
   --background-accent: light-dark(var(--accent-5), var(--accent-90));
-  --background-backdrop: light-dark(var(--brand-95), var(--brand-90));
+  --background-backdrop: light-dark(var(--accent-5), var(--accent-90));
 
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-70), var(--gray-10));
   --foreground-brand: light-dark(var(--brand-60), var(--brand-10));
   --foreground-accent: light-dark(var(--accent-40), var(--accent-10));
-  --foreground-onEmphasis: light-dark(var(--white),var(--white));
-  
+  --foreground-onEmphasis: light-dark(var(--white), var(--white));
+
   --border-primary: light-dark(var(--gray-20), var(--gray-70));
   --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
   --border-secondary: light-dark(var(--gray-30), var(--gray-50));
   --border-brand: light-dark(var(--brand-20), var(--brand-50));
-  --border-brand-emphasis: light-dark(var(--brand-70) / 0.8, var(--brand-50) / 0.8);
-  
-   
-   --border-accent: light-dark(var(--accent-20), var(--accent-70));
- 
- 
+  --border-brand-emphasis: light-dark(var(--brand-70) , var(--brand-70));
 
-  
+
+  --border-accent: light-dark(var(--accent-20), var(--accent-70));
+
+
+  --icon-font-family: "Material Symbols Sharp";
+
+  --icon-size-large: var(--font-size-6);
+  --icon-size-medium: var(--font-size-4);
+  --icon-size-small: var(--font-size-3);
+
+  --icon-weight-large: 500;
+  --icon-weight-medium: 400;
+  --icon-weight-small: 300;
+
+  --text-body-font-family: "Roboto Flex";
+  --text-body-lg-line-height: var(--font-size-6);
+  --text-body-lg-size: var(--font-size-5);
+  --text-body-md-line-height: var(--font-size-5);
+  --text-body-md-size: var(--font-size-4);
+  --text-body-sm-line-height: var(--font-size-4);
+  --text-body-sm-size: var(--font-size-3);
+  --text-body-weight: 400;
+  --text-body-xs-line-height: var(--font-size-3);
+  --text-body-xs-size: var(--font-size-2);
+
+  --text-heading-font-family: "Roboto Serif";
+  --text-heading-lg-line-height: var(--font-size-10);
+  --text-heading-lg-size: var(--font-size-9);
+  --text-heading-md-line-height: var(--font-size-9);
+  --text-heading-md-size: var(--font-size-8);
+  --text-heading-sm-line-height: var(--font-size-6);
+  --text-heading-sm-line-height: var(--font-size-7);
+  --text-heading-sm-size: var(--font-size-5);
+  --text-heading-sm-size: var(--font-size-6);
+  --text-heading-weight: 500;
+  --text-heading-xl-size: var(--font-size-10);
+
 
 }
 
@@ -202,7 +186,7 @@
   --background-accent: light-dark(var(--accent-10), var(--accent-90));
 
   --border-brand: light-dark(var(--brand-90), var(--brand-10));
- --border-primary: light-dark(var(--gray-90), var(--gray-10));
+  --border-primary: light-dark(var(--gray-90), var(--gray-10));
   --border-secondary: light-dark(var(--gray-90), var(--gray-10));
   --border-accent: light-dark(var(--accent-90), var(--accent-10));
 }

@@ -7,8 +7,8 @@ class BadgeComponent extends HTMLElement {
         const style = document.createElement('style');
         style.textContent = `
             div {
-                background-color: var(--background-secondary);
-                border: 1px solid var(--border-secondary);
+                background-color: var(--background-accent);
+                border: 1px solid var(--border-accent);
                 color: var(--foreground-secondary);
                 display: inline-flex;
                 padding: var(--spacing-x-small, 4px) var(--spacing-small, 8px);
@@ -16,6 +16,7 @@ class BadgeComponent extends HTMLElement {
                 align-items: center;
                 gap: var(--spacing-x-small, 4px);
                 font-size: var(--text-body-xs-size);
+                line-height:var(--text-body-sx-line-height)
             }
 
             span {
