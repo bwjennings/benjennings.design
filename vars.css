@@ -1,11 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,GRAD@8..144,100..1000,-200..150&family=Roboto+Serif:ital,opsz,wdth,wght,GRAD@0,8..144,50..150,100..900,-50..100;1,8..144,50..150,100..900,-50..100&display=swap');
 
 
+@font-face {
+  font-family: "Roboto Flex";
+
+  src:
+
+    url("fonts/RobotoFlex-VariableFont_GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf") format("truetype"),
+  ;
+}
 
 
 
 :root {
+
+  /*   Typography Scale  */
   --font-size-1: 12px;
   --font-size-2: 14px;
   --font-size-3: 16px;
@@ -17,11 +26,16 @@
   --font-size-9: 64px;
   --font-size-10: 72px;
 
+
+
+
+  /*   Border Radius   */
   --radius-none: 0px;
   --radius-small: 4px;
   --radius-medium: 8px;
   --radius-large: 16px;
 
+  /*   Spacing   */
   --spacing-none: 0px;
   --spacing-x-small: 4px;
   --spacing-small: 8px;
@@ -35,7 +49,7 @@
   --white: oklch(100% 0% 0deg);
 
 
-
+  /*   Color Lightness   */
   --lightness-5: 98%;
   --lightness-10: 93.99%;
   --lightness-20: 87.97%;
@@ -49,42 +63,39 @@
   --lightness-95: 13%;
 
 
-  --lightness-scale: 1;
 
-
-
-
-
-
-
+  /*   Base Brand Color  */
   --brand-hue: 230;
 
-  --brand-5: oklch(var(--lightness-5) 3.8% var(--brand-hue));
-  --brand-10: oklch(var(--lightness-10) 6.5% var(--brand-hue));
-  --brand-20: oklch(var(--lightness-20) 12.8% var(--brand-hue));
+  --brand-5: oklch(var(--lightness-5) 2.8% var(--brand-hue));
+  --brand-10: oklch(var(--lightness-10) 5.5% var(--brand-hue));
+  --brand-20: oklch(var(--lightness-20) 10.8% var(--brand-hue));
   --brand-30: oklch(var(--lightness-30) 21.9% var(--brand-hue));
   --brand-40: oklch(var(--lightness-40) 38.2% var(--brand-hue));
   --brand-50: oklch(var(--lightness-50) 48.1% var(--brand-hue));
-  --brand-60: oklch(var(--lightness-60) 58.3% var(--brand-hue));
+  --brand-60: oklch(var(--lightness-60) 62.3% var(--brand-hue));
   --brand-70: oklch(var(--lightness-70) 42.4% var(--brand-hue));
   --brand-80: oklch(var(--lightness-80) 34.6% var(--brand-hue));
-  --brand-90: oklch(var(--lightness-90) 27.7% var(--brand-hue));
-  --brand-95: oklch(var(--lightness-95) 16.2% var(--brand-hue));
+  --brand-90: oklch(var(--lightness-90) 20.7% var(--brand-hue));
+  --brand-95: oklch(var(--lightness-95) 10.2% var(--brand-hue));
 
-  --gray-hue: calc(var(--brand-hue) + 45);
-  --gray-5: oklch(var(--lightness-5) 1.5% var(--gray-hue));
-  --gray-10: oklch(var(--lightness-10) 1.5% var(--gray-hue));
-  --gray-20: oklch(var(--lightness-20) 1.5% var(--gray-hue));
-  --gray-30: oklch(var(--lightness-30) 1.5% var(--gray-hue));
-  --gray-40: oklch(var(--lightness-40) 1.5% var(--gray-hue));
-  --gray-50: oklch(var(--lightness-50) 1.5% var(--gray-hue));
-  --gray-60: oklch(var(--lightness-60) 1.5% var(--gray-hue));
-  --gray-70: oklch(var(--lightness-70) 1.5% var(--gray-hue));
-  --gray-80: oklch(var(--lightness-80) 1.5% var(--gray-hue));
-  --gray-90: oklch(var(--lightness-90) 1.5% var(--gray-hue));
-  --gray-95: oklch(var(--lightness-95) 1.5% var(--gray-hue));
 
-  --accent-hue: calc(var(--brand-hue) + 90);
+  /*   Base Neutral Color  */
+  --gray-hue: calc(var(--brand-hue) + 0);
+  --gray-5: oklch(var(--lightness-5) 0.5% var(--gray-hue));
+  --gray-10: oklch(var(--lightness-10) 0.5% var(--gray-hue));
+  --gray-20: oklch(var(--lightness-20) 0.5% var(--gray-hue));
+  --gray-30: oklch(var(--lightness-30) 0.5% var(--gray-hue));
+  --gray-40: oklch(var(--lightness-40) 0.5% var(--gray-hue));
+  --gray-50: oklch(var(--lightness-50) 0.5% var(--gray-hue));
+  --gray-60: oklch(var(--lightness-60) 0.5% var(--gray-hue));
+  --gray-70: oklch(var(--lightness-70) 0.5% var(--gray-hue));
+  --gray-80: oklch(var(--lightness-80) 0.5% var(--gray-hue));
+  --gray-90: oklch(var(--lightness-90) 0.5% var(--gray-hue));
+  --gray-95: oklch(var(--lightness-95) 0.5% var(--gray-hue));
+
+  /*   Base Accent Color  */
+  --accent-hue: calc(var(--brand-hue) + 180);
   --accent-5: oklch(var(--lightness-5) 5% var(--accent-hue));
   --accent-10: oklch(var(--lightness-10) 20% var(--accent-hue));
   --accent-20: oklch(var(--lightness-20) 40% var(--accent-hue));
@@ -97,50 +108,44 @@
   --accent-90: oklch(var(--lightness-90) 20% var(--accent-hue));
   --accent-95: oklch(var(--lightness-95) 10% var(--accent-hue));
 
-  --purple-hue: calc(var(--brand-hue) - 90);
-  --purple-5: oklch(var(--lightness-5) 10% var(--purple-hue));
-  --purple-10: oklch(var(--lightness-10) 20% var(--purple-hue));
-  --purple-20: oklch(var(--lightness-20) 40% var(--purple-hue));
-  --purple-30: oklch(var(--lightness-30) 60% var(--purple-hue));
-  --purple-40: oklch(var(--lightness-40) 80% var(--purple-hue));
-  --purple-50: oklch(var(--lightness-50) 100% var(--purple-hue));
-  --purple-60: oklch(var(--lightness-60) 80% var(--purple-hue));
-  --purple-70: oklch(var(--lightness-70) 60% var(--purple-hue));
-  --purple-80: oklch(var(--lightness-80) 40% var(--purple-hue));
-  --purple-90: oklch(var(--lightness-90) 20% var(--purple-hue));
-  --purple-95: oklch(var(--lightness-95) 10% var(--purple-hue));
+
 
   --hover: brightness(0.95);
 
+
+  /*  Color System  */
   color-scheme: light dark;
   --background-page: light-dark(var(--white), var(--gray-95));
   --background-primary: light-dark(var(--gray-5), var(--gray-80));
   --background-secondary: light-dark(var(--gray-10), var(--gray-70));
   --background-brand: light-dark(var(--brand-5), var(--brand-90));
+  --background-brand-hover: light-dark(var(--brand-10), var(--brand-80));
   --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
-  --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-60));
-
-
+  --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-50));
   --background-accent: light-dark(var(--accent-5), var(--accent-90));
-  --background-backdrop: light-dark(var(--accent-5), var(--accent-90));
+  --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
+  --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-50));
 
+  --background-backdrop: light-dark(var(--accent-5), var(--accent-90));
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-70), var(--gray-10));
   --foreground-brand: light-dark(var(--brand-60), var(--brand-10));
-  --foreground-accent: light-dark(var(--accent-40), var(--accent-10));
+  --foreground-brand: light-dark(var(--brand-70), var(--brand-20));
+  --foreground-accent: light-dark(var(--accent-60), var(--accent-10));
   --foreground-onEmphasis: light-dark(var(--white), var(--white));
 
   --border-primary: light-dark(var(--gray-20), var(--gray-70));
   --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
   --border-secondary: light-dark(var(--gray-30), var(--gray-50));
-  --border-brand: light-dark(var(--brand-20), var(--brand-50));
-  --border-brand-emphasis: light-dark(var(--brand-70) , var(--brand-70));
-
-
+  --border-brand: light-dark(var(--brand-20), var(--brand-60));
+  --border-brand-hover: light-dark(var(--brand-10), var(--brand-70));
+  --border-brand-secondary: light-dark(var(--brand-20), var(--brand-60));
+  --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-70));
   --border-accent: light-dark(var(--accent-20), var(--accent-70));
 
 
+  /*  Icons  */
   --icon-font-family: "Material Symbols Sharp";
 
   --icon-size-large: var(--font-size-6);
@@ -151,6 +156,7 @@
   --icon-weight-medium: 400;
   --icon-weight-small: 300;
 
+  /*  Typography - Body Text  */
   --text-body-font-family: "Roboto Flex";
   --text-body-lg-line-height: var(--font-size-6);
   --text-body-lg-size: var(--font-size-5);
@@ -162,7 +168,8 @@
   --text-body-xs-line-height: var(--font-size-3);
   --text-body-xs-size: var(--font-size-2);
 
-  --text-heading-font-family: "Roboto Serif";
+/*  Typography - Heading  */
+  --text-heading-font-family: "Roboto Flex";
   --text-heading-lg-line-height: var(--font-size-10);
   --text-heading-lg-size: var(--font-size-9);
   --text-heading-md-line-height: var(--font-size-9);
@@ -171,27 +178,53 @@
   --text-heading-sm-line-height: var(--font-size-7);
   --text-heading-sm-size: var(--font-size-5);
   --text-heading-sm-size: var(--font-size-6);
-  --text-heading-weight: 500;
+  --text-heading-weight: 400;
+  --text-heading-grade: var(--font-grade-lg);
   --text-heading-xl-size: var(--font-size-10);
 
 
 }
 
 
+
+
 [data-mode="high-contrast"] {
+  --lightness-5: 100%;
+  --lightness-10: 90%;
+  --lightness-20: 80%;
+  --lightness-30: 70%;
+  --lightness-40: 60%;
+  --lightness-50: 50%;
+  --lightness-60: 40%;
+  --lightness-70: 30%;
+  --lightness-80: 20%;
+  --lightness-90: 20%;
+  --lightness-95: 0%;
   --background-page: light-dark(var(--white), var(--black));
   --background-primary: light-dark(var(--white), var(--black));
-  --background-brand: light-dark(var(--brand-60), var(--brand-70));
-  --background-secondary: light-dark(var(--gray-5), var(--gray-95));
+  --background-secondary: light-dark(var(--white), var(--white));
+  --background-brand: light-dark(var(--brand-50), var(--brand-60));
   --background-accent: light-dark(var(--accent-10), var(--accent-90));
 
-  --border-brand: light-dark(var(--brand-90), var(--brand-10));
+  --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
+  --foreground-secondary: light-dark(var(--gray-95), var(--gray-5));
+  --foreground-brand: light-dark(var(--white), var(--white));
+  --foreground-accent: light-dark(var(--accent-90), var(--accent-20));
+ 
+
+  --border-brand: light-dark(var(--brand-90), var(--brand-5));
+  --border-brand-emphasis: light-dark(var(--brand-90), var(--brand-10));
   --border-primary: light-dark(var(--gray-90), var(--gray-10));
+  --border-primary-hover: light-dark(var(--gray-95), var(--gray-5));
   --border-secondary: light-dark(var(--gray-90), var(--gray-10));
   --border-accent: light-dark(var(--accent-90), var(--accent-10));
+ 
 }
+  
+  
+ 
+  
 
 
-[data-theme="dyslexic"] {
-  --text-font-family: "OpenDyslexic3", sans-serif;
-}
+
+

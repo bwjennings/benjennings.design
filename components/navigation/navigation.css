@@ -2,23 +2,28 @@
   grid-area: sidebar;
   flex-grow: 1;
   width: 350px;
+  z-index: 2;
+ 
   
  
 }
 
 .sidebar {
+  position: sticky;
+  top: 0px;
   height: 100%;
   box-sizing: border-box;
   width: 350px;
   display: grid;
   padding: var(--spacing-x-large);
   grid-template-columns: 1fr auto;
-  grid-template-rows: repeat(7,auto) 1fr;
+  grid-template-rows: auto auto 1fr repeat(5,auto) 1fr;
   gap: var(--spacing-x-large);
   grid-auto-flow: row;
   grid-template-areas:
     "title settings"
     "divider divider"
+    ". ."
     "item1 item1"
     "item2 item2"
     "item3 item3"
@@ -27,7 +32,6 @@
     ". .";
   align-items: top;
   border-right: 1px solid var(--border-primary);
-  background-color: var(--background-brand);
   box-sizing: border-box;
 
   h2 {
@@ -58,18 +62,19 @@ background: inherit;
 border: 1px solid transparent;
 cursor: pointer;
 
+
   
 
   &:hover:not(.active) {
-    border: 1px solid var(--border-primary, #E1E1E1);
+    filter: var(--hover);
+    
 
   }
 }
 
 .active {
-  background: var(--background-brand-secondary);
-  border: 1px solid var(--border-brand);
-
+  background: var(--background-brand);
+  font-variation-settings: 'GRAD' 100;
   color: var(--foreground-brand);
 
   .icon {
@@ -108,7 +113,13 @@ cursor: pointer;
   font-weight: 400;
   line-height: 100%;
 }
-
+site-settings{
+  position: fixed;
+  top: 40px;
+  right: 48px;
+  z-index: 100;
+  width: auto;
+}
 .icon {
   font-family: var(--icon-font-family, "Material Symbols Sharp");
   font-size: var(--icon-size-large);
@@ -150,8 +161,10 @@ cursor: pointer;
 }
 
 .site-title {
-  font-size: var(--text-heading-md-size);
-  font-weight: 400;
+  font-size: var(--text-heading-sm-size);
+  font-weight: var(--text-heading-weight);
+  font-variation-settings: 
+  'GRAD' 150;
 
   &:hover{
 
@@ -176,7 +189,7 @@ cursor: pointer;
 
     flex-grow: 1;
 
-    padding: 0px;
+    padding: 12px 2px 16px 2px;
     flex-direction: column;
     gap: var(--spacing-small);
     border-color: transparent;
@@ -191,8 +204,7 @@ cursor: pointer;
 
   .active {
     border-color: transparent;
-background: transparent;
-    color: var(--foreground-primary);
+    color: var(--foreground-brand);
 
     
   }
@@ -211,9 +223,15 @@ background: transparent;
   }
 
   .icon {
-    font-size: var(--icon-size-large);
+    font-size: var(--icon-size-medium);
   }
-
+  site-settings{
+    position: fixed;
+    top: 16px;
+    right: 24px;
+    z-index: 100;
+    width: auto;
+  }
   .nav-item-group {
     gap: 24px;
     display: flex;
@@ -226,16 +244,11 @@ background: transparent;
   .nav-item-group {
     flex-direction: row;
   }
-site-settings{
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 100;
-  width: auto;
-}
+
   .sidebar {
     
-    padding: 12px 2px calc(16px + env(safe-area-inset-bottom)) 2px;
+    padding: 0px;
+    padding-bottom: env(safe-area-inset-bottom);
     
 height: auto;
     grid-template-columns: 1fr 1fr 1fr;
@@ -250,7 +263,6 @@ height: auto;
     width: auto;
     border-radius: 0px;
     border: none;
-    background-color: var(--background-primary);
     border-top: 1px solid var(--border-primary);
 
     .site-title {

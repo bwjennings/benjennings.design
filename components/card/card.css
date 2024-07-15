@@ -1,7 +1,8 @@
 @import "/style.css";
 
 :host{
-  height: 100%;
+ height: 500px;
+  ;
   
 }
 .card-container {
@@ -16,28 +17,34 @@
   justify-content: center;
   container-type: inline-size;
 
-  background-color: var(--background-primary);
+  background-color: var(--background-brand);
 
   padding: var(--spacing-large);
   display: grid;
+  color: var(--foreground-brand);
 
   gap: var(--spacing-large);
   align-items: flex-start;
   justify-content: flex-start;
-
-  border: 1px solid var(--border-primary);
+border: transparent;
 
   overflow: hidden;
+  
 
   &:hover {
-    border-color: var(--border-primary-hover);
-    
+    outline: 1px solid var(--border-brand-hover);
 
     .icon-button {
         font-variation-settings:
         
         "GRAD" 100;
     }
+  }
+
+  &:active{
+    transition: 100ms;
+    perspective: 100px;
+    transform: scaleZ(20%);
   }
 
  
@@ -52,53 +59,55 @@ padding-bottom: var(--spacing-xxx-large);
 border-bottom: 1px solid var(--border-primary);
 position:sticky;
 top: 0px;
-background-color: var(--background-primary);
+
 
 }
 
 
 
-
 p {
-  color: var(--foreground-primary);
+  color: var(--foreground-onEmphasis);
   font-family: var(--body-medium-font-family, "Inter-Regular", sans-serif);
   font-size: var(--body-medium-font-size, 18px);
   line-height: var(--body-medium-line-height);
   font-weight: var(--body-medium-font-weight, 400);
 }
 
-::slotted(div[slot="dialogContent"]) {
-  flex-grow: 1;
-}
+
 
 dialog[open] {
     cursor: initial;
   display: flex;
   flex-direction: column;
+  color: var(--foreground-primary);
 }
 
 dialog::backdrop {
   background-color: rgba(6, 6, 6, 0.3);
 }
 
-::slotted(model-viewer) {
-  height: 100%;
-  width: 100%;
-  border-radius: var(--radius-medium);
-}
 
-::slotted(img) {
-  max-width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: var(--spacing-large);
-}
+
 
 .content:has(slot:empty) {
   background-color: green;
 }
 
-::slotted {
-  background-color: red;
-  overflow: scroll;
+
+.myspan{
+  grid-column: span 2;
+  background-color: purple;
+}
+
+::slotted([slot="thumbnail"]) {
+  grid-column: span 2;
+  background-color: var(--background-brand-secondary);
+  width: 100%;
+  height: 100%;
+}
+
+::slotted([slot="image" ]){
+  width: 100%;
+  height: 50dvh;
+  background-color: var(--background-secondary);
 }

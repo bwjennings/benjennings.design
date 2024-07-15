@@ -15,8 +15,8 @@ customElements.define(
             font-family: var(--icon-font-family);
           }
         </style>
-        <div class="button-group">
-         <button id="randomColorBtn" class="icon-button " aria-label="Random Theme Color">shuffle</button>
+        <div class="button-group row">
+         <button id="randomColorBtn" class="icon-button " aria-label="Random Theme Color">palette</button>
         <button id="openBtn" aria-label="Open Settings"><div class="icon">tune</div>Settings</button>
        
         </div>
@@ -49,7 +49,7 @@ customElements.define(
               <input type="checkbox" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
             </label>
           </form>
-          <footer>
+          <footer class="button-group">
             <button id="cancelBtn" aria-label="Cancel Settings">Cancel</button>
             <button variant="brand" id="closeBtn" aria-label="Save Settings">Save</button>
           </footer>

@@ -2,10 +2,15 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  outline-color: var(--border-brand);
 }
-
+:focus-visible  {
+  outline: 1px solid var(--border-brand);
+}
 * {
   margin: 0;
+  outline-color: var(--border-brand);
+  
 }
 
 body {
@@ -13,7 +18,10 @@ body {
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
   
+
 }
+
+
 
 img,
 picture,
@@ -48,37 +56,54 @@ body {
   scroll-behavior: smooth;
   color: var(--foreground-neutral);
   background-color: var(--background-page);
-  overflow: hidden;
   height: 100dvh;
   font-family: var(--text-body-font-family);
   font-weight: var(--text-body-weight);
   box-sizing: border-box;
+  
   
 }
 
 
 @keyframes gradAnimation {
   0% {
-    opacity: 90%;
-    font-variation-settings: 'GRAD' -50 ;
+    opacity: 75%;
+    font-variation-settings: "GRAD" -200 ;
+    
+  }
+  50% {
+    
+    font-variation-settings: "GRAD" 200 ;
     
   }
   100% {
     opacity: 100%;
-    font-variation-settings: 'GRAD' initial;
+    font-variation-settings:  "GRAD" initial;
     
   }
+}
+u {
+  text-decoration-color: var(--border-accent);
+text-decoration-thickness: 8px;
+
 }
 .heading {
   margin: 0;
   font-family: var(--text-heading-font-family);
   font-size: var(--text-heading-lg-size);
   font-style: normal;
+  
   font-weight: var(--text-heading-weight);
   line-height: var(--text-heading-lg-line-height);
-  font-variation-settings: 'GRAD' 100;
+  font-variation-settings:
+  
+  
+  
+  "GRAD" 100
+  ;
+
   font-optical-sizing: auto;
-  animation:gradAnimation 1000ms ;
+  animation:gradAnimation ease-in-out  1000ms ;
 
   font-style: normal;
   
@@ -109,6 +134,16 @@ body {
   fill: rgb(231, 158, 24);
 }
 
+
+@keyframes radarPing {
+  0% {
+      outline-width: 0px;
+  }
+  100% {
+      outline-width: 8px;
+  }
+}
+
 button {
   box-sizing: border-box;
   user-select: none;
@@ -125,6 +160,11 @@ button {
   line-height: 100%;
   height: 48px;
 cursor: pointer;
+-webkit-tap-highlight-color: transparent;
+user-select: none;
+transition: outline 100ms;
+
+
 
   .icon {
     font-family: var(--icon-font-family);
@@ -132,12 +172,18 @@ cursor: pointer;
     line-height: 100%;
   }
 
-  &:focus{
-    outline: none;
-   
-  }
+  
 }
 
+button:hover{
+  outline: 4px var(--border-brand) solid;
+}
+
+
+
+button:active{
+outline-width: 8px;  
+}
 button[variant="brand"] {
   background: var(--background-brand-emphasis);
   color: var(--foreground-onEmphasis);
@@ -150,9 +196,7 @@ button[size="small"] {
   gap: var(--spacing-x-small, 4px);
 }
 
-button:hover {
-  filter: var(--hover);
-}
+
 
 .icon-button{
   font-family: var(--icon-font-family);
@@ -194,7 +238,7 @@ label {
   justify-content: center;
   align-items: center;
   padding: 8px;
-  gap: -1px;
+  gap: var(--spacing-medium);
   user-select: none;
   border: 1px solid var(--border-primary);
   
@@ -203,7 +247,7 @@ label {
 .radio-button {
   display: flex;
   flex-direction: row;
-  background-color: inherit;
+  background-color: var(--background-primary);
   padding: var(--spacing-large, 16px) var(--spacing-large, 16px)
     var(--spacing-large, 16px) var(--spacing-medium, 12px);
   justify-content: center;
@@ -216,6 +260,7 @@ font-size: var(--text-body-md-size);
   display: flex;
   flex-grow: 1;
 z-index: 1;  
+border: 1px solid transparent;
 
   span {
     justify-content: center;
@@ -234,21 +279,21 @@ z-index: 1;
 
 .radio-button:has(input:checked) {
   border: 1px solid var(--border-brand);
-  background-color: var(--background-brand-secondary);
+  background-color: var(--background-brand);
   color: var(--foreground-brand);
 }
 
-@media screen and (max-width: 900px) {
-}
+
 
 .icon-font {
   font-family: var(--icon-font-family);
 }
 
 .page-container {
+  overflow: hidden;
   box-sizing: border-box;
   display: flex;
-  height: 100%;
+  height: 100dvh;
   display: grid;
   grid-template-columns: 350px 1fr;
 
@@ -262,114 +307,67 @@ z-index: 1;
   container-name: card-group;
 }
 
-@container main-content (max-width: 400px) {
-  .card-group {
-    grid-template-columns: repeat(1,1fr);
-  }
-}
 
 main {
+  overflow: auto;
+  display: flex;
+flex-direction: column;
+width: 100%; 
+
+  
   grid-area: main-content;
  container-name:main-content ;
  container-type: inline-size;
-  overflow-y: scroll;
-padding: var(--spacing-x-large);
   perspective: 200px;
   transform-style: preserve-3d;
   transform-origin: top;
   align-items: center;
-  animation:gradAnimation 1000ms ;
-}
-
-@keyframes pageLoad {
-  from {
-    transform: perspective(300px) translateY(20px) ;
-    filter: blur(4px);
-    opacity: 0;
-  }
-
-  to {
-    transform: perspective(300px) translateY(0px) ;
-    filter: blur(0px);
-    opacity: 1;
-  }
-}
-
-@keyframes loading {
-  0% {
-    transform: translateX(20px);
-    opacity: 1;
-    filter: blur(3px);
-  }
-
-  80% {
-    filter: blur(0px);
-  }
-
-  100% {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-}
-
-.main-content {
-  height: 100%;
   padding: var(--spacing-xxx-large);
-  container-type: inline-size;
-  container-name: main-content;
-  box-sizing: border-box;
-  display: grid;
-  grid-template-areas: 
-  "title"
-  "items"
-  ;
-  grid-template-columns: 1fr;
-  grid-template-rows: 50dvh 50dvh;
-  min-height: 100%;
-  gap: 5dvh;
-  perspective: 200px;
-  transform-style: preserve-3d;
- 
+  gap: var(--spacing-xxx-large);
 }
 
-section {
-  box-sizing: border-box;
-  height: calc(80dvh - 84px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  
-}
+
+
+
+
+
 
 .page-title {
-  grid-area: title;
-  padding: var(--spacing-x-large);
+
   z-index: 2;
-  height: 50dvh;
+  min-height: calc(40cqh - 40px);
   color: var(--foreground-primary);
-  scroll-margin: 20dvh;
   display: flex;
   gap: var(--spacing-medium);
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
+  align-items: start;
   width: 100%;
-
+  grid-template-rows: subgrid;
+  grid-column: span 3;
+max-width: 1200px;
  
 
   
 }
 
 .page-items{
-  grid-area: items;
   display: grid;
+;
+width: 100%;
   grid-template-columns: repeat(3,1fr);
-  grid-auto-rows: 300px;
-  gap: var(--spacing-large);
-  max-width: 1000px;
-  margin-inline: auto;
+  gap: var(--spacing-xxx-large);
+  max-width: 1200px;
+  grid-column: span 3;
   
+}
+
+
+@container main-content (max-width: 1000px) {
+  .page-items {
+    grid-template-columns:  1fr 1fr;
+  }
 }
 
 @container main-content (max-width: 700px) {
@@ -383,7 +381,10 @@ section {
 .dialog-header {
   margin: 0px;
   border-bottom: 1px solid var(--border-primary);
-  padding-bottom: var(--spacing-medium);
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+  color: var(--foreground-primary);
   font-size: var(--text-heading-md-size);
   font-weight: var(--text-heading-weight);
   
@@ -487,6 +488,13 @@ dialog {
   flex-direction: column;
   transform-style: preserve-3d;
 }
+dialog footer {
+  display: flex;
+  border-top: 1px solid var(--border-primary);
+padding-top: 24px;
+justify-content: flex-end;
+
+}
 
 @starting-style {
   dialog[open] {
@@ -521,7 +529,7 @@ dialog[open]::backdrop {
 }
 
 .button-group {
-  display: flex;
+  display: inline-flex;
   gap: var(--spacing-medium);
 }
 
@@ -546,7 +554,6 @@ dialog[open]::backdrop {
 
 @media screen and (max-width: 900px) {
   body {
-    overflow: hidden;
     height: 100dvh;
   }
 
@@ -574,6 +581,10 @@ dialog[open]::backdrop {
     margin-top: auto;
     flex-direction: column;
     width: 100%;
+
+    &.row{
+      flex-direction: row;
+    }
 
     * {
       width: 100%;
@@ -610,3 +621,4 @@ dialog[open]::backdrop {
 ::part(header) {
   font-size: 100px;
 }
+

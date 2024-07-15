@@ -4,13 +4,7 @@
   transform-style: preserve-3d;
   width: 100%;
 }
-footer {
-  display: inline-flex;
-  justify-content: flex-end;
-  gap: var(--spacing-medium);
-  padding-top: var(--spacing-x-large);
-  border-top: 1px solid var(--border-primary);
-}
+
 
 
 @supports not (color-scheme: light dark){
@@ -100,6 +94,10 @@ input[type="range"]::-moz-range-thumb {
     border-color: transparent;
     background: transparent;
     font-size: 12px;
+
+    &:hover{
+
+    }
   }
 
   .active {
@@ -110,19 +108,8 @@ input[type="range"]::-moz-range-thumb {
     }
   }
 
-  footer button {
-    flex-grow: 1;
-  }
-
-  button {
-    width: 100%;
-  }
-
-  .button-group{
-    display: flex;
-    flex-direction: row;
-    gap: var(--spacing-medium);
-  }
+  
+ 
   .title {
     font-size: 12px;
   }

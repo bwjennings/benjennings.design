@@ -26,7 +26,7 @@
     <link rel="prefetch" href="fundamentals.html" as="document"/>
     <link rel="prefetch" href="experiments.html" as="document"/>
     <link rel="prefetch" href="resources.html" as="document"/>
-   
+  
    
   </head>
   <body>
@@ -36,63 +36,38 @@
       <main>
         
           <section class="page-title">
-            <my-badge>Experiments</my-badge>
+            <my-badge icon="experiment">Experiments</my-badge>
             <h1 class="heading">Experiments</h1>
-            <h2 class="heading sm">Some things that I just wanted to try</h2>
           </section>
 
           <section class="page-items">
-
-          <content-card title="This is an extra item for fun" badge="3D Model">
-            <div slot="image">
-              <img src="designs/resources/5_16_2024.jpg">
-            </div>
-         
            
+  
+            <simple-card title="3D Model that I scanned on my iphone" badge="3D Model">
+              <model-viewer slot="thumbnail" src="designs/resources/Head.glb" auto-rotate rotation-per-second=300% camera-orbit="45deg 55deg 5s"></model-viewer>
+              <model-viewer slot="image" src="designs/resources/Head.glb" auto-rotate camera-controls></model-viewer>
+              This is a 3d model that i took on my phoone
             
+  
+            </simple-card>
+
+            <simple-card title="3D Model that I scanned on my iphone" badge="3D Model">
+              <model-viewer slot="thumbnail" src="designs/resources/Scaniverse 2024-04-30 180057.glb" auto-rotate ></model-viewer>
+              <model-viewer slot="image" src="designs/resources/Scaniverse 2024-04-30 180057.glb" auto-rotate camera-controls></model-viewer>
+              This is a 3d model that i took on my phoone
             
-            
-    
-          </content-card>
+  
+            </simple-card>
+            <settings-panel></settings-panel>
+
          
          
-          <content-card title="Here is a card">
-            <button slot="body" onclick="sendNotification()">Click me</button>
-          </content-card>
-          <script>
-            function sendNotification() {
-                // Check if the browser supports notifications
-                if (!("Notification" in window)) {
-                    alert("This browser does not support desktop notification");
-                }
-            
-                // Check if notification permissions have already been granted
-                else if (Notification.permission === "granted") {
-                    // If it's okay, let's create a notification
-                    new Notification("Hello! You clicked the button.");
-                }
-            
-                // Otherwise, we need to ask the user for permission
-                else if (Notification.permission !== "denied") {
-                    Notification.requestPermission().then(function (permission) {
-                        // If the user accepts, let's create a notification
-                        if (permission === "granted") {
-                            new Notification("Hello! You clicked the button.");
-                        }
-                    });
-                }
-            }
-            </script>
-          <content-card title="Here is a card"></content-card>
-          <content-card title="Here is a card"></content-card>
-          <content-card title="Here is a card"></content-card>
+         
+          
         </section>
       
       </main>
     </div>
-    <script
-      type="module"
-    src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
-  ></script>
+    
   </body>
 </html>
