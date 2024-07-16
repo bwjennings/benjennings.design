@@ -16,7 +16,7 @@ customElements.define(
           }
         </style>
         <div class="button-group row">
-         <button id="randomColorBtn" class="icon-button " aria-label="Random Theme Color">palette</button>
+         <button id="randomColorBtn" class="icon-button pallete-button "  aria-label="Random Theme Color">palette</button>
         <button id="openBtn" aria-label="Open Settings"><div class="icon">tune</div>Settings</button>
        
         </div>

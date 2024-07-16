@@ -96,10 +96,15 @@ customElements.define(
         <div class="card-container">
        
         <slot name="thumbnail"></slot>
+         <slot name="icon-box"></slot>
        
-          <h2 class="heading sm ">${title}</h2>
-          <button class="icon-button">open_in_full</button>
-          ${badgeTemplate}
+        
+            <div class="card-content">
+              <h2 class="card-title ">${title}</h2>
+              ${badgeTemplate}
+            </div>
+         
+           
           
           <slot name="content"></slot>
           <dialog id="dialog" aria-labelledby="dialog-title">

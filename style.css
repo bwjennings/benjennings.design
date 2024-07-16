@@ -7,6 +7,10 @@
 :focus-visible  {
   outline: 1px solid var(--border-brand);
 }
+
+::selection {
+  background: var(--background-accent);
+}
 * {
   margin: 0;
   outline-color: var(--border-brand);
@@ -17,7 +21,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
-  
+  transition: color-scheme 1000ms ease;
 
 }
 
@@ -68,17 +72,17 @@ body {
 @keyframes gradAnimation {
   0% {
     opacity: 75%;
-    font-variation-settings: "GRAD" -200 ;
+    font-variation-settings: "GRAD" -200,"wdth" 115;
     
   }
   50% {
     
-    font-variation-settings: "GRAD" 200 ;
+    font-variation-settings: "GRAD" 200,"wdth" 115 ;
     
   }
   100% {
     opacity: 100%;
-    font-variation-settings:  "GRAD" initial;
+    font-variation-settings:  "GRAD" initial,"wdth" initial;
     
   }
 }
@@ -95,11 +99,13 @@ text-decoration-thickness: 8px;
   
   font-weight: var(--text-heading-weight);
   line-height: var(--text-heading-lg-line-height);
+  text-wrap: balance;
+
   font-variation-settings:
+  "GRAD" 150,
+  "wdth" 115
   
-  
-  
-  "GRAD" 100
+ 
   ;
 
   font-optical-sizing: auto;
@@ -285,6 +291,8 @@ border: 1px solid transparent;
 
 
 
+
+
 .icon-font {
   font-family: var(--icon-font-family);
 }
@@ -347,7 +355,8 @@ width: 100%;
   grid-template-rows: subgrid;
   grid-column: span 3;
 max-width: 1200px;
- 
+text-wrap: balance;
+
 
   
 }
@@ -367,6 +376,10 @@ width: 100%;
 @container main-content (max-width: 1000px) {
   .page-items {
     grid-template-columns:  1fr 1fr;
+
+    &.ordered{
+      grid-template-columns: 1fr;
+    }
   }
 }
 

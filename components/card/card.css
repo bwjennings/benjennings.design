@@ -1,66 +1,91 @@
 @import "/style.css";
 
-:host{
- height: 500px;
-  ;
+:host {
+  height: auto;
+  container-type: inline-size;
+  container-name: card;
+
+}
+
+:host:hover {
+
   
 }
+
 .card-container {
-   cursor:zoom-in;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 1fr auto;
-  
+  cursor: zoom-in;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  min-height: 400px;
 
+  background-color: var(--background-primary);
 
-  justify-content: center;
   container-type: inline-size;
 
-  background-color: var(--background-brand);
+
 
   padding: var(--spacing-large);
-  display: grid;
-  color: var(--foreground-brand);
+  color: var(--foreground-primary);
 
   gap: var(--spacing-large);
   align-items: flex-start;
   justify-content: flex-start;
-border: transparent;
+  border: transparent;
 
   overflow: hidden;
-  
+
 
   &:hover {
     outline: 1px solid var(--border-brand-hover);
 
     .icon-button {
-        font-variation-settings:
-        
-        "GRAD" 100;
+      font-variation-settings:
+
+        "GRAD" 100,
+       
     }
-  }
+    ::slotted([slot="icon-box"]) {
+     
+  font-variation-settings:
+  'GRAD' 200,
+  'FILL' 0;
+    }
+   
 
-  &:active{
-    transition: 100ms;
-    perspective: 100px;
-    transform: scaleZ(20%);
   }
+}
 
- 
+&:active {
+  transition: 100ms;
+  perspective: 100px;
+  transform: scaleZ(20%);
 }
 
 
-.title-group{
-display: flex;
-justify-content: space-between;
-gap: var(--spacing-large);
-padding-bottom: var(--spacing-xxx-large);
-border-bottom: 1px solid var(--border-primary);
-position:sticky;
-top: 0px;
 
 
+
+
+.card-title {
+  display: flex;
+  flex: 1 0 0;
+  text-wrap: balance;
+  font-size: var(--text-body-lg-size);
+  line-height: var(--text-body-lg-line-height);
+  font-weight: var(--text-body-weight);
+
+
+
+
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  align-self: stretch;
+  gap: var(--spacing-large);
 }
 
 
@@ -76,7 +101,7 @@ p {
 
 
 dialog[open] {
-    cursor: initial;
+  cursor: initial;
   display: flex;
   flex-direction: column;
   color: var(--foreground-primary);
@@ -94,20 +119,80 @@ dialog::backdrop {
 }
 
 
-.myspan{
-  grid-column: span 2;
-  background-color: purple;
-}
 
 ::slotted([slot="thumbnail"]) {
-  grid-column: span 2;
+
   background-color: var(--background-brand-secondary);
-  width: 100%;
-  height: 100%;
+  display: flex;
+  aspect-ratio: 4 / 2;
+  height: auto;
+  width: auto;
+  align-self: stretch;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+
+
 }
 
-::slotted([slot="image" ]){
-  width: 100%;
-  height: 50dvh;
-  background-color: var(--background-secondary);
+::slotted([slot="thumbnail"]):has(.card-container:hover) {
+  color: red;
+}
+
+
+
+
+
+::slotted([slot="icon-box"]) {
+
+  font-variation-settings:
+  'GRAD' -200
+  ,
+  'FILL' 0;
+  font-family: var(--icon-font-family);
+  font-size: 250px;
+  
+  overflow: hidden;
+  display: flex;
+  aspect-ratio: 4 / 2;
+  height: auto;
+  width: auto;
+  align-self: stretch;
+  background-color: var(--background-brand-secondary);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--foreground-brand-secondary);
+  transition: font-variation-settings 200ms ease-out;
+  
+
+  span {
+
+    transform: rotate(90deg);
+  }
+
+
+}
+
+@container card (min-width:400px) {
+ 
+  .card-container {
+    flex-direction: row-reverse;
+    height: auto;
+    flex-shrink: 1;
+    
+  }
+  ::slotted([slot="icon-box"]) {
+    height: 200px;
+    width: 200px;
+    
+  }
+  ::slotted([slot="thumbnail"]){
+    height: 200px;
+    width: 200px;
+    
+
+  }
 }

@@ -189,7 +189,7 @@ site-settings{
 
     flex-grow: 1;
 
-    padding: 12px 2px 16px 2px;
+    padding: 8px 2px 12px 2px;
     flex-direction: column;
     gap: var(--spacing-small);
     border-color: transparent;

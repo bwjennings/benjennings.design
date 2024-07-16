@@ -72,6 +72,9 @@ input[type="range"]::-moz-range-thumb {
   transform: scale(1.25);
 }
 
+.pallete-button:active{
+  background-color: var(--background-brand-secondary);
+}
 @media screen and (max-width: 900px) {
   :host {
     flex-grow: 1;

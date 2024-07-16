@@ -6,6 +6,8 @@ class BadgeComponent extends HTMLElement {
         // Create a style element and add CSS rules
         const style = document.createElement('style');
         style.textContent = `
+        :host{
+          grid-area: badge;}
             .badge {
                 background-color: var(--background-accent);
                 color: var(--foreground-accent);
@@ -29,9 +31,12 @@ class BadgeComponent extends HTMLElement {
             }
 
             .secondary {
-                background-color: var( --background-brand-secondary);
-                color: var(--foreground-brand-secondary);
-                border: 1px solid var( --border-brand-secondary)
+                background-color: var( --background-primary-secondary);
+                color: var(--foreground-secondary);
+                border: 1px solid var(--border-secondary);
+                span{
+                color:var(--foreground-brand)
+                }
             }
 
             /* Add more variants as needed */
