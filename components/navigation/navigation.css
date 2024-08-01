@@ -29,6 +29,7 @@
   border-right: 1px solid var(--border-primary);
   box-sizing: border-box;
   ul{
+    gap: var(--spacing-small);
 display: flex;
 flex-direction:column;
 align-self: stretch;
@@ -75,7 +76,7 @@ cursor: pointer;
   
 
   &:hover:not(.active) {
-    filter: var(--hover);
+    background-color: var(--background-primary);
     
 
   }

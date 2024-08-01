@@ -8,6 +8,7 @@ class BadgeComponent extends HTMLElement {
         style.textContent = `
         :host{
           grid-area: badge;
+          view-transition-name:badge
           }
 
             .badge {

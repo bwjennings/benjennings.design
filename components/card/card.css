@@ -15,7 +15,7 @@
   height: auto;
   container-type: inline-size;
   container-name: card;
-view-transition-name: main;
+  view-transition-name: main-area;
 
 
 }
@@ -154,7 +154,7 @@ dialog::backdrop {
 .thumbnail{
   overflow: hidden;
   display: flex;
-  height: auto;
+  height: 120px;
   width: auto;
   align-self: stretch;
   background:linear-gradient(to left,var(--background-brand),var(--background-brand-secondary));
@@ -214,4 +214,8 @@ rotate: -45deg;
   
   }
   
+}
+
+@view-transition {
+  navigation: auto;
 }

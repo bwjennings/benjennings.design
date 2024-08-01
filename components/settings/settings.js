@@ -44,12 +44,18 @@ customElements.define(
             <label for="hueSlider">Theme Color:
               <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2" aria-label="Theme Color Hue Slider">
             </label>
-            <label for="highContrast">High Contrast:
-            <span class="switch">
-              <input type="checkbox"  id="highContrast" name="highContrast" aria-label="High Contrast Mode">
-              </span>
-              </input>
-            </label>
+            
+            <label >
+            High Contrast
+
+            
+            
+	 <input type="checkbox" role="switch" type="checkbox"  id="highContrast" name="highContrast" aria-label="High Contrast Mode">
+
+	
+	
+</label>
+            
           </form>
           <footer class="button-group">
             <button id="cancelBtn" aria-label="Cancel Settings">Cancel</button>
