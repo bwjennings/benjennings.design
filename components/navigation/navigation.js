@@ -7,46 +7,33 @@ class CustomSidebar extends HTMLElement {
     template.innerHTML = `
       <link rel="stylesheet" href="components/navigation/navigation.css" type="text/css">
       <link rel="stylesheet" href="style.css" type="text/css">
-      <nav class="sidebar">
-        <h2 class="site-title" data-link="index.html">Ben</h2>
-        <div class="divider"></div>
-        <div tabindex="1" class="nav-card item1" data-link="index.html">
-          <div class="icon">waving_hand</div>
-          <div class="title-group">
-            <div class="title">Home</div>
-            
-          </div>
-        </div>
-        <div tabindex="2" class="nav-card item2" data-link="fundamentals.html">
-          <div class="icon">psychology</div>
-          <div class="title-group">
-            <div class="title">Fundamentals</div>
-            
-          </div>
-        </div>
-        <div tabindex="3" class="nav-card item3" data-link="designs.html">
-          <div class="icon">web</div>
-          
-            <div class="title">Designs</div>
-            
-          
-        </div>
-        <div tabindex="4" class="nav-card item4" data-link="experiments.html">
-          <div class="icon">experiment</div>
-          <div class="title-group">
-            <div class="title">Experiments</div>
-            
-          </div>
-        </div>
-        <div tabindex="5" class="nav-card item5" data-link="resources.html">
-          <div class="icon">folder_open</div>
-          <div class="title-group">
-            <div class="title">Resources</div>
-            
-          </div>
-        </div>
-        <site-settings></site-settings>
-      </nav>
+    <nav class="sidebar">
+    <h2 class="site-title"><a href="index.html">Ben</a></h2>
+    <site-settings></site-settings>
+    <div class="divider"></div>
+   <ul>
+        <li><a tabindex="1" class="nav-card item1" href="index.html">
+            <span class="icon">waving_hand</span>
+            <span class="title">Home</span>
+        </a></li>
+        <li><a tabindex="2" class="nav-card item2" href="fundamentals.html">
+            <span class="icon">psychology</span>
+            <span class="title">Fundamentals</span>
+        </a></li>
+        <li><a tabindex="3" class="nav-card item3" href="designs.html">
+            <span class="icon">web</span>
+            <span class="title">Designs</span>
+        </a></li>
+        <li><a tabindex="4" class="nav-card item4" href="experiments.html">
+            <span class="icon">experiment</span>
+            <span class="title">Experiments</span>
+        </a></li>
+        <li><a tabindex="5" class="nav-card item5" href="resources.html">
+            <span class="icon">folder_open</span>
+            <span class="title">Resources</span>
+        </a></li>
+    </ul>
+</nav>
     `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
@@ -54,7 +41,7 @@ class CustomSidebar extends HTMLElement {
   }
 
   addEventListeners() {
-    this.shadowRoot.querySelectorAll('[data-link]').forEach(element => {
+    this.shadowRoot.querySelectorAll('[href]').forEach(element => {
       element.addEventListener('click', this.handleNavigation.bind(this));
     });
   }
@@ -86,3 +73,5 @@ class CustomSidebar extends HTMLElement {
 }
 
 customElements.define('custom-sidebar', CustomSidebar);
+
+export {CustomSidebar};

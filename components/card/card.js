@@ -94,15 +94,13 @@ customElements.define(
         
         
         <div class="card-container">
-       
+       <div class="thumbnail">
         <slot name="thumbnail"></slot>
          <slot name="icon-box"></slot>
-       
+       </div>
         
-            <div class="card-content">
               <h2 class="card-title ">${title}</h2>
               ${badgeTemplate}
-            </div>
          
            
           
@@ -112,8 +110,9 @@ customElements.define(
               <h2 class="heading md" id="dialog-title">${title}</h2>
               <button class="icon-button" id="closeBtn1">Close</button>
             </div>
-            <slot></slot>
             <slot name="image"></slot>
+            <slot></slot>
+            
            
             <footer>
               <button autofocus id="closeBtn2">Close</button>
@@ -133,3 +132,4 @@ customElements.define(
     }
   }
 );
+

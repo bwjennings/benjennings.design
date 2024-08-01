@@ -7,7 +7,9 @@ class BadgeComponent extends HTMLElement {
         const style = document.createElement('style');
         style.textContent = `
         :host{
-          grid-area: badge;}
+          grid-area: badge;
+          }
+
             .badge {
                 background-color: var(--background-accent);
                 color: var(--foreground-accent);

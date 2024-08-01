@@ -4,7 +4,7 @@
   box-sizing: border-box;
   outline-color: var(--border-brand);
 }
-:focus-visible  {
+:focus-visible {
   outline: 1px solid var(--border-brand);
 }
 
@@ -14,7 +14,6 @@
 * {
   margin: 0;
   outline-color: var(--border-brand);
-  
 }
 
 body {
@@ -22,10 +21,11 @@ body {
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
   transition: color-scheme 1000ms ease;
-
 }
 
-
+a{
+  all: unset;
+}
 
 img,
 picture,
@@ -64,89 +64,75 @@ body {
   font-family: var(--text-body-font-family);
   font-weight: var(--text-body-weight);
   box-sizing: border-box;
-  
-  
 }
-
 
 @keyframes gradAnimation {
   0% {
-    opacity: 75%;
-    font-variation-settings: "GRAD" -200,"wdth" 115;
-    
+    font-variation-settings:
+      "GRAD" -200,
+      "wdth" 115;
+    opacity: 0.5;
   }
-  50% {
-    
-    font-variation-settings: "GRAD" 200,"wdth" 115 ;
-    
+  40% {
+    font-variation-settings:
+      "GRAD" 400,
+      "wdth" 115;
+    opacity: 1;
   }
   100% {
-    opacity: 100%;
-    font-variation-settings:  "GRAD" initial,"wdth" initial;
-    
+    font-variation-settings:
+      "GRAD" initial,
+      "wdth" initial;
   }
 }
 u {
   text-decoration-color: var(--border-accent);
-text-decoration-thickness: 8px;
-
+  text-decoration-thickness: 8px;
 }
 .heading {
   margin: 0;
   font-family: var(--text-heading-font-family);
   font-size: var(--text-heading-lg-size);
   font-style: normal;
-  
+
   font-weight: var(--text-heading-weight);
   line-height: var(--text-heading-lg-line-height);
   text-wrap: balance;
 
   font-variation-settings:
-  "GRAD" 150,
-  "wdth" 115
-  
- 
-  ;
+    "GRAD" 150,
+    "wdth" 115;
 
   font-optical-sizing: auto;
-  animation:gradAnimation ease-in-out  1000ms ;
+  animation: gradAnimation ease-in-out 1000ms;
 
   font-style: normal;
-  
 
   &.sm {
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
-   
   }
 
   &.md {
     font-size: var(--text-heading-md-size);
     line-height: var(--text-heading-md-line-height);
-    
   }
 
-  &.secondary{
+  &.secondary {
     color: var(--foreground-secondary);
   }
-
- 
 }
-
-
-
 
 .favicon {
   fill: rgb(231, 158, 24);
 }
 
-
 @keyframes radarPing {
   0% {
-      outline-width: 0px;
+    outline-width: 0px;
   }
   100% {
-      outline-width: 8px;
+    outline-width: 8px;
   }
 }
 
@@ -165,30 +151,24 @@ button {
   color: var(--foreground-primary);
   line-height: 100%;
   height: 48px;
-cursor: pointer;
--webkit-tap-highlight-color: transparent;
-user-select: none;
-transition: outline 100ms;
-
-
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: outline 100ms;
 
   .icon {
     font-family: var(--icon-font-family);
     font-size: var(--icon-size-medium);
     line-height: 100%;
   }
-
-  
 }
 
-button:hover{
+button:hover {
   outline: 4px var(--border-brand) solid;
 }
 
-
-
-button:active{
-outline-width: 8px;  
+button:active {
+  outline-width: 8px;
 }
 button[variant="brand"] {
   background: var(--background-brand-emphasis);
@@ -202,21 +182,18 @@ button[size="small"] {
   gap: var(--spacing-x-small, 4px);
 }
 
-
-
-.icon-button{
+.icon-button {
   font-family: var(--icon-font-family);
   font-size: var(--icon-size-medium);
   height: 48px;
   width: 48px;
 
-  &.sm{
+  &.sm {
     font-size: var(--icon-size-small, 24px);
     height: 32px;
-  width: 32px;
+    width: 32px;
   }
 }
-
 
 h4 {
   font-family: "Noto Sans", sans-serif;
@@ -247,7 +224,6 @@ label {
   gap: var(--spacing-medium);
   user-select: none;
   border: 1px solid var(--border-primary);
-  
 }
 
 .radio-button {
@@ -259,14 +235,14 @@ label {
   justify-content: center;
   align-items: center;
   flex: 1 0 0;
-font-size: var(--text-body-md-size);
+  font-size: var(--text-body-md-size);
   color: var(--foreground-primary);
   font-family: var(--text-font-family);
   cursor: pointer;
   display: flex;
   flex-grow: 1;
-z-index: 1;  
-border: 1px solid transparent;
+  z-index: 1;
+  border: 1px solid transparent;
 
   span {
     justify-content: center;
@@ -289,9 +265,27 @@ border: 1px solid transparent;
   color: var(--foreground-brand);
 }
 
+.switch {
+  height: 40px;
+  width: 80px;
+  padding: 8px;
+  transition: all 300ms;
+  background: var(--background-secondary);
+  border: 1px solid var(--border-secondary);
+  display: flex;
 
+  &:has(input:checked) {
+    background-color: var(--background-brand);
+  }
 
+  input::checked {
+    margin-left: auto;
+  }
 
+  input {
+    margin-right: auto;
+  }
+}
 
 .icon-font {
   font-family: var(--icon-font-family);
@@ -308,76 +302,75 @@ border: 1px solid transparent;
   grid-template-areas: "sidebar main-content";
 }
 
-.card-group{
- display: grid;
- grid-template-columns: repeat(2,1fr);
-    gap: var(--spacing-large);
+.card-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-large);
   container-name: card-group;
 }
 
-
 main {
-  overflow: auto;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+view-transition-name: main;
   display: flex;
-flex-direction: column;
-width: 100%; 
+  flex-direction: column;
+  width: 100%;
 
-  
   grid-area: main-content;
- container-name:main-content ;
- container-type: inline-size;
+  container-name: main-content;
+  container-type: inline-size;
   perspective: 200px;
   transform-style: preserve-3d;
   transform-origin: top;
   align-items: center;
   padding: var(--spacing-xxx-large);
+  padding-top: 0px;
   gap: var(--spacing-xxx-large);
 }
 
-
-
-
-
-
-
-
 .page-title {
-
   z-index: 2;
-  min-height: calc(40cqh - 40px);
+  margin-top: calc(30cqh - 40px);
   color: var(--foreground-primary);
   display: flex;
   gap: var(--spacing-medium);
   flex-direction: column;
-  justify-content: end;
+  justify-content: start;
   align-items: start;
   width: 100%;
   grid-template-rows: subgrid;
   grid-column: span 3;
-max-width: 1200px;
-text-wrap: balance;
+  max-width: 1200px;
+  position: sticky;
+  top: 0px;
+  background-color: var(--background-page);
+  padding-block: var(--spacing-x-large);
+  border-bottom: 1px solid var(--border-secondary);
 
-
-  
+  .content {
+    width: 100%;
+    max-width: 100ch;
+    text-wrap: balance;
+  }
 }
 
-.page-items{
+.page-items {
   display: grid;
-;
-width: 100%;
-  grid-template-columns: repeat(3,1fr);
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-xxx-large);
   max-width: 1200px;
   grid-column: span 3;
-  
+  padding-inline: var(--spacing-x-small);
+  view-transition-name: main-items;
 }
-
 
 @container main-content (max-width: 1000px) {
   .page-items {
-    grid-template-columns:  1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
-    &.ordered{
+    &.ordered {
       grid-template-columns: 1fr;
     }
   }
@@ -385,22 +378,19 @@ width: 100%;
 
 @container main-content (max-width: 700px) {
   .page-items {
-    grid-template-columns:  1fr ;
+    grid-template-columns: 1fr;
   }
 }
-
-
 
 .dialog-header {
   margin: 0px;
   border-bottom: 1px solid var(--border-primary);
-display: flex;
-flex-direction: row;
-justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   color: var(--foreground-primary);
   font-size: var(--text-heading-md-size);
   font-weight: var(--text-heading-weight);
-  
 }
 
 @keyframes show {
@@ -461,79 +451,63 @@ justify-content: space-between;
   }
 }
 
-@keyframes dialogOpen {
-  from {
-    transform: perspective(300px) translateZ(20px) rotateX(10deg);
-    filter: blur(16px);
-    opacity: 0;
-  }
 
-  to {
-    transform: perspective(300px) translateZ(0px) rotateX(0deg);
-    filter: blur(0px);
-    opacity: 1;
-  }
-}
 
 dialog[open] {
   opacity: 1;
-  transform: translateZ(0px) ;
+  transform: perspective(0px) translateY(0px);
   filter: blur(0px);
   display: flex;
   gap: var(--spacing-large);
+  height: fit-content;
+  flex-direction: column;
+
+
 }
 
 /*   Closed state of the dialog   */
 dialog {
   margin: auto;
   opacity: 0;
-  transform:  translateY(20px);
   filter: blur(8px);
   color: var(--foreground-neutral);
   border: 1px solid var(--border-primary);
-  width: clamp(20rem, 800px, 1000px);
- 
-  height: fit-content;
-
+  width: clamp(20rem, 80dvw, 1400px);
   padding: var(--spacing-xxx-large);
   background-color: var(--background-primary);
-  transition: transform 400ms ease-in-out allow-discrete;
-  flex-direction: column;
   transform-style: preserve-3d;
+  transform: perspective(100px) translateY(100px);
+  transition: all 400ms ease-in-out allow-discrete;
+
 }
 dialog footer {
   display: flex;
   border-top: 1px solid var(--border-primary);
-padding-top: 24px;
-justify-content: flex-end;
+  padding-top: 24px;
+  justify-content: flex-end;
+}
 
+
+
+dialog::backdrop {
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 400ms ease-in-out allow-discrete;
+}
+
+dialog[open]::backdrop {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 @starting-style {
   dialog[open] {
     animation: none;
     filter: blur(8px);
-    transform:  translateY(100%);
+    opacity: 0;
+    transform: perspective(100px) translateY(100px);
   }
 }
-
-dialog::backdrop {
-  
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: all 400ms ease-in-out allow-discrete;
-  
-}
-
-dialog[open]::backdrop {
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(8px);
- 
-  
-  
-
-}
-
 @starting-style {
   dialog[open]::backdrop {
     backdrop-filter: blur(0px);
@@ -561,8 +535,6 @@ dialog[open]::backdrop {
   justify-content: center;
   border-radius: inherit;
   margin: auto;
-
-  
 }
 
 @media screen and (max-width: 900px) {
@@ -571,8 +543,8 @@ dialog[open]::backdrop {
   }
 
   main {
-    
     padding: var(--spacing-large);
+    padding-top: 0px;
   }
 
   .main-content {
@@ -595,7 +567,7 @@ dialog[open]::backdrop {
     flex-direction: column;
     width: 100%;
 
-    &.row{
+    &.row {
       flex-direction: row;
     }
 
@@ -606,9 +578,7 @@ dialog[open]::backdrop {
 
   .page-title {
     max-width: none;
-    
-
-   
+    position: initial;
 
     h2 {
       display: none;
@@ -621,8 +591,8 @@ dialog[open]::backdrop {
     padding: var(--spacing-x-large);
     width: 100dvw;
     max-width: none;
+    min-height: 40dvh;
     height: fit-content;
-    
 
     form {
       flex-grow: 1;
@@ -635,3 +605,38 @@ dialog[open]::backdrop {
   font-size: 100px;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
+/* Customize the default animation behavior */
+
+
+
+/* Create a custom animation */
+
+@keyframes fade-in {
+	from { opacity: 0; }
+}
+
+@keyframes fade-out {
+	to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+	from { transform: translateX(60px); }
+}
+
+@keyframes slide-to-left {
+	to { transform: translateX(-60px); }
+}
+
+::view-transition-old(main) {
+	animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+
+::view-transition-new(main) {
+	animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}

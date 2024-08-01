@@ -1,120 +1,87 @@
 <!doctype html>
 <html>
   <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PLX2X0J846');
-</script>
     <title>Ben Jennings</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
     
-    <link rel="manifest" href="manifest.json" />
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,GRAD@8..144,100..1000,-200..150&family=Roboto+Serif:ital,opsz,wght,GRAD@0,8..144,100..900,-50..100;1,8..144,100..900,-50..100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Stylesheets -->
     <link href="./vars.css" rel="stylesheet" />
     <link href="./style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-        <script type="module" src="components/index.js"></script>
-        <link rel="prefetch" href="index.html" as="document"/>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-PLX2X0J846');
+    </script>
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json" />
+    
+    <!-- Prefetch Links -->
+    <link rel="prefetch" href="index.html" as="document"/>
     <link rel="prefetch" href="designs.html" as="document"/>
     <link rel="prefetch" href="fundamentals.html" as="document"/>
     <link rel="prefetch" href="experiments.html" as="document"/>
     <link rel="prefetch" href="resources.html" as="document"/>
-  
-   
+    
+    <!-- Module Scripts -->
+    <script type="module" src="components/index.js"></script>
   </head>
   <body>
     <div class="page-container">
       <custom-sidebar active-item="3"></custom-sidebar>
 
       <main>
-        
-          <section class="page-title">
-            <my-badge icon="experiment">Experiments</my-badge>
-            <h1 class="heading">Experiments</h1>
-          </section>
-
-          <section class="page-items" >
-           
-  
-            <simple-card title="3D Model that I scanned on my iphone" badge="3D Model">
-              <model-viewer slot="thumbnail" src="designs/resources/Head.glb" auto-rotate rotation-per-second=-100% camera-orbit="45deg 55deg 5s"></model-viewer>
-              <model-viewer slot="image" src="designs/resources/Head.glb" auto-rotate camera-controls></model-viewer>
-              This is a 3d model that i took on my phoone
-            
-  
-            </simple-card>
-
-            <simple-card title="3D Model that I scanned on my iphone" badge="3D Model">
-              <div slot="icon-box">palette</div>
-              <model-viewer slot="image" src="designs/resources/Scaniverse 2024-04-30 180057.glb" auto-rotate camera-controls></model-viewer>
-              This is a 3d model that i took on my phoone
-            
-  
-            </simple-card>
-            <simple-card title="Relative Color System" badge="Design Systems" badge-icon"palette">
-             <div slot="icon-box"><span>psychology_alt</span></div>
-              This is a 3d model that i took on my phoone
-            
-  
-            </simple-card>
-
-            <simple-card title="3D Model that I scanned on my iphone" badge="3D Model">
-              <div slot="icon-box">palette</div>
-              <model-viewer slot="image" src="designs/resources/Scaniverse 2024-04-30 180057.glb" auto-rotate camera-controls></model-viewer>
-              This is a 3d model that i took on my phoone
-            
-  
-            </simple-card>
-            <simple-card title="Relative Color System" badge="Design Systems" badge-icon"palette">
-             <div slot="icon-box"><span>psychology_alt</span></div>
-              This is a 3d model that i took on my phoone
-            
-  
-            </simple-card>
-
-            <simple-card title="3D Model that I scanned on my iphone" badge="3D Model">
-              <div slot="icon-box">palette</div>
-              <model-viewer slot="image" src="designs/resources/Scaniverse 2024-04-30 180057.glb" auto-rotate camera-controls></model-viewer>
-              This is a 3d model that i took on my phoone
-            
-  
-            </simple-card>
-            <simple-card title="Relative Color System" badge="Design Systems" badge-icon"palette">
-             <div slot="icon-box"><span>psychology_alt</span></div>
-              This is a 3d model that i took on my phoone
-            
-  
-            </simple-card>
-
-            <simple-card title="3D Model that I scanned on my iphone" badge="3D Model">
-              <div slot="icon-box">palette</div>
-              <model-viewer slot="image" src="designs/resources/Scaniverse 2024-04-30 180057.glb" auto-rotate camera-controls></model-viewer>
-              This is a 3d model that i took on my phoone
-            
-  
-            </simple-card>
-            <simple-card title="Relative Color System" badge="Design Systems" badge-icon"palette">
-             <div slot="icon-box"><span>psychology_alt</span></div>
-              This is a 3d model that i took on my phoone
-            
-  
-            </simple-card>
-            <settings-panel></settings-panel>
-
-         
-         
-         
-          
-        </section>
       
-      </main>
+        <section class="page-title">
+          <div class="content">
+            <my-badge icon="web">Designs</my-badge>
+            <h1 class="heading">Experiments that i needed to put somewhere</h1>
+          </div>
+        </section>
+       
+        <section class="page-items">
+          <simple-card title="Design" badge="3D Model">
+            Don't make it simple, make it clear
+
+
+          </simple-card>
+          <simple-card title="Design" badge="3D Model">
+            Don't make it simple, make it clear
+            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="800" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Fpage-id%3D0%253A1%26node-id%3D6341-3045%26viewport%3D736%252C-2525%252C0.32%26t%3DxwcKof0PVZQZct8Q-1%26scaling%3Dcontain%26content-scaling%3Dresponsive%26starting-point-node-id%3D8681%253A2405" ></iframe>
+
+
+          </simple-card>
+          <simple-card title="Design" badge="3D Model">
+            Don't make it simple, make it clear
+
+
+          </simple-card>
+          <simple-card title="Design" badge="3D Model">
+            Don't make it simple, make it clear
+
+
+          </simple-card>
+          <simple-card title="Design" badge="3D Model">
+            Don't make it simple, make it clear
+
+
+          </simple-card>
+
+
+
+
+        </section>
+      </div>
+    </main>
     </div>
     
   </body>

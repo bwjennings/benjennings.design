@@ -16,9 +16,8 @@ customElements.define(
           }
         </style>
         <div class="button-group row">
-         <button id="randomColorBtn" class="icon-button pallete-button "  aria-label="Random Theme Color">palette</button>
-        <button id="openBtn" aria-label="Open Settings"><div class="icon">tune</div>Settings</button>
-       
+          <button id="randomColorBtn" class="icon-button pallete-button "  aria-label="Random Theme Color">palette</button>
+          <button id="openBtn" aria-label="Open Settings"><div class="icon">tune</div>Settings</button>
         </div>
         <dialog id="dialog" role="dialog" aria-modal="true">
           <h2 class="dialog-header">Settings</h2>
@@ -46,7 +45,10 @@ customElements.define(
               <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2" aria-label="Theme Color Hue Slider">
             </label>
             <label for="highContrast">High Contrast:
-              <input type="checkbox" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
+            <span class="switch">
+              <input type="checkbox"  id="highContrast" name="highContrast" aria-label="High Contrast Mode">
+              </span>
+              </input>
             </label>
           </form>
           <footer class="button-group">
@@ -62,6 +64,7 @@ customElements.define(
       this.highContrastCheckbox = shadowRoot.getElementById("highContrast");
 
       shadowRoot.getElementById("openBtn").addEventListener("click", () => {
+        this.applyStoredSettings();
         this.dialog.showModal();
         gtag('event', 'open_dialog', {
           'event_category': 'Settings',
@@ -163,6 +166,7 @@ customElements.define(
 
     pickRandomColor() {
       const randomHue = Math.floor(Math.random() * 361);
+      this.hueSlider.value = randomHue;
       this.updateHue(randomHue);
       localStorage.setItem("selectedColorHue", randomHue);
     }
