@@ -107,10 +107,10 @@ customElements.define(
           <slot name="content"></slot>
            </div>
           <dialog id="dialog" aria-labelledby="dialog-title">
-            <div class="dialog-header">
+            <header>
               <h2 class="heading md" id="dialog-title">${title}</h2>
               <button class="icon-button" id="closeBtn1">Close</button>
-            </div>
+            </header>
             <slot name="image"></slot>
             <slot></slot>
             

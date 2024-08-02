@@ -23,7 +23,7 @@ input[type="range"] {
   width: 100%;
   padding: 4px;
   border: 1px solid var(--border-primary);
-  border-radius: 100dvh;
+  border-radius: 0px;
   &:active {
     cursor: grabbing;
   }
@@ -42,7 +42,7 @@ input[type="range"] {
 }
 
 input[type="range"]:active::-webkit-slider-thumb {
-  transform: scale(1.25);
+  transform: scale(1.1);
   background-color: var(--brand-50);
 }
 
@@ -180,3 +180,10 @@ input:where([type="checkbox"][role="switch"]):checked::before {
   background-color: var(--foreground-onEmphasis);
 }
 
+@container style(--brand-hue:0) or style(--brand-hue:360){
+ 
+  input[type="range"]::-webkit-slider-thumb{
+    transition: border-radius 300ms ease;
+    border-radius: 0px;
+  }
+}

@@ -66,16 +66,16 @@
 
   /*   Color Lightness   */
   --lightness-5: 98%;
-  --lightness-10: 95%;
-  --lightness-20: 90%;
-  --lightness-30: 79.19%;
-  --lightness-40: 66.64%;
-  --lightness-50: 49.00%;
-  --lightness-60: 37%;
-  --lightness-70: 31%;
-  --lightness-80: 29%;
-  --lightness-90: 24%;
-  --lightness-95: 13%;
+  --lightness-10: 94%;
+  --lightness-20: 85%;
+  --lightness-30: 72%;
+  --lightness-40: 60%;
+  --lightness-50: 50%;
+  --lightness-60: 40%;
+  --lightness-70: 28%;
+  --lightness-80: 17%;
+  --lightness-90: 12%;
+  --lightness-95: 10%;
 
 
 
@@ -144,7 +144,10 @@
   --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
   --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-50));
 
-  --background-backdrop: light-dark(var(--accent-5), var(--accent-90));
+  --background-backdrop: light-dark(
+    color-mix(in oklch, var(--brand-5) 50%, transparent),
+    color-mix(in oklch, var(--brand-90) 50%, transparent)
+  );
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-70), var(--gray-10));
