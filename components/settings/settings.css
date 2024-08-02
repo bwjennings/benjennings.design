@@ -56,7 +56,7 @@ input[type="range"]::-webkit-slider-thumb {
   height: 32px;
   border: 4px solid var(--brand-80);
   transition: 100ms;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: cubic-bezier(0,1.5,1,1.5);
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -65,7 +65,7 @@ input[type="range"]::-moz-range-thumb {
   height: 32px;
   border: 4px solid var(--brand-80);
   transition: 100ms;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: cubic-bezier(0,1.5,1,1.5);
   border-radius: 99px;
   opacity: 0.6;
 }
@@ -76,6 +76,8 @@ input[type="range"]::-moz-range-thumb {
 
 .pallete-button:active{
   background-color: var(--background-brand-secondary);
+  transition: 200ms;
+  transition-timing-function: cubic-bezier(0,1.5,1,1.5);
 }
 @media screen and (max-width: 900px) {
   :host {
@@ -144,12 +146,12 @@ input:where([type="checkbox"][role="switch"]) {
   width: 64px;
   height: 32px;
   box-sizing: content-box;
-  border: 1px solid var(--border-primary);
-  
+  border: 1px solid var(--border-secondary);
+  background-color: var(--background-secondary);
   vertical-align: text-bottom;
   margin: none;
-  transition: all 300ms;
- 
+  transition: all cubic-bezier(0,1,1,1) 300ms;
+
    
 }
 
@@ -165,7 +167,7 @@ input:where([type="checkbox"][role="switch"])::before {
   height: 16px;
   margin: 0 8px;
   background-color: var(--foreground-secondary);
-    transition: all 100ms;
+  transition: inherit;
 }
 input:where([type="checkbox"][role="switch"]):checked{
   background-color: var(--background-brand);

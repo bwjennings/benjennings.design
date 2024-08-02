@@ -32,8 +32,9 @@
   min-height: 400px;
 
   background: var(--background-primary);
-
+outline-color: var(--border-primary);
   container-type: inline-size;
+transition: outline 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58);
 
 
 
@@ -46,9 +47,12 @@
 
   overflow: hidden;
 
+  outline-offset: 0px;
+
 
   &:hover {
-    outline: 1px solid var(--border-brand-hover);
+    outline: 8px solid var(--border-primary);
+    
 
     .icon-button {
       font-variation-settings:
@@ -57,13 +61,15 @@
        
     }
     ::slotted([slot="icon-box"]) {
-     
-  font-variation-settings:
-  'GRAD' 200,
-  'FILL' 0;
+  
+  
     }
    
 
+  }
+
+  &:active{
+    outline-width: 16px;
   }
 }
 
@@ -112,9 +118,7 @@ dialog[open] {
   color: var(--foreground-primary);
 }
 
-dialog::backdrop {
-  background-color: rgba(6, 6, 6, 0.3);
-}
+
 
 
 
@@ -157,12 +161,13 @@ dialog::backdrop {
   height: 120px;
   width: auto;
   align-self: stretch;
-  background:linear-gradient(to left,var(--background-brand),var(--background-brand-secondary));
-  border: 1px solid var(--border-brand-secondary);
+  background:var(--background-brand);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--foreground-brand-secondary);
+  margin-top: -16px;
+  margin-inline: -16px;
 
  
 
@@ -173,11 +178,13 @@ dialog::backdrop {
   font-variation-settings:
   'GRAD' -200
   ,
-  'FILL' 0;
+  'FILL' 1;
   font-family: var(--icon-font-family);
+  color: var(--background-brand-secondary);
   font-size: 250px;
-  transition: font-variation-settings 200ms ease-out;
-rotate: -45deg;
+  transition:  200ms ease-out;
+  transition-property: font-variation-settings  ;
+rotate: -30deg;
 
   
   

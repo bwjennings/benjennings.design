@@ -105,6 +105,7 @@ customElements.define(
            
           
           <slot name="content"></slot>
+           </div>
           <dialog id="dialog" aria-labelledby="dialog-title">
             <div class="dialog-header">
               <h2 class="heading md" id="dialog-title">${title}</h2>
@@ -118,7 +119,7 @@ customElements.define(
               <button autofocus id="closeBtn2">Close</button>
             </footer>
           </dialog>
-        </div>`;
+       `;
 
       // Reattach event listeners to the newly created elements
       this.closeBtn1 = this.shadowRoot.getElementById("closeBtn1");

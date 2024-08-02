@@ -284,7 +284,7 @@ height: 24px;
     background-color: var(--foreground-secondary);
     height: 24px;
     border: 1px solid transparent;
-    transition: all 300ms;
+    transition: all 600ms;
   }
 
   &:has(input:checked) {
@@ -347,7 +347,7 @@ main {
   padding: var(--spacing-xxx-large);
   padding-top: 0px;
   gap: var(--spacing-xxx-large);
-  view-transition-name: main-area;
+  
 }
 
 .page-title {
@@ -368,6 +368,7 @@ main {
   background-color: var(--background-page);
   padding-block: var(--spacing-x-large);
   border-bottom: 1px solid var(--border-secondary);
+  user-select: none;
  
 
  
@@ -497,12 +498,12 @@ dialog {
   filter: blur(8px);
   color: var(--foreground-primary);
   border: 1px solid var(--border-primary);
-  width: clamp(20rem, 80dvw, 1400px);
+  width: clamp(20rem, 60dvw, 1200px);
   padding: var(--spacing-xxx-large);
   background-color: var(--background-primary);
   transform-style: preserve-3d;
   transform: perspective(100px) translateY(100px);
-  transition: all 300ms ease-in-out allow-discrete;
+  transition: all 500ms cubic-bezier(0.54, -0.57, 0.57, 1.55) allow-discrete;
 
 }
 dialog footer {
@@ -515,12 +516,15 @@ dialog footer {
 
 
 dialog::backdrop {
+  background-color: var(--background-brand) / 0.9;
+  
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(16px);
-  transition: all 400ms ease-in-out allow-discrete;
+  transition: inherit;
 }
 
 dialog[open]::backdrop {
+  
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -570,6 +574,8 @@ dialog[open]::backdrop {
   main {
     padding: var(--spacing-large);
     padding-top: 0px;
+    view-transition-name: main-area;
+
   }
 
   .main-content {

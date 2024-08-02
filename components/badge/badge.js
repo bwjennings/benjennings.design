@@ -21,6 +21,7 @@ class BadgeComponent extends HTMLElement {
                 gap: var(--spacing-x-small, 4px);
                 font-size: var(--text-body-xs-size);
                 line-height: var(--text-body-sx-line-height);
+                border:1px solid var(--border-accent);
             }
                 
             .badge span {
