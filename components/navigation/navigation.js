@@ -10,7 +10,6 @@ class CustomSidebar extends HTMLElement {
     <nav class="sidebar">
     <h2 class="site-title"><a href="index.html">Ben</a></h2>
     <site-settings></site-settings>
-    <div class="divider"></div>
    <ul>
         <li><a tabindex="1" class="nav-card item1" href="index.html">
             <span class="icon">waving_hand</span>

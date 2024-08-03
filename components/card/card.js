@@ -94,31 +94,38 @@ customElements.define(
         
         
         <div class="card-container">
-       <div class="thumbnail">
-        <slot name="thumbnail"></slot>
-         <slot name="icon-box"></slot>
-       </div>
-        
-              <h2 class="card-title ">${title}</h2>
-              ${badgeTemplate}
-         
-           
-          
+          <div class="thumbnail">
+            <slot name="thumbnail"></slot>
+            <slot name="icon-box"></slot>
+          </div>
+
+          <h2 class="card-title heading sm">${title}</h2>
+          ${badgeTemplate}
+
+
+
           <slot name="content"></slot>
-           </div>
-          <dialog id="dialog" aria-labelledby="dialog-title">
-            <header>
-              <h2 class="heading md" id="dialog-title">${title}</h2>
-              <button class="icon-button" id="closeBtn1">Close</button>
-            </header>
-            <slot name="image"></slot>
-            <slot></slot>
-            
+        </div>
+
+        <dialog id="dialog" aria-labelledby="dialog-title">
+        <div class="container">
+          <header>
+            <h2 class="heading md" id="dialog-title">${title}</h2>
+            <button class="icon-button" id="closeBtn1">Close</button>
+          </header>
+          
+
+            <slot class="body lg" name="post"></slot>
            
-            <footer>
-              <button autofocus id="closeBtn2">Close</button>
-            </footer>
-          </dialog>
+
+        
+
+          <footer>
+            <button variant="brand" autofocus id="closeBtn2">Close</button>
+          </footer>
+          </div>
+        </dialog>
+
        `;
 
       // Reattach event listeners to the newly created elements

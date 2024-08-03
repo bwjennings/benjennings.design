@@ -7,58 +7,63 @@ customElements.define(
 
       const shadowRoot = this.attachShadow({ mode: "open" });
       shadowRoot.innerHTML = `
-        <style>
+              <style>
           @import "style.css";
           @import "components/settings/settings.css";
-          
+        
           .icon {
             font-family: var(--icon-font-family);
           }
         </style>
         <div class="button-group row">
-          <button id="randomColorBtn" class="icon-button pallete-button "  aria-label="Random Theme Color">palette</button>
-          <button id="openBtn" aria-label="Open Settings"><div class="icon">tune</div>Settings</button>
+          <button id="randomColorBtn" class="icon-button pallete-button " aria-label="Random Theme Color">palette</button>
+          <button id="openBtn" aria-label="Open Settings">
+            <div class="icon">tune</div>Settings
+          </button>
         </div>
         <dialog id="dialog" role="dialog" aria-modal="true">
-         <form id="themeSelect">
-  <header>
-    <h2 class="heading md" id="dialog-title">Settings</h2>
-    <button class="icon-button" value="cancel" formmethod="dialog">Close</button>
-  </header>
-
-  <label id="colorMode">Color Mode
-    <fieldset class="radio-buttons">
-      <label class="radio-button">
-        <input type="radio" name="theme" value="light" aria-label="Light Theme"> 
-        <span class="icon">light_mode</span> 
-        <span>Light</span>
-      </label>
-      <label class="radio-button">
-        <input type="radio" name="theme" value="" checked aria-label="Auto Theme"> 
-        <span class="icon">routine</span> 
-        <span>Auto</span>
-      </label>
-      <label class="radio-button">
-        <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
-        <span class="icon">dark_mode</span> 
-        <span>Dark</span>
-      </label>
-    </fieldset>
-  </label>
-  
-  <label for="hueSlider">Theme Color:
-    <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2" aria-label="Theme Color Hue Slider">
-  </label>
-  
-  <label for="highContrast">High Contrast
-    <input type="checkbox" role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
-  </label>
-  
-  <footer>
-    <button type="button" id="cancelBtn" aria-label="Cancel Settings">Cancel</button>
-    <button type="button" variant="brand" id="closeBtn" aria-label="Save Settings">Save</button>
-  </footer>
-</form>
+        <div class="container">
+          <form id="themeSelect">
+            <header>
+              <h2 class="heading md" id="dialog-title">Settings</h2>
+              <button class="icon-button" value="cancel" formmethod="dialog">Close</button>
+            </header>
+        
+            <label id="colorMode">Color Mode
+              <fieldset class="radio-buttons">
+                <label class="radio-button">
+                  <input type="radio" name="theme" value="light" aria-label="Light Theme">
+                  <span class="icon">light_mode</span>
+                  <span>Light</span>
+                </label>
+                <label class="radio-button">
+                  <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
+                  <span class="icon">routine</span>
+                  <span>Auto</span>
+                </label>
+                <label class="radio-button">
+                  <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
+                  <span class="icon">dark_mode</span>
+                  <span>Dark</span>
+                </label>
+              </fieldset>
+            </label>
+        
+            <label for="hueSlider">Theme Color:
+              <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2"
+                aria-label="Theme Color Hue Slider">
+            </label>
+        
+            <label for="highContrast">High Contrast
+              <input type="checkbox" role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
+            </label>
+        
+            <footer>
+              <button type="button" id="cancelBtn" aria-label="Cancel Settings">Cancel</button>
+              <button type="button" variant="brand" id="closeBtn" aria-label="Save Settings">Save</button>
+            </footer>
+          </form>
+          </div>
         </dialog>
       `;
 

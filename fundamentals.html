@@ -4,35 +4,35 @@
 <head>
   <title>Ben Jennings</title>
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  
+
   <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
+
   <!-- Stylesheets -->
   <link href="./vars.css" rel="stylesheet" />
   <link href="./style.css" rel="stylesheet" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-PLX2X0J846');
   </script>
-  
+
   <!-- Manifest -->
   <link rel="manifest" href="manifest.json" />
-  
+
   <!-- Prefetch Links -->
-  <link rel="prefetch" href="index.html" as="document"/>
-  <link rel="prefetch" href="designs.html" as="document"/>
-  <link rel="prefetch" href="fundamentals.html" as="document"/>
-  <link rel="prefetch" href="experiments.html" as="document"/>
-  <link rel="prefetch" href="resources.html" as="document"/>
-  
+  <link rel="prefetch" href="index.html" as="document" />
+  <link rel="prefetch" href="designs.html" as="document" />
+  <link rel="prefetch" href="fundamentals.html" as="document" />
+  <link rel="prefetch" href="experiments.html" as="document" />
+  <link rel="prefetch" href="resources.html" as="document" />
+
   <!-- Module Scripts -->
   <script type="module" src="components/index.js"></script>
 </head>
@@ -43,42 +43,49 @@
 
 
     <main>
-      
-      <section class="page-title">
-       
-          <my-badge icon="Psychology">Fundamentals</my-badge>
-          <h1 class="heading">Let’s start with some basics</h1>
-       
-      </section>
-     
-      <section class="page-items ordered">
-        <simple-card title="Simplicity does not solve the problem" badge="3D Model">
-          Don't make it simple, make it clear
 
+      <section class="page-title">
+
+        <my-badge icon="Psychology">Fundamentals</my-badge>
+        <h1 class="heading">Let’s start with some basics</h1>
+
+      </section>
+
+      <section class="page-items ordered">
+        <simple-card title="Simplicity does not solve the problem" badge-icon="home" badge="User Research">
+         
+            <p slot="post">A common term that i hear a lot is to 'make it simple' - In theory this is a great goal. The
+              reality of a lot of tools is that they need to be complicated, because the task is complicated.</p>
+              
+                
+         
 
         </simple-card>
         <simple-card title="Curiosity " badge="3D Model">
-          Don't make it simple, make it clear
-          <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="800" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Fpage-id%3D0%253A1%26node-id%3D6341-3045%26viewport%3D736%252C-2525%252C0.32%26t%3DxwcKof0PVZQZct8Q-1%26scaling%3Dcontain%26content-scaling%3Dresponsive%26starting-point-node-id%3D8681%253A2405" ></iframe>
+
+          <p slot="post">A common term that i hear a lot is to 'make it simple' - In theory this is a great goal. The
+            reality of a lot of tools is that they need to be complicated, because the task is complicated.</p>
+
 
 
         </simple-card>
         <simple-card title="Experiences have to be realistic" badge="3D Model">
-          Don't make it simple, make it clear
+         
+          
 
 
         </simple-card>
-       
+
 
 
 
 
       </section>
-    </div>
+  </div>
   </main>
 
 
-    <script src="index.js"></script>
+  <script src="index.js"></script>
 
 </body>
 

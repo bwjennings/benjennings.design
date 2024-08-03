@@ -4,9 +4,9 @@
   width: 350px;
   z-index: 20;
   background: inherit;
- 
-  
- 
+
+
+
 }
 
 .sidebar {
@@ -18,29 +18,32 @@
   display: grid;
   padding: var(--spacing-x-large);
   grid-template-columns: 1fr auto;
- grid-template-rows: 80px 1px auto;
+  grid-template-rows: 80px auto;
   gap: var(--spacing-x-large);
- 
+
   grid-template-areas:
     "title settings"
-    "divider divider"
+   
     "nav-group nav-group"
-   ;
-  border-right: 1px solid var(--border-primary);
+  ;
+  border-right: 1px solid var(--border-secondary);
   box-sizing: border-box;
-  ul{
+
+  ul {
     gap: var(--spacing-small);
-display: flex;
-flex-direction:column;
-align-self: stretch;
-grid-area: nav-group;
-    list-style-type: none; /* Remove bullet points */
-    padding: 0;            /* Remove padding */
-    margin: 0;   
-    li{
-      
- 
-    }
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    grid-area: nav-group;
+    list-style-type: none;
+    justify-content: center;
+
+    /* Remove bullet points */
+    padding: 0;
+    /* Remove padding */
+    margin: 0;
+
+    li {}
   }
 
 
@@ -50,14 +53,14 @@ grid-area: nav-group;
   }
 }
 
-.divider{
-  border-top: 1px solid var(--border-primary);
+.divider {
+  border-top: 1px solid var(--border-secondary);
   grid-area: divider;
 }
 
 .nav-card {
- box-sizing: border-box;
- color: var(--foreground-secondary);
+  box-sizing: border-box;
+  color: var(--foreground-secondary);
   height: 80px;
   display: flex;
   padding: var(--spacing-x-large, 24px) var(--spacing-large, 16px);
@@ -68,16 +71,16 @@ grid-area: nav-group;
   justify-content: flex-start;
   -webkit-user-select: none;
   user-select: none;
-background: inherit;
-border: 1px solid transparent;
-cursor: pointer;
+  background: inherit;
+  border: 1px solid transparent;
+  cursor: pointer;
 
 
-  
+
 
   &:hover:not(.active) {
-    background-color: var(--background-primary);
-    
+    background-color: var(--background-secondary);
+
 
   }
 }
@@ -89,6 +92,10 @@ cursor: pointer;
 
   .icon {
     color: var(--foreground-brand);
+    font-variation-settings:
+      "FILL" 1,
+
+      "GRAD" 100;
   }
 }
 
@@ -148,9 +155,11 @@ cursor: pointer;
 .item3 {
   grid-area: item3;
 }
+
 .item4 {
   grid-area: item4;
 }
+
 .item5 {
   grid-area: item5;
 }
@@ -167,12 +176,10 @@ cursor: pointer;
 .site-title {
   font-size: var(--text-heading-sm-size);
   font-weight: var(--text-heading-weight);
-  font-variation-settings: 
-  'GRAD' 150;
+  font-variation-settings:
+    'GRAD' 150;
 
-  &:hover{
-
-  }
+  &:hover {}
 }
 
 @media screen and (max-width: 900px) {
@@ -184,12 +191,13 @@ cursor: pointer;
     padding: 0px;
   }
 
-  site-settings{
+  site-settings {
     position: fixed;
     top: 24px;
     right: 24px;
     width: auto;
   }
+
   .nav-card {
     display: flex;
     align-items: center;
@@ -207,16 +215,16 @@ cursor: pointer;
 
     &:hover:not(.active) {
       border: none;
-  
+
     }
-    
+
   }
 
   .active {
     border-color: transparent;
     color: var(--foreground-brand);
 
-    
+
   }
 
   .description {
@@ -253,33 +261,35 @@ cursor: pointer;
     width: 100%;
     padding: 0px;
     padding-bottom: env(safe-area-inset-bottom);
-    
-height: auto;
+
+    height: auto;
     grid-template-columns: 1fr;
     grid-template-areas: "nav-group";
+    grid-template-rows: 1fr;
 
-   
- 
+
     gap: 0px;
     width: auto;
     border-radius: 0px;
     border: none;
-    border-top: 1px solid var(--border-primary);
+    border-top: 1px solid var(--border-secondary);
 
-    .divider{
+    .divider {
       display: none;
     }
 
-    ul{
-display: grid;
-grid-template-columns: repeat(5,1fr);    
-justify-self: stretch;
-  li{
+    ul {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      justify-self: stretch;
+
+      li {
         justify-self: stretch;
+        height: fit-content;
       }
     }
-  
-    
+
+
 
     .site-title {
       display: none;
