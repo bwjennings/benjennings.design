@@ -1,4 +1,4 @@
-// Define the custom element
+// Define the custom element for Site Settings
 customElements.define(
   "site-settings",
   class extends HTMLElement {
@@ -7,7 +7,7 @@ customElements.define(
 
       const shadowRoot = this.attachShadow({ mode: "open" });
       shadowRoot.innerHTML = `
-              <style>
+        <style>
           @import "style.css";
           @import "components/settings/settings.css";
         
@@ -48,11 +48,8 @@ customElements.define(
                 </label>
               </fieldset>
             </label>
-        
-            <label for="hueSlider">Theme Color:
-              <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2"
-                aria-label="Theme Color Hue Slider">
-            </label>
+
+            <theme-slider></theme-slider>
         
             <label for="highContrast">High Contrast
               <input type="checkbox" role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
@@ -68,11 +65,14 @@ customElements.define(
       `;
 
       this.dialog = shadowRoot.getElementById("dialog");
-      this.hueSlider = shadowRoot.getElementById("hueSlider");
       this.themeSelectForm = shadowRoot.getElementById("themeSelect");
       this.highContrastCheckbox = shadowRoot.getElementById("highContrast");
+      this.themeSlider = shadowRoot.querySelector("theme-slider");
+
+      this.originalSettings = {};
 
       shadowRoot.getElementById("openBtn").addEventListener("click", () => {
+        this.storeOriginalSettings();
         this.applyStoredSettings();
         this.dialog.showModal();
         gtag('event', 'open_dialog', {
@@ -90,14 +90,10 @@ customElements.define(
       shadowRoot.getElementById("closeBtn").addEventListener("click", () => this.saveChanges());
       shadowRoot.getElementById("cancelBtn").addEventListener("click", () => this.cancelChanges());
 
-      this.hueSlider.addEventListener("input", () => {
-        this.updateHue(this.hueSlider.value);
-        gtag('event', 'change_theme_color', {
-          'event_category': 'Settings',
-          'event_label': 'Change Theme Color',
-          'value': this.hueSlider.value
-        });
+      this.themeSlider.addEventListener("hueChange", (event) => {
+        localStorage.setItem("selectedColorHue", event.detail);
       });
+
       this.themeSelectForm.addEventListener("change", event => {
         if (event.target.name === "theme") {
           this.updateTheme(event.target.value);
@@ -122,8 +118,8 @@ customElements.define(
       this.shadowRoot.getElementById("randomColorBtn").removeEventListener("click", () => this.pickRandomColor());
       this.shadowRoot.getElementById("closeBtn").removeEventListener("click", () => this.saveChanges());
       this.shadowRoot.getElementById("cancelBtn").removeEventListener("click", () => this.cancelChanges());
-      this.hueSlider.removeEventListener("input", () => {
-        this.updateHue(this.hueSlider.value);
+      this.themeSlider.removeEventListener("hueChange", (event) => {
+        localStorage.setItem("selectedColorHue", event.detail);
       });
       this.themeSelectForm.removeEventListener("change", event => {
         if (event.target.name === "theme") {
@@ -135,14 +131,17 @@ customElements.define(
       });
     }
 
+    storeOriginalSettings() {
+      this.originalSettings = {
+        theme: localStorage.getItem("myCustomTheme") || "",
+        hue: this.themeSlider.getHue(),
+        highContrast: localStorage.getItem("highContrast") === "true"
+      };
+    }
+
     applyStoredSettings() {
       const storedTheme = localStorage.getItem("myCustomTheme") || "";
-      const storedHue = localStorage.getItem("selectedColorHue") || "230"; // Default hue if not stored
       const highContrastEnabled = localStorage.getItem("highContrast") === "true";
-
-      console.log("Stored theme:", storedTheme);
-      console.log("Stored hue:", storedHue);
-      console.log("High contrast enabled:", highContrastEnabled);
 
       if (storedTheme) {
         this.updateTheme(storedTheme);
@@ -152,8 +151,7 @@ customElements.define(
         }
       }
 
-      this.hueSlider.value = storedHue;
-      this.updateHue(storedHue);
+      this.themeSlider.connectedCallback();
 
       this.highContrastCheckbox.checked = highContrastEnabled;
       this.toggleHighContrast(highContrastEnabled);
@@ -164,30 +162,22 @@ customElements.define(
       document.documentElement.style.setProperty("color-scheme", colorScheme);
     }
 
-    updateHue(hue) {
-      document.documentElement.style.setProperty('--brand-hue', hue);
-    }
-
     toggleHighContrast(enabled) {
       document.documentElement.dataset.mode = enabled ? "high-contrast" : "normal";
-      console.log("High contrast mode set to:", document.documentElement.dataset.mode);
     }
 
     pickRandomColor() {
       const randomHue = Math.floor(Math.random() * 361);
-      this.hueSlider.value = randomHue;
-      this.updateHue(randomHue);
+      this.themeSlider.setHue(randomHue);
       localStorage.setItem("selectedColorHue", randomHue);
     }
 
     saveChanges() {
       try {
         const selectedTheme = this.themeSelectForm.querySelector('input[name="theme"]:checked').value;
-        const selectedHue = this.hueSlider.value;
         const highContrastEnabled = this.highContrastCheckbox.checked;
 
         localStorage.setItem("myCustomTheme", selectedTheme);
-        localStorage.setItem("selectedColorHue", selectedHue);
         localStorage.setItem("highContrast", highContrastEnabled.toString());
 
         this.dialog.close();
@@ -197,8 +187,11 @@ customElements.define(
     }
 
     cancelChanges() {
+      this.themeSlider.setHue(this.originalSettings.hue);
+      this.updateTheme(this.originalSettings.theme);
+      this.highContrastCheckbox.checked = this.originalSettings.highContrast;
+      this.toggleHighContrast(this.originalSettings.highContrast);
       this.dialog.close();
-      this.applyStoredSettings(); // Reapply the initial settings when cancelling
     }
   }
 );
