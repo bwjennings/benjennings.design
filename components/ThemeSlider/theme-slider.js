@@ -9,7 +9,7 @@ customElements.define(
       shadowRoot.innerHTML = `
         <style>
           @import "style.css";
-          @import "components/settings/settings.css";
+          @import "components/ThemeSlider/theme-slider.css";
         </style>
         <label for="hueSlider">Theme Color:
           <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2"
@@ -23,6 +23,14 @@ customElements.define(
         this.updateHue(this.hueSlider.value);
         this.saveHue(this.hueSlider.value);
         this.dispatchEvent(new CustomEvent('hueChange', { detail: this.hueSlider.value }));
+        window.dispatchEvent(new CustomEvent('globalHueChange', { detail: this.hueSlider.value }));
+      });
+
+      window.addEventListener('globalHueChange', (event) => {
+        if (event.detail !== this.hueSlider.value) {
+          this.hueSlider.value = event.detail;
+          this.updateHue(event.detail);
+        }
       });
     }
 

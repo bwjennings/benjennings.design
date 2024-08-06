@@ -30,7 +30,7 @@
   grid-template-rows: 100px 1fr auto;
 
   height: 100%;
-  min-height: 400px;
+  min-height: 300px;
 
   background: var(--background-primary);
   border: 1px solid var(--border-primary);
@@ -69,7 +69,7 @@
 
   }
 
-  ::slotted([slot="icon-box"]) {}
+
 
 
 
@@ -166,6 +166,8 @@ p {
   color: var(--foreground-brand-secondary);
   margin-top: -16px;
   margin-inline: -16px;
+  user-select: none;
+  -webkit-user-select: none;
 
 
 
@@ -178,7 +180,7 @@ p {
     'FILL' 1;
   font-family: var(--icon-font-family);
   color: var(--background-brand-secondary);
-  font-size: 250px;
+  font-size: 50cqw;
   transition: 200ms ease-out;
   transition-property: font-variation-settings;
   rotate: -30deg;
@@ -230,11 +232,7 @@ p {
 
   .thumbnail {}
 
-  ::slotted([slot="icon-box"]) {
-    height: 200px;
-    width: 200px;
-
-  }
+  
 
   ::slotted([slot="thumbnail"]) {
     height: 200px;

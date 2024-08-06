@@ -17,14 +17,15 @@
   width: 350px;
   display: grid;
   padding: var(--spacing-x-large);
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
   grid-template-rows: 80px auto;
   gap: var(--spacing-x-large);
 
   grid-template-areas:
-    "title settings"
+    "title "
    
-    "nav-group nav-group"
+    "nav-group"
+    
   ;
   border-right: 1px solid var(--border-secondary);
   box-sizing: border-box;
@@ -110,6 +111,12 @@
   font-family: var(--text-font-family);
   transition: all 100ms;
 }
+site-settings {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: auto;
+}
 
 .title,
 .description {
@@ -191,12 +198,7 @@
     padding: 0px;
   }
 
-  site-settings {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    width: auto;
-  }
+
 
   .nav-card {
     display: flex;

@@ -4,7 +4,7 @@ customElements.define(
     constructor() {
       super();
 
-      const title = this.getAttribute("title") || "Title";
+      const title = this.getAttribute("title") || "";
       const badge = this.getAttribute("badge");
       const badgeIcon = this.getAttribute("badge-icon");
 
@@ -77,7 +77,7 @@ customElements.define(
     }
 
     render() {
-      const title = this.getAttribute("title") || "Title";
+      const title = this.getAttribute("card-title");
       const badge = this.getAttribute("badge");
       
       const badgeIcon = this.getAttribute("badge-icon");
@@ -107,7 +107,7 @@ customElements.define(
           <slot name="content"></slot>
         </div>
 
-        <dialog id="dialog" aria-labelledby="dialog-title">
+        <dialog id="dialog" >
         <div class="container">
           <header>
             <h2 class="heading md" id="dialog-title">${title}</h2>

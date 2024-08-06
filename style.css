@@ -12,6 +12,7 @@
 ::selection {
   background: var(--background-accent-secondary);
   color: var(--foreground-accent);
+  text-decoration: underline;
 }
 
 * {
@@ -130,7 +131,7 @@ u {
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
     font-variation-settings:
-    "GRAD" 125,
+    "GRAD" 50,
     "wdth" 115;
   }
 
@@ -189,7 +190,7 @@ button {
   box-sizing: border-box;
   user-select: none;
   border: 1px solid var(--border-secondary);
-  background: var(--background-primary);
+  background: var(--background-secondary);
   display: inline-flex;
   padding: var(--spacing-medium, 12px);
   justify-content: center;
@@ -203,6 +204,7 @@ button {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  -webkit-user-select: none;
   transition: outline 100ms;
 
   .icon {
@@ -403,6 +405,9 @@ main {
 }
 
 .page-title {
+  
+  background-color: var(--background-page);
+ 
   z-index: 2;
   margin-top: calc(30cqh - 40px);
   color: var(--foreground-primary);
@@ -418,7 +423,7 @@ main {
   max-width: 1200px;
   position: sticky;
   top: 0px;
-  background-color: var(--background-page);
+ 
   padding: var(--spacing-x-large);
   border-bottom: 1px solid var(--border-secondary);
   user-select: none;
@@ -438,6 +443,8 @@ main {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 300px;
+  align-items: center;
   gap: var(--spacing-xxx-large);
   max-width: 1200px;
   grid-column: span 3;
@@ -623,6 +630,10 @@ dialog[open]::backdrop {
 
 
 
+}
+
+.full-row{
+  grid-column: 1 / -1;
 }
 
 @media screen and (max-width: 900px) {
