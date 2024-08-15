@@ -82,9 +82,7 @@ customElements.define(
       
       const badgeIcon = this.getAttribute("badge-icon");
 
-      const badgeTemplate = badge
-        ? `<my-badge variant="secondary" icon="${badgeIcon || ''}">${badge}</my-badge>`
-        : "";
+     
 
         
 
@@ -100,7 +98,8 @@ customElements.define(
           </div>
 
           <h2 class="card-title heading sm">${title}</h2>
-          ${badgeTemplate}
+          <slot class="badge-group secondary" name="badge"></slot>
+          
 
 
 

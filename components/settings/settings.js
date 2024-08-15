@@ -16,7 +16,7 @@ customElements.define(
           }
         </style>
         <div class="button-group row">
-          <button id="randomColorBtn" class="icon-button pallete-button " aria-label="Random Theme Color">palette</button>
+          <button id="randomColorBtn" class="icon-button pallete-button" aria-label="Random Theme Color">palette</button>
           <button id="openBtn" aria-label="Open Settings">
             <div class="icon">tune</div>Settings
           </button>
@@ -80,6 +80,7 @@ customElements.define(
           'event_label': 'Open Settings Dialog'
         });
       });
+
       shadowRoot.getElementById("randomColorBtn").addEventListener("click", () => {
         this.pickRandomColor();
         gtag('event', 'random_theme_color', {
@@ -87,6 +88,7 @@ customElements.define(
           'event_label': 'Random Theme Color'
         });
       });
+
       shadowRoot.getElementById("closeBtn").addEventListener("click", () => this.saveChanges());
       shadowRoot.getElementById("cancelBtn").addEventListener("click", () => this.cancelChanges());
 
@@ -104,6 +106,7 @@ customElements.define(
           });
         }
       });
+
       this.highContrastCheckbox.addEventListener("change", () => {
         this.toggleHighContrast(this.highContrastCheckbox.checked);
       });
@@ -142,7 +145,7 @@ customElements.define(
     applyStoredSettings() {
       const storedTheme = localStorage.getItem("myCustomTheme") || "";
       const highContrastEnabled = localStorage.getItem("highContrast") === "true";
-
+    
       if (storedTheme) {
         this.updateTheme(storedTheme);
         const themeRadio = this.shadowRoot.querySelector(`input[name="theme"][value="${storedTheme}"]`);
@@ -150,9 +153,7 @@ customElements.define(
           themeRadio.checked = true;
         }
       }
-
-      this.themeSlider.connectedCallback();
-
+    
       this.highContrastCheckbox.checked = highContrastEnabled;
       this.toggleHighContrast(highContrastEnabled);
     }
@@ -168,8 +169,9 @@ customElements.define(
 
     pickRandomColor() {
       const randomHue = Math.floor(Math.random() * 361);
-      this.themeSlider.setHue(randomHue);
+      this.themeSlider.setHue(randomHue); // Update the slider value
       localStorage.setItem("selectedColorHue", randomHue);
+      window.dispatchEvent(new CustomEvent('globalHueChange', { detail: randomHue })); // Ensure other components update
     }
 
     saveChanges() {

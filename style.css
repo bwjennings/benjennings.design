@@ -401,6 +401,8 @@ main {
   padding: var(--spacing-x-large);
   padding-top: 0px;
   gap: var(--spacing-xxx-large);
+  view-transition-name: main-area;
+  
 
 }
 
@@ -449,7 +451,7 @@ main {
   max-width: 1200px;
   grid-column: span 3;
   padding: var(--spacing-x-large);
-  view-transition-name: main-items;
+ 
 }
 
 @container main-content (max-width: 1000px) {
@@ -620,6 +622,7 @@ dialog[open]::backdrop {
   display: flex;
 
   flex-direction: column;
+  align-self: start;
   align-items: start;
   justify-content: center;
   gap: var(--spacing-xxx-large, 40px);
@@ -635,6 +638,73 @@ dialog[open]::backdrop {
 .full-row{
   grid-column: 1 / -1;
 }
+
+
+
+::part(header) {
+  font-size: 100px;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+/* Customize the default animation behavior */
+
+
+
+/* Create a custom animation */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes in {
+  from {
+    filter: blur(10px);
+    transform: translateY(100%);
+  }
+
+}
+
+@keyframes out {
+  to {
+    filter: blur(10px);
+    transform: translateY(-100%);
+  }
+ 
+}
+
+
+::view-transition-old(main-area) {
+  
+  animation: out ease-in-out 600ms;
+  
+}
+
+::view-transition-new(main-area) {
+  animation: in ease-in-out 600ms;
+
+}
+
+
+@container style(color-scheme: dark) {
+
+  body {
+    font-variation-settings:
+      "GRAD" 200;
+  }
+}
+
 
 @media screen and (max-width: 900px) {
   body {
@@ -708,68 +778,19 @@ dialog[open]::backdrop {
       padding-block: var(--spacing-x-large);
     }
   }
-}
-
-::part(header) {
-  font-size: 100px;
-}
-
-@view-transition {
-  navigation: auto;
-}
-
-/* Customize the default animation behavior */
-
-
-
-/* Create a custom animation */
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
+  @keyframes in {
+    from {
+      filter: blur(10px);
+      transform: translateX(100%);
+    }
+  
   }
-}
-
-@keyframes fade-out {
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes slide-from-right {
-  from {
-    transform: translateY(24px);
-  }
-}
-
-@keyframes slide-to-left {
-  to {
-    transform: translateY(-24px);
-  }
-}
-
-::view-transition-old(main-area) {
-  animation: 200ms ease-in-out both fade-out,
-    300ms ease-in-out both slide-to-left;
-}
-
-::view-transition-new(main-area) {
-  animation: 200ms ease-in-out 90ms both fade-in,
-    300ms ease-in-out both slide-from-right;
-}
-
-::view-transition-old(root) {
-  transition: 100ms;
-}
-
-::view-transition-new(root) {
-  transition: 100ms;
-}
-
-@container style(color-scheme: dark) {
-
-  body {
-    font-variation-settings:
-      "GRAD" 200;
+  
+  @keyframes out {
+    to {
+      filter: blur(10px);
+      transform: translateX(-100%);
+    }
+   
   }
 }

@@ -46,15 +46,15 @@
       
         <section class="page-title">
           
-            <my-badge icon="experiment">Experiments</my-badge>
+          <my-badge variant="primary" icon="experiment">Experiments</my-badge>
             <h1 class="heading">Some fun things</h1>
           
         </section>
        
         <section class="page-items">
-          <theme-slider class="full-row"></theme-slider>
           <simple-card card-title="Design" badge="3D Model">
-            <p slot="icon-box">home</p>
+            <model-viewer slot="thumbnail" auto-rotate   src="designs/resources/ImageToStl.com_scaniverse 2024-05-07 180734.glb"></model-viewer>
+            
             Don't make it simple, make it clear
 
 
@@ -69,8 +69,11 @@
 
 
           </simple-card>
-          <simple-card  card-title="Design" badge="3D Model">
+          <simple-card  card-title="Rock" badge="3D Model">
             Don't make it simple, make it clear
+            <img src="designs/resources/9EC3BBEA-23DC-4C2E-A250-23D8DEC5EB9A_1_105_c.jpeg" slot="thumbnail">
+            <model-viewer slot="post" auto-rotate   src="designs/resources/rock.glb"></model-viewer>
+            <p slot="post"> Hey There</p>
 
 
           </simple-card>

@@ -32,6 +32,7 @@ class CustomSidebar extends HTMLElement {
             <span class="title">Resources</span>
         </a></li>
     </ul>
+     <theme-slider></theme-slider>
 </nav>
     `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));

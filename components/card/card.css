@@ -196,6 +196,14 @@ p {
 
 }
 
+.post-body{
+  display: grid;
+    
+
+  grid-auto-columns: 1fr 1fr;
+  gap: var(--spacing-large);
+  
+}
 ::slotted([slot="image"]) {
 
   width: 100%;
@@ -208,19 +216,27 @@ p {
   display: grid;
     
 
-  grid-auto-columns: 1fr 1fr;
+  grid-auto-columns: 1fr 2fr;
   gap: var(--spacing-large);
-
-
- 
-
-
 }
-@container dialog (max-width: 800px) {
+
+.badge-group{
+  display: flex;
+  gap: var(--spacing-small);
+}
+
+
+
+::slotted([slot="thumbnail"]) {
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+@container dialog (max-width: 400px) {
   ::slotted([slot="post"]){
  
     
-    grid-template-columns: 1fr;
+    grid-auto-columns: 1fr;
    
   
 }
@@ -234,11 +250,7 @@ p {
 
   
 
-  ::slotted([slot="thumbnail"]) {
-    height: 200px;
-    width: 200px;
-
-  }
+  
 
 }
 

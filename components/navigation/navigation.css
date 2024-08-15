@@ -18,13 +18,14 @@
   display: grid;
   padding: var(--spacing-x-large);
   grid-template-columns: 1fr;
-  grid-template-rows: 80px auto;
+  grid-template-rows: 80px 1fr auto;
   gap: var(--spacing-x-large);
 
   grid-template-areas:
     "title "
    
     "nav-group"
+    "theme-slider"
     
   ;
   border-right: 1px solid var(--border-secondary);
@@ -171,6 +172,10 @@ site-settings {
   grid-area: item5;
 }
 
+theme-slider{
+  grid-area:theme-slider;
+}
+
 
 .title {
   align-items: center;
@@ -229,7 +234,7 @@ site-settings {
 
   }
 
-  .description {
+  :is(.description, theme-slider) {
     display: none;
   }
 
@@ -284,6 +289,7 @@ site-settings {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       justify-self: stretch;
+      gap: 0px;
 
       li {
         justify-self: stretch;

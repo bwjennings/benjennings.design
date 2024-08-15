@@ -1,96 +1,116 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Ben Jennings</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-    
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Stylesheets -->
-    <link href="./vars.css" rel="stylesheet" />
-    <link href="./style.css" rel="stylesheet" />
-    
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-PLX2X0J846');
-    </script>
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="manifest.json" />
-    
-    
-    <!-- Prefetch Links -->
-    <link rel="prefetch" href="index.html" as="document"/>
-    <link rel="prefetch" href="designs.html" as="document"/>
-    <link rel="prefetch" href="fundamentals.html" as="document"/>
-    <link rel="prefetch" href="experiments.html" as="document"/>
-    <link rel="prefetch" href="resources.html" as="document"/>
-    
-    <!-- Module Scripts -->
-    <script type="module" src="components/index.js"></script>
-  </head>
+
+<head>
+  <title>Ben Jennings</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link href="./vars.css" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PLX2X0J846');
+  </script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="manifest.json" />
+
+
+  <!-- Prefetch Links -->
+  <link rel="prefetch" href="index.html" as="document" />
+  <link rel="prefetch" href="designs.html" as="document" />
+  <link rel="prefetch" href="fundamentals.html" as="document" />
+  <link rel="prefetch" href="experiments.html" as="document" />
+  <link rel="prefetch" href="resources.html" as="document" />
+
+  <!-- Module Scripts -->
+  <script type="module" src="components/index.js"></script>
+</head>
 
 <body>
   <div class="page-container">
     <custom-sidebar active-item="2"></custom-sidebar>
 
     <main>
-      
-        <section class="page-title">
-          
-            <my-badge icon="web">Designs</my-badge>
-            <h1 class="heading">A few problems that I've worked on</h1>
-          
-        </section>
-       
-        <section class="page-items">
-          <simple-card card-title="Design" badge="3D Model">
-            <p slot="icon-box">home</p>
-            Don't make it simple, make it clear
 
+      <section class="page-title">
 
-          </simple-card>
-          
-          
-        
-          <simple-card card-title="Design" badge="3D Model">
-            <p slot="icon-box">book</p>
-            Don't make it simple, make it clear
-            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="800" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Fpage-id%3D0%253A1%26node-id%3D6341-3045%26viewport%3D736%252C-2525%252C0.32%26t%3DxwcKof0PVZQZct8Q-1%26scaling%3Dcontain%26content-scaling%3Dresponsive%26starting-point-node-id%3D8681%253A2405" ></iframe>
+        <my-badge variant="primary" icon="web">Designs</my-badge>
+        <h1 class="heading">A few problems that I've worked on</h1>
 
+      </section>
 
-          </simple-card>
-          <simple-card card-title="Design" badge="3D Model">
-            Don't make it simple, make it clear
+      <section class="page-items">
+        <simple-card card-title="Learning Management System" badge="Large System Design">
+          <p slot="icon-box">local_police</p>
+          Don't make it simple, make it clear
 
+          <my-badge slot="badge">Large System</my-badge>
+          <my-badge slot="badge">Large System</my-badge>
 
-          </simple-card>
-          <simple-card card-title="Design" badge="3D Model">
-            Don't make it simple, make it clear
+          <div  slot="post">
+            <img src="designs/resources/Designs/PLS/image.png" />
+            <p >This System needed to allow for the creation and distribution of learning material to law
+              enforcement agencies across the country. <br> A major problem to design for was the ability to group
+              lessons
+              into a multiple courses and then assign that course to individual users or groups of users</p>
 
+            <label> Here's a map I created to understand the complexity of system
 
-          </simple-card>
-          <simple-card card-title="Design" badge="3D Model">
-            Don't make it simple, make it clear
+              <iframe  style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450"
+                src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fboard%2FwOVbGK0BC0SEEEuwhPApHc%2Fcards%3Fnode-id%3D41-113%26t%3DwAB2WqOtdNOAV7Me-1"></iframe>
+            </label>
+            
 
+          </div>
 
-          </simple-card>
+        </simple-card>
 
 
 
+        <simple-card card-title="Design" badge="3D Model">
+          <p slot="icon-box">book</p>
+          Don't make it simple, make it clear
+          <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="800"
+            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Fpage-id%3D0%253A1%26node-id%3D6341-3045%26viewport%3D736%252C-2525%252C0.32%26t%3DxwcKof0PVZQZct8Q-1%26scaling%3Dcontain%26content-scaling%3Dresponsive%26starting-point-node-id%3D8681%253A2405"></iframe>
 
-        </section>
-      </div>
-    </main>
+
+        </simple-card>
+        <simple-card card-title="Design" badge="3D Model">
+          Don't make it simple, make it clear
+
+
+        </simple-card>
+        <simple-card card-title="Design" badge="3D Model">
+          Don't make it simple, make it clear
+
+
+        </simple-card>
+        <simple-card card-title="Design" badge="3D Model">
+          Don't make it simple, make it clear
+
+
+        </simple-card>
+
+
+
+
+      </section>
+  </div>
+  </main>
   </div>
 </body>
 
