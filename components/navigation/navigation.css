@@ -4,10 +4,13 @@
   width: 350px;
   z-index: 20;
   background: inherit;
+  
 
 
 
 }
+
+
 
 .sidebar {
   position: sticky;
@@ -31,7 +34,9 @@
   border-right: 1px solid var(--border-secondary);
   box-sizing: border-box;
 
-  ul {
+  menu {
+    width: 100%;
+    view-transition-name: navigation;
     gap: var(--spacing-small);
     display: flex;
     flex-direction: column;
@@ -60,7 +65,20 @@
   grid-area: divider;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
+/* Customize the default animation behavior */
+
+
+/* Create a custom animation */
+
+
+
+
 .nav-card {
+  
   box-sizing: border-box;
   color: var(--foreground-secondary);
   height: 80px;
@@ -85,9 +103,12 @@
 
 
   }
+
+  
 }
 
 .active {
+  view-transition-name: active-item;
   background: var(--background-brand);
   font-variation-settings: 'GRAD' 100;
   color: var(--foreground-brand);
@@ -100,6 +121,21 @@
       "GRAD" 100;
   }
 }
+
+@keyframes active-item-in {
+  from{
+    outline: 4px var(--background-brand) solid;
+    outline-color: var(--background-brand);
+  }
+
+  to {
+   outline: 0px var(--background-brand) solid;
+   outline-color: var(--background-brand);
+    
+  }
+  
+}
+
 
 .title-group {
   display: flex;
@@ -285,7 +321,8 @@ theme-slider{
       display: none;
     }
 
-    ul {
+    menu {
+      animation: none;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       justify-self: stretch;

@@ -10,7 +10,7 @@ class CustomSidebar extends HTMLElement {
     <nav class="sidebar">
     <h2 class="site-title"><a href="index.html">Ben</a></h2>
     <site-settings></site-settings>
-   <ul>
+   <menu>
         <li><a tabindex="1" class="nav-card item1" href="index.html">
             <span class="icon">waving_hand</span>
             <span class="title">Home</span>
@@ -31,7 +31,7 @@ class CustomSidebar extends HTMLElement {
             <span class="icon">folder_open</span>
             <span class="title">Resources</span>
         </a></li>
-    </ul>
+    </menu>
      <theme-slider></theme-slider>
 </nav>
     `;

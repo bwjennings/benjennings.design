@@ -1,100 +1,93 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Ben Jennings</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-    
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Stylesheets -->
-    <link href="./vars.css" rel="stylesheet" />
-    <link href="./style.css" rel="stylesheet" />
-  
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-PLX2X0J846');
-    </script>
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<head>
+  <title>Ben Jennings</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link href="./vars.css" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PLX2X0J846');
+  </script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="manifest.json" />
-  
-    
-    <!-- Prefetch Links -->
-    <link rel="prefetch" href="index.html" as="document"/>
-    <link rel="prefetch" href="designs.html" as="document"/>
-    <link rel="prefetch" href="fundamentals.html" as="document"/>
-    <link rel="prefetch" href="experiments.html" as="document"/>
-    <link rel="prefetch" href="resources.html" as="document"/>
-    
-    <!-- Module Scripts -->
-    <script type="module" src="components/index.js"></script>
-  </head>
-  <body>
-    <div class="page-container">
-      <custom-sidebar active-item="3"></custom-sidebar>
-
-      <main>
-      
-        <section class="page-title">
-          
-          <my-badge variant="primary" icon="experiment">Experiments</my-badge>
-            <h1 class="heading">Some fun things</h1>
-          
-        </section>
-       
-        <section class="page-items">
-          <simple-card card-title="Design" badge="3D Model">
-            <model-viewer slot="thumbnail" auto-rotate   src="designs/resources/ImageToStl.com_scaniverse 2024-05-07 180734.glb"></model-viewer>
-            
-            Don't make it simple, make it clear
 
 
-          </simple-card>
-          
-          
-        
-          <simple-card  card-title="Design" badge="3D Model">
-            <p slot="icon-box">book</p>
-            Don't make it simple, make it clear
-            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="800" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Fpage-id%3D0%253A1%26node-id%3D6341-3045%26viewport%3D736%252C-2525%252C0.32%26t%3DxwcKof0PVZQZct8Q-1%26scaling%3Dcontain%26content-scaling%3Dresponsive%26starting-point-node-id%3D8681%253A2405" ></iframe>
+  <!-- Prefetch Links -->
+  <link rel="prefetch" href="index.html" as="document" />
+  <link rel="prefetch" href="designs.html" as="document" />
+  <link rel="prefetch" href="fundamentals.html" as="document" />
+  <link rel="prefetch" href="experiments.html" as="document" />
+  <link rel="prefetch" href="resources.html" as="document" />
+
+  <!-- Module Scripts -->
+  <script type="module" src="components/index.js"></script>
+</head>
+
+<body>
+  <div class="page-container">
+    <custom-sidebar active-item="3"></custom-sidebar>
+
+    <main>
+
+      <section class="page-title">
+
+        <my-badge variant="primary" icon="experiment">Experiments</my-badge>
+        <h1 class="heading">Some fun things</h1>
+
+      </section>
+
+      <section class="page-items">
+        <simple-card card-title="My Snow Boot">
+          <model-viewer slot="thumbnail" auto-rotate shadow-intensity="1" rotation-per-second="40deg" shadow-softness="1" 
+            src="designs/resources/Experiments/3D/boot.glb"></model-viewer>
+            <p slot="post">I made this by simply taking a bunch of photos from every angle and processing it into 3d object </p>
+
+            <model-viewer slot="post" auto-rotate camera-controls touch-action="pan-y" rotation-per-second="40deg" tone-mapping="aces" exposure="1.1" shadow-softness="1" shadow-intensity="1"
+            src="designs/resources/Experiments/3D/boot.glb"></model-viewer>
+
+            <my-badge>3D Scan</my-badge>
 
 
-          </simple-card>
-          <simple-card  card-title="Rock" badge="3D Model">
-            Don't make it simple, make it clear
-            <img src="designs/resources/9EC3BBEA-23DC-4C2E-A250-23D8DEC5EB9A_1_105_c.jpeg" slot="thumbnail">
-            <model-viewer slot="post" auto-rotate   src="designs/resources/rock.glb"></model-viewer>
-            <p slot="post"> Hey There</p>
+          Don't make it simple, make it clear
+        </simple-card>
 
 
-          </simple-card>
-          <simple-card  card-title="Design" badge="3D Model">
-            Don't make it simple, make it clear
+        <simple-card card-title="Rock" badge="3D Model">
+          Don't make it simple, make it clear
+          <img src="designs/resources/9EC3BBEA-23DC-4C2E-A250-23D8DEC5EB9A_1_105_c.jpeg" slot="thumbnail">
+          <model-viewer slot="post" auto-rotate src="designs/resources/rock.glb"></model-viewer>
+          <p slot="post"> Hey There</p>
 
 
-          </simple-card>
-          <simple-card  card-title="Design" badge="3D Model">
-            Don't make it simple, make it clear
-
-
-          </simple-card>
+        </simple-card>
 
 
 
 
-        </section>
-      </div>
-    </main>
-    </div>
-    
-  </body>
+
+
+      </section>
+  </div>
+  </main>
+  </div>
+
+</body>
+
 </html>

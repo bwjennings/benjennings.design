@@ -78,9 +78,8 @@ customElements.define(
 
     render() {
       const title = this.getAttribute("card-title");
-      const badge = this.getAttribute("badge");
+     
       
-      const badgeIcon = this.getAttribute("badge-icon");
 
      
 
@@ -92,13 +91,12 @@ customElements.define(
         
         
         <div class="card-container">
-          <div class="thumbnail">
-            <slot name="thumbnail"></slot>
-            <slot name="icon-box"></slot>
-          </div>
+          <slot name="thumbnail" class="thumbnail"></slot>
+         
+          <p class="${this.getAttribute("version") || 'icon'}">${this.getAttribute("icon")|| ''}</p>
 
           <h2 class="card-title heading sm">${title}</h2>
-          <slot class="badge-group secondary" name="badge"></slot>
+          <slot class="badge-group" name="badge"></slot>
           
 
 
@@ -109,6 +107,7 @@ customElements.define(
         <dialog id="dialog" >
         <div class="container">
           <header>
+          
             <h2 class="heading md" id="dialog-title">${title}</h2>
             <button class="icon-button" id="closeBtn1">Close</button>
           </header>

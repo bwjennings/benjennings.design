@@ -2,11 +2,11 @@ class BadgeComponent extends HTMLElement {
   constructor() {
     super(); // Always call super first in constructor
     this.attachShadow({ mode: "open" }); // Attach a shadow root to the element.
-
-    // Create a style element and add CSS rules
-    const style = document.createElement("style");
-    style.textContent = `
-        :host{
+    this.setAttribute('slot', 'badge');
+   
+    this.shadowRoot.innerHTML = `
+    <style>
+     :host{
           grid-area: badge;
           view-transition-name:badge;
           cursor:default;
@@ -15,6 +15,7 @@ class BadgeComponent extends HTMLElement {
           }
 
             .badge {
+            height:20px;
                 background-color: var( --background-primary-secondary);
                 color: var(--foreground-secondary);
                 border: 1px solid var(--border-secondary);
@@ -35,7 +36,7 @@ class BadgeComponent extends HTMLElement {
             .primary {
                 background-color: var(--background-accent);
                 color: var(--foreground-accent);
-                                border:1px solid var(--border-accent);
+                border:1px solid var(--border-accent);
 
             }
 
@@ -49,20 +50,15 @@ class BadgeComponent extends HTMLElement {
             }
 
             /* Add more variants as needed */
-        `;
+        </style>
+    <div slot="badge" class="badge ${this.getAttribute("variant") || ''}">
+    <span>${this.getAttribute("icon") || ''}</span>
+      <slot></slot>
+      
 
-    // Create a span element and attach the slot for dynamic content
-    const span = document.createElement("div");
-    span.classList.add("badge"); // Default to primary class
+    </div>
 
-    // Create an icon element
-    this.iconElement = document.createElement("span");
-
-    const slot = document.createElement("slot");
-    span.append(this.iconElement, slot);
-
-    // Append style and span to the shadow root
-    this.shadowRoot.append(style, span);
+     `;
   }
 
   static get observedAttributes() {

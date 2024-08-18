@@ -3,10 +3,12 @@
   perspective: 200px;
   transform-style: preserve-3d;
   
+  
 }
 
 dialog{
   width: 50dvw;
+  --theme-slider-size:40px
 }
 
 @supports not (color-scheme: light dark){

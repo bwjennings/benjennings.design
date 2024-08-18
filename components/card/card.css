@@ -1,26 +1,12 @@
 @import "/style.css";
 
-@property --gradient-1 {
-  syntax: "<color>";
-  initial-value: yellow;
-  inherits: false;
-}
-
-@property --gradient-2 {
-  syntax: "<color>";
-  initial-value: blue;
-  inherits: false;
-}
 
 :host {
   height: auto;
   container-type: inline-size;
   container-name: card;
   view-transition-name: main-area;
-
-
 }
-
 
 .card-container {
   cursor: context-menu;
@@ -28,83 +14,46 @@
   flex-direction: column;
   grid-template-columns: 1fr;
   grid-template-rows: 100px 1fr auto;
-
   height: 100%;
   min-height: 300px;
-
-  background: var(--background-primary);
+  background: var(--background-secondary);
   border: 1px solid var(--border-primary);
   outline-color: var(--border-brand-hover);
-
   container-type: inline-size;
   transition: outline 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58),
     font-variation-settings 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58);
-  font-variation-settings:
-
-    "GRAD" 0;
-
-
-
+  font-variation-settings: "GRAD" 0;
   padding: var(--spacing-large);
   color: var(--foreground-primary);
-
   gap: var(--spacing-large);
-
-
   overflow: hidden;
-
   outline-offset: 0px;
-
-
-  &:hover {
-    outline: 8px solid var(--border-brand-hover);
-
-    
-  }
-
-  .icon-button {
-    font-variation-settings:
-
-      "GRAD" 100;
-
-  }
-
-
-
-
-
-
-  &:active {
-    outline-width: 16px;
-
-  }
 }
 
-&:active {
+.card-container:hover {
+  outline: 8px solid var(--border-brand-hover);
+}
+
+.card-container:hover .icon-button {
+  font-variation-settings: "GRAD" 100;
+}
+
+.card-container:active {
+  outline-width: 16px;
+}
+
+.card-container:active {
   transition: 100ms;
   perspective: 100px;
   transform: scaleZ(20%);
 }
 
-
-
-
-
-
 .card-title {
-
   display: flex;
   flex: 1 0 0;
   text-wrap: balance;
   grid-area: title;
-
-
-
 }
-
-
-
-
 
 p {
   color: var(--foreground-onEmphasis);
@@ -114,49 +63,17 @@ p {
   font-weight: var(--body-medium-font-weight, 400);
 }
 
-
-
-
-
-
-
-
-
-
 .content:has(slot:empty) {
   background-color: green;
 }
 
-
-
-::slotted([slot="thumbnail"]) {
-
-  display: flex;
-  height: auto;
-  width: auto;
-  align-self: stretch;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-}
-
-::slotted([slot="thumbnail"]):has(.card-container:hover) {
-  color: red;
-}
-
-@property --c {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: red;
-}
-
-
-.thumbnail {
+.thumbnail{
+  max-height: 120px;
+  margin-top: -16px;
+  margin-inline: -16px;
   overflow: hidden;
   display: flex;
-  height: 120px;
+ 
   width: auto;
   align-self: stretch;
   background: var(--background-brand);
@@ -168,93 +85,109 @@ p {
   margin-inline: -16px;
   user-select: none;
   -webkit-user-select: none;
+}
+  ::slotted(model-viewer){
+    width: 100%;
+    height: 100%;
+  }
+
+  ::slotted(model-viewer){
+    width: 100%;
+    height: 500px;
+  }
 
 
+
+
+.box {
+  font-variation-settings: 'GRAD' -200, 'FILL' 1;
+  font-family: var(--icon-font-family);
+  font-size: 100cqw;
+  transition: 200ms ease-out;
+  transition-property: font-variation-settings;
+  
+  overflow: hidden;
+  display: flex;
+  height: 120px;
+ 
+  width: auto;
+  align-self: stretch;
+  background: var(--background-brand-secondary);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--foreground-brand-secondary);
+  margin-top: -16px;
+  margin-inline: -16px;
+  user-select: none;
+  -webkit-user-select: none;
 
 }
 
-::slotted([slot="icon-box"]) {
+.icon{
+  font-family: var(--icon-font-family);
+  font-variation-settings: 'FILL' 1;
 
-  font-variation-settings:
-    'GRAD' -200,
-    'FILL' 1;
+  font-size: 40px;
+  color: var(--foreground-brand);
+}
+
+::slotted([slot="icon-box"]) {
+  font-variation-settings: 'GRAD' -200, 'FILL' 1;
   font-family: var(--icon-font-family);
   color: var(--background-brand-secondary);
   font-size: 50cqw;
   transition: 200ms ease-out;
   transition-property: font-variation-settings;
   rotate: -30deg;
-
-
-
-
-  span {
-
-    transform: rotate(90deg);
-  }
-
-
 }
 
-.post-body{
-  display: grid;
-    
+::slotted([slot="icon-box"]) span {
+  transform: rotate(90deg);
+}
 
+.post-body {
+  display: grid;
   grid-auto-columns: 1fr 1fr;
   gap: var(--spacing-large);
-  
 }
-::slotted([slot="image"]) {
 
+::slotted([slot="image"]) {
   width: 100%;
   height: 400px;
-  
-
 }
-::slotted([slot="post"]) {
- 
-  display: grid;
-    
 
+::slotted([slot="post"]) {
+  display: grid;
   grid-auto-columns: 1fr 2fr;
   gap: var(--spacing-large);
+
+  :slotted(model-viewer){
+    height: 400px;
+  } 
 }
 
-.badge-group{
+
+
+.badge-group {
   display: flex;
   gap: var(--spacing-small);
+  align-items: end;
 }
 
 
-
-::slotted([slot="thumbnail"]) {
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-}
 @container dialog (max-width: 400px) {
-  ::slotted([slot="post"]){
- 
-    
+  ::slotted([slot="post"]) {
     grid-auto-columns: 1fr;
-   
-  
+  }
 }
-}
-
 
 @container card (min-width:400px) {
-
-
-  .thumbnail {}
-
-  
-
-  
-
+  .thumbnail {
+    /* Empty rule */
+  }
 }
 
 @view-transition {
   navigation: auto;
 }
-

@@ -338,6 +338,7 @@ label {
     border: 1px solid transparent;
     transition: all 600ms;
   }
+  
 
   &:has(input:checked) {
 
@@ -401,7 +402,9 @@ main {
   padding: var(--spacing-x-large);
   padding-top: 0px;
   gap: var(--spacing-xxx-large);
-  view-transition-name: main-area;
+  transform-style: preserve-3d;
+  transform-origin: bottom;
+ 
   
 
 }
@@ -451,6 +454,7 @@ main {
   max-width: 1200px;
   grid-column: span 3;
   padding: var(--spacing-x-large);
+  view-transition-name: main-area;
  
 }
 
@@ -652,7 +656,6 @@ dialog[open]::backdrop {
 /* Customize the default animation behavior */
 
 
-
 /* Create a custom animation */
 
 @keyframes fade-in {
@@ -667,19 +670,32 @@ dialog[open]::backdrop {
     opacity: 0;
   }
 }
+::view-transition-old(menu) {
+  
+  animation: fade-out ease-out 1s;
+  
+}
+
+::view-transition-new(menu) {
+  animation: fade-in ease-in 1s;
+
+}
 
 @keyframes in {
   from {
     filter: blur(10px);
-    transform: translateY(100%);
+    transform: perspective(500px) translateY(200%);
+    background: var(--background-page);
   }
 
 }
 
 @keyframes out {
   to {
-    filter: blur(10px);
-    transform: translateY(-100%);
+    filter: blur(30px);
+    transform: perspective(500px)  translateZ(-500px);
+    background: var(--background-page);
+    opacity: 0;
   }
  
 }
@@ -687,12 +703,12 @@ dialog[open]::backdrop {
 
 ::view-transition-old(main-area) {
   
-  animation: out ease-in-out 600ms;
+  animation: out ease-in-out 1000ms;
   
 }
 
 ::view-transition-new(main-area) {
-  animation: in ease-in-out 600ms;
+  animation: in ease-in-out 1000ms;
 
 }
 
@@ -757,6 +773,7 @@ dialog[open]::backdrop {
   }
 
   dialog {
+    content-visibility: auto;
     margin: 0px;
     margin-top: auto;
     padding: var(--spacing-x-large);
