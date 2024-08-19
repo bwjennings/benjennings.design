@@ -1,4 +1,3 @@
-// Define the custom element for Theme Slider
 customElements.define(
   "theme-slider",
   class extends HTMLElement {
@@ -7,12 +6,18 @@ customElements.define(
 
       // Attach a shadow DOM to the element
       const shadowRoot = this.attachShadow({ mode: "open" });
+
+      // Check if the 'data-hide-label' attribute is present
+      const hideLabel = this.hasAttribute('data-hide-label');
+
+      // Template with conditional label text visibility
       shadowRoot.innerHTML = `
         <style>
           @import "style.css";
           @import "components/ThemeSlider/theme-slider.css";
         </style>
-        <label for="hueSlider">Theme Color:
+        <label for="hueSlider">
+          ${!hideLabel ? 'Theme Color:' : ''}
           <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2"
             aria-label="Theme Color Hue Slider">
         </label>

@@ -10,7 +10,18 @@
 
 }
 
+.quick-theme{
+  opacity: 0.9;
+  filter:saturate(0.9);
+ transition: filter 300ms,opacity 300ms;
 
+ &:hover{
+  opacity:1;
+  filter:saturate(1);
+    opacity: 1;
+   
+ }
+}
 
 .sidebar {
   position: sticky;
@@ -22,13 +33,14 @@
   padding: var(--spacing-x-large);
   grid-template-columns: 1fr;
   grid-template-rows: 80px 1fr auto;
-  gap: var(--spacing-x-large);
+  gap: var(--spacing-large);
 
   grid-template-areas:
     "title "
    
     "nav-group"
     "theme-slider"
+    "settings"
     
   ;
   border-right: 1px solid var(--border-secondary);
@@ -65,9 +77,6 @@
   grid-area: divider;
 }
 
-@view-transition {
-  navigation: auto;
-}
 
 /* Customize the default animation behavior */
 
@@ -109,12 +118,12 @@
 
 .active {
   view-transition-name: active-item;
-  background: var(--background-brand);
+  background: var(--background-brand-secondary);
   font-variation-settings: 'GRAD' 100;
-  color: var(--foreground-brand);
+  color: var(--foreground-brand-secondary);
 
   .icon {
-    color: var(--foreground-brand);
+    color: var(--foreground-brand-secondary);
     font-variation-settings:
       "FILL" 1,
 
@@ -148,12 +157,7 @@
   font-family: var(--text-font-family);
   transition: all 100ms;
 }
-site-settings {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  width: auto;
-}
+
 
 .title,
 .description {
@@ -239,7 +243,12 @@ theme-slider{
     padding: 0px;
   }
 
-
+  site-settings {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    width: auto;
+  }
 
   .nav-card {
     display: flex;
@@ -265,7 +274,7 @@ theme-slider{
 
   .active {
     border-color: transparent;
-    color: var(--foreground-brand);
+    color: var(--foreground-brand-secondary);
 
 
   }

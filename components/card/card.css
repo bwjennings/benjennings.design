@@ -105,7 +105,7 @@ p {
   font-size: 100cqw;
   transition: 200ms ease-out;
   transition-property: font-variation-settings;
-  
+ 
   overflow: hidden;
   display: flex;
   height: 120px;
@@ -116,11 +116,14 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: var(--foreground-brand-secondary);
+  color: var(--foreground-brand);
   margin-top: -16px;
   margin-inline: -16px;
   user-select: none;
   -webkit-user-select: none;
+  span{
+    rotate: -30deg;
+  }
 
 }
 
@@ -188,6 +191,3 @@ p {
   }
 }
 
-@view-transition {
-  navigation: auto;
-}

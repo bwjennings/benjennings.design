@@ -15,12 +15,12 @@ customElements.define(
             font-family: var(--icon-font-family);
           }
         </style>
-        <div class="button-group row">
+       
           <button id="randomColorBtn" class="icon-button pallete-button" aria-label="Random Theme Color">palette</button>
           <button id="openBtn" aria-label="Open Settings">
             <div class="icon">tune</div>Settings
           </button>
-        </div>
+        
         <dialog id="dialog" role="dialog" aria-modal="true">
         <div class="container">
           <form id="themeSelect">
@@ -31,16 +31,17 @@ customElements.define(
         
             <label id="colorMode">Color Mode
               <fieldset class="radio-buttons">
+              <label class="radio-button">
+                  <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
+                  <span class="icon">routine</span>
+                  <span>System</span>
+                </label>
                 <label class="radio-button">
                   <input type="radio" name="theme" value="light" aria-label="Light Theme">
                   <span class="icon">light_mode</span>
                   <span>Light</span>
                 </label>
-                <label class="radio-button">
-                  <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
-                  <span class="icon">routine</span>
-                  <span>Auto</span>
-                </label>
+                
                 <label class="radio-button">
                   <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
                   <span class="icon">dark_mode</span>
@@ -49,7 +50,7 @@ customElements.define(
               </fieldset>
             </label>
 
-            <theme-slider></theme-slider>
+            <theme-slider ></theme-slider>
         
             <label for="highContrast">High Contrast
               <input type="checkbox" role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">

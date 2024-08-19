@@ -2,8 +2,15 @@
 :host {
   perspective: 200px;
   transform-style: preserve-3d;
+  grid-area: settings;
   
   
+}
+#randomColorBtn{
+  display: none;
+}
+#openBtn{
+  width: 100%;
 }
 
 dialog{

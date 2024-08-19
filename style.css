@@ -28,7 +28,6 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
-  transition: color-scheme 1000ms ease;
 
 
 }
@@ -80,27 +79,7 @@ body {
   box-sizing: border-box;
 }
 
-@keyframes gradAnimation {
-  0% {
-    font-variation-settings:
-      "GRAD" -200,
-      "wdth" 115;
-    opacity: 0.5;
-  }
 
-  40% {
-    font-variation-settings:
-      "GRAD" 400,
-      "wdth" 115;
-    opacity: 1;
-  }
-
-  100% {
-    font-variation-settings:
-      "GRAD" initial,
-      "wdth" initial;
-  }
-}
 
 u {
   text-decoration-color: var(--border-accent);
@@ -116,6 +95,7 @@ u {
   font-weight: var(--text-heading-weight);
   line-height: var(--text-heading-lg-line-height);
   text-wrap: balance;
+  width: 100%;
   max-width: 60ch;
 
   font-variation-settings:
@@ -123,7 +103,10 @@ u {
     "wdth" 115;
 
   font-optical-sizing: auto;
-  animation: gradAnimation ease-in-out 1000ms;
+  animation: gradAnimation 3000ms ease-in-out;
+
+
+
 
   font-style: normal;
 
@@ -131,8 +114,8 @@ u {
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
     font-variation-settings:
-    "GRAD" 50,
-    "wdth" 115;
+      "GRAD" 50,
+      "wdth" 115;
   }
 
   &.md {
@@ -176,15 +159,6 @@ u {
   fill: rgb(231, 158, 24);
 }
 
-@keyframes radarPing {
-  0% {
-    outline-width: 0px;
-  }
-
-  100% {
-    outline-width: 8px;
-  }
-}
 
 button {
   box-sizing: border-box;
@@ -216,6 +190,7 @@ button {
 
 button:hover {
   outline: 4px var(--border-brand) solid;
+  outline: 4px solid var(--border-brand-hover);
 }
 
 button:active {
@@ -314,7 +289,7 @@ label {
 .radio-button:has(input:checked) {
   border: 1px solid var(--border-brand);
   background-color: var(--background-brand);
-  color: var(--foreground-brand);
+  color: var(--foreground-brand-secondary);
 }
 
 .switch {
@@ -338,7 +313,7 @@ label {
     border: 1px solid transparent;
     transition: all 600ms;
   }
-  
+
 
   &:has(input:checked) {
 
@@ -386,6 +361,8 @@ label {
 }
 
 main {
+  view-transition-name: page-title;
+
   overflow-y: scroll;
   scrollbar-gutter: stable;
   display: flex;
@@ -404,15 +381,19 @@ main {
   gap: var(--spacing-xxx-large);
   transform-style: preserve-3d;
   transform-origin: bottom;
- 
-  
+
+
 
 }
 
 .page-title {
-  
+  transform-style: preserve-3d;
+
+
+
+
   background-color: var(--background-page);
- 
+
   z-index: 2;
   margin-top: calc(30cqh - 40px);
   color: var(--foreground-primary);
@@ -428,12 +409,12 @@ main {
   max-width: 1200px;
   position: sticky;
   top: 0px;
- 
+
   padding: var(--spacing-x-large);
   border-bottom: 1px solid var(--border-secondary);
   user-select: none;
 
-
+  .heading {}
 
 
 
@@ -454,8 +435,7 @@ main {
   max-width: 1200px;
   grid-column: span 3;
   padding: var(--spacing-x-large);
-  view-transition-name: main-area;
- 
+
 }
 
 @container main-content (max-width: 1000px) {
@@ -477,21 +457,22 @@ main {
 
 
 
+
 dialog[open] {
   opacity: 1;
-  transform: perspective(0px) translateY(0px);
+  transform: perspective(500px) translateZ(0px);
   filter: blur(0px);
-
-display: flex;
-  gap: var(--spacing-large);
   padding-bottom: 0px;
-  flex-direction: column;
+
+display: block;
+  
 
 
 }
 
 /*   Closed state of the dialog   */
 dialog {
+  
   margin: auto;
   opacity: 0;
   color: var(--foreground-primary);
@@ -502,20 +483,20 @@ dialog {
 
   
   padding: var(--spacing-xxx-large);
-  
+  padding-bottom: 0px;
   background-color: var(--background-primary);
   transform-style: preserve-3d;
-  transform: perspective(100px) translateY(100px);
+  transform: perspective(500px) translateZ(-50px);
   container-type: inline-size;
   container-name: dialog ;
   transition:
-    opacity 400ms,
-    transform 400ms,
-    filter 400ms,
-    overlay 400ms allow-discrete,
-    display 400ms allow-discrete;
+    opacity 300ms,
+    transform 300ms,
+    filter 300ms,
+    overlay 300ms allow-discrete,
+    display 300ms allow-discrete;
 
-  transition-timing-function: ease-in-out;
+  transition-timing-function: cubic-bezier(.2,0,0,1);
 
   
 
@@ -523,7 +504,7 @@ dialog {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xx-large);
-    flex-grow: 1;
+    
     
  
     
@@ -536,7 +517,7 @@ dialog {
     display: flex;
     border-top: 1px solid var(--border-secondary);
     padding-top: 24px;
-    padding-bottom: var(--spacing-xxx-large);
+    padding-bottom: 24px;
     justify-content: flex-end;
     gap: var(--spacing-large);
     position: sticky;
@@ -567,7 +548,7 @@ dialog::backdrop {
 
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
-  transition: all 400ms;
+  transition: all ease-in-out 300ms;
 }
 
 dialog[open]::backdrop {
@@ -580,16 +561,18 @@ dialog[open]::backdrop {
   dialog[open] {
     animation: none;
     opacity: 0;
-    transform: perspective(100px) translateY(100px);
+    transform: perspective(500px) translateZ(-50px);
     filter: blur(8px);
 
   }
 }
 
+
 @starting-style {
   dialog[open]::backdrop {
     backdrop-filter: blur(0px);
     -webkit-backdrop-filter: blur(0px);
+
   }
 }
 
@@ -604,14 +587,15 @@ dialog[open]::backdrop {
   font-size: var(--text-heading-md-size);
   font-weight: var(--text-heading-weight);
 }
-.dialog-content{
- 
-    display: grid;
-    
 
-    grid-auto-columns: 1fr;
+.dialog-content {
 
- 
+  display: grid;
+
+
+  grid-auto-columns: 1fr;
+
+
 }
 
 
@@ -639,7 +623,7 @@ dialog[open]::backdrop {
 
 }
 
-.full-row{
+.full-row {
   grid-column: 1 / -1;
 }
 
@@ -647,6 +631,29 @@ dialog[open]::backdrop {
 
 ::part(header) {
   font-size: 100px;
+}
+
+
+@keyframes gradAnimation {
+  0% {
+    font-variation-settings:
+      "GRAD" -200,
+      "wdth" 115;
+    opacity: 0.5;
+  }
+
+  40% {
+    font-variation-settings:
+      "GRAD" 400,
+      "wdth" 115;
+    opacity: 1;
+  }
+
+  100% {
+    font-variation-settings:
+      "GRAD" initial,
+      "wdth" initial;
+  }
 }
 
 @view-transition {
@@ -658,57 +665,108 @@ dialog[open]::backdrop {
 
 /* Create a custom animation */
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  
-}
 
-@keyframes fade-out {
-  to {
-    opacity: 0;
-  }
-}
-::view-transition-old(menu) {
-  
-  animation: fade-out ease-out 1s;
-  
-}
-
-::view-transition-new(menu) {
-  animation: fade-in ease-in 1s;
-
-}
 
 @keyframes in {
   from {
     filter: blur(10px);
     transform: perspective(500px) translateY(200%);
     background: var(--background-page);
+    opacity: 0;
   }
 
 }
 
 @keyframes out {
   to {
-    filter: blur(30px);
-    transform: perspective(500px)  translateZ(-500px);
+    transform: translateY(-64px);
     background: var(--background-page);
     opacity: 0;
   }
- 
+
 }
 
 
 ::view-transition-old(main-area) {
-  
-  animation: out ease-in-out 1000ms;
-  
+
+
+  animation: out 400ms;
+
+
 }
 
 ::view-transition-new(main-area) {
-  animation: in ease-in-out 1000ms;
+
+  animation: in 400ms;
+
+}
+
+
+
+
+
+
+@keyframes title-in {
+  0% {
+    transform: perspective(500px) translateZ(-20px);
+    opacity: 0;
+    filter: blur(10px);
+
+
+
+
+  }
+
+  30% {
+    transform: perspective(500px) translateZ(-20px);
+    opacity: 0;
+    filter: blur(10px);
+
+
+
+
+  }
+
+  100% {
+    transform: perspective(500px) translateZ(0px);
+  }
+}
+
+@keyframes title-out {
+  0% {
+    transform: perspective(500px) translateZ(0px);
+  }
+
+  70% {
+
+    transform: perspective(500px) translateZ(-20px);
+    opacity: 0;
+    filter: blur(10px);
+
+
+
+  }
+
+  100% {
+
+    transform: perspective(500px) translateZ(-20px);
+    opacity: 0;
+    filter: blur(10px);
+
+
+
+  }
+}
+
+::view-transition-old(page-title) {
+
+  animation: title-out var(--timing-ease) 300ms;
+
+
+}
+
+::view-transition-new(page-title) {
+  animation: title-in var(--timing-ease) 300ms;
 
 }
 
@@ -730,7 +788,6 @@ dialog[open]::backdrop {
   main {
     padding: var(--spacing-large);
     padding-top: 0px;
-    view-transition-name: main-area;
 
   }
 
@@ -780,34 +837,44 @@ dialog[open]::backdrop {
     padding-bottom: 0px;
     width: 100dvw;
     max-width: none;
-   
+    transform: perspective(500px) translateZ(0px) translateY(100dvh);
     height: fit-content;
 
- 
+
 
     form {
       flex-grow: 1;
     }
-    footer{
+
+    footer {
       gap: var(--spacing-small);
       flex-direction: column-reverse;
       align-items: stretch;
       padding-block: var(--spacing-x-large);
     }
   }
+  @starting-style {
+    dialog[open] {
+    
+      transform: perspective(500px) translateZ(0px) translateY(100dvh);
+     
+  
+    }
+  }
+
   @keyframes in {
     from {
       filter: blur(10px);
       transform: translateX(100%);
     }
-  
+
   }
-  
+
   @keyframes out {
     to {
       filter: blur(10px);
       transform: translateX(-100%);
     }
-   
+
   }
 }

@@ -93,7 +93,7 @@ customElements.define(
         <div class="card-container">
           <slot name="thumbnail" class="thumbnail"></slot>
          
-          <p class="${this.getAttribute("version") || 'icon'}">${this.getAttribute("icon")|| ''}</p>
+          <span class="${this.getAttribute("version") || 'icon'}"><span>${this.getAttribute("icon")|| ''}</span></span>
 
           <h2 class="card-title heading sm">${title}</h2>
           <slot class="badge-group" name="badge"></slot>
