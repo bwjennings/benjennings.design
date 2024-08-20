@@ -34,6 +34,8 @@ input[type="range"]:active::-webkit-slider-thumb {
   transform: scale(1.5);
   background-color: var(--brand-50);
   border-color: var(--background-primary);
+  
+
 
 }
 
@@ -42,6 +44,7 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   /* Override default look */
   appearance: none;
+  box-shadow: none;
   border-radius: 99px;
   background-color: var(--brand-70);
   width: var(--theme-slider-size);

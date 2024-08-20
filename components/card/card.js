@@ -119,7 +119,7 @@ customElements.define(
         
 
           <footer>
-            <button variant="brand" autofocus id="closeBtn2">Close</button>
+            <button  autofocus id="closeBtn2">Close</button>
           </footer>
           </div>
         </dialog>

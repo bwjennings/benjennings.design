@@ -37,6 +37,7 @@ dialog{
   }
   dialog{
     width: initial;
+    
   }
   .nav-card {
     display: flex;
@@ -81,10 +82,7 @@ dialog{
     line-height: 100%;
   }
 
-  input[type="range"]::-webkit-slider-thumb {
-    height: 40px;
-    width: 40px;
-  }
+ 
 }
 
 input:where([type="checkbox"][role="switch"]) {

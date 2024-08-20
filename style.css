@@ -1,3 +1,9 @@
+:root{
+ 
+
+
+}
+
 *,
 *::before,
 *::after {
@@ -69,8 +75,8 @@ h6 {
 
 body {
   margin: 0;
+ 
   padding: 0;
-  scroll-behavior: smooth;
   color: var(--foreground-primary);
   background-color: var(--background-page);
   height: 100dvh;
@@ -347,8 +353,9 @@ label {
   box-sizing: border-box;
   display: flex;
   height: 100dvh;
+  
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: auto 1fr;
 
   grid-template-areas: "sidebar main-content";
 }
@@ -364,6 +371,7 @@ main {
   view-transition-name: page-title;
 
   overflow-y: scroll;
+  scrollbar-width: thin;
   scrollbar-gutter: stable;
   display: flex;
   flex-direction: column;
@@ -388,11 +396,8 @@ main {
 
 .page-title {
   transform-style: preserve-3d;
-
-
-
-
   background-color: var(--background-page);
+  scroll-snap-align: top;
 
   z-index: 2;
   margin-top: calc(30cqh - 40px);
@@ -411,6 +416,7 @@ main {
   top: 0px;
 
   padding: var(--spacing-x-large);
+  scroll-padding:var(--spacing-x-large) ;
   border-bottom: 1px solid var(--border-secondary);
   user-select: none;
 
@@ -424,6 +430,7 @@ main {
     text-wrap: balance;
   }
 }
+
 
 .page-items {
   display: grid;
@@ -449,10 +456,14 @@ main {
 }
 
 @container main-content (max-width: 700px) {
+
   .page-items {
     grid-template-columns: 1fr;
+    padding: max(16px, env(safe-area-inset-left));
   }
 }
+
+
 
 
 
@@ -465,6 +476,8 @@ dialog[open] {
   padding-bottom: 0px;
 
 display: block;
+scrollbar-width: thin;
+scrollbar-gutter: stable;
   
 
 
@@ -611,7 +624,7 @@ dialog[open]::backdrop {
 
   flex-direction: column;
   align-self: start;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   gap: var(--spacing-xxx-large, 40px);
   padding: var(--spacing-x-large);
@@ -770,6 +783,10 @@ dialog[open]::backdrop {
 
 }
 
+:active-view-transition{
+  animation: title-out var(--timing-ease) 300ms;
+}
+
 
 @container style(color-scheme: dark) {
 
@@ -779,15 +796,24 @@ dialog[open]::backdrop {
   }
 }
 
+@media screen and (max-height: 800px)  {
+  .page-title{
+    position: initial;
+  }
+}
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px),(max-height:500px){
   body {
     height: 100dvh;
   }
 
   main {
     padding: var(--spacing-large);
+    padding-right: env(safe-area-inset-right, 20px);
     padding-top: 0px;
+    padding: 12px;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 
   }
 
@@ -823,6 +849,8 @@ dialog[open]::backdrop {
   .page-title {
     max-width: none;
     position: initial;
+    margin-top: calc(20cqh - 40px);
+
 
     h2 {
       display: none;
@@ -877,4 +905,20 @@ dialog[open]::backdrop {
     }
 
   }
+  .welcome-card{
+    margin-top: calc(20cqh - 40px);
+
+  }
 }
+
+@media screen and (max-width: 600px){
+main{
+  scroll-snap-type:y mandatory;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  scroll-padding: 0;
+
+* {
+  scroll-snap-align: center;
+}
+}}
