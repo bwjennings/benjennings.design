@@ -1,32 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
 
 
-@font-face {
-  font-family: "Roboto Flex";
 
-  src:
 
-    url("fonts/RobotoFlex-VariableFont_GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf") format("truetype"),
-  ;
-}
 
-@property --gradient-1 {
-  syntax: "<color>";
-  initial-value: var(--background-brand);
-  inherits: true;
-}
 
-@property --gradient-2 {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: var(--background-accent);
-}
 
-@property --background-brand {
-  syntax: "<color>";
-  initial-value: light-dark(var(--brand-5), var(--brand-80));
-  inherits: true;
-}
 
 :root {
   --theme-slider-size:32px;
@@ -149,8 +127,8 @@
   --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
   --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-50));
 
-  --background-backdrop: light-dark(color-mix(in oklch, var(--brand-10) 50%, transparent),
-      color-mix(in oklch, var(--brand-80) 50%, transparent));
+  --background-backdrop: light-dark(color-mix(in oklch, var(--brand-5) 20%, transparent),
+      color-mix(in oklch, var(--brand-95) 20%, transparent));
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-70), var(--gray-10));
