@@ -22,6 +22,15 @@
   <link rel="prerender" href="fundamentals.html" as="document" />
   <link rel="prerender" href="experiments.html" as="document" />
   <link rel="prerender" href="resources.html" as="document" />
+  <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "urls": ["index.html", "designs.html","fundamentals.html","experiments.html","resources.html"]
+        }
+      ]
+    }
+    </script>
 
   <!-- Icons and Manifest -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -83,7 +92,7 @@
 
 
 
-        <simple-card icon="home" version="box" card-title="Design" badge="3D Model">
+        <simple-card icon="home" version="box" card-title="Design" >
           <p slot="icon-box">book</p>
           Don't make it simple, make it clear
           <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="800"
@@ -92,6 +101,49 @@
 
         </simple-card>
        
+
+        <simple-card icon="home" version="box" card-title="Business Loan Management on Salesforce">
+          <p slot="icon-box">book</p>
+          <my-badge>Salesforce</my-badge>
+          <div slot="post">
+          {Arvest designs go here}
+          
+
+          </div>
+
+        </simple-card>
+
+        <simple-card icon="pets" version="box" card-title="Getting pet owners the care instructions they need">
+          <my-badge>Design System</my-badge>
+          <my-badge>CMS</my-badge>
+          <div slot="post">
+          {Belle Pet designs go here}
+          
+
+          </div>
+
+        </simple-card>
+
+        <simple-card icon="category" version="box" card-title="Transforming a design system after a rebrand">
+          <my-badge>UI</my-badge>
+          <div slot="post">
+          {Right Networks designs go here}
+          
+
+          </div>
+
+        </simple-card>
+       
+        <simple-card icon="waving_hand" version="box" card-title="A Portfolio made for you">
+          <my-badge>Personal Project</my-badge>
+          <my-badge>Design System</my-badge>
+          <div slot="post">
+          {benjennings.design designs go here}
+          
+
+          </div>
+
+        </simple-card>
        
       
 
