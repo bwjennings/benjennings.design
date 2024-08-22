@@ -230,38 +230,42 @@ label {
 .radio-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: stretch;
   align-items: center;
-  padding: 8px;
-  gap: var(--spacing-medium);
+  padding: 0px;
   user-select: none;
+  border: 0px;
   border: 1px solid var(--border-primary);
+  background-color: transparent;
+  box-sizing: content-box;
+  overflow: hidden;
 }
 
 .radio-button {
+  box-sizing: content-box;
+
   display: flex;
   flex-direction: row;
-  background-color: var(--background-primary);
+  background-color: transparent;
   padding: var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-medium, 12px);
   justify-content: center;
   align-items: center;
-  flex: 1 0 0;
   font-size: var(--text-body-md-size);
   color: var(--foreground-primary);
   font-family: var(--text-font-family);
   cursor: pointer;
   display: flex;
-  flex-grow: 1;
+  flex: 1 0 0;
   z-index: 1;
-  border: 1px solid transparent;
+  border-right: 1px solid var(--border-primary);
 
   span {
     justify-content: center;
     align-items: center;
   }
 
-  &:hover {
-    filter: var(--hover);
+  &:hover:not(.radio-button:has(input:checked)) {
+    background-color: var(--background-secondary);
   }
 
   input[type="radio"] {
@@ -271,9 +275,9 @@ label {
 }
 
 .radio-button:has(input:checked) {
-  border: 1px solid var(--border-brand);
-  background-color: var(--background-brand);
-  color: var(--foreground-brand-secondary);
+  background-color: var(--background-brand-secondary);
+  color: var(--foreground-brand-secondary-secondary);
+
 }
 
 .switch {
@@ -322,7 +326,7 @@ label {
   display: flex;
   height: 100dvh;
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-areas: "sidebar main-content";
 }
 
@@ -429,16 +433,18 @@ dialog[open] {
 
 /*   Closed state of the dialog   */
 dialog {
+  
   margin: auto;
   opacity: 0;
   color: var(--foreground-primary);
   border: 1px solid var(--border-primary);
-  width: 70dvw;
+  width: var(--dialog-width);
   max-width: 1000px;
+  min-width: 400px;
   filter: blur(8px);
   padding: var(--spacing-xxx-large);
   padding-bottom: 0px;
-  background-color: var(--background-primary);
+  background-color: var(--background-page);
   transform-style: preserve-3d;
   transform: perspective(500px) translateZ(-50px);
   container-type: inline-size;
@@ -453,6 +459,7 @@ dialog {
 
   .container {
     display: flex;
+    flex: 1 0 0;
     flex-direction: column;
     gap: var(--spacing-xx-large);
   }
@@ -467,7 +474,7 @@ dialog {
     gap: var(--spacing-large);
     position: sticky;
     bottom: 0px;
-    background-color: var(--background-primary);
+    background-color: var(--background-page);
   }
 
   header {
@@ -483,13 +490,13 @@ dialog {
 dialog::backdrop {
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
-  transition: all ease-in-out 300ms;
+  transition: all  cubic-bezier(.2, 0, 0, 1) 300ms;
 }
 
 dialog[open]::backdrop {
   background-color: var(--background-backdrop);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 @starting-style {

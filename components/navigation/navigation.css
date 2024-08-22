@@ -1,11 +1,10 @@
 :host {
   grid-area: sidebar;
   flex-grow: 1;
-  width: 350px;
+  width: auto;
   z-index: 20;
   background: inherit;
   height: 100dvh;
-  transition: width 300ms ease;
 
 
 
@@ -29,12 +28,11 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
-  transition: width 300ms ease;
   position: sticky;
   top: 0px;
   height: 100%;
   box-sizing: border-box;
-  width: 350px;
+  width: clamp(300px,20dvw,400px);
   display: grid;
   padding: var(--spacing-x-large);
   

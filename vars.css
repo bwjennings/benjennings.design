@@ -44,7 +44,7 @@
 
   --timing-decelerate:cubic-bezier(0, 0.86, 0.13, 0.99);
   --timing-ease:cubic-bezier(.2,0,0,1);
-
+--dialog-width:70dvw;
 
   /*   Color Lightness   */
   --lightness-5: 98%;
@@ -115,20 +115,20 @@
   /*  Color System  */
   color-scheme: light dark;
   --background-page: light-dark(var(--gray-5), var(--gray-80));
-  --background-primary: light-dark(var(--gray-5), var(--gray-80));
-  --background-secondary: light-dark(var(--white), var(--gray-70));
+  --background-primary: light-dark(var(--white), var(--gray-80));
+  --background-secondary: light-dark(var(--gray-10), var(--gray-70));
 
 
   --background-brand: light-dark(var(--brand-10), var(--brand-80));
   --background-brand-hover: light-dark(var(--brand-20), var(--brand-70));
   --background-brand-secondary: light-dark(var(--brand-10), var(--brand-70));
-  --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-50));
+  --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-60));
   --background-accent: light-dark(var(--accent-5), var(--accent-80));
   --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
   --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-50));
 
-  --background-backdrop: light-dark(color-mix(in oklch, var(--brand-5) 20%, transparent),
-      color-mix(in oklch, var(--brand-95) 20%, transparent));
+  --background-backdrop: light-dark(color-mix(in oklch, var(--brand-50) 10%, transparent),
+      color-mix(in oklch, var(--brand-60) 10%, transparent));
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-70), var(--gray-10));
