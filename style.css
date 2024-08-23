@@ -423,7 +423,7 @@ main {
 
 dialog[open] {
   opacity: 1;
-  transform: perspective(500px) translateZ(0px);
+  transform: perspective(500px) scale(1) translateZ(0px);
   filter: blur(0px);
   padding-bottom: 0px;
   display: block;
@@ -446,7 +446,7 @@ dialog {
   padding-bottom: 0px;
   background-color: var(--background-page);
   transform-style: preserve-3d;
-  transform: perspective(500px) translateZ(-50px);
+  transform: perspective(500px) scale(0.7) translateZ(-50px);
   container-type: inline-size;
   container-name: dialog;
   transition:
@@ -503,7 +503,7 @@ dialog[open]::backdrop {
   dialog[open] {
     animation: none;
     opacity: 0;
-    transform: perspective(500px) translateZ(-50px);
+    transform: perspective(500px) scale(0.7) translateZ(-50px);
     filter: blur(8px);
   }
 }

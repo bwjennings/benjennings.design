@@ -28,7 +28,13 @@
   gap: var(--spacing-large);
   overflow: hidden;
   outline-offset: 0px;
+  anchor-name: --card;
 }
+
+dialog[closed]{
+
+}
+
 
 .card-container:hover {
   outline: 8px solid var(--border-brand-hover);
@@ -190,4 +196,5 @@ p {
     /* Empty rule */
   }
 }
+
 

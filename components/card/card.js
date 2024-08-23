@@ -22,13 +22,24 @@ customElements.define(
       this.dialog = shadowRoot.getElementById("dialog");
       this.title = title;
       this.hasConnected = false;
+
+      // Define the audio files for open and close sounds
+      this.openSound = new Audio('designs/resources/Expand.m4a');
+      this.openSound.volume = 0.5; // Adjust volume here (0.5 is 50%)
+
+      this.closeSound = new Audio('designs/resources/Collapse.m4a');
+      this.closeSound.volume = 0.5; // Adjust volume here (0.5 is 50%)
     }
 
     connectedCallback() {
       if (!this.hasConnected) {
-        this.showDialog = () => this.dialog.showModal();
+        this.showDialog = () => {
+          this.openSound.play(); // Play open sound
+          this.dialog.showModal();
+        };
         this.closeDialog = (event) => {
           event.stopPropagation();
+          this.closeSound.play(); // Play close sound
           this.dialog.close();
         };
         this.trackDialogOpen = () => {
@@ -78,53 +89,34 @@ customElements.define(
 
     render() {
       const title = this.getAttribute("card-title");
-     
-      
 
-     
-
-        
-
-    
       this.shadowRoot.innerHTML = `
         <link rel="stylesheet" href="components/card/card.css">
         
-        
         <div class="card-container">
           <slot name="thumbnail" class="thumbnail"></slot>
-         
-          <span class="${this.getAttribute("version") || 'icon'}"><span>${this.getAttribute("icon")|| ''}</span></span>
+          <span class="${this.getAttribute("version") || 'icon'}"><span>${this.getAttribute("icon") || ''}</span></span>
 
           <h2 class="card-title heading sm">${title}</h2>
           <slot class="badge-group" name="badge"></slot>
-          
-
-
-
           <slot name="content"></slot>
         </div>
 
-        <dialog id="dialog" >
+        <dialog id="dialog">
         <div class="container">
           <header>
-          
             <h2 class="heading md" id="dialog-title">${title}</h2>
             <button class="icon-button" id="closeBtn1">Close</button>
           </header>
-          
 
-            <slot class="body lg" name="post"></slot>
-           
-
-        
+          <slot class="body lg" name="post"></slot>
 
           <footer>
-            <button  autofocus id="closeBtn2">Close</button>
+            <button autofocus id="closeBtn2">Close</button>
           </footer>
           </div>
         </dialog>
-
-       `;
+      `;
 
       // Reattach event listeners to the newly created elements
       this.closeBtn1 = this.shadowRoot.getElementById("closeBtn1");
@@ -138,4 +130,3 @@ customElements.define(
     }
   }
 );
-

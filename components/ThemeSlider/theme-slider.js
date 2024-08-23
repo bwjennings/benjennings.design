@@ -26,6 +26,14 @@ customElements.define(
       // Reference to the slider element
       this.hueSlider = shadowRoot.getElementById("hueSlider");
 
+      // Load the sound
+      this.sliderSound = new Audio("designs/resources/Tab 3.m4a"); // Replace with your sound file path
+
+      // Play the sound on initial click
+      this.hueSlider.addEventListener("mousedown", () => {
+        this.playSound();
+      });
+
       // Handle slider input changes
       this.hueSlider.addEventListener("input", () => {
         this.updateHue(this.hueSlider.value);
@@ -80,6 +88,12 @@ customElements.define(
     setHue(hue) {
       this.hueSlider.value = hue;
       this.updateHue(hue);
+    }
+
+    // Play the slider sound
+    playSound() {
+      this.sliderSound.currentTime = 0; // Reset sound to the start
+      this.sliderSound.play(); // Play the sound
     }
   }
 );
