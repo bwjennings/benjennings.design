@@ -92,7 +92,8 @@ customElements.define(
 
       this.shadowRoot.innerHTML = `
         <link rel="stylesheet" href="components/card/card.css">
-        
+        <link rel="preload" as="audio" href="designs/resources/Expand.m4a">
+        <link rel="preload" as="audio" href="designs/resources/Collapse.m4a">
         <div class="card-container">
           <slot name="thumbnail" class="thumbnail"></slot>
           <span class="${this.getAttribute("version") || 'icon'}"><span>${this.getAttribute("icon") || ''}</span></span>

@@ -280,6 +280,10 @@ label {
 
 }
 
+audio{
+  padding: 40px;
+}
+
 .switch {
   height: 48px;
   width: 80px;
@@ -589,7 +593,7 @@ dialog[open]::backdrop {
 
 @keyframes content-in {
   0% {
-    transform: perspective(500px) translateZ(-20px);
+    transform: perspective(500px) translateY(-20px) translateZ(-20px);
     opacity: 0;
     filter: blur(10px);
   }
@@ -601,13 +605,13 @@ dialog[open]::backdrop {
   }
 
   100% {
-    transform: perspective(500px) translateZ(0px);
+    transform: perspective(500px) translateY(0px) translateZ(0px);
   }
 }
 
 @keyframes content-out {
   0% {
-    transform: perspective(500px) translateZ(0px);
+    transform: perspective(500px) translateY(0px) translateZ(0px);
   }
 
   70% {
@@ -617,7 +621,7 @@ dialog[open]::backdrop {
   }
 
   100% {
-    transform: perspective(500px) translateZ(-20px);
+    transform: perspective(500px)translateY(20px) translateZ(-20px);
     opacity: 0;
     filter: blur(10px);
   }
