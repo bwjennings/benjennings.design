@@ -22,9 +22,7 @@
   outline-color: var(--border-brand);
 }
 
-:active {
-  cursor: grabbing;
-}
+
 
 body {
   line-height: 1.5;
@@ -185,7 +183,7 @@ button:active {
 button[variant="brand"] {
   background: var(--background-brand-emphasis);
   color: var(--foreground-onEmphasis);
-  border: 1px solid var(--border-brand-emphasis);
+  border: transparent;
 }
 
 button[size="small"] {
@@ -199,6 +197,10 @@ button[size="small"] {
   font-size: var(--icon-size-medium);
   height: 48px;
   width: 48px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+
 
   &.sm {
     font-size: var(--icon-size-small, 24px);
@@ -275,8 +277,8 @@ label {
 }
 
 .radio-button:has(input:checked) {
-  background-color: var(--background-brand-secondary);
-  color: var(--foreground-brand-secondary-secondary);
+  background-color: var(--background-brand);
+  color: var(--foreground-brand);
 
 }
 
@@ -300,7 +302,7 @@ audio{
     background-color: var(--foreground-secondary);
     height: 24px;
     border: 1px solid transparent;
-    transition: all 600ms;
+    transition: right 600ms;
   }
 
   &:has(input:checked) {
@@ -427,7 +429,7 @@ main {
 
 dialog[open] {
   opacity: 1;
-  transform: perspective(500px) scale(1) translateZ(0px);
+  transform: perspective(500px) scale(1) translateY(-50px) translateZ(0px);
   filter: blur(0px);
   padding-bottom: 0px;
   display: block;
@@ -450,7 +452,7 @@ dialog {
   padding-bottom: 0px;
   background-color: var(--background-page);
   transform-style: preserve-3d;
-  transform: perspective(500px) scale(0.7) translateZ(-50px);
+  transform: perspective(500px)  translateY(50px) translateZ(-20px);
   container-type: inline-size;
   container-name: dialog;
   transition:
@@ -460,6 +462,7 @@ dialog {
     overlay 300ms allow-discrete,
     display 300ms allow-discrete;
   transition-timing-function: cubic-bezier(.2, 0, 0, 1);
+  transition-duration: 400ms;
 
   .container {
     display: flex;
@@ -507,7 +510,7 @@ dialog[open]::backdrop {
   dialog[open] {
     animation: none;
     opacity: 0;
-    transform: perspective(500px) scale(0.7) translateZ(-50px);
+    transform: perspective(500px)  translateY(50px) translateZ(-20px);
     filter: blur(8px);
   }
 }

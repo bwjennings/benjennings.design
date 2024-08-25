@@ -29,6 +29,8 @@
   overflow: hidden;
   outline-offset: 0px;
   anchor-name: --card;
+
+  
 }
 
 dialog[closed]{
@@ -109,12 +111,13 @@ p {
   font-variation-settings: 'GRAD' -200, 'FILL' 1;
   font-family: var(--icon-font-family);
   font-size: 100cqw;
+
   transition: 200ms ease-out;
   transition-property: font-variation-settings;
  
   overflow: hidden;
   display: flex;
-  height: 120px;
+  height: 100px;
  
   width: auto;
   align-self: stretch;
@@ -122,7 +125,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: var(--foreground-brand);
+  color: var(--foreground-brand-secondary);
   margin-top: -16px;
   margin-inline: -16px;
   user-select: none;
@@ -138,7 +141,7 @@ p {
   font-variation-settings: 'FILL' 1;
 
   font-size: 40px;
-  color: var(--foreground-brand);
+  color: var(--foreground-brand-secondary);
 }
 
 ::slotted([slot="icon-box"]) {

@@ -100,7 +100,8 @@ input:where([type="checkbox"][role="switch"]) {
   background-color: var(--background-secondary);
   vertical-align: text-bottom;
   margin: none;
-  transition: all cubic-bezier(0,1,1,1) 300ms;
+  transition: width cubic-bezier(0,1,1,1) 300ms;
+  transition-property: left,height,width;
 
    
 }
@@ -128,6 +129,7 @@ input:where([type="checkbox"][role="switch"]):checked::before {
   height: 24px;
   width: 24px;
   background-color: var(--foreground-onEmphasis);
+
 }
 
 @container style(--brand-hue:0) or style(--brand-hue:360){

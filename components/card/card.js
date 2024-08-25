@@ -34,9 +34,12 @@ customElements.define(
     connectedCallback() {
       if (!this.hasConnected) {
         this.showDialog = () => {
-          this.openSound.play(); // Play open sound
+          if (!this.dialog.open) { // Check if the dialog is not already open
+            this.openSound.play(); // Play open sound
+          }
           this.dialog.showModal();
         };
+       
         this.closeDialog = (event) => {
           event.stopPropagation();
           this.closeSound.play(); // Play close sound

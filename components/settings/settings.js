@@ -42,7 +42,7 @@ customElements.define(
                   <span>Light</span>
                 </label>
                 
-                <label class="radio-button">
+                <label class="radio-button" style="border:transparent">
                   <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
                   <span class="icon">dark_mode</span>
                   <span>Dark</span>

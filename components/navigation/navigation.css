@@ -121,12 +121,12 @@
 }
 
 .active {
-  background: var(--background-brand-secondary);
+  background: var(--background-brand);
   font-variation-settings: 'GRAD' 100;
-  color: var(--foreground-brand-secondary);
+  color: var(--foreground-brand);
 
   .icon {
-    color: var(--foreground-brand-secondary);
+    
     font-variation-settings:
       "FILL" 1,
 

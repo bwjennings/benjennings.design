@@ -6,58 +6,61 @@ class BadgeComponent extends HTMLElement {
    
     this.shadowRoot.innerHTML = `
     <style>
-     :host{
+     :host {
           grid-area: badge;
-          cursor:default;
+          cursor: default;
           user-select: none;
           -webkit-user-select: none;
           }
 
             .badge {
-            height:20px;
-                background-color: var( --background-primary-secondary);
+            height: 20px;
+                background-color: var(--background-primary-secondary);
                 color: var(--foreground-secondary);
                 border: 1px solid var(--border-secondary);
-                display: inline-flex;
+                display: flex;
                 padding: var(--spacing-x-small, 4px) var(--spacing-small, 8px);
                 justify-content: center;
                 align-items: center;
                 gap: var(--spacing-x-small, 4px);
                 font-size: var(--text-body-xs-size);
                 line-height: var(--text-body-sx-line-height);
+                
             }
 
             .badge span {
                 font-family: var(--icon-font-family);
                 font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
+                display: none; /* Initially hide the span */
             }
 
             .primary {
                 background-color: var(--background-accent);
                 color: var(--foreground-accent);
-                border:1px solid var(--border-accent);
-
+                border: 1px solid var(--border-accent);
             }
 
             .secondary {
-                background-color: var( --background-primary-secondary);
+                background-color: var(--background-primary-secondary);
                 color: var(--foreground-secondary);
                 border: 1px solid var(--border-secondary);
-                span{
-                color:var(--foreground-brand)
+                span {
+                color: var(--foreground-brand)
                 }
             }
 
             /* Add more variants as needed */
         </style>
     <div slot="badge" class="badge ${this.getAttribute("variant") || ''}">
-    <span>${this.getAttribute("icon") || ''}</span>
+      <span></span>
       <slot></slot>
-      
-
     </div>
-
      `;
+
+    this.iconElement = this.shadowRoot.querySelector(".badge span");
+
+    // Initialize icon visibility
+    this.iconElement.style.display = this.getAttribute("icon") ? "inline" : "none";
   }
 
   static get observedAttributes() {
