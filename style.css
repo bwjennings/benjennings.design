@@ -29,6 +29,10 @@ body {
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
 }
+img {
+
+  object-fit: cover;
+}
 
 a {
   all: unset;
@@ -91,14 +95,14 @@ u {
     "GRAD"150,
     "wdth"115;
   font-optical-sizing: auto;
-  animation: gradAnimation 3000ms ease-in-out;
+  animation: gradAnimation 2000ms ease-out;
   font-style: normal;
 
   &.sm {
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
     font-variation-settings:
-      "GRAD"50,
+      "GRAD" 0,
       "wdth"115;
   }
 
@@ -282,6 +286,11 @@ label {
 
 }
 
+model-viewer{
+  min-height: 120px;
+  height: 100%;
+  width: 100%;
+}
 audio{
   padding: 40px;
 }
@@ -410,6 +419,8 @@ main {
   padding: var(--spacing-x-large);
 }
 
+
+
 @container main-content (max-width: 1000px) {
   .page-items {
     grid-template-columns: 1fr 1fr;
@@ -429,12 +440,14 @@ main {
 
 dialog[open] {
   opacity: 1;
-  transform: perspective(500px) scale(1) translateY(-50px) translateZ(0px);
+  transform: perspective(500px) scale(1) translateY(0px) translateZ(0px);
   filter: blur(0px);
   padding-bottom: 0px;
   display: block;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
+
+  
 }
 
 /*   Closed state of the dialog   */
@@ -544,6 +557,7 @@ dialog[open]::backdrop {
   gap: var(--spacing-medium);
 }
 
+
 .welcome-card {
   display: flex;
   flex-direction: column;
@@ -557,6 +571,7 @@ dialog[open]::backdrop {
 }
 
 .full-row {
+  width: inherit;
   grid-column: 1 / -1;
 }
 
@@ -565,25 +580,15 @@ dialog[open]::backdrop {
 }
 
 @keyframes gradAnimation {
-  0% {
+  from {
     font-variation-settings:
-      "GRAD"-200,
-      "wdth"115;
-    opacity: 0.5;
+      "GRAD" -200,
+      "wdth" 115;
   }
 
-  40% {
-    font-variation-settings:
-      "GRAD"400,
-      "wdth"115;
-    opacity: 1;
-  }
+ 
 
-  100% {
-    font-variation-settings:
-      "GRAD"initial,
-      "wdth"initial;
-  }
+  
 }
 
 @view-transition {

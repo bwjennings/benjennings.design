@@ -90,7 +90,7 @@
 
   /*   Base Neutral Color  */
   --gray-hue: calc(var(--brand-hue) + 0);
-  --gray-chroma: 2%;
+  --gray-chroma: 3%;
   --gray-5: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue));
   --gray-10: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue));
   --gray-20: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue));

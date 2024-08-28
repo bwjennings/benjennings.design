@@ -23,26 +23,19 @@ customElements.define(
       this.title = title;
       this.hasConnected = false;
 
-      // Define the audio files for open and close sounds
-      this.openSound = new Audio('designs/resources/Expand.m4a');
-      this.openSound.volume = 0.5; // Adjust volume here (0.5 is 50%)
-
-      this.closeSound = new Audio('designs/resources/Collapse.m4a');
-      this.closeSound.volume = 0.5; // Adjust volume here (0.5 is 50%)
+      
     }
 
     connectedCallback() {
       if (!this.hasConnected) {
         this.showDialog = () => {
           if (!this.dialog.open) { // Check if the dialog is not already open
-            this.openSound.play(); // Play open sound
           }
           this.dialog.showModal();
         };
        
         this.closeDialog = (event) => {
           event.stopPropagation();
-          this.closeSound.play(); // Play close sound
           this.dialog.close();
         };
         this.trackDialogOpen = () => {
@@ -99,11 +92,11 @@ customElements.define(
         <link rel="preload" as="audio" href="designs/resources/Collapse.m4a">
         <div class="card-container">
           <slot name="thumbnail" class="thumbnail"></slot>
-          <span class="${this.getAttribute("version") || 'icon'}"><span>${this.getAttribute("icon") || ''}</span></span>
+          <span class="${this.getAttribute("version") || ''}"><span>${this.getAttribute("icon") || ''}</span></span>
 
           <h2 class="card-title heading sm">${title}</h2>
           <slot class="badge-group" name="badge"></slot>
-          <slot name="content"></slot>
+          <slot name="content" ></slot>
         </div>
 
         <dialog id="dialog">
