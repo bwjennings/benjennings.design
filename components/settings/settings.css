@@ -132,10 +132,3 @@ input:where([type="checkbox"][role="switch"]):checked::before {
 
 }
 
-@container style(--brand-hue:0) or style(--brand-hue:360){
- 
-  input[type="range"]::-webkit-slider-thumb{
-    transition: border-radius 300ms ease;
-    border-radius: 0px;
-  }
-}

@@ -99,3 +99,10 @@ input[type=range]::-moz-range-thumb {
   transform: scale(1.25);
 }
 
+@container style(--brand-hue:0) or style(--brand-hue:360){
+ 
+  input[type="range"]::-webkit-slider-thumb{
+    transition: border-radius 300ms ease;
+    border-radius: 0px;
+  }
+}

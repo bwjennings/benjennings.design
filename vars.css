@@ -47,17 +47,17 @@
 --dialog-width:70dvw;
 
   /*   Color Lightness   */
-  --lightness-5: 96.88%;
-  --lightness-10: 93.53%;
-  --lightness-20: 88.50%;
-  --lightness-30: 81.17%;
-  --lightness-40: 70.71%;
-  --lightness-50: 55.99%;
-  --lightness-60: 41.27%;
-  --lightness-70: 30.80%;
-  --lightness-80: 23.48%;
-  --lightness-90: 18.45%;
-  --lightness-95: 15.10%;
+  --lightness-5: 98%;
+  --lightness-10: 96%;
+  --lightness-20: 90%;
+  --lightness-30: 80%;
+  --lightness-40: 72%;
+  --lightness-50: 56%;
+  --lightness-60: 48%;
+  --lightness-70: 40%;
+  --lightness-80: 32%;
+  --lightness-90:24%;
+  --lightness-95: 16%;
 
 
 
@@ -65,13 +65,13 @@
   --brand-hue: 230;
 --brand-chroma-5: 4%;
 --brand-chroma-10: 8%;
---brand-chroma-20: 14%;
---brand-chroma-30: 18%;
---brand-chroma-40: 20%;
---brand-chroma-50: 20%;
---brand-chroma-60: 20%;
---brand-chroma-70: 18%;
---brand-chroma-80: 14%;
+--brand-chroma-20: 16%;
+--brand-chroma-30: 24%;
+--brand-chroma-40: 32%;
+--brand-chroma-50: 48%;
+--brand-chroma-60: 32%;
+--brand-chroma-70: 24%;
+--brand-chroma-80: 16%;
 --brand-chroma-90: 8%;
 --brand-chroma-95: 4%;
 
@@ -127,9 +127,9 @@
 
   /*  Color System  */
   color-scheme: light dark;
-  --background-page: light-dark(var(--gray-5), var(--gray-90));
-  --background-primary: light-dark(var(--white), var(--gray-80));
-  --background-secondary: light-dark(var(--gray-10), var(--gray-70));
+  --background-page: light-dark(var(--gray-5), var(--gray-95));
+  --background-primary: light-dark(var(--white), var(--black));
+  --background-secondary: light-dark(var(--gray-10), var(--gray-80));
   --background-brand: light-dark(var(--brand-10), var(--brand-70));
   --background-brand-hover: light-dark(var(--brand-5), var(--brand-60));
   --background-brand-secondary: light-dark(var(--brand-5), var(--brand-80));
@@ -143,7 +143,7 @@
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
-  --foreground-brand: light-dark(var(--brand-70), var(--brand-5));
+  --foreground-brand: light-dark(var(--brand-50), var(--brand-5));
   --foreground-brand-secondary: light-dark(var(--brand-10), var(--brand-60));
   --foreground-accent: light-dark(var(--accent-80), var(--accent-20));
   --foreground-onEmphasis: light-dark(var(--white), var(--white));
@@ -191,7 +191,7 @@
   --text-heading-md-size: var(--font-size-8);
   --text-heading-sm-line-height: var(--font-size-6);
   --text-heading-sm-line-height: var(--font-size-7);
-  --text-heading-sm-size: var(--font-size-5);
+ 
   --text-heading-sm-size: var(--font-size-6);
   --text-heading-weight: 400;
   --text-heading-grade: var(--font-grade-lg);
@@ -247,3 +247,50 @@
 
 
 }
+
+@media (prefers-contrast: more) {
+  :root {
+  --lightness-5: 100%;
+  --lightness-10: 90%;
+  --lightness-20: 80%;
+  --lightness-30: 70%;
+  --lightness-40: 60%;
+  --lightness-50: 50%;
+  --lightness-60: 40%;
+  --lightness-70: 30%;
+  --lightness-80: 20%;
+  --lightness-90: 20%;
+  --lightness-95: 0%;
+  --brand-chroma:25%;
+  --background-page: light-dark(var(--white), var(--black));
+  --background-primary: light-dark(var(--white), var(--black));
+  --background-secondary: light-dark(var(--white), var(--black));
+  --background-brand: light-dark(var(--brand-80), var(--brand-60));
+  --background-brand-secondary: light-dark(var(--brand-5), var(--black));
+  --background-brand-emphasis: light-dark(var(--brand-70), var(--brand-50));
+  --background-accent: light-dark(var(--accent-80), var(--accent-50));
+
+  --foreground-primary: light-dark(var(--gray-95), var(--white));
+  --foreground-secondary: light-dark(var(--gray-80), var(--white));
+  --foreground-brand: light-dark(var(--white), var(--white));
+  --foreground-brand-secondary: light-dark(var(--brand-10), var(--white));
+  --foreground-accent: light-dark(var(--white), var(--white));
+  --foreground-onEmphasis: light-dark(var(--white), var(--white));
+
+  --border-primary: light-dark(var(--gray-95), var(--white));
+  --border-secondary: light-dark(var(--gray-90), var(--white));
+  --border-brand: light-dark(var(--brand-20), var(--brand-50));
+
+  --background-accent: light-dark(var(--accent-50), var(--accent-50));
+  --background-backdrop: light-dark(color-mix(in oklch, var(--brand-10) 50%, transparent),color-mix(in oklch, var(--brand-80) 50%, transparent));
+ 
+  
+  --border-accent: light-dark(var(--accent-80), var(--white));
+  --border-brand-emphasis: light-dark(var(--brand-60), var(--brand-70));
+  --border-brand-hover: light-dark(var(--brand-40), var(--brand-10));
+  --border-brand-secondary: light-dark(var(--brand-20), var(--brand-60));
+  --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
+
+
+
+}}

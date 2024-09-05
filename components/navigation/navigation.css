@@ -280,16 +280,12 @@ theme-slider{
     border-color: transparent;
     height: fit-content;
 
-    &:hover:not(.active) {
-      border: none;
-
-    }
-
+   
   }
 
   .active {
     border-color: transparent;
-    color: var(--foreground-brand-secondary);
+    color: var(--foreground-brand);
 
 
   }

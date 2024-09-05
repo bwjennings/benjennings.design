@@ -29,6 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
 }
+
 img {
 
   object-fit: cover;
@@ -92,8 +93,8 @@ u {
   width: 100%;
   max-width: 60ch;
   font-variation-settings:
-    "GRAD"150,
-    "wdth"115;
+    "GRAD" 150,
+    "wdth" 115;
   font-optical-sizing: auto;
   animation: gradAnimation 2000ms ease-out;
   font-style: normal;
@@ -102,8 +103,8 @@ u {
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
     font-variation-settings:
-      "GRAD" 0,
-      "wdth"115;
+      "GRAD" 100,
+      "wdth" 115;
   }
 
   &.md {
@@ -286,12 +287,13 @@ label {
 
 }
 
-model-viewer{
+model-viewer {
   min-height: 120px;
   height: 100%;
   width: 100%;
 }
-audio{
+
+audio {
   padding: 40px;
 }
 
@@ -372,6 +374,7 @@ main {
   transform-style: preserve-3d;
   transform-origin: bottom;
   view-transition-name: content;
+  contain: layout;
 }
 
 .page-title {
@@ -410,33 +413,22 @@ main {
 .page-items {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 300px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 400px;
   align-items: center;
   gap: var(--spacing-xxx-large);
   max-width: 1200px;
   grid-column: span 3;
   padding: var(--spacing-x-large);
-}
 
+  &.ordered{
 
-
-@container main-content (max-width: 1000px) {
-  .page-items {
-    grid-template-columns: 1fr 1fr;
-
-    &.ordered {
-      grid-template-columns: 1fr;
-    }
+    @container
   }
 }
 
-@container main-content (max-width: 700px) {
-  .page-items {
-    grid-template-columns: 1fr;
-    padding: max(16px, env(safe-area-inset-left));
-  }
-}
+
+
 
 dialog[open] {
   opacity: 1;
@@ -447,12 +439,12 @@ dialog[open] {
   scrollbar-width: thin;
   scrollbar-gutter: stable;
 
-  
+
 }
 
 /*   Closed state of the dialog   */
 dialog {
-  
+
   margin: auto;
   opacity: 0;
   color: var(--foreground-primary);
@@ -465,7 +457,7 @@ dialog {
   padding-bottom: 0px;
   background-color: var(--background-page);
   transform-style: preserve-3d;
-  transform: perspective(500px)  translateY(50px) translateZ(-20px);
+  transform: perspective(500px) translateY(50px) translateZ(-20px);
   container-type: inline-size;
   container-name: dialog;
   transition:
@@ -474,8 +466,8 @@ dialog {
     filter 300ms,
     overlay 300ms allow-discrete,
     display 300ms allow-discrete;
-  transition-timing-function: cubic-bezier(.2, 0, 0, 1);
-  transition-duration: 400ms;
+  transition-timing-function: var(--timing-ease);
+  transition-duration: 300ms;
 
   .container {
     display: flex;
@@ -497,6 +489,7 @@ dialog {
     background-color: var(--background-page);
   }
 
+
   header {
     flex-basis: auto;
     display: flex;
@@ -506,11 +499,21 @@ dialog {
     gap: var(--spacing-large);
   }
 }
+.content{
+  grid-column: -1 / 1;
+grid-row: span 2;
+  width: 100%;
+  margin: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-brand);
+}
 
 dialog::backdrop {
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
-  transition: all  cubic-bezier(.2, 0, 0, 1) 300ms;
+  transition: all cubic-bezier(.2, 0, 0, 1) 300ms;
 }
 
 dialog[open]::backdrop {
@@ -523,7 +526,7 @@ dialog[open]::backdrop {
   dialog[open] {
     animation: none;
     opacity: 0;
-    transform: perspective(500px)  translateY(50px) translateZ(-20px);
+    transform: perspective(500px) translateY(50px) translateZ(-20px);
     filter: blur(8px);
   }
 }
@@ -586,10 +589,13 @@ dialog[open]::backdrop {
       "wdth" 115;
   }
 
- 
 
-  
+
+
 }
+
+
+
 
 @view-transition {
   navigation: auto;
@@ -601,9 +607,11 @@ dialog[open]::backdrop {
 
 @keyframes content-in {
   0% {
-    transform: perspective(500px) translateY(-20px) translateZ(-20px);
+    transform: perspective(500px) translateY(-40px) translateZ(-20px);
     opacity: 0;
     filter: blur(10px);
+
+
   }
 
   30% {
@@ -614,12 +622,20 @@ dialog[open]::backdrop {
 
   100% {
     transform: perspective(500px) translateY(0px) translateZ(0px);
+    opacity: 1;
+    filter: blur(0px);
+
+   
   }
 }
 
 @keyframes content-out {
   0% {
     transform: perspective(500px) translateY(0px) translateZ(0px);
+    opacity: 1;
+    filter: blur(0px);
+
+ 
   }
 
   70% {
@@ -629,26 +645,32 @@ dialog[open]::backdrop {
   }
 
   100% {
-    transform: perspective(500px)translateY(20px) translateZ(-20px);
+    transform: perspective(500px)translateY(40px) translateZ(-20px);
     opacity: 0;
     filter: blur(10px);
+
+    
   }
 }
 
 ::view-transition-old(content) {
   animation: content-out var(--timing-ease) 300ms;
+
 }
 
 ::view-transition-new(content) {
   animation: content-in var(--timing-ease) 300ms;
+
 }
+
+
 
 
 
 @container style(color-scheme: dark) {
   body {
     font-variation-settings:
-      "GRAD"200;
+      "GRAD" 200;
   }
 }
 
@@ -658,7 +680,8 @@ dialog[open]::backdrop {
   }
 }
 
-@media screen and (max-width: 800px), (max-height:500px) {
+@media screen and (max-width: 800px),
+(max-height:500px) {
   body {
     height: 100dvh;
   }
