@@ -28,7 +28,7 @@ customElements.define(
               <h2 class="heading md" id="dialog-title">Settings</h2>
               <button class="icon-button" value="cancel" formmethod="dialog">Close</button>
             </header>
-        
+        <div class="content" >
             <label id="colorMode">Color Mode
               <fieldset class="radio-buttons">
               <label class="radio-button">
@@ -55,7 +55,7 @@ customElements.define(
             <label for="highContrast">High Contrast
               <input type="checkbox" role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
             </label>
-        
+        </div>
             <footer>
               <button type="button" id="cancelBtn" aria-label="Cancel Settings">Cancel</button>
               <button type="button" variant="brand" id="closeBtn" aria-label="Save Settings">Save</button>

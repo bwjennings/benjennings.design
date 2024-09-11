@@ -106,7 +106,7 @@ customElements.define(
             <button class="icon-button" id="closeBtn1">Close</button>
           </header>
 
-          <slot class="body lg" name="post"></slot>
+          <slot class="content lg body" name="post"></slot>
 
           <footer>
             <button autofocus id="closeBtn2">Close</button>

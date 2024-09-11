@@ -47,9 +47,9 @@
 --dialog-width:70dvw;
 
   /*   Color Lightness   */
-  --lightness-5: 98%;
-  --lightness-10: 96%;
-  --lightness-20: 90%;
+  --lightness-5: 99%;
+  --lightness-10: 97%;
+  --lightness-20: 92%;
   --lightness-30: 80%;
   --lightness-40: 72%;
   --lightness-50: 56%;
@@ -88,6 +88,20 @@
 --brand-95: oklch(var(--lightness-95) var(--brand-chroma-95) var(--brand-hue));
 
 
+--alpha: 0.5;
+
+--brand-5-alpha: oklch(var(--lightness-5) var(--brand-chroma-5) var(--brand-hue) / var(--alpha));
+--brand-10-alpha: oklch(var(--lightness-10) var(--brand-chroma-10) var(--brand-hue) / var(--alpha));
+--brand-20-alpha: oklch(var(--lightness-20) var(--brand-chroma-20) var(--brand-hue) / var(--alpha));
+--brand-30-alpha: oklch(var(--lightness-30) var(--brand-chroma-30) var(--brand-hue) / var(--alpha));
+--brand-40-alpha: oklch(var(--lightness-40) var(--brand-chroma-40) var(--brand-hue) / var(--alpha));
+--brand-50-alpha: oklch(var(--lightness-50) var(--brand-chroma-50) var(--brand-hue) / var(--alpha));
+--brand-60-alpha: oklch(var(--lightness-60) var(--brand-chroma-60) var(--brand-hue) / var(--alpha));
+--brand-70-alpha: oklch(var(--lightness-70) var(--brand-chroma-70) var(--brand-hue) / var(--alpha));
+--brand-80-alpha: oklch(var(--lightness-80) var(--brand-chroma-80) var(--brand-hue) / var(--alpha));
+--brand-90-alpha: oklch(var(--lightness-90) var(--brand-chroma-90) var(--brand-hue) / var(--alpha));
+--brand-95-alpha: oklch(var(--lightness-95) var(--brand-chroma-95) var(--brand-hue) / var(--alpha));
+
   /*   Base Neutral Color  */
   --gray-hue: calc(var(--brand-hue) + 0);
   --gray-chroma: 3%;
@@ -102,6 +116,18 @@
   --gray-80: oklch(var(--lightness-80) var(--gray-chroma) var(--gray-hue));
   --gray-90: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue));
   --gray-95: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue));
+
+  --gray-5-alpha: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-10-alpha: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-20-alpha: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-30-alpha: oklch(var(--lightness-30) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-40-alpha: oklch(var(--lightness-40) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-50-alpha: oklch(var(--lightness-50) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-60-alpha: oklch(var(--lightness-60) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-70-alpha: oklch(var(--lightness-70) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-80-alpha: oklch(var(--lightness-80) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-90-alpha: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-95-alpha: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue) / var(--alpha));
 
   /*   Base Accent Color  */
   --accent-hue: calc(var(--brand-hue) + 180);
@@ -127,32 +153,33 @@
 
   /*  Color System  */
   color-scheme: light dark;
-  --background-page: light-dark(var(--gray-5), var(--gray-95));
-  --background-primary: light-dark(var(--white), var(--black));
-  --background-secondary: light-dark(var(--gray-10), var(--gray-80));
-  --background-brand: light-dark(var(--brand-10), var(--brand-70));
-  --background-brand-hover: light-dark(var(--brand-5), var(--brand-60));
+  --background-page: light-dark(var(--gray-10), var(--gray-90));
+  --background-primary: light-dark(var(--gray-5), var(--gray-70));
+  --background-secondary: light-dark(var(--gray-20), var(--gray-80));
+  --background-brand: light-dark(var(--brand-20), var(--brand-70));
+  --background-brand-hover: light-dark(var(--brand-30), var(--brand-80));
   --background-brand-secondary: light-dark(var(--brand-5), var(--brand-80));
-  --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-50));
-  --background-accent: light-dark(var(--accent-5), var(--accent-90));
+  --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-60));
+  --background-accent: light-dark(var(--accent-10), var(--accent-90));
   --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
   --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-50));
 
-  --background-backdrop: light-dark(color-mix(in oklch, var(--brand-50) 10%, transparent),
-      color-mix(in oklch, var(--brand-60) 10%, transparent));
+  --background-backdrop: light-dark(var(--gray-30-alpha),var(--gray-70-alpha));
+
+  
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
-  --foreground-brand: light-dark(var(--brand-50), var(--brand-5));
-  --foreground-brand-secondary: light-dark(var(--brand-10), var(--brand-60));
-  --foreground-accent: light-dark(var(--accent-80), var(--accent-20));
+  --foreground-brand: light-dark(var(--brand-70), var(--brand-20));
+  --foreground-brand-secondary: light-dark(var(--brand-30), var(--brand-50));
+  --foreground-accent: light-dark(var(--accent-90), var(--accent-20));
   --foreground-onEmphasis: light-dark(var(--white), var(--white));
 
   --border-primary: light-dark(var(--gray-20), var(--gray-60));
   --border-primary-hover: light-dark(var(--gray-30), var(--gray-50));
   --border-secondary: light-dark(var(--gray-20), var(--gray-70));
   --border-brand: light-dark(var(--brand-10), var(--brand-60));
-  --border-brand-hover: light-dark(var(--gray-10), var(--gray-60));
+  --border-brand-hover: light-dark(var(--brand-20), var(--gray-60));
   --border-brand-secondary: light-dark(var(--brand-20), var(--brand-60));
   --border-brand-emphasis: light-dark(var(--brand-60), var(--brand-70));
   --border-accent: light-dark(var(--accent-20), var(--accent-60));
