@@ -160,7 +160,7 @@
   --background-brand-hover: light-dark(var(--brand-30), var(--brand-80));
   --background-brand-secondary: light-dark(var(--brand-5), var(--brand-80));
   --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-60));
-  --background-accent: light-dark(var(--accent-10), var(--accent-90));
+  --background-accent: light-dark(var(--accent-20), var(--accent-90));
   --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
   --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-50));
 
@@ -220,7 +220,7 @@
   --text-heading-sm-line-height: var(--font-size-7);
  
   --text-heading-sm-size: var(--font-size-6);
-  --text-heading-weight: 400;
+  --text-heading-weight: 550;
   --text-heading-grade: var(--font-grade-lg);
   --text-heading-xl-size: var(--font-size-10);
 

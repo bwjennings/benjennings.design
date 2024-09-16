@@ -17,7 +17,6 @@ class BadgeComponent extends HTMLElement {
             height: 20px;
                 background-color: var(--background-primary-secondary);
                 color: var(--foreground-secondary);
-                border: 1px solid var(--border-secondary);
                 display: flex;
                 padding: var(--spacing-x-small, 4px) var(--spacing-small, 8px);
                 justify-content: center;
@@ -25,6 +24,8 @@ class BadgeComponent extends HTMLElement {
                 gap: var(--spacing-x-small, 4px);
                 font-size: var(--text-body-xs-size);
                 line-height: var(--text-body-sx-line-height);
+                                border: 1px solid var(--border-secondary);
+
                 
             }
 
@@ -37,7 +38,8 @@ class BadgeComponent extends HTMLElement {
             .primary {
                 background-color: var(--background-accent);
                 color: var(--foreground-accent);
-                border: 1px solid var(--border-accent);
+                                border: none;
+
             }
 
             .secondary {

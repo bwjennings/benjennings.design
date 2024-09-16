@@ -169,7 +169,7 @@
 }
 
 .title {
-  font-size: var(--text-heading-sm-size, 24px);
+  font-size: var(--text-body-lg-size, 24px);
   font-style: normal;
   font-weight: var(--text-heading-weight, 550);
   line-height: var(--text-heading-sm-line-height);

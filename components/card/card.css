@@ -126,7 +126,7 @@ p {
     
     font-variation-settings: 'GRAD' -200, 'FILL' 1;
     font-family: var(--icon-font-family);
-    font-size: 50cqw;
+    font-size: 20cqw;
     transition: 200ms ease-out;
     transition-property: font-variation-settings;
 
@@ -152,7 +152,7 @@ p {
   }
 
   .box span {
-    rotate: -30deg;
+    rotate: -20deg;
   }
 
 .icon{

@@ -10,12 +10,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Fonts and Stylesheets -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,XOPQ,YOPQ@8..144,25..151,100..1000,27..175,25..135&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="./vars.css" rel="stylesheet" />
   <link href="./style.css" rel="stylesheet" />
- 
-  <script  type="module" src="components/index.js"></script>
+
+  <script type="module" src="components/index.js"></script>
   <!-- Prefetch Links -->
   <link rel="prerender" href="index.html" as="document" />
   <link rel="prerender" href="designs.html" as="document" />
@@ -48,12 +51,12 @@
   </script>
 
   <!-- Module Scripts -->
-  
+
 </head>
 
 <body>
   <div class="page-container">
-    <custom-sidebar active-item="2"></custom-sidebar>
+    <custom-sidebar active-item="3"></custom-sidebar>
 
     <main>
 
@@ -65,15 +68,19 @@
       </section>
 
       <section class="page-items">
-        <simple-card icon="local_police" version="box" card-title="Learning Management System" badge="Large System Design">
-          
+
+
+        <simple-card icon="local_police" version="box" title="Learning Management System" badge="Large System Design">
+
           Don't make it simple, make it clear
 
-          <my-badge>Large System</my-badge>
-          <my-badge>Large System</my-badge>
+          <my-badge>Information Architecture</my-badge><my-badge>Design System</my-badge>
+          
 
           <div slot="post">
-            <iframe class="figma" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Fpage-id%3D16772%253A2924%26node-id%3D16772-2972%26node-type%3DFRAME%26viewport%3D-62%252C903%252C0.43%26t%3DKPBcHUzN8MKpCvuQ-1%26scaling%3Dcontain%26content-scaling%3Dresponsive" allowfullscreen></iframe>            </label>
+            <iframe class="figma"
+              src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Fpage-id%3D16772%253A2924%26node-id%3D16772-2972%26node-type%3DFRAME%26viewport%3D-62%252C903%252C0.43%26t%3DKPBcHUzN8MKpCvuQ-1%26scaling%3Dcontain%26content-scaling%3Dresponsive"
+              allowfullscreen></iframe> </label>
 
             <p>This System needed to allow for the creation and distribution of learning material to law
               enforcement agencies across the country. <br> A major problem to design for was the ability to group
@@ -90,7 +97,7 @@
 
 
 
-        <simple-card icon="home" version="box" card-title="Design" >
+        <simple-card icon="schema" version="box" title="Learning materials need to be organized at multiple levels ">
           <p slot="icon-box">book</p>
           Don't make it simple, make it clear
           <iframe id="content" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="800"
@@ -98,52 +105,52 @@
 
 
         </simple-card>
-       
 
-        <simple-card icon="home" version="box" card-title="Business Loan Management on Salesforce">
+
+        <simple-card icon="account_balance" version="box" title="Bank employees need to manage loans">
           <p slot="icon-box">book</p>
-          <my-badge>Salesforce</my-badge>
+          <my-badge>Salesforce</my-badge> <my-badge>Internal Tool</my-badge>
           <div slot="post">
-          {Arvest designs go here}
-          
+            {Arvest designs go here}
+
 
           </div>
 
         </simple-card>
 
-        <simple-card  icon="pets" version="box" card-title="Getting pet owners the care instructions they need">
+        <simple-card icon="school" version="box" title="Students need to graduate with a cap and gown">
           <my-badge>Design System</my-badge>
-          <my-badge variant="primary">CMS</my-badge>
+          <my-badge >CMS</my-badge>
           <div slot="post">
-          {Belle Pet designs go here}
-          
+            {Belle Pet designs go here}
+
 
           </div>
 
         </simple-card>
 
-        <simple-card icon="category" version="box" card-title="Transforming a design system after a rebrand">
+        <simple-card icon="category" version="box" title="Transforming a design system after a rebrand">
           <my-badge>UI</my-badge>
           <div slot="post">
-          {Right Networks designs go here}
-          
+            {Right Networks designs go here}
+
 
           </div>
 
         </simple-card>
-       
-        <simple-card icon="waving_hand" version="box" card-title="A Portfolio made for you">
+
+        <simple-card icon="waving_hand" version="box" title="A Portfolio made for you">
           <my-badge>Personal Project</my-badge>
           <my-badge>Design System</my-badge>
           <div slot="post">
-          {benjennings.design designs go here}
-          
+            {benjennings.design designs go here}
+
 
           </div>
 
         </simple-card>
-       
-      
+
+
 
 
 
