@@ -138,7 +138,7 @@ p {
     height: 100px;
     width: auto;
     align-self: stretch;
-    background: var(--background-brand);
+    background: var(--background-brand-secondary);
     flex-direction: column;
     justify-content: center;
     align-items: center;

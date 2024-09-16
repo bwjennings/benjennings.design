@@ -663,12 +663,12 @@ dialog[open]::backdrop {
 }
 
 ::view-transition-old(content) {
-  animation: content-out var(--timing-ease) 300ms;
+  animation: content-out var(--timing-ease) 500ms;
 
 }
 
 ::view-transition-new(content) {
-  animation: content-in var(--timing-ease) 300ms;
+  animation: content-in var(--timing-ease) 500ms;
 
 }
 

@@ -158,7 +158,7 @@
   --background-secondary: light-dark(var(--gray-20), var(--gray-80));
   --background-brand: light-dark(var(--brand-20), var(--brand-70));
   --background-brand-hover: light-dark(var(--brand-30), var(--brand-80));
-  --background-brand-secondary: light-dark(var(--brand-5), var(--brand-80));
+  --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
   --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-60));
   --background-accent: light-dark(var(--accent-20), var(--accent-90));
   --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
