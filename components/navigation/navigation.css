@@ -113,7 +113,7 @@
 
 
   &:hover:not(.active) {
-    background-color: var(--background-secondary);
+    background-color: var(--border-primary-hover);
 
 
   }
