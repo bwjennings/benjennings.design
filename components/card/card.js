@@ -48,6 +48,8 @@ customElements.define(
       this.showDialog = this.showDialog.bind(this);
       this.closeDialog = this.closeDialog.bind(this);
       this.trackDialogOpen = this.trackDialogOpen.bind(this);
+      this.backdropClickHandler = this.backdropClickHandler.bind(this); // Add this line
+
     }
 
     connectedCallback() {
@@ -60,6 +62,7 @@ customElements.define(
         this.closeBtn1.addEventListener("click", this.closeDialog);
         this.closeBtn2.addEventListener("click", this.closeDialog);
         this.dialog.addEventListener("show", this.trackDialogOpen);
+        this.dialog.addEventListener('click', this.backdropClickHandler); // Add this line
 
         this.hasConnected = true;
       }
@@ -71,6 +74,8 @@ customElements.define(
       this.closeBtn1.removeEventListener("click", this.closeDialog);
       this.closeBtn2.removeEventListener("click", this.closeDialog);
       this.dialog.removeEventListener("show", this.trackDialogOpen);
+      this.dialog.removeEventListener('click', this.backdropClickHandler); // Add this line
+
     }
 
     static get observedAttributes() {
@@ -133,6 +138,11 @@ customElements.define(
           'event_label': `Card - ${this.getAttribute('title')}`,
           'value': 1
         });
+      }
+    }
+    backdropClickHandler(event) {
+      if (event.target === this.dialog) {
+        this.closeDialog(event);
       }
     }
   }

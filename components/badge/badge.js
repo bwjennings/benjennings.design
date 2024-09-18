@@ -14,6 +14,9 @@ class BadgeComponent extends HTMLElement {
           }
 
             .badge {
+            text-overflow: ellipsis;
+            overflow:hidden;
+            text-wrap: nowrap;
             height: 20px;
                 background-color: var(--background-primary);
                 color: var(--foreground-secondary);
@@ -49,8 +52,10 @@ class BadgeComponent extends HTMLElement {
                 span {
                 color: var(--foreground-brand)
                 }
+                ::slotted{
+                text-overflow: ellipsis;}
             }
-
+               
             /* Add more variants as needed */
         </style>
     <div slot="badge" class="badge ${this.getAttribute("variant") || ''}">

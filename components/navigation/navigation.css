@@ -25,7 +25,8 @@
 }
 
 .sidebar {
-  overflow-y: auto;
+  overflow: hidden;
+
   scrollbar-width: thin;
   scrollbar-gutter: stable;
   position: sticky;
@@ -334,7 +335,6 @@ color: var(--foreground-secondary);
     grid-template-columns: 1fr;
     grid-template-areas: "nav-group";
     grid-template-rows: 1fr;
-
 
     gap: 0px;
     width: auto;

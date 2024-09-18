@@ -453,7 +453,6 @@ dialog {
   border: 1px solid var(--border-primary);
   width: var(--dialog-width);
   max-width: 1400px;
-  min-width: 400px;
   filter: blur(8px);
   padding: 0px;
   background-color: var(--background-page);
@@ -470,11 +469,6 @@ dialog {
   transition-timing-function: var(--timing-ease);
   transition-duration: 300ms;
 
-  .container {
-    display: flex;
-    flex: 1 0 0;
-    flex-direction: column;
-  }
 
   footer {
     flex-basis: auto;
@@ -716,6 +710,10 @@ dialog[open]::backdrop {
       "sidebar";
   }
 
+  .page-items{
+    grid-template-columns: 1fr;
+
+  }
   .button-group {
     margin-top: auto;
     flex-direction: column;
@@ -749,6 +747,7 @@ dialog[open]::backdrop {
     max-width: none;
     transform: perspective(500px) translateZ(0px) translateY(100dvh);
     height: fit-content;
+    min-width: 0px;
 
     form {
       flex-grow: 1;

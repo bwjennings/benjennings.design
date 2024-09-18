@@ -21,47 +21,43 @@ customElements.define(
             <div class="icon">tune</div>Settings
           </button>
         
-        <dialog id="dialog" role="dialog" aria-modal="true">
-        <div class="container">
+        <dialog id="dialog">
           <form id="themeSelect">
             <header>
               <h2 class="heading md" id="dialog-title">Settings</h2>
               <button class="icon-button" value="cancel" formmethod="dialog">Close</button>
             </header>
-        <div class="content" >
-            <label id="colorMode">Color Mode
-              <fieldset class="radio-buttons">
-              <label class="radio-button">
-                  <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
-                  <span class="icon">routine</span>
-                  <span>System</span>
-                </label>
-                <label class="radio-button">
-                  <input type="radio" name="theme" value="light" aria-label="Light Theme">
-                  <span class="icon">light_mode</span>
-                  <span>Light</span>
-                </label>
-                
-                <label class="radio-button" style="border:transparent">
-                  <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
-                  <span class="icon">dark_mode</span>
-                  <span>Dark</span>
-                </label>
-              </fieldset>
-            </label>
-
-            <theme-slider ></theme-slider>
-        
-            <label for="highContrast">High Contrast
-              <input type="checkbox" role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
-            </label>
-        </div>
+            <div class="content">
+              <label id="colorMode">
+                Color Mode
+                <fieldset class="radio-buttons">
+                  <label class="radio-button">
+                    <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
+                    <span class="icon">routine</span>
+                    <span>System</span>
+                  </label>
+                  <label class="radio-button">
+                    <input type="radio" name="theme" value="light" aria-label="Light Theme">
+                    <span class="icon">light_mode</span>
+                    <span>Light</span>
+                  </label>
+                  <label class="radio-button" style="border:transparent">
+                    <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
+                    <span class="icon">dark_mode</span>
+                    <span>Dark</span>
+                  </label>
+                </fieldset>
+              </label>
+              <theme-slider></theme-slider>
+              <label for="highContrast">High Contrast
+                <input type="checkbox" role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
+              </label>
+            </div>
             <footer>
               <button type="button" id="cancelBtn" aria-label="Cancel Settings">Cancel</button>
               <button type="button" variant="brand" id="closeBtn" aria-label="Save Settings">Save</button>
             </footer>
           </form>
-          </div>
         </dialog>
       `;
 
@@ -72,67 +68,45 @@ customElements.define(
 
       this.originalSettings = {};
 
-      shadowRoot.getElementById("openBtn").addEventListener("click", () => {
-        this.storeOriginalSettings();
-        this.applyStoredSettings();
-        this.dialog.showModal();
-        gtag('event', 'open_dialog', {
-          'event_category': 'Settings',
-          'event_label': 'Open Settings Dialog'
-        });
-      });
-
-      shadowRoot.getElementById("randomColorBtn").addEventListener("click", () => {
-        this.pickRandomColor();
-        gtag('event', 'random_theme_color', {
-          'event_category': 'Settings',
-          'event_label': 'Random Theme Color'
-        });
-      });
-
-      shadowRoot.getElementById("closeBtn").addEventListener("click", () => this.saveChanges());
-      shadowRoot.getElementById("cancelBtn").addEventListener("click", () => this.cancelChanges());
-
-      this.themeSlider.addEventListener("hueChange", (event) => {
-        localStorage.setItem("selectedColorHue", event.detail);
-      });
-
-      this.themeSelectForm.addEventListener("change", event => {
-        if (event.target.name === "theme") {
-          this.updateTheme(event.target.value);
-          gtag('event', 'change_theme', {
-            'event_category': 'Settings',
-            'event_label': 'Change Theme',
-            'value': event.target.value
-          });
-        }
-      });
-
-      this.highContrastCheckbox.addEventListener("change", () => {
-        this.toggleHighContrast(this.highContrastCheckbox.checked);
-      });
+      // Bind methods to ensure proper 'this' context
+      this.openSettings = this.openSettings.bind(this);
+      this.pickRandomColorHandler = this.pickRandomColorHandler.bind(this);
+      this.saveChanges = this.saveChanges.bind(this);
+      this.cancelChanges = this.cancelChanges.bind(this);
+      this.hueChangeHandler = this.hueChangeHandler.bind(this);
+      this.themeChangeHandler = this.themeChangeHandler.bind(this);
+      this.highContrastChangeHandler = this.highContrastChangeHandler.bind(this);
+      this.backdropClickHandler = this.backdropClickHandler.bind(this); // Added line
     }
 
     connectedCallback() {
       this.applyStoredSettings();
+
+      // Add event listeners
+      this.shadowRoot.getElementById("openBtn").addEventListener("click", this.openSettings);
+      this.shadowRoot.getElementById("randomColorBtn").addEventListener("click", this.pickRandomColorHandler);
+      this.shadowRoot.getElementById("closeBtn").addEventListener("click", this.saveChanges);
+      this.shadowRoot.getElementById("cancelBtn").addEventListener("click", this.cancelChanges);
+
+      this.themeSlider.addEventListener("hueChange", this.hueChangeHandler);
+      this.themeSelectForm.addEventListener("change", this.themeChangeHandler);
+      this.highContrastCheckbox.addEventListener("change", this.highContrastChangeHandler);
+
+      this.dialog.addEventListener('click', this.backdropClickHandler); // Added line
     }
 
     disconnectedCallback() {
-      this.shadowRoot.getElementById("openBtn").removeEventListener("click", () => this.dialog.showModal());
-      this.shadowRoot.getElementById("randomColorBtn").removeEventListener("click", () => this.pickRandomColor());
-      this.shadowRoot.getElementById("closeBtn").removeEventListener("click", () => this.saveChanges());
-      this.shadowRoot.getElementById("cancelBtn").removeEventListener("click", () => this.cancelChanges());
-      this.themeSlider.removeEventListener("hueChange", (event) => {
-        localStorage.setItem("selectedColorHue", event.detail);
-      });
-      this.themeSelectForm.removeEventListener("change", event => {
-        if (event.target.name === "theme") {
-          this.updateTheme(event.target.value);
-        }
-      });
-      this.highContrastCheckbox.removeEventListener("change", () => {
-        this.toggleHighContrast(this.highContrastCheckbox.checked);
-      });
+      // Remove event listeners
+      this.shadowRoot.getElementById("openBtn").removeEventListener("click", this.openSettings);
+      this.shadowRoot.getElementById("randomColorBtn").removeEventListener("click", this.pickRandomColorHandler);
+      this.shadowRoot.getElementById("closeBtn").removeEventListener("click", this.saveChanges);
+      this.shadowRoot.getElementById("cancelBtn").removeEventListener("click", this.cancelChanges);
+
+      this.themeSlider.removeEventListener("hueChange", this.hueChangeHandler);
+      this.themeSelectForm.removeEventListener("change", this.themeChangeHandler);
+      this.highContrastCheckbox.removeEventListener("change", this.highContrastChangeHandler);
+
+      this.dialog.removeEventListener('click', this.backdropClickHandler); // Added line
     }
 
     storeOriginalSettings() {
@@ -175,6 +149,44 @@ customElements.define(
       window.dispatchEvent(new CustomEvent('globalHueChange', { detail: randomHue })); // Ensure other components update
     }
 
+    // Event handler methods
+    openSettings() {
+      this.storeOriginalSettings();
+      this.applyStoredSettings();
+      this.dialog.showModal();
+      gtag('event', 'open_dialog', {
+        'event_category': 'Settings',
+        'event_label': 'Open Settings Dialog'
+      });
+    }
+
+    pickRandomColorHandler() {
+      this.pickRandomColor();
+      gtag('event', 'random_theme_color', {
+        'event_category': 'Settings',
+        'event_label': 'Random Theme Color'
+      });
+    }
+
+    hueChangeHandler(event) {
+      localStorage.setItem("selectedColorHue", event.detail);
+    }
+
+    themeChangeHandler(event) {
+      if (event.target.name === "theme") {
+        this.updateTheme(event.target.value);
+        gtag('event', 'change_theme', {
+          'event_category': 'Settings',
+          'event_label': 'Change Theme',
+          'value': event.target.value
+        });
+      }
+    }
+
+    highContrastChangeHandler() {
+      this.toggleHighContrast(this.highContrastCheckbox.checked);
+    }
+
     saveChanges() {
       try {
         const selectedTheme = this.themeSelectForm.querySelector('input[name="theme"]:checked').value;
@@ -195,6 +207,13 @@ customElements.define(
       this.highContrastCheckbox.checked = this.originalSettings.highContrast;
       this.toggleHighContrast(this.originalSettings.highContrast);
       this.dialog.close();
+    }
+
+    // Added method to handle backdrop clicks
+    backdropClickHandler(event) {
+      if (event.target === this.dialog) {
+        this.cancelChanges();
+      }
     }
   }
 );
