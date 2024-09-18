@@ -18,23 +18,23 @@ class CustomSidebar extends HTMLElement {
         <menu>
           <li><a tabindex="1" class="nav-card item1" href="index.html">
               <span class="icon">waving_hand</span>
-              <span class="body lg">Home</span>
+              <span class="title">Home</span>
           </a></li>
           <li><a tabindex="2" class="nav-card item2" href="fundamentals.html">
               <span class="icon">psychology</span>
-              <span class="body lg">Fundamentals</span>
+              <span class="title">Fundamentals</span>
           </a></li>
           <li><a tabindex="3" class="nav-card item3" href="designs.html">
               <span class="icon">web</span>
-              <span class="body lg">Designs</span>
+              <span class="title">Designs</span>
           </a></li>
           <li><a tabindex="4" class="nav-card item4" href="experiments.html">
               <span class="icon">experiment</span>
-              <span class="body lg">Experiments</span>
+              <span class="title">Experiments</span>
           </a></li>
           <li><a tabindex="5" class="nav-card item5" href="resources.html">
               <span class="icon">folder_open</span>
-              <span class="body lg">Resources</span>
+              <span class="title">Resources</span>
           </a></li>
         </menu>
         <theme-slider class="quick-theme" data-hide-label></theme-slider>

@@ -15,7 +15,7 @@ class BadgeComponent extends HTMLElement {
 
             .badge {
             height: 20px;
-                background-color: var(--background-primary-secondary);
+                background-color: var(--background-primary);
                 color: var(--foreground-secondary);
                 display: flex;
                 padding: var(--spacing-x-small, 4px) var(--spacing-small, 8px);

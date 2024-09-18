@@ -16,6 +16,7 @@ customElements.define(
           @import "style.css";
           @import "components/ThemeSlider/theme-slider.css";
         </style>
+       
         <label for="hueSlider">
           ${!hideLabel ? 'Theme Color:' : ''}
           <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2"

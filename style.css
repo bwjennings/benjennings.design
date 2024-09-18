@@ -94,14 +94,14 @@ u {
   max-width: 60ch;
   font-variation-settings:
     "wdth" 110,
-    "GRAD" 80,
+    "GRAD" 100,
     "XOPQ" 80,
     "YOPQ" 80;
   font-optical-sizing: auto;
   font-style: normal;
 
   &.sm {
-    font-weight: 400;
+    font-weight: 450;
 
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
@@ -115,7 +115,7 @@ u {
 
   &.xl {
     font-size: var(--text-heading-xl-size);
-    line-height: var(--text-heading-lg-line-height);
+    line-height: var(--text-heading-xl-line-height);
   }
 
   &.secondary {
@@ -149,7 +149,9 @@ u {
   fill: rgb(231, 158, 24);
 }
 
-button {
+
+
+button, ::part(button) {
   box-sizing: border-box;
   user-select: none;
   border: 1px solid var(--border-secondary);
@@ -179,8 +181,7 @@ button {
 
 button:hover {
   outline: 4px var(--border-brand) solid;
-  outline: 4px solid var(--border-brand-hover);
-}
+  outline: 8px solid var(--border-primary);}
 
 button:active {
   outline-width: 8px;
@@ -289,7 +290,7 @@ label {
 
 model-viewer {
   min-height: 120px;
-  height: 100%;
+  max-height: 100%;
   width: 100%;
 }
 
@@ -343,7 +344,7 @@ audio {
   display: flex;
   height: 100dvh;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: clamp(300px,20dvw,400px) 1fr;
   grid-template-areas: "sidebar main-content";
 }
 
@@ -451,7 +452,7 @@ dialog {
   color: var(--foreground-primary);
   border: 1px solid var(--border-primary);
   width: var(--dialog-width);
-  max-width: 1000px;
+  max-width: 1400px;
   min-width: 400px;
   filter: blur(8px);
   padding: 0px;
@@ -519,7 +520,7 @@ dialog {
 
 .figma {
   height: 400px;
-  border: none;
+  border: 2px solid var(--border-primary);
 }
 
 dialog::backdrop {
@@ -574,6 +575,8 @@ dialog[open]::backdrop {
 
 
 .welcome {
+  text-wrap: pretty;
+
   display: flex;
   flex-direction: column;
   align-self: start;
@@ -582,8 +585,22 @@ dialog[open]::backdrop {
   gap: var(--spacing-xxx-large, 40px);
   padding: var(--spacing-x-large);
   height: 100cqh;
-  max-width: 1200px;
+  max-width: 100ch;
   padding: var(--spacing-x-large);
+  transform-style: preserve-3d;
+  background-color: var(--background-page);
+  scroll-snap-align: top;
+  z-index: 2;
+  color: var(--foreground-primary);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  grid-template-rows: subgrid;
+  grid-column: span 3;
+  top: 0px;
+  padding: var(--spacing-x-large);
+  user-select: none;
+
 
 }
 
@@ -614,31 +631,8 @@ dialog[open]::backdrop {
 /* Create a custom animation */
 
 
-@keyframes content-in {
-  0% {
-    transform: perspective(500px) translateY(-40px) translateZ(-20px);
-    opacity: 0;
-    filter: blur(10px);
 
-
-  }
-
-  30% {
-    transform: perspective(500px) translateZ(-20px);
-    opacity: 0;
-    filter: blur(10px);
-  }
-
-  100% {
-    transform: perspective(500px) translateY(0px) translateZ(0px);
-    opacity: 1;
-    filter: blur(0px);
-
-
-  }
-}
-
-@keyframes content-out {
+@keyframes content-swap {
   0% {
     transform: perspective(500px) translateY(0px) translateZ(0px);
     opacity: 1;
@@ -647,14 +641,17 @@ dialog[open]::backdrop {
 
   }
 
-  70% {
-    transform: perspective(500px) translateZ(-20px);
+
+
+  50% {
+    transform: perspective(500px) translateY(10px) translateZ(-10px);
     opacity: 0;
     filter: blur(10px);
-  }
 
+
+  }
   100% {
-    transform: perspective(500px)translateY(40px) translateZ(-20px);
+    transform: perspective(500px) translateY(10px) translateZ(-10px);
     opacity: 0;
     filter: blur(10px);
 
@@ -663,12 +660,12 @@ dialog[open]::backdrop {
 }
 
 ::view-transition-old(content) {
-  animation: content-out var(--timing-ease) 500ms;
+  animation: content-swap var(--timing-ease) 300ms;
 
 }
 
 ::view-transition-new(content) {
-  animation: content-in var(--timing-ease) 500ms;
+  animation: content-swap var(--timing-ease) 300ms reverse;
 
 }
 

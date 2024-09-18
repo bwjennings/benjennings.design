@@ -5,8 +5,8 @@
   height: 100%;
   container-type: inline-size;
   container-name: card;
-  
- 
+
+
 }
 
 .card-container {
@@ -32,41 +32,45 @@
   outline-offset: 0px;
   anchor-name: --card;
 
-  &:hover{
+  &:hover {
     outline: 8px solid var(--border-primary);
 
-    
-  }
 
-  &:active{
-    outline-width: 16px;
-    transition: 100ms;
-    perspective: 100px;
-    transform: scaleZ(20%);
-  }
+  
 
-&:has(.icon){
+
+
+}
+
+&:active {
+  outline-width: 16px;
+  transition: 100ms;
+  perspective: 100px;
+  transform: scaleZ(20%);
+}
+
+&:has(.icon) {
   padding: var(--spacing-x-large);
 
   background: var(--background-primary);
   align-items: start;
   justify-content: start;
-  .card-title{
+
+  .card-title {
     text-wrap: pretty;
     flex: 0 0 0;
-    font-size: var(--font-size-7);
-line-height: var(--font-size-8);
+
 
   }
 
-  
-}
-  
+
 }
 
+}
 
 
- 
+
+
 
 
 
@@ -89,16 +93,16 @@ p {
   background-color: green;
 }
 
-.thumbnail{
+.thumbnail {
   max-height: 120px;
   margin-top: -16px;
   margin-inline: -16px;
   overflow: hidden;
   display: flex;
- 
+
   width: auto;
   align-self: stretch;
-  background: var(--background-brand);
+  background: var(--background-brand-secondary);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -108,54 +112,80 @@ p {
   user-select: none;
   -webkit-user-select: none;
 }
-  ::slotted(model-viewer){
-    width: 100%;
-    height: 100%;
-  }
 
-  ::slotted(model-viewer){
-    width: 100%;
-    height: 500px;
-  }
+::slotted(model-viewer) {
+  width: 100%;
+  height: 100%;
+}
+
+::slotted(model-viewer) {
+  width: 100%;
+  height: 500px;
+}
 
 
 
 
-  .box {
-    --animation-position: 0;
+.box {
+  --animation-position: 0;
+
+  font-variation-settings: 'GRAD' -200, 'FILL' 1;
+  font-family: var(--icon-font-family);
+  font-size: 35cqw;
+  font-variation-settings:
+  'FILL' 1,
+
+  'wght' 700,
+
+  'GRAD' 200;
+
+
+  overflow: hidden;
+  display: flex;
+  height: 100px;
+  width: auto;
+  align-self: stretch;
+  background: var(--background-brand-secondary);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--foreground-brand-secondary);
+  margin-top: -16px;
+  margin-inline: -16px;
+  user-select: none;
+  -webkit-user-select: none;
+
+
+
+}
+
+.box span {
+
+  rotate: -20deg;
+  opacity: 0.5;
+  animation: iconAnimate 5s ease-in-out infinite alternate;
+  font-weight: 600;
+
+
+}
+
+@keyframes iconAnimate {
+
+  100% {
+    font-variation-settings:
+      'FILL' 1,
+
+      'wght' 700,
+  
+      'GRAD' 0;
     
-    font-variation-settings: 'GRAD' -200, 'FILL' 1;
-    font-family: var(--icon-font-family);
-    font-size: 20cqw;
-    transition: 200ms ease-out;
-    transition-property: font-variation-settings;
+   
+ 
 
-
-
-    animation: moveShadow 4s linear infinite;
-    overflow: hidden;
-    display: flex;
-    height: 100px;
-    width: auto;
-    align-self: stretch;
-    background: var(--background-brand-secondary);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--foreground-brand-secondary);
-    margin-top: -16px;
-    margin-inline: -16px;
-    user-select: none;
-    -webkit-user-select: none;
-
-    
   }
+}
 
-  .box span {
-    rotate: -20deg;
-  }
-
-.icon{
+.icon {
   font-family: var(--icon-font-family);
   font-variation-settings: 'FILL' 1;
 
@@ -178,11 +208,11 @@ p {
 }
 
 ::slotted(.post-body) {
-  
 
-  
 
-  ::slotted(.horizontal){
+
+
+  ::slotted(.horizontal) {
     grid-template-columns: 1fr;
 
   }
@@ -196,20 +226,14 @@ p {
 }
 
 ::slotted([slot="post"]) {
-  display: grid;
-  grid-auto-columns: 1fr 2fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-large);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: 200px;
-  gap: 64px;
-  align-items: stretch;
-  justify-items: stretch;
-
-  :slotted(model-viewer){
-    height: 400px;
-  } 
 }
+  :slotted(model-viewer) {
+    height: 400px;
+  }
+
 
 
 
@@ -233,5 +257,3 @@ p {
     /* Empty rule */
   }
 }
-
-
