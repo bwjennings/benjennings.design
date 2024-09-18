@@ -30,7 +30,7 @@ customElements.define(
             <div class="content">
               <label id="colorMode">
                 Color Mode
-                <fieldset class="radio-buttons">
+                <fieldset class="radio-buttons" autofocus=true>
                   <label class="radio-button">
                     <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
                     <span class="icon">routine</span>
