@@ -1,122 +1,168 @@
-class ResourceCard extends HTMLElement {
-  constructor() {
-    super();
-    // Attach a shadow DOM tree to this instance
-    const shadow = this.attachShadow({ mode: "open" });
 
-    // Create a template element
-    const template = document.createElement("template");
 
-    // Define the HTML structure in the template
-    template.innerHTML = `
-       
-       <style>
-        
-          .resource-card {
-            cursor: pointer;
-            display: flex;
-            flex-direction: row;
+
+    class ResourceCard extends HTMLElement {
+      constructor() {
+        super();
+        // Attach a shadow DOM tree to this instance
+        const shadow = this.attachShadow({ mode: "open" });
     
-            height: 100%;
-            background: var(--background-primary);
-            border: 1px solid var(--border-primary);
-        
-            container-type: inline-size;
-            transition: outline 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58),
+        // Create a template element
+        const template = document.createElement("template");
+    
+        // Define the HTML structure in the template
+        template.innerHTML = `
+         <style>
+        :host {
+          grid-column: 1 / -1;
+        }
+        .resource-card {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          height: 100%;
+          max-height: fit-content;
+          background: var(--background-primary);
+          border: 1px solid var(--border-primary);
+          container-type: inline-size;
+          transition: outline 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58),
             font-variation-settings 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58);
-            font-variation-settings: "GRAD" 0;
-            color: var(--foreground-primary);
-            gap: var(--spacing-large);
-            overflow: hidden;
-            outline-offset: 0px;
-            anchor-name: --card;
-        
-        
-          }
-        
-         
-        
-          
-          .box {
-            --animation-position: 0;
-        
-            font-variation-settings: 'GRAD' -200, 'FILL' 1;
-            font-family: var(--icon-font-family);
-            font-size: 15cqw;
-            text-align:center;
-            font-variation-settings:
-              'FILL' 1,
-        
-              'wght' 700,
-        
-              'GRAD' 200;
-        
-        
-            overflow: hidden;
-            display: flex;
-            height: 100px;
-            aspect-ratio: 1 / 1;
-            width: auto;
-            align-self: stretch;
-            background: var(--background-brand-secondary);
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--foreground-brand-secondary);
-            margin-top: -16px;
-            margin-inline: -16px;
-            user-select: none;
-            -webkit-user-select: none;
-        
-        
-        
-          }
-
-           .content-area{
-            display:flex;
-            flex: 1 0 0;
-            padding:24px;
-            
-            }
-
-            .content{
-                        flex: 1 0 0;
-
-            display:flex;
-            flex-direction:column;
-            }
-        
-          .box span {
-        
-            rotate: -20deg;
-            opacity: 0.5;
-            animation: iconAnimate 5s ease-in-out infinite alternate;
-            font-weight: 600;
-        
-        
-          }
-        </style>
-        <div class=" resource-card">
-          <div class="box">
-            <span>home</span>
-        
-          </div>
-          <div class="content-area">
-            <div class="content">
-              <div class="heading sm">Title</div>
-              <div class="div">Description</div>
-            </div>
-            <button part="button" class="button">
-              Download
-            </button>
-          </div>
-        </div>
-      `;
-
-    // Clone the template content and attach it to the shadow DOM
-    shadow.appendChild(template.content.cloneNode(true));
-  }
+          font-variation-settings: "GRAD" 0;
+          color: var(--foreground-primary);
+          overflow: hidden;
+          outline-offset: 0px;
+          anchor-name: --card;
+        }
+        .box {
+          --animation-position: 0;
+          font-variation-settings: 'GRAD' -200, 'FILL' 1;
+          font-family: var(--icon-font-family);
+          font-size: clamp(40px,20cqw,150px);
+          text-align: center;
+          font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200;
+          overflow: hidden;
+          aspect-ratio: 1 / 1;
+          display: flex;
+         width:15cqw;
+          align-self: stretch;
+          background: var(--background-brand-secondary);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: var(--foreground-brand-secondary);
+          user-select: none;
+          -webkit-user-select: none;
+        }
+       .content-area {
+          display: flex;
+          flex: 1 0 0;
+          padding: 24px;
+          align-items: center;
+          flex-wrap: wrap; /* Enables wrapping */
+          gap: 16px; /* Optional spacing between items */
+          min-width:200px
+}
+        .title-group {
+          flex: 1 1 0; /* Allows flexible growth and shrinkage */
+          min-width:300px;
+          display: flex;
+          flex-direction: column;
 }
 
-// Define the new element
-customElements.define("resource-card", ResourceCard);
+        .box span {
+          line-height: 100%;
+          rotate: -20deg;
+          opacity: 0.5;
+          animation: iconAnimate 5s ease-in-out infinite alternate;
+          font-weight: 600;
+        }
+      </style>
+          <link href="./style.css" rel="stylesheet" />
+          <div class="resource-card">
+            <div class="box">
+              <span class="icon">demography</span>
+            </div>
+            <div class="content-area">
+              <div class="title-group">
+                <div class="heading sm title">Title</div>
+                <div class="body sm secondary description">Description</div>
+              </div>
+              <button part="button" class="button">
+                <div class="icon">link</div>
+                <span class="button-text">Download</span>
+              </button>
+            </div>
+          </div>
+        `;
+    
+        // Clone the template content and attach it to the shadow DOM
+        shadow.appendChild(template.content.cloneNode(true));
+    
+        // Store references to the elements
+        this.boxIconElement = shadow.querySelector('.box .icon'); // Icon in the box
+        this.titleElement = shadow.querySelector('.title');
+        this.descriptionElement = shadow.querySelector('.description');
+        this.buttonElement = shadow.querySelector('.button');
+        this.buttonTextElement = shadow.querySelector('.button-text');
+        this.buttonIconElement = shadow.querySelector('.button .icon'); // Icon in the button
+    
+        // Add click event listener to the button
+        this.buttonElement.addEventListener('click', () => {
+          const url = this.getAttribute('button-url');
+          if (url) {
+            window.location.href = url;
+          }
+        });
+      }
+    
+      static get observedAttributes() {
+        return ['icon', 'title', 'description', 'button-text', 'button-url'];
+      }
+    
+      attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+          case 'icon':
+            if (this.boxIconElement) {
+              this.boxIconElement.textContent = newValue;
+            }
+            break;
+          case 'title':
+            if (this.titleElement) {
+              this.titleElement.textContent = newValue;
+            }
+            break;
+          case 'description':
+            if (this.descriptionElement) {
+              this.descriptionElement.textContent = newValue;
+            }
+            break;
+          case 'button-text':
+            if (this.buttonTextElement) {
+              this.buttonTextElement.textContent = newValue;
+            }
+            break;
+          case 'button-url':
+            // No action needed; the click handler reads the attribute directly
+            break;
+        }
+      }
+    
+      connectedCallback() {
+        // Initialize the component with current attribute values
+        if (this.hasAttribute('icon')) {
+          this.boxIconElement.textContent = this.getAttribute('icon');
+        }
+        if (this.hasAttribute('title')) {
+          this.titleElement.textContent = this.getAttribute('title');
+        }
+        if (this.hasAttribute('description')) {
+          this.descriptionElement.textContent = this.getAttribute('description');
+        }
+        if (this.hasAttribute('button-text')) {
+          this.buttonTextElement.textContent = this.getAttribute('button-text');
+        }
+      }
+    }
+    
+    // Define the new element
+    customElements.define("resource-card", ResourceCard);

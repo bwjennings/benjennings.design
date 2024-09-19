@@ -1,3 +1,6 @@
+
+
+
 :root {}
 
 *,
@@ -55,7 +58,7 @@ select {
   font: inherit;
 }
 
-p,
+
 h1,
 h2,
 h3,
@@ -64,6 +67,9 @@ h5,
 h6 {
   overflow-wrap: break-word;
   text-wrap: pretty;
+}
+p{
+  max-width: 65ch;
 }
 
 body {
@@ -83,20 +89,21 @@ u {
 }
 
 .heading {
+  
   margin: 0;
   font-family: var(--text-heading-font-family);
   font-size: var(--text-heading-lg-size);
   font-style: normal;
   font-weight: var(--text-heading-weight);
   line-height: var(--text-heading-lg-line-height);
-  text-wrap: pretty;
-  width: 100%;
-  max-width: 60ch;
+  text-wrap: balance;
+  width: fit-content;
+  max-width: 40ch;
   font-variation-settings:
-    "wdth" 110,
-    "GRAD" 100,
-    "XOPQ" 80,
-    "YOPQ" 80;
+    'wdth' 110,
+    'GRAD' 100,
+    'XOPQ' 80,
+    'YOPQ' 80;
   font-optical-sizing: auto;
   font-style: normal;
 
@@ -167,7 +174,7 @@ button, ::part(button) {
   align-items: center;
   gap: var(--spacing-x-small, 4px);
   font-family: var(--text-font-family);
-  font-size: 16px;
+  font-size: var(--text-body-sm-size);
   color: var(--foreground-primary);
   line-height: 100%;
   height: 48px;
@@ -175,11 +182,11 @@ button, ::part(button) {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
-  transition: outline 100ms;
+  transition: outline var(--timing-ease) 100ms ;
 
   .icon {
     font-family: var(--icon-font-family);
-    font-size: var(--icon-size-medium);
+    font-size: var(--icon-size-small);
     line-height: 100%;
   }
 }
@@ -257,7 +264,6 @@ label {
 
 .radio-button {
   box-sizing: content-box;
-
   display: flex;
   flex-direction: row;
   background-color: transparent;
@@ -272,7 +278,6 @@ label {
   flex: 1 0 0;
   z-index: 1;
   border-right: 1px solid var(--border-primary);
-
   span {
     justify-content: center;
     align-items: center;
@@ -301,16 +306,13 @@ model-viewer {
   width: 100%;
 }
 
-audio {
-  padding: 40px;
-}
+
 
 .switch {
   height: 48px;
   width: 80px;
   background: var(--background-secondary);
   border: 1px solid var(--border-secondary);
-
   span {
     display: block;
     position: relative;
@@ -409,7 +411,7 @@ main {
   border-bottom: 1px solid var(--border-secondary);
   user-select: none;
 
-  .heading {}
+
 
   .content {
     width: 100%;
@@ -421,7 +423,7 @@ main {
 .page-items {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 100%));
   grid-auto-rows: 300px;
   align-items: center;
   gap: var(--spacing-xx-large);
@@ -431,8 +433,12 @@ main {
 
   &.ordered {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 
-   
+  &.flex{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 
@@ -447,19 +453,15 @@ dialog[open] {
   display: block;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
-
-
 }
 
 /*   Closed state of the dialog   */
 dialog {
-
   margin: auto;
   opacity: 0;
   color: var(--foreground-primary);
   border: 1px solid var(--border-primary);
   width: var(--dialog-width);
-  max-width: 1400px;
   filter: blur(8px);
   padding: 0px;
   background-color: var(--background-page);
