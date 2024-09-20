@@ -7,17 +7,13 @@ customElements.define(
       // Attach shadow DOM
       const shadowRoot = this.attachShadow({ mode: "open" });
 
-      // Create a template for the component's content without attribute-dependent values
+      // Create a template for the component's content
       const template = document.createElement('template');
       template.innerHTML = `
         <link rel="stylesheet" href="components/card/card.css">
-        <link rel="preload" as="audio" href="designs/resources/Expand.m4a">
-        <link rel="preload" as="audio" href="designs/resources/Collapse.m4a">
         <div class="card-container">
-          <slot name="thumbnail" class="thumbnail"></slot>
-          <span class="">
-            <span></span>
-          </span>
+          <slot name="media"></slot>
+    
           <h2 class="card-title heading sm"></h2>
           <slot class="badge-group" name="badge"></slot>
           <slot name="content"></slot>
@@ -43,13 +39,13 @@ customElements.define(
       this.closeBtn1 = shadowRoot.getElementById("closeBtn1");
       this.closeBtn2 = shadowRoot.getElementById("closeBtn2");
       this.dialog = shadowRoot.getElementById("dialog");
+      this.mediaSlot = shadowRoot.querySelector('slot[name="media"]');
 
       // Bind methods to ensure proper 'this' context
       this.showDialog = this.showDialog.bind(this);
       this.closeDialog = this.closeDialog.bind(this);
       this.trackDialogOpen = this.trackDialogOpen.bind(this);
-      this.backdropClickHandler = this.backdropClickHandler.bind(this); // Add this line
-
+      this.backdropClickHandler = this.backdropClickHandler.bind(this);
     }
 
     connectedCallback() {
@@ -62,7 +58,7 @@ customElements.define(
         this.closeBtn1.addEventListener("click", this.closeDialog);
         this.closeBtn2.addEventListener("click", this.closeDialog);
         this.dialog.addEventListener("show", this.trackDialogOpen);
-        this.dialog.addEventListener('click', this.backdropClickHandler); // Add this line
+        this.dialog.addEventListener('click', this.backdropClickHandler);
 
         this.hasConnected = true;
       }
@@ -74,12 +70,11 @@ customElements.define(
       this.closeBtn1.removeEventListener("click", this.closeDialog);
       this.closeBtn2.removeEventListener("click", this.closeDialog);
       this.dialog.removeEventListener("show", this.trackDialogOpen);
-      this.dialog.removeEventListener('click', this.backdropClickHandler); // Add this line
-
+      this.dialog.removeEventListener('click', this.backdropClickHandler);
     }
 
     static get observedAttributes() {
-      return ["title", "badge", "badge-icon", "version", "icon"];
+      return ["title", "version"];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -101,20 +96,15 @@ customElements.define(
         dialogTitle.textContent = title;
       }
 
-      // Update version and icon
-      const version = this.getAttribute('version') || '';
-      const icon = this.getAttribute('icon') || '';
-      const spanElement = this.shadowRoot.querySelector('div.card-container > span');
-      if (spanElement) {
-        spanElement.className = version;
-        const innerSpan = spanElement.querySelector('span');
-        if (innerSpan) {
-          innerSpan.textContent = icon;
+      // Update the media slot's class based on the 'version' attribute
+      const version = this.getAttribute('version');
+      if (this.mediaSlot) {
+        if (version) {
+          this.mediaSlot.className = version;
+        } else {
+          this.mediaSlot.className = '';
         }
       }
-
-      // Handle badge and badge-icon updates if necessary
-      // Add any additional attribute updates here
     }
 
     // Methods to handle dialog actions
@@ -140,6 +130,7 @@ customElements.define(
         });
       }
     }
+
     backdropClickHandler(event) {
       if (event.target === this.dialog) {
         this.closeDialog(event);

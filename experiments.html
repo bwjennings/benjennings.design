@@ -4,6 +4,9 @@
 <head>
   <title>Ben Jennings</title>
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=auto" />
+  <script>
+    (function(){try{var t=localStorage.getItem('myCustomTheme')||'',h=localStorage.getItem('highContrast')==='true',c=localStorage.getItem('selectedColorHue')||'',s=t==='light'?'light':t==='dark'?'dark':'light dark';document.documentElement.style.setProperty('color-scheme',s);if(h){document.documentElement.dataset.mode='high-contrast';}if(c){document.documentElement.style.setProperty('--theme-hue',c);}}catch(e){console.error('Error applying theme preferences:',e);}})();
+  </script>
   <link rel="modulepreload" href="components/index.js" />
   <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,8 +75,8 @@
       <section class="page-items">
      
 
-        <simple-card title="Plant">
-          <model-viewer slot="thumbnail" poster="designs/resources/Experiments/poster.webp" auto-rotate shadow-intensity="1" rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m" field-of-view="19.98deg" auto-rotate tone-mapping="neutral" shadow-softness="0.78"
+        <simple-card title="Plant" version="box">
+          <model-viewer slot="media" poster="designs/resources/Experiments/poster.webp" auto-rotate shadow-intensity="1" rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m" field-of-view="19.98deg" auto-rotate tone-mapping="neutral" shadow-softness="0.78"
             shadow-softness="1" src="designs/resources/Experiments/3D/plant.glb"></model-viewer>
 
             <div slot="post" class="post-body horizontal">

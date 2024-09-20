@@ -16,7 +16,6 @@ customElements.define(
           }
         </style>
        
-          <button id="randomColorBtn" class="icon-button pallete-button" aria-label="Random Theme Color">palette</button>
           <button id="openBtn" aria-label="Open Settings">
             <div class="icon">tune</div>Settings
           </button>
@@ -70,7 +69,6 @@ customElements.define(
 
       // Bind methods to ensure proper 'this' context
       this.openSettings = this.openSettings.bind(this);
-      this.pickRandomColorHandler = this.pickRandomColorHandler.bind(this);
       this.saveChanges = this.saveChanges.bind(this);
       this.cancelChanges = this.cancelChanges.bind(this);
       this.hueChangeHandler = this.hueChangeHandler.bind(this);
@@ -84,7 +82,6 @@ customElements.define(
 
       // Add event listeners
       this.shadowRoot.getElementById("openBtn").addEventListener("click", this.openSettings);
-      this.shadowRoot.getElementById("randomColorBtn").addEventListener("click", this.pickRandomColorHandler);
       this.shadowRoot.getElementById("closeBtn").addEventListener("click", this.saveChanges);
       this.shadowRoot.getElementById("cancelBtn").addEventListener("click", this.cancelChanges);
 
@@ -98,7 +95,6 @@ customElements.define(
     disconnectedCallback() {
       // Remove event listeners
       this.shadowRoot.getElementById("openBtn").removeEventListener("click", this.openSettings);
-      this.shadowRoot.getElementById("randomColorBtn").removeEventListener("click", this.pickRandomColorHandler);
       this.shadowRoot.getElementById("closeBtn").removeEventListener("click", this.saveChanges);
       this.shadowRoot.getElementById("cancelBtn").removeEventListener("click", this.cancelChanges);
 
@@ -142,12 +138,6 @@ customElements.define(
       document.documentElement.dataset.mode = enabled ? "high-contrast" : "normal";
     }
 
-    pickRandomColor() {
-      const randomHue = Math.floor(Math.random() * 361);
-      this.themeSlider.setHue(randomHue); // Update the slider value
-      localStorage.setItem("selectedColorHue", randomHue);
-      window.dispatchEvent(new CustomEvent('globalHueChange', { detail: randomHue })); // Ensure other components update
-    }
 
     // Event handler methods
     openSettings() {
@@ -160,13 +150,7 @@ customElements.define(
       });
     }
 
-    pickRandomColorHandler() {
-      this.pickRandomColor();
-      gtag('event', 'random_theme_color', {
-        'event_category': 'Settings',
-        'event_label': 'Random Theme Color'
-      });
-    }
+ 
 
     hueChangeHandler(event) {
       localStorage.setItem("selectedColorHue", event.detail);

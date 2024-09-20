@@ -4,6 +4,9 @@
 <head>
   <title>Ben Jennings</title>
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=auto" />
+  <script>
+    (function(){try{var t=localStorage.getItem('myCustomTheme')||'',h=localStorage.getItem('highContrast')==='true',c=localStorage.getItem('selectedColorHue')||'',s=t==='light'?'light':t==='dark'?'dark':'light dark';document.documentElement.style.setProperty('color-scheme',s);if(h){document.documentElement.dataset.mode='high-contrast';}if(c){document.documentElement.style.setProperty('--theme-hue',c);}}catch(e){console.error('Error applying theme preferences:',e);}})();
+  </script>
   <link rel="modulepreload" href="components/index.js" />
   <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
