@@ -14,14 +14,12 @@
         template.innerHTML = `
          <style>
         :host {
-          grid-column: 1 / -1;
         }
         .resource-card {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
           height: 100%;
-          max-height: fit-content;
           background: var(--background-primary);
           border: 1px solid var(--border-primary);
           container-type: inline-size;
@@ -33,17 +31,16 @@
           outline-offset: 0px;
           anchor-name: --card;
         }
-        .box {
+        .iconbox {
           --animation-position: 0;
           font-variation-settings: 'GRAD' -200, 'FILL' 1;
           font-family: var(--icon-font-family);
-          font-size: clamp(40px,20cqw,150px);
+          font-size: 10cqw;
           text-align: center;
           font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200;
           overflow: hidden;
           aspect-ratio: 1 / 1;
           display: flex;
-         width:15cqw;
           align-self: stretch;
           background: var(--background-brand-secondary);
           flex-direction: column;
@@ -52,24 +49,31 @@
           color: var(--foreground-brand-secondary);
           user-select: none;
           -webkit-user-select: none;
+          max-height:100px;
+
+          
+}
+          @container (max-width: 450px) {
+          .iconbox{
+ display:none
+      }
         }
        .content-area {
           display: flex;
           flex: 1 0 0;
           padding: 24px;
           align-items: center;
-          flex-wrap: wrap; /* Enables wrapping */
           gap: 16px; /* Optional spacing between items */
           min-width:200px
 }
         .title-group {
-          flex: 1 1 0; /* Allows flexible growth and shrinkage */
-          min-width:300px;
+          flex: 1 0 0; 
           display: flex;
+          gap:2px;
           flex-direction: column;
 }
 
-        .box span {
+        .iconbox span {
           line-height: 100%;
           rotate: -20deg;
           opacity: 0.5;
@@ -79,13 +83,13 @@
       </style>
           <link href="./style.css" rel="stylesheet" />
           <div class="resource-card">
-            <div class="box">
-              <span class="icon">demography</span>
+            <div class="iconbox">
+              <span>demography</span>
             </div>
             <div class="content-area">
               <div class="title-group">
                 <div class="heading sm title">Title</div>
-                <div class="body sm secondary description">Description</div>
+                <div class="body xs secondary description">Description</div>
               </div>
               <button part="button" class="button">
                 <div class="icon">link</div>
@@ -99,7 +103,7 @@
         shadow.appendChild(template.content.cloneNode(true));
     
         // Store references to the elements
-        this.boxIconElement = shadow.querySelector('.box .icon'); // Icon in the box
+        this.boxIconElement = shadow.querySelector('.iconbox span'); // Icon in the box
         this.titleElement = shadow.querySelector('.title');
         this.descriptionElement = shadow.querySelector('.description');
         this.buttonElement = shadow.querySelector('.button');

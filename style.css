@@ -156,37 +156,7 @@ u {
     color: var(--foreground-secondary);
   }
 }
-.icon {
-  font-family: var(--icon-font-family);
-  font-weight: var(--icon-weight-medium);
-  font-size: var(--icon-size-medium);
-  line-height: 100%;
-  font-variation-settings: 
-  'FILL' 1;
 
-
-
-  &.lg {
-    font-weight: var(--icon-weight-large);
-  font-size: var(--icon-size-large);
-  }
-
-  &.md {
-    font-weight: var(--icon-weight-medium);
-    font-size: var(--icon-size-medium);
-  }
-
-  &.sm {
-    font-weight: var(--icon-weight-small);
-    font-size: var(--icon-size-small);
-  }
-  &.secondary {
-    color: var(--foreground-secondary);
-  }
-  &.brand {
-    color: var(--foreground-brand);
-  }
-}
 
 
 
