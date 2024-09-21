@@ -19,12 +19,12 @@ customElements.define(
           <slot name="content"></slot>
         </div>
         <dialog id="dialog">
-          <div class="container">
+          <div class="wrapper">
             <header>
               <h2 class="heading md" id="dialog-title"></h2>
               <button class="icon-button" id="closeBtn1">Close</button>
             </header>
-            <slot class="content lg body" name="post"></slot>
+            <slot class=" lg body" name="post"></slot>
             <footer>
               <button autofocus id="closeBtn2">Close</button>
             </footer>

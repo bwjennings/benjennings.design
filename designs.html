@@ -5,7 +5,7 @@
   <title>Ben Jennings</title>
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=auto" />
   <script>
-    (function(){try{var t=localStorage.getItem('myCustomTheme')||'',h=localStorage.getItem('highContrast')==='true',c=localStorage.getItem('selectedColorHue')||'',s=t==='light'?'light':t==='dark'?'dark':'light dark';document.documentElement.style.setProperty('color-scheme',s);if(h){document.documentElement.dataset.mode='high-contrast';}if(c){document.documentElement.style.setProperty('--theme-hue',c);}}catch(e){console.error('Error applying theme preferences:',e);}})();
+    (function () { try { var t = localStorage.getItem('myCustomTheme') || '', h = localStorage.getItem('highContrast') === 'true', c = localStorage.getItem('selectedColorHue') || '', s = t === 'light' ? 'light' : t === 'dark' ? 'dark' : 'light dark'; document.documentElement.style.setProperty('color-scheme', s); if (h) { document.documentElement.dataset.mode = 'high-contrast'; } if (c) { document.documentElement.style.setProperty('--theme-hue', c); } } catch (e) { console.error('Error applying theme preferences:', e); } })();
   </script>
   <link rel="modulepreload" href="components/index.js" />
   <!-- Preconnect -->
@@ -80,32 +80,35 @@
           Don't make it simple, make it clear
 
           <my-badge>Design System</my-badge><my-badge>Startup Company</my-badge>
-          
+
 
           <div slot="post">{Dwellane content here}</div>
-            
 
 
 
-        
+
+
 
         </simple-card>
 
 
 
-        <simple-card  version="box" title="Admins need to manage learning materials">
-          <p slot="media">schema</p>
+        <simple-card version="box" title="Admins need to manage learning materials">
+          <div slot="media">schema</div>
           <div slot="post">
-            <iframe class="figma" src="https://embed.figma.com/proto/YY1gZoLcBXAtiDy1LeDWW0/cards?page-id=16772%3A2924&node-id=16772-2972&node-type=frame&viewport=1618%2C356%2C0.59&scaling=min-zoom&content-scaling=responsive&starting-point-node-id=17588%3A7632&share=1&embed-host=share&footer=false" allowfullscreen></iframe>              enforcement agencies across the country. <br> A major problem to design for was the ability to group
-              lessons
-              into a multiple courses and then assign that course to individual users or groups of users</p>
+            <iframe class="figma"
+              src="https://embed.figma.com/proto/YY1gZoLcBXAtiDy1LeDWW0/cards?page-id=16772%3A2924&node-id=16772-2972&node-type=frame&viewport=1618%2C356%2C0.59&scaling=min-zoom&content-scaling=responsive&starting-point-node-id=17588%3A7632&share=1&embed-host=share&footer=false"
+              allowfullscreen></iframe> enforcement agencies across the country. <br> A major problem to design for was
+            the ability to group
+            lessons
+            into a multiple courses and then assign that course to individual users or groups of users</p>
 
             <label> Here's a map I created to understand the complexity of system</label>
 
 
 
           </div>
-                    <iframe id="content" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="800"
+          <iframe id="content" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="800"
             src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYY1gZoLcBXAtiDy1LeDWW0%2Fcards%3Fpage-id%3D0%253A1%26node-id%3D6341-3045%26viewport%3D736%252C-2525%252C0.32%26t%3DxwcKof0PVZQZct8Q-1%26scaling%3Dcontain%26content-scaling%3Dresponsive%26starting-point-node-id%3D8681%253A2405"></iframe>
 
 
@@ -113,20 +116,42 @@
 
 
         <simple-card version="box" title="Bank employees need to manage loans">
-          <p slot="media">account_balance</p>
+          <div slot="media">account_balance</div>
           <my-badge>Salesforce</my-badge> <my-badge>Internal Tool</my-badge>
           <div slot="post">
-            {Arvest designs go here}
+            <p>The existing method for loan officers to create and manage loans required them to use several individual
+              tools that required a lot of training. This unorganization caused a lot of frustration for employees as
+              well as loan applicants. </p>
+
+            <p>To address this challenge, these processes were moved to the Salesforce platform, allowing everything to
+              be managed in one place. Over several months, I designed experiences to handle the complexities of the
+              loan process, such as adding collateral, including co-borrowers, and ensuring compliance with all
+              regulatory requirements.</p>
+
+            <iframe class="figma"
+              src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=17584-4652&embed-host=share"
+              allowfullscreen></iframe>
+
+            <p>Working within Salesforce comes with certain design constraints. To create an intuitive experience, I
+              first
+              needed to understand what loan officers aimed to accomplish—for example, gathering all the required
+              information for a collateral item. Then, using an understanding of what is possible with salesforce tools
+              like Omniscripts, Flexcards, and Lightning Web Components, I then designed solutions that prioritized user
+              needs while remaining realistic in terms of development effort.</p>
+
+            <iframe class="figma"
+              src="https://embed.figma.com/proto/YY1gZoLcBXAtiDy1LeDWW0/cards?page-id=16772%3A2924&node-id=19946-10526&node-type=frame&viewport=1357%2C-3197%2C0.64&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=17588%3A7632&embed-host=share"
+              allowfullscreen></iframe>
 
 
           </div>
 
         </simple-card>
 
-        <simple-card  version="box" title="Students need to graduate with a cap and gown">
-          <p slot="media">school</p>
+        <simple-card version="box" title="Students need to graduate with a cap and gown">
+          <div slot="media">school</div>
           <my-badge>Design System</my-badge>
-          <my-badge >CMS</my-badge>
+          <my-badge>CMS</my-badge>
           <div slot="post">
             {Herff Jones designs go here}
 
@@ -135,9 +160,9 @@
 
         </simple-card>
 
-      
 
-       
+
+
 
 
 

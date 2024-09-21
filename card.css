@@ -223,23 +223,21 @@ display: block;
   height: 400px;
 }
 
-
+::slotted([slot="post"]) {
+  
+}
   :slotted(model-viewer) {
     height: 400px;
   }
-dialog{
-  overflow: hidden;
-}
+
 
 .wrapper{
-  display: grid;
-grid-template-rows: auto 1fr auto;
-max-height: 90cqh  
-
-
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-slot[name="post"]{
+::slotted(slot="post"){
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xxx-large);
@@ -247,14 +245,6 @@ slot[name="post"]{
   overflow-y: auto;
   flex: 1 1 auto;   
 
-}
-::slotted([slot="post"]) {
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xxx-large);
-
-  
 }
 
 
