@@ -8,13 +8,14 @@ customElements.define(
       const shadowRoot = this.attachShadow({ mode: "open" });
       shadowRoot.innerHTML = `
         <style>
-          @import "style.css";
           @import "components/settings/settings.css";
         
           .icon {
             font-family: var(--icon-font-family);
           }
         </style>
+          <link href="./style.css" rel="stylesheet" />
+
        
           <button id="openBtn" aria-label="Open Settings">
             <div class="icon">tune</div>Settings

@@ -29,7 +29,6 @@
   gap: var(--spacing-x-large);
   overflow: hidden;
   outline-offset: 0px;
-  anchor-name: --card;
 
   &:hover {
     
