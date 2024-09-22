@@ -3,7 +3,5 @@ import './settings/settings.js';
 import './ThemeSlider/theme-slider.js';
 import './badge/badge.js';
 import './card/card.js';
-import './copy-button/copy-button.js'
-import './resource-card/resource-card.js'
-import './popover/popover.js'
-import 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
+import './copy-button/copy-button.js';
+import './resource-card/resource-card.js';
