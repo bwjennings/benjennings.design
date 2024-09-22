@@ -3,6 +3,8 @@
   perspective: 200px;
   transform-style: preserve-3d;
   grid-area: settings;
+  -webkit-tap-highlight-color: transparent;
+
   
   
   
@@ -62,6 +64,7 @@ dialog{
     }
   }
 
+ 
   .active {
     border-color: transparent;
 
@@ -102,6 +105,8 @@ input:where([type="checkbox"][role="switch"]) {
   margin: none;
   transition: width cubic-bezier(0,1,1,1) 300ms;
   transition-property: left,height,width;
+  border-radius: 0px;
+  -webkit-tap-highlight-color: transparent;
 
    
 }
@@ -121,7 +126,7 @@ input:where([type="checkbox"][role="switch"])::before {
   transition: inherit;
 }
 input:where([type="checkbox"][role="switch"]):checked{
-  background-color: var(--background-brand);
+  background-color: var(--background-brand-emphasis);
 }
 
 input:where([type="checkbox"][role="switch"]):checked::before {

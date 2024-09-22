@@ -13,6 +13,7 @@ input[type="range"] {
   padding: 4px;
   border: 1px solid var(--border-primary);
   border-radius: 0px;
+  
   &:active {
     cursor: grabbing;
   }
@@ -39,8 +40,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   outline: 8px solid var(--background-page);
   border: none;
   box-shadow: none;
-  transition: transform 300ms,outline 300ms,border 300ms;
-  transition-timing-function: var(--timing-ease);
+
   
 
 
@@ -49,7 +49,8 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 input[type="range"]::-webkit-slider-thumb {
   box-shadow: none;
-  
+  transition: transform 300ms,outline 300ms,border 300ms;
+  transition-timing-function: var(--timing-ease);
 
   -webkit-appearance: none;
   /* Override default look */

@@ -272,8 +272,13 @@ slot[name="post"]{
   }
 }
 
-@container card (min-width:400px) {
-  .thumbnail {
-    /* Empty rule */
-  }
+@container card (max-width:400px) {
+  .card-container {
+padding: var(--spacing-medium); 
+gap: var(--spacing-medium);
+&:has(.icon) {
+  padding: var(--spacing-large);
+  gap: var(--spacing-large);
+}
+ }
 }

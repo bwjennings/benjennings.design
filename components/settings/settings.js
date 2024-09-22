@@ -48,7 +48,7 @@ class SiteSettings extends HTMLElement {
                 </fieldset>
               </label>
               <theme-slider></theme-slider>
-              <label for="highContrast">High Contrast
+              <label for="highContrast" style="width: fit-content;">High Contrast
                 <input type="checkbox" role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
               </label>
             </div>

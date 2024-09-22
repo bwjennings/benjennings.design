@@ -31,6 +31,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
+  scrollbar-color: var( --border-secondary) var(--background-page);
 }
 
 img {
@@ -56,6 +57,7 @@ button,
 textarea,
 select {
   font: inherit;
+
 }
 
 
@@ -133,8 +135,8 @@ u {
 :is(.body, p) {
   font-family: var(--text-body-font-family);
   font-weight: var(--text-body-weight);
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line-height);
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-line-height);
   text-wrap: pretty;
 
 
@@ -146,6 +148,10 @@ u {
   &.md {
     font-size: var(--text-body-md-size);
     line-height: var(--text-body-md-line-height);
+  }
+  &.sm {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line-height);
   }
 
   &.xs {
@@ -282,6 +288,7 @@ label {
   flex: 1 0 0;
   z-index: 1;
   border-right: 1px solid var(--border-primary);
+  -webkit-tap-highlight-color: transparent;
   span {
     justify-content: center;
     align-items: center;
@@ -297,6 +304,7 @@ label {
   }
   
 }
+
 
 .radio-button:has(input:checked) {
   background-color: var(--background-brand);
@@ -328,6 +336,7 @@ model-viewer {
     height: 24px;
     border: 1px solid transparent;
     transition: right 600ms;
+    -webkit-tap-highlight-color: transparent;
   }
 
   &:has(input:checked) {
@@ -699,6 +708,7 @@ dialog[open]::backdrop {
 (max-height:500px) {
   body {
     height: 100dvh;
+    ;
   }
 
   main {
@@ -723,6 +733,7 @@ dialog[open]::backdrop {
       "title"
       "main-content"
       "sidebar";
+      margin-bottom: env(safe-area-inset-bottom);
   }
 
   .page-items{
@@ -731,6 +742,12 @@ dialog[open]::backdrop {
     grid-auto-rows: 250px;
 
   }
+
+  .content{
+    padding: var(--spacing-large);
+  }
+
+  
   .button-group {
     margin-top: auto;
     flex-direction: column;
@@ -749,7 +766,7 @@ dialog[open]::backdrop {
     max-width: none;
     position: initial;
     margin-top: calc(20cqh - 40px);
-
+    padding: var(--spacing-large);
    
   }
 
@@ -761,24 +778,40 @@ dialog[open]::backdrop {
     width: 100dvw;
     max-width: none;
     transform: perspective(500px) translateZ(0px) translateY(100dvh);
+    min-height: 50dvh;
     height: fit-content;
     min-width: 0px;
+    border: 0px;
+    border-top: 1px solid var(--border-primary);
+    ;
 
     form {
       flex-grow: 1;
     }
 
+    .wrapper{
+      min-height: 50dvh;
+    }
+
+    ::slotted([slot="post"]){
+      padding: var(--spacing-large);
+    }
+
     header {
 
-      padding-block: var(--spacing-x-large);
+      padding: var(--spacing-large);
 
     }
 
     footer {
       gap: var(--spacing-small);
-      flex-direction: column-reverse;
+      flex-direction: row;
       align-items: stretch;
-      padding-block: var(--spacing-x-large);
+      padding: var(--spacing-large);
+
+      button{
+        width: 100%;
+      }
     }
   }
 
