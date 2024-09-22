@@ -12,10 +12,9 @@ customElements.define(
 
       // Template with conditional label text visibility
       shadowRoot.innerHTML = `
-        <style>
-          @import "components/ThemeSlider/theme-slider.css";
-        </style>
-          <link href="./css/style.css" rel="stylesheet" />
+       <link href="css/style.css" rel="stylesheet"  />
+        <link href="components/ThemeSlider/theme-slider.css" rel="stylesheet"   />
+          
 
        
         <label for="hueSlider">

@@ -1,20 +1,19 @@
 // Define the custom element for Site Settings
-customElements.define(
-  "site-settings",
-  class extends HTMLElement {
+class SiteSettings extends HTMLElement {
     constructor() {
       super();
 
       const shadowRoot = this.attachShadow({ mode: "open" });
       shadowRoot.innerHTML = `
         <style>
-          @import "components/settings/settings.css";
+         
         
           .icon {
             font-family: var(--icon-font-family);
           }
         </style>
-          <link href="./css/style.css" rel="stylesheet" />
+        <link href="components/settings/settings.css" rel="stylesheet" />
+          <link href="./css/style.css" rel="stylesheet"  rel="stylesheet" />
 
        
           <button id="openBtn" aria-label="Open Settings">
@@ -201,4 +200,4 @@ customElements.define(
       }
     }
   }
-);
+  customElements.define("site-settings", SiteSettings);;

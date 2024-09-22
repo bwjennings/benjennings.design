@@ -1,17 +1,17 @@
 class CustomSidebar extends HTMLElement {
   static get observedAttributes() {
-    return ['active-item'];
+    return ["active-item"];
   }
 
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
 
     // Create the template without relying on attributes
-    const template = document.createElement('template');
+    const template = document.createElement("template");
     template.innerHTML = `
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-      <link rel="stylesheet" href="components/navigation/navigation.css" type="text/css">
+    <link  href="css/style.css" rel="stylesheet"/>
+      <link  href="components/navigation/navigation.css" rel="stylesheet"/>
       
       <nav class="sidebar">
         <h2 class="site-title"><a href="index.html">Ben</a></h2>
@@ -49,7 +49,7 @@ class CustomSidebar extends HTMLElement {
 
   connectedCallback() {
     // Initialize component based on current attributes
-    this.updateActiveItem(this.getAttribute('active-item'));
+    this.updateActiveItem(this.getAttribute("active-item"));
 
     // Add event listeners
     this.addEventListeners();
@@ -62,15 +62,15 @@ class CustomSidebar extends HTMLElement {
 
   addEventListeners() {
     // Attach event listeners to navigation links
-    this.shadowRoot.querySelectorAll('.nav-card').forEach(element => {
-      element.addEventListener('click', this.handleNavigation);
+    this.shadowRoot.querySelectorAll(".nav-card").forEach((element) => {
+      element.addEventListener("click", this.handleNavigation);
     });
   }
 
   removeEventListeners() {
     // Detach event listeners
-    this.shadowRoot.querySelectorAll('.nav-card').forEach(element => {
-      element.removeEventListener('click', this.handleNavigation);
+    this.shadowRoot.querySelectorAll(".nav-card").forEach((element) => {
+      element.removeEventListener("click", this.handleNavigation);
     });
   }
 
@@ -79,7 +79,7 @@ class CustomSidebar extends HTMLElement {
     event.preventDefault();
 
     // Get the href attribute from the clicked link
-    const href = event.currentTarget.getAttribute('href');
+    const href = event.currentTarget.getAttribute("href");
     if (href) {
       // Navigate to the new URL
       window.location.href = href;
@@ -87,26 +87,24 @@ class CustomSidebar extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'active-item' && oldValue !== newValue) {
+    if (name === "active-item" && oldValue !== newValue) {
       this.updateActiveItem(newValue);
     }
   }
 
   updateActiveItem(index) {
-    const cards = this.shadowRoot.querySelectorAll('.nav-card');
+    const cards = this.shadowRoot.querySelectorAll(".nav-card");
     // Remove 'active' class from all cards
-    cards.forEach(card => card.classList.remove('active'));
+    cards.forEach((card) => card.classList.remove("active"));
 
     // Parse the index as an integer
     const idx = parseInt(index, 10) - 1; // Adjust for zero-based index
 
     // Check if idx is a valid number and within range
     if (!isNaN(idx) && idx >= 0 && idx < cards.length) {
-      cards[idx].classList.add('active');
+      cards[idx].classList.add("active");
     }
   }
 }
 
-customElements.define('custom-sidebar', CustomSidebar);
-
-export { CustomSidebar };
+customElements.define("custom-sidebar", CustomSidebar);
