@@ -10,6 +10,7 @@ customElements.define(
       // Create a template for the component's content
       const template = document.createElement('template');
       template.innerHTML = `
+      <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="components/card/card.css">
         <div class="card-container">
           <slot name="media"></slot>

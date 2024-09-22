@@ -15,7 +15,7 @@ customElements.define(
         <style>
           @import "components/ThemeSlider/theme-slider.css";
         </style>
-          <link href="./style.css" rel="stylesheet" />
+          <link href="./css/style.css" rel="stylesheet" />
 
        
         <label for="hueSlider">

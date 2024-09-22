@@ -10,8 +10,9 @@ class CustomSidebar extends HTMLElement {
     // Create the template without relying on attributes
     const template = document.createElement('template');
     template.innerHTML = `
+    <link rel="stylesheet" href="css/style.css" type="text/css">
       <link rel="stylesheet" href="components/navigation/navigation.css" type="text/css">
-      <link rel="stylesheet" href="style.css" type="text/css">
+      
       <nav class="sidebar">
         <h2 class="site-title"><a href="index.html">Ben</a></h2>
         <site-settings></site-settings>

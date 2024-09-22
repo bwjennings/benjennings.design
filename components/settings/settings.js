@@ -14,7 +14,7 @@ customElements.define(
             font-family: var(--icon-font-family);
           }
         </style>
-          <link href="./style.css" rel="stylesheet" />
+          <link href="./css/style.css" rel="stylesheet" />
 
        
           <button id="openBtn" aria-label="Open Settings">

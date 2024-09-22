@@ -3,7 +3,7 @@ class CopyButton extends HTMLElement {
       super();
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.innerHTML = `
-        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
         <button id="copyBtn">
           <span class="icon">content_copy</span>
           <slot class="text">Copy Text</slot>

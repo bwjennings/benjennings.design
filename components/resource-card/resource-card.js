@@ -81,7 +81,7 @@
           font-weight: 600;
         }
       </style>
-          <link href="./style.css" rel="stylesheet" />
+          <link href="./css/style.css" rel="stylesheet" />
           <div class="resource-card">
             <div class="iconbox">
               <span>demography</span>
