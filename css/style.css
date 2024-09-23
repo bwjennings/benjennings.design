@@ -25,7 +25,17 @@
   outline-color: var(--border-brand);
 }
 
+@supports selector(::-webkit-scrollbar) {
+ 
+}
 
+::-webkit-scrollbar {
+  background: var(--background-page);
+}
+::-webkit-scrollbar-thumb {
+  background: var( --border-secondary);
+  width: 4px;
+}
 
 body {
   line-height: 1.5;
