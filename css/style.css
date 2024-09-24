@@ -41,7 +41,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
-  scrollbar-color: var( --border-secondary) var(--background-page);
+  scrollbar-color: var(--border-primary-hover) var(--background-page);
 }
 
 img {
@@ -286,7 +286,7 @@ label {
   box-sizing: content-box;
   display: flex;
   flex-direction: row;
-  background-color: transparent;
+  background-color: var(--background-primary);
   padding: var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-medium, 12px);
   justify-content: center;
   align-items: center;
@@ -485,6 +485,7 @@ dialog {
   color: var(--foreground-primary);
   border: 1px solid var(--border-primary);
   width: var(--dialog-width);
+  min-width: 600px;
   filter: blur(8px);
   padding: 0px;
   background-color: var(--background-page);
