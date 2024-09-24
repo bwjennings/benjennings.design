@@ -201,6 +201,9 @@
   --icon-weight-large: 500;
   --icon-weight-medium: 400;
   --icon-weight-small: 300;
+  --icon-fill: 1;
+  --icon-grade: 0;
+  --icon-grade-emphasis: 100;
 
   /*  Typography - Body Text  */
   --text-body-font-family: "Roboto Flex";

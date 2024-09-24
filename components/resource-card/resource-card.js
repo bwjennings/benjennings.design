@@ -33,11 +33,11 @@
         }
         .iconbox {
           --animation-position: 0;
-          font-variation-settings: 'GRAD' -200, 'FILL' 0;
+          font-variation-settings: 'GRAD' -200, 'FILL' var(--icon-fill);
           font-family: var(--icon-font-family);
           font-size: 10cqw;
           text-align: center;
-          font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200;
+          font-variation-settings: 'FILL' var(--icon-fill), 'wght' 700, 'GRAD' 200;
           overflow: hidden;
           aspect-ratio: 1 / 1;
           display: flex;
