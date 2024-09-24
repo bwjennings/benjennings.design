@@ -46,7 +46,7 @@
   --white: oklch(100% 0% 0deg);
 
   --timing-decelerate:cubic-bezier(0, 0.86, 0.13, 0.99);
-  --timing-ease:cubic-bezier(.2,0,0,1);
+  --timing-ease:cubic-bezier(.2,0,0.1,1);
 
   --dialog-width: clamp(300px, 70dvw, 100ch);
   /*   Color Lightness   */
