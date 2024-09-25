@@ -21,7 +21,7 @@
   outline-color: var(--border-primary);
 
   container-type: inline-size;
-  transition: outline 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58),
+  transition: outline 300ms var(--timing-ease),
     font-variation-settings 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58);
   font-variation-settings: "GRAD" 0;
   padding: var(--spacing-x-large);
