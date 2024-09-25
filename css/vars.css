@@ -3,12 +3,15 @@
 @font-face {
   font-family: 'Roboto Flex';
   src: url(/resources/RobotoFlex-VariableFont_GRAD\,XOPQ\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,opsz\,slnt\,wdth\,wght.ttf);
+  font-display: block;
+
 }
 
 
 @font-face {
   font-family: 'Material Symbols Sharp';
-  src: url(resources/Fonts/MaterialSymbolsSharp-VariableFont_FILL,GRAD,opsz,wght.ttf);
+  src: url(/resources/Fonts/MaterialSymbolsSharp-VariableFont_FILL,GRAD,opsz,wght.ttf);
+  font-display: block;
 }
 
 
