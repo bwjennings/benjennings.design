@@ -608,13 +608,12 @@ dialog[open]::backdrop {
 
   display: flex;
   flex-direction: column;
-  align-self: start;
+  align-self: center;
   align-items: start;
   justify-content: center;
   gap: var(--spacing-xxx-large, 40px);
   padding: var(--spacing-x-large);
   height: 100cqh;
-  max-width: 100ch;
   padding: var(--spacing-x-large);
   transform-style: preserve-3d;
   background-color: var(--background-page);
@@ -629,6 +628,7 @@ dialog[open]::backdrop {
   top: 0px;
   padding: var(--spacing-x-large);
   user-select: none;
+  max-width: 1200px;
 
 
 }
