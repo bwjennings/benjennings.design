@@ -228,8 +228,8 @@
   --text-heading-grade: var(--font-grade-lg);
 
  
-  --text-heading-sm-line-height: var(--font-size-6);
-  --text-heading-sm-size: var(--font-size-5);
+  --text-heading-sm-line-height: var(--font-size-7);
+  --text-heading-sm-size: var(--font-size-6);
 
   --text-heading-md-line-height: var(--font-size-8);
   --text-heading-md-size: var(--font-size-7);

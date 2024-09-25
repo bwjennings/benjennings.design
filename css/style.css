@@ -142,7 +142,7 @@ u {
   }
 }
 
-:is(.body, p) {
+.body {
   font-family: var(--text-body-font-family);
   font-weight: var(--text-body-weight);
   font-size: var(--text-body-md-size);
