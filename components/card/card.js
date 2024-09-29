@@ -10,8 +10,8 @@ template.innerHTML = `
     }
     /* Add more styles as needed */
   </style>
-    <link  href="css/style.css" rel="stylesheet"/>
-        <link  href="components/card/card.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="components/card/card.css" rel="stylesheet"/>
 
   <div class="card-container">
     <slot name="media"></slot>
@@ -35,7 +35,7 @@ template.innerHTML = `
 
 class SimpleCard extends HTMLElement {
   static get observedAttributes() {
-    return ['title', 'version'];
+    return ['title', 'version', 'dialog-id'];
   }
 
   constructor() {
@@ -43,29 +43,60 @@ class SimpleCard extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this._title = '';
-    this._version = '';
+    // Initialize properties from attributes
+    this._title = this.getAttribute('title') || '';
+    this._version = this.getAttribute('version') || '';
+    this._dialogId = this.getAttribute('dialog-id') || '';
 
     // Bind methods
     this.showDialog = this.showDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
     this.handleEvents = this.handleEvents.bind(this);
+    this.handleNavigate = this.handleNavigate.bind(this);
+
+    // Store the original navigation entry key
+    this.originalEntryKey = null;
   }
 
   connectedCallback() {
     this.shadowRoot.addEventListener('click', this.handleEvents);
+
+    if ('navigation' in window) {
+      navigation.addEventListener('navigate', this.handleNavigate);
+    } else {
+      window.addEventListener('popstate', this.handlePopState);
+    }
+
     this.updateComponent();
+
+    // Ensure that the component checks the URL hash after it's fully initialized
+    requestAnimationFrame(() => {
+      this.checkUrlForDialog();
+    });
   }
 
   disconnectedCallback() {
     this.shadowRoot.removeEventListener('click', this.handleEvents);
+
+    if ('navigation' in window) {
+      navigation.removeEventListener('navigate', this.handleNavigate);
+    } else {
+      window.removeEventListener('popstate', this.handlePopState);
+    }
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue !== newValue) {
-      this[name] = newValue;
+      // Map attribute names to property names
+      const propName = this._attributeToProperty(name);
+      this[propName] = newValue;
       this.updateComponent();
     }
+  }
+
+  // Helper method to map attribute names to property names
+  _attributeToProperty(attributeName) {
+    return '_' + attributeName.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
   }
 
   get title() {
@@ -86,6 +117,15 @@ class SimpleCard extends HTMLElement {
     this.setAttribute('version', value);
   }
 
+  get dialogId() {
+    return this._dialogId;
+  }
+
+  set dialogId(value) {
+    this._dialogId = value;
+    this.setAttribute('dialog-id', value);
+  }
+
   updateComponent() {
     const cardTitle = this.shadowRoot.querySelector('.card-title');
     const dialogTitle = this.shadowRoot.getElementById('dialog-title');
@@ -94,6 +134,12 @@ class SimpleCard extends HTMLElement {
     if (cardTitle) cardTitle.textContent = this._title;
     if (dialogTitle) dialogTitle.textContent = this._title;
     if (mediaSlot) mediaSlot.className = this._version || '';
+
+    // Generate a unique dialog ID if not provided
+    if (!this._dialogId) {
+      this._dialogId = `dialog-${Math.random().toString(36).substr(2, 9)}`;
+      this.setAttribute('dialog-id', this._dialogId);
+    }
   }
 
   handleEvents(event) {
@@ -120,13 +166,84 @@ class SimpleCard extends HTMLElement {
     if (dialog && !dialog.open) {
       dialog.showModal();
       this.trackDialogOpen();
+
+      // Push a new navigation entry using the Navigation API
+      if ('navigation' in window) {
+        // Store the key of the original entry
+        this.originalEntryKey = navigation.currentEntry.key;
+
+        // Push a new navigation entry with the dialog ID in the hash
+        const url = new URL(window.location);
+        url.hash = this._dialogId;
+        navigation.navigate(url.toString(), { history: 'push' });
+      } else {
+        // Fallback for browsers without Navigation API
+        const url = new URL(window.location);
+        url.hash = this._dialogId;
+        window.history.pushState({ dialogOpen: true }, '', url.toString());
+      }
     }
   }
 
   closeDialog(event) {
-    event.stopPropagation();
+    if (event) event.stopPropagation();
     const dialog = this.shadowRoot.querySelector('dialog');
     if (dialog) dialog.close();
+
+    if ('navigation' in window) {
+      if (this.originalEntryKey) {
+        // Navigate back to the original entry
+        navigation.traverseTo(this.originalEntryKey);
+        // Clear the stored key
+        this.originalEntryKey = null;
+      } else {
+        // If no original key, replace the current entry
+        navigation.navigate(document.location.pathname, { history: 'replace' });
+      }
+    } else {
+      // Fallback for browsers without Navigation API
+      window.history.back();
+    }
+  }
+
+  handleNavigate(event) {
+    // Only handle backward or forward navigation
+    const dialog = this.shadowRoot.querySelector('dialog');
+    const url = new URL(event.destination.url);
+    const hash = url.hash.slice(1); // Remove the '#' character
+
+    if (hash === this._dialogId && !dialog.open) {
+      // Open the dialog if navigating to its URL
+      this.showDialog();
+
+      // Intercept the navigation to prevent reloading
+      event.intercept({ handler: () => Promise.resolve() });
+    } else if (hash !== this._dialogId && dialog.open) {
+      // Close the dialog if navigating away from its URL
+      dialog.close();
+
+      // Intercept the navigation to prevent leaving the page
+      event.intercept({ handler: () => Promise.resolve() });
+    }
+  }
+
+  // Fallback for browsers without Navigation API
+  handlePopState(event) {
+    const currentHash = window.location.hash.slice(1);
+    const dialog = this.shadowRoot.querySelector('dialog');
+
+    if (currentHash === this._dialogId && !dialog.open) {
+      this.showDialog();
+    } else if (currentHash !== this._dialogId && dialog.open) {
+      dialog.close();
+    }
+  }
+
+  checkUrlForDialog() {
+    const currentHash = window.location.hash.slice(1); // Remove the '#' character
+    if (currentHash === this._dialogId) {
+      this.showDialog();
+    }
   }
 
   trackDialogOpen() {

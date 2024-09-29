@@ -549,8 +549,14 @@ dialog {
 }
 
 .figma {
-  height: 400px;
+  height: 500px;
+  width: 100%;
+  overflow: scroll;
   border: 2px solid var(--border-primary);
+
+  *{
+    overflow: hidden;
+  }
 }
 
 dialog::backdrop {
