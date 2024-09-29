@@ -64,11 +64,15 @@
 
   }
 
+  [slot="post"]{
+    grid-template-columns: 1fr;
+  }
+
+
 
 }
 
 }
-
 
 
 
@@ -238,6 +242,7 @@ max-height: 90cqh
 
 }
 
+
 slot[name="post"]{
   display: flex;
   flex-direction: column;
@@ -245,13 +250,27 @@ slot[name="post"]{
   font-size: var(--body-small-font-size);
   overflow-y: auto;
   flex: 1 1 auto;   
+  align-items: center;
+  width: 100cqw;
+
+
+  
 
 }
 ::slotted([slot="post"]) {
   padding: 40px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   flex-direction: column;
   gap: var(--spacing-xxx-large);
+  width: 100%;
+  align-items:start;
+
+  
+ 
+ 
+ 
+
 
   
 }
