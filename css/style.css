@@ -668,50 +668,86 @@ dialog[open]::backdrop {
 
 
 
-@keyframes content-swap {
+@keyframes content-in {
   0% {
-    transform: perspective(500px) translateZ(0px);
+    transform: perspective(500px)  translateZ(-20px);
     transform-origin: 0% 50%;
-
-    opacity: 1;
-    filter: blur(0px);
+    filter: blur(20px);
+    opacity: 0;
+  
 
 
   }
 
 
 
-  50% {
+  40% {
     transform: perspective(500px) translateZ(-20px);
     transform-origin: 0% 50%;
-
+    filter: blur(20px);
     opacity: 0;
-    filter: blur(10px);
+
+
+
+  }
+  100% {
+   
+
+    transform: perspective(500px) translateZ(0px);
+    transform-origin: 0% 50%;
+    filter: blur(0px);
+    opacity: 1;
+
+
+
+  }
+}
+@keyframes content-out {
+  0% {
+    transform: perspective(500px) translateZ(0px);
+    transform-origin: 0% 50%;
+    filter: blur(0px);
+    opacity: 1;
+
+
+
+  }
+
+
+
+  60% {
+    transform: perspective(500px) translateZ(-20px);
+    transform-origin: 0% 50%;
+    filter: blur(20px);
+    opacity: 0;
+
 
 
   }
   100% {
     transform: perspective(500px)  translateZ(-20px);
     transform-origin: 0% 50%;
-
+    filter: blur(20px);
     opacity: 0;
-    filter: blur(10px);
+
 
 
   }
 }
 
 ::view-transition-old(content) {
-  animation: content-swap var(--timing-ease) 300ms;
+  animation: content-out var(--timing-ease) 600ms;
 
 }
 
 ::view-transition-new(content) {
-  animation: content-swap var(--timing-ease) 300ms reverse;
+  animation: content-in var(--timing-ease) 600ms ;
 
 }
 
-
+iframe{
+  grid-column: 2;
+}
 
 
 

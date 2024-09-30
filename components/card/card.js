@@ -25,7 +25,7 @@ template.innerHTML = `
         <h2 class="heading md" id="dialog-title"></h2>
         <button class="icon-button" id="closeBtn1" aria-label="Close dialog">Close</button>
       </header>
-      <slot class="lg body" name="post"></slot>
+      <slot class="lg body post" name="post"></slot>
       <footer>
         <button autofocus id="closeBtn2">Close</button>
       </footer>

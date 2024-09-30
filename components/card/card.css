@@ -64,9 +64,7 @@
 
   }
 
-  [slot="post"]{
-    grid-template-columns: 1fr;
-  }
+  
 
 
 
@@ -260,12 +258,14 @@ slot[name="post"]{
 ::slotted([slot="post"]) {
   padding: 40px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   flex-direction: column;
   gap: var(--spacing-xxx-large);
   width: 100%;
   align-items:start;
 
+
+
   
  
  
@@ -273,6 +273,17 @@ slot[name="post"]{
 
 
   
+}
+
+:has(iframe) {
+  ::slotted([slot="post"]) {
+    grid-template-columns:1fr 1fr;
+
+    
+  }
+
+  
+
 }
 
 
@@ -288,6 +299,11 @@ slot[name="post"]{
 @container dialog (max-width: 400px) {
   ::slotted([slot="post"]) {
     grid-auto-columns: 1fr;
+  }
+
+  ::slotted([slot="post"]:has(.figma)) {
+    grid-template-columns:1fr;
+    
   }
 }
 

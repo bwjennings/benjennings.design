@@ -176,7 +176,7 @@
   --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
   --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-50));
 
-  --background-backdrop: light-dark(var(--gray-30-alpha),var(--gray-70-alpha));
+  --background-backdrop: light-dark(var(--gray-90-alpha),var(--gray-90-alpha));
 
   
 
