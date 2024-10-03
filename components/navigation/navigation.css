@@ -5,28 +5,22 @@
   z-index: 20;
   background: inherit;
   height: 100dvh;
-
-
-
-
 }
 
-.quick-theme{
+.quick-theme {
   opacity: 0.9;
-  filter:saturate(0.9);
- transition: filter 300ms,opacity 300ms;
+  filter: saturate(0.9);
+  transition: filter 300ms, opacity 300ms;
 
- &:hover{
-  opacity:1;
-  filter:saturate(1);
+  &:hover {
     opacity: 1;
-   
- }
+    filter: saturate(1);
+    opacity: 1;
+  }
 }
 
 .sidebar {
   overflow: hidden;
-
   scrollbar-width: thin;
   scrollbar-gutter: stable;
   position: sticky;
@@ -36,18 +30,14 @@
   width: 100%;
   display: grid;
   padding: var(--spacing-x-large);
-  
   grid-template-columns: 1fr;
   grid-template-rows: 80px 1fr auto;
   gap: var(--spacing-large);
-
   grid-template-areas:
     "title "
-   
     "nav-group"
     "theme-slider"
     "settings"
-    
   ;
   border-right: 1px solid var(--border-secondary);
   box-sizing: border-box;
@@ -61,7 +51,6 @@
     grid-area: nav-group;
     list-style-type: none;
     justify-content: center;
-
     /* Remove bullet points */
     padding: 0;
     /* Remove padding */
@@ -69,7 +58,6 @@
 
     li {}
   }
-
 
   h2 {
     margin: 0px;
@@ -82,17 +70,9 @@
   grid-area: divider;
 }
 
-
 /* Customize the default animation behavior */
-
-
 /* Create a custom animation */
-
-
-
-
 .nav-card {
-  
   box-sizing: border-box;
   color: var(--foreground-secondary);
   height: clamp(50px, 10cqh, 80px);
@@ -109,16 +89,9 @@
   border: 1px solid transparent;
   cursor: pointer;
 
-
-
-
   &:hover:not(.active) {
     background-color: var(--border-primary-hover);
-
-
   }
-
-  
 }
 
 .active {
@@ -127,28 +100,23 @@
   color: var(--foreground-brand);
 
   .icon {
-    
     font-variation-settings:
       "FILL" var(--icon-fill),
-
       "GRAD" var(--icon-grade-emphasis);
   }
 }
 
 @keyframes active-item-in {
-  from{
+  from {
     outline: 4px var(--background-brand) solid;
     outline-color: var(--background-brand);
   }
 
   to {
-   outline: 0px var(--background-brand) solid;
-   outline-color: var(--background-brand);
-    
+    outline: 0px var(--background-brand) solid;
+    outline-color: var(--background-brand);
   }
-  
 }
-
 
 .title-group {
   display: flex;
@@ -156,12 +124,10 @@
   gap: 2px;
   align-items: flex-start;
   justify-content: flex-end;
-
   position: relative;
   font-family: var(--text-font-family);
   transition: all 100ms;
 }
-
 
 .title,
 .description {
@@ -188,9 +154,8 @@
   font-style: normal;
   font-weight: var(--icon-weight-large, 500);
   line-height: 100%;
-
   font-variation-settings:
-    "FILL" var( --icon-fill),
+    "FILL" var(--icon-fill),
     "wght" 400,
     "GRAD" var(--icon-grade);
 }
@@ -215,10 +180,9 @@
   grid-area: item5;
 }
 
-theme-slider{
-  grid-area:theme-slider;
+theme-slider {
+  grid-area: theme-slider;
 }
-
 
 .title {
   align-items: center;
@@ -236,19 +200,19 @@ theme-slider{
 
   &:hover {}
 }
+
 @media screen and (max-width: 900px) {
-  :host{
+  :host {
     width: 300px;
   }
+
   .sidebar {
-   
     width: 300px;
   }
-  
 }
 
-
-@media screen and (max-width: 800px),(max-height:500px) {
+@media screen and (max-width: 800px),
+(max-height:500px) {
   :host {
     height: fit-content;
     width: 100%;
@@ -272,30 +236,24 @@ theme-slider{
     justify-content: center;
     height: 100%;
     background: transparent;
-color: var(--foreground-tertiary);
+    color: var(--foreground-tertiary);
     flex-grow: 1;
     padding: 8px 2px 12px 2px;
     flex-direction: column;
     gap: var(--spacing-small);
     border-color: transparent;
     height: fit-content;
-    -webkit-tap-highlight-color: transparent; /* for removing the highlight */
+    -webkit-tap-highlight-color: transparent;
 
+    /* for removing the highlight */
     &:hover:not(.active) {
       background-color: transparent;
-  
-  
     }
-
-   
   }
 
   .active {
-
     border-color: transparent;
     color: var(--foreground-brand);
-
-
   }
 
   :is(.description, theme-slider) {
@@ -307,8 +265,8 @@ color: var(--foreground-tertiary);
   }
 
   .title {
-    font-size:  12px;
-    line-height:120%;
+    font-size: 12px;
+    line-height: 120%;
   }
 
   .icon {
@@ -331,12 +289,10 @@ color: var(--foreground-tertiary);
   .sidebar {
     width: 100%;
     padding: 0px;
-
     height: auto;
     grid-template-columns: 1fr;
     grid-template-areas: "nav-group";
     grid-template-rows: 1fr;
-
     gap: 0px;
     width: auto;
     border-radius: 0px;
@@ -359,8 +315,6 @@ color: var(--foreground-tertiary);
         height: fit-content;
       }
     }
-
-
 
     .site-title {
       display: none;

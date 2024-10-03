@@ -1,13 +1,10 @@
-
-
-
-:root {}
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   outline-color: var(--border-primary-hover);
+  outline-color: var(--border-brand);
+  margin: 0;
 }
 
 :focus-visible {
@@ -20,33 +17,24 @@
   text-decoration: underline;
 }
 
-* {
-  margin: 0;
-  outline-color: var(--border-brand);
-}
-
-@supports selector(::-webkit-scrollbar) {
- 
-
-
-::-webkit-scrollbar {
-  background: var(--background-page);
-}
-::-webkit-scrollbar-thumb {
-  background: var( --border-secondary);
-  width: 4px;
-}
-}
-
 body {
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
   scrollbar-color: var(--border-primary-hover) var(--background-page);
 }
 
-img {
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    background: var(--background-page);
+  }
 
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-secondary);
+    width: 4px;
+  }
+}
+
+img {
   object-fit: cover;
 }
 
@@ -68,9 +56,7 @@ button,
 textarea,
 select {
   font: inherit;
-
 }
-
 
 h1,
 h2,
@@ -79,9 +65,10 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
-  text-wrap: pretty;
+  text-wrap: balance;
 }
-p{
+
+p {
   max-width: 65ch;
 }
 
@@ -102,7 +89,6 @@ u {
 }
 
 .heading {
-  
   margin: 0;
   font-family: var(--text-heading-font-family);
   font-size: var(--text-heading-lg-size);
@@ -122,10 +108,8 @@ u {
 
   &.sm {
     font-weight: 450;
-
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
-
   }
 
   &.md {
@@ -150,7 +134,6 @@ u {
   line-height: var(--text-body-md-line-height);
   text-wrap: pretty;
 
-
   &.lg {
     font-size: var(--text-body-lg-size);
     line-height: var(--text-body-lg-line-height);
@@ -160,6 +143,7 @@ u {
     font-size: var(--text-body-md-size);
     line-height: var(--text-body-md-line-height);
   }
+
   &.sm {
     font-size: var(--text-body-sm-size);
     line-height: var(--text-body-sm-line-height);
@@ -169,22 +153,18 @@ u {
     font-size: var(--text-body-xs-size);
     line-height: var(--text-body-xs-line-height);
   }
+
   &.secondary {
     color: var(--foreground-secondary);
   }
 }
 
-
-
-
-
 .favicon {
   fill: rgb(231, 158, 24);
 }
 
-
-
-button, ::part(button) {
+button,
+::part(button) {
   box-sizing: border-box;
   user-select: none;
   border: 1px solid var(--border-secondary);
@@ -203,7 +183,7 @@ button, ::part(button) {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
-  transition: outline var(--timing-ease) 100ms ;
+  transition: outline var(--timing-ease) 100ms;
 
   .icon {
     font-family: var(--icon-font-family);
@@ -214,7 +194,8 @@ button, ::part(button) {
 
 button:hover {
   outline: 4px var(--border-brand) solid;
-  outline: 4px solid var(--border-primary-hover);}
+  outline: 4px solid var(--border-primary-hover);
+}
 
 button:active {
   outline-width: 8px;
@@ -240,7 +221,6 @@ button[size="small"] {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
-
 
   &.sm {
     font-size: var(--icon-size-small, 24px);
@@ -280,7 +260,6 @@ label {
   background-color: transparent;
   box-sizing: content-box;
   overflow: hidden;
-  
 }
 
 .radio-button {
@@ -300,6 +279,7 @@ label {
   z-index: 1;
   border-right: 1px solid var(--border-primary);
   -webkit-tap-highlight-color: transparent;
+
   span {
     justify-content: center;
     align-items: center;
@@ -313,14 +293,11 @@ label {
     position: absolute;
     opacity: 0;
   }
-  
 }
-
 
 .radio-button:has(input:checked) {
   background-color: var(--background-brand);
   color: var(--foreground-brand);
-
 }
 
 model-viewer {
@@ -329,13 +306,12 @@ model-viewer {
   width: 100%;
 }
 
-
-
 .switch {
   height: 48px;
   width: 80px;
   background: var(--background-secondary);
   border: 1px solid var(--border-secondary);
+
   span {
     display: block;
     position: relative;
@@ -377,7 +353,7 @@ model-viewer {
   display: flex;
   height: 100dvh;
   display: grid;
-  grid-template-columns: clamp(300px,20dvw,400px) 1fr;
+  grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
   grid-template-areas: "sidebar main-content";
 }
 
@@ -435,8 +411,6 @@ main {
   border-bottom: 1px solid var(--border-secondary);
   user-select: none;
 
-
-
   .content {
     width: 100%;
     max-width: 100ch;
@@ -459,15 +433,12 @@ main {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 
-  &.flex{
+  &.flex {
     display: flex;
     flex-direction: column;
     align-items: stretch;
   }
 }
-
-
-
 
 dialog[open] {
   opacity: 1;
@@ -476,7 +447,6 @@ dialog[open] {
   padding-bottom: env(safe-area-inset-bottom);
   display: block;
   scrollbar-width: thin;
- 
 }
 
 /*   Closed state of the dialog   */
@@ -503,28 +473,22 @@ dialog {
   transition-timing-function: var(--timing-ease);
   transition-duration: 300ms;
 
-
   footer {
-    
     display: flex;
     border-top: 1px solid var(--border-secondary);
     padding-inline: var(--spacing-xxx-large);
     padding-block: var(--spacing-x-large);
-
     justify-content: flex-end;
     gap: var(--spacing-large);
-    
     background-color: var(--background-page);
-    flex: 0 0 auto; 
+    flex: 0 0 auto;
   }
 
-
   header {
-    flex: 0 0 auto; 
-        display: flex;
+    flex: 0 0 auto;
+    display: flex;
     border-bottom: 1px solid var(--border-secondary);
     padding: var(--spacing-xxx-large);
-
     justify-content: space-between;
     gap: var(--spacing-large);
     position: sticky;
@@ -532,10 +496,7 @@ dialog {
   }
 }
 
-
-
 .content {
-
   width: 100%;
   margin: auto;
   height: 100%;
@@ -544,8 +505,6 @@ dialog {
   gap: var(--spacing-xxx-large);
   padding-inline: var(--spacing-xxx-large);
   padding-block: var(--spacing-x-large);
-
-
 }
 
 .figma {
@@ -554,7 +513,7 @@ dialog {
   overflow: scroll;
   border: 2px solid var(--border-primary);
 
-  *{
+  * {
     overflow: hidden;
   }
 }
@@ -609,10 +568,7 @@ dialog[open]::backdrop {
   gap: var(--spacing-medium);
 }
 
-
 .welcome {
-  text-wrap: pretty;
-
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -636,8 +592,6 @@ dialog[open]::backdrop {
   padding: var(--spacing-x-large);
   user-select: none;
   max-width: 1200px;
-
-
 }
 
 .full-row {
@@ -649,107 +603,67 @@ dialog[open]::backdrop {
   font-size: 100px;
 }
 
-
-
-
-
-
-
-
-
-
-
 @view-transition {
   navigation: auto;
 }
 
-/* Customize the default animation behavior */
-/* Create a custom animation */
-
-
-
 @keyframes content-in {
   0% {
-    transform: perspective(500px)  translateZ(-20px);
+    transform: perspective(500px) translateZ(-20px);
     transform-origin: 0% 50%;
     filter: blur(20px);
     opacity: 0;
-  
-
-
   }
-
-
 
   40% {
     transform: perspective(500px) translateZ(-20px);
     transform-origin: 0% 50%;
     filter: blur(20px);
     opacity: 0;
-
-
-
   }
-  100% {
-   
 
+  100% {
     transform: perspective(500px) translateZ(0px);
     transform-origin: 0% 50%;
     filter: blur(0px);
     opacity: 1;
-
-
-
   }
 }
+
 @keyframes content-out {
   0% {
     transform: perspective(500px) translateZ(0px);
     transform-origin: 0% 50%;
     filter: blur(0px);
     opacity: 1;
-
-
-
   }
-
-
 
   60% {
     transform: perspective(500px) translateZ(-20px);
     transform-origin: 0% 50%;
     filter: blur(20px);
     opacity: 0;
-
-
-
   }
+
   100% {
-    transform: perspective(500px)  translateZ(-20px);
+    transform: perspective(500px) translateZ(-20px);
     transform-origin: 0% 50%;
     filter: blur(20px);
     opacity: 0;
-
-
-
   }
 }
 
 ::view-transition-old(content) {
   animation: content-out var(--timing-ease) 600ms;
-
 }
 
 ::view-transition-new(content) {
-  animation: content-in var(--timing-ease) 600ms ;
-
+  animation: content-in var(--timing-ease) 600ms;
 }
 
-iframe{
+iframe {
   grid-column: 2;
 }
-
-
 
 @container style(color-scheme: dark) {
   body {
@@ -793,21 +707,19 @@ iframe{
       "title"
       "main-content"
       "sidebar";
-      margin-bottom: env(safe-area-inset-bottom);
+    margin-bottom: env(safe-area-inset-bottom);
   }
 
-  .page-items{
+  .page-items {
     grid-template-columns: 1fr;
     padding: var(--spacing-large);
     grid-auto-rows: 250px;
-
   }
 
-  .content{
+  .content {
     padding: var(--spacing-large);
   }
 
-  
   .button-group {
     margin-top: auto;
     flex-direction: column;
@@ -827,7 +739,6 @@ iframe{
     position: initial;
     margin-top: calc(20cqh - 40px);
     padding: var(--spacing-large);
-   
   }
 
   dialog {
@@ -849,18 +760,16 @@ iframe{
       flex-grow: 1;
     }
 
-    .wrapper{
+    .wrapper {
       min-height: 50dvh;
     }
 
-    ::slotted([slot="post"]){
+    ::slotted([slot="post"]) {
       padding: var(--spacing-large);
     }
 
     header {
-
       padding: var(--spacing-large);
-
     }
 
     footer {
@@ -869,7 +778,7 @@ iframe{
       align-items: stretch;
       padding: var(--spacing-large);
 
-      button{
+      button {
         width: 100%;
       }
     }
