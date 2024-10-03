@@ -1,6 +1,3 @@
-
-
-
 :host {
   height: 100%;
   container-type: inline-size;
@@ -31,45 +28,30 @@
   outline-offset: 0px;
 
   &:hover {
-    
+
     outline: 8px solid var(--border-primary-hover);
-
-
-  
-
-
-
-}
-
-
-
-&:active {
-  outline-width: 16px;
-  transition: 100ms;
-  perspective: 100px;
-  transform: scaleZ(20%);
-}
-
-&:has(.icon) {
-  padding: var(--spacing-x-large);
-
-  background: var(--background-primary);
-  align-items: start;
-  justify-content: start;
-
-  .card-title {
-    text-wrap: pretty;
-    flex: 0 0 0;
-
-
   }
 
-  
 
 
+  &:active {
+    outline-width: 16px;
+    transition: 100ms;
+    perspective: 100px;
+    transform: scaleZ(20%);
+  }
 
-}
+  &:has(.icon) {
+    padding: var(--spacing-x-large);
+    background: var(--background-primary);
+    align-items: start;
+    justify-content: start;
 
+    .card-title {
+      text-wrap: pretty;
+      flex: 0 0 0;
+    }
+  }
 }
 
 
@@ -92,16 +74,12 @@ p {
   font-weight: var(--body-medium-font-weight, 400);
 }
 
-.content{
-
-}
-
 .thumbnail {
   max-height: 120px;
   margin-top: calc(-1 * var(--spacing-xx-large));
   margin-inline: calc(-1 * var(--spacing-x-large));
   overflow: hidden;
-display: block;
+  display: block;
   width: auto;
   align-self: stretch;
   background: var(--background-brand-secondary);
@@ -109,7 +87,6 @@ display: block;
   justify-content: center;
   align-items: center;
   color: var(--foreground-brand-secondary);
-
   user-select: none;
   -webkit-user-select: none;
 }
@@ -124,25 +101,17 @@ display: block;
   height: 500px;
 }
 
-
-
-
-
-
 .box {
   --animation-position: 0;
-
   font-variation-settings: 'GRAD' -200, 'FILL' var(--icon-fill);
   font-family: var(--icon-font-family);
   font-size: 40cqw;
   font-variation-settings:
-  'FILL' var(--icon-fill),
+    'FILL' var(--icon-fill),
 
-  'wght' 700,
+    'wght' 700,
 
-  'GRAD' 200;
-
-
+    'GRAD' 200;
   overflow: hidden;
   display: flex;
   height: 120px;
@@ -157,30 +126,8 @@ display: block;
   margin-inline: calc(-1 * var(--spacing-x-large));
   user-select: none;
   -webkit-user-select: none;
-
-  
-
 }
 
-
-
-
-
-@keyframes iconAnimate {
-
-  100% {
-    font-variation-settings:
-      'FILL' var(--icon-fill),
-
-      'wght' 700,
-  
-      'GRAD' 0;
-    
-   
- 
-
-  }
-}
 
 .icon {
   font-family: var(--icon-font-family);
@@ -189,7 +136,6 @@ display: block;
   line-height: 100%;
   color: var(--foreground-brand);
 }
-
 
 
 ::slotted([slot="icon-box"]) {
@@ -208,15 +154,11 @@ display: block;
 
 ::slotted(.post-body) {
 
-
-
-
   ::slotted(.horizontal) {
     grid-template-columns: 1fr;
 
   }
 }
-
 
 
 ::slotted([slot="image"]) {
@@ -225,36 +167,31 @@ display: block;
 }
 
 
-  :slotted(model-viewer) {
-    height: 400px;
-  }
-dialog{
+:slotted(model-viewer) {
+  height: 400px;
+}
+
+dialog {
   overflow: hidden;
 }
 
-.wrapper{
+.wrapper {
   display: grid;
-grid-template-rows: auto 1fr auto;
-max-height: 90cqh  
-
-
+  grid-template-rows: auto 1fr auto;
+  max-height: 90cqh
 }
 
-
-slot[name="post"]{
+slot[name="post"] {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xxx-large);
   font-size: var(--body-small-font-size);
   overflow-y: auto;
-  flex: 1 1 auto;   
+  flex: 1 1 auto;
   align-items: center;
   width: 100cqw;
-
-
-  
-
 }
+
 ::slotted([slot="post"]) {
   padding: 40px;
   display: grid;
@@ -262,32 +199,14 @@ slot[name="post"]{
   flex-direction: column;
   gap: var(--spacing-xxx-large);
   width: 100%;
-  align-items:start;
-
-
-
-  
- 
- 
- 
-
-
-  
+  align-items: start;
 }
 
 :has(iframe) {
   ::slotted([slot="post"]) {
-    grid-template-columns:1fr 1fr;
-
-    
+    grid-template-columns: 1fr 1fr;
   }
-
-  
-
 }
-
-
-
 
 .badge-group {
   display: flex;
@@ -302,18 +221,19 @@ slot[name="post"]{
   }
 
   ::slotted([slot="post"]:has(.figma)) {
-    grid-template-columns:1fr;
-    
+    grid-template-columns: 1fr;
+
   }
 }
 
 @container card (max-width:400px) {
   .card-container {
-padding: var(--spacing-medium); 
-gap: var(--spacing-medium);
-&:has(.icon) {
-  padding: var(--spacing-large);
-  gap: var(--spacing-large);
-}
- }
+    padding: var(--spacing-medium);
+    gap: var(--spacing-medium);
+
+    &:has(.icon) {
+      padding: var(--spacing-large);
+      gap: var(--spacing-large);
+    }
+  }
 }
