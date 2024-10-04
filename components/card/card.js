@@ -41,7 +41,10 @@ class SimpleCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    if (!SimpleCard.templateContent) {
+      SimpleCard.templateContent = template.content.cloneNode(true);
+    }
+    this.shadowRoot.appendChild(SimpleCard.templateContent.cloneNode(true));
 
     // Initialize properties from attributes
     this._title = this.getAttribute('title') || '';
@@ -217,13 +220,19 @@ class SimpleCard extends HTMLElement {
       this.showDialog();
 
       // Intercept the navigation to prevent reloading
-      event.intercept({ handler: () => Promise.resolve() });
+      event.intercept({ handler: () => {
+        console.log('Navigation intercepted to prevent reloading');
+        return Promise.resolve();
+      }});
     } else if (hash !== this._dialogId && dialog.open) {
       // Close the dialog if navigating away from its URL
       dialog.close();
 
       // Intercept the navigation to prevent leaving the page
-      event.intercept({ handler: () => Promise.resolve() });
+      event.intercept({ handler: () => {
+        console.log('Navigation intercepted to prevent reloading');
+        return Promise.resolve();
+      }});
     }
   }
 
