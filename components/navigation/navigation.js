@@ -53,6 +53,12 @@ class CustomSidebar extends HTMLElement {
 
     // Add event listeners
     this.addEventListeners();
+
+    // Add optimization to avoid layout shifts
+    this.shadowRoot.querySelector(".sidebar").classList.add("preload");
+    requestAnimationFrame(() => {
+      this.shadowRoot.querySelector(".sidebar").classList.remove("preload");
+    });
   }
 
   disconnectedCallback() {
