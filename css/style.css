@@ -106,6 +106,7 @@ u {
   font-optical-sizing: auto;
   font-style: normal;
 
+
   &.sm {
     font-weight: 450;
     font-size: var(--text-heading-sm-size);
@@ -156,6 +157,26 @@ u {
 
   &.secondary {
     color: var(--foreground-secondary);
+  }
+}
+
+.focus {
+  filter: blur(0);
+  animation: blurEffect 1s cubic-bezier(0, -0.1, 0, 1.2);
+  animation-delay: 1s;
+}
+
+@keyframes blurEffect {
+  0% {
+    filter: blur(0px);
+  }
+
+  60% {
+    filter: blur(6px);
+  }
+
+  100% {
+    filter: blur(0px);
   }
 }
 
@@ -572,7 +593,7 @@ dialog[open]::backdrop {
   display: flex;
   flex-direction: column;
   align-self: center;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   gap: var(--spacing-xxx-large, 40px);
   padding: var(--spacing-x-large);
