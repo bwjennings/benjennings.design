@@ -4,9 +4,7 @@
 <head>
   <title>Ben Jennings</title>
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <script>
-    (function () { try { var t = localStorage.getItem('myCustomTheme') || '', h = localStorage.getItem('highContrast') === 'true', c = localStorage.getItem('selectedColorHue') || '', s = t === 'light' ? 'light' : t === 'dark' ? 'dark' : 'light dark'; document.documentElement.style.setProperty('color-scheme', s); if (h) { document.documentElement.dataset.mode = 'high-contrast'; } if (c) { document.documentElement.style.setProperty('--theme-hue', c); } } catch (e) { console.error('Error applying theme preferences:', e); } })();
-  </script>
+  <script src="./js/index.js"></script>
 
 
 
@@ -18,7 +16,6 @@
 
   <!-- Prefetch Links -->
   <link rel="prerender" href="index.html" as="document" />
-  <link rel="prerender" href="designs.html" as="document" />
   <link rel="prerender" href="fundamentals.html" as="document" />
   <link rel="prerender" href="experiments.html" as="document" />
   <link rel="prerender" href="resources.html" as="document" />

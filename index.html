@@ -4,18 +4,16 @@
 <head>
   <title>Ben Jennings</title>
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <script>
-    (function(){try{var t=localStorage.getItem('myCustomTheme')||'',h=localStorage.getItem('highContrast')==='true',c=localStorage.getItem('selectedColorHue')||'',s=t==='light'?'light':t==='dark'?'dark':'light dark';document.documentElement.style.setProperty('color-scheme',s);if(h){document.documentElement.dataset.mode='high-contrast';}if(c){document.documentElement.style.setProperty('--theme-hue',c);}}catch(e){console.error('Error applying theme preferences:',e);}})();
-  </script>
-  
+  <script src="./js/index.js"></script>
+
+
 
   <link rel="modulepreload" href="components/index.js" />
-  <script  type="module" src="components/index.js"></script>
+  <script type="module" src="components/index.js"></script>
   <link href="./css/vars.css" rel="stylesheet" />
   <link href="./css/style.css" rel="stylesheet" />
-  
+
   <!-- Prefetch Links -->
-  <link rel="prerender" href="index.html" as="document" />
   <link rel="prerender" href="designs.html" as="document" />
   <link rel="prerender" href="fundamentals.html" as="document" />
   <link rel="prerender" href="experiments.html" as="document" />
@@ -37,23 +35,24 @@
   <link rel="manifest" href="manifest.json" />
 
   <!-- Google tag (gtag.js) -->
-  
+
 
   <!-- Module Scripts -->
-  
+
 </head>
+
 <body>
   <div class="page-container">
     <custom-sidebar active-item="1"></custom-sidebar>
 
-    <main >
+    <main>
       <div class="welcome">
-      <h1 class="heading xl">Creating clarity for people</h1>
+        <h1 class="heading xl">Creating clarity for people</h1>
 
- 
-        
 
-       
+
+
+
 
         <p class="heading sm">My job is to think about how people use software.</p>
         <p class="heading sm">Technology can be confusing but it doesn’t have to be..</p>
@@ -63,15 +62,15 @@
           experience it rather than viewing it in a case study</p>
 
 
-       
-        </div>
-     
-    
+
+      </div>
+
+
 
 
     </main>
   </div>
- 
+
 
 
 </body>

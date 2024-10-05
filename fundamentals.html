@@ -4,22 +4,19 @@
 <head>
   <title>Ben Jennings</title>
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  
-  <script>
-    (function(){try{var t=localStorage.getItem('myCustomTheme')||'',h=localStorage.getItem('highContrast')==='true',c=localStorage.getItem('selectedColorHue')||'',s=t==='light'?'light':t==='dark'?'dark':'light dark';document.documentElement.style.setProperty('color-scheme',s);if(h){document.documentElement.dataset.mode='high-contrast';}if(c){document.documentElement.style.setProperty('--theme-hue',c);}}catch(e){console.error('Error applying theme preferences:',e);}})();
-  </script>
-  
+  <script src="./js/index.js"></script>
+
+
   <!-- Preconnect -->
-  
+
   <link rel="modulepreload" href="components/index.js" />
-  <script  type="module" src="components/index.js"></script>
+  <script type="module" src="components/index.js"></script>
   <link href="./css/vars.css" rel="stylesheet" />
   <link href="./css/style.css" rel="stylesheet" />
-  
+
   <!-- Prefetch Links -->
   <link rel="prerender" href="index.html" as="document" />
   <link rel="prerender" href="designs.html" as="document" />
-  <link rel="prerender" href="fundamentals.html" as="document" />
   <link rel="prerender" href="experiments.html" as="document" />
   <link rel="prerender" href="resources.html" as="document" />
   <script type="speculationrules">
@@ -39,7 +36,7 @@
   <link rel="manifest" href="manifest.json" />
 
   <!-- Google tag (gtag.js) -->
-  
+
 
   <!-- Module Scripts -->
 
@@ -63,8 +60,7 @@
 
       <section class="page-items ">
 
-        <simple-card version="icon" title="Simplicity is not always the answer" badge-icon="home"
-          badge="User Research">
+        <simple-card version="icon" title="Simplicity is not always the answer" badge-icon="home" badge="User Research">
           <div slot="media">account_tree</div>
           <p slot="post">A common term that i hear a lot is to 'make it simple' - In theory this is a great goal. The
             reality of a lot of tools is that they need to be complicated, because the task is complicated.</p>
@@ -81,8 +77,7 @@
 
 
         </simple-card>
-        <simple-card  version="icon"
-          title="A well equipped developer creates better experiences" badge="3D Model">
+        <simple-card version="icon" title="A well equipped developer creates better experiences" badge="3D Model">
           <div slot="media">integration_instructions</div>
           < <p slot="post">A common term that i hear a lot is to 'make it simple' - In theory this is a great goal. The
             reality of a lot of tools is that they need to be complicated, because the task is complicated.</p>

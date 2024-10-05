@@ -4,25 +4,23 @@
 <head>
   <title>Ben Jennings</title>
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <script>
-    (function(){try{var t=localStorage.getItem('myCustomTheme')||'',h=localStorage.getItem('highContrast')==='true',c=localStorage.getItem('selectedColorHue')||'',s=t==='light'?'light':t==='dark'?'dark':'light dark';document.documentElement.style.setProperty('color-scheme',s);if(h){document.documentElement.dataset.mode='high-contrast';}if(c){document.documentElement.style.setProperty('--theme-hue',c);}}catch(e){console.error('Error applying theme preferences:',e);}})();
-  </script>
- 
+  <script src="./js/index.js"></script>
+
+
 
   <!-- Preconnect -->
-  
-  
+
+
   <link rel="modulepreload" href="components/index.js" />
-  <script  type="module" src="components/index.js"></script>
+  <script type="module" src="components/index.js"></script>
   <link href="./css/vars.css" rel="stylesheet" />
   <link href="./css/style.css" rel="stylesheet" />
 
-  
+
   <!-- Prefetch Links -->
   <link rel="prerender" href="index.html" as="document" />
   <link rel="prerender" href="designs.html" as="document" />
   <link rel="prerender" href="fundamentals.html" as="document" />
-  <link rel="prerender" href="experiments.html" as="document" />
   <link rel="prerender" href="resources.html" as="document" />
   <script type="speculationrules">
     {
@@ -41,7 +39,7 @@
   <link rel="manifest" href="manifest.json" />
 
   <!-- Google tag (gtag.js) -->
-  
+
 
   <!-- Module Scripts -->
 
@@ -54,30 +52,36 @@
     <main>
 
       <section class="page-title">
-        
-       
-        
+
+
+
 
         <my-badge variant="primary" icon="experiment">Experiments</my-badge>
         <h1 class="heading">Some fun things</h1>
 
       </section>
-      
+
       <section class="page-items">
-     
+
 
         <simple-card title="Plant" version="box">
-          <model-viewer slot="media" poster="designs/resources/Experiments/poster.webp" auto-rotate shadow-intensity="1" rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m" field-of-view="19.98deg" auto-rotate tone-mapping="neutral" shadow-softness="0.78"
-            shadow-softness="1" src="designs/resources/Experiments/3D/plant.glb"></model-viewer>
-
-            <div slot="post" class="post-body horizontal">
-          <p class="full-row">I made this by simply taking a bunch of photos from every angle and processing it into 3d
-            object </p>
-          <img  src="designs/resources/Experiments/DSCF0817.jpg" />
-          <img  src="designs/resources/Experiments/DSCF0997.jpg" />
-
-          <model-viewer class="full-row model" width="100%" height="100%" disable-zoom camera-controls auto-rotate shadow-intensity="1" rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m" field-of-view="19.98deg" auto-rotate tone-mapping="neutral" shadow-softness="0.78" rotation-per-second="40deg" shadow-softness="1"
+          <model-viewer slot="media" poster="designs/resources/Experiments/poster.webp" auto-rotate shadow-intensity="1"
+            rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m"
+            field-of-view="19.98deg" auto-rotate tone-mapping="neutral" shadow-softness="0.78" shadow-softness="1"
             src="designs/resources/Experiments/3D/plant.glb"></model-viewer>
+
+          <div slot="post" class="post-body horizontal">
+            <p class="full-row">I made this by simply taking a bunch of photos from every angle and processing it into
+              3d
+              object </p>
+            <img src="designs/resources/Experiments/DSCF0817.jpg" />
+            <img src="designs/resources/Experiments/DSCF0997.jpg" />
+
+            <model-viewer class="full-row model" width="100%" height="100%" disable-zoom camera-controls auto-rotate
+              shadow-intensity="1" rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51"
+              camera-orbit="180.3deg 82.74deg 1.091m" field-of-view="19.98deg" auto-rotate tone-mapping="neutral"
+              shadow-softness="0.78" rotation-per-second="40deg" shadow-softness="1"
+              src="designs/resources/Experiments/3D/plant.glb"></model-viewer>
 
           </div>
 
