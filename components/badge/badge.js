@@ -25,8 +25,8 @@ class BadgeComponent extends HTMLElement {
                 justify-content: center;
                 align-items: center;
                 gap: var(--spacing-x-small, 4px);
-                font-size: var(--text-body-xs-size);
-                line-height: var(--text-body-sx-line-height);
+                font-size: var(--text-body-sm-size);
+                line-height: var(--text-body-sm-line-height);
                                 border: 1px solid var(--border-secondary);
 
                 
@@ -34,6 +34,8 @@ class BadgeComponent extends HTMLElement {
 
             .badge span {
                 font-family: var(--icon-font-family);
+                font-size: var(--icon-size-small);
+
                 font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
                 display: none; /* Initially hide the span */
             }

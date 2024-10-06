@@ -18,11 +18,11 @@
   transition: outline 300ms var(--timing-ease),
     font-variation-settings 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58);
   font-variation-settings: "GRAD" 0;
-  padding: var(--spacing-x-large);
   color: var(--foreground-primary);
   gap: var(--spacing-x-large);
   overflow: hidden;
   outline-offset: 0px;
+  padding: clamp(var(--spacing-large), 4cqw,var(--spacing-xx-large) ) ;
 
   &:hover {
     outline: 8px solid var(--border-primary-hover);
@@ -36,8 +36,9 @@
   }
 
   &:has(.icon) {
-    padding: var(--spacing-x-large);
-    background: var(--background-primary);
+    padding: clamp(var(--spacing-large), 4cqw,var(--spacing-xx-large) ) ;
+   
+        background: var(--background-primary);
     align-items: start;
     justify-content: start;
 
@@ -58,9 +59,9 @@
 p {
   color: var(--foreground-onEmphasis);
   font-family: var(--body-medium-font-family, "Inter-Regular", sans-serif);
-  font-size: var(--body-medium-font-size, 18px);
-  line-height: var(--body-medium-line-height);
-  font-weight: var(--body-medium-font-weight, 400);
+  font-size: var(--text-body-lg-size);
+  line-height: var(--text-body-lg-line-height);
+  font-weight: var(--text-body-weight);
 }
 
 .thumbnail {
@@ -118,7 +119,7 @@ p {
 .icon {
   font-family: var(--icon-font-family);
   font-variation-settings: 'FILL' var(--icon-fill);
-  font-size: var(--font-size-8);
+  font-size: var(--icon-size-xl);
   line-height: 100%;
   color: var(--foreground-brand);
 }
@@ -202,17 +203,5 @@ slot[name="post"] {
 
   ::slotted([slot="post"]:has(.figma)) {
     grid-template-columns: 1fr;
-  }
-}
-
-@container card (max-width:400px) {
-  .card-container {
-    padding: var(--spacing-medium);
-    gap: var(--spacing-medium);
-
-    &:has(.icon) {
-      padding: var(--spacing-large);
-      gap: var(--spacing-large);
-    }
   }
 }

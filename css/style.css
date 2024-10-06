@@ -161,20 +161,24 @@ u {
 }
 
 .focus {
-  filter: blur(0);
-  animation: blurEffect 1s cubic-bezier(0, -0.1, 0, 1.2);
-  animation-delay: 1s;
+  animation: blurEffect 2s cubic-bezier(0, -0.1, 0, 1.2);
 }
 
 @keyframes blurEffect {
   0% {
-    filter: blur(0px);
+    filter: blur(4px);
   }
 
-  60% {
-    filter: blur(6px);
+  25% {
+    filter: blur(8px);
   }
 
+  70% {
+    filter: blur(1px);
+  }
+  90% {
+    filter: blur(2px);
+  }
   100% {
     filter: blur(0px);
   }
@@ -196,9 +200,9 @@ button,
   align-items: center;
   gap: var(--spacing-x-small, 4px);
   font-family: var(--text-font-family);
-  font-size: var(--text-body-sm-size);
+  font-size: var(--text-body-md-size);
   color: var(--foreground-primary);
-  line-height: 100%;
+  line-height: var(--text-body-md-line-height);
   height: 48px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -208,7 +212,7 @@ button,
 
   .icon {
     font-family: var(--icon-font-family);
-    font-size: var(--icon-size-small);
+    font-size: var(--icon-size-medium);
     line-height: 100%;
   }
 }

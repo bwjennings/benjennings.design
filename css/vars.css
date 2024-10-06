@@ -15,16 +15,15 @@
 :root {
   --theme-slider-size: 40px;
   /*   Typography Scale  */
-  --font-size-1: clamp(0.9rem, -0.1vi + 0.9rem, 0.8rem);
-  --font-size-2: clamp(1rem, 0vi + 1rem, 1rem);
-  --font-size-3: clamp(1.1rem, 0.2vi + 1.1rem, 1.2rem);
-  --font-size-4: clamp(1.3rem, 0.4vi + 1.2rem, 1.5rem);
-  --font-size-5: clamp(1.4rem, 0.7vi + 1.3rem, 1.9rem);
-  --font-size-6: clamp(1.6rem, 1vi + 1.4rem, 2.3rem);
-  --font-size-7: clamp(1.8rem, 1.5vi + 1.4rem, 2.8rem);
-  --font-size-8: clamp(2rem, 2.2vi + 1.5rem, 3.5rem);
-  --font-size-9: clamp(2.3rem, 3vi + 1.6rem, 4.3rem);
-  --font-size-10: clamp(2.6rem, 4.1vi + 1.6rem, 5.2rem);
+  --font-size-1: clamp(0.6rem, -0.1vi + 0.6rem, 0.5rem);
+  --font-size-2: clamp(0.8rem, -0.1vi + 0.8rem, 0.7rem);
+  --font-size-3: clamp(1rem, 0vi + 1rem, 1rem);
+  --font-size-4: clamp(1.3rem, 0.2vi + 1.3rem, 1.4rem);
+  --font-size-5: clamp(1.8rem, 0.4vi + 1.7rem, 2rem);
+  --font-size-6: clamp(2.4rem, 0.9vi + 2.2rem, 2.8rem);
+  --font-size-7: clamp(3.2rem, 1.6vi + 2.8rem, 4rem);
+  --font-size-8: clamp(4.2rem, 2.8vi + 3.5rem, 5.7rem);
+  --font-size-9: clamp(5.6rem, 4.6vi + 4.5rem, 8rem);
 
   --radius-none: 0px;
   --radius-small: 4px;
@@ -181,9 +180,10 @@
   /*  Icons  */
   --icon-font-family: "Material Symbols Sharp";
 
-  --icon-size-large: var(--font-size-6);
+  --icon-size-xl: var(--font-size-6);
+  --icon-size-large: var(--font-size-5);
   --icon-size-medium: var(--font-size-4);
-  --icon-size-small: var(--font-size-2);
+  --icon-size-small: var(--font-size-3);
 
   --icon-weight-large: 500;
   --icon-weight-medium: 400;
@@ -191,6 +191,27 @@
   --icon-fill: 1;
   --icon-grade: 0;
   --icon-grade-emphasis: 100;
+
+  
+
+  /*  Typography - Heading  */
+  --text-heading-weight: 550;
+
+  --text-heading-font-family: "Roboto Flex";
+  --text-heading-grade: var(--font-grade-lg);
+
+  --text-heading-xl-line-height: 110%;
+  --text-heading-xl-size: var(--font-size-9);
+
+  --text-heading-lg-line-height: 110%;
+  --text-heading-lg-size: var(--font-size-7);
+
+  --text-heading-md-line-height: var(--font-size-7);
+  --text-heading-md-size: var(--font-size-6);
+
+  --text-heading-sm-line-height: var(--font-size-6);
+  --text-heading-sm-size: var(--font-size-5);
+
 
   /*  Typography - Body Text  */
   --text-body-font-family: "Roboto Flex";
@@ -208,24 +229,9 @@
   --text-body-xs-line-height: var(--font-size-2);
   --text-body-xs-size: var(--font-size-1);
 
-  /*  Typography - Heading  */
-  --text-heading-weight: 550;
-
-  --text-heading-font-family: "Roboto Flex";
-  --text-heading-grade: var(--font-grade-lg);
 
 
-  --text-heading-sm-line-height: var(--font-size-7);
-  --text-heading-sm-size: var(--font-size-6);
 
-  --text-heading-md-line-height: var(--font-size-8);
-  --text-heading-md-size: var(--font-size-7);
-
-  --text-heading-lg-line-height: 110%;
-  --text-heading-lg-size: var(--font-size-9);
-
-  --text-heading-xl-line-height: 110%;
-  --text-heading-xl-size: var(--font-size-10);
 
 }
 

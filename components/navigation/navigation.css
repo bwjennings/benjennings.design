@@ -271,7 +271,7 @@ theme-slider {
   }
 
   .icon {
-    font-size: var(--icon-size-large);
+    font-size: var(--icon-size-medium);
   }
 
   .nav-item-group {
