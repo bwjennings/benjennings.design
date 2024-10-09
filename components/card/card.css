@@ -15,14 +15,13 @@
   border: 1px solid var(--border-primary);
   outline-color: var(--border-primary);
   container-type: inline-size;
-  transition: outline 300ms var(--timing-ease),
-    font-variation-settings 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58);
+  transition: outline 300ms var(--timing-ease);
   font-variation-settings: "GRAD" 0;
   color: var(--foreground-primary);
   gap: var(--spacing-x-large);
   overflow: hidden;
   outline-offset: 0px;
-  padding: clamp(var(--spacing-large), 4cqw,var(--spacing-xx-large) ) ;
+  padding: clamp(var(--spacing-large), 4cqw, var(--spacing-xx-large));
 
   &:hover {
     outline: 8px solid var(--border-primary-hover);
@@ -30,15 +29,15 @@
 
   &:active {
     outline-width: 16px;
-    transition: 100ms;
+    transition: outline 300ms var(--timing-ease);
     perspective: 100px;
     transform: scaleZ(20%);
   }
 
   &:has(.icon) {
-    padding: clamp(var(--spacing-large), 4cqw,var(--spacing-xx-large) ) ;
-   
-        background: var(--background-primary);
+    padding: clamp(var(--spacing-large), 4cqw, var(--spacing-xx-large));
+
+    background: var(--background-primary);
     align-items: start;
     justify-content: start;
 
@@ -105,13 +104,13 @@ p {
   height: 120px;
   width: auto;
   align-self: stretch;
-  background: var(--background-brand-secondary);
+  background: radial-gradient(45.28% 60.5% at 45.27% 44%, var(--background-brand-secondary) 0%, var(--background-brand) 98.88%);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--foreground-brand-secondary);
   margin-top: calc(-1 * var(--spacing-xx-large));
-  margin-inline: calc(-1 * var(--spacing-x-large));
+  margin-inline: calc(-1 * var(--spacing-xx-large));
   user-select: none;
   -webkit-user-select: none;
 }
@@ -120,8 +119,10 @@ p {
   font-family: var(--icon-font-family);
   font-variation-settings: 'FILL' var(--icon-fill);
   font-size: var(--icon-size-xl);
+  opacity: 1;
   line-height: 100%;
   color: var(--foreground-brand);
+
 }
 
 ::slotted([slot="icon-box"]) {
@@ -134,9 +135,7 @@ p {
   rotate: -30deg;
 }
 
-::slotted([slot="icon-box"]) span {
-  transform: rotate(90deg);
-}
+
 
 ::slotted(.post-body) {
   ::slotted(.horizontal) {

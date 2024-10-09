@@ -12,18 +12,21 @@
   font-display: block;
 }
 
+
 :root {
-  --theme-slider-size: 40px;
+  --theme-slider-size: 20px;
+  --theme-slider-outline:var(--background-primary);
   /*   Typography Scale  */
-  --font-size-1: clamp(0.6rem, -0.1vi + 0.6rem, 0.5rem);
-  --font-size-2: clamp(0.8rem, -0.1vi + 0.8rem, 0.7rem);
+  --font-size-1: clamp(0.56rem, -0.1vi + 0.59rem, 0.5rem);
+  --font-size-2: clamp(0.75rem, -0.07vi + 0.77rem, 0.71rem);
   --font-size-3: clamp(1rem, 0vi + 1rem, 1rem);
-  --font-size-4: clamp(1.3rem, 0.2vi + 1.3rem, 1.4rem);
-  --font-size-5: clamp(1.8rem, 0.4vi + 1.7rem, 2rem);
-  --font-size-6: clamp(2.4rem, 0.9vi + 2.2rem, 2.8rem);
-  --font-size-7: clamp(3.2rem, 1.6vi + 2.8rem, 4rem);
-  --font-size-8: clamp(4.2rem, 2.8vi + 3.5rem, 5.7rem);
-  --font-size-9: clamp(5.6rem, 4.6vi + 4.5rem, 8rem);
+  --font-size-4: clamp(1.33rem, 0.13vi + 1.3rem, 1.41rem);
+  --font-size-5: clamp(1.78rem, 0.35vi + 1.69rem, 2rem);
+  --font-size-6: clamp(2.37rem, 0.72vi + 2.2rem, 2.83rem);
+  --font-size-7: clamp(3.16rem, 1.32vi + 2.84rem, 4rem);
+  --font-size-8: clamp(4.21rem, 2.26vi + 3.67rem, 5.65rem);
+  --font-size-9: clamp(5.61rem, 3.74vi + 4.72rem, 7.99rem);
+  --font-size-10: clamp(7.48rem, 6vi + 6.05rem, 11.3rem);
 
   --radius-none: 0px;
   --radius-small: 4px;
@@ -47,6 +50,8 @@
   --timing-ease: cubic-bezier(.2, 0, 0.1, 1);
 
   --dialog-width: clamp(300px, 80dvw, 1200px);
+
+  
   /*   Color Lightness   */
   --lightness-5: 99%;
   --lightness-10: 97%;
@@ -150,7 +155,7 @@
   --background-page: light-dark(var(--gray-10), var(--gray-90));
   --background-primary: light-dark(var(--gray-5), var(--gray-80));
   --background-secondary: light-dark(var(--gray-10), var(--gray-70));
-  --background-brand: light-dark(var(--brand-20), var(--brand-80));
+  --background-brand: light-dark(var(--brand-20), var(--brand-70));
   --background-brand-hover: light-dark(var(--brand-30), var(--brand-80));
   --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
   --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-60));
@@ -160,11 +165,11 @@
 
   --background-backdrop: light-dark(var(--gray-90-alpha), var(--gray-90-alpha));
 
-  --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
+  --foreground-primary: light-dark(var(--gray-90), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-50), var(--gray-30));
   --foreground-tertiary: light-dark(var(--gray-50), var(--gray-40));
-  --foreground-brand: light-dark(var(--brand-50), var(--brand-30));
-  --foreground-brand-secondary: light-dark(var(--brand-30), var(--brand-70));
+  --foreground-brand: light-dark(var(--brand-60), var(--brand-30));
+  --foreground-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
   --foreground-accent: light-dark(var(--accent-90), var(--accent-20));
   --foreground-onEmphasis: light-dark(var(--white), var(--white));
 

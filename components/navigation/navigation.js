@@ -18,6 +18,7 @@ class CustomSidebar extends HTMLElement {
       <site-settings></site-settings>
       <menu>
         <li><a tabindex="1" class="nav-card item1" href="index.html">
+      
             <span class="icon">waving_hand</span>
             <span class="title">Home</span>
         </a></li>

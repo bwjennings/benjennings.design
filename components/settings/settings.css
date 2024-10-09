@@ -1,45 +1,49 @@
+
 :host {
   perspective: 200px;
   transform-style: preserve-3d;
   grid-area: settings;
   -webkit-tap-highlight-color: transparent;
-}
 
-#randomColorBtn {
+  
+  
+  
+}
+#randomColorBtn{
   display: none;
 }
-
-#openBtn {
+button.secondary{
   width: 100%;
 }
 
-dialog {
-  --dialog-width: 40dvw;
-  --theme-slider-size: 40px
+dialog{
+  --dialog-width:40dvw;
+  --theme-slider-size:40px;
+  --theme-slider-outline:var(--background-page);
+
 }
 
-@supports not (color-scheme: light dark) {
-  #colorMode {
-    display: none;
+@supports not (color-scheme: light dark){
+  #colorMode{
+    display: none ;
   }
 }
 
-.pallete-button:active {
+
+.pallete-button:active{
   background-color: var(--background-brand-secondary);
   transition: 200ms;
-  transition-timing-function: cubic-bezier(0, 1.5, 1, 1.5);
+  transition-timing-function: cubic-bezier(0,1.5,1,1.5);
 }
-
 @media screen and (max-width: 900px) {
   :host {
     flex-grow: 1;
     width: 100%;
   }
-
-  dialog {
+  dialog{
     width: initial;
+    
   }
-
   .nav-card {
     display: flex;
     align-items: center;
@@ -47,7 +51,9 @@ dialog {
     justify-content: center;
     height: 56px;
     font-weight: 500;
+
     flex-grow: 1;
+
     padding: 0px;
     flex-direction: column;
     gap: 4px;
@@ -55,9 +61,12 @@ dialog {
     background: transparent;
     font-size: 12px;
 
-    &:hover {}
+    &:hover{
+
+    }
   }
 
+ 
   .active {
     border-color: transparent;
 
@@ -66,6 +75,8 @@ dialog {
     }
   }
 
+  
+ 
   .title {
     font-size: 12px;
   }
@@ -76,6 +87,8 @@ dialog {
     font-weight: var(--icon-weight-medium);
     line-height: 100%;
   }
+
+ 
 }
 
 input:where([type="checkbox"][role="switch"]) {
@@ -92,10 +105,12 @@ input:where([type="checkbox"][role="switch"]) {
   background-color: var(--background-secondary);
   vertical-align: text-bottom;
   margin: none;
-  transition: width cubic-bezier(0, 1, 1, 1) 300ms;
-  transition-property: left, height, width;
+  transition: width cubic-bezier(0,1,1,1) 300ms;
+  transition-property: left,height,width;
   border-radius: 0px;
   -webkit-tap-highlight-color: transparent;
+
+   
 }
 
 input:where([type="checkbox"][role="switch"])::before {
@@ -112,8 +127,7 @@ input:where([type="checkbox"][role="switch"])::before {
   background-color: var(--foreground-secondary);
   transition: inherit;
 }
-
-input:where([type="checkbox"][role="switch"]):checked {
+input:where([type="checkbox"][role="switch"]):checked{
   background-color: var(--background-brand-emphasis);
 }
 
@@ -122,4 +136,6 @@ input:where([type="checkbox"][role="switch"]):checked::before {
   height: 24px;
   width: 24px;
   background-color: var(--foreground-onEmphasis);
+
 }
+

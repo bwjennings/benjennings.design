@@ -16,7 +16,7 @@ class SiteSettings extends HTMLElement {
           <link href="./css/style.css" rel="stylesheet"  rel="stylesheet" />
 
        
-          <button id="openBtn" aria-label="Open Settings">
+          <button class="secondary" id="openBtn" aria-label="Open Settings">
             <div class="icon">tune</div>Settings
           </button>
         

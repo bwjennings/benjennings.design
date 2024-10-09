@@ -1,3 +1,7 @@
+@view-transition {
+  navigation: auto;
+}
+
 :host {
   grid-area: sidebar;
   flex-grow: 1;
@@ -8,6 +12,7 @@
 }
 
 .quick-theme {
+  align-self: self-end;
   opacity: 0.9;
   filter: saturate(0.9);
   transition: filter 300ms, opacity 300ms;
@@ -16,6 +21,7 @@
     opacity: 1;
     filter: saturate(1);
     opacity: 1;
+    --theme-slider-size:32px;
   }
 }
 
@@ -31,7 +37,7 @@
   display: grid;
   padding: var(--spacing-x-large);
   grid-template-columns: 1fr;
-  grid-template-rows: 80px 1fr auto;
+  grid-template-rows: 80px 1fr minmax(20px, 40px) auto;
   gap: var(--spacing-large);
   grid-template-areas:
     "title "
@@ -56,8 +62,14 @@
     padding: 0;
     /* Remove padding */
     margin: 0;
+    transform-style: preserve-3d;
 
-    li {}
+    li {
+      &:focus{
+        transform: perspective(300px) translateZ(-50px);
+      
+      }
+    }
   }
 
   h2 {
@@ -90,15 +102,28 @@
   border: 1px solid transparent;
   cursor: pointer;
 
+
   &:hover:not(.active) {
     background-color: var(--border-primary-hover);
   }
+
+  
 }
 
+
+
+
+
 .active {
-  background: var(--background-brand);
+ 
   font-variation-settings: 'GRAD' 100;
   color: var(--foreground-brand);
+  anchor-name: --active;
+  position: relative;
+  background: var(--background-brand);
+
+ 
+
 
   .icon {
     font-variation-settings:
@@ -107,15 +132,18 @@
   }
 }
 
+
+
+
+
 @keyframes active-item-in {
   from {
-    outline: 4px var(--background-brand) solid;
-    outline-color: var(--background-brand);
+   transform: perspective(300px) translateZ(-50px);
   }
 
   to {
-    outline: 0px var(--background-brand) solid;
-    outline-color: var(--background-brand);
+    transform:perspective(300px)  translateZ(0px);
+
   }
 }
 

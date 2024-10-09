@@ -7,6 +7,8 @@
   margin: 0;
 }
 
+
+
 :focus-visible {
   outline: 4px solid var(--border-primary-hover);
 }
@@ -215,6 +217,10 @@ button,
     font-size: var(--icon-size-medium);
     line-height: 100%;
   }
+
+  &.secondary{
+    background-color: var(--background-secondary);
+  }
 }
 
 button:hover {
@@ -237,6 +243,7 @@ button[size="small"] {
   padding: var(--spacing-small, 8px);
   gap: var(--spacing-x-small, 4px);
 }
+
 
 .icon-button {
   font-family: var(--icon-font-family);
@@ -272,6 +279,38 @@ label {
   gap: var(--spacing-small);
   accent-color: var(--background-brand);
 }
+@keyframes flipInX {
+  from {
+    opacity: 0;
+    transform: scale(0.1) rotate(5deg);
+    transform-origin: center bottom;
+    filter: blur(12px);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  70% {
+    transform: rotate(3deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+
+  }
+}
+
+.flipInX {
+  display: inline-block;
+  transform-style: preserve-3d;
+
+
+  backface-visibility: visible !important;
+  animation:flipInX 800ms ease-in-out;
+}
 
 .radio-buttons {
   display: flex;
@@ -295,7 +334,7 @@ label {
   padding: var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-medium, 12px);
   justify-content: center;
   align-items: center;
-  font-size: var(--text-body-md-size);
+  font-size: var(--text-body-lg-size);
   color: var(--foreground-primary);
   font-family: var(--text-font-family);
   cursor: pointer;
@@ -597,7 +636,7 @@ dialog[open]::backdrop {
   display: flex;
   flex-direction: column;
   align-self: center;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   gap: var(--spacing-xxx-large, 40px);
   padding: var(--spacing-x-large);
@@ -634,21 +673,21 @@ dialog[open]::backdrop {
 
 @keyframes content-in {
   0% {
-    transform: perspective(500px) translateZ(-20px);
+    transform: perspective(500px) translateZ(-20px) translateY(20px);
     transform-origin: 0% 50%;
     filter: blur(20px);
     opacity: 0;
   }
 
   40% {
-    transform: perspective(500px) translateZ(-20px);
+    transform: perspective(500px) translateZ(-20px) translateY(20px);
     transform-origin: 0% 50%;
     filter: blur(20px);
     opacity: 0;
   }
 
   100% {
-    transform: perspective(500px) translateZ(0px);
+    transform: perspective(500px) translateZ(0px) translateY(0px);
     transform-origin: 0% 50%;
     filter: blur(0px);
     opacity: 1;
@@ -657,21 +696,21 @@ dialog[open]::backdrop {
 
 @keyframes content-out {
   0% {
-    transform: perspective(500px) translateZ(0px);
+    transform: perspective(500px) translateZ(0px) translateY(0px);
     transform-origin: 0% 50%;
     filter: blur(0px);
     opacity: 1;
   }
 
   60% {
-    transform: perspective(500px) translateZ(-20px);
+    transform: perspective(500px) translateZ(-20px) translateY(20px);
     transform-origin: 0% 50%;
     filter: blur(20px);
     opacity: 0;
   }
 
   100% {
-    transform: perspective(500px) translateZ(-20px);
+    transform: perspective(500px) translateZ(-20px) translateY(20px);
     transform-origin: 0% 50%;
     filter: blur(20px);
     opacity: 0;
@@ -844,5 +883,16 @@ iframe {
     * {
       scroll-snap-align: center;
     }
+  }
+}
+
+body{
+  container-name: page;
+  container-type: inline-size;
+}
+
+@container page style(color-scheme: dark) {
+  .page-container{
+    background-color: red;
   }
 }
