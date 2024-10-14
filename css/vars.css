@@ -25,8 +25,8 @@
   --font-size-6: clamp(2.37rem, 0.72vi + 2.2rem, 2.83rem);
   --font-size-7: clamp(3.16rem, 1.32vi + 2.84rem, 4rem);
   --font-size-8: clamp(4.21rem, 2.26vi + 3.67rem, 5.65rem);
-  --font-size-9: clamp(5.61rem, 3.74vi + 4.72rem, 7.99rem);
-  --font-size-10: clamp(7.48rem, 6vi + 6.05rem, 11.3rem);
+  --font-size-9: clamp(5.61rem, 3vi + 4rem, 7rem);
+  --font-size-10: clamp(7.48rem, 5vi + 5rem, 9rem);
 
   --radius-none: 0px;
   --radius-small: 4px;

@@ -101,7 +101,7 @@ p {
     'GRAD' 200;
   overflow: hidden;
   display: flex;
-  height: 120px;
+  height: 150px;
   width: auto;
   align-self: stretch;
   background: radial-gradient(45.28% 60.5% at 45.27% 44%, var(--background-brand-secondary) 0%, var(--background-brand) 98.88%);
@@ -141,6 +141,7 @@ p {
   ::slotted(.horizontal) {
     grid-template-columns: 1fr;
   }
+ 
 }
 
 ::slotted([slot="image"]) {
@@ -152,9 +153,7 @@ p {
   height: 400px;
 }
 
-dialog {
-  overflow: hidden;
-}
+
 
 .wrapper {
   display: grid;
@@ -171,23 +170,40 @@ slot[name="post"] {
   flex: 1 1 auto;
   align-items: center;
   width: 100cqw;
+
+    container-type: inline-size;
+    container-name: dialog;
+  
 }
 
 ::slotted([slot="post"]) {
   padding: 40px;
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 400px auto;
   flex-direction: column;
   gap: var(--spacing-xxx-large);
   width: 100%;
   align-items: start;
+  background-size: cover;
 }
 
+
+
+::slotted(.grid) {
+  grid-template-columns: repeat(auto-fill, minmax(350px,1fr));
+  grid-template-rows: 500px;
+  grid-auto-rows: minmax(100px, max-content);
+
+ 
+
+}
 :has(iframe) {
   ::slotted([slot="post"]) {
     grid-template-columns: 1fr 1fr;
   }
 }
+
 
 .badge-group {
   display: flex;
@@ -195,7 +211,7 @@ slot[name="post"] {
   align-items: end;
 }
 
-@container dialog (max-width: 400px) {
+@media screen (max-width: 400px) {
   ::slotted([slot="post"]) {
     grid-auto-columns: 1fr;
   }
@@ -203,4 +219,6 @@ slot[name="post"] {
   ::slotted([slot="post"]:has(.figma)) {
     grid-template-columns: 1fr;
   }
+
+ 
 }

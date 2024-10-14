@@ -7,40 +7,39 @@ class CustomSidebar extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    // Create the template without relying on attributes
+    // Create the template
     const template = document.createElement("template");
     template.innerHTML = `
-    <link href="css/style.css" rel="stylesheet"/>
-    <link href="components/navigation/navigation.css" rel="stylesheet"/>
-    
-    <nav class="sidebar">
-      <h2 class="site-title"><a href="index.html">Ben</a></h2>
-      <site-settings></site-settings>
-      <menu>
-        <li><a tabindex="1" class="nav-card item1" href="index.html">
+      <link href="css/style.css" rel="stylesheet"/>
+      <link href="components/navigation/navigation.css" rel="stylesheet"/>
       
-            <span class="icon">waving_hand</span>
-            <span class="title">Home</span>
-        </a></li>
-        <li><a tabindex="2" class="nav-card item2" href="fundamentals.html">
-            <span class="icon">psychology</span>
-            <span class="title">Fundamentals</span>
-        </a></li>
-        <li><a tabindex="3" class="nav-card item3" href="designs.html">
-            <span class="icon">web</span>
-            <span class="title">Designs</span>
-        </a></li>
-        <li><a tabindex="4" class="nav-card item4" href="experiments.html">
-            <span class="icon">experiment</span>
-            <span class="title">Experiments</span>
-        </a></li>
-        <li><a tabindex="5" class="nav-card item5" href="resources.html">
-            <span class="icon">folder_open</span>
-            <span class="title">Resources</span>
-        </a></li>
-      </menu>
-      <theme-slider class="quick-theme" data-hide-label></theme-slider>
-    </nav>
+      <nav class="sidebar">
+        <h2 class="site-title"><a href="index.html">Ben</a></h2>
+        <site-settings></site-settings>
+        <menu>
+          <li><a tabindex="1" class="nav-card item1" href="index.html">
+              <span class="icon">waving_hand</span>
+              <span class="title">Home</span>
+          </a></li>
+          <li><a tabindex="2" class="nav-card item2" href="fundamentals.html">
+              <span class="icon">psychology</span>
+              <span class="title">Fundamentals</span>
+          </a></li>
+          <li><a tabindex="3" class="nav-card item3" href="designs.html">
+              <span class="icon">web</span>
+              <span class="title">Designs</span>
+          </a></li>
+          <li><a tabindex="4" class="nav-card item4" href="experiments.html">
+              <span class="icon">experiment</span>
+              <span class="title">Experiments</span>
+          </a></li>
+          <li><a tabindex="5" class="nav-card item5" href="resources.html">
+              <span class="icon">folder_open</span>
+              <span class="title">Resources</span>
+          </a></li>
+        </menu>
+        <theme-slider class="quick-theme" data-hide-label></theme-slider>
+      </nav>
     `;
     this.shadowRoot.append(template.content.cloneNode(true));
 
@@ -56,10 +55,7 @@ class CustomSidebar extends HTMLElement {
     this.addEventListeners();
 
     // Add optimization to avoid layout shifts
-    this.shadowRoot.querySelector(".sidebar").classList.add("preload");
-    requestAnimationFrame(() => {
-      this.shadowRoot.querySelector(".sidebar").classList.remove("preload");
-    });
+   
   }
 
   disconnectedCallback() {
@@ -84,12 +80,19 @@ class CustomSidebar extends HTMLElement {
   }
 
   handleNavigation(event) {
-    // Only handle clicks on '.nav-card' elements
     const target = event.target.closest(".nav-card");
     if (target) {
       event.preventDefault();
       const href = target.getAttribute("href");
-      if (href) {
+
+      // Check if the browser supports the View Transitions API
+      if (document.startViewTransition) {
+        document.startViewTransition(() => {
+          // Start the transition and change the page
+          window.location.href = href;
+        });
+      } else {
+        // Fallback for browsers without View Transitions API support
         window.location.href = href;
       }
     }

@@ -36,9 +36,6 @@ body {
   }
 }
 
-img {
-  object-fit: cover;
-}
 
 a {
   all: unset;
@@ -72,6 +69,8 @@ h6 {
 
 p {
   max-width: 65ch;
+  margin-bottom: 2ch;
+  text-wrap:pretty;
 }
 
 body {
@@ -282,7 +281,7 @@ label {
 @keyframes flipInX {
   from {
     opacity: 0;
-    transform: scale(0.1) rotate(5deg);
+    transform: scale(0.1) rotate(5deg) translateY(800px);
     transform-origin: center bottom;
     filter: blur(12px);
   }
@@ -297,19 +296,32 @@ label {
 
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateX(0px);
     filter: blur(0px);
 
   }
 }
 
 .flipInX {
-  display: inline-block;
+  display: inline-flex;
+  overflow: hidden;
   transform-style: preserve-3d;
-
-
   backface-visibility: visible !important;
-  animation:flipInX 800ms ease-in-out;
+  animation:flipInX 2s var(--timing-ease);
+
+  
+}
+
+
+img{
+max-height: 70dvh;
+height: 100%;
+  width: 100%;
+  background-size: cover;
+  mix-blend-mode: darken;
+  opacity: 0.9;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .radio-buttons {
@@ -485,7 +497,7 @@ main {
 .page-items {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-auto-rows: 300px;
   align-items: center;
   gap: var(--spacing-xx-large);
@@ -636,7 +648,8 @@ dialog[open]::backdrop {
   display: flex;
   flex-direction: column;
   align-self: center;
-  align-items: start;
+  align-items: center;
+  text-align: center;
   justify-content: center;
   gap: var(--spacing-xxx-large, 40px);
   padding: var(--spacing-x-large);
@@ -659,8 +672,12 @@ dialog[open]::backdrop {
 }
 
 .full-row {
+  display: flex;
+  flex-direction: column;
   width: inherit;
   grid-column: 1 / -1;
+  align-items: center;
+  
 }
 
 ::part(header) {
