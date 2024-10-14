@@ -2,7 +2,16 @@ name: Take Webpage Screenshot
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour at the top of the hour
+    - cron: '0 * * * *'  # Every hour
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL of the webpage to screenshot'
+        required: false
+        default: 'https://example.com'
+
+permissions:
+  contents: write  # Allows the workflow to commit to the repository
 
 jobs:
   capture_screenshot:
@@ -24,11 +33,18 @@ jobs:
           node -e "
           const puppeteer = require('puppeteer');
           (async () => {
-            const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
-            const page = await browser.newPage();
-            await page.goto('https://benjennings.design');
-            await page.screenshot({ path: 'screenshot.png' });
-            await browser.close();
+            try {
+              const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+              const page = await browser.newPage();
+              const url = process.env.INPUT_URL || 'https://example.com';
+              await page.goto(url, { waitUntil: 'networkidle2' });
+              const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+              await page.screenshot({ path: `screenshots/screenshot-${timestamp}.png` });
+              await browser.close();
+            } catch (error) {
+              console.error('Error taking screenshot:', error);
+              process.exit(1);
+            }
           })();
           "
 
@@ -36,4 +52,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Add new screenshot [skip ci]'
-          file_pattern: screenshot.png
+          file_pattern: screenshots/*.png
