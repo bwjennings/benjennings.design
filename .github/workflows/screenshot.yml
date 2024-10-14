@@ -40,10 +40,9 @@ jobs:
             try {
               const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
               const page = await browser.newPage();
-              const url = process.env.INPUT_URL || "https://example.com";
+              const url = process.env.INPUT_URL || "https://benjennings.design";
               await page.goto(url, { waitUntil: "networkidle2" });
-              const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-              const filepath = `screenshots/screenshot-${timestamp}.png`;
+              const filepath = `screenshots/screenshot.png`;
               await page.screenshot({ path: filepath });
               await browser.close();
               console.log("Screenshot saved to", filepath);
