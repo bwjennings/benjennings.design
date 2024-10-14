@@ -8,7 +8,7 @@ on:
       url:
         description: 'URL of the webpage to screenshot'
         required: false
-        default: 'https://example.com'
+        default: 'https://benjennings.design'
 
 permissions:
   contents: write
