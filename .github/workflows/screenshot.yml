@@ -2,7 +2,7 @@ name: Take Webpage Screenshot
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Every hour
+    - cron: '0 * * * *'
   workflow_dispatch:
     inputs:
       url:
@@ -11,7 +11,7 @@ on:
         default: 'https://example.com'
 
 permissions:
-  contents: write  # Allows the workflow to commit to the repository
+  contents: write
 
 jobs:
   capture_screenshot:
@@ -28,25 +28,31 @@ jobs:
       - name: Install Puppeteer
         run: npm install puppeteer
 
+      - name: Create Screenshots Directory
+        run: mkdir -p screenshots
+
       - name: Take Screenshot
         run: |
-          node -e "
-          const puppeteer = require('puppeteer');
+          node -e '
+          const puppeteer = require("puppeteer");
+          const fs = require("fs");
           (async () => {
             try {
-              const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+              const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
               const page = await browser.newPage();
-              const url = process.env.INPUT_URL || 'https://example.com';
-              await page.goto(url, { waitUntil: 'networkidle2' });
-              const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-              await page.screenshot({ path: `screenshots/screenshot-${timestamp}.png` });
+              const url = process.env.INPUT_URL || "https://example.com";
+              await page.goto(url, { waitUntil: "networkidle2" });
+              const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+              const filepath = `screenshots/screenshot-${timestamp}.png`;
+              await page.screenshot({ path: filepath });
               await browser.close();
+              console.log("Screenshot saved to", filepath);
             } catch (error) {
-              console.error('Error taking screenshot:', error);
+              console.error("Error taking screenshot:", error);
               process.exit(1);
             }
           })();
-          "
+          '
 
       - name: Commit Screenshot
         uses: stefanzweifel/git-auto-commit-action@v4
