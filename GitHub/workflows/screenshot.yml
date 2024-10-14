@@ -1,0 +1,39 @@
+name: Take Webpage Screenshot
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour at the top of the hour
+
+jobs:
+  capture_screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Puppeteer
+        run: npm install puppeteer
+
+      - name: Take Screenshot
+        run: |
+          node -e "
+          const puppeteer = require('puppeteer');
+          (async () => {
+            const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+            const page = await browser.newPage();
+            await page.goto('https://example.com');
+            await page.screenshot({ path: 'screenshot.png' });
+            await browser.close();
+          })();
+          "
+
+      - name: Commit Screenshot
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Add new screenshot [skip ci]'
+          file_pattern: screenshot.png
