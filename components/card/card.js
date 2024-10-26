@@ -6,7 +6,8 @@ template.innerHTML = `
       display: block;
     }
     .card-container {
-      /* Add your styles here */
+      cursor: pointer;
+      position: relative;
     }
     /* Add more styles as needed */
   </style>
@@ -56,13 +57,35 @@ class SimpleCard extends HTMLElement {
     this.closeDialog = this.closeDialog.bind(this);
     this.handleEvents = this.handleEvents.bind(this);
     this.handleNavigate = this.handleNavigate.bind(this);
+    this.handleSlotClick = this.handleSlotClick.bind(this);
 
     // Store the original navigation entry key
     this.originalEntryKey = null;
   }
 
   connectedCallback() {
-    this.shadowRoot.addEventListener('click', this.handleEvents);
+    // Add click handlers for both the container and slots
+    const cardContainer = this.shadowRoot.querySelector('.card-container');
+    cardContainer.addEventListener('click', this.handleEvents);
+
+    // Add click listeners to all slots
+    const slots = this.shadowRoot.querySelectorAll('slot');
+    slots.forEach(slot => {
+      slot.addEventListener('click', this.handleSlotClick);
+      slot.addEventListener('slotchange', (e) => {
+        // Add click listeners to newly slotted elements
+        const assignedElements = e.target.assignedElements();
+        assignedElements.forEach(element => {
+          element.addEventListener('click', this.handleSlotClick);
+        });
+      });
+    });
+
+    // Add dialog-related event listeners
+    this.shadowRoot.querySelector('dialog').addEventListener('click', this.handleEvents);
+    this.shadowRoot.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', this.handleEvents);
+    });
 
     if ('navigation' in window) {
       navigation.addEventListener('navigate', this.handleNavigate);
@@ -72,14 +95,25 @@ class SimpleCard extends HTMLElement {
 
     this.updateComponent();
 
-    // Ensure that the component checks the URL hash after it's fully initialized
+    // Check URL hash after initialization
     requestAnimationFrame(() => {
       this.checkUrlForDialog();
     });
   }
 
   disconnectedCallback() {
-    this.shadowRoot.removeEventListener('click', this.handleEvents);
+    // Remove all event listeners
+    const cardContainer = this.shadowRoot.querySelector('.card-container');
+    cardContainer.removeEventListener('click', this.handleEvents);
+
+    const slots = this.shadowRoot.querySelectorAll('slot');
+    slots.forEach(slot => {
+      slot.removeEventListener('click', this.handleSlotClick);
+      const assignedElements = slot.assignedElements();
+      assignedElements.forEach(element => {
+        element.removeEventListener('click', this.handleSlotClick);
+      });
+    });
 
     if ('navigation' in window) {
       navigation.removeEventListener('navigate', this.handleNavigate);
@@ -145,6 +179,12 @@ class SimpleCard extends HTMLElement {
     }
   }
 
+  handleSlotClick(event) {
+    // Prevent the event from bubbling up to avoid double triggers
+    event.stopPropagation();
+    this.showDialog();
+  }
+
   handleEvents(event) {
     const target = event.target;
 
@@ -154,12 +194,11 @@ class SimpleCard extends HTMLElement {
       this.closeDialog(event);
     } else if (target.nodeName === 'DIALOG') {
       const rect = target.getBoundingClientRect();
-      const clickedInDialog = (
+      const clickedInDialog =
         rect.top <= event.clientY &&
         event.clientY <= rect.top + rect.height &&
         rect.left <= event.clientX &&
-        event.clientX <= rect.left + rect.width
-      );
+        event.clientX <= rect.left + rect.width;
       if (!clickedInDialog) this.closeDialog(event);
     }
   }

@@ -101,7 +101,7 @@ u {
   max-width: 40ch;
   font-variation-settings:
     'wdth' 110,
-    'GRAD' 100,
+    'GRAD' var(--text-heading-grade),
     'XOPQ' 80,
     'YOPQ' 80;
   font-optical-sizing: auto;
@@ -313,12 +313,12 @@ label {
 }
 
 
+
 img{
 max-height: 70dvh;
 height: 100%;
   width: 100%;
   background-size: cover;
-  mix-blend-mode: darken;
   opacity: 0.9;
   object-fit: cover;
   overflow: hidden;
@@ -498,7 +498,6 @@ main {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  grid-auto-rows: 300px;
   align-items: center;
   gap: var(--spacing-xx-large);
   max-width: 1200px;
@@ -644,6 +643,14 @@ dialog[open]::backdrop {
   gap: var(--spacing-medium);
 }
 
+
+:root {
+  --input: 1; /* This should change to get different random values */
+}
+
+.element {
+  
+}
 .welcome {
   display: flex;
   flex-direction: column;
@@ -663,6 +670,8 @@ dialog[open]::backdrop {
   display: flex;
   flex-direction: column;
   width: 100%;
+  --random-value: mod(abs(sin(var(--input)) * 1000000), 1);
+  width: calc(100px * var(--random-value));
   grid-template-rows: subgrid;
   grid-column: span 3;
   top: 0px;
@@ -742,6 +751,20 @@ dialog[open]::backdrop {
   animation: content-in var(--timing-ease) 600ms;
 }
 
+body {
+	view-transition-name: page;
+}
+
+
+
+
+
+::view-transition-group(page) {
+  animation-duration: 300ms;
+  animation-timing-function: var(--timing-ease);
+
+}
+
 iframe {
   grid-column: 2;
 }
@@ -794,7 +817,6 @@ iframe {
   .page-items {
     grid-template-columns: 1fr;
     padding: var(--spacing-large);
-    grid-auto-rows: 250px;
   }
 
   .content {

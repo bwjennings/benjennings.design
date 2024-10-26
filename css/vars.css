@@ -17,16 +17,16 @@
   --theme-slider-size: 20px;
   --theme-slider-outline:var(--background-primary);
   /*   Typography Scale  */
-  --font-size-1: clamp(0.56rem, -0.1vi + 0.59rem, 0.5rem);
-  --font-size-2: clamp(0.75rem, -0.07vi + 0.77rem, 0.71rem);
-  --font-size-3: clamp(1rem, 0vi + 1rem, 1rem);
-  --font-size-4: clamp(1.33rem, 0.13vi + 1.3rem, 1.41rem);
-  --font-size-5: clamp(1.78rem, 0.35vi + 1.69rem, 2rem);
-  --font-size-6: clamp(2.37rem, 0.72vi + 2.2rem, 2.83rem);
-  --font-size-7: clamp(3.16rem, 1.32vi + 2.84rem, 4rem);
-  --font-size-8: clamp(4.21rem, 2.26vi + 3.67rem, 5.65rem);
-  --font-size-9: clamp(5.61rem, 3vi + 4rem, 7rem);
-  --font-size-10: clamp(7.48rem, 5vi + 5rem, 9rem);
+  --font-size-1: clamp(0.56rem, -0.1vmin + 0.59rem, 0.5rem);
+  --font-size-2: clamp(0.75rem, -0.07vmin + 0.77rem, 0.71rem);
+  --font-size-3: clamp(1rem, 0vmin + 1rem, 1rem);
+  --font-size-4: clamp(1.33rem, 0.13vmin + 1.3rem, 1.41rem);
+  --font-size-5: clamp(1.78rem, 0.35vmin + 1.69rem, 2rem);
+  --font-size-6: clamp(2.37rem, 0.72vmin + 2.2rem, 2.83rem);
+  --font-size-7: clamp(3.16rem, 1.32vmin + 2.84rem, 4rem);
+  --font-size-8: clamp(4.21rem, 2.26vmin + 3.67rem, 5.65rem);
+  --font-size-9: clamp(5.61rem, 3vmin + 4rem, 7rem);
+  --font-size-10: clamp(7.48rem, 5vmin + 5rem, 9rem);
 
   --radius-none: 0px;
   --radius-small: 4px;
@@ -203,7 +203,8 @@
   --text-heading-weight: 550;
 
   --text-heading-font-family: "Roboto Flex";
-  --text-heading-grade: var(--font-grade-lg);
+  --text-heading-grade: 200;
+
 
   --text-heading-xl-line-height: 110%;
   --text-heading-xl-size: var(--font-size-9);
@@ -241,7 +242,6 @@
 }
 
 [data-mode="high-contrast"] {
-
   --background-page: light-dark(var(--gray-5), var(--gray-95));
   --background-primary: light-dark(var(--white), var(--gray-90));
   --background-secondary: light-dark(var(--white), var(--gray-80));
@@ -300,4 +300,15 @@
 
   }
 
+}
+
+html{
+  container-name: mypage;
+}
+
+
+@container mypage style(color-scheme: dark) {
+  .heading {
+    --text-heading-grade: 0;
+  }
 }

@@ -101,11 +101,13 @@
   background: inherit;
   border: 1px solid transparent;
   cursor: pointer;
+  transition: transform 300ms;
 
 
   &:hover:not(.active) {
     background-color: var(--border-primary-hover);
   }
+  
 
   
 }

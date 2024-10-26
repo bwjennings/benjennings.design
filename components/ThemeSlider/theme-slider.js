@@ -12,11 +12,9 @@ customElements.define(
 
       // Template with conditional label text visibility
       shadowRoot.innerHTML = `
-       <link href="css/style.css" rel="stylesheet"  />
-        <link href="components/ThemeSlider/theme-slider.css" rel="stylesheet"   />
+        <link href="css/style.css" rel="stylesheet"  />
+        <link href="components/ThemeSlider/theme-slider.css" rel="stylesheet" />
           
-
-       
         <label for="hueSlider">
           ${!hideLabel ? 'Theme Color:' : ''}
           <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2"
@@ -27,19 +25,18 @@ customElements.define(
       // Reference to the slider element
       this.hueSlider = shadowRoot.getElementById("hueSlider");
 
-      // Load the sound
-
-      // Play the sound on initial click
+      // Play sound on initial click (omitted actual playSound method here)
       this.hueSlider.addEventListener("mousedown", () => {
         this.playSound();
       });
 
       // Handle slider input changes
       this.hueSlider.addEventListener("input", () => {
-        this.updateHue(this.hueSlider.value);
-        this.saveHue(this.hueSlider.value);
-        this.dispatchEvent(new CustomEvent('hueChange', { detail: this.hueSlider.value }));
-        window.dispatchEvent(new CustomEvent('globalHueChange', { detail: this.hueSlider.value }));
+        const newHue = this.hueSlider.value;
+        this.updateHue(newHue);
+        this.saveHue(newHue);
+        this.dispatchEvent(new CustomEvent('hueChange', { detail: newHue }));
+        window.dispatchEvent(new CustomEvent('globalHueChange', { detail: newHue }));
       });
 
       // Listen for global changes to the hue value
@@ -66,6 +63,12 @@ customElements.define(
             this.updateHue(newHue);
           }
         }
+
+        if (event.key === 'myCustomTheme') {
+          // Sync color scheme changes
+          const newScheme = event.newValue || 'light';
+          document.documentElement.style.setProperty('color-scheme', newScheme);
+        }
       });
     }
 
@@ -89,7 +92,5 @@ customElements.define(
       this.hueSlider.value = hue;
       this.updateHue(hue);
     }
-
-  
   }
 );
