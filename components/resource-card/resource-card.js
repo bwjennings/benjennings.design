@@ -35,7 +35,7 @@
           --animation-position: 0;
           font-variation-settings: 'GRAD' -200, 'FILL' var(--icon-fill);
           font-family: var(--icon-font-family);
-          font-size: 10cqw;
+          width:15cqw;
           text-align: center;
           font-variation-settings: 'FILL' var(--icon-fill), 'wght' 700, 'GRAD' 200;
           overflow: hidden;
@@ -49,7 +49,10 @@
           color: var(--foreground-brand-secondary);
           user-select: none;
           -webkit-user-select: none;
-          max-height:100px;
+          container-name:iconbox;
+          container-type:inline-size;
+                    max-height:150px;
+
 
           
 }
@@ -79,6 +82,8 @@
           opacity: 0.5;
           animation: iconAnimate 5s ease-in-out infinite alternate;
           font-weight: 600;
+          font-size: 130cqw;
+
         }
       </style>
           <link href="./css/style.css" rel="stylesheet" />
@@ -89,7 +94,7 @@
             <div class="content-area">
               <div class="title-group">
                 <div class="heading sm title">Title</div>
-                <div class="body xs secondary description">Description</div>
+                <div class="body secondary description">Description</div>
               </div>
               <button part="button" class="button">
                 <div class="icon">link</div>

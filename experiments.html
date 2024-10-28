@@ -141,7 +141,14 @@
   </div>
   </main>
   </div>
-
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set the flag to prevent animation on the home page
+      if (!sessionStorage.getItem('heroSidebarAnimated')) {
+        sessionStorage.setItem('heroSidebarAnimated', 'true');
+      }
+    });
+  </script>
 </body>
 
 </html>

@@ -21,12 +21,66 @@
   --font-size-2: clamp(0.75rem, -0.07vmin + 0.77rem, 0.71rem);
   --font-size-3: clamp(1rem, 0vmin + 1rem, 1rem);
   --font-size-4: clamp(1.33rem, 0.13vmin + 1.3rem, 1.41rem);
-  --font-size-5: clamp(1.78rem, 0.35vmin + 1.69rem, 2rem);
+  --font-size-5: clamp(1.8rem, 0.4vmin + 1.69rem, 1.9rem);
   --font-size-6: clamp(2.37rem, 0.72vmin + 2.2rem, 2.83rem);
   --font-size-7: clamp(3.16rem, 1.32vmin + 2.84rem, 4rem);
   --font-size-8: clamp(4.21rem, 2.26vmin + 3.67rem, 5.65rem);
-  --font-size-9: clamp(5.61rem, 3vmin + 4rem, 7rem);
+  --font-size-9: clamp(5rem, 2.8vmin + 4rem, 6.8rem);
   --font-size-10: clamp(7.48rem, 5vmin + 5rem, 9rem);
+
+   /*  Icons  */
+   --icon-font-family: "Material Symbols Sharp";
+
+   --icon-size-xl: var(--font-size-6);
+   --icon-size-large: var(--font-size-5);
+   --icon-size-medium: var(--font-size-4);
+   --icon-size-small: var(--font-size-3);
+ 
+   --icon-weight-large: 500;
+   --icon-weight-medium: 400;
+   --icon-weight-small: 300;
+   --icon-fill: 1;
+   --icon-grade: 0;
+   --icon-grade-emphasis: 100;
+ 
+   
+ 
+   /*  Typography - Heading  */
+   --text-heading-weight: 550;
+ 
+   --text-heading-font-family: "Roboto Flex";
+   --text-heading-grade: 200;
+ 
+ 
+   --text-heading-xl-line-height: 110%;
+   --text-heading-xl-size: var(--font-size-9);
+ 
+   --text-heading-lg-line-height: 110%;
+   --text-heading-lg-size: var(--font-size-7);
+ 
+   --text-heading-md-line-height: var(--font-size-7);
+   --text-heading-md-size: var(--font-size-6);
+ 
+   --text-heading-sm-line-height: var(--font-size-6);
+   --text-heading-sm-size: var(--font-size-5);
+ 
+ 
+   /*  Typography - Body Text  */
+   --text-body-font-family: "Roboto Flex";
+   --text-body-weight: 400;
+ 
+   --text-body-lg-line-height: var(--font-size-5);
+   --text-body-lg-size: var(--font-size-4);
+ 
+   --text-body-md-line-height: var(--font-size-4);
+   --text-body-md-size: var(--font-size-3);
+ 
+   --text-body-sm-line-height: var(--font-size-3);
+   --text-body-sm-size: var(--font-size-2);
+ 
+   --text-body-xs-line-height: var(--font-size-2);
+   --text-body-xs-size: var(--font-size-1);
+ 
 
   --radius-none: 0px;
   --radius-small: 4px;
@@ -66,7 +120,7 @@
   --lightness-95: 10%;
 
   /*   Base Brand Color  */
-  --brand-hue: 230;
+  --brand-hue: 180;
   --brand-chroma-5: 4%;
   --brand-chroma-10: 8%;
   --brand-chroma-20: 16%;
@@ -91,7 +145,7 @@
   --brand-90: oklch(var(--lightness-90) var(--brand-chroma-90) var(--brand-hue));
   --brand-95: oklch(var(--lightness-95) var(--brand-chroma-95) var(--brand-hue));
 
-  --alpha: 0.5;
+  --alpha: 0.4;
 
   --brand-5-alpha: oklch(var(--lightness-5) var(--brand-chroma-5) var(--brand-hue) / var(--alpha));
   --brand-10-alpha: oklch(var(--lightness-10) var(--brand-chroma-10) var(--brand-hue) / var(--alpha));
@@ -163,7 +217,7 @@
   --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
   --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-50));
 
-  --background-backdrop: light-dark(var(--gray-90-alpha), var(--gray-90-alpha));
+  --background-backdrop: light-dark(var(--gray-40-alpha), var(--gray-60-alpha));
 
   --foreground-primary: light-dark(var(--gray-90), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-50), var(--gray-30));
@@ -182,59 +236,7 @@
   --border-brand-emphasis: light-dark(var(--brand-60), var(--brand-70));
   --border-accent: light-dark(var(--accent-20), var(--accent-60));
 
-  /*  Icons  */
-  --icon-font-family: "Material Symbols Sharp";
-
-  --icon-size-xl: var(--font-size-6);
-  --icon-size-large: var(--font-size-5);
-  --icon-size-medium: var(--font-size-4);
-  --icon-size-small: var(--font-size-3);
-
-  --icon-weight-large: 500;
-  --icon-weight-medium: 400;
-  --icon-weight-small: 300;
-  --icon-fill: 1;
-  --icon-grade: 0;
-  --icon-grade-emphasis: 100;
-
-  
-
-  /*  Typography - Heading  */
-  --text-heading-weight: 550;
-
-  --text-heading-font-family: "Roboto Flex";
-  --text-heading-grade: 200;
-
-
-  --text-heading-xl-line-height: 110%;
-  --text-heading-xl-size: var(--font-size-9);
-
-  --text-heading-lg-line-height: 110%;
-  --text-heading-lg-size: var(--font-size-7);
-
-  --text-heading-md-line-height: var(--font-size-7);
-  --text-heading-md-size: var(--font-size-6);
-
-  --text-heading-sm-line-height: var(--font-size-6);
-  --text-heading-sm-size: var(--font-size-5);
-
-
-  /*  Typography - Body Text  */
-  --text-body-font-family: "Roboto Flex";
-  --text-body-weight: 400;
-
-  --text-body-lg-line-height: var(--font-size-5);
-  --text-body-lg-size: var(--font-size-4);
-
-  --text-body-md-line-height: var(--font-size-4);
-  --text-body-md-size: var(--font-size-3);
-
-  --text-body-sm-line-height: var(--font-size-3);
-  --text-body-sm-size: var(--font-size-2);
-
-  --text-body-xs-line-height: var(--font-size-2);
-  --text-body-xs-size: var(--font-size-1);
-
+ 
 
 
 

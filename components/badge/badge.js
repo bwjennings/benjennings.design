@@ -25,8 +25,8 @@ class BadgeComponent extends HTMLElement {
                 justify-content: center;
                 align-items: center;
                 gap: var(--spacing-x-small, 4px);
-                font-size: var(--text-body-sm-size);
-                line-height: var(--text-body-sm-line-height);
+                font-size: var(--text-body-md-size);
+                line-height: var(--text-body-md-line-height);
                                 border: 1px solid var(--border-secondary);
 
                 

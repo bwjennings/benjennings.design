@@ -42,14 +42,15 @@
 </head>
 
 <body>
-  <div class="page-container">
+  <div class="page-container hero-page">
     <custom-sidebar active-item="1"></custom-sidebar>
 
     <main>
       <div class="welcome">
         <h1 class="heading xl">Helping people <span class="flipInX">focus</span> </h1>
-        <p class="body lg">Great products feel effortless because they are made by listening and caring</p>
-        
+        <p class="heading sm">Great products feel effortless because they are made by listening and caring</p>
+        <p class="body lg">This portfolio serves as both a showcase of my work and a personal space to explore new ideas and experiment with design.</p>
+
 
 
 
@@ -61,7 +62,27 @@
     </main>
   </div>
 
-
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if the sidebar animation has already occurred
+      if (!sessionStorage.getItem('heroSidebarAnimated')) {
+        // First visit: animate the sidebar
+        var pageContainer = document.querySelector('.page-container.hero-page');
+        if (pageContainer) {
+          pageContainer.classList.add('animate-sidebar');
+          // Set a flag to prevent future animations
+          sessionStorage.setItem('heroSidebarAnimated', 'true');
+        }
+      } else {
+        // Subsequent visits: show the sidebar expanded without animation
+        var pageContainer = document.querySelector('.page-container.hero-page');
+        if (pageContainer) {
+          // Remove 'hero-page' class to prevent the initial collapsed state
+          pageContainer.classList.remove('hero-page');
+        }
+      }
+    });
+  </script>
 
 </body>
 

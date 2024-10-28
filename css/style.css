@@ -100,7 +100,7 @@ u {
   width: fit-content;
   max-width: 40ch;
   font-variation-settings:
-    'wdth' 110,
+    'wdth' 115,
     'GRAD' var(--text-heading-grade),
     'XOPQ' 80,
     'YOPQ' 80;
@@ -109,7 +109,7 @@ u {
 
 
   &.sm {
-    font-weight: 450;
+    font-weight: 400;
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
   }
@@ -426,11 +426,27 @@ model-viewer {
 .page-container {
   overflow: hidden;
   box-sizing: border-box;
-  display: flex;
   height: 100dvh;
   display: grid;
   grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
+
+
   grid-template-areas: "sidebar main-content";
+}
+
+.hero-page{
+  animation: sidebar-enter 2000ms var(--timing-ease) forwards;
+  animation-delay: 3s;
+  grid-template-columns: 0px 1fr;
+
+}
+
+@keyframes sidebar-enter {
+  to{
+    grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
+
+  }
+  
 }
 
 .card-group {
@@ -658,10 +674,9 @@ dialog[open]::backdrop {
   align-items: center;
   text-align: center;
   justify-content: center;
-  gap: var(--spacing-xxx-large, 40px);
+  gap: 7dvh;
   padding: var(--spacing-x-large);
-  height: 100cqh;
-  padding: var(--spacing-x-large);
+  padding-top: 30cqh;
   transform-style: preserve-3d;
   background-color: var(--background-page);
   scroll-snap-align: top;
@@ -671,13 +686,15 @@ dialog[open]::backdrop {
   flex-direction: column;
   width: 100%;
   --random-value: mod(abs(sin(var(--input)) * 1000000), 1);
-  width: calc(100px * var(--random-value));
   grid-template-rows: subgrid;
   grid-column: span 3;
   top: 0px;
-  padding: var(--spacing-x-large);
   user-select: none;
+  height: 100cqh;
+
   max-width: 1200px;
+
+
 }
 
 .full-row {
@@ -760,8 +777,7 @@ body {
 
 
 ::view-transition-group(page) {
-  animation-duration: 300ms;
-  animation-timing-function: var(--timing-ease);
+  animation-duration: 600ms;
 
 }
 
@@ -812,6 +828,12 @@ iframe {
       "main-content"
       "sidebar";
     margin-bottom: env(safe-area-inset-bottom);
+  }
+
+  .hero-page{
+    animation: none;
+  
+  
   }
 
   .page-items {

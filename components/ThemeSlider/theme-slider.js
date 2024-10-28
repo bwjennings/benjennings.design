@@ -50,7 +50,7 @@ customElements.define(
 
     // Lifecycle method called when the element is added to the DOM
     connectedCallback() {
-      const storedHue = localStorage.getItem("selectedColorHue") || "230";
+      const storedHue = localStorage.getItem("selectedColorHue") || "200";
       this.hueSlider.value = storedHue;
       this.updateHue(storedHue);
 

@@ -9,6 +9,7 @@
   z-index: 20;
   background: inherit;
   height: 100dvh;
+  overflow: hidden;
 }
 
 .quick-theme {
@@ -106,6 +107,7 @@
 
   &:hover:not(.active) {
     background-color: var(--border-primary-hover);
+    transition-delay: 1000ms;
   }
   
 
