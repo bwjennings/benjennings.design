@@ -787,7 +787,7 @@ iframe {
 
 @container style(--current-color-scheme: dark) {
   body {
-    --text-heading-grade:-100;
+    --text-heading-grade:100;
     --text-body-weight: 450;
     --brand-chroma-base: 2; 
   }
@@ -795,7 +795,7 @@ iframe {
 
 @media (prefers-color-scheme: dark) {
   body {
-    --text-heading-grade:-100;
+    --text-heading-grade:100;
     --text-body-weight: 450;
     --brand-chroma-base: 2; 
   }
