@@ -127,7 +127,7 @@ class SiteSettings extends HTMLElement {
 
   updateTheme(theme) {
     const colorScheme = theme === "light" ? "light" : theme === "dark" ? "dark" : "light dark";
-    document.documentElement.style.setProperty("color-scheme", colorScheme);
+    document.documentElement.style.setProperty("--current-color-scheme", colorScheme);
     window.dispatchEvent(new CustomEvent('globalSchemeChange', { detail: theme }));
   }
 

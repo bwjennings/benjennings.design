@@ -67,7 +67,7 @@ customElements.define(
         if (event.key === 'myCustomTheme') {
           // Sync color scheme changes
           const newScheme = event.newValue || 'light';
-          document.documentElement.style.setProperty('color-scheme', newScheme);
+          document.documentElement.style.setProperty('--current-color-scheme', newScheme);
         }
       });
     }

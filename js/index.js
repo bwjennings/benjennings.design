@@ -1,12 +1,13 @@
 (function () {
   try {
     // Retrieve theme, high contrast, and hue values from local storage
-    const theme = localStorage.getItem('myCustomTheme') || 'light'; // Default to 'light' if not set
+    const theme = localStorage.getItem('myCustomTheme') || 'light dark'; // Default to 'light' if not set
     const highContrast = localStorage.getItem('highContrast') === 'true';
     const selectedColorHue = localStorage.getItem('selectedColorHue') || '230';
 
-    // Set color scheme for light/dark mode
-    document.documentElement.style.setProperty('color-scheme', theme);
+    // Determine the color scheme based on theme setting
+    const colorScheme = theme === 'system' ? 'light dark' : theme;
+    document.documentElement.style.setProperty('--current-color-scheme', colorScheme);
 
     // Set high-contrast mode if enabled
     if (highContrast) {

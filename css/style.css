@@ -785,10 +785,19 @@ iframe {
   grid-column: 2;
 }
 
-@container style(color-scheme: dark) {
+@container style(--current-color-scheme: dark) {
   body {
-    font-variation-settings:
-      "GRAD" 200;
+    --text-heading-grade:-100;
+    --text-body-weight: 450;
+    --brand-chroma-base: 2; 
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    --text-heading-grade:-100;
+    --text-body-weight: 450;
+    --brand-chroma-base: 2; 
   }
 }
 
