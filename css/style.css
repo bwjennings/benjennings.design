@@ -437,7 +437,7 @@ model-viewer {
 .hero-page{
   animation: sidebar-enter 2000ms var(--timing-ease) forwards;
   animation-delay: 3s;
-  grid-template-columns: 0px 100dvw;
+  grid-template-columns: 0px 1fr;
 
 }
 
