@@ -10,6 +10,7 @@
   background: inherit;
   height: 100dvh;
   overflow: hidden;
+
 }
 
 .quick-theme {
@@ -237,6 +238,8 @@ theme-slider {
 @media screen and (max-width: 900px) {
   :host {
     width: 300px;
+    overflow:visible;
+
   }
 
   .sidebar {

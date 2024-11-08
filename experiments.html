@@ -92,12 +92,19 @@
 
           Don't make it simple, make it clear
         </simple-card>
-
+        
         <simple-card title="Spline" version="box">
-         
+     
+            <spline-viewer slot="media" id="mySplineViewer" url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode" events-target="global"></spline-viewer>
+          
           <div slot="post" class="post-body horizontal">
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
-<spline-viewer url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode" background="rgba(218,81,221,0.2)"></spline-viewer>
+          <!-- Link the Spline viewer module -->
+          <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+
+          <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+
+          <spline-viewer id="mySplineViewer" url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode" events-target="global" background="rgba(0,0,0,0.1)"></spline-viewer>
+
 
           </div>
 

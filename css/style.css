@@ -437,13 +437,14 @@ model-viewer {
 .hero-page{
   animation: sidebar-enter 2000ms var(--timing-ease) forwards;
   animation-delay: 3s;
-  grid-template-columns: 0px 1fr;
+  grid-template-columns: 0px 100dvw;
 
 }
 
 @keyframes sidebar-enter {
   to{
     grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
+    
 
   }
   
@@ -474,7 +475,7 @@ main {
   padding-top: 0px;
   gap: var(--spacing-xxx-large);
   transform-style: preserve-3d;
-  transform-origin: 0% 50%;
+  transform-origin: 0% 0%;
   view-transition-name: content;
   contain: layout;
 }
@@ -717,21 +718,25 @@ dialog[open]::backdrop {
 @keyframes content-in {
   0% {
     transform: perspective(500px) translateZ(-20px) translateY(20px);
-    transform-origin: 0% 50%;
-    filter: blur(20px);
+    transform-origin: 0% 0%;
+    filter: blur(0px);
     opacity: 0;
   }
 
-  40% {
+  20% {
     transform: perspective(500px) translateZ(-20px) translateY(20px);
-    transform-origin: 0% 50%;
-    filter: blur(20px);
+    transform-origin: 0% 0%;
+    filter: blur(00px);
     opacity: 0;
+  }
+
+  60%{
+    filter: blur(0px);
   }
 
   100% {
     transform: perspective(500px) translateZ(0px) translateY(0px);
-    transform-origin: 0% 50%;
+    transform-origin: 0% 0%;
     filter: blur(0px);
     opacity: 1;
   }
@@ -740,32 +745,95 @@ dialog[open]::backdrop {
 @keyframes content-out {
   0% {
     transform: perspective(500px) translateZ(0px) translateY(0px);
-    transform-origin: 0% 50%;
+    transform-origin: 0% 0%;
     filter: blur(0px);
     opacity: 1;
   }
+  
 
   60% {
     transform: perspective(500px) translateZ(-20px) translateY(20px);
-    transform-origin: 0% 50%;
-    filter: blur(20px);
+    transform-origin: 0% 0%;
+    filter: blur(0px);
     opacity: 0;
   }
 
   100% {
     transform: perspective(500px) translateZ(-20px) translateY(20px);
-    transform-origin: 0% 50%;
-    filter: blur(20px);
+    transform-origin: 0% 0%;
+    filter: blur(0px);
     opacity: 0;
   }
 }
 
+
+
 ::view-transition-old(content) {
-  animation: content-out var(--timing-ease) 600ms;
+  animation: content-out cubic-bezier(.47,1.64,.41,.8) 600ms;
 }
 
 ::view-transition-new(content) {
-  animation: content-in var(--timing-ease) 600ms;
+  animation: content-in cubic-bezier(.47,1.64,.41,.8) 600ms;
+}
+
+@media screen and (max-width: 900px) {
+  @keyframes content-in {
+    0% {
+      transform: perspective(500px) translateX(100dvw);
+      transform-origin: 0% 0%;
+      filter: blur(0px);
+      opacity: 0;
+    }
+  
+    20% {
+      transform: perspective(500px)  translateX(100dvw);
+      transform-origin: 0% 0%;
+      filter: blur(00px);
+      opacity: 0;
+    }
+  
+    60%{
+      filter: blur(0px);
+    }
+  
+    100% {
+      transform: perspective(500px)  translateX(0dvh);
+      transform-origin: 0% 0%;
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes content-out {
+    0% {
+      transform: perspective(500px)  translateX(0dvh);
+      transform-origin: 0% 0%;
+      filter: blur(0px);
+      opacity: 1;
+    }
+    
+  
+    60% {
+      transform: perspective(500px)  translateX(-100dvw);
+      transform-origin: 0% 0%;
+      filter: blur(0px);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: perspective(500px)  translateX(-100dvw);
+      transform-origin: 0% 0%;
+      filter: blur(0px);
+      opacity: 0;
+    }
+  }
+  ::view-transition-old(content) {
+    animation: content-out ease-in-out 300ms;
+  }
+  
+  ::view-transition-new(content) {
+    animation: content-in ease-in-out 300ms;
+  }
 }
 
 body {
@@ -966,3 +1034,5 @@ body{
     background-color: red;
   }
 }
+
+
