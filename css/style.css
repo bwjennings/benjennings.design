@@ -723,7 +723,7 @@ dialog[open]::backdrop {
     opacity: 0;
   }
 
-  20% {
+  40% {
     transform: perspective(500px) translateZ(-20px) translateY(20px);
     transform-origin: 0% 0%;
     filter: blur(00px);
@@ -785,17 +785,7 @@ dialog[open]::backdrop {
       opacity: 0;
     }
   
-    20% {
-      transform: perspective(500px)  translateX(100dvw);
-      transform-origin: 0% 0%;
-      filter: blur(00px);
-      opacity: 0;
-    }
-  
-    60%{
-      filter: blur(0px);
-    }
-  
+    
     100% {
       transform: perspective(500px)  translateX(0dvh);
       transform-origin: 0% 0%;
@@ -813,13 +803,6 @@ dialog[open]::backdrop {
     }
     
   
-    60% {
-      transform: perspective(500px)  translateX(-100dvw);
-      transform-origin: 0% 0%;
-      filter: blur(0px);
-      opacity: 0;
-    }
-  
     100% {
       transform: perspective(500px)  translateX(-100dvw);
       transform-origin: 0% 0%;
@@ -828,11 +811,11 @@ dialog[open]::backdrop {
     }
   }
   ::view-transition-old(content) {
-    animation: content-out ease-in-out 300ms;
+    animation: content-out ease-in-out 600ms;
   }
   
   ::view-transition-new(content) {
-    animation: content-in ease-in-out 300ms;
+    animation: content-in ease-in-out 600ms;
   }
 }
 
