@@ -8,14 +8,10 @@
 
 
 
-  <!-- Preconnect -->
-
-
   <link rel="modulepreload" href="components/index.js" />
   <script type="module" src="components/index.js"></script>
   <link href="./css/vars.css" rel="stylesheet" />
   <link href="./css/style.css" rel="stylesheet" />
-
 
   <!-- Prefetch Links -->
   <link rel="prerender" href="index.html" as="document" />
@@ -37,16 +33,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="manifest.json" />
-
-  <!-- Google tag (gtag.js) -->
-
-
-  <!-- Module Scripts -->
+  <link rel="expect" href="#page-container" blocking="render" />
 
 </head>
 
 <body>
-  <div class="page-container">
+  <div id="page-container" class="page-container">
     <custom-sidebar active-item="4"></custom-sidebar>
 
     <main>

@@ -718,25 +718,19 @@ dialog[open]::backdrop {
 @keyframes content-in {
   0% {
     transform: perspective(500px) translateZ(-20px) translateY(20px);
-    transform-origin: 0% 0%;
     filter: blur(0px);
     opacity: 0;
   }
 
-  40% {
+  50% {
     transform: perspective(500px) translateZ(-20px) translateY(20px);
-    transform-origin: 0% 0%;
-    filter: blur(00px);
-    opacity: 0;
-  }
-
-  60%{
     filter: blur(0px);
+    opacity: 0;
   }
 
   100% {
     transform: perspective(500px) translateZ(0px) translateY(0px);
-    transform-origin: 0% 0%;
+    
     filter: blur(0px);
     opacity: 1;
   }
@@ -744,23 +738,20 @@ dialog[open]::backdrop {
 
 @keyframes content-out {
   0% {
-    transform: perspective(500px) translateZ(0px) translateY(0px);
-    transform-origin: 0% 0%;
+    transform: perspective(500px) translateZ(0px) ;
     filter: blur(0px);
     opacity: 1;
   }
   
 
-  60% {
-    transform: perspective(500px) translateZ(-20px) translateY(20px);
-    transform-origin: 0% 0%;
+  50% {
+    transform: perspective(500px) translateZ(-20px) ;
     filter: blur(0px);
     opacity: 0;
   }
 
   100% {
-    transform: perspective(500px) translateZ(-20px) translateY(20px);
-    transform-origin: 0% 0%;
+    transform: perspective(500px) translateZ(-20px) ;
     filter: blur(0px);
     opacity: 0;
   }
@@ -769,11 +760,11 @@ dialog[open]::backdrop {
 
 
 ::view-transition-old(content) {
-  animation: content-out cubic-bezier(.47,1.64,.41,.8) 600ms;
+  animation: content-out ease-in-out 600ms;
 }
 
 ::view-transition-new(content) {
-  animation: content-in cubic-bezier(.47,1.64,.41,.8) 600ms;
+  animation: content-in ease-in-out 600ms;
 }
 
 @media screen and (max-width: 900px) {
