@@ -14,7 +14,7 @@ class CustomSidebar extends HTMLElement {
       <link href="components/navigation/navigation.css" rel="stylesheet"/>
       
       <nav class="sidebar">
-        <h2 class="site-title"><a href="index.html">Ben</a></h2>
+        <h2 class="site-title"><a href="index.html"></a></h2>
         <site-settings></site-settings>
         <menu>
           <li><a tabindex="1" class="nav-card item1" href="index.html">

@@ -2,7 +2,11 @@
   height: 100%;
   container-type: inline-size;
   container-name: card;
-  content-visibility: auto
+  content-visibility: auto;
+
+  &:hover {
+    outline: 8px solid var(--border-primary);
+  }
 }
 
 .card-container {
@@ -24,9 +28,7 @@
   outline-offset: 0px;
   padding: clamp(var(--spacing-large), 4cqw, var(--spacing-xx-large));
 
-  &:hover {
-    outline: 8px solid var(--border-primary-hover);
-  }
+ 
 
   &:active {
     outline-width: 16px;

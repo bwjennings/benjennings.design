@@ -8,7 +8,6 @@ class BadgeComponent extends HTMLElement {
     <style>
      :host {
           grid-area: badge;
-          cursor: default;
           user-select: none;
           -webkit-user-select: none;
           }

@@ -13,6 +13,8 @@
 }
 
 
+
+
 :root {
   --theme-slider-size: 20px;
   --theme-slider-outline:var(--background-primary);
@@ -48,8 +50,9 @@
    /*  Typography - Heading  */
    --text-heading-weight: 550;
  
-   --text-heading-font-family: "Roboto Flex";
-   --text-heading-grade: 200;
+   --text-heading-font-family: 'Roboto Flex';
+   --text-heading-grade: 180;
+   --text-heading-width: 120;
  
  
    --text-heading-xl-line-height: 110%;
@@ -66,7 +69,7 @@
  
  
    /*  Typography - Body Text  */
-   --text-body-font-family: "Roboto Flex";
+   --text-body-font-family: 'Roboto Flex';
    --text-body-weight: 400;
  
    --text-body-lg-line-height: var(--font-size-5);
