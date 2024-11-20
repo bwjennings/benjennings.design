@@ -95,6 +95,8 @@ main {
   transform-style: preserve-3d;
   transform-origin: 0% 0%;
   contain: layout;
+  background-color: var(--background-page);
+  
 }
 
 

@@ -118,9 +118,9 @@ class extends HTMLElement {
     border: 1px solid transparent;
     cursor: pointer;
 
-   :not(.active){
+ 
    transition: background-color 300ms var(--timing-ease);
-   }
+   
   
   
 
@@ -128,7 +128,7 @@ class extends HTMLElement {
     &:hover:not(.active) {
       background-color: var(--border-primary-hover);
         
-       transition-property: background-color;
+   
       
     }
 
@@ -141,7 +141,7 @@ class extends HTMLElement {
 
 
   .active {
-
+transition:none;
     font-variation-settings: 'GRAD' 100;
     color: var(--foreground-brand);
     anchor-name: --active;

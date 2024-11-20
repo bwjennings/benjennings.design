@@ -59,21 +59,21 @@
 
   @keyframes content-in {
     0% {
-      transform: perspective(500px) translateZ(-20px) translateY(10px);
-      filter: blur(15px);
+      transform: perspective(500px) translateZ(-20px) ;
+      filter: blur(15px) saturate(2);
       opacity: 0;
     }
   
     10% {
-      transform: perspective(500px) translateZ(-20px) translateY(0px);
+      transform: perspective(500px) translateZ(-20px) ;
       
       opacity: 0;
     }
   
     100% {
-      transform: perspective(500px) translateZ(0px) translateY(0px);
+      transform: perspective(500px) translateZ(0px) ;
   
-      filter: blur(0px);
+      filter: blur(0px) saturate(1);
       opacity: 1;
     }
   }
@@ -81,8 +81,8 @@
 
   @keyframes content-out {
     0% {
-      transform: perspective(500px) translateZ(0px);
-      filter: blur(0px);
+      transform: perspective(500px) translateZ(0px) ;
+      filter: blur(0px) saturate(1) ;
       opacity: 1;
     }
   
@@ -94,11 +94,13 @@
     }
   
     100% {
-      transform: perspective(500px) translateZ(-10px);
-      filter: blur(15px);
+      transform: perspective(500px) translateZ(-10px) ;
+      filter: blur(15px) saturate(2);
       opacity: 0;
     }
   }
+
+  
 
 
   @media screen and (max-width: 800px) {

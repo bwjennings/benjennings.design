@@ -2,18 +2,49 @@
     navigation: auto;
   }
 
+
   ::view-transition-old(content) {
-    animation: content-out ease-in-out 600ms;
+    animation: content-out ease-in-out 800ms;
   }
   
   ::view-transition-new(content) {
-    animation: content-in ease-in-out 600ms;
+    animation: content-in ease-in-out 800ms;
   }
   
 
-  :is(main){
+  
+  /* Styles for the old state of the child element */
+
+
+
+
+  main{
     view-transition-name: content;
   }
+
+  
+
+
+  @keyframes brightness-in{
+    from {
+      filter: brightness(120%);
+    }
+
+    to {
+      filter: brightness(100%);
+    }
+  }
+
+  @keyframes brightness-on{
+    from {
+      filter: brightness(100%);
+    }
+
+    to {
+      filter: brightness(120%);
+    }
+  }
+  
   
   body {
     view-transition-name: page;
@@ -21,6 +52,6 @@
 
 
 ::view-transition-group(page) {
-    animation-duration: 600ms;
+    animation-duration: 800ms;
   
   }

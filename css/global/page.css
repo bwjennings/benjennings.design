@@ -8,6 +8,7 @@
   outline-color: var(--border-primary-hover);
   outline-color: var(--border-brand);
   margin: 0;
+ 
 }
 
 a {
@@ -45,6 +46,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background: var(--background-page);
   scrollbar-color: var(--border-primary-hover) var(--background-page);
+  
 }
 
 @supports selector(::-webkit-scrollbar) {
