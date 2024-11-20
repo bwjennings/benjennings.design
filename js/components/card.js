@@ -11,8 +11,8 @@ template.innerHTML = `
     }
     /* Add more styles as needed */
   </style>
-    <link href="css/style.css" rel="stylesheet"/>
-    <link href="components/card/card.css" rel="stylesheet"/>
+   
+    <link href="css/components/card.css" rel="stylesheet"/>
 
   <div class="card-container">
     <slot name="media"></slot>

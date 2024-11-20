@@ -1,0 +1,168 @@
+
+  
+  /*   Closed state of the dialog   */
+  dialog {
+    margin: auto;
+    opacity: 0;
+    color: var(--foreground-primary);
+    border: 1px solid var(--border-primary);
+    width: var(--dialog-width);
+    min-width: 600px;
+    filter: blur(16px);
+    padding: 0px;
+    background-color: var(--background-page);
+    transform-style: preserve-3d;
+    transform: perspective(500px) translateY(50px) translateZ(-20px);
+    container-type: inline-size;
+    container-name: dialog;
+    transition:
+      opacity 300ms,
+      transform 300ms,
+      filter 300ms,
+      overlay 300ms allow-discrete,
+      display 300ms allow-discrete;
+    transition-timing-function: var(--timing-ease);
+    transition-duration: 500ms;
+  
+    footer {
+      display: flex;
+      border-top: 1px solid var(--border-secondary);
+      padding-inline: var(--spacing-xxx-large);
+      padding-block: var(--spacing-x-large);
+      justify-content: flex-end;
+      gap: var(--spacing-large);
+      background-color: var(--background-page);
+      flex: 0 0 auto;
+    }
+  
+    header {
+      flex: 0 0 auto;
+      display: flex;
+      border-bottom: 1px solid var(--border-secondary);
+      padding: var(--spacing-xxx-large);
+      justify-content: space-between;
+      gap: var(--spacing-large);
+      position: sticky;
+      background-color: var(--background-page);
+    }
+  }
+  dialog[open] {
+    opacity: 1;
+    transform: perspective(500px) scale(1) translateY(0px) translateZ(0px);
+    filter: blur(0px);
+    padding-bottom: env(safe-area-inset-bottom);
+    display: block;
+    scrollbar-width: thin;
+  }
+
+ 
+
+  dialog::backdrop {
+    backdrop-filter: blur(0px)  contrast(100%);
+   
+    transition: all cubic-bezier(.2, 0, 0, 1);
+    transition-duration: inherit ;
+  }
+  
+  dialog[open]::backdrop {
+    backdrop-filter: blur(8px)  contrast(80%);
+    background-color: var( --background-backdrop);
+  }
+  
+  @starting-style {
+    dialog[open] {
+      animation: none;
+      opacity: 0;
+      transform: perspective(500px) translateY(50px) translateZ(-20px);
+      filter: blur(16px) ;
+    }
+  }
+  
+  @starting-style {
+    dialog[open]::backdrop {
+      backdrop-filter: blur(0px)  contrast(100%);
+    }
+  }
+  
+  .dialog-header {
+    margin: 0px;
+    margin-bottom: var(--spacing-large);
+    border-bottom: 1px solid var(--border-primary);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--foreground-primary);
+    font-size: var(--text-heading-md-size);
+    font-weight: var(--text-heading-weight);
+  }
+  
+  .dialog-content {
+    display: grid;
+    grid-auto-columns: 1fr;
+  }
+
+  @media screen and (max-width: 800px),
+(max-height:500px) {
+    dialog {
+        content-visibility: auto;
+        margin: 0px;
+        margin-top: auto;
+        padding: 0px;
+        width: 100dvw;
+        max-width: none;
+        transform: perspective(500px) translateZ(0px) translateY(100dvh);
+        min-height: 50dvh;
+        height: fit-content;
+        min-width: 0px;
+        border: 0px;
+        border-top: 1px solid var(--border-primary);
+        ;
+    
+        form {
+          flex-grow: 1;
+        }
+    
+        .wrapper {
+          min-height: 50dvh;
+        }
+    
+        ::slotted([slot="post"]) {
+          padding: var(--spacing-large);
+        }
+    
+        header {
+          padding: var(--spacing-large);
+        }
+    
+        footer {
+          gap: var(--spacing-small);
+          flex-direction: row;
+          align-items: stretch;
+          padding: var(--spacing-large);
+    
+          button {
+            width: 100%;
+          }
+        }
+      }
+    
+      @starting-style {
+        dialog[open] {
+          transform: perspective(500px) translateZ(0px) translateY(100dvh);
+        }
+      }
+    
+      @keyframes in {
+        from {
+          filter: blur(10px);
+          transform: translateX(100%);
+        }
+      }
+    
+      @keyframes out {
+        to {
+          filter: blur(10px);
+          transform: translateX(-100%);
+        }
+      }
+}

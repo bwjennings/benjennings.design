@@ -9,8 +9,9 @@ class SiteSettings extends HTMLElement {
           font-family: var(--icon-font-family);
         }
       </style>
-      <link href="components/settings/settings.css" rel="stylesheet" />
-      <link href="./css/style.css" rel="stylesheet" />
+      <link href="./css/index.css" rel="stylesheet" />
+            <link href="css/components/settings.css" rel="stylesheet" />
+
 
       <button class="secondary" id="openBtn" aria-label="Open Settings">
         <div class="icon">tune</div>Settings

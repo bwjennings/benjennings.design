@@ -1,0 +1,51 @@
+.radio-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    padding: 0px;
+    user-select: none;
+    border: 0px;
+    border: 1px solid var(--border-primary);
+    background-color: transparent;
+    box-sizing: content-box;
+    overflow: hidden;
+  }
+  
+  .radio-button {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--background-primary);
+    padding: var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-large, 16px) var(--spacing-medium, 12px);
+    justify-content: center;
+    align-items: center;
+    font-size: var(--text-body-lg-size);
+    color: var(--foreground-primary);
+    font-family: var(--text-font-family);
+    cursor: pointer;
+    display: flex;
+    flex: 1 0 0;
+    z-index: 1;
+    border-right: 1px solid var(--border-primary);
+    -webkit-tap-highlight-color: transparent;
+  
+    span {
+      justify-content: center;
+      align-items: center;
+    }
+  
+    &:hover:not(.radio-button:has(input:checked)) {
+      background-color: var(--border-primary-hover);
+    }
+  
+    input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+  
+  .radio-button:has(input:checked) {
+    background-color: var(--background-brand);
+    color: var(--foreground-brand);
+  }

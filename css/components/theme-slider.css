@@ -1,9 +1,21 @@
+:host(theme-slider){
+  display: flex;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  background-color: inherit;
+  gap: var(--spacing-small);
+  accent-color: var(--background-brand);
+  flex-grow: 1;
+}
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   cursor: grab;
   margin: 0%;
-  width: 100%;
+  flex-grow: 1;
   height: fit-content;
   padding: 4px;
   border: 1px solid var(--border-primary);

@@ -1,0 +1,146 @@
+@keyframes blurEffect {
+    0% {
+      filter: blur(4px);
+    }
+  
+    25% {
+      filter: blur(8px);
+    }
+  
+    70% {
+      filter: blur(1px);
+    }
+  
+    90% {
+      filter: blur(2px);
+    }
+  
+    100% {
+      filter: blur(0px);
+    }
+  }
+
+  @keyframes flipInX {
+    from {
+      opacity: 0;
+      transform: scale(0.1) rotate(5deg) translateY(800px);
+      transform-origin: center bottom;
+      filter: blur(12px);
+    }
+  
+    50% {
+      transform: rotate(-5deg);
+    }
+  
+    70% {
+      transform: rotate(3deg);
+    }
+  
+    to {
+      opacity: 1;
+      transform: scale(1) translateX(0px);
+      filter: blur(0px);
+  
+    }
+  }
+
+
+  @keyframes sidebar-enter {
+  
+    to {
+      
+      grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
+  
+  
+    }
+  
+  }
+
+
+  @keyframes content-in {
+    0% {
+      transform: perspective(500px) translateZ(-20px) translateY(10px);
+      filter: blur(15px);
+      opacity: 0;
+    }
+  
+    10% {
+      transform: perspective(500px) translateZ(-20px) translateY(0px);
+      
+      opacity: 0;
+    }
+  
+    100% {
+      transform: perspective(500px) translateZ(0px) translateY(0px);
+  
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+
+
+  @keyframes content-out {
+    0% {
+      transform: perspective(500px) translateZ(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  
+  
+    60% {
+      transform: perspective(500px) translateZ(-10px);
+      
+      opacity: 0;
+    }
+  
+    100% {
+      transform: perspective(500px) translateZ(-10px);
+      filter: blur(15px);
+      opacity: 0;
+    }
+  }
+
+
+  @media screen and (max-width: 800px) {
+    @keyframes content-in {
+      0% {
+        transform: perspective(500px) translateX(100dvw);
+        transform-origin: 0% 0%;
+        filter: blur(0px);
+        opacity: 0;
+      }
+  
+  
+      100% {
+        transform: perspective(500px) translateX(0dvh);
+        transform-origin: 0% 0%;
+        filter: blur(0px);
+        opacity: 1;
+      }
+    }
+  
+    @keyframes content-out {
+      0% {
+        transform: perspective(500px) translateX(0dvh);
+        transform-origin: 0% 0%;
+        filter: blur(0px);
+        opacity: 1;
+      }
+  
+  
+      100% {
+        transform: perspective(500px) translateX(-100dvw);
+        transform-origin: 0% 0%;
+        filter: blur(0px);
+        opacity: 0;
+      }
+    }
+  
+    ::view-transition-old(content) {
+      animation: content-out ease-in-out 600ms;
+    }
+  
+    ::view-transition-new(content) {
+      animation: content-in ease-in-out 600ms;
+    }
+  }

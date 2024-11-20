@@ -12,9 +12,8 @@ customElements.define(
 
       // Template with conditional label text visibility
       shadowRoot.innerHTML = `
-        <link href="css/style.css" rel="stylesheet"  />
-        <link href="components/ThemeSlider/theme-slider.css" rel="stylesheet" />
-          
+        <link href="css/components/theme-slider.css" rel="stylesheet"  />
+\          
         <label for="hueSlider">
           ${!hideLabel ? 'Theme Color:' : ''}
           <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2"
@@ -25,10 +24,7 @@ customElements.define(
       // Reference to the slider element
       this.hueSlider = shadowRoot.getElementById("hueSlider");
 
-      // Play sound on initial click (omitted actual playSound method here)
-      this.hueSlider.addEventListener("mousedown", () => {
-        this.playSound();
-      });
+     
 
       // Handle slider input changes
       this.hueSlider.addEventListener("input", () => {

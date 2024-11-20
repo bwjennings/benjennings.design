@@ -1,0 +1,225 @@
+
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  outline-color: var(--border-primary-hover);
+  outline-color: var(--border-brand);
+  margin: 0;
+}
+
+a {
+  all: unset;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+
+:focus-visible {
+  outline: 4px solid var(--border-primary-hover);
+}
+
+::selection {
+  background: var(--background-accent-secondary);
+  color: var(--foreground-accent);
+  text-decoration: underline;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background: var(--background-page);
+  scrollbar-color: var(--border-primary-hover) var(--background-page);
+}
+
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    background: var(--background-page);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-secondary);
+    width: 4px;
+  }
+}
+
+.page-container {
+    overflow: hidden;
+    box-sizing: border-box;
+    height: 100dvh;
+    display: grid;
+    grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
+  
+  
+    grid-template-areas: "sidebar main-content";
+  }
+  
+  .hero-page {
+    animation: sidebar-enter 2000ms var(--timing-ease) forwards;
+    animation-delay: 3s;
+    grid-template-columns: 0px 1fr;
+  
+  }
+
+  .page-title {
+    transform-style: preserve-3d;
+    background-color: var(--background-page);
+    scroll-snap-align: top;
+    z-index: 2;
+    margin-top: calc(20cqh - 40px);
+    color: var(--foreground-primary);
+    display: flex;
+    gap: var(--spacing-medium);
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    margin-inline: -40px;
+    grid-template-rows: subgrid;
+    grid-column: span 3;
+    max-width: 1200px;
+    position: sticky;
+    top: 0px;
+    padding: var(--spacing-x-large);
+    scroll-padding: var(--spacing-x-large);
+    border-bottom: 1px solid var(--border-secondary);
+    user-select: none;
+  
+    .content {
+      width: 100%;
+      max-width: 100ch;
+      text-wrap: balance;
+    }
+  }
+  
+  .page-items {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+    align-items: center;
+    gap: var(--spacing-xx-large);
+    max-width: 1200px;
+    padding: var(--spacing-x-large);
+    
+   
+  
+    &.ordered {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+  
+    &.flex {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 7dvh;
+    padding: var(--spacing-x-large);
+    padding-top: 30cqh;
+    transform-style: preserve-3d;
+    background-color: var(--background-page);
+    scroll-snap-align: top;
+    z-index: 2;
+    color: var(--foreground-primary);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    --random-value: mod(abs(sin(var(--input)) * 1000000), 1);
+    grid-template-rows: subgrid;
+    grid-column: span 3;
+    top: 0px;
+    user-select: none;
+    height: 100cqh;
+  
+    max-width: 1200px;
+  
+  
+  }
+
+
+  @media screen and (max-width: 800px),
+(max-height:500px) {
+  body {
+    height: 100dvh;
+    ;
+  }
+
+  main {
+    padding: var(--spacing-large);
+    padding-right: env(safe-area-inset-right, 20px);
+    padding-top: 0px;
+    padding: 12px;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .main-content {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .page-container {
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "title"
+      "main-content"
+      "sidebar";
+    margin-bottom: env(safe-area-inset-bottom);
+  }
+
+  .hero-page {
+    animation: none;
+
+
+  }
+
+  .page-items {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-large);
+  }
+
+  .content {
+    padding: var(--spacing-large);
+  }
+
+ 
+  .page-title {
+    max-width: none;
+    position: initial;
+    margin-top: calc(20cqh - 40px);
+    padding: var(--spacing-large);
+  }
+
+  
+
+  .welcome-card {
+    margin-top: calc(20cqh - 40px);
+  }
+}
+

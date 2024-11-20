@@ -13,6 +13,7 @@
         // Define the HTML structure in the template
         template.innerHTML = `
          <style>
+            @import 'css/index.css' ;
         :host {
         }
         .resource-card {
@@ -85,8 +86,9 @@
           font-size: 130cqw;
 
         }
+      
+ 
       </style>
-          <link href="./css/style.css" rel="stylesheet" />
           <div class="resource-card">
             <div class="iconbox">
               <span>demography</span>

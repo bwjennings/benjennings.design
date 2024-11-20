@@ -18,6 +18,8 @@
 :root {
   --theme-slider-size: 20px;
   --theme-slider-outline:var(--background-primary);
+
+  --viewport-lg:800px;
   /*   Typography Scale  */
   --font-size-1: clamp(0.56rem, -0.1vmin + 0.59rem, 0.5rem);
   --font-size-2: clamp(0.75rem, -0.07vmin + 0.77rem, 0.71rem);
