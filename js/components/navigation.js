@@ -1,4 +1,5 @@
-class CustomSidebar extends HTMLElement {
+customElements.define("custom-sidebar", 
+class extends HTMLElement {
   static get observedAttributes() {
     return ["active-item"];
   }
@@ -465,5 +466,4 @@ class CustomSidebar extends HTMLElement {
     }
   }
 }
-
-customElements.define("custom-sidebar", CustomSidebar);
+);
