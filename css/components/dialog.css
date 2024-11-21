@@ -8,11 +8,11 @@
     border: 1px solid var(--border-primary);
     width: var(--dialog-width);
     min-width: 600px;
-    filter: blur(16px);
+    filter: blur(32px);
     padding: 0px;
     background-color: var(--background-page);
     transform-style: preserve-3d;
-    transform: perspective(500px) translateY(50px) translateZ(-20px);
+    transform: perspective(500px)  translateZ(-40px);
     container-type: inline-size;
     container-name: dialog;
     transition:
@@ -48,7 +48,7 @@
   }
   dialog[open] {
     opacity: 1;
-    transform: perspective(500px) scale(1) translateY(0px) translateZ(0px);
+    transform: perspective(500px) translateZ(0px);
     filter: blur(0px);
     padding-bottom: env(safe-area-inset-bottom);
     display: block;
@@ -60,7 +60,7 @@
   dialog::backdrop {
     backdrop-filter: blur(0px)  contrast(100%);
    
-    transition: all cubic-bezier(.2, 0, 0, 1);
+    transition: all var(--timing-ease);
     transition-duration: inherit ;
   }
   
@@ -73,8 +73,8 @@
     dialog[open] {
       animation: none;
       opacity: 0;
-      transform: perspective(500px) translateY(50px) translateZ(-20px);
-      filter: blur(16px) ;
+      transform: perspective(500px)   translateZ(-40px);
+      filter: blur(32px) ;
     }
   }
   
