@@ -21,25 +21,28 @@
   }
 
   @keyframes flipInX {
-    from {
+    0% {
+      letter-spacing: -1rem;
       opacity: 0;
-      transform: scale(0.1) rotate(5deg) translateY(800px);
+      
       transform-origin: center bottom;
-      filter: blur(12px);
+      filter: blur(16px) brightness(20);
+    }
+    20% {
+      letter-spacing: -1rem;
+      opacity: 0;
+      
+      transform-origin: center bottom;
+      filter: blur(16px) brightness(20);
     }
   
-    50% {
-      transform: rotate(-5deg);
-    }
+    
   
-    70% {
-      transform: rotate(3deg);
-    }
-  
-    to {
+    100% {
+      letter-spacing: initial;
+
       opacity: 1;
-      transform: scale(1) translateX(0px);
-      filter: blur(0px);
+      filter: blur(0px) brightness(1);
   
     }
   }

@@ -40,6 +40,7 @@ select {
   background: var(--background-accent-secondary);
   color: var(--foreground-accent);
   text-decoration: underline;
+  text-decoration-color:var(--border-brand-emphasis) ;
 }
 
 body {
@@ -112,7 +113,7 @@ body {
   .page-items {
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     align-items: center;
     gap: var(--spacing-xx-large);
     max-width: 1200px;
@@ -133,31 +134,40 @@ body {
 
 
   .welcome {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto 50cqh auto auto;
     align-self: center;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    gap: 7dvh;
+    align-items: start;
+    text-align: start;
+    gap: var(--spacing-large);
     padding: var(--spacing-x-large);
-    padding-top: 30cqh;
+    padding-block: 40cqh;
     transform-style: preserve-3d;
     background-color: var(--background-page);
     scroll-snap-align: top;
     z-index: 2;
     color: var(--foreground-primary);
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    --random-value: mod(abs(sin(var(--input)) * 1000000), 1);
-    grid-template-rows: subgrid;
-    grid-column: span 3;
     top: 0px;
-    user-select: none;
-    height: 100cqh;
-  
+    height:fit-content;
+
     max-width: 1200px;
+  
+    .body{
+      max-width: 30ch;
+    }
+  
+  }
+
+  .flipInX {
+    display: inline-flex;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    backface-visibility: visible !important;
+    width: 300px;
+    letter-spacing: normal;
+    animation: flipInX 3s var(--timing-ease) forwards;
+  
   
   
   }

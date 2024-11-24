@@ -26,15 +26,7 @@ label {
 
 
 
-.flipInX {
-  display: inline-flex;
-  overflow: hidden;
-  transform-style: preserve-3d;
-  backface-visibility: visible !important;
-  animation: flipInX 2s var(--timing-ease);
 
-
-}
 
 
 
@@ -114,17 +106,13 @@ main {
   padding-block: var(--spacing-x-large);
 }
 
-.figma {
-  height: 50cqh;
+
+iframe{
+  height: clamp(300px, 30dvh, 400px);
   width: 100%;
-  overflow: scroll;
-  border: 2px solid var(--border-primary);
-
-  * {
-    overflow: hidden;
-  }
+ 
+  border: none;
 }
-
 
 
 
@@ -161,9 +149,7 @@ main {
 
 
 
-iframe {
-  grid-column: 2;
-}
+
 
 @container style(--current-color-scheme: dark) {
   body {

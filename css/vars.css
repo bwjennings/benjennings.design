@@ -53,12 +53,12 @@
    --text-heading-weight: 550;
  
    --text-heading-font-family: 'Roboto Flex';
-   --text-heading-grade: 180;
+   --text-heading-grade: 100;
    --text-heading-width: 120;
  
  
    --text-heading-xl-line-height: 110%;
-   --text-heading-xl-size: var(--font-size-9);
+   --text-heading-xl-size: var(--font-size-8);
  
    --text-heading-lg-line-height: 110%;
    --text-heading-lg-size: var(--font-size-7);
@@ -169,7 +169,7 @@
   --brand-95-alpha: oklch(var(--lightness-95) var(--brand-chroma-95) var(--brand-hue) / var(--alpha));
 
   /*   Base Neutral Color  */
-  --gray-hue: calc(var(--brand-hue) + 0);
+  --gray-hue: calc(var(--brand-hue) + 60);
   --gray-chroma: 3%;
   --gray-5: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue));
   --gray-10: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue));
@@ -196,7 +196,7 @@
   --gray-95-alpha: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue) / var(--alpha));
 
   /*   Base Accent Color  */
-  --accent-hue: calc(var(--brand-hue) + 180);
+  --accent-hue: calc(var(--brand-hue) - 90);
   --accent-chroma: 20%;
 
   --accent-5: oklch(from var(--brand-5) l c var(--accent-hue));
@@ -232,7 +232,7 @@
   --foreground-primary: light-dark(var(--gray-90), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-50), var(--gray-30));
   --foreground-tertiary: light-dark(var(--gray-50), var(--gray-40));
-  --foreground-brand: light-dark(var(--brand-60), var(--brand-30));
+  --foreground-brand: light-dark(var(--brand-50), var(--brand-30));
   --foreground-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
   --foreground-accent: light-dark(var(--accent-90), var(--accent-20));
   --foreground-onEmphasis: light-dark(var(--white), var(--white));

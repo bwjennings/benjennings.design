@@ -14,9 +14,7 @@ class extends HTMLElement {
       <style>
      
       @import 'css/index.css';
-      @view-transition {
-  navigation: auto;
-}
+    
 
 :host {
   grid-area: sidebar;
@@ -32,7 +30,7 @@ class extends HTMLElement {
   .quick-theme {
     align-self: self-end;
     opacity: 0.9;
-    filter: saturate(0.9);
+    filter: saturate(0.7);
     transition: filter 300ms, opacity 300ms;
 
     &:hover {
