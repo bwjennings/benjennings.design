@@ -26,14 +26,14 @@
       opacity: 0;
       
       transform-origin: center bottom;
-      filter: blur(16px) brightness(20);
+      filter: blur(16px);
     }
     20% {
       letter-spacing: -1rem;
       opacity: 0;
       
       transform-origin: center bottom;
-      filter: blur(16px) brightness(20);
+      filter: blur(16px) ;
     }
   
     
@@ -42,7 +42,7 @@
       letter-spacing: initial;
 
       opacity: 1;
-      filter: blur(0px) brightness(1);
+      filter: blur(0px) ;
   
     }
   }

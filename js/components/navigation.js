@@ -255,13 +255,15 @@ transition:none;
     flex-grow: 1;
     padding: 0px;
     padding-bottom: env(safe-area-inset-bottom);
+    overflow:visible;
   }
 
     site-settings {
       position: fixed;
       top: 24px;
       right: 24px;
-      width: auto;
+      width: fit-content;
+      
     }
 
     .nav-card {
