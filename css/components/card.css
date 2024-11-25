@@ -10,9 +10,7 @@
 
 }
 
-  &:hover {
-    outline: 8px solid var(--border-primary);
-  }
+  
 
 
   .card-container {
@@ -25,6 +23,8 @@
     width: 100%;
     background: var(--background-primary);
     border: 1px solid var(--border-primary);
+    outline-style: solid;
+    outline-width: 0px;
     outline-color: var(--border-primary);
     container-type: inline-size;
     transition: outline 300ms var(--timing-ease);
@@ -36,7 +36,9 @@
     padding: clamp(var(--spacing-large), 4cqw, var(--spacing-xx-large));
 
 
-
+    &:hover {
+      outline: 4px solid var(--border-primary);
+    }
     &:active {
       outline-width: 16px;
       transition: outline 300ms var(--timing-ease);
