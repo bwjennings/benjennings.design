@@ -22,25 +22,26 @@
 
   @keyframes flipInX {
     0% {
-      letter-spacing: -1rem;
+    
       opacity: 0;
-      
+      font-variation-settings:
+      'GRAD' -250;
       transform-origin: center bottom;
       filter: blur(16px);
     }
-    20% {
-      letter-spacing: -1rem;
-      opacity: 0;
-      
-      transform-origin: center bottom;
-      filter: blur(16px) ;
-    }
   
+    50% {
+      filter: blur(12px);
+    
+      font-variation-settings:
+    'GRAD' -250;
+    }
     
   
     100% {
-      letter-spacing: initial;
-
+      
+      font-variation-settings:
+      initial;
       opacity: 1;
       filter: blur(0px) ;
   

@@ -84,7 +84,7 @@ body {
   
   .hero-page {
     animation: sidebar-enter 2000ms var(--timing-ease) forwards;
-    animation-delay: 3s;
+    animation-delay: 4s;
     grid-template-columns: 0px 1fr;
   
   }
@@ -176,7 +176,7 @@ body {
     backface-visibility: visible !important;
     width: 300px;
     letter-spacing: normal;
-    animation: flipInX 3s var(--timing-ease) forwards;
+    animation: flipInX 4s var(--timing-ease) forwards;
   
   
   
@@ -231,20 +231,20 @@ body {
     padding-inline: var(--spacing-large);
   padding-block: var(--spacing-large);
 }
-  }
+  
 
  
   .page-title {
     max-width: none;
     position: initial;
     margin-top: calc(20cqh - 40px);
-    padding-inline: 0px;
+    padding:  var(--spacing-large) 0px;
   }
-
+}
   
 
   .welcome-card {
     margin-top: calc(20cqh - 40px);
   }
-}
+
 
