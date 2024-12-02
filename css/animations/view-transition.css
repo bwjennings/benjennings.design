@@ -55,3 +55,16 @@
     animation-duration: 800ms;
   
   }
+
+  @media (prefers-reduced-motion) {
+    ::view-transition-old(content) {
+      animation: blur linear 800ms ;
+      
+    }
+    
+    ::view-transition-new(content) {
+      
+      animation: blur linear 800ms reverse ;
+
+    }
+  }

@@ -61,7 +61,7 @@ class extends HTMLElement {
       "theme-slider"
       "settings"
     ;
-    border-right: 1px solid var(--border-secondary);
+    border-right: 1px solid var(--border-primary);
     background-color: var(--background-primary);
     box-sizing: border-box;
 
@@ -95,7 +95,7 @@ class extends HTMLElement {
   }
 
   .divider {
-    border-top: 1px solid var(--border-secondary);
+    border-top: 1px solid var(--border-primary);
     grid-area: divider;
   }
 
@@ -333,7 +333,7 @@ transition:none;
 
       border-radius: 0px;
       border: none;
-      border-top: 1px solid var(--border-secondary);
+      border-top: 1px solid var(--border-primary);
 
       .divider {
         display: none;

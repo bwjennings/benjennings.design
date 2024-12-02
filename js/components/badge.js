@@ -26,7 +26,7 @@ class BadgeComponent extends HTMLElement {
                 gap: var(--spacing-x-small, 4px);
                 font-size: var(--text-body-md-size);
                 line-height: var(--text-body-md-line-height);
-                                border: 1px solid var(--border-secondary);
+                                border: 1px solid var(--border-primary);
 
                 
             }
@@ -49,7 +49,7 @@ class BadgeComponent extends HTMLElement {
             .secondary {
                 background-color: var(--background-primary-secondary);
                 color: var(--foreground-secondary);
-                border: 1px solid var(--border-secondary);
+                border: 1px solid var(--border-primary);
                 span {
                 color: var(--foreground-brand)
                 }

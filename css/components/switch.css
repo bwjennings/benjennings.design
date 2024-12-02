@@ -2,7 +2,7 @@
     height: 48px;
     width: 80px;
     background: var(--background-secondary);
-    border: 1px solid var(--border-secondary);
+    border: 1px solid var(--border-primary);
   
     span {
       display: block;

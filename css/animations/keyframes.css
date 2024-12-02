@@ -1,22 +1,12 @@
-@keyframes blurEffect {
+@keyframes blur {
     0% {
-      filter: blur(4px);
-    }
-  
-    25% {
-      filter: blur(8px);
-    }
-  
-    70% {
-      filter: blur(1px);
-    }
-  
-    90% {
-      filter: blur(2px);
-    }
-  
-    100% {
       filter: blur(0px);
+      opacity: 1;
+    }
+   
+    100% {
+      filter: blur(4px);
+      opacity: 0;
     }
   }
 

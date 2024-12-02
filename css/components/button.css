@@ -2,7 +2,7 @@
 ::part(button) ){
   box-sizing: border-box;
   user-select: none;
-  border: 1px solid var(--border-secondary);
+  border: 1px solid var(--border-primary);
   background: var(--background-primary);
   display: inline-flex;
   padding: var(--spacing-medium, 12px);

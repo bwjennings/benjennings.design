@@ -255,30 +255,29 @@
 
 [data-mode="high-contrast"] {
   --background-page: light-dark(var(--gray-5), var(--gray-95));
-  --background-primary: light-dark(var(--white), var(--gray-90));
-  --background-secondary: light-dark(var(--white), var(--gray-80));
-  --background-brand: light-dark(var(--brand-10), var(--brand-70));
-  --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
-  --background-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
-  --background-accent: light-dark(var(--accent-50), var(--accent-70));
+    --background-primary: light-dark(var(--white), var(--gray-90));
+    --background-secondary: light-dark(var(--white), var(--gray-80));
+    --background-brand: light-dark(var(--brand-10), var(--brand-70));
+    --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
+    --background-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
+    --background-accent: light-dark(var(--accent-50), var(--accent-70));
 
-  --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
-  --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
-  --foreground-brand: light-dark(var(--brand-60), var(--brand-30));
-  --foreground-brand-secondary: light-dark(var(--brand-60), var(--brand-20));
-  --foreground-accent: light-dark(var(--accent-5), var(--accent-5));
-  --foreground-onEmphasis: light-dark(var(--white), var(--white));
+    --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
+    --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
+    --foreground-brand: light-dark(var(--brand-60), var(--brand-30));
+    --foreground-brand-secondary: light-dark(var(--brand-60), var(--brand-20));
+    --foreground-accent: light-dark(var(--accent-5), var(--accent-5));
+    --foreground-onEmphasis: light-dark(var(--white), var(--white));
 
-  --border-primary: light-dark(var(--gray-40), var(--gray-40));
-  --border-primary-hover: light-dark(var(--gray-30), var(--gray-40));
-  --border-secondary: light-dark(var(--gray-30), var(--gray-50));
-  --border-brand: light-dark(var(--brand-50), var(--brand-40));
-  --border-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
-
-  --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
-  --border-brand-hover: light-dark(var(--brand-40), var(--brand-10));
-  --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
-  --border-accent: light-dark(var(--accent-50), var(--accent-40));
+    --border-primary: light-dark(var(--gray-40), var(--gray-40));
+    --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
+    --border-secondary: light-dark(var(--gray-30), var(--gray-50));
+    --border-brand: light-dark(var(--brand-50), var(--brand-40));
+    --border-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
+    --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
+    --border-brand-hover: light-dark(var(--brand-40), var(--brand-10));
+   
+    --border-accent: light-dark(var(--accent-50), var(--accent-40));
 }
 
 @media (prefers-contrast: more) {
@@ -299,14 +298,13 @@
     --foreground-onEmphasis: light-dark(var(--white), var(--white));
 
     --border-primary: light-dark(var(--gray-40), var(--gray-40));
-    --border-primary-hover: light-dark(var(--gray-30), var(--gray-40));
+    --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
     --border-secondary: light-dark(var(--gray-30), var(--gray-50));
     --border-brand: light-dark(var(--brand-50), var(--brand-40));
     --border-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
-
     --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
     --border-brand-hover: light-dark(var(--brand-40), var(--brand-10));
-    --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
+   
     --border-accent: light-dark(var(--accent-50), var(--accent-40));
 
 
@@ -322,5 +320,10 @@ html{
 @container mypage style(color-scheme: dark) {
   .heading {
     --text-heading-grade: 0;
+  }
+} 
+@media (prefers-reduced-transparency) {
+  :root{
+--alpha: 0.9;
   }
 }

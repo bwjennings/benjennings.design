@@ -104,7 +104,7 @@ input:where([type="checkbox"][role="switch"]) {
   width: 64px;
   height: 32px;
   box-sizing: content-box;
-  border: 1px solid var(--border-secondary);
+  border: 1px solid var(--border-primary);
   background-color: var(--background-secondary);
   vertical-align: text-bottom;
   margin: none;
