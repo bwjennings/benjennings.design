@@ -1,70 +1,171 @@
 @view-transition {
-    navigation: auto;
+  navigation: auto;
+}
+
+::view-transition {
+  --base-distance: -200px;
+  --transition-duration: 1000ms;
+ 
+}
+
+::view-transition(root){
+  perspective: 1000px;
+
+  transform-style: preserve-3d;
+}
+
+.page-items {
+  view-transition-name: item-group;
+
+}
+
+::view-transition-group(item-group) {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+
+
+}
+
+::view-transition-old(content) {
+  animation: content-out var(--timing-ease) var(--transition-duration);
+
+}
+
+::view-transition-new(content) {
+  animation: content-in var(--timing-ease) var(--transition-duration);
+}
+
+
+
+
+
+
+/* Styles for the old state of the child element */
+
+
+
+
+:is(.welcome, .page-title) {
+  view-transition-name: content;
+
+}
+
+
+
+
+.page-items> :nth-child(1) {
+  view-transition-name: item1;
+}
+
+.page-items> :nth-child(2) {
+  view-transition-name: item2;
+}
+
+.page-items> :nth-child(3) {
+  view-transition-name: item3;
+}
+
+.page-items> :nth-child(4) {
+  view-transition-name: item4;
+}
+
+.page-items> :nth-child(5) {
+  view-transition-name: item5;
+}
+
+.page-items> :nth-child(6) {
+  view-transition-name: item6;
+}
+
+::view-transition-new(item1),
+::view-transition-new(item2),
+::view-transition-new(item3),
+::view-transition-new(item4),
+::view-transition-new(item5),
+::view-transition-new(item6) {
+  animation: items-in var(--timing-ease) var(--transition-duration);
+}
+
+::view-transition-old(item1),
+::view-transition-old(item2),
+::view-transition-old(item3),
+::view-transition-old(item4),
+::view-transition-old(item5),
+::view-transition-old(item6) {
+
+  animation: items-out var(--timing-ease) var(--transition-duration);
+}
+
+
+::view-transition-group(item1) {
+  --distance: calc(var(--base-distance) * 1);
+}
+
+::view-transition-group(item2) {
+  --distance: calc(var(--base-distance) * 2);
+}
+
+::view-transition-group(item3) {
+  --distance: calc(var(--base-distance) * 4);
+}
+
+::view-transition-group(item4) {
+  --distance: calc(var(--base-distance) * 8);
+}
+
+
+
+
+
+
+
+
+
+@keyframes brightness-in {
+  from {
+    filter: brightness(120%);
   }
 
-
-  ::view-transition-old(content) {
-    animation: content-out ease-in-out 800ms;
+  to {
+    filter: brightness(100%);
   }
-  
-  ::view-transition-new(content) {
-    animation: content-in ease-in-out 800ms;
-  }
-  
+}
 
-  
-  /* Styles for the old state of the child element */
-
-
-
-
-  main{
-    view-transition-name: content;
+@keyframes brightness-on {
+  from {
+    filter: brightness(100%);
   }
 
-  
-
-
-  @keyframes brightness-in{
-    from {
-      filter: brightness(120%);
-    }
-
-    to {
-      filter: brightness(100%);
-    }
+  to {
+    filter: brightness(120%);
   }
+}
 
-  @keyframes brightness-on{
-    from {
-      filter: brightness(100%);
-    }
 
-    to {
-      filter: brightness(120%);
-    }
-  }
-  
-  
-  body {
-    view-transition-name: page;
-  }
+body {
+  view-transition-name: page;
+}
 
 
 ::view-transition-group(page) {
-    animation-duration: 800ms;
-  
+  animation-duration: var(--transition-duration);
+
+}
+
+@media (prefers-reduced-motion) {
+  ::view-transition-old(content) {
+    animation: blur linear var(--transition-duration);
+
   }
 
-  @media (prefers-reduced-motion) {
-    ::view-transition-old(content) {
-      animation: blur linear 800ms ;
-      
-    }
-    
-    ::view-transition-new(content) {
-      
-      animation: blur linear 800ms reverse ;
+  ::view-transition-new(content) {
 
-    }
+    animation: blur linear var(--transition-duration) reverse;
+
   }
+}
+
+::view-transition-group(root) {
+  transition-duration: var(--transition-duration);
+  animation-duration: var(--transition-duration);
+}

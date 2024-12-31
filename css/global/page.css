@@ -52,6 +52,9 @@ body {
   
 }
 
+
+
+
 @supports selector(::-webkit-scrollbar) {
   ::-webkit-scrollbar {
     background: var(--background-page);
@@ -80,9 +83,13 @@ body {
     display: grid;
     grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
   
-  
+    perspective: 1500px;
     grid-template-areas: "sidebar main-content";
   }
+  .page-container:has(simple-card::part(dialog)[open]) {
+ 
+    transform: translateZ(-200px) rotateX(5deg) scale(0.85);
+}
   
   .hero-page {
     animation: sidebar-enter 2000ms var(--timing-ease) forwards;
@@ -130,9 +137,9 @@ body {
     gap: var(--spacing-xx-large);
     max-width: 1200px;
     padding: var(--spacing-x-large);
-    
-   
-  
+perspective: 1000px;
+  transform-style: preserve-3d;
+
     &.ordered {
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
@@ -143,6 +150,10 @@ body {
       align-items: stretch;
     }
   }
+
+
+
+
 
 
   .welcome {

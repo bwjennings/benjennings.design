@@ -1,142 +1,194 @@
 @keyframes blur {
+  0% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+
+  100% {
+    filter: blur(4px);
+    opacity: 0;
+  }
+}
+
+@keyframes flipInX {
+  0% {
+
+    opacity: 0;
+    font-variation-settings:
+      'GRAD' -250;
+    transform-origin: center bottom;
+    filter: blur(16px);
+  }
+
+  50% {
+    filter: blur(12px);
+
+    font-variation-settings:
+      'GRAD' -250;
+  }
+
+
+  100% {
+
+    font-variation-settings:
+      initial;
+    opacity: 1;
+    filter: blur(0px);
+
+  }
+}
+
+
+@keyframes sidebar-enter {
+
+  to {
+
+    grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
+
+
+  }
+
+}
+
+
+@keyframes content-in {
+  0% {
+    transform: perspective(1000px) translateZ(-100px);
+    filter: blur(15px) saturate(2);
+    opacity: 0;
+    perspective: 2000px;
+  }
+
+  10% {
+    transform: perspective(1000px) translateZ(-100px);
+
+    opacity: 0;
+  }
+
+  100% {
+    transform: perspective(1000px) translateZ(0px);
+
+    filter: blur(0px) saturate(1);
+    opacity: 1;
+    perspective: initial;
+
+  }
+}
+
+
+@keyframes content-out {
+  0% {
+    transform: perspective(1000px) translateZ(0px);
+    filter: blur(0px);
+     
+    opacity: 1;
+
+  }
+
+
+  60% {
+    transform: perspective(1000px) translateZ(-100px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: perspective(1000px) translateZ(-100px);
+    filter: blur(15px);
+    opacity: 0;
+    --transform-base: -2000px;
+    perspective: 2000px;
+
+  }
+}
+
+
+@keyframes items-in {
+  0% {
+    filter: blur(20px);
+    opacity: 0;
+   transform: perspective(1000px) translateZ(var(--distance));
+  }
+
+  10% {
+    filter: blur(20px);
+  transform:  perspective(1000px) translateZ(var(--distance));
+  }
+
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+    transform:  perspective(1000px) translateZ(0px);
+
+
+
+  }
+}
+
+@keyframes items-out {
+
+
+  0% {
+    filter: blur(0px);
+    transform: perspective(1000px) translateZ(0px);
+  }
+
+  50% {
+    filter: blur(0px);
+    opacity: 0;
+
+    transform: perspective(1000px) translateZ(var(--distance));
+  }
+
+  100% {
+    filter: blur(0px);
+    opacity: 0;
+
+    transform:  perspective(1000px) translateZ(var(--distance));
+  }
+}
+
+
+
+@media screen and (max-width: 800px) {
+  @keyframes content-in {
     0% {
+      transform: perspective(500px) translateX(100dvw);
+      transform-origin: 0% 0%;
+      filter: blur(0px);
+      opacity: 0;
+    }
+
+
+    100% {
+      transform: perspective(500px) translateX(0dvh);
+      transform-origin: 0% 0%;
       filter: blur(0px);
       opacity: 1;
     }
-   
-    100% {
-      filter: blur(4px);
-      opacity: 0;
-    }
   }
-
-  @keyframes flipInX {
-    0% {
-    
-      opacity: 0;
-      font-variation-settings:
-      'GRAD' -250;
-      transform-origin: center bottom;
-      filter: blur(16px);
-    }
-  
-    50% {
-      filter: blur(12px);
-    
-      font-variation-settings:
-    'GRAD' -250;
-    }
-    
-  
-    100% {
-      
-      font-variation-settings:
-      initial;
-      opacity: 1;
-      filter: blur(0px) ;
-  
-    }
-  }
-
-
-  @keyframes sidebar-enter {
-  
-    to {
-      
-      grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
-  
-  
-    }
-  
-  }
-
-
-  @keyframes content-in {
-    0% {
-      transform: perspective(500px) translateZ(-20px) ;
-      filter: blur(15px) saturate(2);
-      opacity: 0;
-    }
-  
-    10% {
-      transform: perspective(500px) translateZ(-20px) ;
-      
-      opacity: 0;
-    }
-  
-    100% {
-      transform: perspective(500px) translateZ(0px) ;
-  
-      filter: blur(0px) saturate(1);
-      opacity: 1;
-    }
-  }
-
 
   @keyframes content-out {
     0% {
-      transform: perspective(500px) translateZ(0px) ;
-      filter: blur(0px) saturate(1) ;
+      transform: perspective(500px) translateX(0dvh);
+      transform-origin: 0% 0%;
+      filter: blur(0px);
       opacity: 1;
     }
-  
-  
-    60% {
-      transform: perspective(500px) translateZ(-10px);
-      
-      opacity: 0;
-    }
-  
+
+
     100% {
-      transform: perspective(500px) translateZ(-10px) ;
-      filter: blur(15px) saturate(2);
+      transform: perspective(500px) translateX(-100dvw);
+      transform-origin: 0% 0%;
+      filter: blur(0px);
       opacity: 0;
     }
   }
 
-  
-
-
-  @media screen and (max-width: 800px) {
-    @keyframes content-in {
-      0% {
-        transform: perspective(500px) translateX(100dvw);
-        transform-origin: 0% 0%;
-        filter: blur(0px);
-        opacity: 0;
-      }
-  
-  
-      100% {
-        transform: perspective(500px) translateX(0dvh);
-        transform-origin: 0% 0%;
-        filter: blur(0px);
-        opacity: 1;
-      }
-    }
-  
-    @keyframes content-out {
-      0% {
-        transform: perspective(500px) translateX(0dvh);
-        transform-origin: 0% 0%;
-        filter: blur(0px);
-        opacity: 1;
-      }
-  
-  
-      100% {
-        transform: perspective(500px) translateX(-100dvw);
-        transform-origin: 0% 0%;
-        filter: blur(0px);
-        opacity: 0;
-      }
-    }
-  
-    ::view-transition-old(content) {
-      animation: content-out ease-in-out 600ms;
-    }
-  
-    ::view-transition-new(content) {
-      animation: content-in ease-in-out 600ms;
-    }
+  ::view-transition-old(content) {
+    animation: content-out ease-in-out 600ms;
   }
+
+  ::view-transition-new(content) {
+    animation: content-in ease-in-out 600ms;
+  }
+}

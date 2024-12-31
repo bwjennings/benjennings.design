@@ -20,6 +20,7 @@ input[type="range"] {
   padding: 8px;
   border: 1px solid var(--border-primary);
   border-radius: 0px;
+  anchor-name: --themeSlider;
   &:active {
     cursor: grabbing;
   }
@@ -38,7 +39,15 @@ input[type="range"] {
 }
 
 
+[popover]{
+  position-anchor: --themeSlider;
+  position: fixed;
+  top: auto;
+  bottom: calc(anchor(top) + 10px);
+  left: anchor(start);
+  margin: 0;
 
+}
 input[type="range"]::-webkit-slider-thumb {
   
   box-shadow: none;
