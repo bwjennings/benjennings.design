@@ -14,10 +14,6 @@
   transform-style: preserve-3d;
 }
 
-.page-items {
-  view-transition-name: item-group;
-
-}
 
 ::view-transition-group(item-group) {
   perspective: 1000px;
@@ -163,9 +159,7 @@ body {
     animation: blur linear var(--transition-duration) reverse;
 
   }
+
+ 
 }
 
-::view-transition-group(root) {
-  transition-duration: var(--transition-duration);
-  animation-duration: var(--transition-duration);
-}

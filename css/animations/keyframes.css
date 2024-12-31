@@ -150,12 +150,48 @@
 
 
 @media screen and (max-width: 800px) {
+
+  main{
+    view-transition-name: content;
+  }
+  
+  :is(.welcome, .page-title) {
+    view-transition-name: initial;
+  
+  }
+
+  .page-items> :nth-child(1) {
+    view-transition-name: initial;
+  }
+  
+  .page-items> :nth-child(2) {
+    view-transition-name: initial;
+  }
+  
+  .page-items> :nth-child(3) {
+    view-transition-name: initial;
+  }
+  
+  .page-items> :nth-child(4) {
+    view-transition-name: initial;
+  }
+  
+  .page-items> :nth-child(5) {
+    view-transition-name: initial;
+  }
+  
+  .page-items> :nth-child(6) {
+    view-transition-name: initial;
+  }
+  
+
   @keyframes content-in {
     0% {
       transform: perspective(500px) translateX(100dvw);
       transform-origin: 0% 0%;
       filter: blur(0px);
       opacity: 0;
+      z-index: 0;
     }
 
 
@@ -191,4 +227,6 @@
   ::view-transition-new(content) {
     animation: content-in ease-in-out 600ms;
   }
+
+  
 }
