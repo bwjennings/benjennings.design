@@ -1,4 +1,3 @@
-import './navigation.js';
 import './settings.js';
 import './theme-slider.js';
 import './badge.js';

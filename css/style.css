@@ -77,9 +77,8 @@ main {
   grid-area: main-content;
   container-name: main-content;
   container-type: inline-size;
-  perspective: 200px;
-  transform-style: preserve-3d;
-  transform-origin: top;
+
+
   align-items: center;
   padding: var(--spacing-x-large);
   padding-top: 0px;

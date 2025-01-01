@@ -125,12 +125,8 @@ class extends HTMLElement {
 
     &:hover:not(.active) {
       background-color: var(--border-primary-hover);
-        
-   
-      
+     
     }
-
-
 
   }
 
@@ -432,17 +428,8 @@ transition:none;
     if (target) {
       event.preventDefault();
       const href = target.getAttribute("href");
-
-      // Check if the browser supports the View Transitions API
-      if (document.startViewTransition) {
-        document.startViewTransition(() => {
-          // Start the transition and change the page
-          window.location.href = href;
-        });
-      } else {
-        // Fallback for browsers without View Transitions API support
-        window.location.href = href;
-      }
+      window.location.href = href;
+     
     }
   }
 

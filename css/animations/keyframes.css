@@ -102,50 +102,7 @@
 }
 
 
-@keyframes items-in {
-  0% {
-    filter: blur(20px);
-    opacity: 0;
-   transform: perspective(100dvw) translateZ(var(--distance));
-  }
 
-  10% {
-    filter: blur(20px);
-  transform:  perspective(100dvw) translateZ(var(--distance));
-  }
-
-  100% {
-    filter: blur(0px);
-    opacity: 1;
-    transform:  perspective(100dvw) translateZ(0px);
-
-
-
-  }
-}
-
-@keyframes items-out {
-
-
-  0% {
-    filter: blur(0px);
-    transform: perspective(100dvw) translateZ(0px);
-  }
-
-  50% {
-    filter: blur(0px);
-    opacity: 0;
-
-    transform: perspective(100dvw) translateZ(var(--distance));
-  }
-
-  100% {
-    filter: blur(0px);
-    opacity: 0;
-
-    transform:  perspective(100dvw) translateZ(var(--distance));
-  }
-}
 
 
 
