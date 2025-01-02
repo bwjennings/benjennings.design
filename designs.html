@@ -16,10 +16,10 @@
 
   <!-- Prefetch Links -->
   <link rel="expect" href="index.html" blocking="render" />
-  <link rel="expect" href="fundamentals.html" blocking="render"/>
+  <link rel="expect" href="fundamentals.html" blocking="render" />
   <link rel="expect" href="experiments.html" blocking="render" />
   <link rel="expect" href="resources.html" blocking="render" />
-  
+
   <script type="speculationrules">
     {
       "prerender": [
@@ -32,9 +32,9 @@
 
   <!-- Icons and Manifest -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
   <link rel="expect" href="#page-container" blocking="render" />
 
 </head>
@@ -43,28 +43,28 @@
   <div id="page-container" class="page-container">
     <nav class="sidebar">
       <h2 class="site-title"><a href="index.html"></a></h2>
-      
+
       <menu>
         <li><a class="nav-card item1" href="index.html">
             <span class="icon">waving_hand</span>
             <span class="title">Home</span>
-        </a></li>
+          </a></li>
         <li><a class="nav-card item2" href="fundamentals.html">
             <span class="icon">psychology</span>
             <span class="title">Fundamentals</span>
-        </a></li>
+          </a></li>
         <li><a class="nav-card item3 active" href="designs.html">
             <span class="icon">web</span>
             <span class="title">Designs</span>
-        </a></li>
+          </a></li>
         <li><a class="nav-card item4" href="experiments.html">
             <span class="icon">experiment</span>
             <span class="title">Experiments</span>
-        </a></li>
-        <li><a  class="nav-card item5" href="resources.html">
+          </a></li>
+        <li><a class="nav-card item5" href="resources.html">
             <span class="icon">folder_open</span>
             <span class="title">Resources</span>
-        </a></li>
+          </a></li>
       </menu>
       <site-settings></site-settings>
       <theme-slider class="quick-theme" data-hide-label></theme-slider>
@@ -73,8 +73,10 @@
     <main>
 
       <section class="page-title">
-
-        <my-badge variant="primary" icon="web">Designs</my-badge>
+        <div class="badge primary">
+          <span>web</span>
+          Designs
+        </div>
         <h1 class="heading">Designs start from problems</h1>
         <h2 class="body lg secondary">These are some problems that I helped to solve</h2>
 
@@ -88,7 +90,16 @@
 
           Don't make it simple, make it clear
 
-          <my-badge icon="design_services">Design System</my-badge><my-badge>Startup Company</my-badge>
+          <div slot="badge" class="badge">
+            <span>design_services</span>
+            Design System
+          </div>
+
+          <div slot="badge" class="badge">
+            Startup Company
+          </div>
+
+
 
 
           <div slot="post">{Dwellane content here}</div>
@@ -107,15 +118,15 @@
           <div slot="post">
             <p>At the very beginning I created a system of icons to represent the different concepts in the product.
             </p>
-            
+
 
 
             <p>agencies across the country. A major problem to design for was
               the ability to group
               lessons
               into a multiple courses and then assign that course to individual users or groups of users</p>
-           
-            
+
+
 
 
 
@@ -129,9 +140,14 @@
 
         <simple-card version="box" title="Loans need to be created and managed" dialog-id="dialog-1">
           <div slot="media">account_balance</div>
-          <my-badge icon="home">Salesforce</my-badge> <my-badge>Internal Tool</my-badge>
+          <div slot="badge" class="badge">
+            Salesforce
+          </div>
+          <div slot="badge" class="badge">
+            Internal Tool
+          </div>
           <div slot="post">
-            
+
             <p>The existing method for loan officers to create and manage loans required them to use several individual
               tools that required a lot of training. This unorganization caused a lot of frustration for employees as
               well as loan applicants. </p>
@@ -159,8 +175,14 @@
 
         <simple-card version="box" title="Graduates need a cap and gown">
           <div slot="media">school</div>
-          <my-badge>Design System</my-badge>
-          <my-badge>CMS</my-badge>
+          
+          <div slot="badge" class="badge">
+            Design System
+          </div>
+
+          <div slot="badge" class="badge">
+            CMS 
+          </div>
           <div slot="post">
             {Herff Jones designs go here}
 
@@ -182,14 +204,7 @@
   </div>
   </main>
   </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set the flag to prevent animation on the home page
-      if (!sessionStorage.getItem('heroSidebarAnimated')) {
-        sessionStorage.setItem('heroSidebarAnimated', 'true');
-      }
-    });
-  </script>
+
 </body>
 
 </html>

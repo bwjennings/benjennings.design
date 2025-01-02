@@ -72,11 +72,10 @@
     <main>
 
       <section class="page-title">
-
-
-
-
-        <my-badge variant="primary" icon="experiment">Experiments</my-badge>
+        <div slot="badge" class="badge primary">
+          <span>experiment</span>
+          Experiments
+        </div>
         <h1 class="heading">Some fun things</h1>
 
       </section>
@@ -106,7 +105,10 @@
 
 
 
-          <my-badge icon="view_in_ar">3D Scan</my-badge>
+          <div slot="badge" class="badge">
+            <span>view_in_ar</span>
+            3D Scan
+          </div>
 
 
           Don't make it simple, make it clear
@@ -131,7 +133,10 @@
 
 
 
-          <my-badge icon="view_in_ar">3D Scan</my-badge>
+          <div slot="badge" class="badge">
+            <span>view_in_ar</span>
+            3D Scan
+          </div>
 
 
           Don't make it simple, make it clear
@@ -166,9 +171,14 @@
           </div>
 
 
-
-          <my-badge icon="construction">Work in progress</my-badge>
-          <my-badge icon="developer_board">Hardware</my-badge>
+          <div slot="badge" class="badge">
+            <span>construction</span>
+            Work in progress
+          </div>
+          <div slot="badge" class="badge">
+            <span>developer_board</span>
+            Hardware
+          </div>
 
 
           Don't make it simple, make it clear
@@ -185,14 +195,7 @@
   </div>
   </main>
   </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Set the flag to prevent animation on the home page
-      if (!sessionStorage.getItem('heroSidebarAnimated')) {
-        sessionStorage.setItem('heroSidebarAnimated', 'true');
-      }
-    });
-  </script>
+
 </body>
 
 </html>

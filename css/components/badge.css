@@ -1,0 +1,49 @@
+.badge {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-wrap: nowrap;
+    height: 28px;
+    background-color: var(--background-primary);
+    color: var(--foreground-secondary);
+    display: flex;
+    padding: var(--spacing-x-small, 4px) var(--spacing-small, 8px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-x-small, 4px);
+    font-size: var(--text-body-md-size);
+    line-height: var(--text-body-md-line-height);
+    border: 1px solid var(--border-primary);
+    box-sizing: border-box;
+
+    &.secondary {
+        background-color: var(--background-primary-secondary);
+        color: var(--foreground-secondary);
+        border: 1px solid var(--border-primary);
+    
+        span {
+            color: var(--foreground-brand)
+        }
+    
+        ::slotted {
+            text-overflow: ellipsis;
+        }
+    }
+
+    &.primary {
+        background-color: var(--background-accent);
+        color: var(--foreground-accent);
+        border: none;
+    
+    }
+
+    span {
+        font-family: var(--icon-font-family);
+        font-size: var(--icon-size-small);
+    
+        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
+    }
+    
+
+}
+
+

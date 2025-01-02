@@ -88,27 +88,7 @@
     </main>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Check if the sidebar animation has already occurred
-      if (!sessionStorage.getItem('heroSidebarAnimated')) {
-        // First visit: animate the sidebar
-        var pageContainer = document.querySelector('.page-container.hero-page');
-        if (pageContainer) {
-          pageContainer.classList.add('animate-sidebar');
-          // Set a flag to prevent future animations
-          sessionStorage.setItem('heroSidebarAnimated', 'true');
-        }
-      } else {
-        // Subsequent visits: show the sidebar expanded without animation
-        var pageContainer = document.querySelector('.page-container.hero-page');
-        if (pageContainer) {
-          // Remove 'hero-page' class to prevent the initial collapsed state
-          pageContainer.classList.remove('hero-page');
-        }
-      }
-    });
-  </script>
+ 
 
 </body>
 
