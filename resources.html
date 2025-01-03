@@ -17,10 +17,10 @@
   <link href="./css/index.css" rel="stylesheet" />
 
   <!-- Prefetch Links -->
-  <link rel="prerender" href="index.html" as="document" />
-  <link rel="prerender" href="designs.html" as="document" />
-  <link rel="prerender" href="fundamentals.html" as="document" />
-  <link rel="prerender" href="experiments.html" as="document" />
+  <link rel="expect" href="index.html" blocking="render" />
+  <link rel="expect" href="fundamentals.html" blocking="render" />
+  <link rel="expect" href="experiments.html" blocking="render" />
+  <link rel="expect" href="designs.html" blocking="render" />
   <script type="speculationrules">
     {
       "prerender": [
