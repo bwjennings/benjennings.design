@@ -4,7 +4,7 @@
 
 ::view-transition {
   --base-distance: -200px;
-  --transition-duration: 600ms;
+  --transition-duration: 1000ms;
 
 }
 
@@ -124,19 +124,19 @@ body {
   0% {
     filter: blur(20px);
     opacity: 0;
-    transform: perspective(100dvw) translateZ(var(--distance));
+    transform: perspective(100dvw) translateZ(var(--distance)) rotateX(30deg);
   }
 
   30% {
     filter: blur(20px);
     opacity: 0;
-    transform: perspective(100dvw) translateZ(var(--distance));
+    transform: perspective(100dvw) translateZ(var(--distance)) ;
   }
 
   100% {
     filter: blur(0px);
     opacity: 1;
-    transform: perspective(100dvw) translateZ(0px);
+    transform: perspective(100dvw) translateZ(0px) rotateX(0deg);
 
 
 
@@ -148,21 +148,21 @@ body {
 
   0% {
     filter: blur(0px);
-    transform: perspective(100dvw) translateZ(0px);
+    transform: perspective(100dvw) translateZ(0px) rotateX(0deg);
   }
 
   60% {
     filter: blur(0px);
     opacity: 0;
 
-    transform: perspective(100dvw) translateZ(var(--distance));
+    transform: perspective(100dvw) translateZ(var(--distance)) ;
   }
 
   100% {
     filter: blur(0px);
     opacity: 0;
 
-    transform: perspective(100dvw) translateZ(var(--distance));
+    transform: perspective(100dvw) translateZ(var(--distance)) rotateX(30deg);
   }
 }
 

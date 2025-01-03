@@ -47,6 +47,7 @@ nav {
     border-right: 1px solid var(--border-primary);
     background-color: var(--background-primary);
     box-sizing: border-box;
+    view-transition-name: sidebar;
 
     menu {
       width: 100%;
