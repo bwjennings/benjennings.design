@@ -108,6 +108,7 @@
 
   --timing-decelerate: cubic-bezier(0, 0.86, 0.13, 0.99);
   --timing-ease: cubic-bezier(.2, 0, 0.1, 1);
+  --timing-duration:800ms;
 
   --dialog-width: clamp(300px, 80dvw, 1200px);
 

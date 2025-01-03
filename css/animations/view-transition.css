@@ -4,17 +4,20 @@
 
 ::view-transition {
   --base-distance: -200px;
-  --transition-duration: 1000ms;
+  --transition-duration: 1s;
 
 }
 
 
-
+html::view-transition-group(*) {
+  animation-duration: var(--transition-duration) ;
+}
 
 
 
 ::view-transition-old(content) {
-  animation: content-out var(--timing-ease) var(--transition-duration);
+  --distance: var(--base-distance);
+  animation: items-out var(--timing-ease) var(--transition-duration);
 
 }
 
@@ -22,11 +25,6 @@
   animation: items-in var(--timing-ease) var(--transition-duration);
 }
 
-
-
-body {
-  view-transition-name: page;
-}
 
 ::view-transition-group(page) {
   animation-duration: var(--transition-duration);
@@ -54,7 +52,7 @@ body {
 }
 
 ::view-transition-group(item2) {
-  --distance: calc(var(--base-distance) * 2);
+  --distance: calc(var(--base-distance) * 4);
 }
 
 .page-items> :nth-child(3) {
@@ -62,7 +60,7 @@ body {
 }
 
 ::view-transition-group(item3) {
-  --distance: calc(var(--base-distance) * 4);
+  --distance: calc(var(--base-distance) * 8);
 }
 
 
@@ -71,7 +69,7 @@ body {
 }
 
 ::view-transition-group(item4) {
-  --distance: calc(var(--base-distance) * 8);
+  --distance: calc(var(--base-distance) * 12);
 }
 
 .page-items> :nth-child(5) {
@@ -79,7 +77,7 @@ body {
 }
 
 ::view-transition-group(item5) {
-  --distance: calc(var(--base-distance) * 12);
+  --distance: calc(var(--base-distance) * 16);
 }
 
 .page-items> :nth-child(6) {
@@ -87,7 +85,7 @@ body {
 }
 
 ::view-transition-group(item6) {
-  --distance: calc(var(--base-distance) * 16);
+  --distance: calc(var(--base-distance) * 20);
 }
 
 
@@ -97,6 +95,7 @@ body {
 ::view-transition-new(item4),
 ::view-transition-new(item5),
 ::view-transition-new(item6) {
+  transform-origin: 50% 50% ;
   animation: items-in var(--timing-ease) var(--transition-duration);
 }
 
@@ -106,6 +105,8 @@ body {
 ::view-transition-old(item4),
 ::view-transition-old(item5),
 ::view-transition-old(item6) {
+  transform-origin: 50% 50% ;
+
   animation: items-out var(--timing-ease) var(--transition-duration);
 }
 
@@ -113,30 +114,23 @@ body {
 
 
 
-
-
-
-
-
-
-
 @keyframes items-in {
   0% {
-    filter: blur(20px);
+    filter: blur(16px);
     opacity: 0;
-    transform: perspective(100dvw) translateZ(var(--distance)) rotateX(30deg);
+    transform: perspective(100dvw) translateZ(var(--distance)) ;
   }
 
   30% {
-    filter: blur(20px);
+    filter: blur(16px);
     opacity: 0;
-    transform: perspective(100dvw) translateZ(var(--distance)) ;
+    transform: perspective(100dvw) translateZ(var(--distance))  ;
   }
 
   100% {
     filter: blur(0px);
     opacity: 1;
-    transform: perspective(100dvw) translateZ(0px) rotateX(0deg);
+    transform: perspective(100dvw) translateZ(0px) ;
 
 
 
@@ -148,21 +142,19 @@ body {
 
   0% {
     filter: blur(0px);
-    transform: perspective(100dvw) translateZ(0px) rotateX(0deg);
+    transform: perspective(100dvw) translateZ(0px) ;
   }
 
-  60% {
-    filter: blur(0px);
+  70% {
+    filter: blur(16px);
     opacity: 0;
-
     transform: perspective(100dvw) translateZ(var(--distance)) ;
   }
 
   100% {
-    filter: blur(0px);
+    filter: blur(16px);
     opacity: 0;
-
-    transform: perspective(100dvw) translateZ(var(--distance)) rotateX(30deg);
+    transform: perspective(100dvw) translateZ(var(--distance)) ;
   }
 }
 

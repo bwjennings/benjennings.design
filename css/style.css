@@ -85,7 +85,6 @@ main {
   gap: var(--spacing-xxx-large);
   transform-style: preserve-3d;
   transform-origin: 0% 0%;
-  contain: layout;
   
 }
 

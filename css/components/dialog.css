@@ -12,17 +12,17 @@
     padding: 0px;
     background-color: var(--background-page);
     transform-style: preserve-3d;
-    transform: perspective(500px)  translateZ(-40px);
+    transform: perspective(500px)  translateZ(-100px) translateY(50px) rotateX(-10deg);
     container-type: inline-size;
     container-name: dialog;
     transition:
-      opacity 300ms,
-      transform 300ms,
-      filter 300ms,
-      overlay 300ms allow-discrete,
-      display 300ms allow-discrete;
+      opacity 600ms,
+      transform 600ms,
+      filter 600ms,
+      overlay 600ms allow-discrete,
+      display 600ms allow-discrete;
     transition-timing-function: var(--timing-ease);
-    transition-duration: 500ms;
+    transition-duration: var(--timing-duration);
   
     footer {
       display: flex;
@@ -48,7 +48,7 @@
   }
   dialog[open] {
     opacity: 1;
-    transform: perspective(500px) translateZ(0px);
+    transform: perspective(500px) translateZ(0px) translateY(0px) rotateX(0deg);
     filter: blur(0px);
     padding-bottom: env(safe-area-inset-bottom);
     display: block;
@@ -72,7 +72,7 @@
     dialog[open] {
       animation: none;
       opacity: 0;
-      transform: perspective(500px)   translateZ(-40px);
+      transform: perspective(500px)   translateZ(-40px) translateY(50px) rotateX(-10deg);
       filter: blur(32px) ;
     }
   }
