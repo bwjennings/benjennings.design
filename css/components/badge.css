@@ -14,6 +14,7 @@
     line-height: var(--text-body-md-line-height);
     border: 1px solid var(--border-primary);
     box-sizing: border-box;
+    user-select: none;
 
     &.secondary {
         background-color: var(--background-primary-secondary);

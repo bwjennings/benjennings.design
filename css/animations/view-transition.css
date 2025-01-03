@@ -4,7 +4,7 @@
 
 ::view-transition {
   --base-distance: -200px;
-  --transition-duration: 1s;
+  --transition-duration: var(--timing-duration);
 
 }
 
@@ -96,7 +96,7 @@ html::view-transition-group(*) {
 ::view-transition-new(item5),
 ::view-transition-new(item6) {
   transform-origin: 50% 50% ;
-  animation: items-in var(--timing-ease) var(--transition-duration);
+  animation: items-in var(--timing-decelerate) var(--transition-duration);
 }
 
 ::view-transition-old(item1),
@@ -107,7 +107,7 @@ html::view-transition-group(*) {
 ::view-transition-old(item6) {
   transform-origin: 50% 50% ;
 
-  animation: items-out var(--timing-ease) var(--transition-duration);
+  animation: items-out var(--timing-decelerate) var(--transition-duration);
 }
 
 
