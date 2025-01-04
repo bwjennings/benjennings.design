@@ -6,6 +6,7 @@
   --base-distance: -200px;
   --transition-duration: var(--timing-duration);
 
+
 }
 
 
@@ -118,13 +119,13 @@ html::view-transition-group(*) {
   0% {
     filter: blur(16px);
     opacity: 0;
-    transform: perspective(100dvw) translateZ(var(--distance)) ;
+    transform: perspective(100dvw) translateZ(calc(var(--distance) * -0.2)) ;
   }
 
   30% {
     filter: blur(16px);
     opacity: 0;
-    transform: perspective(100dvw) translateZ(var(--distance))  ;
+    transform: perspective(100dvw) translateZ(calc(var(--distance) * -0.2)) ;
   }
 
   100% {
