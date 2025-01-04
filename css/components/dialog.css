@@ -12,7 +12,7 @@
     padding: 0px;
     background-color: var(--background-page);
     transform-style: preserve-3d;
-    transform: perspective(500px)  translateZ(-100px) translateY(50px) rotateX(-10deg);
+    transform: perspective(500px)  translateZ(200px) translateY(50px) rotateX(-20deg);
     container-type: inline-size;
     container-name: dialog;
     transition:
@@ -57,14 +57,17 @@
  
 
   dialog::backdrop {
-    backdrop-filter: blur(0px)  contrast(100%);
+    backdrop-filter: initial;
+    transition-duration: var(--timing-duration);
+    background-color: transparent;
+
    
-    transition: all var(--timing-ease);
-    transition-duration: inherit ;
   }
   
   dialog[open]::backdrop {
-    backdrop-filter: blur(8px)  contrast(80%);
+    backdrop-filter: blur(8px)  ;
+    transition-timing-function: var(--timing-ease);
+    transition-duration: var(--timing-duration);
     background-color: var( --background-backdrop);
   }
   
@@ -72,14 +75,16 @@
     dialog[open] {
       animation: none;
       opacity: 0;
-      transform: perspective(500px)   translateZ(-40px) translateY(50px) rotateX(-10deg);
+      transform: perspective(500px)   translateZ(200px) translateY(50px) rotateX(-10deg);
       filter: blur(32px) ;
     }
   }
   
   @starting-style {
     dialog[open]::backdrop {
-      backdrop-filter: blur(0px)  contrast(100%);
+      backdrop-filter: initial;
+      background-color: transparent;
+
     }
   }
   
