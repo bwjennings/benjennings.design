@@ -20,7 +20,7 @@
   -webkit-user-select: none;
   outline: 0px solid var(--border-primary);
 
-  transition: outline var(--timing-ease) 100ms;
+  transition: outline var(--timing-decelerate) 100ms;
 
   &:hover {
     outline: 4px solid var(--border-primary);

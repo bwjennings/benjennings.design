@@ -18,12 +18,12 @@ html::view-transition-group(*) {
 
 ::view-transition-old(content) {
   --distance: var(--base-distance);
-  animation: items-out var(--timing-ease) var(--transition-duration);
+  animation: items-out var(--timing-decelerate) var(--transition-duration);
 
 }
 
 ::view-transition-new(content) {
-  animation: items-in var(--timing-ease) var(--transition-duration);
+  animation: items-in var(--timing-decelerate) var(--transition-duration);
 }
 
 

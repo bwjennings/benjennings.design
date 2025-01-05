@@ -205,7 +205,7 @@ perspective: 1000px;
     backface-visibility: visible !important;
     width: 300px;
     letter-spacing: normal;
-    animation: flipInX 4s var(--timing-ease) forwards;
+    animation: flipInX 4s var(--timing-decelerate) forwards;
   
   
   

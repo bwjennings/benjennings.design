@@ -16,11 +16,11 @@
 
 
 :root {
- 
-  --theme-slider-size: 20px;
-  --theme-slider-outline:var(--background-primary);
 
-  --viewport-lg:800px;
+  --theme-slider-size: 20px;
+  --theme-slider-outline: var(--background-primary);
+
+  --viewport-lg: 800px;
   /*   Typography Scale  */
   --font-size-1: clamp(0.56rem, -0.1vmin + 0.59rem, 0.5rem);
   --font-size-2: clamp(0.75rem, -0.07vmin + 0.77rem, 0.71rem);
@@ -33,60 +33,60 @@
   --font-size-9: clamp(5rem, 2.8vmin + 4rem, 6.8rem);
   --font-size-10: clamp(7.48rem, 5vmin + 5rem, 9rem);
 
-   /*  Icons  */
-   --icon-font-family: "Material Symbols Sharp";
+  /*  Icons  */
+  --icon-font-family: "Material Symbols Sharp";
 
-   --icon-size-xl: var(--font-size-6);
-   --icon-size-large: var(--font-size-5);
-   --icon-size-medium: var(--font-size-4);
-   --icon-size-small: var(--font-size-3);
- 
-   --icon-weight-large: 500;
-   --icon-weight-medium: 400;
-   --icon-weight-small: 300;
-   --icon-fill: 1;
-   --icon-grade: 0;
-   --icon-grade-emphasis: 100;
- 
-   
- 
-   /*  Typography - Heading  */
-   --text-heading-weight: 550;
- 
-   --text-heading-font-family: 'Roboto Flex';
-   --text-heading-grade: 100;
-   --text-heading-width: 120;
- 
- 
-   --text-heading-xl-line-height: 110%;
-   --text-heading-xl-size: var(--font-size-8);
- 
-   --text-heading-lg-line-height: 110%;
-   --text-heading-lg-size: var(--font-size-7);
- 
-   --text-heading-md-line-height: var(--font-size-7);
-   --text-heading-md-size: var(--font-size-6);
- 
-   --text-heading-sm-line-height: var(--font-size-6);
-   --text-heading-sm-size: var(--font-size-5);
- 
- 
-   /*  Typography - Body Text  */
-   --text-body-font-family: 'Roboto Flex';
-   --text-body-weight: 400;
- 
-   --text-body-lg-line-height: var(--font-size-5);
-   --text-body-lg-size: var(--font-size-4);
- 
-   --text-body-md-line-height: var(--font-size-4);
-   --text-body-md-size: var(--font-size-3);
- 
-   --text-body-sm-line-height: var(--font-size-3);
-   --text-body-sm-size: var(--font-size-2);
- 
-   --text-body-xs-line-height: var(--font-size-2);
-   --text-body-xs-size: var(--font-size-1);
- 
+  --icon-size-xl: var(--font-size-6);
+  --icon-size-large: var(--font-size-5);
+  --icon-size-medium: var(--font-size-4);
+  --icon-size-small: var(--font-size-3);
+
+  --icon-weight-large: 500;
+  --icon-weight-medium: 400;
+  --icon-weight-small: 300;
+  --icon-fill: 1;
+  --icon-grade: 0;
+  --icon-grade-emphasis: 100;
+
+
+
+  /*  Typography - Heading  */
+  --text-heading-weight: 550;
+
+  --text-heading-font-family: 'Roboto Flex';
+  --text-heading-grade: 100;
+  --text-heading-width: 120;
+
+
+  --text-heading-xl-line-height: 110%;
+  --text-heading-xl-size: var(--font-size-8);
+
+  --text-heading-lg-line-height: 110%;
+  --text-heading-lg-size: var(--font-size-7);
+
+  --text-heading-md-line-height: var(--font-size-7);
+  --text-heading-md-size: var(--font-size-6);
+
+  --text-heading-sm-line-height: var(--font-size-6);
+  --text-heading-sm-size: var(--font-size-5);
+
+
+  /*  Typography - Body Text  */
+  --text-body-font-family: 'Roboto Flex';
+  --text-body-weight: 400;
+
+  --text-body-lg-line-height: var(--font-size-5);
+  --text-body-lg-size: var(--font-size-4);
+
+  --text-body-md-line-height: var(--font-size-4);
+  --text-body-md-size: var(--font-size-3);
+
+  --text-body-sm-line-height: var(--font-size-3);
+  --text-body-sm-size: var(--font-size-2);
+
+  --text-body-xs-line-height: var(--font-size-2);
+  --text-body-xs-size: var(--font-size-1);
+
 
   --radius-none: 0px;
   --radius-small: 4px;
@@ -106,13 +106,13 @@
   --black: oklch(0% 0% 0deg);
   --white: oklch(100% 0% 0deg);
 
-  --timing-decelerate: cubic-bezier(0, -0.5, 0.13, 1.2);
-  --timing-ease: cubic-bezier(.2, 0, 0.1, 1);
-  --timing-duration:500ms;
+
+  --timing-decelerate: linear(0.00, 0.0198, 0.130, 0.227, 0.319, 0.391, 0.455, 0.527, 0.568, 0.619, 0.659, 0.698, 0.730, 0.760, 0.787, 0.809, 0.835, 0.850, 0.866, 0.883, 0.893, 0.907, 0.916, 0.925, 0.933, 0.941, 0.949, 0.953, 0.958, 0.963, 0.967, 0.971, 0.974, 0.977, 0.979, 0.981, 0.984, 0.985, 0.987, 0.989, 0.990, 0.991, 0.992, 0.993, 0.994, 0.994, 0.995, 0.995, 0.996, 0.996, 0.997, 0.997, 0.997, 0.998, 0.998, 0.998, 0.998, 0.999, 0.999, 0.999, 0.999, 0.999, 1.00);
+  --timing-duration: 700ms;
 
   --dialog-width: clamp(300px, 80dvw, 1200px);
 
-  
+
   /*   Color Lightness   */
   --lightness-5: 99%;
   --lightness-10: 97%;
@@ -129,20 +129,20 @@
   /*   Base Brand Color  */
   --brand-hue: 180;
 
---brand-chroma-base: 1; 
+  --brand-chroma-base: 1;
 
 
---brand-chroma-5: calc(4% * var(--brand-chroma-base));
---brand-chroma-10: calc(8% * var(--brand-chroma-base));
---brand-chroma-20: calc(16% * var(--brand-chroma-base));
---brand-chroma-30: calc(24% * var(--brand-chroma-base));
---brand-chroma-40: calc(32% * var(--brand-chroma-base));
---brand-chroma-50: calc(48% * var(--brand-chroma-base));
---brand-chroma-60: calc(32% * var(--brand-chroma-base));
---brand-chroma-70: calc(24% * var(--brand-chroma-base));
---brand-chroma-80: calc(16% * var(--brand-chroma-base));
---brand-chroma-90: calc(8% * var(--brand-chroma-base));
---brand-chroma-95: calc(4% * var(--brand-chroma-base));
+  --brand-chroma-5: calc(4% * var(--brand-chroma-base));
+  --brand-chroma-10: calc(8% * var(--brand-chroma-base));
+  --brand-chroma-20: calc(16% * var(--brand-chroma-base));
+  --brand-chroma-30: calc(24% * var(--brand-chroma-base));
+  --brand-chroma-40: calc(32% * var(--brand-chroma-base));
+  --brand-chroma-50: calc(48% * var(--brand-chroma-base));
+  --brand-chroma-60: calc(32% * var(--brand-chroma-base));
+  --brand-chroma-70: calc(24% * var(--brand-chroma-base));
+  --brand-chroma-80: calc(16% * var(--brand-chroma-base));
+  --brand-chroma-90: calc(8% * var(--brand-chroma-base));
+  --brand-chroma-95: calc(4% * var(--brand-chroma-base));
 
   --brand-5: oklch(var(--lightness-5) var(--brand-chroma-5) var(--brand-hue));
   --brand-10: oklch(var(--lightness-10) var(--brand-chroma-10) var(--brand-hue));
@@ -248,7 +248,7 @@
   --border-brand-emphasis: light-dark(var(--brand-60), var(--brand-70));
   --border-accent: light-dark(var(--accent-20), var(--accent-60));
 
- 
+
 
 
 
@@ -257,29 +257,29 @@
 
 [data-mode="high-contrast"] {
   --background-page: light-dark(var(--gray-5), var(--gray-95));
-    --background-primary: light-dark(var(--white), var(--gray-90));
-    --background-secondary: light-dark(var(--white), var(--gray-80));
-    --background-brand: light-dark(var(--brand-10), var(--brand-70));
-    --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
-    --background-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
-    --background-accent: light-dark(var(--accent-50), var(--accent-70));
+  --background-primary: light-dark(var(--white), var(--gray-90));
+  --background-secondary: light-dark(var(--white), var(--gray-80));
+  --background-brand: light-dark(var(--brand-10), var(--brand-70));
+  --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
+  --background-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
+  --background-accent: light-dark(var(--accent-50), var(--accent-70));
 
-    --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
-    --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
-    --foreground-brand: light-dark(var(--brand-60), var(--brand-30));
-    --foreground-brand-secondary: light-dark(var(--brand-60), var(--brand-20));
-    --foreground-accent: light-dark(var(--accent-5), var(--accent-5));
-    --foreground-onEmphasis: light-dark(var(--white), var(--white));
+  --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
+  --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
+  --foreground-brand: light-dark(var(--brand-60), var(--brand-30));
+  --foreground-brand-secondary: light-dark(var(--brand-60), var(--brand-20));
+  --foreground-accent: light-dark(var(--accent-5), var(--accent-5));
+  --foreground-onEmphasis: light-dark(var(--white), var(--white));
 
-    --border-primary: light-dark(var(--gray-40), var(--gray-40));
-    --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
-    --border-secondary: light-dark(var(--gray-30), var(--gray-50));
-    --border-brand: light-dark(var(--brand-50), var(--brand-40));
-    --border-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
-    --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
-    --border-brand-hover: light-dark(var(--brand-40), var(--brand-10));
-   
-    --border-accent: light-dark(var(--accent-50), var(--accent-40));
+  --border-primary: light-dark(var(--gray-40), var(--gray-40));
+  --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
+  --border-secondary: light-dark(var(--gray-30), var(--gray-50));
+  --border-brand: light-dark(var(--brand-50), var(--brand-40));
+  --border-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
+  --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
+  --border-brand-hover: light-dark(var(--brand-40), var(--brand-10));
+
+  --border-accent: light-dark(var(--accent-50), var(--accent-40));
 }
 
 @media (prefers-contrast: more) {
@@ -306,7 +306,7 @@
     --border-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
     --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
     --border-brand-hover: light-dark(var(--brand-40), var(--brand-10));
-   
+
     --border-accent: light-dark(var(--accent-50), var(--accent-40));
 
 
@@ -314,7 +314,7 @@
 
 }
 
-html{
+html {
   container-name: mypage;
 }
 
@@ -323,9 +323,10 @@ html{
   .heading {
     --text-heading-grade: 0;
   }
-} 
+}
+
 @media (prefers-reduced-transparency) {
-  :root{
---alpha: 0.9;
+  :root {
+    --alpha: 0.9;
   }
 }

@@ -81,7 +81,7 @@
           line-height: 100%;
           rotate: -20deg;
           opacity: 0.5;
-          animation: iconAnimate 5s ease-in-out infinite alternate;
+          animation: iconAnimate 5s var(--timing-decelerate) infinite alternate;
           font-weight: 600;
           font-size: 130cqw;
 

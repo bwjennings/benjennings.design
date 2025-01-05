@@ -12,7 +12,7 @@
     padding: 0px;
     background-color: var(--background-page);
     transform-style: preserve-3d;
-    transform: perspective(500px)  translateZ(200px) translateY(50px) rotateX(-20deg);
+    transform: perspective(500px)  translateZ(200px);
     container-type: inline-size;
     container-name: dialog;
     transition:
@@ -21,7 +21,7 @@
       filter 600ms,
       overlay 600ms allow-discrete,
       display 600ms allow-discrete;
-    transition-timing-function: var(--timing-ease);
+    transition-timing-function: var(--timing-decelerate);
     transition-duration: var(--timing-duration);
   
     footer {
@@ -48,7 +48,7 @@
   }
   dialog[open] {
     opacity: 1;
-    transform: perspective(500px) translateZ(0px) translateY(0px) rotateX(0deg);
+    transform: initial;
     filter: blur(0px);
     padding-bottom: env(safe-area-inset-bottom);
     display: block;
@@ -65,17 +65,15 @@
   }
   
   dialog[open]::backdrop {
-    backdrop-filter: blur(8px)  ;
-    transition-timing-function: var(--timing-ease);
+    backdrop-filter: blur(24px)  brightness(1.2);
+    transition-timing-function: var(--timing-decelerate);
     transition-duration: var(--timing-duration);
-    background-color: var( --background-backdrop);
   }
   
   @starting-style {
     dialog[open] {
       animation: none;
-      opacity: 0;
-      transform: perspective(500px)   translateZ(200px) translateY(50px) rotateX(-10deg);
+      transform: perspective(500px)   translateZ(200px);
       filter: blur(32px) ;
     }
   }

@@ -103,7 +103,7 @@ view-transition-name: mynav;
   cursor: pointer;
 
 
-  transition: background-color 300ms var(--timing-ease);
+  transition: background-color 300ms var(--timing-decelerate);
 
 
 

@@ -27,7 +27,7 @@
     outline-width: 0px;
     outline-color: var(--border-primary);
     container-type: inline-size;
-    transition: outline 300ms var(--timing-ease);
+    transition: outline 300ms var(--timing-decelerate);
     font-variation-settings: "GRAD" 0;
     color: var(--foreground-primary);
     gap: var(--spacing-x-large);
@@ -41,7 +41,7 @@
     }
     &:active {
       outline-width: 16px;
-      transition: outline 300ms var(--timing-ease);
+      transition: outline 300ms var(--timing-decelerate);
       perspective: 100px;
       transform: scaleZ(20%);
     }
@@ -142,7 +142,7 @@
     font-family: var(--icon-font-family);
     color: var(--background-brand-secondary);
     font-size: 50cqw;
-    transition: 200ms ease-out;
+    transition: 200ms var(--timing-decelerate);
     transition-property: font-variation-settings;
     rotate: -30deg;
   }
