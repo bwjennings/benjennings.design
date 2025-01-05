@@ -65,7 +65,7 @@
   }
   
   dialog[open]::backdrop {
-    backdrop-filter: blur(24px)  brightness(1.2);
+    backdrop-filter: blur(24px);
     transition-timing-function: var(--timing-decelerate);
     transition-duration: var(--timing-duration);
   }
