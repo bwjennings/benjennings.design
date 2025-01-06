@@ -14,7 +14,7 @@
       background-color: var(--foreground-secondary);
       height: 24px;
       border: 1px solid transparent;
-      transition: right 600ms;
+      transition: right 600ms var(--timing-bounce);
       -webkit-tap-highlight-color: transparent;
     }
   

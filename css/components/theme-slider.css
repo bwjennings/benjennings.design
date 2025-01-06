@@ -9,6 +9,7 @@ label {
   gap: var(--spacing-small);
   accent-color: var(--background-brand);
   flex-grow: 1;
+  transition-timing-function: var(--timing-bounce);
 }
 input[type="range"] {
   -webkit-appearance: none;
@@ -21,6 +22,7 @@ input[type="range"] {
   border: 1px solid var(--border-primary);
   border-radius: 0px;
   anchor-name: --themeSlider;
+
   &:active {
     cursor: grabbing;
   }
@@ -51,7 +53,7 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
   
   box-shadow: none;
-  transition: transform 200ms, outline-width 500ms, border-width 300ms,height 300ms,width 300ms;
+  transition: transform 300ms, outline-width 600ms, border-width 400ms,height 400ms,width 400ms;
 
   transition-timing-function: var(--timing-decelerate);
   -webkit-appearance: none;
@@ -74,9 +76,9 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="range"]:active::-webkit-slider-thumb {
   transform: scale(1.3);
-  
+  transition-timing-function: var(--timing-bounce);
   background-color: var(--brand-50);
-  outline-width: 12px;
+  outline-width: 10px;
   border-width: 0px;
   
 
@@ -91,7 +93,7 @@ input[type="range"]:active::-webkit-slider-thumb {
 input[type="range"]:active::-moz-range-thumb {
   transition: transform 300ms, outline-width 300ms, border 300ms;
   transition-duration: 500ms;
-  transition-timing-function: var(--timing-decelerate);
+  transition-timing-function: var(--timing-bounce);
   transform: scale(1.25);
   background-color: var(--brand-50);
   outline: 8px solid var(--theme-slider-outline);
@@ -116,7 +118,7 @@ input[type=range]::-moz-range-thumb {
 
 @container style(--brand-hue:0) or style(--brand-hue:360) {
   input[type="range"]::-webkit-slider-thumb {
-    transition: border-radius 300ms var(--timing-decelerate);
+    transition: border-radius 300ms var(--timing-bounce);
     border-radius: 0px;
   }
 }

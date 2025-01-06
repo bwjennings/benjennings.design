@@ -108,7 +108,7 @@ input:where([type="checkbox"][role="switch"]) {
   background-color: var(--background-secondary);
   vertical-align: text-bottom;
   margin: none;
-  transition: width cubic-bezier(0, 1, 1, 1) 300ms;
+  transition: width var(--timing-decelerate) 500ms;
   transition-property: left, height, width;
   border-radius: 0px;
   -webkit-tap-highlight-color: transparent;

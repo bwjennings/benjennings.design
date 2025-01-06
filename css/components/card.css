@@ -8,6 +8,7 @@
 
 
 
+
 }
 
   
@@ -27,7 +28,7 @@
     outline-width: 0px;
     outline-color: var(--border-primary);
     container-type: inline-size;
-    transition: outline 300ms var(--timing-decelerate);
+    transition: outline 500ms var(--timing-bounce);
     font-variation-settings: "GRAD" 0;
     color: var(--foreground-primary);
     gap: var(--spacing-x-large);
@@ -36,12 +37,13 @@
     padding: clamp(var(--spacing-large), 4cqw, var(--spacing-xx-large));
 
 
+
     &:hover {
       outline: 4px solid var(--border-primary);
     }
     &:active {
       outline-width: 16px;
-      transition: outline 300ms var(--timing-decelerate);
+      transition: outline 300ms var(--timing-bounce);
       perspective: 100px;
       transform: scaleZ(20%);
     }
