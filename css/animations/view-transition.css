@@ -4,7 +4,7 @@
 
 ::view-transition {
   --base-distance: -200px;
-  --transition-duration: var(--timing-duration);
+  --transition-duration: 800ms;
 
 
 }

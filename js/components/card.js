@@ -66,9 +66,16 @@ customElements.define(
     }
 
     connectedCallback() {
-      // Add click handlers for both the container and slots
+
       const cardContainer = this.shadowRoot.querySelector(".card-container");
       cardContainer.addEventListener("click", this.handleEvents);
+  
+      // Delegate click events from the card container
+      cardContainer.addEventListener('click', (event) => {
+          if (event.target.closest('[slot]')) { // Check if the target or its parent is in a slot.
+              this.handleSlotClick(event);
+          }
+      });
 
       // Add click listeners to all slots
       const slots = this.shadowRoot.querySelectorAll("slot");
