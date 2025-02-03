@@ -70,6 +70,7 @@ dialog[open]::backdrop {
   backdrop-filter: blur(24px);
   transition-timing-function: var(--timing-decelerate);
   transition-duration: var(--timing-duration);
+  background-color: var(--background-backdrop);
 }
 
 @starting-style {

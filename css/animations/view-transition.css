@@ -4,7 +4,7 @@
 
 ::view-transition {
   --base-distance: -200px;
-  --transition-duration: 800ms;
+  --transition-duration: 1s;
 
 
 }
@@ -126,7 +126,7 @@ html::view-transition-group(*) {
     transform: perspective(100dvw) translateZ(calc(var(--distance) * -0.2)) ;
   }
 
-  30% {
+  20% {
     filter: blur(16px);
     opacity: 0;
     transform: perspective(100dvw) translateZ(calc(var(--distance) * -0.2)) ;
@@ -150,9 +150,8 @@ html::view-transition-group(*) {
     transform: perspective(100dvw) translateZ(0px) ;
   }
 
-  70% {
+  90% {
     filter: blur(16px);
-    opacity: 0;
     transform: perspective(100dvw) translateZ(var(--distance)) ;
   }
 

@@ -174,7 +174,7 @@ perspective: 1000px;
 
   .welcome {
     display: grid;
-    grid-template-rows: auto 50cqh auto auto;
+    grid-template-rows: 30cqh auto  auto auto;
     align-self: center;
     align-items: start;
     text-align: start;
@@ -193,7 +193,7 @@ perspective: 1000px;
     max-width: 1200px;
   
     .body{
-      max-width: 30ch;
+      max-width: 50ch;
     }
   
   }
