@@ -1,66 +1,74 @@
+// Define and cache the template
+const template = document.createElement('template');
+template.innerHTML = `
+  <style>
+    /* Critical inline CSS */
+    .icon {
+      font-family: var(--icon-font-family);
+    }
+  </style>
+  <!-- Preload non-critical CSS -->
+  <link rel="preload" as="style" href="./css/index.css">
+  <link rel="preload" as="style" href="css/components/settings.css">
+    <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet"  href="css/components/settings.css">
+
+  <button class="secondary" id="openBtn" aria-label="Open Settings">
+    <div class="icon">tune</div>Settings
+  </button>
+  
+  <dialog id="dialog">
+    <form id="themeSelect">
+      <header>
+        <h2 class="heading md" id="dialog-title">Settings</h2>
+        <button class="icon-button" value="cancel" formmethod="dialog">Close</button>
+      </header>
+      <div class="content">
+        <label id="colorMode">
+          Color Mode
+          <fieldset class="radio-buttons" autofocus>
+            <label class="radio-button">
+              <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
+              <span class="icon">routine</span>
+              <span>System</span>
+            </label>
+            <label class="radio-button">
+              <input type="radio" name="theme" value="light" aria-label="Light Theme">
+              <span class="icon">light_mode</span>
+              <span>Light</span>
+            </label>
+            <label class="radio-button" style="border:transparent">
+              <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
+              <span class="icon">dark_mode</span>
+              <span>Dark</span>
+            </label>
+          </fieldset>
+        </label>
+        <theme-slider></theme-slider>
+        <label for="highContrast" style="width: fit-content;">High Contrast
+          <input type="checkbox" switch role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
+        </label>
+      </div>
+      <footer>
+        <button type="button" id="cancelBtn" aria-label="Cancel Settings">Cancel</button>
+        <button type="button" variant="brand" id="closeBtn" aria-label="Save Settings">Save</button>
+      </footer>
+    </form>
+  </dialog>
+`;
+
 class SiteSettings extends HTMLElement {
   constructor() {
     super();
+    // Attach shadow DOM and clone the template
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.innerHTML = `
-      <style>
-        .icon {
-          font-family: var(--icon-font-family);
-        }
-      </style>
-      <link href="./css/index.css" rel="stylesheet" />
-            <link href="css/components/settings.css" rel="stylesheet" />
-
-
-      <button class="secondary" id="openBtn" aria-label="Open Settings">
-        <div class="icon">tune</div>Settings
-      </button>
-    
-      <dialog id="dialog">
-        <form id="themeSelect">
-          <header>
-            <h2 class="heading md" id="dialog-title">Settings</h2>
-            <button class="icon-button" value="cancel" formmethod="dialog">Close</button>
-          </header>
-          <div class="content">
-            <label id="colorMode">
-              Color Mode
-              <fieldset class="radio-buttons" autofocus=true>
-                <label class="radio-button">
-                  <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
-                  <span class="icon">routine</span>
-                  <span>System</span>
-                </label>
-                <label class="radio-button">
-                  <input type="radio" name="theme" value="light" aria-label="Light Theme">
-                  <span class="icon">light_mode</span>
-                  <span>Light</span>
-                </label>
-                <label class="radio-button" style="border:transparent">
-                  <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
-                  <span class="icon">dark_mode</span>
-                  <span>Dark</span>
-                </label>
-              </fieldset>
-            </label>
-            <theme-slider></theme-slider>
-            <label for="highContrast" style="width: fit-content;">High Contrast
-              <input type="checkbox" switch role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
-            </label>
-          </div>
-          <footer>
-            <button type="button" id="cancelBtn" aria-label="Cancel Settings">Cancel</button>
-            <button type="button" variant="brand" id="closeBtn" aria-label="Save Settings">Save</button>
-          </footer>
-        </form>
-      </dialog>
-    `;
-
-    this.dialog = shadowRoot.getElementById("dialog");
-    this.themeSelectForm = shadowRoot.getElementById("themeSelect");
-    this.highContrastCheckbox = shadowRoot.getElementById("highContrast");
-    this.themeSlider = shadowRoot.querySelector("theme-slider");
+    // Cache frequently accessed elements
+    this.dialog = this.shadowRoot.getElementById("dialog");
+    this.themeSelectForm = this.shadowRoot.getElementById("themeSelect");
+    this.highContrastCheckbox = this.shadowRoot.getElementById("highContrast");
+    this.themeSlider = this.shadowRoot.querySelector("theme-slider");
 
     this.originalSettings = {};
 
@@ -72,6 +80,18 @@ class SiteSettings extends HTMLElement {
     this.themeChangeHandler = this.themeChangeHandler.bind(this);
     this.highContrastChangeHandler = this.highContrastChangeHandler.bind(this);
     this.backdropClickHandler = this.backdropClickHandler.bind(this);
+
+    // Create a debounced version of the hueChangeHandler (100ms delay)
+    this.debouncedHueChangeHandler = this.debounce(this.hueChangeHandler, 100);
+  }
+
+  // Utility: Debounce function to limit rapid event firing
+  debounce(func, delay) {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
   }
 
   connectedCallback() {
@@ -82,7 +102,7 @@ class SiteSettings extends HTMLElement {
     this.shadowRoot.getElementById("closeBtn").addEventListener("click", this.saveChanges);
     this.shadowRoot.getElementById("cancelBtn").addEventListener("click", this.cancelChanges);
 
-    this.themeSlider.addEventListener("hueChange", this.hueChangeHandler);
+    this.themeSlider.addEventListener("hueChange", this.debouncedHueChangeHandler);
     this.themeSelectForm.addEventListener("change", this.themeChangeHandler);
     this.highContrastCheckbox.addEventListener("change", this.highContrastChangeHandler);
 
@@ -95,13 +115,14 @@ class SiteSettings extends HTMLElement {
     this.shadowRoot.getElementById("closeBtn").removeEventListener("click", this.saveChanges);
     this.shadowRoot.getElementById("cancelBtn").removeEventListener("click", this.cancelChanges);
 
-    this.themeSlider.removeEventListener("hueChange", this.hueChangeHandler);
+    this.themeSlider.removeEventListener("hueChange", this.debouncedHueChangeHandler);
     this.themeSelectForm.removeEventListener("change", this.themeChangeHandler);
     this.highContrastCheckbox.removeEventListener("change", this.highContrastChangeHandler);
 
     this.dialog.removeEventListener('click', this.backdropClickHandler);
   }
 
+  // Cache the original settings in one go
   storeOriginalSettings() {
     this.originalSettings = {
       theme: localStorage.getItem("myCustomTheme") || "",
@@ -127,7 +148,12 @@ class SiteSettings extends HTMLElement {
   }
 
   updateTheme(theme) {
-    const colorScheme = theme === "light" ? "light" : theme === "dark" ? "dark" : "light dark";
+    const colorScheme = theme === "light"
+      ? "light"
+      : theme === "dark"
+        ? "dark"
+        : "light dark";
+    // Batch style updates to avoid multiple reflows
     document.documentElement.style.setProperty("--current-color-scheme", colorScheme);
     window.dispatchEvent(new CustomEvent('globalSchemeChange', { detail: theme }));
   }
@@ -138,7 +164,7 @@ class SiteSettings extends HTMLElement {
     window.dispatchEvent(new CustomEvent('globalHighContrastChange', { detail: enabled }));
   }
 
-  // Event handler methods
+  // Event Handlers
   openSettings() {
     this.storeOriginalSettings();
     this.applyStoredSettings();
@@ -146,8 +172,9 @@ class SiteSettings extends HTMLElement {
   }
 
   hueChangeHandler(event) {
-    localStorage.setItem("selectedColorHue", event.detail);
-    window.dispatchEvent(new CustomEvent('globalHueChange', { detail: event.detail }));
+    const hueValue = event.detail;
+    localStorage.setItem("selectedColorHue", hueValue);
+    window.dispatchEvent(new CustomEvent('globalHueChange', { detail: hueValue }));
   }
 
   themeChangeHandler(event) {
@@ -166,6 +193,7 @@ class SiteSettings extends HTMLElement {
       const selectedTheme = this.themeSelectForm.querySelector('input[name="theme"]:checked').value;
       const highContrastEnabled = this.highContrastCheckbox.checked;
 
+      // Batch localStorage writes
       localStorage.setItem("myCustomTheme", selectedTheme);
       localStorage.setItem("highContrast", highContrastEnabled.toString());
 
@@ -176,6 +204,7 @@ class SiteSettings extends HTMLElement {
   }
 
   cancelChanges() {
+    // Revert all changes in a single batch update
     this.themeSlider.setHue(this.originalSettings.hue);
     this.updateTheme(this.originalSettings.theme);
     this.highContrastCheckbox.checked = this.originalSettings.highContrast;
@@ -183,11 +212,12 @@ class SiteSettings extends HTMLElement {
     this.dialog.close();
   }
 
-  // Handle backdrop clicks
+  // Closes settings if clicking the backdrop
   backdropClickHandler(event) {
     if (event.target === this.dialog) {
       this.cancelChanges();
     }
   }
 }
+
 customElements.define("site-settings", SiteSettings);

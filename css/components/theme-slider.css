@@ -1,5 +1,8 @@
 :host(theme-slider){
   display: flex;
+  
+  --theme-slider-size: 20px;
+  --theme-slider-outline: var(--background-primary);
 }
 
 label {
@@ -29,13 +32,9 @@ input[type="range"] {
 
   &.theme {
     background-blend-mode: darken;
-    background: linear-gradient(to right,
+    background: linear-gradient(to right in oklch longer hue,
         oklch(60% 0.2 0),
-        oklch(60% 0.2 60),
-        oklch(60% 0.2 120),
-        oklch(60% 0.2 180),
-        oklch(60% 0.2 240),
-        oklch(60% 0.2 300),
+      
         oklch(60% 0.2 360));
   }
 }

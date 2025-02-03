@@ -20,6 +20,7 @@ dialog {
     overlay 600ms allow-discrete,
     display 600ms allow-discrete;
   transition-timing-function: var(--timing-decelerate);
+  transition-duration: var(--timing-duration);
   
 
 

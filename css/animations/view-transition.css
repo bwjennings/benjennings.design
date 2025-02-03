@@ -9,6 +9,10 @@
 
 }
 
+nav{
+  view-transition-name: nav;
+}
+
 
 html::view-transition-group(*) {
   animation-duration: var(--transition-duration) ;

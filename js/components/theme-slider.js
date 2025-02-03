@@ -1,76 +1,115 @@
+// Define and cache the template for the component
+const themeSliderTemplate = document.createElement('template');
+themeSliderTemplate.innerHTML = `
+  <link href="css/components/theme-slider.css" rel="stylesheet">
+  <label for="hueSlider">
+    <span class="label-text"></span>
+    <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2"
+      aria-label="Theme Color Hue Slider">
+  </label>
+`;
+
 customElements.define(
   "theme-slider",
-  class extends HTMLElement {
+  class ThemeSlider extends HTMLElement {
     constructor() {
       super();
 
-      // Attach a shadow DOM to the element
-      const shadowRoot = this.attachShadow({ mode: "open" });
+      // Attach shadow DOM and clone template
+      this.attachShadow({ mode: "open" });
+      const templateContent = themeSliderTemplate.content.cloneNode(true);
+      this.shadowRoot.appendChild(templateContent);
 
-      // Check if the 'data-hide-label' attribute is present
-      const hideLabel = this.hasAttribute('data-hide-label');
+      // Conditionally set label text based on the data-hide-label attribute
+      const labelTextEl = this.shadowRoot.querySelector(".label-text");
+      if (!this.hasAttribute("data-hide-label")) {
+        labelTextEl.textContent = "Theme Color:";
+      }
 
-      // Template with conditional label text visibility
-      shadowRoot.innerHTML = `
-        <link href="css/components/theme-slider.css" rel="stylesheet"  />
-\         
-        <label for="hueSlider">
-          ${!hideLabel ? 'Theme Color:' : ''}
-          <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2"
-            aria-label="Theme Color Hue Slider">
-        </label>
-      `;
+      // Reference the slider element
+      this.hueSlider = this.shadowRoot.getElementById("hueSlider");
 
-      // Reference to the slider element
-      this.hueSlider = shadowRoot.getElementById("hueSlider");
+      // Bind event handlers so they can be properly removed later
+      this.handleInput = this.handleInput.bind(this);
+      this.handleGlobalHueChange = this.handleGlobalHueChange.bind(this);
+      this.handleStorageChange = this.handleStorageChange.bind(this);
 
-     
-
-      // Handle slider input changes
-      this.hueSlider.addEventListener("input", () => {
-        const newHue = this.hueSlider.value;
-        this.updateHue(newHue);
-        this.saveHue(newHue);
-        this.dispatchEvent(new CustomEvent('hueChange', { detail: newHue }));
-        window.dispatchEvent(new CustomEvent('globalHueChange', { detail: newHue }));
-      });
-
-      // Listen for global changes to the hue value
-      window.addEventListener('globalHueChange', (event) => {
-        if (event.detail !== this.hueSlider.value) {
-          this.hueSlider.value = event.detail;
-          this.updateHue(event.detail);
-        }
-      });
+      // Create a debounced function to process slider input (100ms delay)
+      this.debouncedProcessInput = this.debounce(this.processInput.bind(this), 10);
     }
 
-    // Lifecycle method called when the element is added to the DOM
+    // Utility: Debounce function to reduce rapid-fire events
+    debounce(func, delay) {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+      };
+    }
+
     connectedCallback() {
+      // Initialize the slider value from localStorage or default to "200"
       const storedHue = localStorage.getItem("selectedColorHue") || "200";
       this.hueSlider.value = storedHue;
       this.updateHue(storedHue);
 
-      // Listen for changes to localStorage in case of updates from other tabs/windows
-      window.addEventListener('storage', (event) => {
-        if (event.key === 'selectedColorHue') {
-          const newHue = event.newValue;
-          if (newHue !== this.hueSlider.value) {
-            this.hueSlider.value = newHue;
-            this.updateHue(newHue);
-          }
-        }
+      // Add event listener for slider input using the debounced handler
+      this.hueSlider.addEventListener("input", this.handleInput);
 
-        if (event.key === 'myCustomTheme') {
-          // Sync color scheme changes
-          const newScheme = event.newValue || 'light';
-          document.documentElement.style.setProperty('--current-color-scheme', newScheme);
+      // Listen for global hue changes
+      window.addEventListener("globalHueChange", this.handleGlobalHueChange);
+
+      // Listen for storage events from other tabs/windows
+      window.addEventListener("storage", this.handleStorageChange);
+    }
+
+    disconnectedCallback() {
+      // Remove event listeners to prevent memory leaks
+      this.hueSlider.removeEventListener("input", this.handleInput);
+      window.removeEventListener("globalHueChange", this.handleGlobalHueChange);
+      window.removeEventListener("storage", this.handleStorageChange);
+    }
+
+    // Called on slider input; defers processing to the debounced function
+    handleInput() {
+      this.debouncedProcessInput();
+    }
+
+    // Processes the slider input: updates hue, saves value, and dispatches events
+    processInput() {
+      const newHue = this.hueSlider.value;
+      this.updateHue(newHue);
+      this.saveHue(newHue);
+      this.dispatchEvent(new CustomEvent("hueChange", { detail: newHue }));
+      window.dispatchEvent(new CustomEvent("globalHueChange", { detail: newHue }));
+    }
+
+    // Updates the slider value if a global hue change event occurs
+    handleGlobalHueChange(event) {
+      if (event.detail !== this.hueSlider.value) {
+        this.hueSlider.value = event.detail;
+        this.updateHue(event.detail);
+      }
+    }
+
+    // Syncs the slider when localStorage changes (e.g., from another tab)
+    handleStorageChange(event) {
+      if (event.key === "selectedColorHue") {
+        const newHue = event.newValue;
+        if (newHue && newHue !== this.hueSlider.value) {
+          this.hueSlider.value = newHue;
+          this.updateHue(newHue);
         }
-      });
+      } else if (event.key === "myCustomTheme") {
+        // Sync the global color scheme if needed
+        const newScheme = event.newValue || "light";
+        document.documentElement.style.setProperty("--current-color-scheme", newScheme);
+      }
     }
 
     // Update the CSS variable for the hue
     updateHue(hue) {
-      document.documentElement.style.setProperty('--brand-hue', hue);
+      document.documentElement.style.setProperty("--brand-hue", hue);
     }
 
     // Save the hue value to localStorage
@@ -78,12 +117,12 @@ customElements.define(
       localStorage.setItem("selectedColorHue", hue);
     }
 
-    // Get the current hue value
+    // Returns the current hue value
     getHue() {
       return this.hueSlider.value;
     }
 
-    // Set the hue value programmatically
+    // Sets the hue value programmatically
     setHue(hue) {
       this.hueSlider.value = hue;
       this.updateHue(hue);
