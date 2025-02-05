@@ -51,7 +51,7 @@ u {
 
 
   &.sm {
-    font-weight: 400;
+    font-weight: 450;
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
   }

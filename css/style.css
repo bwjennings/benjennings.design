@@ -35,9 +35,12 @@ img {
   height: 100%;
   width: 100%;
   background-size: cover;
-  opacity: 0.9;
+  opacity: 0.8;
   object-fit: cover;
   overflow: hidden;
+  
+
+  
 }
 
 

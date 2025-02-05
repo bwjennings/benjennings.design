@@ -47,5 +47,5 @@
   
   .radio-button:has(input:checked) {
     background-color: var(--background-brand);
-    color: var(--foreground-brand);
+    color: var(--foreground-onBrand);
   }

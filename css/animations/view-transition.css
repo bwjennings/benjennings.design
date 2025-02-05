@@ -14,8 +14,15 @@ nav{
 }
 
 
+
 html::view-transition-group(*) {
   animation-duration: var(--transition-duration) ;
+}
+
+
+::view-transition-group(nav1){
+  animation-duration: 100ms;
+  
 }
 
 
@@ -166,18 +173,17 @@ html::view-transition-group(*) {
 
 @media (prefers-reduced-motion) {
   ::view-transition-old(content) {
-    animation: blur linear var(--transition-duration);
+    animation: initial;
 
   }
 
   ::view-transition-new(content) {
 
-    animation: blur linear var(--transition-duration) reverse;
+    animation: initial;
 
   }
 
 
 }
-
 
 

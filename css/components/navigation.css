@@ -64,7 +64,7 @@ view-transition-name: mynav;
     /* Remove padding */
     margin: 0;
     transform-style: preserve-3d;
-    view-transition-name: mymenu;
+    view-transition-name: menu;
 
     li {
       &:focus {
@@ -101,21 +101,24 @@ view-transition-name: mynav;
   background: inherit;
   border: 1px solid transparent;
   cursor: pointer;
-
-
   transition: background-color 300ms var(--timing-decelerate);
+  transition-property: background-color, font-variation-settings;
 
 
+  .icon {
+    transition: font-variation-settings 2s ease;
+
+   
+  }
 
 
 
   &:hover:not(.active) {
-    background-color: var(--border-primary-hover);
+    outline: 2px var(--border-secondary)  solid;
 
   }
 
 }
-
 
 
 
@@ -123,22 +126,58 @@ view-transition-name: mynav;
 .active {
   transition: none;
   font-variation-settings: 'GRAD' 100;
-  color: var(--foreground-brand);
+  color: var(--foreground-onBrand);
   anchor-name: --active;
-  position: relative;
   background: var(--background-brand);
+  
+
+
+
 
 
 
 
   .icon {
     font-variation-settings:
-      "FILL" var(--icon-fill),
+      "FILL" 1,
       "GRAD" var(--icon-grade-emphasis);
   }
+  
 }
 
+::view-transition-group(active-box){
+  transform:;
+}
 
+.active-box{
+  display: none;
+  appearance: none;
+  
+}
+
+.item1 {
+  grid-area: item1;
+  view-transition-name: nav1;
+}
+.item2 {
+  grid-area: item2;
+  view-transition-name: nav2;
+}
+
+.item3 {
+  grid-area: item3;
+  view-transition-name: nav3;
+}
+
+.item4 {
+  grid-area: item4;
+  view-transition-name: nav4;
+}
+
+.item5 {
+  grid-area: item5;
+  view-transition-name: nav5;
+}
 
 
 
@@ -186,25 +225,7 @@ view-transition-name: mynav;
     "GRAD" var(--icon-grade);
 }
 
-.item2 {
-  grid-area: item2;
-}
 
-.item1 {
-  grid-area: item1;
-}
-
-.item3 {
-  grid-area: item3;
-}
-
-.item4 {
-  grid-area: item4;
-}
-
-.item5 {
-  grid-area: item5;
-}
 
 theme-slider {
   grid-area: theme-slider;

@@ -141,39 +141,39 @@
   /*------------------------------------
     Color – Lightness Scale
   ------------------------------------*/
-  --lightness-5: 99.5%;
+  --lightness-5: 100%;
   --lightness-10: 98%;
   --lightness-20: 93%;
   --lightness-30: 75%;
   --lightness-40: 55%;
   --lightness-50: 50%;
-  --lightness-60: 45%;
+  --lightness-60: 40%;
   --lightness-70: 32%;
-  --lightness-80: 28%;
+  --lightness-80: 24%;
   --lightness-90: 20%;
-  --lightness-95: 14%;
+  --lightness-95: 12%;
 
   /*------------------------------------
     Base Colors
   ------------------------------------*/
   /* Brand */
   --brand-hue: 180;
-  --brand-chroma-base: 1.5;
-  --brand-chroma-5: calc(4% * var(--brand-chroma-base));
-  --brand-chroma-10: calc(8% * var(--brand-chroma-base));
-  --brand-chroma-20: calc(12% * var(--brand-chroma-base));
-  --brand-chroma-30: calc(16% * var(--brand-chroma-base));
-  --brand-chroma-40: calc(24% * var(--brand-chroma-base));
-  --brand-chroma-50: calc(32% * var(--brand-chroma-base));
-  --brand-chroma-60: calc(24% * var(--brand-chroma-base));
-  --brand-chroma-70: calc(16% * var(--brand-chroma-base));
-  --brand-chroma-80: calc(12% * var(--brand-chroma-base));
-  --brand-chroma-90: calc(8% * var(--brand-chroma-base));
-  --brand-chroma-95: calc(4% * var(--brand-chroma-base));
+  --chroma-base: 1.5;
+  --chroma-5: calc(0% * var(--chroma-base));
+  --chroma-10: calc(8% * var(--chroma-base));
+  --chroma-20: calc(12% * var(--chroma-base));
+  --chroma-30: calc(16% * var(--chroma-base));
+  --chroma-40: calc(24% * var(--chroma-base));
+  --chroma-50: calc(32% * var(--chroma-base));
+  --chroma-60: calc(24% * var(--chroma-base));
+  --chroma-70: calc(16% * var(--chroma-base));
+  --chroma-80: calc(12% * var(--chroma-base));
+  --chroma-90: calc(8% * var(--chroma-base));
+  --chroma-95: calc(4% * var(--chroma-base));
 
   /* Neutral / Gray */
   --gray-hue: calc(var(--brand-hue) + 60);
-  --gray-chroma: 3%;
+  --gray-chroma: 1%;
 
   /* Accent */
   --accent-hue: calc(var(--brand-hue) - 90);
@@ -182,35 +182,36 @@
   /*------------------------------------
     Color – Brand Palette
   ------------------------------------*/
-  --brand-5: oklch(var(--lightness-5) var(--brand-chroma-5) var(--brand-hue));
-  --brand-10: oklch(var(--lightness-10) var(--brand-chroma-10) var(--brand-hue));
-  --brand-20: oklch(var(--lightness-20) var(--brand-chroma-20) var(--brand-hue));
-  --brand-30: oklch(var(--lightness-30) var(--brand-chroma-30) var(--brand-hue));
-  --brand-40: oklch(var(--lightness-40) var(--brand-chroma-40) var(--brand-hue));
-  --brand-50: oklch(var(--lightness-50) var(--brand-chroma-50) var(--brand-hue));
-  --brand-60: oklch(var(--lightness-60) var(--brand-chroma-60) var(--brand-hue));
-  --brand-70: oklch(var(--lightness-70) var(--brand-chroma-70) var(--brand-hue));
-  --brand-80: oklch(var(--lightness-80) var(--brand-chroma-80) var(--brand-hue));
-  --brand-90: oklch(var(--lightness-90) var(--brand-chroma-90) var(--brand-hue));
-  --brand-95: oklch(var(--lightness-95) var(--brand-chroma-95) var(--brand-hue));
+  --brand-5: oklch(var(--lightness-5) var(--chroma-5) var(--brand-hue));
+  --brand-10: oklch(var(--lightness-10) var(--chroma-10) var(--brand-hue));
+  --brand-20: oklch(var(--lightness-20) var(--chroma-20) var(--brand-hue));
+  --brand-30: oklch(var(--lightness-30) var(--chroma-30) var(--brand-hue));
+  --brand-40: oklch(var(--lightness-40) var(--chroma-40) var(--brand-hue));
+  --brand-50: oklch(var(--lightness-50) var(--chroma-50) var(--brand-hue));
+  --brand-60: oklch(var(--lightness-60) var(--chroma-60) var(--brand-hue));
+  --brand-70: oklch(var(--lightness-70) var(--chroma-70) var(--brand-hue));
+  --brand-80: oklch(var(--lightness-80) var(--chroma-80) var(--brand-hue));
+  --brand-90: oklch(var(--lightness-90) var(--chroma-90) var(--brand-hue));
+  --brand-95: oklch(var(--lightness-95) var(--chroma-95) var(--brand-hue));
 
   /* Brand with Alpha */
   --alpha: 0.4;
-  --brand-5-alpha: oklch(var(--lightness-5) var(--brand-chroma-5) var(--brand-hue) / var(--alpha));
-  --brand-10-alpha: oklch(var(--lightness-10) var(--brand-chroma-10) var(--brand-hue) / var(--alpha));
-  --brand-20-alpha: oklch(var(--lightness-20) var(--brand-chroma-20) var(--brand-hue) / var(--alpha));
-  --brand-30-alpha: oklch(var(--lightness-30) var(--brand-chroma-30) var(--brand-hue) / var(--alpha));
-  --brand-40-alpha: oklch(var(--lightness-40) var(--brand-chroma-40) var(--brand-hue) / var(--alpha));
-  --brand-50-alpha: oklch(var(--lightness-50) var(--brand-chroma-50) var(--brand-hue) / var(--alpha));
-  --brand-60-alpha: oklch(var(--lightness-60) var(--brand-chroma-60) var(--brand-hue) / var(--alpha));
-  --brand-70-alpha: oklch(var(--lightness-70) var(--brand-chroma-70) var(--brand-hue) / var(--alpha));
-  --brand-80-alpha: oklch(var(--lightness-80) var(--brand-chroma-80) var(--brand-hue) / var(--alpha));
-  --brand-90-alpha: oklch(var(--lightness-90) var(--brand-chroma-90) var(--brand-hue) / var(--alpha));
-  --brand-95-alpha: oklch(var(--lightness-95) var(--brand-chroma-95) var(--brand-hue) / var(--alpha));
+  --brand-5-alpha: oklch(var(--lightness-5) var(--chroma-5) var(--brand-hue) / var(--alpha));
+  --brand-10-alpha: oklch(var(--lightness-10) var(--chroma-10) var(--brand-hue) / var(--alpha));
+  --brand-20-alpha: oklch(var(--lightness-20) var(--chroma-20) var(--brand-hue) / var(--alpha));
+  --brand-30-alpha: oklch(var(--lightness-30) var(--chroma-30) var(--brand-hue) / var(--alpha));
+  --brand-40-alpha: oklch(var(--lightness-40) var(--chroma-40) var(--brand-hue) / var(--alpha));
+  --brand-50-alpha: oklch(var(--lightness-50) var(--chroma-50) var(--brand-hue) / var(--alpha));
+  --brand-60-alpha: oklch(var(--lightness-60) var(--chroma-60) var(--brand-hue) / var(--alpha));
+  --brand-70-alpha: oklch(var(--lightness-70) var(--chroma-70) var(--brand-hue) / var(--alpha));
+  --brand-80-alpha: oklch(var(--lightness-80) var(--chroma-80) var(--brand-hue) / var(--alpha));
+  --brand-90-alpha: oklch(var(--lightness-90) var(--chroma-90) var(--brand-hue) / var(--alpha));
+  --brand-95-alpha: oklch(var(--lightness-95) var(--chroma-95) var(--brand-hue) / var(--alpha));
 
   /*------------------------------------
     Color – Neutral (Gray) Palette
   ------------------------------------*/
+  --white:white;
   --gray-5: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue));
   --gray-10: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue));
   --gray-20: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue));
@@ -261,7 +262,7 @@
   --background-page: light-dark(var(--gray-10), var(--gray-90));
   --background-primary: light-dark(var(--gray-5), var(--gray-80));
   --background-secondary: light-dark(var(--gray-10), var(--gray-70));
-  --background-brand: light-dark(var(--brand-20), var(--brand-70));
+  --background-brand: light-dark(var(--brand-20), var(--brand-60));
   --background-brand-hover: light-dark(var(--brand-30), var(--brand-80));
   --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
   --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-60));
@@ -275,14 +276,15 @@
   --foreground-secondary: light-dark(var(--gray-50), var(--gray-30));
   --foreground-tertiary: light-dark(var(--gray-50), var(--gray-40));
   --foreground-brand: light-dark(var(--brand-50), var(--brand-30));
+  --foreground-onBrand: light-dark(var(--brand-60), var(--brand-20));
   --foreground-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
   --foreground-accent: light-dark(var(--accent-90), var(--accent-20));
-  --foreground-onEmphasis: light-dark(var(--white), var(--white));
+  --foreground-onEmphasis: light-dark(white, white);
 
   /* Border Colors */
   --border-primary: light-dark(var(--gray-20), var(--gray-70));
   --border-primary-hover: light-dark(var(--gray-20), var(--gray-60));
-  --border-secondary: light-dark(var(--gray-20), var(--gray-60));
+  --border-secondary: light-dark(var(--gray-10), var(--gray-60));
   --border-brand: light-dark(var(--brand-10), var(--brand-60));
   --border-brand-hover: light-dark(var(--brand-20), var(--gray-60));
   --border-brand-secondary: light-dark(var(--brand-20), var(--brand-60));
@@ -297,7 +299,7 @@
   --background-page: light-dark(var(--gray-5), var(--gray-95));
   --background-primary: light-dark(var(--white), var(--gray-90));
   --background-secondary: light-dark(var(--white), var(--gray-80));
-  --background-brand: light-dark(var(--brand-10), var(--brand-70));
+  --background-brand: light-dark(var(--brand-60), var(--brand-60));
   --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
   --background-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
   --background-accent: light-dark(var(--accent-50), var(--accent-70));
@@ -305,6 +307,7 @@
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
   --foreground-brand: light-dark(var(--brand-60), var(--brand-30));
+  --foreground-onBrand: light-dark(var(--white), var(--white));
   --foreground-brand-secondary: light-dark(var(--brand-60), var(--brand-20));
   --foreground-accent: light-dark(var(--accent-5), var(--accent-5));
   --foreground-onEmphasis: light-dark(var(--white), var(--white));
