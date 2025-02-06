@@ -172,11 +172,11 @@
   --chroma-95: calc(4% * var(--chroma-base));
 
   /* Neutral / Gray */
-  --gray-hue: calc(var(--brand-hue) + 60);
+  --gray-hue: calc(var(--brand-hue) + 30);
   --gray-chroma: 1%;
 
   /* Accent */
-  --accent-hue: calc(var(--brand-hue) - 90);
+  --accent-hue: calc(var(--brand-hue) - 180);
   --accent-chroma: 20%;
 
   /*------------------------------------
@@ -260,7 +260,7 @@
 
   /* Background Colors */
   --background-page: light-dark(var(--gray-10), var(--gray-90));
-  --background-primary: light-dark(var(--gray-5), var(--gray-80));
+  --background-primary: light-dark(var(--white), var(--gray-80));
   --background-secondary: light-dark(var(--gray-10), var(--gray-70));
   --background-brand: light-dark(var(--brand-20), var(--brand-60));
   --background-brand-hover: light-dark(var(--brand-30), var(--brand-80));
@@ -289,7 +289,7 @@
   --border-brand-hover: light-dark(var(--brand-20), var(--gray-60));
   --border-brand-secondary: light-dark(var(--brand-20), var(--brand-60));
   --border-brand-emphasis: light-dark(var(--brand-60), var(--brand-70));
-  --border-accent: light-dark(var(--accent-20), var(--accent-60));
+  --border-accent: light-dark(var(--accent-10), var(--accent-60));
 }
 
 /*====================================

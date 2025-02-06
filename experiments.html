@@ -3,14 +3,14 @@
 
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-PLX2X0J846');
-</script>
+    gtag('config', 'G-PLX2X0J846');
+  </script>
   <title>Ben Jennings</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
@@ -43,6 +43,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
 </head>
 
@@ -73,7 +74,7 @@
             <span class="title">Resources</span>
           </a></li>
       </menu>
-     
+
       <site-settings></site-settings>
       <theme-slider class="quick-theme" data-hide-label></theme-slider>
     </nav>
@@ -81,22 +82,26 @@
     <main>
 
       <section class="page-title">
-        <div slot="badge" class="badge primary">
-          <span>experiment</span>
-          Experiments
-        </div>
-        <h1 class="heading">Some fun things</h1>
+       
+        <h1 class="heading">Just for fun</h1>
+        <h2 class="body lg secondary">Things that I just need a place to put them</h2>
 
       </section>
 
       <section class="page-items">
 
+        <div class="gradient"></div>
+
+        <model-viewer style="height: 100%; border: 1px solid var(--border-primary); background-color: var(--background-primary);" poster="designs/resources/Experiments/poster.webp" auto-rotate shadow-intensity="1"
+            rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m"
+            field-of-view="19.98deg" auto-rotate camera-controls tone-mapping="neutral" shadow-softness="0.78" shadow-softness="1"
+            src="/resources/Scaniverse 2024-05-08 120226.glb"></model-viewer>
 
         <simple-card title="Plant" version="box">
           <model-viewer slot="media" poster="designs/resources/Experiments/poster.webp" auto-rotate shadow-intensity="1"
             rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m"
             field-of-view="19.98deg" auto-rotate tone-mapping="neutral" shadow-softness="0.78" shadow-softness="1"
-            rc="./resources/ball.gltf"></model-viewer>
+            src="/resources/ball.gltf"></model-viewer>
 
           <div slot="post" class="post-body horizontal">
             <p class="full-row">I made this by simply taking a bunch of photos from every angle and processing it into
@@ -126,7 +131,7 @@
         <simple-card title="Spline" version="box">
 
           <spline-viewer slot="media" id="mySplineViewer"
-            url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode" events-target="global"></spline-viewer>
+            url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode"></spline-viewer>
 
           <div slot="post" class="post-body horizontal">
             <!-- Link the Spline viewer module -->

@@ -53,7 +53,7 @@ u {
   &.sm {
     font-weight: 450;
     font-size: var(--text-heading-sm-size);
-    line-height: var(--text-heading-sm-line-height);
+    line-height: 130%;
   }
 
   &.md {
