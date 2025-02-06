@@ -34,8 +34,8 @@ customElements.define(
       this.handleGlobalHueChange = this.handleGlobalHueChange.bind(this);
       this.handleStorageChange = this.handleStorageChange.bind(this);
 
-      // Create a debounced function to process slider input (100ms delay)
-      this.debouncedProcessInput = this.debounce(this.processInput.bind(this), 10);
+      // Create a debounced function to process slider input 
+      this.debouncedProcessInput = this.debounce(this.processInput.bind(this), 5);
     }
 
     // Utility: Debounce function to reduce rapid-fire events

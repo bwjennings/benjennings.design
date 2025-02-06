@@ -20,8 +20,8 @@ html::view-transition-group(*) {
 }
 
 
-::view-transition-group(nav1){
-  animation-duration: 100ms;
+::view-transition-group(mynav){
+  animation-duration: 500ms;
   
 }
 

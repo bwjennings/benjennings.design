@@ -118,7 +118,7 @@
     height: 150px;
     width: auto;
     align-self: stretch;
-    background: radial-gradient(45.28% 60.5% at 45.27% 44%, var(--background-brand-secondary) 0%, var(--background-brand) 98.88%);
+    background: var(--background-accent);
     flex-direction: column;
     justify-content: center;
     align-items: center;

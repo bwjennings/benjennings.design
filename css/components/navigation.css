@@ -64,7 +64,7 @@ view-transition-name: mynav;
     /* Remove padding */
     margin: 0;
     transform-style: preserve-3d;
-    view-transition-name: menu;
+   
 
     li {
       &:focus {
@@ -157,26 +157,26 @@ view-transition-name: mynav;
 
 .item1 {
   grid-area: item1;
-  view-transition-name: nav1;
+ 
 }
 .item2 {
   grid-area: item2;
-  view-transition-name: nav2;
+  
 }
 
 .item3 {
   grid-area: item3;
-  view-transition-name: nav3;
+  
 }
 
 .item4 {
   grid-area: item4;
-  view-transition-name: nav4;
+  
 }
 
 .item5 {
   grid-area: item5;
-  view-transition-name: nav5;
+
 }
 
 
@@ -216,6 +216,7 @@ view-transition-name: mynav;
 .icon {
   font-family: var(--icon-font-family, "Material Symbols Sharp");
   font-size: var(--icon-size-large);
+  aspect-ratio: 1 / 1;
   font-style: normal;
   font-weight: var(--icon-weight-large, 500);
   line-height: 100%;
@@ -310,6 +311,7 @@ theme-slider {
 
   .icon {
     font-size: var(--icon-size-medium);
+    
   }
 
   .nav-item-group {

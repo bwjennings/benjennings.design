@@ -170,7 +170,16 @@ main {
 
 .gradient {
   height: 100%;
+  min-height: 100px;
+  width: 100%;
   background: linear-gradient(to right in oklch decreasing hue, var(--background-brand) , var(--background-accent));
+
+  &.rgb{
+    background: linear-gradient(to right , var(--background-brand) , var(--background-accent));
+  }
+  &.hsl{
+    background: linear-gradient(to right in hsl decreasing hue, var(--background-brand) , var(--background-accent));
+  }
 }
 
 
