@@ -6,7 +6,7 @@ nav {
   background: inherit;
   height: 100dvh;
   overflow: hidden;
-view-transition-name: mynav;
+
 }
 
 
@@ -59,6 +59,7 @@ view-transition-name: mynav;
     grid-area: nav-group;
     list-style-type: none;
     justify-content: center;
+    background-color: var(--background-primary);
     /* Remove bullet points */
     padding: 0;
     /* Remove padding */

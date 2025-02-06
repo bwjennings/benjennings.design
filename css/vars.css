@@ -163,7 +163,7 @@
   ------------------------------------*/
   /* Brand */
   --brand-hue: 180;
-  --chroma-base: 1.5;
+  --chroma-base: 1.6;
   --chroma-5: calc(0% * var(--chroma-base));
   --chroma-10: calc(8% * var(--chroma-base));
   --chroma-20: calc(12% * var(--chroma-base));
@@ -266,7 +266,7 @@
   /* Background Colors */
   --background-page: light-dark(var(--gray-10), var(--gray-90));
   --background-primary: light-dark(var(--white), var(--gray-80));
-  --background-secondary: light-dark(var(--gray-10), var(--gray-70));
+  --background-secondary: light-dark(var(--gray-20), var(--gray-70));
   --background-brand: light-dark(var(--brand-20), var(--brand-60));
   --background-brand-hover: light-dark(var(--brand-30), var(--brand-80));
   --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));

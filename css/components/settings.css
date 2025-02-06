@@ -6,6 +6,7 @@
   -webkit-tap-highlight-color: transparent;
   height: fit-content;
   --theme-slider-size: 20px;
+  
 
 
 }
@@ -17,6 +18,7 @@
 
 button.secondary {
   width: 100%;
+  
 }
 
 dialog {
