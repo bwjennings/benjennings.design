@@ -50,7 +50,6 @@
 
     &:has(.icon) {
       padding: clamp(var(--spacing-large), 4cqw, var(--spacing-xx-large));
-
       background: var(--background-primary);
       align-items: start;
       justify-content: start;
@@ -129,15 +128,6 @@
     -webkit-user-select: none;
   }
 
-  .icon {
-    font-family: var(--icon-font-family);
-    font-variation-settings: 'FILL' var(--icon-fill);
-    font-size: var(--icon-size-xl);
-    opacity: 1;
-    line-height: 100%;
-    color: var(--foreground-brand);
-
-  }
 
   ::slotted([slot="icon-box"]) {
     font-variation-settings: 'GRAD' -200, 'FILL' var(--icon-fill);

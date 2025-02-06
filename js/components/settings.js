@@ -1,12 +1,7 @@
 // Define and cache the template
 const template = document.createElement('template');
 template.innerHTML = `
-  <style>
-    /* Critical inline CSS */
-    .icon {
-      font-family: var(--icon-font-family);
-    }
-  </style>
+  
   <!-- Preload non-critical CSS -->
   <link rel="preload" as="style" href="./css/index.css">
   <link rel="preload" as="style" href="css/components/settings.css">
@@ -14,7 +9,7 @@ template.innerHTML = `
   <link rel="stylesheet"  href="css/components/settings.css">
 
   <button class="secondary" id="openBtn" aria-label="Open Settings">
-    <div class="icon">tune</div>Settings
+    <div class="icon md">tune</div>Settings
   </button>
   
   <dialog id="dialog">
@@ -29,17 +24,17 @@ template.innerHTML = `
           <fieldset class="radio-buttons" autofocus>
             <label class="radio-button">
               <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
-              <span class="icon">routine</span>
+              <span class="icon md">routine</span>
               <span>System</span>
             </label>
             <label class="radio-button">
               <input type="radio" name="theme" value="light" aria-label="Light Theme">
-              <span class="icon">light_mode</span>
+              <span class="icon md">light_mode</span>
               <span>Light</span>
             </label>
             <label class="radio-button" style="border:transparent">
               <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
-              <span class="icon">dark_mode</span>
+              <span class="icon md">dark_mode</span>
               <span>Dark</span>
             </label>
           </fieldset>

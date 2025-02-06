@@ -26,11 +26,7 @@
     outline: 4px solid var(--border-primary);
   }
 
-  .icon {
-    font-family: var(--icon-font-family);
-    font-size: var(--icon-size-medium);
-    line-height: 100%;
-  }
+ 
 
   &.secondary {
     background-color: var(--background-secondary);

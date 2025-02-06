@@ -21,8 +21,10 @@ button.secondary {
 
 dialog {
   --dialog-width: 40dvw;
-  --theme-slider-size: 40px;
-  --theme-slider-outline: var(--background-page);
+  --theme-slider-size: 32px;
+  
+
+  
 
 }
 
@@ -85,12 +87,7 @@ dialog {
     font-size: 12px;
   }
 
-  .icon {
-    font-size: var(--icon-size-medium);
-    font-style: normal;
-    font-weight: var(--icon-weight-medium);
-    line-height: 100%;
-  }
+  
 
 
 }

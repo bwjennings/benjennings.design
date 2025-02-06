@@ -1,11 +1,13 @@
 /*====================================
    Font Faces
 ====================================*/
+/*
 @font-face {
   font-family: 'Roboto Flex';
   src: url(/resources/RobotoFlex-VariableFont_GRAD\,XOPQ\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,opsz\,slnt\,wdth\,wght.ttf);
-  font-display: block;
+  font-display: fallback;
 }
+*/
 
 @font-face {
   font-family: 'Material Symbols Sharp';
@@ -105,9 +107,12 @@
   /*------------------------------------
     Animation & Timing
   ------------------------------------*/
-  --amplitude: 1;       /* Initial strength */
-  --damping: 2;         /* Damping coefficient */
-  --frequency: 8;       /* Angular frequency */
+  --amplitude: 1;
+  /* Initial strength */
+  --damping: 2;
+  /* Damping coefficient */
+  --frequency: 8;
+  /* Angular frequency */
   --duration: 1s;
   --timing-duration: 800ms;
   --timing-decelerate: cubic-bezier(.23, .66, .09, 1);
@@ -211,7 +216,7 @@
   /*------------------------------------
     Color – Neutral (Gray) Palette
   ------------------------------------*/
-  --white:white;
+  --white: white;
   --gray-5: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue));
   --gray-10: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue));
   --gray-20: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue));
@@ -268,14 +273,14 @@
   --background-brand-emphasis: light-dark(var(--brand-50), var(--brand-60));
   --background-accent: light-dark(var(--accent-20), var(--accent-70));
   --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
-  --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-50));
+  --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-30));
   --background-backdrop: light-dark(var(--gray-20-alpha), var(--gray-50-alpha));
 
   /* Foreground Colors */
   --foreground-primary: light-dark(var(--gray-90), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-50), var(--gray-30));
   --foreground-tertiary: light-dark(var(--gray-50), var(--gray-40));
-  --foreground-brand: light-dark(var(--brand-50), var(--brand-30));
+  --foreground-brand: light-dark(var(--brand-40), var(--brand-30));
   --foreground-onBrand: light-dark(var(--brand-60), var(--brand-20));
   --foreground-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
   --foreground-accent: light-dark(var(--accent-90), var(--accent-20));
@@ -290,6 +295,10 @@
   --border-brand-secondary: light-dark(var(--brand-20), var(--brand-60));
   --border-brand-emphasis: light-dark(var(--brand-60), var(--brand-70));
   --border-accent: light-dark(var(--accent-10), var(--accent-60));
+
+
+  --theme-slider-size: 20px;
+  --theme-slider-outline: var(--background-primary);
 }
 
 /*====================================
@@ -303,23 +312,29 @@
   --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
   --background-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
   --background-accent: light-dark(var(--accent-50), var(--accent-70));
+  --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
+  --background-accent-emphasis: light-dark(var(--accent-60), var(--accent-50));
+  --background-backdrop: light-dark(var(--gray-80-alpha), var(--gray-30-alpha));
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
-  --foreground-brand: light-dark(var(--brand-60), var(--brand-30));
+  --foreground-brand: light-dark(var(--brand-60), var(--brand-20));
   --foreground-onBrand: light-dark(var(--white), var(--white));
   --foreground-brand-secondary: light-dark(var(--brand-60), var(--brand-20));
-  --foreground-accent: light-dark(var(--accent-5), var(--accent-5));
+  --foreground-accent: light-dark(var(--accent-10), var(--accent-5));
   --foreground-onEmphasis: light-dark(var(--white), var(--white));
 
   --border-primary: light-dark(var(--gray-40), var(--gray-40));
-  --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
+  --border-primary-hover: light-dark(var(--gray-20), var(--gray-70));
   --border-secondary: light-dark(var(--gray-30), var(--gray-50));
   --border-brand: light-dark(var(--brand-50), var(--brand-40));
   --border-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
   --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
   --border-brand-hover: light-dark(var(--brand-40), var(--brand-10));
   --border-accent: light-dark(var(--accent-50), var(--accent-40));
+
+
+  
 }
 
 /*====================================
@@ -330,20 +345,24 @@
     --background-page: light-dark(var(--gray-5), var(--gray-95));
     --background-primary: light-dark(var(--white), var(--gray-90));
     --background-secondary: light-dark(var(--white), var(--gray-80));
-    --background-brand: light-dark(var(--brand-10), var(--brand-70));
+    --background-brand: light-dark(var(--brand-60), var(--brand-60));
     --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
     --background-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
     --background-accent: light-dark(var(--accent-50), var(--accent-70));
+    --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
+    --background-accent-emphasis: light-dark(var(--accent-60), var(--accent-50));
+    --background-backdrop: light-dark(var(--gray-80-alpha), var(--gray-30-alpha));
 
     --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
     --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
-    --foreground-brand: light-dark(var(--brand-60), var(--brand-30));
+    --foreground-brand: light-dark(var(--brand-60), var(--brand-20));
+    --foreground-onBrand: light-dark(var(--white), var(--white));
     --foreground-brand-secondary: light-dark(var(--brand-60), var(--brand-20));
-    --foreground-accent: light-dark(var(--accent-5), var(--accent-5));
+    --foreground-accent: light-dark(var(--accent-10), var(--accent-5));
     --foreground-onEmphasis: light-dark(var(--white), var(--white));
 
     --border-primary: light-dark(var(--gray-40), var(--gray-40));
-    --border-primary-hover: light-dark(var(--gray-30), var(--gray-60));
+    --border-primary-hover: light-dark(var(--gray-20), var(--gray-70));
     --border-secondary: light-dark(var(--gray-30), var(--gray-50));
     --border-brand: light-dark(var(--brand-50), var(--brand-40));
     --border-brand-secondary: light-dark(var(--brand-30), var(--brand-60));

@@ -22,6 +22,7 @@ dialog {
   transition-timing-function: var(--timing-decelerate);
   transition-duration: var(--timing-duration);
   
+  
 
 
   footer {
@@ -126,6 +127,7 @@ dialog[open]::backdrop {
 
     form {
       flex-grow: 1;
+      height: fit-content;
     }
 
     .wrapper {

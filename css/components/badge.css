@@ -38,8 +38,15 @@
     }
 
     span {
+        display: flex;
+  align-items: center;
+  justify-content: center;
         font-family: var(--icon-font-family);
         font-size: var(--icon-size-small);
+        line-height: 100%;
+        font-weight: var(--icon-weight-small);
+        aspect-ratio: 1/1;
+        width: var(--icon-size-small);
         color: var(--background-accent-emphasis);
         font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
     }

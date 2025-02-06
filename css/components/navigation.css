@@ -105,11 +105,7 @@ view-transition-name: mynav;
   transition-property: background-color, font-variation-settings;
 
 
-  .icon {
-    transition: font-variation-settings 2s ease;
-
-   
-  }
+  
 
 
 
@@ -130,13 +126,6 @@ view-transition-name: mynav;
   anchor-name: --active;
   background: var(--background-brand);
   
-
-
-
-
-
-
-
   .icon {
     font-variation-settings:
       "FILL" 1,
@@ -213,18 +202,7 @@ view-transition-name: mynav;
   line-height: 100%;
 }
 
-.icon {
-  font-family: var(--icon-font-family, "Material Symbols Sharp");
-  font-size: var(--icon-size-large);
-  aspect-ratio: 1 / 1;
-  font-style: normal;
-  font-weight: var(--icon-weight-large, 500);
-  line-height: 100%;
-  font-variation-settings:
-    "FILL" var(--icon-fill),
-    "wght" 400,
-    "GRAD" var(--icon-grade);
-}
+
 
 
 
@@ -298,7 +276,7 @@ theme-slider {
     color: var(--foreground-brand);
   }
 
-  :is(.description, theme-slider) {
+  :is(.description, .quick-theme) {
     display: none;
   }
 
@@ -309,10 +287,7 @@ theme-slider {
     line-height: 120%;
   }
 
-  .icon {
-    font-size: var(--icon-size-medium);
-    
-  }
+
 
   .nav-item-group {
     gap: 24px;
