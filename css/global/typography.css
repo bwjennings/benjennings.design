@@ -35,7 +35,6 @@ u {
   margin: 0;
   font-family: var(--text-heading-font-family);
   font-size: var(--text-heading-lg-size);
-  font-style: normal;
   font-weight: 550;
   line-height: var(--text-heading-lg-line-height);
   text-wrap: balance;

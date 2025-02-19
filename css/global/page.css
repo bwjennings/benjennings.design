@@ -2,7 +2,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  outline-color: var(--border-primary-hover);
   outline-color: var(--border-brand);
   margin: 0;
   scrollbar-width: thin;
