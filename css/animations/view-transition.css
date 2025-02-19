@@ -1,6 +1,23 @@
-@view-transition {
+ @view-transition {
   navigation: auto;
 }
+
+simple-card {
+  cursor: pointer;
+ position: relative; 
+ view-transition-name:dialog;
+ 
+
+
+}
+simple-card:has(dialog[open]){
+ view-transition-name:none;
+ }
+ dialog[open]{
+               view-transition-name:dialog;
+
+ }
+/* Additional styles as needed */
 
 ::view-transition {
   --base-distance: -200px;
@@ -12,26 +29,12 @@
 menu{
   view-transition-name: nav;
 }
-site-settings{
-  view-transition-name: site-settings;
-}
 
-theme-slider{
-  view-transition-name: theme-slider;
-}
 
 html::view-transition-group(*) {
   animation-duration: var(--transition-duration) ;
 }
 
-
-is(
-  ::view-transition-group(nav),
-  ::view-transition-group(site-settings),
-  ::view-transition-group(theme-slider)){
-  animation:none;
-  
-}
 
 
 
@@ -193,5 +196,4 @@ is(
 
 
 }
-
 

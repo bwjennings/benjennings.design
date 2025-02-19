@@ -9,13 +9,13 @@ template.innerHTML = `
   <link rel="stylesheet"  href="css/components/settings.css">
 
   <button class="secondary" id="openBtn" aria-label="Open Settings">
-    <div class="icon md">tune</div>Settings
+    <div class="icon md">tune</div>Theme Settings
   </button>
   
   <dialog id="dialog">
     <form id="themeSelect">
       <header>
-        <h2 class="heading md" id="dialog-title">Settings</h2>
+        <h2 class="heading md" id="dialog-title">Theme Settings</h2>
         <button class="icon-button" value="cancel" formmethod="dialog">Close</button>
       </header>
       <div class="content">
