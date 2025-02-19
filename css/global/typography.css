@@ -118,6 +118,8 @@ u {
     "FILL" var(--icon-fill),
     "GRAD" var(--icon-grade);
   transition: font-variation-settings 2s ease;
+  font-optical-sizing: auto;
+
 
   &.xl{
     font-size: var(--icon-size-xl);

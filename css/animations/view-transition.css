@@ -129,7 +129,7 @@ html::view-transition-group(*) {
   0% {
     filter: blur(8px) ;
     opacity: 0;
-    transform: perspective(500px) translateZ(calc(var(--distance) * -0.2)) ;
+    transform: initial ;
   }
 
   20% {
@@ -153,7 +153,7 @@ html::view-transition-group(*) {
 
   0% {
     filter: blur(0px);
-    transform: perspective(500px) translateZ(0px) ;
+    transform: initial ;
   }
 
   90% {
@@ -164,7 +164,7 @@ html::view-transition-group(*) {
   100% {
     filter: blur(16px);
     opacity: 0;
-    transform: perspective(500px) translateZ(var(--distance)) ;
+    transform: perspective(500px) translateZ(var(--distance));
   }
 }
 
