@@ -1,19 +1,7 @@
-/*====================================
-   Font Faces
-====================================*/
-/*
-@font-face {
-  font-family: 'Roboto Flex';
-  src: url(/resources/RobotoFlex-VariableFont_GRAD\,XOPQ\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,opsz\,slnt\,wdth\,wght.ttf);
-  font-display: fallback;
-}
-*/
 
-@font-face {
-  font-family: 'Material Symbols Sharp';
-  src: url(/resources/Fonts/MaterialSymbolsSharp-VariableFont_FILL,GRAD,opsz,wght.ttf);
-  font-display: block;
-}
+
+
+
 
 /*====================================
    Root Variables
@@ -115,7 +103,7 @@
   /* Angular frequency */
   --duration: 1s;
   --timing-duration: 800ms;
-  --timing-decelerate: cubic-bezier(.23, .66, .09, 1);
+  --timing-decelerate: linear(0.00, 0.00600, 0.0550, 0.162, 0.265, 0.361, 0.447, 0.521, 0.583, 0.638, 0.687, 0.729, 0.764, 0.795, 0.823, 0.848, 0.867, 0.884, 0.899, 0.914, 0.924, 0.934, 0.943, 0.950, 0.957, 0.962, 0.967, 0.972, 0.976, 0.979, 0.982, 0.984, 0.986, 0.988, 0.990, 0.991, 0.992, 0.993, 0.994, 0.995, 0.996, 0.996, 0.997, 0.997, 0.997, 0.998, 0.998, 0.998, 0.999, 0.999, 0.999, 0.999, 1.00);
   --timing-bounce: linear(0,
       0.009,
       0.035 2.1%,

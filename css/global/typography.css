@@ -1,3 +1,4 @@
+
 h1,
 h2,
 h3,
@@ -35,7 +36,7 @@ u {
   font-family: var(--text-heading-font-family);
   font-size: var(--text-heading-lg-size);
   font-style: normal;
-  font-weight: var(--text-heading-weight);
+  font-weight: 550;
   line-height: var(--text-heading-lg-line-height);
   text-wrap: balance;
   width: fit-content;

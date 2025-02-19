@@ -19,7 +19,7 @@ dialog {
     overlay 600ms allow-discrete,
     display 600ms allow-discrete;
   transition-timing-function: var(--timing-decelerate);
-  transition-duration: 500ms;
+  transition-duration: 700ms;
   
   
 
@@ -77,7 +77,7 @@ dialog[open]::backdrop {
 
 @starting-style {
   dialog[open] {
-    animation: none;
+   
     transform: perspective(1000px) translateZ(-200px) translateY(0dvh) ;
     opacity: 0;
     filter: blur(24px);
@@ -118,12 +118,13 @@ dialog[open]::backdrop {
     padding: 0px;
     width: 100dvw;
     max-width: none;
-    transform: perspective(500px) translateZ(0px) translateY(100dvh);
+    transform: translateY(100dvh);
     min-height: 50dvh;
     height: fit-content;
     min-width: 0px;
     border: 0px;
     border-top: 1px solid var(--border-primary);
+    transition-duration: 600ms;
     ;
 
     form {
@@ -154,6 +155,29 @@ dialog[open]::backdrop {
       }
     }
   }
+  dialog::backdrop {
+    backdrop-filter: initial;
+    transition-timing-function: var(--timing-decelerate);
+    transition-duration: 500ms;
+  
+    background-color: var(--background-backdrop);
+  }
+  dialog[open]::backdrop {
+    backdrop-filter: blur(8px);
+    transition-timing-function: var(--timing-decelerate);
+    transition-duration: 500ms;
+  
+    background-color: var(--background-backdrop);
+  }
+  @starting-style {
+    dialog[open]::backdrop {
+      backdrop-filter: initial;
+      background-color: transparent;
+      transition-duration: 500ms;
+  
+    }
+  }
+  
 
   @starting-style {
     dialog[open] {

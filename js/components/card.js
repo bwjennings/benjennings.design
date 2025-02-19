@@ -26,7 +26,7 @@ customElements.define(
             <div class="wrapper">
               <header>
                 <h2 class="heading md" id="dialog-title"></h2>
-                <button class="icon-button" id="closeBtn1" aria-label="Close dialog">Close</button>
+                <button class="icon-button" id="closeBtn1" aria-label="Close dialog">close</button>
               </header>
               <slot class="lg body post" name="post"></slot>
               <footer>

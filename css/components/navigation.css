@@ -81,10 +81,6 @@ nav {
   }
 }
 
-.divider {
-  border-top: 1px solid var(--border-primary);
-  grid-area: divider;
-}
 
 .nav-card {
   box-sizing: border-box;
@@ -135,9 +131,7 @@ nav {
   
 }
 
-::view-transition-group(active-box){
-  transform:;
-}
+
 
 .active-box{
   display: none;
@@ -171,19 +165,6 @@ nav {
 
 
 
-
-
-.title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  align-items: flex-start;
-  justify-content: flex-end;
-  position: relative;
-  font-family: var(--text-font-family);
-  transition: all 100ms;
-}
-
 .title,
 .description {
   text-align: left;
@@ -196,12 +177,7 @@ nav {
   line-height: var(--text-body-lg-line-height);
 }
 
-.description {
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-}
+
 
 
 

@@ -43,7 +43,7 @@
     }
     &:active {
       outline-width: 16px;
-      transition: outline 300ms var(--timing-bounce);
+      transition: outline 300ms var(--timing-decelerate);
       perspective: 100px;
       transform: scaleZ(20%);
     }

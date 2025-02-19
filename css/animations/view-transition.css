@@ -3,30 +3,18 @@
 }
 
 simple-card {
-  cursor: pointer;
- position: relative; 
  view-transition-name:dialog;
- 
-
-
 }
-simple-card:has(dialog[open]){
- view-transition-name:none;
- }
- dialog[open]{
-               view-transition-name:dialog;
 
- }
-/* Additional styles as needed */
 
 ::view-transition {
-  --base-distance: -200px;
+  --base-distance: -100px;
   --transition-duration: 1s;
 
 
 }
 
-menu{
+nav{
   view-transition-name: nav;
 }
 
@@ -118,7 +106,7 @@ html::view-transition-group(*) {
 ::view-transition-new(item4),
 ::view-transition-new(item5),
 ::view-transition-new(item6) {
-  transform-origin: 50% 50% ;
+  transform-origin: 50% 0% ;
   animation: items-in var(--timing-decelerate) var(--transition-duration);
 }
 
@@ -128,7 +116,7 @@ html::view-transition-group(*) {
 ::view-transition-old(item4),
 ::view-transition-old(item5),
 ::view-transition-old(item6) {
-  transform-origin: 50% 50% ;
+  transform-origin: 50% 0% ;
 
   animation: items-out var(--timing-decelerate) var(--transition-duration);
 }
@@ -139,21 +127,21 @@ html::view-transition-group(*) {
 
 @keyframes items-in {
   0% {
-    filter: blur(16px);
+    filter: blur(8px) ;
     opacity: 0;
-    transform: perspective(100dvw) translateZ(calc(var(--distance) * -0.2)) ;
+    transform: perspective(500px) translateZ(calc(var(--distance) * -0.2)) ;
   }
 
   20% {
-    filter: blur(16px);
+    filter: blur(8px) ;
     opacity: 0;
-    transform: perspective(100dvw) translateZ(calc(var(--distance) * -0.2)) ;
+    transform: perspective(500px) translateZ(calc(var(--distance) * -0.2)) ;
   }
 
   100% {
     filter: blur(0px);
     opacity: 1;
-    transform: perspective(100dvw) translateZ(0px) ;
+    transform: perspective(500px) translateZ(0px) ;
 
 
 
@@ -165,18 +153,18 @@ html::view-transition-group(*) {
 
   0% {
     filter: blur(0px);
-    transform: perspective(100dvw) translateZ(0px) ;
+    transform: perspective(500px) translateZ(0px) ;
   }
 
   90% {
     filter: blur(16px);
-    transform: perspective(100dvw) translateZ(var(--distance)) ;
+    transform: perspective(500px) translateZ(var(--distance)) ;
   }
 
   100% {
     filter: blur(16px);
     opacity: 0;
-    transform: perspective(100dvw) translateZ(var(--distance)) ;
+    transform: perspective(500px) translateZ(var(--distance)) ;
   }
 }
 
@@ -196,4 +184,5 @@ html::view-transition-group(*) {
 
 
 }
+
 

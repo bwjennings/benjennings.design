@@ -16,7 +16,7 @@ template.innerHTML = `
     <form id="themeSelect">
       <header>
         <h2 class="heading md" id="dialog-title">Theme Settings</h2>
-        <button class="icon-button" value="cancel" formmethod="dialog">Close</button>
+        <button class="icon-button" value="cancel" formmethod="dialog">close</button>
       </header>
       <div class="content">
         <label id="colorMode">
