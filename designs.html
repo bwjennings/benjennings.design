@@ -25,7 +25,7 @@
 
 
   <link rel="modulepreload" href="js/components/index.js" />
-  <script type="module" src="js/components/index.js"></script>
+  <script type="module" src="js/components/index.js" blocking="render"></script>
   <link href="./css/vars.css" rel="stylesheet" />
   <link href="./css/index.css" rel="stylesheet" />
 
@@ -34,12 +34,16 @@
   <link rel="expect" href="fundamentals.html" blocking="render" />
   <link rel="expect" href="experiments.html" blocking="render" />
   <link rel="expect" href="resources.html" blocking="render" />
+  <link rel="expect" href="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" render="blocking"></script>
+
 
   <script type="speculationrules">
     {
       "prerender": [
         {
-          "urls": ["index.html", "designs.html","fundamentals.html","experiments.html","resources.html"]
+          "urls": ["index.html", "designs.html","fundamentals.html","experiments.html","resources.html"],
+          "eagerness": "eager",
+          "referrer_policy": "same-origin"
         }
       ]
     }

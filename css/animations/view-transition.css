@@ -14,13 +14,12 @@ simple-card {
 
 }
 
-nav{
-  view-transition-name: nav;
-}
+
 
 
 html::view-transition-group(*) {
-  animation-duration: var(--transition-duration) ;
+  animation-duration: 500ms ;
+  animation:none;
 }
 
 
@@ -129,7 +128,7 @@ html::view-transition-group(*) {
   0% {
     filter: blur(8px) ;
     opacity: 0;
-    transform: initial ;
+    transform: perspective(500px) translateZ(calc(var(--distance) * -0.2)) ;
   }
 
   20% {
@@ -153,7 +152,7 @@ html::view-transition-group(*) {
 
   0% {
     filter: blur(0px);
-    transform: initial ;
+    transform: perspective(500px) translateZ(0px) ;
   }
 
   90% {
@@ -164,7 +163,7 @@ html::view-transition-group(*) {
   100% {
     filter: blur(16px);
     opacity: 0;
-    transform: perspective(500px) translateZ(var(--distance));
+    transform: perspective(500px) translateZ(var(--distance)) ;
   }
 }
 

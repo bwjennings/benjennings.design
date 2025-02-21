@@ -23,6 +23,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
   <script src="./js/index.js"></script>
 
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" render="blocking"></script>
 
 
   <link rel="modulepreload" href="js/components/index.js" />
@@ -39,7 +40,9 @@
     {
       "prerender": [
         {
-          "urls": ["index.html", "designs.html","fundamentals.html","experiments.html","resources.html"]
+          "urls": ["index.html", "designs.html","fundamentals.html","experiments.html","resources.html"],
+          "eagerness": "eager",
+          "referrer_policy": "same-origin"
         }
       ]
     }
@@ -50,7 +53,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" render="blocking"></script>
 
 </head>
 
@@ -162,7 +165,6 @@
             <!-- Link the Spline viewer module -->
             <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
 
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
 
             <spline-viewer id="mySplineViewer" url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode"
               events-target="global" background="rgba(0,0,0,0.1)"></spline-viewer>

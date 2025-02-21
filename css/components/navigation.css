@@ -36,10 +36,10 @@ nav {
   display: grid;
   padding: var(--spacing-x-large);
   grid-template-columns: 1fr;
-  grid-template-rows: 80px 1fr minmax(20px, 40px) auto;
+  grid-template-rows: 1fr minmax(20px, 40px) auto;
   gap: var(--spacing-large);
   grid-template-areas:
-    "title "
+    
     "nav-group"
     "theme-slider"
     "settings"
