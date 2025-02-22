@@ -96,13 +96,6 @@ main {
 
 
 
-iframe{
-  height: clamp(300px, 30dvh, 400px);
-  width: 100%;
- 
-  border: none;
-}
-
 
 
 

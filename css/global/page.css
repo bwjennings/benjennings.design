@@ -161,6 +161,24 @@ main {
   }
 }
 
+figure{
+
+  img{
+    max-height: 50dvh;
+    object-fit: contain;
+  }
+
+  figcaption{
+    text-align: center;
+    font-size: var(--text-body-md-size);
+    color: var(--foreground-secondary);
+    margin-block: var(--spacing-small);
+    
+  
+  }
+}
+
+
 
 
 .gradient {

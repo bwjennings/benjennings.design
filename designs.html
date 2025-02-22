@@ -3,20 +3,24 @@
 
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-PLX2X0J846');
+    gtag('config', 'G-PLX2X0J846');
 
- 
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance,account_tree,close,cloud,construction,dark_mode,demography,deployed_code,design_services,developer_board,experiment,folder_open,integration_instructions,light_mode,link,psychology,psychology_alt,routine,tune,view_in_ar,waving_hand,web&display=block" rel="stylesheet">
+
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance,account_tree,close,cloud,construction,dark_mode,demography,deployed_code,design_services,developer_board,experiment,folder_open,integration_instructions,light_mode,link,psychology,psychology_alt,routine,tune,view_in_ar,waving_hand,web&display=block"
+    rel="stylesheet">
 
   <title>Ben Jennings</title>
   <meta charset="UTF-8">
@@ -34,7 +38,9 @@
   <link rel="expect" href="fundamentals.html" blocking="render" />
   <link rel="expect" href="experiments.html" blocking="render" />
   <link rel="expect" href="resources.html" blocking="render" />
-  <link rel="expect" href="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" render="blocking"></script>
+  <link rel="expect" href="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    render="blocking">
+  </script>
 
 
   <script type="speculationrules">
@@ -84,7 +90,7 @@
             <span class="title">Resources</span>
           </a></li>
       </menu>
-     
+
       <site-settings></site-settings>
       <theme-slider class="quick-theme" data-hide-label></theme-slider>
     </nav>
@@ -92,7 +98,7 @@
     <main>
 
       <section class="page-title">
-        
+
         <h1 class="heading">Designs</h1>
         <h2 class="body lg secondary">These are some problems that I helped to solve</h2>
 
@@ -110,7 +116,7 @@
             <span>cloud</span>
             Salesforce
           </div>
-          
+
           <div slot="post">
 
             <p>The existing method for loan officers to create and manage loans required them to use several individual
@@ -140,9 +146,9 @@
 
 
         <simple-card version="box" title="It's hard to know a neighborhood" badge="Large System Design">
-         <img slot="media" src="resources/Designs/dwellane/thumbnail.png">
+          <img slot="media" src="resources/Designs/dwellane/thumbnail.png">
 
-        
+
 
           <div slot="badge" class="badge">
             <span>design_services</span>
@@ -169,29 +175,75 @@
             Design System
           </div>
           <div slot="post">
-            <p>At the very beginning I created a system of icons to represent the different concepts in the product.
+            <img  src="resources/Designs/pls/thumbnail.png">
+            <section>
+              <h2 class="heading sm">Introduction</h2>
+              <p>Police Legal Sciences has provided training for law enforcement for 25 years. They began with legal
+                update training in only a few states and have since expanded their offerings and reach across North
+                America.</p>
+            </section>
+
+            <section>
+              <h2 class="heading sm">The problem</h2>
+              <p>With their growth, managing and distributing content became increasingly challenging. They needed a
+                more scalable solution to make management easier while also giving agencies more options, like adjusting
+                content to fit their needs.</p>
+                <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="600px" src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=23175-6870&embed-host=share" allowfullscreen></iframe>
+            </section>
+            <section>
+              <h2 class="heading sm">Finding the right amount of complexity</h2>
+              <p>This system serves users with different levels of responsibility:
+
+              <ul>
+                <li>Global Admins: Manage the entire system.</li>
+                <li>Agency Admins: Oversee their own users.</li>
+                <li>Individuals: Simply consume content.</li>
+              </ul>
+
+              As responsibilities decrease, the interface adjusts, providing robust controls for admins while remaining
+              simple and intuitive for end users.</p>
+            </section>
+
+            <section>
+            <h3 class="heading sm">Example of necessary complexity</h3>
+            <p>In this example, a lesson is being created at a global level and these details will appear the same for
+              everyone on the platform. </p>
+            <p>That same lesson needs to be customized for an individual agency, allowing changes to due dates, assigned
+              user groups, and other details.
             </p>
-            <p>agencies across the country. A major problem to design for was
-              the ability to group
-              lessons
-              into a multiple courses and then assign that course to individual users or groups of users
+            <p>To visually distinguish an instance we introduced this modal pattern to represent an instance of content.
             </p>
+
+            <figure>
+              <img src="resources/Designs/pls/Nav Item/image 17.png">
+              <figcaption>A global admin changing a lesson inside the Buffalo Police dept.</figcaption>
+            </figure>
+
+            <p> From the agency admin’s perspective, the complexity is reduced since they only manage a single version
+              of the lesson.
+            </p>
+
+            <figure>
+              <img src="resources/Designs/pls/Nav Item/image 17.png">
+              <figcaption>A global admin changing a lesson inside the Buffalo Police dept.</figcaption>
+            </figure>
+          </section>
 
           </div>
         </simple-card>
 
 
-        
+
 
         <simple-card version="box" title="Graduates need a cap and gown">
           <img slot="media" src="resources/Designs/herff-jones/thumbnail.png">
-          
+
           <div slot="badge" class="badge">
             Design System
           </div>
 
           <div slot="badge" class="badge">
-            CMS 
+            CMS
           </div>
           <div slot="post">
             {Herff Jones designs go here}
