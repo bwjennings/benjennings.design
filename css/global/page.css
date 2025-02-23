@@ -35,6 +35,10 @@ select {
   outline: 4px solid var(--border-primary-hover);
 }
 
+:focus {
+  outline: 4px solid var(--border-primary-hover);
+}
+
 ::selection {
   background: var(--background-accent-secondary);
   color: var(--foreground-accent);

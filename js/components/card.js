@@ -28,7 +28,7 @@ customElements.define(
                 <h2 class="heading md" id="dialog-title"></h2>
                 <button class="icon-button" id="closeBtn1" aria-label="Close dialog">close</button>
               </header>
-              <slot class="lg body post" name="post"></slot>
+              <slot class="lg body post" tabindex="0" name="post"></slot>
               <footer>
                 <button autofocus id="closeBtn2">Close</button>
               </footer>
@@ -59,6 +59,9 @@ customElements.define(
     }
 
     connectedCallback() {
+      this.tabIndex = 0;
+  this.setAttribute("role", "button");
+  
       // Cache DOM references
       this._cardContainer = this.shadowRoot.querySelector(".card-container");
       this._dialog = this.shadowRoot.querySelector("dialog");
@@ -108,7 +111,7 @@ customElements.define(
         )
       );
     }
-
+  
     // Getters and setters
     get title() {
       return this._title;
