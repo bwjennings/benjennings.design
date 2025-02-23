@@ -6,6 +6,16 @@ simple-card {
  view-transition-name:dialog;
 }
 
+nav{
+  view-transition-name:nav;
+
+}
+
+site-settings{
+  view-transition-name:settings;
+
+}
+
 
 ::view-transition {
   --base-distance: -100px;
@@ -18,8 +28,7 @@ simple-card {
 
 
 html::view-transition-group(*) {
-  animation-duration: 500ms ;
-  animation:none;
+  animation-duration: 1000ms ;
 }
 
 

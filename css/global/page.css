@@ -35,9 +35,7 @@ select {
   outline: 4px solid var(--border-primary-hover);
 }
 
-:focus {
-  outline: 4px solid var(--border-primary-hover);
-}
+
 
 ::selection {
   background: var(--background-accent-secondary);
@@ -202,23 +200,22 @@ figure{
 
 .welcome {
   display: grid;
-  grid-template-rows: 30cqh auto auto auto;
   align-self: center;
   align-items: start;
   text-align: start;
-  gap: var(--spacing-large);
-  padding: var(--spacing-x-large);
-  padding-block: 40cqh;
+  gap: 5cqh;
+  padding-top: 30dvh;
   transform-style: preserve-3d;
   background-color: var(--background-page);
   scroll-snap-align: top;
   z-index: 2;
   color: var(--foreground-primary);
   width: 100%;
+  max-width: 700px;
   top: 0px;
   height: fit-content;
 
-  max-width: 1200px;
+  
 
   .body {
     max-width: 50ch;

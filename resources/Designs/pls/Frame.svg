@@ -1,0 +1,12 @@
+<svg width="208" height="275" viewBox="0 0 208 275" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="208" height="275" fill="#EBF3FA" style="fill:#EBF3FA;fill:color(display-p3 0.9216 0.9529 0.9804);fill-opacity:1;"/>
+<g id="Dwellane">
+<path d="M-3964 -815C-3964 -816.104 -3963.1 -817 -3962 -817H1381C1382.1 -817 1383 -816.105 1383 -815V1910C1383 1911.1 1382.1 1912 1381 1912H-3962C-3963.1 1912 -3964 1911.1 -3964 1910V-815Z" fill="#F2FAFF" style="fill:#F2FAFF;fill:color(display-p3 0.9490 0.9804 1.0000);fill-opacity:1;"/>
+<path d="M-3962 -816H1381V-818H-3962V-816ZM1382 -815V1910H1384V-815H1382ZM1381 1911H-3962V1913H1381V1911ZM-3963 1910V-815H-3965V1910H-3963ZM-3962 1911C-3962.55 1911 -3963 1910.55 -3963 1910H-3965C-3965 1911.66 -3963.66 1913 -3962 1913V1911ZM1382 1910C1382 1910.55 1381.55 1911 1381 1911V1913C1382.66 1913 1384 1911.66 1384 1910H1382ZM1381 -816C1381.55 -816 1382 -815.552 1382 -815H1384C1384 -816.657 1382.66 -818 1381 -818V-816ZM-3962 -818C-3963.66 -818 -3965 -816.657 -3965 -815H-3963C-3963 -815.552 -3962.55 -816 -3962 -816V-818Z" fill="white" fill-opacity="0.1" style="fill:white;fill-opacity:0.1;"/>
+<g id="Frame">
+<path id="mygreen" d="M133 59H0V192H133V59Z" fill="#3E9658" style="fill:#3E9658;fill:color(display-p3 0.2438 0.5867 0.3467);fill-opacity:1;"/>
+<path id="myblue" d="M208 0H75V133H208V0Z" fill="#2A64AA" style="fill:#2A64AA;fill:color(display-p3 0.1645 0.3904 0.6664);fill-opacity:1;"/>
+<path id="red" d="M174 178H86V275H174V178Z" fill="#E32020" style="fill:#E32020;fill:color(display-p3 0.8917 0.1272 0.1272);fill-opacity:1;"/>
+</g>
+</g>
+</svg>

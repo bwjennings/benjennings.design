@@ -36,10 +36,11 @@ nav {
   display: grid;
   padding: var(--spacing-x-large);
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr minmax(20px, 40px) auto;
+  grid-template-rows: auto 1fr minmax(20px, 40px) auto;
   gap: var(--spacing-large);
   grid-template-areas:
-    
+  "site-title"
+
     "nav-group"
     "theme-slider"
     "settings"
@@ -197,7 +198,7 @@ theme-slider {
 
 .site-title {
   font-size: var(--text-heading-sm-size);
-  font-weight: var(--text-heading-weight);
+  font-weight: var(--text-body-weight);
   font-variation-settings:
     'GRAD' 150;
 
@@ -241,10 +242,15 @@ theme-slider {
     height: fit-content;
     -webkit-tap-highlight-color: transparent;
 
-    /* for removing the highlight */
+    
     &:hover:not(.active) {
       background-color: transparent;
+      outline:initial;
       transition-property: background-color;
+    }
+
+    .icon{
+      font-size: var(--icon-size-medium);
     }
   }
 

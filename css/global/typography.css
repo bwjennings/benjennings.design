@@ -41,7 +41,7 @@ u {
   width: fit-content;
   max-width: 40ch;
   font-variation-settings:
-    'wdth' var(--text-heading-width),
+    'wdth' 115,
     'GRAD' var(--text-heading-grade),
     'XOPQ' 80,
     'YOPQ' 80;
