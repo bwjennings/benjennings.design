@@ -1,239 +1,292 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+      gtag("config", "G-PLX2X0J846");
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance,account_tree,close,cloud,construction,dark_mode,demography,deployed_code,design_services,developer_board,experiment,folder_open,integration_instructions,light_mode,link,psychology,psychology_alt,routine,tune,view_in_ar,waving_hand,web&display=block"
+      rel="stylesheet"
+    />
+    <title>Ben Jennings</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1, viewport-fit=cover"
+    />
+    <script src="./js/index.js"></script>
 
-    gtag('config', 'G-PLX2X0J846');
+    <link rel="modulepreload" href="js/components/index.js" />
+    <script type="module" src="js/components/index.js"></script>
+    <link href="./css/vars.css" rel="stylesheet" />
+    <link href="./css/index.css" rel="stylesheet" />
 
-   
- 
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance,account_tree,close,cloud,construction,dark_mode,demography,deployed_code,design_services,developer_board,experiment,folder_open,integration_instructions,light_mode,link,psychology,psychology_alt,routine,tune,view_in_ar,waving_hand,web&display=block" rel="stylesheet">
-  <title>Ben Jennings</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <script src="./js/index.js"></script>
-
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" render="blocking"></script>
-
-
-  <link rel="modulepreload" href="js/components/index.js" />
-  <script type="module" src="js/components/index.js"></script>
-  <link href="./css/vars.css" rel="stylesheet" />
-  <link href="./css/index.css" rel="stylesheet" />
-
-  <!-- Prefetch Links -->
-  <link rel="expect" href="index.html" blocking="render" />
-  <link rel="expect" href="fundamentals.html" blocking="render" />
-  <link rel="expect" href="designs.html" blocking="render" />
-  <link rel="expect" href="resources.html" blocking="render" />
-  <script type="speculationrules">
-    {
-      "prerender": [
-        {
-          "urls": ["index.html", "designs.html","fundamentals.html","experiments.html","resources.html"],
-          "eagerness": "eager",
-          "referrer_policy": "same-origin"
-        }
-      ]
-    }
+    <!-- Prefetch Links -->
+    <link rel="expect" href="index.html" blocking="render" />
+    <link rel="expect" href="fundamentals.html" blocking="render" />
+    <link rel="expect" href="designs.html" blocking="render" />
+    <link rel="expect" href="resources.html" blocking="render" />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "urls": [
+              "index.html",
+              "designs.html",
+              "fundamentals.html",
+              "experiments.html",
+              "resources.html"
+            ],
+            "eagerness": "eager",
+            "referrer_policy": "same-origin"
+          }
+        ]
+      }
     </script>
 
-  <!-- Icons and Manifest -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" render="blocking"></script>
+    <!-- Icons and Manifest -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+      render="blocking"
+    ></script>
+  </head>
 
-</head>
+  <body>
+    <div id="page-container" class="page-container">
+      <nav class="sidebar">
+        <h2 class="site-title"><a href="index.html">Ben Jennings</a></h2>
+        <div class="active-box"></div>
+        <menu>
+          <li>
+            <a class="nav-card" href="index.html">
+              <span class="icon" role="img" aria-hidden="true"
+                >waving_hand</span
+              >
+              <span class="title">Home</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-card item2" href="fundamentals.html">
+              <span class="icon" role="img" aria-hidden="true">psychology</span>
+              <span class="title">Fundamentals</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-card item3" href="designs.html">
+              <span class="icon" role="img" aria-hidden="true">web</span>
+              <span class="title">Designs</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-card item4 active" href="experiments.html">
+              <span class="icon" role="img" aria-hidden="true">experiment</span>
+              <span class="title">Experiments</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-card item5" href="resources.html">
+              <span class="icon" role="img" aria-hidden="true"
+                >folder_open</span
+              >
+              <span class="title">Resources</span>
+            </a>
+          </li>
+        </menu>
 
-<body>
-  <div id="page-container" class="page-container">
-    <nav class="sidebar">
-      <h2 class="site-title"><a href="index.html">Ben Jennings</a></h2>      <div class="active-box"></div>
-      <menu>
-        <li><a class="nav-card " href="index.html">
-            <span class="icon" role="img" aria-hidden="true">waving_hand</span>
-            <span class="title">Home</span>
-          </a></li>
-        <li><a class="nav-card item2" href="fundamentals.html">
-            <span class="icon" role="img" aria-hidden="true">psychology</span>
-            <span class="title">Fundamentals</span>
-          </a></li>
-        <li><a class="nav-card item3 " href="designs.html">
-            <span class="icon" role="img" aria-hidden="true">web</span>
-            <span class="title">Designs</span>
-          </a></li>
-        <li><a class="nav-card item4 active" href="experiments.html">
-            <span class="icon" role="img" aria-hidden="true">experiment</span>
-            <span class="title">Experiments</span>
-          </a></li>
-        <li><a class="nav-card item5" href="resources.html">
-            <span class="icon" role="img" aria-hidden="true">folder_open</span>
-            <span class="title">Resources</span>
-          </a></li>
-      </menu>
+        <site-settings></site-settings>
+        <theme-slider class="quick-theme" data-hide-label></theme-slider>
+      </nav>
 
-      <site-settings></site-settings>
-      <theme-slider class="quick-theme" data-hide-label></theme-slider>
-    </nav>
+      <main>
+        <header class="page-title">
+          <h1 class="heading">Experiments</h1>
+          <p class="body lg secondary">A place that I can test new ideas</p>
+        </header>
 
-    <main>
+        <div class="page-items">
+          <simple-card title="Gradients" version="box">
+            <div slot="media" class="gradient"></div>
 
-      <hgroup class="page-title">
-        <h1 class="heading">Experiments</h1>
-        <h2 class="body lg secondary">A place that I can test new ideas</h2>
-      </hgroup>
+            <div slot="post" class="post-body">
+              <div class="gradient"></div>
+              <div class="gradient rgb"></div>
+              <div class="gradient hsl"></div>
+              <div>
+                <theme-slider
+                  class="quick-theme"
+                  data-hide-label
+                ></theme-slider>
+              </div>
+            </div>
+          </simple-card>
 
-      <section class="page-items">
+          <model-viewer
+            style="
+              height: 100%;
+              border: 1px solid var(--border-primary);
+              background-color: var(--background-primary);
+            "
+            poster="designs/resources/Experiments/poster.webp"
+            auto-rotate
+            rotation-per-second="-20deg"
+            shadow-intensity="0.77"
+            exposure="1.51"
+            camera-orbit="180.3deg 82.74deg 1.091m"
+            field-of-view="19.98deg"
+            camera-controls
+            tone-mapping="neutral"
+            shadow-softness="0.78"
+            shadow-softness="1"
+            src="/resources/Scaniverse 2024-05-08 120226.glb"
+          ></model-viewer>
 
-        
+          <simple-card title="Plant" version="box">
+            <model-viewer
+              slot="media"
+              poster="designs/resources/Experiments/poster.webp"
+              rotation-per-second="-20deg"
+              shadow-intensity="0.77"
+              exposure="1.51"
+              camera-orbit="180.3deg 82.74deg 1.091m"
+              field-of-view="19.98deg"
+              auto-rotate
+              tone-mapping="neutral"
+              shadow-softness="0.78"
+              shadow-softness="1"
+              src="/resources/ball.gltf"
+            ></model-viewer>
 
-        <simple-card title="Gradients" version="box">
-          <div slot="media" class="gradient"></div>
-          
-          <div slot="post" class="post-body">
-            
-  
-            
-            <div class="gradient"></div>
-            <div class="gradient rgb"></div>
-            <div class="gradient hsl"></div>
-            <div><theme-slider class="quick-theme" data-hide-label></theme-slider></div>
+            <div slot="post" class="post-body horizontal">
+              <p class="full-row">
+                I made this by simply taking a bunch of photos from every angle
+                and processing it into 3d object
+              </p>
 
-
-          </div>
-
-        </simple-card>
-
-
-        <model-viewer style="height: 100%; border: 1px solid var(--border-primary); background-color: var(--background-primary);" poster="designs/resources/Experiments/poster.webp" auto-rotate shadow-intensity="1"
-            rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m"
-            field-of-view="19.98deg" auto-rotate camera-controls tone-mapping="neutral" shadow-softness="0.78" shadow-softness="1"
-            src="/resources/Scaniverse 2024-05-08 120226.glb"></model-viewer>
-
-        <simple-card title="Plant" version="box">
-          <model-viewer slot="media" poster="designs/resources/Experiments/poster.webp" auto-rotate shadow-intensity="1"
-            rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m"
-            field-of-view="19.98deg" auto-rotate tone-mapping="neutral" shadow-softness="0.78" shadow-softness="1"
-            src="/resources/ball.gltf"></model-viewer>
-
-          <div slot="post" class="post-body horizontal">
-            <p class="full-row">I made this by simply taking a bunch of photos from every angle and processing it into
-              3d
-              object </p>
-
-
-            <model-viewer class="full-row model" width="100%" height="100%" disable-zoom camera-controls auto-rotate
-              shadow-intensity="1" rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51"
-              camera-orbit="180.3deg 82.74deg 1.091m" field-of-view="19.98deg" auto-rotate tone-mapping="neutral"
-              shadow-softness="0.78" rotation-per-second="40deg" shadow-softness="1"
-              src="./resources/ball.gltf"></model-viewer>
-
-          </div>
-
-
-
-          <div slot="badge" class="badge">
-            <span>view_in_ar</span>
-            3D Scan
-          </div>
-
-
-          Don't make it simple, make it clear
-        </simple-card>
-
-        <simple-card title="Spline" version="box">
-
-          <spline-viewer slot="media" id="mySplineViewer"
-            url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode"></spline-viewer>
-
-          <div slot="post" class="post-body horizontal">
-            <!-- Link the Spline viewer module -->
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
-
-
-            <spline-viewer id="mySplineViewer" url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode"
-              events-target="global" background="rgba(0,0,0,0.1)"></spline-viewer>
-
-
-          </div>
-
-
-
-          <div slot="badge" class="badge">
-            <span>view_in_ar</span>
-            3D Scan
-          </div>
-
-
-          Don't make it simple, make it clear
-        </simple-card>
-
-        <simple-card title="A better digital frame" version="box">
-          <img src="./resources/Experiments/frame/frame2.webp" slot="media">
-
-          <div slot="post" class="post-body grid ">
-
-            <img class="full-row" src="./resources/Experiments/frame/frame2.webp">
-
-            <div class="full-row">
-              <p>I have always found e-ink so fascinating. The way that a lot of people have experienced
-                e-ink is with a Kindle. When I discovered that the technology had advanced to have colors, I thought it
-                would be perfect for a digital(ish) photo frame.</p>
-
-              <p>The types of digital frames that a lot of people have use LCD screens with a pretty
-                bright backlight. They feel tacky and draw too much attention than they need to.</p>
-
-              <p>Currently this is work in progress with only a proof of concept UI. I plan on continuing
-                to iterate on the design and to find frame that can hold all of the computer parts.</p>
+              <model-viewer
+                class="full-row model"
+                width="100%"
+                height="100%"
+                disable-zoom
+                camera-controls
+                rotation-per-second="-20deg"
+                shadow-intensity="0.77"
+                exposure="1.51"
+                camera-orbit="180.3deg 82.74deg 1.091m"
+                field-of-view="19.98deg"
+                auto-rotate
+                tone-mapping="neutral"
+                rotation-per-second="40deg"
+                shadow-softness="1"
+                src="./resources/ball.gltf"
+              ></model-viewer>
             </div>
 
-            <img src="./resources/Experiments/frame/frame1.webp">
-            <img src="./resources/Experiments/frame/frame3.webp">
-            <img src="./resources/Experiments/frame/frame4.webp">
+            <div slot="badge" class="badge">
+              <span>view_in_ar</span>
+              3D Scan
+            </div>
 
+            Don't make it simple, make it clear
+          </simple-card>
 
+          <simple-card title="Spline" version="box">
+            <spline-viewer
+              slot="media"
+              url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode"
+            ></spline-viewer>
 
+            <div slot="post" class="post-body horizontal">
+              <!-- Link the Spline viewer module -->
+              <script
+                type="module"
+                src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"
+              ></script>
 
-          </div>
+              <spline-viewer
+                url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode"
+                events-target="global"
+                background="rgba(0,0,0,0.1)"
+              ></spline-viewer>
+            </div>
 
+            <div slot="badge" class="badge">
+              <span>view_in_ar</span>
+              3D Scan
+            </div>
 
-          <div slot="badge" class="badge">
-            <span>construction</span>
-            Work in progress
-          </div>
-          <div slot="badge" class="badge">
-            <span>developer_board</span>
-            Hardware
-          </div>
+            Don't make it simple, make it clear
+          </simple-card>
 
+          <simple-card title="A better digital frame" version="box">
+            <img src="./resources/Experiments/frame/frame2.webp" slot="media" />
 
-          Don't make it simple, make it clear
-        </simple-card>
+            <div slot="post" class="post-body grid">
+              <img
+                class="full-row"
+                src="./resources/Experiments/frame/frame2.webp"
+              />
 
+              <div class="full-row">
+                <p>
+                  I have always found e-ink so fascinating. The way that a lot
+                  of people have experienced e-ink is with a Kindle. When I
+                  discovered that the technology had advanced to have colors, I
+                  thought it would be perfect for a digital(ish) photo frame.
+                </p>
 
+                <p>
+                  The types of digital frames that a lot of people have use LCD
+                  screens with a pretty bright backlight. They feel tacky and
+                  draw too much attention than they need to.
+                </p>
 
+                <p>
+                  Currently this is work in progress with only a proof of
+                  concept UI. I plan on continuing to iterate on the design and
+                  to find frame that can hold all of the computer parts.
+                </p>
+              </div>
 
+              <img src="./resources/Experiments/frame/frame1.webp" />
+              <img src="./resources/Experiments/frame/frame3.webp" />
+              <img src="./resources/Experiments/frame/frame4.webp" />
+            </div>
 
+            <div slot="badge" class="badge">
+              <span>construction</span>
+              Work in progress
+            </div>
+            <div slot="badge" class="badge">
+              <span>developer_board</span>
+              Hardware
+            </div>
 
-
-
-      </section>
-  </div>
-  </main>
-  </div>
-
-</body>
-
+            Don't make it simple, make it clear
+          </simple-card>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>
