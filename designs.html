@@ -1,277 +1,324 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+      gtag("config", "G-PLX2X0J846");
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance,account_tree,close,cloud,construction,dark_mode,demography,deployed_code,design_services,developer_board,experiment,folder_open,integration_instructions,light_mode,link,psychology,psychology_alt,routine,tune,view_in_ar,waving_hand,web&display=block"
+      rel="stylesheet"
+    />
 
-    gtag('config', 'G-PLX2X0J846');
+    <title>Ben Jennings</title>
+    <meta
+      name="description"
+      content="A collection of projects by Ben Jennings"
+    />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1, viewport-fit=cover"
+    />
+    <script src="./js/index.js"></script>
 
+    <link rel="modulepreload" href="js/components/index.js" />
+    <script
+      type="module"
+      src="js/components/index.js"
+      blocking="render"
+    ></script>
+    <link href="./css/vars.css" rel="stylesheet" />
+    <link href="./css/index.css" rel="stylesheet" />
 
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
-    rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance,account_tree,close,cloud,construction,dark_mode,demography,deployed_code,design_services,developer_board,experiment,folder_open,integration_instructions,light_mode,link,psychology,psychology_alt,routine,tune,view_in_ar,waving_hand,web&display=block"
-    rel="stylesheet">
+    <!-- Prefetch Links -->
+    <link rel="expect" href="index.html" blocking="render" />
+    <link rel="expect" href="fundamentals.html" blocking="render" />
+    <link rel="expect" href="experiments.html" blocking="render" />
+    <link rel="expect" href="resources.html" blocking="render" />
+    <link
+      rel="expect"
+      href="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+      render="blocking"
+    />
 
-  <title>Ben Jennings</title>
-  <meta
-  name="description"
-  content="A collection of projects by Ben Jennings">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <script src="./js/index.js"></script>
-
-
-  <link rel="modulepreload" href="js/components/index.js" />
-  <script type="module" src="js/components/index.js" blocking="render"></script>
-  <link href="./css/vars.css" rel="stylesheet" />
-  <link href="./css/index.css" rel="stylesheet" />
-
-  <!-- Prefetch Links -->
-  <link rel="expect" href="index.html" blocking="render" />
-  <link rel="expect" href="fundamentals.html" blocking="render" />
-  <link rel="expect" href="experiments.html" blocking="render" />
-  <link rel="expect" href="resources.html" blocking="render" />
-  <link rel="expect" href="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
-    render="blocking">
-  
-
-
-  <script type="speculationrules">
-    {
-      "prerender": [
-        {
-          "urls": ["index.html", "designs.html","fundamentals.html","experiments.html","resources.html"],
-          "eagerness": "eager",
-          "referrer_policy": "same-origin"
-        }
-      ]
-    }
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "urls": [
+              "index.html",
+              "designs.html",
+              "fundamentals.html",
+              "experiments.html",
+              "resources.html"
+            ],
+            "eagerness": "eager",
+            "referrer_policy": "same-origin"
+          }
+        ]
+      }
     </script>
 
-  <!-- Icons and Manifest -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+    <!-- Icons and Manifest -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
 
-</head>
+  <body>
+    <div id="page-container" class="page-container">
+      <nav class="sidebar">
+        <h2 class="site-title"><a href="index.html">Ben Jennings</a></h2>
+        <div class="active-box"></div>
+        <menu>
+          <li>
+            <a class="nav-card item1" href="index.html">
+              <span class="icon" role="img" aria-hidden="true"
+                >waving_hand</span
+              >
+              <span class="title">Home</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-card item2" href="fundamentals.html">
+              <span class="icon" role="img" aria-hidden="true">psychology</span>
+              <span class="title">Fundamentals</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-card item3 active" href="designs.html">
+              <span class="icon" role="img" aria-hidden="true">web</span>
+              <span class="title">Designs</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-card item4" href="experiments.html">
+              <span class="icon" role="img" aria-hidden="true">experiment</span>
+              <span class="title">Experiments</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-card item5" href="resources.html">
+              <span class="icon" role="img" aria-hidden="true"
+                >folder_open</span
+              >
+              <span class="title">Resources</span>
+            </a>
+          </li>
+        </menu>
 
-<body>
-  <div id="page-container" class="page-container">
-    <nav class="sidebar">
-      <h2 class="site-title"><a href="index.html">Ben Jennings</a></h2>
-      <div class="active-box"></div>
-      <menu>
-        <li><a class="nav-card item1" href="index.html">
-            <span class="icon" role="img" aria-hidden="true">waving_hand</span>
-            <span class="title">Home</span>
-          </a></li>
-        <li><a class="nav-card item2" href="fundamentals.html">
-            <span class="icon" role="img" aria-hidden="true">psychology</span>
-            <span class="title">Fundamentals</span>
-          </a></li>
-        <li><a class="nav-card item3 active" href="designs.html">
-            <span class="icon" role="img" aria-hidden="true">web</span>
-            <span class="title">Designs</span>
-          </a></li>
-        <li><a class="nav-card item4" href="experiments.html">
-            <span class="icon" role="img" aria-hidden="true">experiment</span>
-            <span class="title">Experiments</span>
-          </a></li>
-        <li><a class="nav-card item5" href="resources.html">
-            <span class="icon" role="img" aria-hidden="true">folder_open</span>
-            <span class="title">Resources</span>
-          </a></li>
-      </menu>
+        <site-settings></site-settings>
+        <theme-slider class="quick-theme" data-hide-label></theme-slider>
+      </nav>
 
-      <site-settings></site-settings>
-      <theme-slider class="quick-theme" data-hide-label></theme-slider>
-    </nav>
+      <main>
+        <header class="page-title">
+          <h1 class="heading">Designs</h1>
+          <h2 class="body lg secondary">
+            These are some problems that I helped to solve
+          </h2>
+        </header>
 
-    <main>
+        <div class="page-items">
+          <simple-card
+            tabindex="0"
+            version="box"
+            title="The loan process is complicated"
+            dialog-id="dialog-1"
+          >
+            <img slot="media" src="resources/Designs/arvest/thumbnail.png" />
+            <div slot="badge" class="badge">
+              <span>account_balance</span>
+              Financial
+            </div>
+            <div slot="badge" class="badge">
+              <span>cloud</span>
+              Salesforce
+            </div>
 
-      <header class="page-title">
-        <h1 class="heading">Designs</h1>
-        <h2 class="body lg secondary">These are some problems that I helped to solve</h2>
-      </header>
+            <div slot="post">
+              <p>
+                The existing method for loan officers to create and manage loans
+                required them to use several individual tools that required a
+                lot of training. This unorganization caused a lot of frustration
+                for employees as well as loan applicants.
+              </p>
 
-      <div class="page-items">
+              <p>
+                To address this challenge, these processes were moved to the
+                Salesforce platform, allowing everything to be managed in one
+                place. Over several months, I designed experiences to handle the
+                complexities of the loan process, such as adding collateral,
+                including co-borrowers, and ensuring compliance with all
+                regulatory requirements.
+              </p>
 
-        <simple-card  tabindex="0" version="box" title="The loan process is complicated" dialog-id="dialog-1">
-          <img slot="media" src="resources/Designs/arvest/thumbnail.png">
-          <div slot="badge" class="badge">
-            <span>account_balance</span>
-            Financial
-          </div>
-          <div slot="badge" class="badge">
-            <span>cloud</span>
-            Salesforce
-          </div>
+              <p>
+                Working within Salesforce comes with certain design constraints.
+                To create an intuitive experience, I first needed to understand
+                what loan officers aimed to accomplish—for example, gathering
+                all the required information for a collateral item. Then, using
+                an understanding of what is possible with salesforce tools like
+                Omniscripts, Flexcards, and Lightning Web Components, I then
+                designed solutions that prioritized user needs while remaining
+                realistic in terms of development effort.
+              </p>
+            </div>
+          </simple-card>
 
-          <div slot="post">
+          <simple-card
+            tabindex="0"
+            version="box"
+            title="It's hard to know a neighborhood"
+            badge="Large System Design"
+          >
+            <img slot="media" src="resources/Designs/dwellane/thumbnail.png" />
 
-            <p>The existing method for loan officers to create and manage loans required them to use several individual
-              tools that required a lot of training. This unorganization caused a lot of frustration for employees as
-              well as loan applicants. </p>
+            <div slot="badge" class="badge">
+              <span>design_services</span>
+              Design System
+            </div>
 
-            <p>To address this challenge, these processes were moved to the Salesforce platform, allowing everything to
-              be managed in one place. Over several months, I designed experiences to handle the complexities of the
-              loan process, such as adding collateral, including co-borrowers, and ensuring compliance with all
-              regulatory requirements.</p>
+            <div slot="badge" class="badge">Startup Company</div>
 
+            <div slot="post">{Dwellane content here}</div>
+          </simple-card>
 
+          <simple-card
+            tabindex="0"
+            version="box"
+            title="Training Materials are unorganized"
+          >
+            <img slot="media" src="resources/Designs/pls/thumbnail.png" />
+            <div slot="badge" class="badge">
+              <span>design_services</span>
+              Design System
+            </div>
+            <div slot="post">
+              <img src="resources/Designs/pls/thumbnail.png" />
+              <section>
+                <h2 class="heading sm">Introduction</h2>
+                <p>
+                  Police Legal Sciences has provided training for law
+                  enforcement for 25 years. They began with legal update
+                  training in only a few states and have since expanded their
+                  offerings and reach across North America.
+                </p>
+              </section>
+              <hr />
+              <section>
+                <h2 class="heading sm">The problem</h2>
+                <p>
+                  With their growth, managing and distributing content became
+                  increasingly challenging. They needed a more scalable solution
+                  to make management easier while also giving agencies more
+                  options, like adjusting content to fit their needs.
+                </p>
+                <iframe
+                  style="border: 1px solid rgba(0, 0, 0, 0.1)"
+                  height="600"
+                  src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=23175-6870&embed-host=share"
+                  allowfullscreen
+                ></iframe>
+              </section>
+              <section>
+                <h2 class="heading sm">
+                  Finding the right amount of complexity
+                </h2>
+                <p>
+                  This system serves users with different levels of
+                  responsibility:
+                </p>
 
-            <p>Working within Salesforce comes with certain design constraints. To create an intuitive experience, I
-              first
-              needed to understand what loan officers aimed to accomplish—for example, gathering all the required
-              information for a collateral item. Then, using an understanding of what is possible with salesforce tools
-              like Omniscripts, Flexcards, and Lightning Web Components, I then designed solutions that prioritized user
-              needs while remaining realistic in terms of development effort.</p>
+                <ul>
+                  <li>Global Admins: Manage the entire system.</li>
+                  <li>Agency Admins: Oversee their own users.</li>
+                  <li>Individuals: Simply consume content.</li>
+                </ul>
 
+                <p>
+                  responsibilities decrease, the interface adjusts, providing
+                  robust controls for admins while remaining simple and
+                  intuitive for end users.
+                </p>
+              </section>
 
+              <section>
+                <h3 class="heading sm">Example of necessary complexity</h3>
+                <p>
+                  In this example, a lesson is being created at a global level
+                  and these details will appear the same for everyone on the
+                  platform.
+                </p>
+                <p>
+                  That same lesson needs to be customized for an individual
+                  agency, allowing changes to due dates, assigned user groups,
+                  and other details.
+                </p>
+                <p>
+                  To visually distinguish an instance we introduced this modal
+                  pattern to represent an instance of content.
+                </p>
 
+                <figure>
+                  <img src="resources/Designs/pls/Nav Item/image 17.png" />
+                  <figcaption>
+                    A global admin changing a lesson inside the Buffalo Police
+                    dept.
+                  </figcaption>
+                </figure>
 
-          </div>
+                <p>
+                  From the agency admin’s perspective, the complexity is reduced
+                  since they only manage a single version of the lesson.
+                </p>
 
-        </simple-card>
+                <figure>
+                  <img src="resources/Designs/pls/Nav Item/image 17.png" />
+                  <figcaption>
+                    A global admin changing a lesson inside the Buffalo Police
+                    dept.
+                  </figcaption>
+                </figure>
+              </section>
+            </div>
+          </simple-card>
 
+          <simple-card
+            tabindex="0"
+            version="box"
+            title="Graduates need a cap and gown"
+          >
+            <img
+              slot="media"
+              src="resources/Designs/herff-jones/thumbnail.png"
+            />
 
-        <simple-card tabindex="0"  version="box" title="It's hard to know a neighborhood" badge="Large System Design">
-          <img slot="media" src="resources/Designs/dwellane/thumbnail.png">
+            <div slot="badge" class="badge">Design System</div>
 
-
-
-          <div slot="badge" class="badge">
-            <span>design_services</span>
-            Design System
-          </div>
-
-          <div slot="badge" class="badge">
-            Startup Company
-          </div>
-
-
-
-
-          <div slot="post">{Dwellane content here}
-            
-
-              
-          </div>
-
-        </simple-card>
-
-
-
-        <simple-card tabindex="0" version="box" title="Training Materials are unorganized">
-          <img slot="media" src="resources/Designs/pls/thumbnail.png">
-          <div slot="badge" class="badge">
-            <span>design_services</span>
-            Design System
-          </div>
-          <div slot="post">
-            <img  src="resources/Designs/pls/thumbnail.png">
-            <section>
-              <h2 class="heading sm">Introduction</h2>
-              <p>Police Legal Sciences has provided training for law enforcement for 25 years. They began with legal
-                update training in only a few states and have since expanded their offerings and reach across North
-                America.</p>
-            </section>
-            <hr />
-            <section>
-              <h2 class="heading sm">The problem</h2>
-              <p>With their growth, managing and distributing content became increasingly challenging. They needed a
-                more scalable solution to make management easier while also giving agencies more options, like adjusting
-                content to fit their needs.</p>
-                <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);"  height="600" src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=23175-6870&embed-host=share" allowfullscreen></iframe>
-            </section>
-            <section>
-              <h2 class="heading sm">Finding the right amount of complexity</h2>
-              <p>This system serves users with different levels of responsibility:
-
-              <ul>
-                <li>Global Admins: Manage the entire system.</li>
-                <li>Agency Admins: Oversee their own users.</li>
-                <li>Individuals: Simply consume content.</li>
-              </ul>
-
-              <p>responsibilities decrease, the interface adjusts, providing robust controls for admins while remaining
-              simple and intuitive for end users.</p>
-            </section>
-
-            <section>
-            <h3 class="heading sm">Example of necessary complexity</h3>
-            <p>In this example, a lesson is being created at a global level and these details will appear the same for
-              everyone on the platform. </p>
-            <p>That same lesson needs to be customized for an individual agency, allowing changes to due dates, assigned
-              user groups, and other details.
-            </p>
-            <p>To visually distinguish an instance we introduced this modal pattern to represent an instance of content.
-            </p>
-
-            <figure>
-              <img src="resources/Designs/pls/Nav Item/image 17.png">
-              <figcaption>A global admin changing a lesson inside the Buffalo Police dept.</figcaption>
-            </figure>
-
-            <p> From the agency admin’s perspective, the complexity is reduced since they only manage a single version
-              of the lesson.
-            </p>
-
-            <figure>
-              <img src="resources/Designs/pls/Nav Item/image 17.png">
-              <figcaption>A global admin changing a lesson inside the Buffalo Police dept.</figcaption>
-            </figure>
-          </section>
-
-          </div>
-        </simple-card>
-
-
-
-
-        <simple-card tabindex="0"  version="box" title="Graduates need a cap and gown">
-          <img slot="media" src="resources/Designs/herff-jones/thumbnail.png">
-
-          <div slot="badge" class="badge">
-            Design System
-          </div>
-
-          <div slot="badge" class="badge">
-            CMS
-          </div>
-          <div slot="post">
-            {Herff Jones designs go here}
-
-
-          </div>
-
-        </simple-card>
-
-
-
-
-
-
-
-
-
-
-      </div>
-  
-  </main>
-  </div>
-
-</body>
-
+            <div slot="badge" class="badge">CMS</div>
+            <div slot="post">{Herff Jones designs go here}</div>
+          </simple-card>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>
