@@ -4,14 +4,14 @@
     text-wrap: nowrap;
     height: 28px;
     background-color: var(--background-secondary);
-    color: var(--foreground-secondary);
+    color: var(--foreground-tertiary);
     display: flex;
     padding: var(--spacing-x-small, 4px) var(--spacing-small, 8px);
     justify-content: center;
     align-items: center;
     gap: var(--spacing-x-small, 4px);
-    font-size: var(--text-body-md-size);
-    line-height: var(--text-body-md-line-height);
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line-height);
     border: 1px solid var(--border-primary);
     box-sizing: border-box;
     user-select: none;
@@ -47,7 +47,7 @@
         font-weight: var(--icon-weight-small);
         aspect-ratio: 1/1;
         width: var(--icon-size-small);
-        color: var(--background-accent-emphasis);
+        color: var(--foreground-accent);
         font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
     }
     

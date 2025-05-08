@@ -1,4 +1,3 @@
-
 h1,
 h2,
 h3,
@@ -41,13 +40,12 @@ u {
   width: fit-content;
   max-width: 40ch;
   font-variation-settings:
-    'wdth' 115,
-    'GRAD' var(--text-heading-grade),
-    'XOPQ' 80,
-    'YOPQ' 80;
+    "wdth" 115,
+    "GRAD" var(--text-heading-grade),
+    "XOPQ" 80,
+    "YOPQ" 80;
   font-optical-sizing: auto;
   font-style: normal;
-
 
   &.sm {
     font-weight: 450;
@@ -116,32 +114,26 @@ u {
   font-variation-settings:
     "FILL" var(--icon-fill),
     "GRAD" var(--icon-grade);
-  transition: font-variation-settings 2s ease;
+  transition: inherit;
   font-optical-sizing: auto;
 
-
-  &.xl{
+  &.xl {
     font-size: var(--icon-size-xl);
-
   }
-  &.lg{
+  &.lg {
     font-size: var(--icon-size-large);
     font-weight: var(--icon-weight-large);
-
   }
   &.md {
     font-size: var(--icon-size-medium);
     font-weight: var(--icon-weight-medium);
-
   }
   &.sm {
     font-size: var(--icon-size-small);
     font-weight: var(--icon-weight-small);
-
   }
 
-  &.brand{
+  &.brand {
     color: var(--foreground-brand);
   }
 }
-

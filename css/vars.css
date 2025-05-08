@@ -25,7 +25,7 @@
     Typography – Headings
   ------------------------------------*/
   --text-heading-weight: 550;
-  --text-heading-font-family: 'Roboto Flex';
+  --text-heading-font-family: "Roboto Flex";
   --text-heading-grade: 100;
   --text-heading-width: 125;
   --text-heading-xl-size: var(--font-size-9);
@@ -40,7 +40,7 @@
   /*------------------------------------
     Typography – Body Text
   ------------------------------------*/
-  --text-body-font-family: 'Roboto Flex';
+  --text-body-font-family: "Roboto Flex";
   --text-body-weight: 400;
   --text-body-lg-size: var(--font-size-4);
   --text-body-lg-line-height: var(--font-size-5);
@@ -97,81 +97,147 @@
   /* Angular frequency */
   --duration: 1s;
   --timing-duration: 800ms;
-  --timing-decelerate: linear(0.00, 0.00600, 0.0550, 0.162, 0.265, 0.361, 0.447, 0.521, 0.583, 0.638, 0.687, 0.729, 0.764, 0.795, 0.823, 0.848, 0.867, 0.884, 0.899, 0.914, 0.924, 0.934, 0.943, 0.950, 0.957, 0.962, 0.967, 0.972, 0.976, 0.979, 0.982, 0.984, 0.986, 0.988, 0.990, 0.991, 0.992, 0.993, 0.994, 0.995, 0.996, 0.996, 0.997, 0.997, 0.997, 0.998, 0.998, 0.998, 0.999, 0.999, 0.999, 0.999, 1.00);
-  --timing-bounce: linear(0,
-      0.009,
-      0.035 2.1%,
-      0.141,
-      0.281 6.7%,
-      0.723 12.9%,
-      0.938 16.7%,
-      1.017,
-      1.077,
-      1.121,
-      1.149 24.3%,
-      1.159,
-      1.163,
-      1.161,
-      1.154 29.9%,
-      1.129 32.8%,
-      1.051 39.6%,
-      1.017 43.1%,
-      0.991,
-      0.977 51%,
-      0.974 53.8%,
-      0.975 57.1%,
-      0.997 69.8%,
-      1.003 76.9%,
-      1.004 83.8%,
-      1);
+  --timing-decelerate: linear(
+    0,
+    0.006,
+    0.055,
+    0.162,
+    0.265,
+    0.361,
+    0.447,
+    0.521,
+    0.583,
+    0.638,
+    0.687,
+    0.729,
+    0.764,
+    0.795,
+    0.823,
+    0.848,
+    0.867,
+    0.884,
+    0.899,
+    0.914,
+    0.924,
+    0.934,
+    0.943,
+    0.95,
+    0.957,
+    0.962,
+    0.967,
+    0.972,
+    0.976,
+    0.979,
+    0.982,
+    0.984,
+    0.986,
+    0.988,
+    0.99,
+    0.991,
+    0.992,
+    0.993,
+    0.994,
+    0.995,
+    0.996,
+    0.996,
+    0.997,
+    0.997,
+    0.997,
+    0.998,
+    0.998,
+    0.998,
+    0.999,
+    0.999,
+    0.999,
+    0.999,
+    1
+  );
+  --timing-bounce: linear(
+    0,
+    0.009,
+    0.035 2.1%,
+    0.141,
+    0.281 6.7%,
+    0.723 12.9%,
+    0.938 16.7%,
+    1.017,
+    1.077,
+    1.121,
+    1.149 24.3%,
+    1.159,
+    1.163,
+    1.161,
+    1.154 29.9%,
+    1.129 32.8%,
+    1.051 39.6%,
+    1.017 43.1%,
+    0.991,
+    0.977 51%,
+    0.974 53.8%,
+    0.975 57.1%,
+    0.997 69.8%,
+    1.003 76.9%,
+    1.004 83.8%,
+    1
+  );
 
   /*------------------------------------
     Color – Lightness Scale
   ------------------------------------*/
-  --lightness-curve: calc(0.05 * cos(calc(calc(calc(2 * pi)/360) * calc(var(--brand-hue) - var(--shift)))) + 0.25);
-
-  --lightness-5: 100%;
-  --lightness-10: 98%;
-  --lightness-20: 93%;
-  --lightness-30: 75%;
-  --lightness-40: 55%;
-  --lightness-50: 50%;
-  --lightness-60: 40%;
-  --lightness-70: 32%;
-  --lightness-80: 24%;
-  --lightness-90: 20%;
-  --lightness-95: 12%;
-
+  --x5: 0.95;
+  --x10: 0.90;
+  --x20: 0.80;
+  --x30: 0.70;
+  --x40: 0.60;
+  --x50: 0.50;
+  --x60: 0.40;
+  --x70: 0.30;
+  --x80: 0.20;
+  --x90: 0.10;
+  --x95: 0.05;
+  --x100: 0;
+  
+  --a: 10;
+  --lightness-midpoint:calc(var(--lightness-range) / 2);  
+  --lightness-range:1;
+  /* Lightness values using the corresponding x variables */
+  --lightness-5: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x5) - var(--lightness-midpoint))))));
+  --lightness-10: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x10) - var(--lightness-midpoint))))));
+  --lightness-20: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x20) - var(--lightness-midpoint))))));
+  --lightness-30: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x30) - var(--lightness-midpoint))))));
+  --lightness-40: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x40) - var(--lightness-midpoint))))));
+  --lightness-50: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x50) - var(--lightness-midpoint))))));
+  --lightness-60: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x60) - var(--lightness-midpoint))))));
+  --lightness-70: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x70) - var(--lightness-midpoint))))));
+  --lightness-80: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x80) - var(--lightness-midpoint))))));
+  --lightness-90: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x90) - var(--lightness-midpoint))))));
+  --lightness-95: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x95) - var(--lightness-midpoint))))));
+  --lightness-100: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x100) - var(--lightness-midpoint))))));
   /*------------------------------------
     Base Colors
   ------------------------------------*/
   /* Brand */
   --brand-hue: 180;
   --chroma-base: 1.6;
- 
-  --shift: 100;
-
-
-  --chroma-curve: calc(0.05 * cos(calc(calc(calc(2 * pi)/360) * calc(var(--brand-hue) - var(--shift)))) + 0.25);
-
-  --chroma-5: calc(var(--chroma-curve) * 75%);
-  --chroma-10: calc(var(--chroma-curve) * 80%);
-  --chroma-20: calc(var(--chroma-curve) * 85%);
-  --chroma-30: calc(var(--chroma-curve) * 90%);
-  --chroma-40: calc(var(--chroma-curve) * 95%);
-  --chroma-50: calc(var(--chroma-curve) * 100%);
-  --chroma-60: calc(var(--chroma-curve) * 95%);
-  --chroma-70: calc(var(--chroma-curve) * 90%);
-  --chroma-80: calc(var(--chroma-curve) * 85%);
-  --chroma-90: calc(var(--chroma-curve) * 80%);
-  --chroma-95: calc(var(--chroma-curve) * 75%);
+  --brand-hue: 180;
+  --chroma-base: 1.5;
+  --chroma-5: calc(0% * var(--chroma-base));
+  --chroma-10: calc(8% * var(--chroma-base));
+  --chroma-20: calc(12% * var(--chroma-base));
+  --chroma-30: calc(16% * var(--chroma-base));
+  --chroma-40: calc(24% * var(--chroma-base));
+  --chroma-50: calc(32% * var(--chroma-base));
+  --chroma-60: calc(24% * var(--chroma-base));
+  --chroma-70: calc(16% * var(--chroma-base));
+  --chroma-80: calc(12% * var(--chroma-base));
+  --chroma-90: calc(8% * var(--chroma-base));
+  --chroma-95: calc(4% * var(--chroma-base));
 
   /* Neutral / Gray */
   --gray-hue: calc(var(--brand-hue) + 30);
   --gray-chroma: 1%;
 
   /* Accent */
-
 
   /*------------------------------------
     Color – Brand Palette
@@ -190,17 +256,39 @@
 
   /* Brand with Alpha */
   --alpha: 0.4;
-  --brand-5-alpha: oklch(var(--lightness-5) var(--chroma-5) var(--brand-hue) / var(--alpha));
-  --brand-10-alpha: oklch(var(--lightness-10) var(--chroma-10) var(--brand-hue) / var(--alpha));
-  --brand-20-alpha: oklch(var(--lightness-20) var(--chroma-20) var(--brand-hue) / var(--alpha));
-  --brand-30-alpha: oklch(var(--lightness-30) var(--chroma-30) var(--brand-hue) / var(--alpha));
-  --brand-40-alpha: oklch(var(--lightness-40) var(--chroma-40) var(--brand-hue) / var(--alpha));
-  --brand-50-alpha: oklch(var(--lightness-50) var(--chroma-50) var(--brand-hue) / var(--alpha));
-  --brand-60-alpha: oklch(var(--lightness-60) var(--chroma-60) var(--brand-hue) / var(--alpha));
-  --brand-70-alpha: oklch(var(--lightness-70) var(--chroma-70) var(--brand-hue) / var(--alpha));
-  --brand-80-alpha: oklch(var(--lightness-80) var(--chroma-80) var(--brand-hue) / var(--alpha));
-  --brand-90-alpha: oklch(var(--lightness-90) var(--chroma-90) var(--brand-hue) / var(--alpha));
-  --brand-95-alpha: oklch(var(--lightness-95) var(--chroma-95) var(--brand-hue) / var(--alpha));
+  --brand-5-alpha: oklch(
+    var(--lightness-5) var(--chroma-5) var(--brand-hue) / var(--alpha)
+  );
+  --brand-10-alpha: oklch(
+    var(--lightness-10) var(--chroma-10) var(--brand-hue) / var(--alpha)
+  );
+  --brand-20-alpha: oklch(
+    var(--lightness-20) var(--chroma-20) var(--brand-hue) / var(--alpha)
+  );
+  --brand-30-alpha: oklch(
+    var(--lightness-30) var(--chroma-30) var(--brand-hue) / var(--alpha)
+  );
+  --brand-40-alpha: oklch(
+    var(--lightness-40) var(--chroma-40) var(--brand-hue) / var(--alpha)
+  );
+  --brand-50-alpha: oklch(
+    var(--lightness-50) var(--chroma-50) var(--brand-hue) / var(--alpha)
+  );
+  --brand-60-alpha: oklch(
+    var(--lightness-60) var(--chroma-60) var(--brand-hue) / var(--alpha)
+  );
+  --brand-70-alpha: oklch(
+    var(--lightness-70) var(--chroma-70) var(--brand-hue) / var(--alpha)
+  );
+  --brand-80-alpha: oklch(
+    var(--lightness-80) var(--chroma-80) var(--brand-hue) / var(--alpha)
+  );
+  --brand-90-alpha: oklch(
+    var(--lightness-90) var(--chroma-90) var(--brand-hue) / var(--alpha)
+  );
+  --brand-95-alpha: oklch(
+    var(--lightness-95) var(--chroma-95) var(--brand-hue) / var(--alpha)
+  );
 
   /*------------------------------------
     Color – Neutral (Gray) Palette
@@ -219,34 +307,78 @@
   --gray-95: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue));
 
   /* Gray with Alpha */
-  --gray-5-alpha: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-10-alpha: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-20-alpha: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-30-alpha: oklch(var(--lightness-30) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-40-alpha: oklch(var(--lightness-40) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-50-alpha: oklch(var(--lightness-50) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-60-alpha: oklch(var(--lightness-60) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-70-alpha: oklch(var(--lightness-70) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-80-alpha: oklch(var(--lightness-80) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-90-alpha: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-95-alpha: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-5-alpha: oklch(
+    var(--lightness-5) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
+  --gray-10-alpha: oklch(
+    var(--lightness-10) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
+  --gray-20-alpha: oklch(
+    var(--lightness-20) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
+  --gray-30-alpha: oklch(
+    var(--lightness-30) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
+  --gray-40-alpha: oklch(
+    var(--lightness-40) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
+  --gray-50-alpha: oklch(
+    var(--lightness-50) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
+  --gray-60-alpha: oklch(
+    var(--lightness-60) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
+  --gray-70-alpha: oklch(
+    var(--lightness-70) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
+  --gray-80-alpha: oklch(
+    var(--lightness-80) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
+  --gray-90-alpha: oklch(
+    var(--lightness-90) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
+  --gray-95-alpha: oklch(
+    var(--lightness-95) var(--gray-chroma) var(--gray-hue) / var(--alpha)
+  );
 
   /*------------------------------------
     Color – Accent Palette
   ------------------------------------*/
-  --accent-hue: calc(var(--brand-hue) - 180);
+  --accent-hue: calc(var(--brand-hue) - 45);
   --accent-chroma: 80%;
-  --accent-5: oklch(from var(--brand-5) l var(--accent-chroma) var(--accent-hue));
-  --accent-10: oklch(from var(--brand-10) l var(--accent-chroma) var(--accent-hue));
-  --accent-20: oklch(from var(--brand-20) l var(--accent-chroma) var(--accent-hue));
-  --accent-30: oklch(from var(--brand-30) l var(--accent-chroma) var(--accent-hue));
-  --accent-40: oklch(from var(--brand-40) l var(--accent-chroma) var(--accent-hue));
-  --accent-50: oklch(from var(--brand-50) l var(--accent-chroma) var(--accent-hue));
-  --accent-60: oklch(from var(--brand-60) l var(--accent-chroma) var(--accent-hue));
-  --accent-70: oklch(from var(--brand-70) l var(--accent-chroma) var(--accent-hue));
-  --accent-80: oklch(from var(--brand-80) l var(--accent-chroma) var(--accent-hue));
-  --accent-90: oklch(from var(--brand-90) l var(--accent-chroma) var(--accent-hue));
-  --accent-95: oklch(from var(--brand-95) l var(--accent-chroma) var(--accent-hue));
+  --accent-5: oklch(
+    from var(--brand-5) l var(--accent-chroma) var(--accent-hue)
+  );
+  --accent-10: oklch(
+    from var(--brand-10) l var(--accent-chroma) var(--accent-hue)
+  );
+  --accent-20: oklch(
+    from var(--brand-20) l var(--accent-chroma) var(--accent-hue)
+  );
+  --accent-30: oklch(
+    from var(--brand-30) l var(--accent-chroma) var(--accent-hue)
+  );
+  --accent-40: oklch(
+    from var(--brand-40) l var(--accent-chroma) var(--accent-hue)
+  );
+  --accent-50: oklch(
+    from var(--brand-50) l var(--accent-chroma) var(--accent-hue)
+  );
+  --accent-60: oklch(
+    from var(--brand-60) l var(--accent-chroma) var(--accent-hue)
+  );
+  --accent-70: oklch(
+    from var(--brand-70) l var(--accent-chroma) var(--accent-hue)
+  );
+  --accent-80: oklch(
+    from var(--brand-80) l var(--accent-chroma) var(--accent-hue)
+  );
+  --accent-90: oklch(
+    from var(--brand-90) l var(--accent-chroma) var(--accent-hue)
+  );
+  --accent-95: oklch(
+    from var(--brand-95) l var(--accent-chroma) var(--accent-hue)
+  );
 
   /*------------------------------------
     Color System
@@ -255,9 +387,9 @@
   color-scheme: var(--current-color-scheme);
 
   /* Background Colors */
-  --background-page: light-dark(var(--gray-10), var(--gray-90));
-  --background-primary: light-dark(var(--white), var(--gray-80));
-  --background-secondary: light-dark(var(--gray-20), var(--gray-70));
+  --background-page: light-dark(var(--gray-10), var(--gray-80));
+  --background-primary: light-dark(var(--white), var(--gray-60));
+  --background-secondary: light-dark(var(--gray-20), var(--gray-80));
   --background-brand: light-dark(var(--brand-20), var(--brand-60));
   --background-brand-hover: light-dark(var(--brand-30), var(--brand-80));
   --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
@@ -268,13 +400,13 @@
   --background-backdrop: light-dark(var(--gray-20-alpha), var(--gray-50-alpha));
 
   /* Foreground Colors */
-  --foreground-primary: light-dark(var(--gray-90), var(--gray-5));
-  --foreground-secondary: light-dark(var(--gray-50), var(--gray-30));
-  --foreground-tertiary: light-dark(var(--gray-50), var(--gray-40));
-  --foreground-brand: light-dark(var(--brand-40), var(--brand-30));
-  --foreground-onBrand: light-dark(var(--brand-60), var(--brand-20));
+  --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
+  --foreground-secondary: light-dark(var(--gray-60), var(--gray-10));
+  --foreground-tertiary: light-dark(var(--gray-60), var(--gray-20));
+  --foreground-brand: light-dark(var(--brand-50), var(--brand-30));
   --foreground-brand-secondary: light-dark(var(--brand-30), var(--brand-60));
-  --foreground-accent: light-dark(var(--accent-90), var(--accent-20));
+  --foreground-onBrand: light-dark(var(--brand-50), var(--brand-10));
+  --foreground-accent: light-dark(var(--accent-40), var(--accent-10));
   --foreground-onEmphasis: light-dark(white, white);
 
   /* Border Colors */
@@ -287,7 +419,6 @@
   --border-brand-emphasis: light-dark(var(--brand-60), var(--brand-70));
   --border-accent: light-dark(var(--accent-10), var(--accent-60));
 
-
   --theme-slider-size: 20px;
   --theme-slider-outline: var(--background-primary);
 }
@@ -296,7 +427,8 @@
    High Contrast Mode Overrides
 ====================================*/
 [data-mode="high-contrast"] {
-  --background-page: light-dark(var(--gray-5), var(--gray-95));
+  
+  --background-page: light-dark(var(--white), var(--gray-95));
   --background-primary: light-dark(var(--white), var(--gray-90));
   --background-secondary: light-dark(var(--white), var(--gray-80));
   --background-brand: light-dark(var(--brand-60), var(--brand-60));
@@ -323,9 +455,6 @@
   --border-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
   --border-brand-hover: light-dark(var(--brand-40), var(--brand-10));
   --border-accent: light-dark(var(--accent-50), var(--accent-40));
-
-
-
 }
 
 /*====================================
@@ -333,6 +462,7 @@
 ====================================*/
 @media (prefers-contrast: more) {
   :root {
+  
     --background-page: light-dark(var(--gray-5), var(--gray-95));
     --background-primary: light-dark(var(--white), var(--gray-90));
     --background-secondary: light-dark(var(--white), var(--gray-80));
@@ -340,9 +470,18 @@
     --background-brand-secondary: light-dark(var(--brand-10), var(--brand-80));
     --background-brand-emphasis: light-dark(var(--brand-70), var(--brand-60));
     --background-accent: light-dark(var(--accent-50), var(--accent-70));
-    --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
-    --background-accent-emphasis: light-dark(var(--accent-60), var(--accent-50));
-    --background-backdrop: light-dark(var(--gray-80-alpha), var(--gray-30-alpha));
+    --background-accent-secondary: light-dark(
+      var(--accent-10),
+      var(--accent-80)
+    );
+    --background-accent-emphasis: light-dark(
+      var(--accent-60),
+      var(--accent-50)
+    );
+    --background-backdrop: light-dark(
+      var(--gray-80-alpha),
+      var(--gray-30-alpha)
+    );
 
     --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
     --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));

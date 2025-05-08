@@ -50,18 +50,15 @@ customElements.define(
       this._title = this.getAttribute("title") || "";
       this._version = this.getAttribute("version") || "";
       this._dialogId = this.getAttribute("dialog-id") || "";
-      this.originalEntryKey = null;
 
       // Bind methods
       this.handleClick = this.handleClick.bind(this);
-      this.handleNavigate = this.handleNavigate.bind(this);
-      this.handlePopState = this.handlePopState.bind(this);
     }
 
     connectedCallback() {
       this.tabIndex = 0;
-  this.setAttribute("role", "button");
-  
+      this.setAttribute("role", "button");
+
       // Cache DOM references
       this._cardContainer = this.shadowRoot.querySelector(".card-container");
       this._dialog = this.shadowRoot.querySelector("dialog");
@@ -71,28 +68,11 @@ customElements.define(
       // Consolidated event listener on shadowRoot for clicks
       this.shadowRoot.addEventListener("click", this.handleClick);
 
-      // Navigation API or popstate fallback
-      if ("navigation" in window) {
-        navigation.addEventListener("navigate", this.handleNavigate);
-      } else {
-        window.addEventListener("popstate", this.handlePopState);
-      }
-
       this.updateComponent();
-
-      // Check URL hash after initialization
-      requestAnimationFrame(() => {
-        this.checkUrlForDialog();
-      });
     }
 
     disconnectedCallback() {
       this.shadowRoot.removeEventListener("click", this.handleClick);
-      if ("navigation" in window) {
-        navigation.removeEventListener("navigate", this.handleNavigate);
-      } else {
-        window.removeEventListener("popstate", this.handlePopState);
-      }
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -198,18 +178,6 @@ customElements.define(
       if (this._dialog && !this._dialog.open) {
         this._dialog.showModal();
         this.trackDialogOpen();
-
-        // Push a new navigation entry with the dialog ID in the hash
-        if ("navigation" in window) {
-          this.originalEntryKey = navigation.currentEntry.key;
-          const url = new URL(window.location);
-          url.hash = this._dialogId;
-          navigation.navigate(url.toString(), { history: "push" });
-        } else {
-          const url = new URL(window.location);
-          url.hash = this._dialogId;
-          window.history.pushState({ dialogOpen: true }, "", url.toString());
-        }
       }
     }
 
@@ -217,60 +185,6 @@ customElements.define(
       if (event) event.stopPropagation();
       if (this._dialog && this._dialog.open) {
         this._dialog.close();
-      }
-
-      if ("navigation" in window) {
-        if (this.originalEntryKey) {
-          navigation.traverseTo(this.originalEntryKey);
-          this.originalEntryKey = null;
-        } else {
-          navigation.navigate(document.location.pathname, {
-            history: "replace",
-          });
-        }
-      } else {
-        window.history.back();
-      }
-    }
-
-    handleNavigate(event) {
-      const dialog = this._dialog;
-      const url = new URL(event.destination.url);
-      const hash = url.hash.slice(1); // Remove the '#' character
-
-      if (hash === this._dialogId && dialog && !dialog.open) {
-        this.showDialog();
-        event.intercept({
-          handler: () => {
-            console.log("Navigation intercepted to prevent reloading");
-            return Promise.resolve();
-          },
-        });
-      } else if (hash !== this._dialogId && dialog && dialog.open) {
-        dialog.close();
-        event.intercept({
-          handler: () => {
-            console.log("Navigation intercepted to prevent reloading");
-            return Promise.resolve();
-          },
-        });
-      }
-    }
-
-    // Fallback for browsers without the Navigation API
-    handlePopState(event) {
-      const currentHash = window.location.hash.slice(1);
-      if (currentHash === this._dialogId && this._dialog && !this._dialog.open) {
-        this.showDialog();
-      } else if (currentHash !== this._dialogId && this._dialog && this._dialog.open) {
-        this._dialog.close();
-      }
-    }
-
-    checkUrlForDialog() {
-      const currentHash = window.location.hash.slice(1);
-      if (currentHash === this._dialogId) {
-        this.showDialog();
       }
     }
 

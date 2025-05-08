@@ -99,16 +99,25 @@ nav {
   background: inherit;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: background-color 300ms var(--timing-decelerate);
-  transition-property: background-color, font-variation-settings;
-
+  transition-timing-function: var(--timing-decelerate);
+  transition-duration: 300ms;
+  transition-property: font-variation-settings,background;
+  font-variation-settings: initial;
+  font-variation-settings:
+  
+    "GRAD" 0;
 
   
 
 
 
   &:hover:not(.active) {
-    color: var(--foreground-brand);
+    
+    background: var(--background-page);
+ --icon-grade:200;
+    font-variation-settings:
+   
+    "GRAD" 200;
   }
 
 }
