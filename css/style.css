@@ -68,26 +68,6 @@ model-viewer {
   container-name: card-group;
 }
 
-main {
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  scrollbar-gutter: stable;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  grid-area: main-content;
-  container-name: main-content;
-  container-type: inline-size;
-
-
-  align-items: center;
-  padding: var(--spacing-x-large);
-  padding-top: 0px;
-  gap: var(--spacing-xxx-large);
-  transform-style: preserve-3d;
-  transform-origin: 0% 0%;
-  
-}
 
 
 

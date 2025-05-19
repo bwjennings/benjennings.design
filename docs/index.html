@@ -24,16 +24,16 @@
 
 
 
-  <link rel="modulepreload" href="js/components/index.js" />
-  <script type="module" src="js/components/index.js"></script>
-  <link href="./css/vars.css" rel="stylesheet" />
-  <link href="./css/index.css" rel="stylesheet" />
+  <link rel="modulepreload" href="/js/components/index.js" />
+  <script type="module" src="/js/components/index.js"></script>
+  <link href="../css/vars.css" rel="stylesheet" />
+  <link href="../css/index.css" rel="stylesheet" />
 
   <!-- Prefetch Links -->
-  <link rel="expect" href="designs.html" blocking="render" />
-  <link rel="expect" href="fundamentals.html" blocking="render" />
-  <link rel="expect" href="experiments.html" blocking="render" />
-  <link rel="expect" href="resources.html" blocking="render" />
+  <link rel="expect" href="/docs/designs.html" blocking="render" />
+  <link rel="expect" href="/docs/fundamentals.html" blocking="render" />
+  <link rel="expect" href="/docs/experiments.html" blocking="render" />
+  <link rel="expect" href="/docs/resources.html" blocking="render" />
   <script type="speculationrules">
     {
       "prerender": [
@@ -59,31 +59,30 @@
 <body>
   <div id="page-container" class="page-container hero-page">
     <nav class="sidebar">
-      <h2 class="site-title"><a href="index.html">Ben Jennings</a></h2>      <div class="active-box"></div>
+      <h2 class="site-title"><a href="/">Ben Jennings</a></h2>      <div class="active-box"></div>
       <menu>
-        <li><a class="nav-card item1 active" href="index.html">
+        <li><a class="nav-item item1 active" href="/">
             <span class="icon" role="img" aria-hidden="true">waving_hand</span>
             <span class="title">Home</span>
           </a></li>
-        <li><a class="nav-card item2" href="fundamentals.html">
+        <li><a class="nav-item item2" href="/docs/fundamentals/index.html">
             <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Fundamentals</span>
           </a></li>
-        <li><a class="nav-card item3 " href="designs.html">
+        <li><a class="nav-item item3 " href="/docs/designs.html">
             <span class="icon" role="img" aria-hidden="true">web</span>
             <span class="title">Designs</span>
           </a></li>
-        <li><a class="nav-card item4 " href="experiments.html">
+        <li><a class="nav-item item4 " href="/docs/experiments.html">
             <span class="icon" role="img" aria-hidden="true">experiment</span>
             <span class="title">Experiments</span>
           </a></li>
-        <li><a class="nav-card item5" href="resources.html">
+        <li><a class="nav-item item5" href="/docs/resources.html">
             <span class="icon" role="img" aria-hidden="true">folder_open</span>
             <span class="title">Resources</span>
           </a></li>
       </menu>
       <site-settings></site-settings>
-      <theme-slider class="quick-theme" data-hide-label></theme-slider>
     </nav>
 
     <main>

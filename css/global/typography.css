@@ -40,7 +40,7 @@ u {
   width: fit-content;
   max-width: 40ch;
   font-variation-settings:
-    "wdth" 115,
+    "wdth" var(--text-heading-width),
     "GRAD" var(--text-heading-grade),
     "XOPQ" 80,
     "YOPQ" 80;
@@ -101,20 +101,18 @@ u {
 }
 
 .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+width: fit-content;
 
   font-family: var(--icon-font-family, "Material Symbols Sharp");
   font-size: var(--icon-size-large);
-  aspect-ratio: 1 / 1;
+  
   font-style: normal;
   font-weight: var(--icon-weight-large);
   line-height: 100%;
   font-variation-settings:
     "FILL" var(--icon-fill),
     "GRAD" var(--icon-grade);
-  transition: inherit;
   font-optical-sizing: auto;
 
   &.xl {

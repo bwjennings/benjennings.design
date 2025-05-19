@@ -1,5 +1,8 @@
 {
-    "liveServer.settings.port": 5501,
-    "IDX.aI.enableInlineCompletion": true,
-    "IDX.aI.enableCodebaseIndexing": true
+  "liveServer.settings.port": 5501,
+  "IDX.aI.enableInlineCompletion": true,
+  "IDX.aI.enableCodebaseIndexing": true,
+  "cssVarHover.watchedFiles": [
+    "js/components/resource-card.js"
+  ]
 }

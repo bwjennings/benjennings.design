@@ -22,7 +22,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance,account_tree,close,cloud,construction,dark_mode,demography,deployed_code,design_services,developer_board,experiment,folder_open,integration_instructions,light_mode,link,psychology,psychology_alt,routine,tune,view_in_ar,waving_hand,web&display=block"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
       rel="stylesheet"
     />
     <title>Ben Jennings</title>
@@ -31,12 +31,12 @@
       name="viewport"
       content="width=device-width,initial-scale=1, viewport-fit=cover"
     />
-    <script src="./js/index.js"></script>
+    <script src="/js/index.js"></script>
 
-    <link rel="modulepreload" href="js/components/index.js" />
-    <script type="module" src="js/components/index.js"></script>
-    <link href="./css/vars.css" rel="stylesheet" />
-    <link href="./css/index.css" rel="stylesheet" />
+    <link rel="modulepreload" href="/js/components/index.js" />
+    <script type="module" src="/js/components/index.js"></script>
+    <link href="/css/vars.css" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
 
     <!-- Prefetch Links -->
     <link rel="expect" href="index.html" blocking="render" />
@@ -76,11 +76,11 @@
   <body>
     <div id="page-container" class="page-container">
       <nav class="sidebar">
-        <h2 class="site-title"><a href="index.html">Ben Jennings</a></h2>
+        <h2 class="site-title"><a href="/">Ben Jennings</a></h2>
         <div class="active-box"></div>
         <menu>
           <li>
-            <a class="nav-card" href="index.html">
+            <a class="nav-item" href="/">
               <span class="icon" role="img" aria-hidden="true"
                 >waving_hand</span
               >
@@ -88,25 +88,25 @@
             </a>
           </li>
           <li>
-            <a class="nav-card item2" href="fundamentals.html">
+            <a class="nav-item item2" href="fundamentals.html">
               <span class="icon" role="img" aria-hidden="true">psychology</span>
               <span class="title">Fundamentals</span>
             </a>
           </li>
           <li>
-            <a class="nav-card item3" href="designs.html">
+            <a class="nav-item item3" href="designs.html">
               <span class="icon" role="img" aria-hidden="true">web</span>
               <span class="title">Designs</span>
             </a>
           </li>
           <li>
-            <a class="nav-card item4 active" href="experiments.html">
+            <a class="nav-item item4 active" href="experiments.html">
               <span class="icon" role="img" aria-hidden="true">experiment</span>
               <span class="title">Experiments</span>
             </a>
           </li>
           <li>
-            <a class="nav-card item5" href="resources.html">
+            <a class="nav-item item5" href="resources.html">
               <span class="icon" role="img" aria-hidden="true"
                 >folder_open</span
               >
@@ -116,7 +116,7 @@
         </menu>
 
         <site-settings></site-settings>
-        <theme-slider class="quick-theme" data-hide-label></theme-slider>
+      
       </nav>
 
       <main>
@@ -126,6 +126,9 @@
         </header>
 
         <div class="page-items"> 
+          <article class="card">
+            <h1 class="title">Hello</h1>
+          </article>
           <simple-card title="Gradients" version="box">
             <div slot="media" class="gradient"></div>
 
@@ -138,6 +141,7 @@
                   class="quick-theme"
                   data-hide-label
                 ></theme-slider>
+                
               </div>
             </div>
           </simple-card>

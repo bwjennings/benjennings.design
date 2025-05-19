@@ -21,8 +21,9 @@
           flex-direction: row;
           flex-wrap: wrap;
           height: 100%;
-          background: var(--background-primary);
+          background: var(--background-accent);
           border: 1px solid var(--border-primary);
+          border-radius:var(--radius-medium);
           container-type: inline-size;
           transition: outline 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58),
             font-variation-settings 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58);
@@ -43,11 +44,11 @@
           aspect-ratio: 1 / 1;
           display: flex;
           align-self: stretch;
-          background: var(--background-brand-secondary);
+          background: var(--background-accent2);
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          color: var(--foreground-brand-secondary);
+          color: var(--foreground-accent2);
           user-select: none;
           -webkit-user-select: none;
           container-name:iconbox;

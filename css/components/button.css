@@ -1,8 +1,9 @@
 :is(button,
-::part(button) ){
+  ::part(button)) {
   box-sizing: border-box;
   user-select: none;
   border: 1px solid var(--border-primary);
+  border-radius: var(--radius-medium);
   background: var(--background-primary);
   display: inline-flex;
   padding: var(--spacing-medium, 12px);
@@ -26,10 +27,11 @@
     outline: 4px solid var(--border-primary);
   }
 
- 
+
 
   &.secondary {
     background-color: var(--background-secondary);
+
     &:hover {
       outline: 4px solid var(--border-secondary);
     }
@@ -72,20 +74,20 @@ button[size="small"] {
 }
 
 .button-group {
-    display: inline-flex;
-    gap: var(--spacing-medium);
+  display: inline-flex;
+  gap: var(--spacing-medium);
+}
+
+.button-group {
+  margin-top: auto;
+  flex-direction: column;
+  width: 100%;
+
+  &.row {
+    flex-direction: row;
   }
 
-  .button-group {
-    margin-top: auto;
-    flex-direction: column;
+  * {
     width: 100%;
-
-    &.row {
-      flex-direction: row;
-    }
-
-    * {
-      width: 100%;
-    }
   }
+}

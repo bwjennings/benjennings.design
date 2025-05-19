@@ -2,7 +2,7 @@
 :host(site-settings) {
   perspective: 200px;
   transform-style: preserve-3d;
-  grid-area: settings;
+  grid-area: color;
   -webkit-tap-highlight-color: transparent;
   height: fit-content;
   --theme-slider-size: 20px;
@@ -54,7 +54,7 @@ dialog {
 
   }
 
-  .nav-card {
+  .nav-item {
     display: flex;
     align-items: center;
     width: 100%;

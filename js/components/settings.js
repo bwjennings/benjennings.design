@@ -1,145 +1,69 @@
 // Define and cache the template
 const template = document.createElement('template');
 template.innerHTML = `
-  
-  <!-- Preload non-critical CSS -->
-  <link rel="preload" as="style" href="./css/index.css">
-  <link rel="preload" as="style" href="css/components/settings.css">
-    <link rel="stylesheet" href="./css/index.css">
-  <link rel="stylesheet"  href="css/components/settings.css">
-
-  <button class="secondary" id="openBtn" aria-label="Open Settings">
-    <div class="icon md">tune</div>Theme Settings
-  </button>
-  
-  <dialog id="dialog">
-    <form id="themeSelect">
-      <header>
-        <h2 class="heading md" id="dialog-title">Theme Settings</h2>
-        <button class="icon-button" value="cancel" formmethod="dialog">close</button>
-      </header>
-      <div class="content">
-        <label id="colorMode">
-          Color Mode
-          <fieldset class="radio-buttons" autofocus>
-            <label class="radio-button">
-              <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
-              <span class="icon md">routine</span>
-              <span>System</span>
-            </label>
-            <label class="radio-button">
-              <input type="radio" name="theme" value="light" aria-label="Light Theme">
-              <span class="icon md">light_mode</span>
-              <span>Light</span>
-            </label>
-            <label class="radio-button" style="border:transparent">
-              <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
-              <span class="icon md">dark_mode</span>
-              <span>Dark</span>
-            </label>
-          </fieldset>
-        </label>
-        <theme-slider></theme-slider>
-        <label for="highContrast" style="width: fit-content;">High Contrast
-          <input type="checkbox" switch role="switch" id="highContrast" name="highContrast" aria-label="High Contrast Mode">
-        </label>
-      </div>
-      <footer>
-        <button type="button" id="cancelBtn" aria-label="Cancel Settings">Cancel</button>
-        <button type="button" variant="brand" id="closeBtn" aria-label="Save Settings">Save</button>
-      </footer>
-    </form>
-  </dialog>
+  <link rel="stylesheet" href="/css/components/radio-buttons.css">
+  <link rel="stylesheet" href="/css/components/button.css">
+  <fieldset class="radio-buttons">
+    <label class="radio-button">
+      <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
+      <span class="icon md">routine</span>
+      
+    </label>
+    <label class="radio-button">
+      <input type="radio" name="theme" value="light" aria-label="Light Theme">
+      <span class="icon md">light_mode</span>
+     
+    </label>
+    <label class="radio-button">
+      <input type="radio" name="theme" value="dark" aria-label="Dark Theme">
+      <span class="icon md">dark_mode</span>
+      
+    </label>
+  </fieldset>
+  <button part="button" id="change-hue">Change Hue</button>
 `;
 
 class SiteSettings extends HTMLElement {
   constructor() {
     super();
-    // Attach shadow DOM and clone the template
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-
-    // Cache frequently accessed elements
-    this.dialog = this.shadowRoot.getElementById("dialog");
-    this.themeSelectForm = this.shadowRoot.getElementById("themeSelect");
-    this.highContrastCheckbox = this.shadowRoot.getElementById("highContrast");
-    this.themeSlider = this.shadowRoot.querySelector("theme-slider");
-
-    this.originalSettings = {};
-
-    // Bind methods to ensure proper 'this' context
-    this.openSettings = this.openSettings.bind(this);
-    this.saveChanges = this.saveChanges.bind(this);
-    this.cancelChanges = this.cancelChanges.bind(this);
-    this.hueChangeHandler = this.hueChangeHandler.bind(this);
     this.themeChangeHandler = this.themeChangeHandler.bind(this);
-    this.highContrastChangeHandler = this.highContrastChangeHandler.bind(this);
-    this.backdropClickHandler = this.backdropClickHandler.bind(this);
-
-    // Create a debounced version of the hueChangeHandler (100ms delay)
-    this.debouncedHueChangeHandler = this.debounce(this.hueChangeHandler, 100);
-  }
-
-  // Utility: Debounce function to limit rapid event firing
-  debounce(func, delay) {
-    let timeout;
-    return (...args) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), delay);
-    };
+    this.changeHue = this.changeHue.bind(this);
   }
 
   connectedCallback() {
-    this.applyStoredSettings();
-
-    // Add event listeners
-    this.shadowRoot.getElementById("openBtn").addEventListener("click", this.openSettings);
-    this.shadowRoot.getElementById("closeBtn").addEventListener("click", this.saveChanges);
-    this.shadowRoot.getElementById("cancelBtn").addEventListener("click", this.cancelChanges);
-
-    this.themeSlider.addEventListener("hueChange", this.debouncedHueChangeHandler);
-    this.themeSelectForm.addEventListener("change", this.themeChangeHandler);
-    this.highContrastCheckbox.addEventListener("change", this.highContrastChangeHandler);
-
-    this.dialog.addEventListener('click', this.backdropClickHandler);
-  }
-
-  disconnectedCallback() {
-    // Remove event listeners
-    this.shadowRoot.getElementById("openBtn").removeEventListener("click", this.openSettings);
-    this.shadowRoot.getElementById("closeBtn").removeEventListener("click", this.saveChanges);
-    this.shadowRoot.getElementById("cancelBtn").removeEventListener("click", this.cancelChanges);
-
-    this.themeSlider.removeEventListener("hueChange", this.debouncedHueChangeHandler);
-    this.themeSelectForm.removeEventListener("change", this.themeChangeHandler);
-    this.highContrastCheckbox.removeEventListener("change", this.highContrastChangeHandler);
-
-    this.dialog.removeEventListener('click', this.backdropClickHandler);
-  }
-
-  // Cache the original settings in one go
-  storeOriginalSettings() {
-    this.originalSettings = {
-      theme: localStorage.getItem("myCustomTheme") || "",
-      hue: this.themeSlider.getHue(),
-      highContrast: localStorage.getItem("highContrast") === "true"
-    };
-  }
-
-  applyStoredSettings() {
     const storedTheme = localStorage.getItem("myCustomTheme") || "";
-    const highContrastEnabled = localStorage.getItem("highContrast") === "true";
-
-    if (storedTheme) {
-      this.updateTheme(storedTheme);
-      const themeRadio = this.shadowRoot.querySelector(`input[name="theme"][value="${storedTheme}"]`);
-      if (themeRadio) {
-        themeRadio.checked = true;
-      }
+    const selected = this.shadowRoot.querySelector(`input[name="theme"][value="${storedTheme}"]`);
+    if (selected) selected.checked = true;
+    this.updateTheme(storedTheme);
+    this.shadowRoot.querySelector("fieldset").addEventListener("change", this.themeChangeHandler);
+    // Add listener for hue change button
+    const hueBtn = this.shadowRoot.getElementById("change-hue");
+    hueBtn.addEventListener("click", this.changeHue);
+    // Apply persisted hue/radius/chroma if available
+    const storedHue = localStorage.getItem('brandHue');
+    if (storedHue) {
+      document.documentElement.style.setProperty('--brand-hue', storedHue + 'deg');
     }
-
-    this.highContrastCheckbox.checked = highContrastEnabled;
-    this.toggleHighContrast(highContrastEnabled);
+    const storedRadius = localStorage.getItem('baseRadius');
+    if (storedRadius) {
+      document.documentElement.style.setProperty('--base-radius', storedRadius + 'px');
+    }
+    const storedChroma = localStorage.getItem('chromaBase');
+    if (storedChroma) {
+      document.documentElement.style.setProperty('--chroma-base', storedChroma);
+    }
+    const storedHueOffset = localStorage.getItem('hueOffsetBase');
+    if (storedHueOffset) {
+      document.documentElement.style.setProperty('--hue-offset-base', storedHueOffset + 'deg');
+    }
+    // Apply persisted text heading width if available
+    const storedTextHeadingWidth = localStorage.getItem('textHeadingWidth');
+    if (storedTextHeadingWidth) {
+      document.documentElement.style.setProperty('--text-heading-width', storedTextHeadingWidth);
+    }
+   
   }
 
   updateTheme(theme) {
@@ -153,65 +77,43 @@ class SiteSettings extends HTMLElement {
     window.dispatchEvent(new CustomEvent('globalSchemeChange', { detail: theme }));
   }
 
-  toggleHighContrast(enabled) {
-    document.documentElement.dataset.mode = enabled ? "high-contrast" : "normal";
-    localStorage.setItem("highContrast", enabled.toString());
-    window.dispatchEvent(new CustomEvent('globalHighContrastChange', { detail: enabled }));
-  }
-
-  // Event Handlers
-  openSettings() {
-    this.storeOriginalSettings();
-    this.applyStoredSettings();
-    this.dialog.showModal();
-  }
-
-  hueChangeHandler(event) {
-    const hueValue = event.detail;
-    localStorage.setItem("selectedColorHue", hueValue);
-    window.dispatchEvent(new CustomEvent('globalHueChange', { detail: hueValue }));
-  }
-
   themeChangeHandler(event) {
     if (event.target.name === "theme") {
       this.updateTheme(event.target.value);
     }
   }
 
-  highContrastChangeHandler() {
-    const highContrastEnabled = this.highContrastCheckbox.checked;
-    this.toggleHighContrast(highContrastEnabled);
-  }
+  changeHue() {
+    // Maximum hue shift in degrees
+    const hueLimit = 90; // change this value to adjust the limit
+    const currentHue = parseInt(localStorage.getItem('brandHue') || '0', 10);
+    const deltaHue = Math.floor(Math.random() * (hueLimit * 2 + 1)) - hueLimit;
+    const randomHue = (currentHue + deltaHue + 360) % 360;
+    document.documentElement.style.setProperty("--brand-hue", randomHue + "deg");
 
-  saveChanges() {
-    try {
-      const selectedTheme = this.themeSelectForm.querySelector('input[name="theme"]:checked').value;
-      const highContrastEnabled = this.highContrastCheckbox.checked;
+    // Random radius 0–8px
+    const randomRadius = Math.floor(Math.random() * 9);
+    document.documentElement.style.setProperty("--base-radius", randomRadius + "px");
 
-      // Batch localStorage writes
-      localStorage.setItem("myCustomTheme", selectedTheme);
-      localStorage.setItem("highContrast", highContrastEnabled.toString());
+    // Random chroma 0.010–0.020
+    const randomChromaBase = (Math.random() * 0.01 + 0.010).toFixed(3);
+    document.documentElement.style.setProperty("--chroma-base", randomChromaBase);
 
-      this.dialog.close();
-    } catch (error) {
-      console.error("Error saving settings:", error);
-    }
-  }
+    // Random hue-offset-base 10–90deg
+    const randomHueOffset = Math.floor(Math.random() * 81) + 10;
+    document.documentElement.style.setProperty("--hue-offset-base", randomHueOffset + "deg");
+ 
+    // Random text heading grade 0–100 (unitless)
+    const randomTextHeadingGrade = Math.floor(Math.random() * 101);
+    document.documentElement.style.setProperty('--text-heading-grade', randomTextHeadingGrade);
+    localStorage.setItem('textHeadingGrade', randomTextHeadingGrade);
 
-  cancelChanges() {
-    // Revert all changes in a single batch update
-    this.themeSlider.setHue(this.originalSettings.hue);
-    this.updateTheme(this.originalSettings.theme);
-    this.highContrastCheckbox.checked = this.originalSettings.highContrast;
-    this.toggleHighContrast(this.originalSettings.highContrast);
-    this.dialog.close();
-  }
-
-  // Closes settings if clicking the backdrop
-  backdropClickHandler(event) {
-    if (event.target === this.dialog) {
-      this.cancelChanges();
-    }
+    console.log(`--brand-hue set to: ${randomHue}deg`);
+    // Persist random values so they survive page loads
+    localStorage.setItem('brandHue', randomHue);
+    localStorage.setItem('baseRadius', randomRadius);
+    localStorage.setItem('chromaBase', randomChromaBase);
+    localStorage.setItem('hueOffsetBase', randomHueOffset);
   }
 }
 
