@@ -81,7 +81,7 @@ body {
   height: 100dvh;
   display: grid;
   grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
-
+grid-template-rows:auto 1fr;
   grid-template-areas: 
   "sidebar header"
   "sidebar content"
@@ -104,12 +104,14 @@ body {
 main{
   grid-area: content;
   padding: 24px;
+  overflow: auto;
+  height: fit-content;
+  scrollbar-gutter: stable;
 }
 .page-items{
   
   display: grid;
- padding-right: 24px;
-  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
   grid-auto-rows: 300px;
   gap: var(--spacing-x-large);
   

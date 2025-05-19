@@ -1,4 +1,4 @@
-:is(button,
+:is(button, .button,
   ::part(button)) {
   box-sizing: border-box;
   user-select: none;
