@@ -236,7 +236,7 @@
       1.004 83.8%,
       1);
   /* Brand Hue Definitions */
-  --brand-hue: 210deg;
+  --brand-hue: 230deg;
   /* set this to your brand’s base hue angle */
   transition: --brand-hue 500ms ease-in-out;
   transition-property: --text-heading-grade, --text-heading-width,--brand-hue, --base-radius, --spacing-base, --gap-base, --chroma-base, --hue-offset-base;
