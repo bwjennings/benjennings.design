@@ -81,7 +81,7 @@ body {
   height: 100dvh;
   display: grid;
   grid-template-columns: clamp(300px, 20dvw, 400px) 1fr;
-grid-template-rows:auto 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
   grid-template-areas: 
   "sidebar header"
   "sidebar content"
@@ -105,7 +105,8 @@ main{
   grid-area: content;
   padding: 24px;
   overflow: auto;
-  height: fit-content;
+  height: 100%;
+  min-height: 0;
   scrollbar-gutter: stable;
 }
 .page-items{
@@ -246,16 +247,16 @@ figure {
     gap: 16px;
   }
 
-  .page-container {
-    height: 100%;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-      "title"
-      "main-content"
-      "sidebar";
-    margin-bottom: env(safe-area-inset-bottom);
-  }
+    .page-container {
+      height: 100%;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      grid-template-areas:
+        "title"
+        "main-content"
+        "sidebar";
+      margin-bottom: env(safe-area-inset-bottom);
+    }
 
 
 
