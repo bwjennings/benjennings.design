@@ -72,6 +72,10 @@ class SiteSettings extends HTMLElement {
       : theme === "dark"
         ? "dark"
         : "light dark";
+    // Persist the chosen theme so it can be restored on other pages
+    // An empty string represents the system/default setting
+    localStorage.setItem("myCustomTheme", theme);
+
     // Batch style updates to avoid multiple reflows
     document.documentElement.style.setProperty("--current-color-scheme", colorScheme);
     window.dispatchEvent(new CustomEvent('globalSchemeChange', { detail: theme }));
