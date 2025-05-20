@@ -7,6 +7,9 @@
                 // Create the button element
                 this.button = document.createElement('button');
                 this.button.textContent = 'Change Hue';
+
+                // Bind the event handler once so it can be removed later
+                this.boundChangeHue = this.changeHue.bind(this);
             }
 
             // Called when the element is added to the document's DOM
@@ -14,14 +17,14 @@
                 // Append the button to the custom element
                 this.appendChild(this.button);
 
-                // Add event listener
-                this.button.addEventListener('click', this.changeHue.bind(this));
+                // Add event listener using the bound handler
+                this.button.addEventListener('click', this.boundChangeHue);
             }
 
             // Called when the element is removed from the document's DOM
             disconnectedCallback() {
                 // Remove event listener to prevent memory leaks
-                this.button.removeEventListener('click', this.changeHue.bind(this));
+                this.button.removeEventListener('click', this.boundChangeHue);
             }
 
             // Method to change the hue
