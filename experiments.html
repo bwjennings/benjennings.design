@@ -25,13 +25,13 @@
   <meta charset="UTF-8" />
   <meta name="description" content="A collection of projects by Ben Jennings" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <script src="/js/index.js"></script>
+  <script src="/assets/js/index.js"></script>
 
-  <link rel="modulepreload" href="/js/components/index.js" />
-  <script type="module" src="/js/components/index.js"></script>
-  <script type="module" src="/js/view-transition.js"></script>
-  <link href="/css/vars.css" rel="stylesheet" />
-  <link href="/css/index.css" rel="stylesheet" />
+  <link rel="modulepreload" href="/assets/js/components/index.js" />
+  <script type="module" src="/assets/js/components/index.js"></script>
+  <script type="module" src="/assets/js/view-transition.js"></script>
+  <link href="/assets/css/vars.css" rel="stylesheet" />
+  <link href="/assets/css/index.css" rel="stylesheet" />
 
   <!-- Prefetch Links -->
   <link rel="expect" href="index.html" blocking="render" />
@@ -58,9 +58,9 @@
     </script>
 
   <!-- Icons and Manifest -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/resources/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/resources/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/resources/favicons/favicon-16x16.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
     render="blocking"></script>
@@ -136,16 +136,16 @@
               height: 100%;
               border: 1px solid var(--border-primary);
               background-color: var(--background-primary);
-            " poster="designs/resources/Experiments/poster.webp" auto-rotate rotation-per-second="-20deg"
+            " poster="/assets/resources/Experiments/poster.webp" auto-rotate rotation-per-second="-20deg"
           shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m" field-of-view="19.98deg"
           camera-controls tone-mapping="neutral" shadow-softness="0.78" shadow-softness="1"
-          src="/resources/Scaniverse 2024-05-08 120226.glb"></model-viewer>
+          src="/assets/resources/Scaniverse 2024-05-08 120226.glb"></model-viewer>
 
         <simple-card title="Plant" version="box">
-          <model-viewer slot="media" poster="designs/resources/Experiments/poster.webp" rotation-per-second="-20deg"
+          <model-viewer slot="media" poster="/assets/resources/Experiments/poster.webp" rotation-per-second="-20deg"
             shadow-intensity="0.77" exposure="1.51" camera-orbit="180.3deg 82.74deg 1.091m" field-of-view="19.98deg"
             auto-rotate tone-mapping="neutral" shadow-softness="0.78" shadow-softness="1"
-            src="/resources/ball.gltf"></model-viewer>
+            src="/assets/resources/ball.gltf"></model-viewer>
 
           <div slot="post" class="post-body horizontal">
             <p class="full-row">
@@ -156,7 +156,7 @@
             <model-viewer class="full-row model" width="100%" height="100%" disable-zoom camera-controls
               rotation-per-second="-20deg" shadow-intensity="0.77" exposure="1.51"
               camera-orbit="180.3deg 82.74deg 1.091m" field-of-view="19.98deg" auto-rotate tone-mapping="neutral"
-              rotation-per-second="40deg" shadow-softness="1" src="./resources/ball.gltf"></model-viewer>
+              rotation-per-second="40deg" shadow-softness="1" src="/assets/resources/ball.gltf"></model-viewer>
           </div>
 
           <div slot="badge" class="badge">
@@ -188,10 +188,10 @@
         </simple-card>
 
         <simple-card title="A better digital frame" version="box">
-          <img src="./resources/Experiments/frame/frame2.webp" slot="media" />
+          <img src="/assets/resources/Experiments/frame/frame2.webp" slot="media" />
 
           <div slot="post" class="post-body grid">
-            <img class="full-row" src="./resources/Experiments/frame/frame2.webp" />
+            <img class="full-row" src="/assets/resources/Experiments/frame/frame2.webp" />
 
             <div class="full-row">
               <p>
@@ -214,9 +214,9 @@
               </p>
             </div>
 
-            <img src="./resources/Experiments/frame/frame1.webp" />
-            <img src="./resources/Experiments/frame/frame3.webp" />
-            <img src="./resources/Experiments/frame/frame4.webp" />
+            <img src="/assets/resources/Experiments/frame/frame1.webp" />
+            <img src="/assets/resources/Experiments/frame/frame3.webp" />
+            <img src="/assets/resources/Experiments/frame/frame4.webp" />
           </div>
 
           <div slot="badge" class="badge">
