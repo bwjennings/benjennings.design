@@ -1,0 +1,10 @@
+{
+  "name": "benjennings.design",
+  "version": "1.0.0",
+  "scripts": {
+    "build:tailwind": "tailwindcss -i ./tailwind-src.css -o ./assets/css/tailwind.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.0"
+  }
+}
