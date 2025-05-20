@@ -49,7 +49,7 @@ customElements.define(
 
     connectedCallback() {
       // Initialize the slider value from localStorage or default to "200"
-      const storedHue = localStorage.getItem("selectedColorHue") || "200";
+      const storedHue = localStorage.getItem("brandHue") || "200";
       this.hueSlider.value = storedHue;
       this.updateHue(storedHue);
 
@@ -94,7 +94,7 @@ customElements.define(
 
     // Syncs the slider when localStorage changes (e.g., from another tab)
     handleStorageChange(event) {
-      if (event.key === "selectedColorHue") {
+      if (event.key === "brandHue") {
         const newHue = event.newValue;
         if (newHue && newHue !== this.hueSlider.value) {
           this.hueSlider.value = newHue;
@@ -114,7 +114,7 @@ customElements.define(
 
     // Save the hue value to localStorage
     saveHue(hue) {
-      localStorage.setItem("selectedColorHue", hue);
+      localStorage.setItem("brandHue", hue);
     }
 
     // Returns the current hue value
