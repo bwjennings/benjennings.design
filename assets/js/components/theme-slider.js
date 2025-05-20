@@ -48,8 +48,8 @@ customElements.define(
     }
 
     connectedCallback() {
-      // Initialize the slider value from localStorage or default to "200"
-      const storedHue = localStorage.getItem("brandHue") || "200";
+      // Initialize the slider value from localStorage or default to "230"
+      const storedHue = localStorage.getItem("brandHue") || "230";
       this.hueSlider.value = storedHue;
       this.updateHue(storedHue);
 
