@@ -73,21 +73,3 @@ button[size="small"] {
   }
 }
 
-.button-group {
-  display: inline-flex;
-  gap: var(--spacing-medium);
-}
-
-.button-group {
-  margin-top: auto;
-  flex-direction: column;
-  width: 100%;
-
-  &.row {
-    flex-direction: row;
-  }
-
-  * {
-    width: 100%;
-  }
-}
