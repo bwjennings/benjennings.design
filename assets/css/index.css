@@ -1,18 +1,15 @@
+@layer base layout components;
+
+@import './global/typography.css' layer(base);
+@import './global/page.css' layer(layout);
 
 
-
-
-@import './global/typography.css' ;
-@import './global/page.css';
-
-
-@import './animations/view-transition.css';
-@import './animations/keyframes.css';
-@import './components/radio-buttons.css';
-@import './components/button.css';
-@import './components/dialog.css';
-@import './components/navigation.css';
-@import './components/badge.css';
-@import './components/card.css';
+@import './animations/view-transition.css' layer(base);
+@import './animations/keyframes.css' layer(base);
+@import './components/radio-buttons.css' layer(components);
+@import './components/button.css' layer(components);
+@import './components/dialog.css' layer(components);
+@import './components/navigation.css' layer(components);
+@import './components/badge.css' layer(components);
+@import './components/card.css' layer(components);
 @import './style.css';
-
