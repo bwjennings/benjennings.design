@@ -58,6 +58,10 @@ class SiteSettings extends HTMLElement {
     if (storedHueOffset) {
       document.documentElement.style.setProperty('--hue-offset-base', storedHueOffset + 'deg');
     }
+    const storedContrast = localStorage.getItem('contrast');
+    if (storedContrast) {
+      document.documentElement.style.setProperty('--contrast', storedContrast);
+    }
     // Apply persisted text heading width if available
     const storedTextHeadingWidth = localStorage.getItem('textHeadingWidth');
     if (storedTextHeadingWidth) {
@@ -111,6 +115,11 @@ class SiteSettings extends HTMLElement {
     const randomTextHeadingGrade = Math.floor(Math.random() * 101);
     document.documentElement.style.setProperty('--text-heading-grade', randomTextHeadingGrade);
     localStorage.setItem('textHeadingGrade', randomTextHeadingGrade);
+
+    // Random contrast 0.50–1.50
+    const randomContrast = (Math.random() + 0.5).toFixed(2);
+    document.documentElement.style.setProperty('--contrast', randomContrast);
+    localStorage.setItem('contrast', randomContrast);
 
     console.log(`--brand-hue set to: ${randomHue}deg`);
     // Persist random values so they survive page loads

@@ -8,6 +8,7 @@
     const selectedRadius = localStorage.getItem('baseRadius');
     const selectedChroma = localStorage.getItem('chromaBase');
     const selectedHueOffset = localStorage.getItem('hueOffsetBase');
+    const selectedContrast = localStorage.getItem('contrast');
 
     // Determine the color scheme based on theme setting
     const colorScheme = theme === 'system' ? 'light dark' : theme;
@@ -33,6 +34,11 @@
     // Apply persisted hue-offset-base if available
     if (selectedHueOffset) {
       document.documentElement.style.setProperty('--hue-offset-base', selectedHueOffset + 'deg');
+    }
+
+    // Apply persisted contrast if available
+    if (selectedContrast) {
+      document.documentElement.style.setProperty('--contrast', selectedContrast);
     }
   } catch (e) {
     console.error('Error applying theme preferences:', e);
