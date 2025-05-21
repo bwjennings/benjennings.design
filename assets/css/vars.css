@@ -40,6 +40,12 @@
   inherits: true;
 }
 
+@property --contrast {
+  syntax: '<number>';
+  initial-value: 1;
+  inherits: true;
+}
+
 
 /*====================================
    Root Variables
@@ -241,7 +247,7 @@
   --brand-hue: 230deg;
   /* set this to your brand’s base hue angle */
   transition: --brand-hue 500ms ease-in-out;
-  transition-property: --text-heading-grade, --text-heading-width, --brand-hue, --base-radius, --spacing-base, --gap-base, --chroma-base, --hue-offset-base;
+  transition-property: --contrast, --text-heading-grade, --text-heading-width, --brand-hue, --base-radius, --spacing-base, --gap-base, --chroma-base, --hue-offset-base;
 
   --contrast: 1;
   --midpoint: 0.5;
