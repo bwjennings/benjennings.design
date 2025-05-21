@@ -3,7 +3,7 @@
 
 
 .sidebar {
-  overflow: hidden;
+  
   scrollbar-width: thin;
   scrollbar-gutter: stable;
   position: sticky;
@@ -11,11 +11,11 @@
   height: 100%;
   box-sizing: border-box;
   width: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   align-items: stretch;
-  padding: var(--spacing-x-large);
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto auto;
+  padding: var(--spacing-large);
+ 
   gap: var(--spacing-large);
 grid-area: sidebar;
   grid-template-areas:

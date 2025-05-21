@@ -39,7 +39,7 @@
     text-wrap: pretty;
     flex: 0 0 0;
     font-size: var(--text-heading-sm-size);
-    font-weight: var(--text-heading-weight);
+    font-weight: 400;
     grid-column: -1 /1;
     font-variation-settings:
     "wdth" var(--text-heading-width),

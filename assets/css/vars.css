@@ -253,70 +253,49 @@
   --midpoint: 0.5;
   --scale: max(var(--midpoint), calc(1 - var(--midpoint)));
 
-  --x5: 0.95;
-  --x10: 0.90;
-  --x20: 0.80;
-  --x30: 0.70;
-  --x40: 0.60;
-  --x50: 0.50;
-  --x60: 0.40;
-  --x70: 0.30;
-  --x80: 0.20;
-  --x90: 0.10;
-  --x95: 0.05;
+  /* Dynamically compute distances from midpoint */
+  --dist-5:  calc((0.95 - var(--midpoint)) / var(--scale));
+  --dist-10: calc((0.90 - var(--midpoint)) / var(--scale));
+  --dist-20: calc((0.80 - var(--midpoint)) / var(--scale));
+  --dist-30: calc((0.70 - var(--midpoint)) / var(--scale));
+  --dist-40: calc((0.60 - var(--midpoint)) / var(--scale));
+  --dist-50: 0;
+  --dist-60: calc((var(--midpoint) - 0.40) / var(--scale));
+  --dist-70: calc((var(--midpoint) - 0.30) / var(--scale));
+  --dist-80: calc((var(--midpoint) - 0.20) / var(--scale));
+  --dist-90: calc((var(--midpoint) - 0.10) / var(--scale));
+  --dist-95: calc((var(--midpoint) - 0.05) / var(--scale));
 
-  /* Lightness curve (uses only pow(): widely supported) */
-  /* Pre‑computed normalized distances from midpoint (0 → 1) */
-  --dist-5:  0.9;
-  --dist-10: 0.8;
-  --dist-20: 0.6;
-  --dist-30: 0.4;
-  --dist-40: 0.2;
-  --dist-50: 0.0;
-  --dist-60: 0.2;
-  --dist-70: 0.4;
-  --dist-80: 0.6;
-  --dist-90: 0.8;
-  --dist-95: 0.9;
-
-  /* Lightness values (0 = darkest, 1 = lightest) */
-  --lightness-5:  calc(0.5 + pow(var(--dist-5),  var(--contrast)) * 0.5);
-  --lightness-10: calc(0.5 + pow(var(--dist-10), var(--contrast)) * 0.5);
-  --lightness-20: calc(0.5 + pow(var(--dist-20), var(--contrast)) * 0.5);
-  --lightness-30: calc(0.5 + pow(var(--dist-30), var(--contrast)) * 0.5);
-  --lightness-40: calc(0.5 + pow(var(--dist-40), var(--contrast)) * 0.5);
-  --lightness-50: 0.5;
-  --lightness-60: calc(0.5 - pow(var(--dist-60), var(--contrast)) * 0.5);
-  --lightness-70: calc(0.5 - pow(var(--dist-70), var(--contrast)) * 0.5);
-  --lightness-80: calc(0.5 - pow(var(--dist-80), var(--contrast)) * 0.5);
-  --lightness-90: calc(0.5 - pow(var(--dist-90), var(--contrast)) * 0.5);
-  --lightness-95: calc(0.5 - pow(var(--dist-95), var(--contrast)) * 0.5);
+  /* Apply contrast curve to generate lightness stops */
+  --lightness-5:  calc(var(--midpoint) + pow(var(--dist-5),  var(--contrast)) * var(--scale));
+  --lightness-10: calc(var(--midpoint) + pow(var(--dist-10), var(--contrast)) * var(--scale));
+  --lightness-20: calc(var(--midpoint) + pow(var(--dist-20), var(--contrast)) * var(--scale));
+  --lightness-30: calc(var(--midpoint) + pow(var(--dist-30), var(--contrast)) * var(--scale));
+  --lightness-40: calc(var(--midpoint) + pow(var(--dist-40), var(--contrast)) * var(--scale));
+  --lightness-50: var(--midpoint);
+  --lightness-60: calc(var(--midpoint) - pow(var(--dist-60), var(--contrast)) * var(--scale));
+  --lightness-70: calc(var(--midpoint) - pow(var(--dist-70), var(--contrast)) * var(--scale));
+  --lightness-80: calc(var(--midpoint) - pow(var(--dist-80), var(--contrast)) * var(--scale));
+  --lightness-90: calc(var(--midpoint) - pow(var(--dist-90), var(--contrast)) * var(--scale));
+  --lightness-95: calc(var(--midpoint) - pow(var(--dist-95), var(--contrast)) * var(--scale));
         
-  --chroma-base: 0.015;
-  --chroma-scale-5: 1;
-  --chroma-scale-10: 2;
-  --chroma-scale-20: 4;
-  --chroma-scale-30: 7;
-  --chroma-scale-40: 10;
-  --chroma-scale-50: 13;
-  --chroma-scale-60: 16;
-  --chroma-scale-70: 19;
-  --chroma-scale-80: 19;
-  --chroma-scale-90: 16;
-  --chroma-scale-95: 12;
-  --chroma-scale-100: 9;
-  --chroma-5: calc(var(--chroma-base) * var(--chroma-scale-5));
-  --chroma-10: calc(var(--chroma-base) * var(--chroma-scale-10));
-  --chroma-20: calc(var(--chroma-base) * var(--chroma-scale-20));
-  --chroma-30: calc(var(--chroma-base) * var(--chroma-scale-30));
-  --chroma-40: calc(var(--chroma-base) * var(--chroma-scale-40));
-  --chroma-50: calc(var(--chroma-base) * var(--chroma-scale-50));
-  --chroma-60: calc(var(--chroma-base) * var(--chroma-scale-60));
-  --chroma-70: calc(var(--chroma-base) * var(--chroma-scale-70));
-  --chroma-80: calc(var(--chroma-base) * var(--chroma-scale-80));
-  --chroma-90: calc(var(--chroma-base) * var(--chroma-scale-90));
-  --chroma-95: calc(var(--chroma-base) * var(--chroma-scale-95));
-  --chroma-100: calc(var(--chroma-base) * var(--chroma-scale-100));
+  --chroma-min: 0.02;
+  --chroma-max: 0.4;
+
+  /* Delta between them */
+  --chroma-delta: calc(var(--chroma-max) - var(--chroma-min));
+
+   --chroma-5:  calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-5),  var(--contrast))));
+  --chroma-10: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-10), var(--contrast))));
+  --chroma-20: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-20), var(--contrast))));
+  --chroma-30: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-30), var(--contrast))));
+  --chroma-40: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-40), var(--contrast))));
+  --chroma-50: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-50), var(--contrast))));
+  --chroma-60: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-60), var(--contrast))));
+  --chroma-70: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-70), var(--contrast))));
+  --chroma-80: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-80), var(--contrast))));
+  --chroma-90: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-90), var(--contrast))));
+  --chroma-95: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-95), var(--contrast))));
 
 
   /* Neutral / Gray */
@@ -387,11 +366,11 @@
   --hue-offset-base: 40deg;
 
   /* Accent Hue Offsets (variable-only approach) */
-  --accent-hue-offset: calc(var(--hue-offset-base) * 3);
+  --accent-hue-offset: calc(var(--hue-offset-base) * 2);
   /* complementary (180°) */
-  --accent2-hue-offset: calc(var(--hue-offset-base) * 4);
+  --accent2-hue-offset: calc(var(--hue-offset-base) * 3);
   /* triad #2 (240°) */
-  --accent3-hue-offset: calc(var(--hue-offset-base) * 2);
+  --accent3-hue-offset: calc(var(--hue-offset-base) * 4);
   /* triad #1 (120°) */
 
   --accent-hue: calc(var(--brand-hue) + var(--accent-hue-offset));
@@ -485,21 +464,21 @@
 }
 
 [data-theme="energized"] {
-  --contrast: 1;
+  --contrast: 1.4;
   --hue-offset-base: 90deg;
-  --chroma-base: 0.04;
+  --chroma-max: 0.4;
 }
 
 [data-theme="balanced"] {
-  --contrast: 1.5;
+  --contrast: 0.4;
   --hue-offset-base: 40deg;
-  --chroma-base: 0.04;
+  --chroma-max: 0.35;
 }
 
 [data-theme="calm"] {
-  --contrast: 1.6;
-  --hue-offset-base: 10deg;
-  --chroma-base: 0.02;
+  --contrast: 0.8;
+  --hue-offset-base: 20deg;
+  --chroma-max: 0.3;
 }
 
 /*====================================

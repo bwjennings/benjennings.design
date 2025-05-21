@@ -74,7 +74,50 @@
 </head>
 
 <body>
-  <theme-slider class="quick-theme" data-hide-label></theme-slider>
+  <label>
+    contrast
+  <input
+      type="range"
+      id="aSlider"
+      min="0.1"
+      max="3"
+      step="0.1"
+      value="1">
+    <output id="aValue">10</output>
+    </label>
+    <script>
+    const slider = document.getElementById('aSlider');
+    const output = document.getElementById('aValue');
+
+    // Update the display and the CSS variable on each input change
+    slider.addEventListener('input', e => {
+      const newA = e.target.value;
+      document.documentElement.style.setProperty('--contrast', newA);
+      output.textContent = newA;
+    });
+  </script>
+
+  <label>chroma
+  <input
+      type="range"
+      id="cSlider"
+      min="0.1"
+      max="0.5"
+      step="0.01"
+      value="0.3">
+    <output id="cValue">1</output>
+    </label>
+    <script>
+    const cSlider = document.getElementById('cSlider');
+    const cOutput = document.getElementById('cValue');
+
+    // Update the display and the CSS variable on each input change
+    cSlider.addEventListener('input', e => {
+      const newValue = e.target.value;
+      document.documentElement.style.setProperty('--chroma-max', newValue);
+      cOutput.textContent = newValue;
+    });
+  </script>
   <button id="randomHueBtn">Randomize Hue</button>
 
   <script>
@@ -228,25 +271,16 @@
     <div class="bg-accent3-90"></div>
     <div class="bg-accent3-95"></div>
   </div>
-  <input
-      type="range"
-      id="aSlider"
-      min="-10"
-      max="20"
-      step="0.5"
-      value="10">
-    <output id="aValue">10</output>
-    <script>
-    const slider = document.getElementById('aSlider');
-    const output = document.getElementById('aValue');
-
-    // Update the display and the CSS variable on each input change
-    slider.addEventListener('input', e => {
-      const newA = e.target.value;
-      document.documentElement.style.setProperty('--contrast', newA);
-      output.textContent = newA;
-    });
-  </script>
+  <site-settings></site-settings>
+     <article class="card accent">
+        <h1 class="icon">integration_instructions</h1>
+        <div class="title">Developers need good experiences too</div>
+      </article>
+         <article class="card accent2">
+        <h1 class="icon">integration_instructions</h1>
+        <div class="title">Developers need good experiences too</div>
+      </article>
+  
 
 </body>
 
