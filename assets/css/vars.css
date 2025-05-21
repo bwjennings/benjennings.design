@@ -3,6 +3,7 @@
   initial-value: 20deg;
   inherits: false;
 }
+
 @property --brand-hue {
   syntax: '<angle>';
   initial-value: 210deg;
@@ -26,6 +27,7 @@
   initial-value: 115;
   inherits: true;
 }
+
 @property --text-heading-grade {
   syntax: '<number>';
   initial-value: 115;
@@ -239,26 +241,51 @@
   --brand-hue: 230deg;
   /* set this to your brand’s base hue angle */
   transition: --brand-hue 500ms ease-in-out;
-  transition-property: --text-heading-grade, --text-heading-width,--brand-hue, --base-radius, --spacing-base, --gap-base, --chroma-base, --hue-offset-base;
-  /* steepness (4–8 ideal) */
+  transition-property: --text-heading-grade, --text-heading-width, --brand-hue, --base-radius, --spacing-base, --gap-base, --chroma-base, --hue-offset-base;
 
+  --contrast: 1;
+  --midpoint: 0.5;
+  --scale: max(var(--midpoint), calc(1 - var(--midpoint)));
 
-  --lightness-5: 99%;
-  --lightness-10: 97%;
-  --lightness-20: 95%;
-  --lightness-30: 91%;
-  --lightness-40: 85%;
-  --lightness-50: 77%;
-  --lightness-60: 69%;
-  --lightness-70: 57%;
-  /* was 61% */
-  --lightness-80: 47%;
-  /* was 53% */
-  --lightness-90: 32%;
-  /* was 45% */
-  --lightness-95: 22%;
-  /* was 37% */
+  --x5: 0.95;
+  --x10: 0.90;
+  --x20: 0.80;
+  --x30: 0.70;
+  --x40: 0.60;
+  --x50: 0.50;
+  --x60: 0.40;
+  --x70: 0.30;
+  --x80: 0.20;
+  --x90: 0.10;
+  --x95: 0.05;
 
+  /* Lightness curve (uses only pow(): widely supported) */
+  /* Pre‑computed normalized distances from midpoint (0 → 1) */
+  --dist-5:  0.9;
+  --dist-10: 0.8;
+  --dist-20: 0.6;
+  --dist-30: 0.4;
+  --dist-40: 0.2;
+  --dist-50: 0.0;
+  --dist-60: 0.2;
+  --dist-70: 0.4;
+  --dist-80: 0.6;
+  --dist-90: 0.8;
+  --dist-95: 0.9;
+
+  /* Lightness values (0 = darkest, 1 = lightest) */
+  --lightness-5:  calc(0.5 + pow(var(--dist-5),  var(--contrast)) * 0.5);
+  --lightness-10: calc(0.5 + pow(var(--dist-10), var(--contrast)) * 0.5);
+  --lightness-20: calc(0.5 + pow(var(--dist-20), var(--contrast)) * 0.5);
+  --lightness-30: calc(0.5 + pow(var(--dist-30), var(--contrast)) * 0.5);
+  --lightness-40: calc(0.5 + pow(var(--dist-40), var(--contrast)) * 0.5);
+  --lightness-50: 0.5;
+  --lightness-60: calc(0.5 - pow(var(--dist-60), var(--contrast)) * 0.5);
+  --lightness-70: calc(0.5 - pow(var(--dist-70), var(--contrast)) * 0.5);
+  --lightness-80: calc(0.5 - pow(var(--dist-80), var(--contrast)) * 0.5);
+  --lightness-90: calc(0.5 - pow(var(--dist-90), var(--contrast)) * 0.5);
+  --lightness-95: calc(0.5 - pow(var(--dist-95), var(--contrast)) * 0.5);
+        
   --chroma-base: 0.015;
   --chroma-scale-5: 1;
   --chroma-scale-10: 2;
@@ -272,7 +299,6 @@
   --chroma-scale-90: 16;
   --chroma-scale-95: 12;
   --chroma-scale-100: 9;
-
   --chroma-5: calc(var(--chroma-base) * var(--chroma-scale-5));
   --chroma-10: calc(var(--chroma-base) * var(--chroma-scale-10));
   --chroma-20: calc(var(--chroma-base) * var(--chroma-scale-20));
