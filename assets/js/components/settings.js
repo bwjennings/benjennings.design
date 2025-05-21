@@ -1,8 +1,8 @@
 // Define and cache the template
 const template = document.createElement('template');
 template.innerHTML = `
-  <link rel="stylesheet" href="/css/components/radio-buttons.css">
-  <link rel="stylesheet" href="/css/components/button.css">
+  <link rel="stylesheet" href="/assets/css/components/radio-buttons.css">
+  <link rel="stylesheet" href="/assets/css/components/button.css">
   <fieldset class="radio-buttons">
     <label class="radio-button">
       <input type="radio" name="theme" value="" checked aria-label="Auto Theme">
