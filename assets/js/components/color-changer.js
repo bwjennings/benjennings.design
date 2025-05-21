@@ -47,6 +47,7 @@
               // Generate a random contrast value between 0.50 and 1.50
               const randomContrast = (Math.random() + 0.5).toFixed(2);
               document.documentElement.style.setProperty('--contrast', randomContrast);
+              localStorage.setItem('contrast', randomContrast);
               console.log(`--contrast set to: ${randomContrast}`);
 
                 console.log(`--brand-hue set to: ${randomHue}deg`);
