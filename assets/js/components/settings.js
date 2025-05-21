@@ -20,6 +20,20 @@ template.innerHTML = `
       
     </label>
   </fieldset>
+  <fieldset class="radio-buttons" id="data-theme-selector">
+    <label class="radio-button">
+      <input type="radio" name="dataTheme" value="calm" aria-label="Calm">
+      <span>Calm</span>
+    </label>
+    <label class="radio-button">
+      <input type="radio" name="dataTheme" value="balanced" aria-label="Balanced">
+      <span>Balanced</span>
+    </label>
+    <label class="radio-button">
+      <input type="radio" name="dataTheme" value="energized" aria-label="Energized">
+      <span>Energized</span>
+    </label>
+  </fieldset>
   <button part="button" id="change-hue">Change Hue</button>
 `;
 
@@ -29,6 +43,7 @@ class SiteSettings extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.themeChangeHandler = this.themeChangeHandler.bind(this);
+    this.dataThemeChangeHandler = this.dataThemeChangeHandler.bind(this);
     this.changeHue = this.changeHue.bind(this);
   }
 
@@ -50,14 +65,11 @@ class SiteSettings extends HTMLElement {
     if (storedRadius) {
       document.documentElement.style.setProperty('--base-radius', storedRadius + 'px');
     }
-    const storedChroma = localStorage.getItem('chromaBase');
-    if (storedChroma) {
-      document.documentElement.style.setProperty('--chroma-base', storedChroma);
-    }
-    const storedHueOffset = localStorage.getItem('hueOffsetBase');
-    if (storedHueOffset) {
-      document.documentElement.style.setProperty('--hue-offset-base', storedHueOffset + 'deg');
-    }
+    const storedDataTheme = localStorage.getItem('dataTheme') || 'balanced';
+    const themeStyleInput = this.shadowRoot.querySelector(`input[name="dataTheme"][value="${storedDataTheme}"]`);
+    if (themeStyleInput) themeStyleInput.checked = true;
+    this.updateDataTheme(storedDataTheme);
+    this.shadowRoot.getElementById('data-theme-selector').addEventListener('change', this.dataThemeChangeHandler);
     // Apply persisted text heading width if available
     const storedTextHeadingWidth = localStorage.getItem('textHeadingWidth');
     if (storedTextHeadingWidth) {
@@ -87,6 +99,21 @@ class SiteSettings extends HTMLElement {
     }
   }
 
+  dataThemeChangeHandler(event) {
+    if (event.target.name === "dataTheme") {
+      this.updateDataTheme(event.target.value);
+    }
+  }
+
+  updateDataTheme(themeStyle) {
+    localStorage.setItem('dataTheme', themeStyle);
+    if (themeStyle) {
+      document.documentElement.setAttribute('data-theme', themeStyle);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }
+
   changeHue() {
     // Maximum hue shift in degrees
     const hueLimit = 90; // change this value to adjust the limit
@@ -99,14 +126,6 @@ class SiteSettings extends HTMLElement {
     const randomRadius = Math.floor(Math.random() * 9);
     document.documentElement.style.setProperty("--base-radius", randomRadius + "px");
 
-    // Random chroma 0.010–0.020
-    const randomChromaBase = (Math.random() * 0.01 + 0.010).toFixed(3);
-    document.documentElement.style.setProperty("--chroma-base", randomChromaBase);
-
-    // Random hue-offset-base 10–90deg
-    const randomHueOffset = Math.floor(Math.random() * 81) + 10;
-    document.documentElement.style.setProperty("--hue-offset-base", randomHueOffset + "deg");
- 
     // Random text heading grade 0–100 (unitless)
     const randomTextHeadingGrade = Math.floor(Math.random() * 101);
     document.documentElement.style.setProperty('--text-heading-grade', randomTextHeadingGrade);
@@ -116,8 +135,6 @@ class SiteSettings extends HTMLElement {
     // Persist random values so they survive page loads
     localStorage.setItem('brandHue', randomHue);
     localStorage.setItem('baseRadius', randomRadius);
-    localStorage.setItem('chromaBase', randomChromaBase);
-    localStorage.setItem('hueOffsetBase', randomHueOffset);
   }
 }
 
