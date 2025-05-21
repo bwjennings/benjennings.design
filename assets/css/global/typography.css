@@ -100,9 +100,13 @@ u {
   }
 }
 
-.icon {
 
-width: fit-content;
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-align: center;
 
   font-family: var(--icon-font-family, "Material Symbols Sharp");
   font-size: var(--icon-size-large);
