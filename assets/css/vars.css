@@ -478,6 +478,24 @@
   --theme-slider-outline: var(--background-primary);
 }
 
+[data-theme="energized"] {
+  --contrast: 1;
+  --hue-offset-base: 90deg;
+  --chroma-base: 0.04;
+}
+
+[data-theme="balanced"] {
+  --contrast: 1.5;
+  --hue-offset-base: 40deg;
+  --chroma-base: 0.04;
+}
+
+[data-theme="calm"] {
+  --contrast: 1.6;
+  --hue-offset-base: 10deg;
+  --chroma-base: 0.02;
+}
+
 /*====================================
    High Contrast Mode Overrides
 ====================================*/

@@ -4,11 +4,11 @@
     const theme = localStorage.getItem('myCustomTheme') || 'light dark'; // Default to 'light' if not set
     const highContrast = localStorage.getItem('highContrast') === 'true';
     const selectedColorHue = localStorage.getItem('brandHue') || '230';
-    // Retrieve persisted radius, chroma, and hue offset
+    // Retrieve persisted radius and custom theme
     const selectedRadius = localStorage.getItem('baseRadius');
-    const selectedChroma = localStorage.getItem('chromaBase');
-    const selectedHueOffset = localStorage.getItem('hueOffsetBase');
-    const selectedContrast = localStorage.getItem('contrast');
+
+    const selectedDataTheme = localStorage.getItem('dataTheme');
+
 
     // Determine the color scheme based on theme setting
     const colorScheme = theme === 'system' ? 'light dark' : theme;
@@ -27,13 +27,9 @@
     if (selectedRadius) {
       document.documentElement.style.setProperty('--base-radius', selectedRadius + 'px');
     }
-    // Apply persisted chroma if available
-    if (selectedChroma) {
-      document.documentElement.style.setProperty('--chroma-base', selectedChroma);
-    }
-    // Apply persisted hue-offset-base if available
-    if (selectedHueOffset) {
-      document.documentElement.style.setProperty('--hue-offset-base', selectedHueOffset + 'deg');
+    // Apply saved data-theme if available
+    if (selectedDataTheme) {
+      document.documentElement.setAttribute('data-theme', selectedDataTheme);
     }
 
     // Apply persisted contrast if available
