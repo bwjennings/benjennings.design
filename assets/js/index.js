@@ -6,7 +6,9 @@
     const selectedColorHue = localStorage.getItem('brandHue') || '230';
     // Retrieve persisted radius and custom theme
     const selectedRadius = localStorage.getItem('baseRadius');
+
     const selectedDataTheme = localStorage.getItem('dataTheme');
+
 
     // Determine the color scheme based on theme setting
     const colorScheme = theme === 'system' ? 'light dark' : theme;
@@ -28,6 +30,11 @@
     // Apply saved data-theme if available
     if (selectedDataTheme) {
       document.documentElement.setAttribute('data-theme', selectedDataTheme);
+    }
+
+    // Apply persisted contrast if available
+    if (selectedContrast) {
+      document.documentElement.style.setProperty('--contrast', selectedContrast);
     }
   } catch (e) {
     console.error('Error applying theme preferences:', e);

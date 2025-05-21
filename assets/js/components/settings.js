@@ -65,11 +65,13 @@ class SiteSettings extends HTMLElement {
     if (storedRadius) {
       document.documentElement.style.setProperty('--base-radius', storedRadius + 'px');
     }
+
     const storedDataTheme = localStorage.getItem('dataTheme') || 'balanced';
     const themeStyleInput = this.shadowRoot.querySelector(`input[name="dataTheme"][value="${storedDataTheme}"]`);
     if (themeStyleInput) themeStyleInput.checked = true;
     this.updateDataTheme(storedDataTheme);
     this.shadowRoot.getElementById('data-theme-selector').addEventListener('change', this.dataThemeChangeHandler);
+
     // Apply persisted text heading width if available
     const storedTextHeadingWidth = localStorage.getItem('textHeadingWidth');
     if (storedTextHeadingWidth) {
@@ -130,6 +132,11 @@ class SiteSettings extends HTMLElement {
     const randomTextHeadingGrade = Math.floor(Math.random() * 101);
     document.documentElement.style.setProperty('--text-heading-grade', randomTextHeadingGrade);
     localStorage.setItem('textHeadingGrade', randomTextHeadingGrade);
+
+    // Random contrast 0.50–1.50
+    const randomContrast = (Math.random() + 0.5).toFixed(2);
+    document.documentElement.style.setProperty('--contrast', randomContrast);
+    localStorage.setItem('contrast', randomContrast);
 
     console.log(`--brand-hue set to: ${randomHue}deg`);
     // Persist random values so they survive page loads
