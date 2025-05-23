@@ -283,6 +283,13 @@ figure {
     }
   }
 
+  @supports not (position-anchor: --bottom-nav) {
+    theme-control {
+      bottom: calc(var(--bottom-nav-height) + 24px);
+      right: 24px;
+    }
+  }
+
 
 
 
