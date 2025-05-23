@@ -59,12 +59,16 @@ class ThemeControl extends HTMLElement {
   }
 
   connectedCallback() {
-    document.documentElement.style.setProperty('--base-hue', '0deg');
-    document.documentElement.style.setProperty('--stimulation-level', '0.50');
+    const storedHue  = parseFloat(localStorage.getItem('brandHue')) || 0;
+    const storedStim = parseFloat(localStorage.getItem('stimulationLevel')) || 0.50;
     this.slider.addEventListener('pointerdown', this.onDown);
     window.addEventListener('pointermove', this.onMove);
     window.addEventListener('pointerup',   this.onUp);
-    this.updateHandle(0, 0);
+    const x = storedHue / 360;
+    const minS = 0.5, maxS = 0.9;
+    const y = (storedStim - minS) / (maxS - minS);
+    this.updateHandle(x, y);
+    this.updateVariables(x, y);
   }
 
   disconnectedCallback() {
@@ -95,11 +99,13 @@ class ThemeControl extends HTMLElement {
   }
 
   updateVariables(x, y) {
-    const hue  = Math.round(x * 360) + 'deg';
+    const hueValue = Math.round(x * 360);
     const minS = 0.5, maxS = 0.9;
     const stim = (y * (maxS - minS) + minS).toFixed(2);
-    document.documentElement.style.setProperty('--base-hue', hue);
+    document.documentElement.style.setProperty('--base-hue', hueValue + 'deg');
     document.documentElement.style.setProperty('--stimulation-level', stim);
+    localStorage.setItem('brandHue', hueValue);
+    localStorage.setItem('stimulationLevel', stim);
   }
 }
 
