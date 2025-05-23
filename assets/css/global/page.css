@@ -273,6 +273,14 @@ figure {
     bottom: calc(anchor(top) + 24px);
     right: 24px;
     width: fit-content;
+    z-index: 10;
+  }
+
+  @supports not (position-anchor: --bottom-nav) {
+    theme-control {
+      bottom: calc(var(--bottom-nav-height) + 24px);
+      right: 24px;
+    }
   }
 
   @supports not (position-anchor: --bottom-nav) {

@@ -28,11 +28,17 @@ template.innerHTML = `
       position: absolute;
       right: anchor(left);
       bottom: anchor(top);
+
+      z-index: 20;
+
     }
 
     @supports not (position-anchor: --theme-button) {
       .slider[popover] {
         position: fixed;
+
+        z-index: 20;
+
       }
     }
   </style>
