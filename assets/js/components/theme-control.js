@@ -17,7 +17,17 @@ template.innerHTML = `
       height: 100%;
     }
     @media screen and (max-width: 800px), (max-height: 500px) {
-      button { display: inline-flex; }
+      button { 
+        display: inline-flex;
+        anchor-name: --theme-button;
+      }
+    }
+
+    .slider[popover] {
+      position-anchor: --theme-button;
+      position: absolute;
+      left: anchor(right);
+      top: anchor(bottom);
     }
   </style>
   <button id="toggle" class="icon-button sm" aria-label="Theme controls">tune</button>

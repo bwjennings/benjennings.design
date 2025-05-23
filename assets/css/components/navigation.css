@@ -233,7 +233,7 @@ theme-slider {
     flex-direction: column;
     gap: var(--spacing-small);
     border-color: transparent;
-    
+   
     height: fit-content;
     -webkit-tap-highlight-color: transparent;
 
@@ -248,6 +248,10 @@ theme-slider {
     .icon {
       font-size: var(--icon-size-medium);
     }
+
+    .title{
+       font-size: var(--text-body-sm-size);
+    }
   }
 
   .active {
@@ -261,10 +265,7 @@ theme-slider {
 
 
 
-  .title {
-    font-size: 12px;
-    line-height: 120%;
-  }
+
 
 
 
