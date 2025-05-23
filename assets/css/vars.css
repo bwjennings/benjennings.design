@@ -13,7 +13,12 @@
 @property --base-radius {
   syntax: '<length>';
   initial-value: 0px;
-  inherits: false;
+  inherits: true;
+}
+@property --stimulation-level{
+  syntax: '<number>';
+  initial-value: 1.5;
+  inherits: true;
 }
 
 @property --spacing-base {
@@ -120,7 +125,7 @@
   /*------------------------------------
     Radii
   ------------------------------------*/
-  --base-radius: calc(var( --stimulation-level) * 10px);
+  --base-radius: calc(var(--stimulation-level) * 5px);
   --radius-none: 0px;
   --radius-small: calc(var(--base-radius) * 4);
   --radius-medium: calc(var(--base-radius) * 8);
@@ -247,56 +252,13 @@
   /* Brand Hue Definitions */
   --base-hue: 230deg;
   /* set this to your brand’s base hue angle */
-  transition: --base-hue 200ms ease-in-out;
-  transition-property: --contrast, --text-heading-grade, --text-heading-width, --base-hue, --base-radius, --spacing-base, --gap-base, --chroma-base, --hue-offset-base;
+  /* transition: --base-hue 200ms ease-in-out;
+  transition-property: --contrast, --text-heading-grade, --text-heading-width, --base-hue, --base-radius, --spacing-base, --gap-base, --chroma-base, --hue-offset-base; */
 
-  --contrast: 1;
-  --midpoint: 0.5;
-  --scale: max(var(--midpoint), calc(1 - var(--midpoint)));
 
-  /* Dynamically compute distances from midpoint */
-  --dist-5: calc((0.95 - var(--midpoint)) / var(--scale));
-  --dist-10: calc((0.90 - var(--midpoint)) / var(--scale));
-  --dist-20: calc((0.80 - var(--midpoint)) / var(--scale));
-  --dist-30: calc((0.70 - var(--midpoint)) / var(--scale));
-  --dist-40: calc((0.60 - var(--midpoint)) / var(--scale));
-  --dist-50: 0;
-  --dist-60: calc((var(--midpoint) - 0.40) / var(--scale));
-  --dist-70: calc((var(--midpoint) - 0.30) / var(--scale));
-  --dist-80: calc((var(--midpoint) - 0.20) / var(--scale));
-  --dist-90: calc((var(--midpoint) - 0.10) / var(--scale));
-  --dist-95: calc((var(--midpoint) - 0.05) / var(--scale));
 
-  /* Apply contrast curve to generate lightness stops */
-  --lightness-5: calc(var(--midpoint) + pow(var(--dist-5), var(--contrast)) * var(--scale));
-  --lightness-10: calc(var(--midpoint) + pow(var(--dist-10), var(--contrast)) * var(--scale));
-  --lightness-20: calc(var(--midpoint) + pow(var(--dist-20), var(--contrast)) * var(--scale));
-  --lightness-30: calc(var(--midpoint) + pow(var(--dist-30), var(--contrast)) * var(--scale));
-  --lightness-40: calc(var(--midpoint) + pow(var(--dist-40), var(--contrast)) * var(--scale));
-  --lightness-50: var(--midpoint);
-  --lightness-60: calc(var(--midpoint) - pow(var(--dist-60), var(--contrast)) * var(--scale));
-  --lightness-70: calc(var(--midpoint) - pow(var(--dist-70), var(--contrast)) * var(--scale));
-  --lightness-80: calc(var(--midpoint) - pow(var(--dist-80), var(--contrast)) * var(--scale));
-  --lightness-90: calc(var(--midpoint) - pow(var(--dist-90), var(--contrast)) * var(--scale));
-  --lightness-95: calc(var(--midpoint) - pow(var(--dist-95), var(--contrast)) * var(--scale));
 
-  --chroma-min: 0.02;
-  --chroma-max: 0.4;
 
-  /* Delta between them */
-  --chroma-delta: calc(var(--chroma-max) - var(--chroma-min));
-
-  --chroma-5: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-5), var(--contrast))));
-  --chroma-10: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-10), var(--contrast))));
-  --chroma-20: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-20), var(--contrast))));
-  --chroma-30: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-30), var(--contrast))));
-  --chroma-40: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-40), var(--contrast))));
-  --chroma-50: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-50), var(--contrast))));
-  --chroma-60: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-60), var(--contrast))));
-  --chroma-70: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-70), var(--contrast))));
-  --chroma-80: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-80), var(--contrast))));
-  --chroma-90: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-90), var(--contrast))));
-  --chroma-95: calc(var(--chroma-min) + var(--chroma-delta) * (1 - pow(var(--dist-95), var(--contrast))));
 
 
   /* Neutral / Gray */
@@ -363,131 +325,131 @@
 
 
 
-  /* CONTROL VARIABLES - Adjust these to change the entire system */
-  /* STIMULATION LEVEL: calm (0.2), balanced (0.5), energizing (0.8) */
-  --stimulation-level: 0.6;
-
-  /* INTENSITY CONTROL (affects chroma/saturation) */
-  --base-intensity: calc(var(--stimulation-level) * 0.25);
-  /* 0 to 0.2 */
-  --intensity-variation: calc(var(--stimulation-level) * 0.02);
-  /* variation range */
-
-  /* HUE DISTANCE CONTROL */
-  --hue-spread: calc(var(--stimulation-level) * 180deg);
-  /* 0 to 180deg */
-  --base-hue: 220deg;
-  /* starting hue - blue */
-
-
-
-
-
- --x5: 0.99;
-  --x10: 0.90;
-  --x20: 0.80;
-  --x30: 0.70;
-  --x40: 0.60;
-  --x50: 0.50;
-  --x60: 0.40;
-  --x70: 0.30;
-  --x80: 0.20;
-  --x90: 0.10;
-  --x95: 0.05;
-  --x100: 0;
   
-  --a: calc(var(--stimulation-level) * 5);
-  --lightness-midpoint:0.6;  
-  --lightness-range:1.3;
+
+
+
+
+--stimulation-level:2;
+
+
+  --x5:  0.037;
+  --x10: 0.074;
+  --x20: 0.147;
+  --x30: 0.221;
+  --x40: 0.295;
+  --x50: 0.368;
+  --x60: 0.442;
+  --x70: 0.516;
+  --x80: 0.589;
+  --x90: 0.663;
+  --x95: 0.700;
+
+  /*------------------------------------
+    Chroma Scale (mirrors lightness scale)
+  ------------------------------------*/
+  --chroma-base-val: calc(var(--stimulation-level) * 0.3);
+  --chroma-scale-5:  calc(var(--chroma-base-val) * 0.1);
+  --chroma-scale-10: calc(var(--chroma-base-val) * 0.2);
+  --chroma-scale-20: calc(var(--chroma-base-val) * 0.4);
+  --chroma-scale-30: calc(var(--chroma-base-val) * 0.6);
+  --chroma-scale-40: calc(var(--chroma-base-val) * 0.8);
+  --chroma-scale-50: var(--chroma-base-val);
+  --chroma-scale-60: calc(var(--chroma-base-val) * 0.8);
+  --chroma-scale-70: calc(var(--chroma-base-val) * 0.6);
+  --chroma-scale-80: calc(var(--chroma-base-val) * 0.4);
+  --chroma-scale-90: calc(var(--chroma-base-val) * 0.2);
+  --chroma-scale-95: calc(var(--chroma-base-val) * 0.1);
+
+  --a: calc(var(--stimulation-level) *2);
+  --lightness-midpoint: 0.6;
+  --lightness-range: 1.3;
   /* Lightness values using the corresponding x variables */
-  --lightness-5: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x5) - var(--lightness-midpoint))))));
-  --lightness-10: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x10) - var(--lightness-midpoint))))));
-  --lightness-20: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x20) - var(--lightness-midpoint))))));
-  --lightness-30: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x30) - var(--lightness-midpoint))))));
-  --lightness-40: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x40) - var(--lightness-midpoint))))));
-  --lightness-50: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x50) - var(--lightness-midpoint))))));
-  --lightness-60: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x60) - var(--lightness-midpoint))))));
-  --lightness-70: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x70) - var(--lightness-midpoint))))));
-  --lightness-80: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x80) - var(--lightness-midpoint))))));
-  --lightness-90: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x90) - var(--lightness-midpoint))))));
-  --lightness-95: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x95) - var(--lightness-midpoint))))));
-  --lightness-100: calc(var(--lightness-range) / (1 + exp(calc(-1 * var(--a) * (var(--x100) - var(--lightness-midpoint))))));
-  
- 
+  --lightness-5: calc(pow(calc(1 - var(--x5)), var(--a)) / (pow(calc(1 - var(--x5)), var(--a)) + pow(var(--x5), var(--a))));
+  --lightness-10: calc(pow(calc(1 - var(--x10)), var(--a)) / (pow(calc(1 - var(--x10)), var(--a)) + pow(var(--x10), var(--a))));
+  --lightness-20: calc(pow(calc(1 - var(--x20)), var(--a)) / (pow(calc(1 - var(--x20)), var(--a)) + pow(var(--x20), var(--a))));
+  --lightness-30: calc(pow(calc(1 - var(--x30)), var(--a)) / (pow(calc(1 - var(--x30)), var(--a)) + pow(var(--x30), var(--a))));
+  --lightness-40: calc(pow(calc(1 - var(--x40)), var(--a)) / (pow(calc(1 - var(--x40)), var(--a)) + pow(var(--x40), var(--a))));
+  --lightness-50: calc(pow(calc(1 - var(--x50)), var(--a)) / (pow(calc(1 - var(--x50)), var(--a)) + pow(var(--x50), var(--a))));
+  --lightness-60: calc(pow(calc(1 - var(--x60)), var(--a)) / (pow(calc(1 - var(--x60)), var(--a)) + pow(var(--x60), var(--a))));
+  --lightness-70: calc(pow(calc(1 - var(--x70)), var(--a)) / (pow(calc(1 - var(--x70)), var(--a)) + pow(var(--x70), var(--a))));
+  --lightness-80: calc(pow(calc(1 - var(--x80)), var(--a)) / (pow(calc(1 - var(--x80)), var(--a)) + pow(var(--x80), var(--a))));
+  --lightness-90: calc(pow(calc(1 - var(--x90)), var(--a)) / (pow(calc(1 - var(--x90)), var(--a)) + pow(var(--x90), var(--a))));
+  --lightness-95: calc(pow(calc(1 - var(--x95)), var(--a)) / (pow(calc(1 - var(--x95)), var(--a)) + pow(var(--x95), var(--a))));
+  --lightness-100: calc(pow(calc(1 - var(--x100)), var(--a)) / (pow(calc(1 - var(--x100)), var(--a)) + pow(var(--x100), var(--a))));
 
-  /* BASE COLOR DEFINITIONS */
-  
-  --base-chroma-val: calc(var(--base-intensity) + var(--intensity-variation));
+
+
+
+  /* HUE */
+  --hue-spread: calc(var(--stimulation-level) * 100deg);
+  --base-hue: 220deg;
   --base-hue-val: var(--base-hue);
+  --accent-hue-val: calc(var(--base-hue) + (var(--hue-spread) * 2));
+  --accent2-hue-val: calc(var(--base-hue) + (var(--hue-spread) * 1.6));
+  --accent3-hue-val: calc(var(--base-hue) + (var(--hue-spread) * 1.3));
 
 
-  --accent-chroma-val: calc(var(--base-intensity) + (var(--intensity-variation)));
-  --accent-hue-val: calc(var(--base-hue) + (var(--hue-spread) * 0.25));
 
 
-  --accent2-chroma-val: calc(var(--base-intensity) + (var(--intensity-variation) ));
-  --accent2-hue-val: calc(var(--base-hue) + (var(--hue-spread) * 0.6));
 
 
-  --accent3-chroma-val: calc(var(--base-intensity) + (var(--intensity-variation) * 1));
-  --accent3-hue-val: calc(var(--base-hue) + (var(--hue-spread) * 0.9));
+  /* BASE COLOR SHADES - Using lightness and chroma/hue variables */
+  --base-5: oklch(var(--lightness-5) var(--chroma-scale-5) var(--base-hue-val));
+  --base-10: oklch(var(--lightness-10) var(--chroma-scale-10) var(--base-hue-val));
+  --base-20: oklch(var(--lightness-20) var(--chroma-scale-10) var(--base-hue-val));
+  --base-30: oklch(var(--lightness-30) var(--chroma-scale-30) var(--base-hue-val));
+  --base-40: oklch(var(--lightness-40) var(--chroma-scale-40) var(--base-hue-val));
+  --base-50: oklch(var(--lightness-50) var(--chroma-scale-50) var(--base-hue-val));
+  --base-60: oklch(var(--lightness-60) var(--chroma-scale-60) var(--base-hue-val));
+  --base-70: oklch(var(--lightness-70) var(--chroma-scale-70) var(--base-hue-val));
+  --base-80: oklch(var(--lightness-80) var(--chroma-scale-80) var(--base-hue-val));
+  --base-90: oklch(var(--lightness-90) var(--chroma-scale-90) var(--base-hue-val));
+  --base-95: oklch(var(--lightness-95) var(--chroma-scale-95) var(--base-hue-val));
 
-/* BASE COLOR SHADES - Using lightness and chroma/hue variables */
---base-5: oklch(var(--lightness-5) calc(var(--base-chroma-val) * 0.3) var(--base-hue-val));
---base-10: oklch(var(--lightness-10) calc(var(--base-chroma-val) * 0.4) var(--base-hue-val));
---base-20: oklch(var(--lightness-20) calc(var(--base-chroma-val) * 0.5) var(--base-hue-val));
---base-30: oklch(var(--lightness-30) calc(var(--base-chroma-val) * 0.6) var(--base-hue-val));
---base-40: oklch(var(--lightness-40) calc(var(--base-chroma-val) * 0.7) var(--base-hue-val));
---base-50: oklch(var(--lightness-50) var(--base-chroma-val) var(--base-hue-val));
---base-60: oklch(var(--lightness-60) calc(var(--base-chroma-val) * 1.1) var(--base-hue-val));
---base-70: oklch(var(--lightness-70) calc(var(--base-chroma-val) * 1.2) var(--base-hue-val));
---base-80: oklch(var(--lightness-80) calc(var(--base-chroma-val) * 1.3) var(--base-hue-val));
---base-90: oklch(var(--lightness-90) calc(var(--base-chroma-val) * 1.4) var(--base-hue-val));
---base-95: oklch(var(--lightness-95) calc(var(--base-chroma-val) * 1.5) var(--base-hue-val));
+  /* ACCENT1 COLOR SHADES - Using lightness and chroma/hue variables */
+  --accent-5: oklch(var(--lightness-5) var(--chroma-scale-5) var(--accent-hue-val));
+  --accent-10: oklch(var(--lightness-10) var(--chroma-scale-10) var(--accent-hue-val));
+  --accent-20: oklch(var(--lightness-20) var(--chroma-scale-20) var(--accent-hue-val));
+  --accent-30: oklch(var(--lightness-30) var(--chroma-scale-30) var(--accent-hue-val));
+  --accent-40: oklch(var(--lightness-40) var(--chroma-scale-40) var(--accent-hue-val));
+  --accent-50: oklch(var(--lightness-50) var(--chroma-scale-50) var(--accent-hue-val));
+  --accent-60: oklch(var(--lightness-60) var(--chroma-scale-60) var(--accent-hue-val));
+  --accent-70: oklch(var(--lightness-70) var(--chroma-scale-70) var(--accent-hue-val));
+  --accent-80: oklch(var(--lightness-80) var(--chroma-scale-80) var(--accent-hue-val));
+  --accent-90: oklch(var(--lightness-90) var(--chroma-scale-90) var(--accent-hue-val));
+  --accent-95: oklch(var(--lightness-95) var(--chroma-scale-95) var(--accent-hue-val));
 
-/* ACCENT1 COLOR SHADES - Using lightness and chroma/hue variables */
---accent-5: oklch(var(--lightness-5) calc(var(--accent-chroma-val) * 0.3) var(--accent-hue-val));
---accent-10: oklch(var(--lightness-10) calc(var(--accent-chroma-val) * 0.4) var(--accent-hue-val));
---accent-20: oklch(var(--lightness-20) calc(var(--accent-chroma-val) * 0.5) var(--accent-hue-val));
---accent-30: oklch(var(--lightness-30) calc(var(--accent-chroma-val) * 0.6) var(--accent-hue-val));
---accent-40: oklch(var(--lightness-40) calc(var(--accent-chroma-val) * 0.7) var(--accent-hue-val));
---accent-50: oklch(var(--lightness-50) var(--accent-chroma-val) var(--accent-hue-val));
---accent-60: oklch(var(--lightness-60) calc(var(--accent-chroma-val) * 1.1) var(--accent-hue-val));
---accent-70: oklch(var(--lightness-70) calc(var(--accent-chroma-val) * 1.2) var(--accent-hue-val));
---accent-80: oklch(var(--lightness-80) calc(var(--accent-chroma-val) * 1.3) var(--accent-hue-val));
---accent-90: oklch(var(--lightness-90) calc(var(--accent-chroma-val) * 1.4) var(--accent-hue-val));
---accent-95: oklch(var(--lightness-95) calc(var(--accent-chroma-val) * 1.5) var(--accent-hue-val));
+  /* ACCENT2 COLOR SHADES - Using lightness and chroma/hue variables */
+  --accent2-5: oklch(var(--lightness-5) var(--chroma-scale-5) var(--accent2-hue-val));
+  --accent2-10: oklch(var(--lightness-10) var(--chroma-scale-10) var(--accent2-hue-val));
+  --accent2-20: oklch(var(--lightness-20) var(--chroma-scale-20) var(--accent2-hue-val));
+  --accent2-30: oklch(var(--lightness-30) var(--chroma-scale-30) var(--accent2-hue-val));
+  --accent2-40: oklch(var(--lightness-40) var(--chroma-scale-40) var(--accent2-hue-val));
+  --accent2-50: oklch(var(--lightness-50) var(--chroma-scale-50) var(--accent2-hue-val));
+  --accent2-60: oklch(var(--lightness-60) var(--chroma-scale-60) var(--accent2-hue-val));
+  --accent2-70: oklch(var(--lightness-70) var(--chroma-scale-70) var(--accent2-hue-val));
+  --accent2-80: oklch(var(--lightness-80) var(--chroma-scale-80) var(--accent2-hue-val));
+  --accent2-90: oklch(var(--lightness-90) var(--chroma-scale-90) var(--accent2-hue-val));
+  --accent2-95: oklch(var(--lightness-95) var(--chroma-scale-95) var(--accent2-hue-val));
 
-/* ACCENT2 COLOR SHADES - Using lightness and chroma/hue variables */
---accent2-5: oklch(var(--lightness-5) calc(var(--accent2-chroma-val) * 0.3) var(--accent2-hue-val));
---accent2-10: oklch(var(--lightness-10) calc(var(--accent2-chroma-val) * 0.4) var(--accent2-hue-val));
---accent2-20: oklch(var(--lightness-20) calc(var(--accent2-chroma-val) * 0.5) var(--accent2-hue-val));
---accent2-30: oklch(var(--lightness-30) calc(var(--accent2-chroma-val) * 0.6) var(--accent2-hue-val));
---accent2-40: oklch(var(--lightness-40) calc(var(--accent2-chroma-val) * 0.7) var(--accent2-hue-val));
---accent2-50: oklch(var(--lightness-50) var(--accent2-chroma-val) var(--accent2-hue-val));
---accent2-60: oklch(var(--lightness-60) calc(var(--accent2-chroma-val) * 1.1) var(--accent2-hue-val));
---accent2-70: oklch(var(--lightness-70) calc(var(--accent2-chroma-val) * 1.2) var(--accent2-hue-val));
---accent2-80: oklch(var(--lightness-80) calc(var(--accent2-chroma-val) * 1.3) var(--accent2-hue-val));
---accent2-90: oklch(var(--lightness-90) calc(var(--accent2-chroma-val) * 1.4) var(--accent2-hue-val));
---accent2-95: oklch(var(--lightness-95) calc(var(--accent2-chroma-val) * 1.5) var(--accent2-hue-val));
+  /* ACCENT3 COLOR SHADES - Using lightness and chroma/hue variables */
+  --accent3-5: oklch(var(--lightness-5) var(--chroma-scale-5) var(--accent3-hue-val));
+  --accent3-10: oklch(var(--lightness-10) var(--chroma-scale-10) var(--accent3-hue-val));
+  --accent3-20: oklch(var(--lightness-20) var(--chroma-scale-20) var(--accent3-hue-val));
+  --accent3-30: oklch(var(--lightness-30) var(--chroma-scale-30) var(--accent3-hue-val));
+  --accent3-40: oklch(var(--lightness-40) var(--chroma-scale-40) var(--accent3-hue-val));
+  --accent3-50: oklch(var(--lightness-50) var(--chroma-scale-50) var(--accent3-hue-val));
+  --accent3-60: oklch(var(--lightness-60) var(--chroma-scale-60) var(--accent3-hue-val));
+  --accent3-70: oklch(var(--lightness-70) var(--chroma-scale-70) var(--accent3-hue-val));
+  --accent3-80: oklch(var(--lightness-80) var(--chroma-scale-80) var(--accent3-hue-val));
+  --accent3-90: oklch(var(--lightness-90) var(--chroma-scale-90) var(--accent3-hue-val));
+  --accent3-95: oklch(var(--lightness-95) var(--chroma-scale-95) var(--accent3-hue-val));
 
-/* ACCENT3 COLOR SHADES - Using lightness and chroma/hue variables */
---accent3-5: oklch(var(--lightness-5) calc(var(--accent3-chroma-val) * 0.3) var(--accent3-hue-val));
---accent3-10: oklch(var(--lightness-10) calc(var(--accent3-chroma-val) * 0.4) var(--accent3-hue-val));
---accent3-20: oklch(var(--lightness-20) calc(var(--accent3-chroma-val) * 0.5) var(--accent3-hue-val));
---accent3-30: oklch(var(--lightness-30) calc(var(--accent3-chroma-val) * 0.6) var(--accent3-hue-val));
---accent3-40: oklch(var(--lightness-40) calc(var(--accent3-chroma-val) * 0.7) var(--accent3-hue-val));
---accent3-50: oklch(var(--lightness-50) var(--accent3-chroma-val) var(--accent3-hue-val));
---accent3-60: oklch(var(--lightness-60) calc(var(--accent3-chroma-val) * 1.1) var(--accent3-hue-val));
---accent3-70: oklch(var(--lightness-70) calc(var(--accent3-chroma-val) * 1.2) var(--accent3-hue-val));
---accent3-80: oklch(var(--lightness-80) calc(var(--accent3-chroma-val) * 1.3) var(--accent3-hue-val));
---accent3-90: oklch(var(--lightness-90) calc(var(--accent3-chroma-val) * 1.4) var(--accent3-hue-val));
---accent3-95: oklch(var(--lightness-95) calc(var(--accent3-chroma-val) * 1.5) var(--accent3-hue-val));
+  /* Alternative approach using more refined exponential scaling */
+  /* You could also use these formulas for more controlled scaling: */
 
-/* Alternative approach using more refined exponential scaling */
-/* You could also use these formulas for more controlled scaling: */
-
-/*
+  /*
 --base-5: oklch(calc(var(--base-lightness-val) + (1 - var(--base-lightness-val)) * (1 - exp(-0.5))) calc(var(--base-chroma-val) * 0.3) var(--base-hue-val));
 --base-10: oklch(calc(var(--base-lightness-val) + (1 - var(--base-lightness-val)) * (1 - exp(-0.4))) calc(var(--base-chroma-val) * 0.4) var(--base-hue-val));
 --base-20: oklch(calc(var(--base-lightness-val) + (1 - var(--base-lightness-val)) * (1 - exp(-0.3))) calc(var(--base-chroma-val) * 0.5) var(--base-hue-val));
@@ -500,15 +462,15 @@
 
   /* Background Colors */
   --background-page: light-dark(var(--white), var(--gray-95));
-  --background-primary: light-dark(var(--base-5), var(--gray-90));
+  --background-primary: light-dark(var(--base-10), var(--gray-90));
   --background-secondary: light-dark(var(--gray-20), var(--gray-80));
-  --background-brand: light-dark(var(--base-10), var(--base-90));
+  --background-brand: light-dark(var(--base-30), var(--base-90));
   --background-brand-hover: light-dark(var(--base-30), var(--base-80));
-  --background-brand-secondary: light-dark(var(--base-10), var(--base-80));
+  --background-brand-secondary: light-dark(var(--base-20), var(--base-80));
   --background-brand-emphasis: light-dark(var(--base-50), var(--base-60));
-  --background-accent: light-dark(var(--accent-10), var(--accent-90));
-  --background-accent2: light-dark(var(--accent2-10), var(--accent2-90));
-  --background-accent3: light-dark(var(--accent3-10), var(--accent3-90));
+  --background-accent: light-dark(var(--accent-30), var(--accent-90));
+  --background-accent2: light-dark(var(--accent2-30), var(--accent2-90));
+  --background-accent3: light-dark(var(--accent3-30), var(--accent3-90));
   --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-30));
   --background-backdrop: light-dark(var(--gray-20-alpha), var(--gray-50-alpha));
 
@@ -542,15 +504,15 @@
 }
 
 [data-theme="energized"] {
-  --stimulation-level:0.7;
+  --stimulation-level: 0.7;
 }
 
 [data-theme="balanced"] {
-  --stimulation-level:0.6;
+  --stimulation-level: 0.6;
 }
 
 [data-theme="calm"] {
- --stimulation-level:0.5;
+  --stimulation-level: 0.5;
 }
 
 /*====================================

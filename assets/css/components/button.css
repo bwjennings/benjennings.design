@@ -27,7 +27,9 @@
     outline: 4px solid var(--border-primary);
   }
 
-
+.icon{
+  font-family: var(--icon-font-family);
+}
 
   &.secondary {
     background-color: var(--background-secondary);
