@@ -267,8 +267,11 @@ figure {
     margin-bottom: env(safe-area-inset-bottom);
   }
 
-  theme-control{
-    display: none;
+  theme-control {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    width: fit-content;
   }
 
 
