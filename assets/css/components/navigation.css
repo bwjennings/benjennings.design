@@ -205,7 +205,7 @@ theme-slider {
     padding: 0px;
     padding-bottom: env(safe-area-inset-bottom);
     overflow: visible;
-    position: fixed;
+   
     bottom: 0;
     left: 0;
     right: 0;
