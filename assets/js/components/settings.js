@@ -59,7 +59,7 @@ class SiteSettings extends HTMLElement {
     // Apply persisted hue/radius/chroma if available
     const storedHue = localStorage.getItem('brandHue');
     if (storedHue) {
-      document.documentElement.style.setProperty('--brand-hue', storedHue + 'deg');
+      document.documentElement.style.setProperty('--base-hue', storedHue + 'deg');
     }
     const storedRadius = localStorage.getItem('baseRadius');
     if (storedRadius) {
@@ -122,7 +122,7 @@ class SiteSettings extends HTMLElement {
     const currentHue = parseInt(localStorage.getItem('brandHue') || '0', 10);
     const deltaHue = Math.floor(Math.random() * (hueLimit * 2 + 1)) - hueLimit;
     const randomHue = (currentHue + deltaHue + 360) % 360;
-    document.documentElement.style.setProperty("--brand-hue", randomHue + "deg");
+    document.documentElement.style.setProperty("--base-hue", randomHue + "deg");
 
     // Random radius 0–8px
     const randomRadius = Math.floor(Math.random() * 9);
@@ -138,7 +138,7 @@ class SiteSettings extends HTMLElement {
     document.documentElement.style.setProperty('--contrast', randomContrast);
     localStorage.setItem('contrast', randomContrast);
 
-    console.log(`--brand-hue set to: ${randomHue}deg`);
+    console.log(`--base-hue set to: ${randomHue}deg`);
     // Persist random values so they survive page loads
     localStorage.setItem('brandHue', randomHue);
     localStorage.setItem('baseRadius', randomRadius);

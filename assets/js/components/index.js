@@ -4,4 +4,5 @@ import './card.js';
 import './copy-button.js';
 import './resource-card.js';
 import './icon-card.js';
-import './color-changer.js'
+import './color-changer.js';
+import './theme-control.js';

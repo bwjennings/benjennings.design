@@ -109,7 +109,7 @@ customElements.define(
 
     // Update the CSS variable for the hue
     updateHue(hue) {
-      document.documentElement.style.setProperty("--brand-hue", hue);
+      document.documentElement.style.setProperty("--base-hue", hue);
     }
 
     // Save the hue value to localStorage

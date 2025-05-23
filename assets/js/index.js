@@ -22,7 +22,7 @@
     }
 
     // Set the hue
-    document.documentElement.style.setProperty('--brand-hue', selectedColorHue + 'deg');
+    document.documentElement.style.setProperty('--base-hue', selectedColorHue + 'deg');
     // Apply persisted radius if available
     if (selectedRadius) {
       document.documentElement.style.setProperty('--base-radius', selectedRadius + 'px');

@@ -94,9 +94,10 @@ body {
   
 
   &.detail-page{
+    
      grid-template-areas: 
   "sidebar content"
-  "settings content"
+  "sidebar content"
   ;
 
   }
@@ -153,7 +154,8 @@ grid-column: 1 / -1;
 
 
 .page-detail{
-  background-color: var(--background-accent);
+  background-color: var(--background-accent3);
+  color: var(--foreground-accent3);
   padding: var(--spacing-xx-large);
   border: 1px solid var(--border-accent);
   border-radius: var(--radius-medium);
@@ -242,6 +244,7 @@ figure {
     padding: 12px;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
+    overflow: clip;
   }
 
   .main-content {
@@ -253,10 +256,12 @@ figure {
       height: 100%;
       grid-template-columns: 1fr;
       grid-template-rows: auto minmax(0, 1fr) auto;
-      grid-template-areas:
-        "title"
-        "main-content"
-        "sidebar";
+     
+        grid-template-areas: 
+  "header"
+  "content"
+  "sidebar"
+  ;
       margin-bottom: env(safe-area-inset-bottom);
     }
 

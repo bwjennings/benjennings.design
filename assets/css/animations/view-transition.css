@@ -2,9 +2,7 @@
   navigation: auto;
 }
 
-simple-card {
- view-transition-name:dialog;
-}
+
 
 nav{
   view-transition-name:nav;
@@ -19,7 +17,8 @@ site-settings{
 
 ::view-transition {
   --base-distance: -100px;
-  --transition-duration: 1s;
+  --transition-duration: 500ms;
+  --view-transition-timing:var(--timing-decelerate);
 
 
 }
@@ -28,20 +27,24 @@ site-settings{
 
 
 html::view-transition-group(*) {
-  animation-duration: 1000ms ;
+  animation-duration: var(--transition-duration) ;
 }
 
 
 
-
+::view-transition-group(content){
+  z-index: 00;
+}
 ::view-transition-old(content) {
   --distance: var(--base-distance);
-  animation: items-out var(--timing-decelerate) var(--transition-duration);
+  animation: items-out var(--view-transition-timing) var(--transition-duration);
 
 }
 
 ::view-transition-new(content) {
-  animation: items-in var(--timing-decelerate) var(--transition-duration);
+  
+  /* animation: items-in var(--view-transition-timing) var(--transition-duration); */
+  
 }
 
 
@@ -51,10 +54,17 @@ html::view-transition-group(*) {
 }
 
 
-:is(.welcome, .page-title) {
-  view-transition-name: content;
+
+main {
+  view-transition-name: main;
 }
 
+::view-transition-new(main){
+  animation: items-in var(--view-transition-timing) var(--transition-duration);
+}
+::view-transition-old(main){
+  animation: items-out var(--view-transition-timing) var(--transition-duration);
+}
 
 
 
@@ -114,8 +124,8 @@ html::view-transition-group(*) {
 ::view-transition-new(item4),
 ::view-transition-new(item5),
 ::view-transition-new(item6) {
-  transform-origin: 50% 0% ;
-  animation: items-in var(--timing-decelerate) var(--transition-duration);
+  transform-origin: 0% 0% ;
+  animation: items-in var(--view-transition-timing) var(--transition-duration);
 }
 
 ::view-transition-old(item1),
@@ -124,12 +134,15 @@ html::view-transition-group(*) {
 ::view-transition-old(item4),
 ::view-transition-old(item5),
 ::view-transition-old(item6) {
-  transform-origin: 50% 0% ;
+  transform-origin: 0% 0% ;
 
-  animation: items-out var(--timing-decelerate) var(--transition-duration);
+  animation: items-out var(--view-transition-timing) var(--transition-duration);
 }
 
 
+:is(.welcome, .page-title) {
+  view-transition-name: content;
+}
 
 
 
@@ -161,18 +174,18 @@ html::view-transition-group(*) {
 
   0% {
     filter: blur(0px);
-    transform: perspective(500px) translateZ(0px) ;
+    transform: perspective(1000px) translateZ(0px) ;
   }
 
   90% {
     filter: blur(16px);
-    transform: perspective(500px) translateZ(var(--distance)) ;
+    transform: perspective(1000px) translateZ(var(--distance)) ;
   }
 
   100% {
     filter: blur(16px);
     opacity: 0;
-    transform: perspective(500px) translateZ(var(--distance)) ;
+    transform: perspective(1000px) translateZ(var(--distance)) ;
   }
 }
 
