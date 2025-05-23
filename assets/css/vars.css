@@ -361,53 +361,6 @@
   --gray-95-alpha: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue) / var(--alpha));
 
 
-  --hue-spread: calc(var(--stimulation-level) * 180deg);
-
-
-
-
-  /* triad #1 (120°) */
-
-  /* --accent-hue: calc(var(--base-hue) + (var(--hue-spread) * 0.1));
-  --accent-5: oklch(var(--lightness-5) var(--chroma-5) var(--accent-hue));
-  --accent-10: oklch(var(--lightness-10) var(--chroma-10) var(--accent-hue));
-  --accent-20: oklch(var(--lightness-20) var(--chroma-20) var(--accent-hue));
-  --accent-30: oklch(var(--lightness-30) var(--chroma-30) var(--accent-hue));
-  --accent-40: oklch(var(--lightness-40) var(--chroma-40) var(--accent-hue));
-  --accent-50: oklch(var(--lightness-50) var(--chroma-50) var(--accent-hue));
-  --accent-60: oklch(var(--lightness-60) var(--chroma-60) var(--accent-hue));
-  --accent-70: oklch(var(--lightness-70) var(--chroma-70) var(--accent-hue));
-  --accent-80: oklch(var(--lightness-80) var(--chroma-80) var(--accent-hue));
-  --accent-90: oklch(var(--lightness-90) var(--chroma-90) var(--accent-hue));
-  --accent-95: oklch(var(--lightness-95) var(--chroma-95) var(--accent-hue));
-
-
-  --accent2-hue: calc(var(--base-hue) + (var(--hue-spread) * 0.2));
-  --accent2-5: oklch(var(--lightness-5) var(--chroma-5) var(--accent2-hue));
-  --accent2-10: oklch(var(--lightness-10) var(--chroma-10) var(--accent2-hue));
-  --accent2-20: oklch(var(--lightness-20) var(--chroma-20) var(--accent2-hue));
-  --accent2-30: oklch(var(--lightness-30) var(--chroma-30) var(--accent2-hue));
-  --accent2-40: oklch(var(--lightness-40) var(--chroma-40) var(--accent2-hue));
-  --accent2-50: oklch(var(--lightness-50) var(--chroma-50) var(--accent2-hue));
-  --accent2-60: oklch(var(--lightness-60) var(--chroma-60) var(--accent2-hue));
-  --accent2-70: oklch(var(--lightness-70) var(--chroma-70) var(--accent2-hue));
-  --accent2-80: oklch(var(--lightness-80) var(--chroma-80) var(--accent2-hue));
-  --accent2-90: oklch(var(--lightness-90) var(--chroma-90) var(--accent2-hue));
-  --accent2-95: oklch(var(--lightness-95) var(--chroma-95) var(--accent2-hue));
-
-
-  --accent3-hue: calc(var(--base-hue) + (var(--hue-spread) * 0.3));
-  --accent3-5: oklch(var(--lightness-5) var(--chroma-5) var(--accent3-hue));
-  --accent3-10: oklch(var(--lightness-10) var(--chroma-10) var(--accent3-hue));
-  --accent3-20: oklch(var(--lightness-20) var(--chroma-20) var(--accent3-hue));
-  --accent3-30: oklch(var(--lightness-30) var(--chroma-30) var(--accent3-hue));
-  --accent3-40: oklch(var(--lightness-40) var(--chroma-40) var(--accent3-hue));
-  --accent3-50: oklch(var(--lightness-50) var(--chroma-50) var(--accent3-hue));
-  --accent3-60: oklch(var(--lightness-60) var(--chroma-60) var(--accent3-hue));
-  --accent3-70: oklch(var(--lightness-70) var(--chroma-70) var(--accent3-hue));
-  --accent3-80: oklch(var(--lightness-80) var(--chroma-80) var(--accent3-hue));
-  --accent3-90: oklch(var(--lightness-90) var(--chroma-90) var(--accent3-hue));
-  --accent3-95: oklch(var(--lightness-95) var(--chroma-95) var(--accent3-hue)); */
 
   /* CONTROL VARIABLES - Adjust these to change the entire system */
   /* STIMULATION LEVEL: calm (0.2), balanced (0.5), energizing (0.8) */
