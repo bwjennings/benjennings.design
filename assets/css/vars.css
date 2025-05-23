@@ -57,6 +57,7 @@
   ------------------------------------*/
   --viewport-lg: 800px;
   --dialog-width: clamp(300px, 80dvw, 1200px);
+  --bottom-nav-height: 80px;
 
   /*------------------------------------
     Typography Scale
