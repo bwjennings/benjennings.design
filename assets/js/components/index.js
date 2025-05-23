@@ -6,3 +6,4 @@ import './resource-card.js';
 import './icon-card.js';
 import './color-changer.js';
 import './theme-control.js';
+import './navigation.js';
