@@ -4,6 +4,7 @@
     const theme = localStorage.getItem('myCustomTheme') || 'light dark'; // Default to 'light' if not set
     const highContrast = localStorage.getItem('highContrast') === 'true';
     const selectedColorHue = localStorage.getItem('brandHue') || '230';
+    const selectedStimulation = localStorage.getItem('stimulationLevel');
     // Retrieve persisted radius and custom theme
     const selectedRadius = localStorage.getItem('baseRadius');
 
@@ -21,8 +22,11 @@
       document.documentElement.dataset.mode = 'normal';
     }
 
-    // Set the hue
+    // Set the hue and stimulation level
     document.documentElement.style.setProperty('--base-hue', selectedColorHue + 'deg');
+    if (selectedStimulation) {
+      document.documentElement.style.setProperty('--stimulation-level', selectedStimulation);
+    }
     // Apply persisted radius if available
     if (selectedRadius) {
       document.documentElement.style.setProperty('--base-radius', selectedRadius + 'px');
