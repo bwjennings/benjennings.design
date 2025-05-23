@@ -26,8 +26,14 @@ template.innerHTML = `
     .slider[popover] {
       position-anchor: --theme-button;
       position: absolute;
-      left: anchor(right);
-      top: anchor(bottom);
+      right: anchor(left);
+      bottom: anchor(top);
+    }
+
+    @supports not (position-anchor: --theme-button) {
+      .slider[popover] {
+        position: fixed;
+      }
     }
   </style>
   <button id="toggle" class="icon-button sm" aria-label="Theme controls">tune</button>
@@ -62,8 +68,9 @@ template.innerHTML = `
 class ThemeControl extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' })
-        .appendChild(template.content.cloneNode(true));
+      this.attachShadow({ mode: 'open' })
+          .appendChild(template.content.cloneNode(true));
+      this.anchorSupported = CSS.supports('anchor-name: --test');
     this.slider  = this.shadowRoot.querySelector('.slider');
     this.button  = this.shadowRoot.querySelector('#toggle');
     this.handle  = this.shadowRoot.querySelector('.handle');
@@ -73,11 +80,19 @@ class ThemeControl extends HTMLElement {
     this.onDown = this.onDown.bind(this);
     this.onMove = this.onMove.bind(this);
     this.onUp   = this.onUp.bind(this);
-    this.buttonHandler = () => {
-      if (this.slider.hasAttribute('popover')) {
-        this.slider.showPopover();
-      }
-    };
+      this.buttonHandler = () => {
+        if (this.slider.hasAttribute('popover')) {
+          if (!this.anchorSupported) {
+            const rect = this.button.getBoundingClientRect();
+            const width = this.slider.offsetWidth;
+            const height = this.slider.offsetHeight;
+            this.slider.style.position = 'fixed';
+            this.slider.style.left = `${rect.left - width}px`;
+            this.slider.style.top = `${rect.top - height}px`;
+          }
+          this.slider.showPopover();
+        }
+      };
     this.handleMobileChange = this.handleMobileChange.bind(this);
   }
 
@@ -92,6 +107,14 @@ class ThemeControl extends HTMLElement {
     const y = (storedStim - minS) / (maxS - minS);
     this.updateHandle(x, y);
     this.updateVariables(x, y);
+
+    if (!this.anchorSupported) {
+      const nav = this.closest('.sidebar');
+      if (nav) {
+        const height = nav.getBoundingClientRect().height;
+        document.documentElement.style.setProperty('--bottom-nav-height', `${height}px`);
+      }
+    }
 
     this.mobileQuery = window.matchMedia('(max-width: 800px), (max-height: 500px)');
     this.mobileQuery.addEventListener('change', this.handleMobileChange);
