@@ -47,6 +47,17 @@ dialog {
   }
 }
 
+[popover] {
+  opacity: 0;
+  filter: blur(20px);
+  transform-style: preserve-3d;
+  transform: perspective(1000px) translateZ(-200px) translateY(0dvh);
+  transition-property: opacity, transform, filter;
+  transition-timing-function: var(--timing-decelerate);
+  transition-duration: 700ms;
+  transition-behavior: allow-discrete;
+}
+
 dialog[open] {
   opacity: 1;
   transform: initial;
@@ -54,6 +65,12 @@ dialog[open] {
   padding-bottom: env(safe-area-inset-bottom);
   display: block;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 300px;
+}
+
+[popover]:popover-open {
+  opacity: 1;
+  transform: initial;
+  filter: blur(0px);
 }
 
 
@@ -78,6 +95,14 @@ dialog[open]::backdrop {
 @starting-style {
   dialog[open] {
 
+    transform: perspective(1000px) translateZ(-200px) translateY(0dvh);
+    opacity: 0;
+    filter: blur(24px);
+  }
+}
+
+@starting-style {
+  [popover]:popover-open {
     transform: perspective(1000px) translateZ(-200px) translateY(0dvh);
     opacity: 0;
     filter: blur(24px);
@@ -184,6 +209,12 @@ dialog[open]::backdrop {
 
   @starting-style {
     dialog[open] {
+      transform: perspective(500px) translateZ(0px) translateY(100dvh);
+    }
+  }
+
+  @starting-style {
+    [popover]:popover-open {
       transform: perspective(500px) translateZ(0px) translateY(100dvh);
     }
   }
