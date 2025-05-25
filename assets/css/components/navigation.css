@@ -200,6 +200,7 @@ theme-slider {
 (max-height:500px) {
   .sidebar {
     anchor-name: --bottom-nav;
+    position: fixed;
     height: fit-content;
     width: 100%;
     flex-shrink: 0;
