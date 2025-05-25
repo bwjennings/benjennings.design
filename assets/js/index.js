@@ -1,43 +1,40 @@
 (function () {
   try {
-    // Retrieve theme, high contrast, and hue values from local storage
-    const theme = localStorage.getItem('myCustomTheme') || 'light dark'; // Default to 'light' if not set
+    // Retrieve saved values from local storage (if any)
+    const theme = localStorage.getItem('myCustomTheme');
     const highContrast = localStorage.getItem('highContrast') === 'true';
-    const selectedColorHue = localStorage.getItem('brandHue') || '230';
+    const selectedColorHue = localStorage.getItem('brandHue');
     const selectedStimulation = localStorage.getItem('stimulationLevel');
-    // Retrieve persisted radius and custom theme
     const selectedRadius = localStorage.getItem('baseRadius');
-
     const selectedDataTheme = localStorage.getItem('dataTheme');
+    const selectedContrast = localStorage.getItem('contrast');
 
-
-    // Determine the color scheme based on theme setting
-    const colorScheme = theme === 'system' ? 'light dark' : theme;
-    document.documentElement.style.setProperty('--current-color-scheme', colorScheme);
+    if (theme !== null) {
+      const colorScheme = theme === '' || theme === 'system' ? 'light dark' : theme;
+      document.documentElement.style.setProperty('--current-color-scheme', colorScheme);
+    }
 
     // Set high-contrast mode if enabled
     if (highContrast) {
       document.documentElement.dataset.mode = 'high-contrast';
-    } else {
-      document.documentElement.dataset.mode = 'normal';
     }
 
     // Set the hue and stimulation level
-    document.documentElement.style.setProperty('--base-hue', selectedColorHue + 'deg');
-    if (selectedStimulation) {
+    if (selectedColorHue !== null) {
+      document.documentElement.style.setProperty('--base-hue', selectedColorHue + 'deg');
+    }
+    if (selectedStimulation !== null) {
       document.documentElement.style.setProperty('--stimulation-level', selectedStimulation);
     }
     // Apply persisted radius if available
-    if (selectedRadius) {
+    if (selectedRadius !== null) {
       document.documentElement.style.setProperty('--base-radius', selectedRadius + 'px');
     }
     // Apply saved data-theme if available
     if (selectedDataTheme) {
       document.documentElement.setAttribute('data-theme', selectedDataTheme);
     }
-
-    // Apply persisted contrast if available
-    if (selectedContrast) {
+    if (selectedContrast !== null) {
       document.documentElement.style.setProperty('--contrast', selectedContrast);
     }
   } catch (e) {

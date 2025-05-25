@@ -48,10 +48,13 @@ customElements.define(
     }
 
     connectedCallback() {
-      // Initialize the slider value from localStorage or default to "230"
-      const storedHue = localStorage.getItem("brandHue") || "230";
-      this.hueSlider.value = storedHue;
-      this.updateHue(storedHue);
+      const storedHue = localStorage.getItem("brandHue");
+      if (storedHue !== null) {
+        this.hueSlider.value = storedHue;
+        this.updateHue(storedHue);
+      } else {
+        this.hueSlider.value = "230";
+      }
 
       // Add event listener for slider input using the debounced handler
       this.hueSlider.addEventListener("input", this.handleInput);

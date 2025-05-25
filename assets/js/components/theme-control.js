@@ -86,16 +86,22 @@ class ThemeControl extends HTMLElement {
   }
 
   connectedCallback() {
-    const storedHue  = parseFloat(localStorage.getItem('brandHue')) || '0';
-    const storedStim = parseFloat(localStorage.getItem('stimulationLevel')) || '0.50';
+    const storedHueVal  = localStorage.getItem('brandHue');
+    const storedStimVal = localStorage.getItem('stimulationLevel');
     this.slider.addEventListener('pointerdown', this.onDown);
     window.addEventListener('pointermove', this.onMove);
     window.addEventListener('pointerup',   this.onUp);
-    const x = storedHue / 360;
-    const minS = 0.5, maxS = 0.9;
-    const y = (storedStim - minS) / (maxS - minS);
+
+    let x = 0.5, y = 0.5;
+    if (storedHueVal !== null && storedStimVal !== null) {
+      const storedHue  = parseFloat(storedHueVal);
+      const storedStim = parseFloat(storedStimVal);
+      const minS = 0.5, maxS = 0.9;
+      x = storedHue / 360;
+      y = (storedStim - minS) / (maxS - minS);
+      this.updateVariables(x, y);
+    }
     this.updateHandle(x, y);
-    this.updateVariables(x, y);
 
     if (!this.anchorSupported) {
       const nav = this.closest('.sidebar');

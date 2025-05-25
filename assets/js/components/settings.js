@@ -32,10 +32,12 @@ class SiteSettings extends HTMLElement {
   }
 
   connectedCallback() {
-    const storedTheme = localStorage.getItem("myCustomTheme") || "";
-    const selected = this.shadowRoot.querySelector(`input[name="theme"][value="${storedTheme}"]`);
-    if (selected) selected.checked = true;
-    this.updateTheme(storedTheme);
+    const storedTheme = localStorage.getItem("myCustomTheme");
+    if (storedTheme !== null) {
+      const selected = this.shadowRoot.querySelector(`input[name="theme"][value="${storedTheme}"]`);
+      if (selected) selected.checked = true;
+      this.updateTheme(storedTheme);
+    }
     this.shadowRoot.querySelector("fieldset").addEventListener("change", this.themeChangeHandler);
     // Apply persisted hue/radius/chroma if available
     const storedHue = localStorage.getItem('brandHue');
