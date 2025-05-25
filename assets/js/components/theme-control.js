@@ -24,23 +24,12 @@ template.innerHTML = `
     }
 
     [popover] {
-      position-anchor:--theme-button;
-      position: absolute;
-      right: anchor(left);
-      bottom: anchor(top);
-      margin:0px;
-
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
       z-index: 20;
-
-    }
-
-    @supports not (position-anchor: --theme-button) {
-      .slider[popover] {
-        position: fixed;
-        margin: 0;
-        z-index: 20;
-
-      }
     }
   </style>
   <button id="toggle" class="button sm" aria-label="Theme controls"><span class="icon">tune</span> Theme</button>
@@ -87,19 +76,11 @@ class ThemeControl extends HTMLElement {
     this.onDown = this.onDown.bind(this);
     this.onMove = this.onMove.bind(this);
     this.onUp   = this.onUp.bind(this);
-      this.buttonHandler = () => {
-        if (this.slider.hasAttribute('popover')) {
-          if (!this.anchorSupported) {
-            const rect = this.button.getBoundingClientRect();
-            const width = this.slider.offsetWidth;
-            const height = this.slider.offsetHeight;
-            this.slider.style.position = 'fixed';
-            this.slider.style.left = `${rect.left - width}px`;
-            this.slider.style.top  = `${rect.top  - height}px`;
-          }
-          this.slider.showPopover();
-        }
-      };
+    this.buttonHandler = () => {
+      if (this.slider.hasAttribute('popover')) {
+        this.slider.showPopover();
+      }
+    };
     this.handleMobileChange = this.handleMobileChange.bind(this);
   }
 
