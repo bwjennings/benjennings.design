@@ -70,6 +70,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/resources/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/resources/favicons/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 </head>
 
@@ -78,14 +79,7 @@
   <!-- 👉 Drop this <style> right in test.html (before the .grid markup) -->
 <style>
   /* ---------- grid container ---------- */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(11,1fr); /* 11 swatches per family */
-                    /* make tiles square      */
-    
-        /* cosmetic frame         */
-    padding:4px;
-  }
+ 
 
   /* every tile gets the same size */
   .grid>div{aspect-ratio: 1;}
@@ -156,7 +150,7 @@
   .bg-accent3-90 {background:var(--accent3-90);}
   .bg-accent3-95 {background:var(--accent3-95);}
 </style>
-  <div class="grid">
+  <div class="grid grid-cols-11">
     <div class="bg-gray-5"></div>
     <div class="bg-gray-10"></div>
     <div class="bg-gray-20"></div>
@@ -218,7 +212,11 @@
     <div class="bg-accent3-95"></div>
   </div>
  <theme-control></theme-control>
- 
+<section class="grid grid-cols-2 gap-4 p-4">
+   <article class="card ">
+        <h1 class="icon">integration_instructions</h1>
+        <div class="title">Developers need good experiences too</div>
+      </article>
      <article class="card accent">
         <h1 class="icon">integration_instructions</h1>
         <div class="title">Developers need good experiences too</div>
@@ -227,6 +225,12 @@
         <h1 class="icon">integration_instructions</h1>
         <div class="title">Developers need good experiences too</div>
       </article>
+       <article class="card accent3">
+        <h1 class="icon">integration_instructions</h1>
+        <div class="title">Developers need good experiences too</div>
+      </article>
+
+      </section>
   
 
 

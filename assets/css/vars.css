@@ -261,24 +261,7 @@
 
 
 
-  /* Neutral / Gray */
-  --gray-hue: calc(var(--base-hue) + 30deg);
-  --gray-chroma: 1%;
 
-
-
-
-  --base-5: oklch(var(--lightness-5) var(--chroma-5) var(--base-hue));
-  --base-10: oklch(var(--lightness-10) var(--chroma-10) var(--base-hue));
-  --base-20: oklch(var(--lightness-20) var(--chroma-20) var(--base-hue));
-  --base-30: oklch(var(--lightness-30) var(--chroma-30) var(--base-hue));
-  --base-40: oklch(var(--lightness-40) var(--chroma-40) var(--base-hue));
-  --base-50: oklch(var(--lightness-50) var(--chroma-50) var(--base-hue));
-  --base-60: oklch(var(--lightness-60) var(--chroma-60) var(--base-hue));
-  --base-70: oklch(var(--lightness-70) var(--chroma-70) var(--base-hue));
-  --base-80: oklch(var(--lightness-80) var(--chroma-80) var(--base-hue));
-  --base-90: oklch(var(--lightness-90) var(--chroma-90) var(--base-hue));
-  --base-95: oklch(var(--lightness-95) var(--chroma-95) var(--base-hue));
 
   /* Brand with Alpha */
   --alpha: 0.4;
@@ -298,30 +281,8 @@
     Color – Neutral (Gray) Palette
   ------------------------------------*/
   --white: white;
-  --gray-5: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue));
-  --gray-10: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue));
-  --gray-20: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue));
-  --gray-30: oklch(var(--lightness-30) var(--gray-chroma) var(--gray-hue));
-  --gray-40: oklch(var(--lightness-40) var(--gray-chroma) var(--gray-hue));
-  --gray-50: oklch(var(--lightness-50) var(--gray-chroma) var(--gray-hue));
-  --gray-60: oklch(var(--lightness-60) var(--gray-chroma) var(--gray-hue));
-  --gray-70: oklch(var(--lightness-70) var(--gray-chroma) var(--gray-hue));
-  --gray-80: oklch(var(--lightness-80) var(--gray-chroma) var(--gray-hue));
-  --gray-90: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue));
-  --gray-95: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue));
 
-  /* Gray with Alpha */
-  --gray-5-alpha: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-10-alpha: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-20-alpha: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-30-alpha: oklch(var(--lightness-30) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-40-alpha: oklch(var(--lightness-40) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-50-alpha: oklch(var(--lightness-50) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-60-alpha: oklch(var(--lightness-60) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-70-alpha: oklch(var(--lightness-70) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-80-alpha: oklch(var(--lightness-80) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-90-alpha: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue) / var(--alpha));
-  --gray-95-alpha: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+
 
 
 
@@ -330,7 +291,7 @@
 
 
 
---stimulation-level:2;
+--stimulation-level:1;
 
 
   --x5:  0.037;
@@ -348,7 +309,7 @@
   /*------------------------------------
     Chroma Scale (mirrors lightness scale)
   ------------------------------------*/
-  --chroma-base-val: calc(var(--stimulation-level) * 0.3);
+  --chroma-base-val: calc(var(--stimulation-level) * 0.2);
   --chroma-scale-5:  calc(var(--chroma-base-val) * 0.1);
   --chroma-scale-10: calc(var(--chroma-base-val) * 0.2);
   --chroma-scale-20: calc(var(--chroma-base-val) * 0.4);
@@ -445,6 +406,35 @@
   --accent3-80: oklch(var(--lightness-80) var(--chroma-scale-80) var(--accent3-hue-val));
   --accent3-90: oklch(var(--lightness-90) var(--chroma-scale-90) var(--accent3-hue-val));
   --accent3-95: oklch(var(--lightness-95) var(--chroma-scale-95) var(--accent3-hue-val));
+
+    /* Neutral / Gray */
+  --gray-hue: calc(var(--base-hue) + 30deg);
+  --gray-chroma:  calc(var(--chroma-base-val) * 0.1);
+  --gray-5: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue));
+  --gray-10: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue));
+  --gray-20: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue));
+  --gray-30: oklch(var(--lightness-30) var(--gray-chroma) var(--gray-hue));
+  --gray-40: oklch(var(--lightness-40) var(--gray-chroma) var(--gray-hue));
+  --gray-50: oklch(var(--lightness-50) var(--gray-chroma) var(--gray-hue));
+  --gray-60: oklch(var(--lightness-60) var(--gray-chroma) var(--gray-hue));
+  --gray-70: oklch(var(--lightness-70) var(--gray-chroma) var(--gray-hue));
+  --gray-80: oklch(var(--lightness-80) var(--gray-chroma) var(--gray-hue));
+  --gray-90: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue));
+  --gray-95: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue));
+
+  /* Gray with Alpha */
+  --gray-5-alpha: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-10-alpha: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-20-alpha: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-30-alpha: oklch(var(--lightness-30) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-40-alpha: oklch(var(--lightness-40) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-50-alpha: oklch(var(--lightness-50) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-60-alpha: oklch(var(--lightness-60) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-70-alpha: oklch(var(--lightness-70) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-80-alpha: oklch(var(--lightness-80) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-90-alpha: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+  --gray-95-alpha: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue) / var(--alpha));
+
 
   /* Alternative approach using more refined exponential scaling */
   /* You could also use these formulas for more controlled scaling: */
