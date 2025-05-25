@@ -19,7 +19,7 @@ body {
   padding: 0;
   color: var(--foreground-primary);
   background-color: var(--background-page);
-  height: 100dvh;
+  min-height: 100dvh;
   font-family: var(--text-body-font-family);
   font-weight: var(--text-body-weight);
   box-sizing: border-box;
