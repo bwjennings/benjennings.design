@@ -449,11 +449,7 @@
   /* Alternative approach using more refined exponential scaling */
   /* You could also use these formulas for more controlled scaling: */
 
-  /*
---base-5: oklch(calc(var(--base-lightness-val) + (1 - var(--base-lightness-val)) * (1 - exp(-0.5))) calc(var(--base-chroma-val) * 0.3) var(--base-hue-val));
---base-10: oklch(calc(var(--base-lightness-val) + (1 - var(--base-lightness-val)) * (1 - exp(-0.4))) calc(var(--base-chroma-val) * 0.4) var(--base-hue-val));
---base-20: oklch(calc(var(--base-lightness-val) + (1 - var(--base-lightness-val)) * (1 - exp(-0.3))) calc(var(--base-chroma-val) * 0.5) var(--base-hue-val));
-*/
+
   /*------------------------------------
     Color System
   ------------------------------------*/
@@ -462,12 +458,12 @@
 
   /* Background Colors */
   --background-page: light-dark(var(--white), var(--gray-95));
-  --background-primary: light-dark(var(--base-10), var(--gray-90));
+  --background-primary: light-dark(var(--gray-10), var(--gray-90));
   --background-secondary: light-dark(var(--gray-20), var(--gray-80));
-  --background-brand: light-dark(var(--base-30), var(--base-90));
-  --background-brand-hover: light-dark(var(--base-30), var(--base-80));
-  --background-brand-secondary: light-dark(var(--base-20), var(--base-80));
-  --background-brand-emphasis: light-dark(var(--base-50), var(--base-60));
+  --background-base: light-dark(var(--base-30), var(--base-90));
+  --background-base-hover: light-dark(var(--base-30), var(--base-80));
+  --background-base-secondary: light-dark(var(--base-20), var(--base-80));
+  --background-base-emphasis: light-dark(var(--base-50), var(--base-60));
   --background-accent: light-dark(var(--accent-30), var(--accent-90));
   --background-accent2: light-dark(var(--accent2-30), var(--accent2-90));
   --background-accent3: light-dark(var(--accent3-30), var(--accent3-90));
@@ -478,8 +474,8 @@
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
   --foreground-tertiary: light-dark(var(--gray-60), var(--gray-20));
-  --foreground-brand: light-dark(var(--base-80), var(--base-20));
-  --foreground-brand-secondary: light-dark(var(--base-30), var(--base-60));
+  --foreground-base: light-dark(var(--base-80), var(--base-20));
+  --foreground-base-secondary: light-dark(var(--base-30), var(--base-60));
   --foreground-onBrand: light-dark(var(--base-50), var(--base-10));
   --foreground-accent: light-dark(var(--accent-95), var(--accent-20));
   --foreground-accent2: light-dark(var(--accent2-95), var(--accent2-20));
@@ -490,10 +486,10 @@
   --border-primary: light-dark(var(--gray-20), var(--gray-70));
   --border-primary-hover: light-dark(var(--gray-20), var(--gray-60));
   --border-secondary: light-dark(var(--gray-10), var(--gray-60));
-  --border-brand: light-dark(var(--base-20), var(--base-80));
-  --border-brand-hover: light-dark(var(--base-20), var(--gray-60));
-  --border-brand-secondary: light-dark(var(--base-20), var(--base-60));
-  --border-brand-emphasis: light-dark(var(--base-60), var(--base-70));
+  --border-base: light-dark(var(--base-20), var(--base-80));
+  --border-base-hover: light-dark(var(--base-20), var(--gray-60));
+  --border-base-secondary: light-dark(var(--base-20), var(--base-60));
+  --border-base-emphasis: light-dark(var(--base-60), var(--base-70));
   --border-accent: light-dark(var(--accent-20), var(--accent-80));
   --border-accent2: light-dark(var(--accent2-20), var(--accent2-80));
   --border-accent3: light-dark(var(--accent3-20), var(--accent3-80));
@@ -523,9 +519,9 @@
   --background-page: light-dark(var(--white), var(--gray-95));
   --background-primary: light-dark(var(--white), var(--gray-90));
   --background-secondary: light-dark(var(--white), var(--gray-80));
-  --background-brand: light-dark(var(--base-60), var(--base-60));
-  --background-brand-secondary: light-dark(var(--base-10), var(--base-80));
-  --background-brand-emphasis: light-dark(var(--base-70), var(--base-60));
+  --background-base: light-dark(var(--base-60), var(--base-60));
+  --background-base-secondary: light-dark(var(--base-10), var(--base-80));
+  --background-base-emphasis: light-dark(var(--base-70), var(--base-60));
   --background-accent: light-dark(var(--accent-50), var(--accent-70));
   --background-accent-secondary: light-dark(var(--accent-10), var(--accent-80));
   --background-accent-emphasis: light-dark(var(--accent-60), var(--accent-50));
@@ -533,19 +529,19 @@
 
   --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
   --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
-  --foreground-brand: light-dark(var(--base-60), var(--base-20));
+  --foreground-base: light-dark(var(--base-60), var(--base-20));
   --foreground-onBrand: light-dark(var(--white), var(--white));
-  --foreground-brand-secondary: light-dark(var(--base-60), var(--base-20));
+  --foreground-base-secondary: light-dark(var(--base-60), var(--base-20));
   --foreground-accent: light-dark(var(--accent-10), var(--accent-5));
   --foreground-onEmphasis: light-dark(var(--white), var(--white));
 
   --border-primary: light-dark(var(--gray-40), var(--gray-40));
   --border-primary-hover: light-dark(var(--gray-20), var(--gray-70));
   --border-secondary: light-dark(var(--gray-30), var(--gray-50));
-  --border-brand: light-dark(var(--base-50), var(--base-40));
-  --border-brand-secondary: light-dark(var(--base-30), var(--base-60));
-  --border-brand-emphasis: light-dark(var(--base-70), var(--base-60));
-  --border-brand-hover: light-dark(var(--base-40), var(--base-10));
+  --border-base: light-dark(var(--base-50), var(--base-40));
+  --border-base-secondary: light-dark(var(--base-30), var(--base-60));
+  --border-base-emphasis: light-dark(var(--base-70), var(--base-60));
+  --border-base-hover: light-dark(var(--base-40), var(--base-10));
   --border-accent: light-dark(var(--accent-50), var(--accent-40));
 }
 
@@ -558,9 +554,9 @@
     --background-page: light-dark(var(--gray-5), var(--gray-95));
     --background-primary: light-dark(var(--white), var(--gray-90));
     --background-secondary: light-dark(var(--white), var(--gray-80));
-    --background-brand: light-dark(var(--base-60), var(--base-60));
-    --background-brand-secondary: light-dark(var(--base-10), var(--base-80));
-    --background-brand-emphasis: light-dark(var(--base-70), var(--base-60));
+    --background-base: light-dark(var(--base-60), var(--base-60));
+    --background-base-secondary: light-dark(var(--base-10), var(--base-80));
+    --background-base-emphasis: light-dark(var(--base-70), var(--base-60));
     --background-accent: light-dark(var(--accent-30), var(--accent-70));
     --background-accent-secondary: light-dark(var(--accent-10),
         var(--accent-80));
@@ -571,19 +567,19 @@
 
     --foreground-primary: light-dark(var(--gray-95), var(--gray-5));
     --foreground-secondary: light-dark(var(--gray-80), var(--gray-10));
-    --foreground-brand: light-dark(var(--base-60), var(--base-20));
+    --foreground-base: light-dark(var(--base-60), var(--base-20));
     --foreground-onBrand: light-dark(var(--white), var(--white));
-    --foreground-brand-secondary: light-dark(var(--base-60), var(--base-20));
+    --foreground-base-secondary: light-dark(var(--base-60), var(--base-20));
     --foreground-accent: light-dark(var(--accent-10), var(--accent-5));
     --foreground-onEmphasis: light-dark(var(--white), var(--white));
 
     --border-primary: light-dark(var(--gray-40), var(--gray-40));
     --border-primary-hover: light-dark(var(--gray-20), var(--gray-70));
     --border-secondary: light-dark(var(--gray-30), var(--gray-50));
-    --border-brand: light-dark(var(--base-50), var(--base-40));
-    --border-brand-secondary: light-dark(var(--base-30), var(--base-60));
-    --border-brand-emphasis: light-dark(var(--base-70), var(--base-60));
-    --border-brand-hover: light-dark(var(--base-40), var(--base-10));
+    --border-base: light-dark(var(--base-50), var(--base-40));
+    --border-base-secondary: light-dark(var(--base-30), var(--base-60));
+    --border-base-emphasis: light-dark(var(--base-70), var(--base-60));
+    --border-base-hover: light-dark(var(--base-40), var(--base-10));
     --border-accent: light-dark(var(--accent-50), var(--accent-40));
   }
 }

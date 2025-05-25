@@ -7,13 +7,13 @@
   /* min-height: 300px; */
  
   width: 100%;
-  background: var(--background-brand);
-  border: 1px solid var(--border-brand);
+  background: var(--background-base);
+  border: 1px solid var(--border-base);
   border-radius: var(--radius-medium);
 
   outline-style: solid;
   outline-width: 0px;
-  outline-color: var(--border-brand);
+  outline-color: var(--border-base);
   container-type: inline-size;
   transition: outline 500ms var(--timing-bounce);
   font-variation-settings: "GRAD" 0;
@@ -50,7 +50,7 @@
   }
 
   &:hover {
-    outline: 4px solid var(--border-brand);
+    outline: 4px solid var(--border-base);
   }
 
   &:active {
@@ -107,11 +107,11 @@ p {
   display: block;
   width: auto;
   align-self: stretch;
-  background: var(--background-brand-secondary);
+  background: var(--background-base-secondary);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: var(--foreground-brand-secondary);
+  color: var(--foreground-base-secondary);
   user-select: none;
   -webkit-user-select: none;
 }
@@ -144,7 +144,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: var(--foreground-brand-secondary);
+  color: var(--foreground-base-secondary);
   margin-top: calc(-1 * var(--spacing-xx-large));
   margin-inline: calc(-1 * var(--spacing-xx-large));
   user-select: none;
@@ -155,7 +155,7 @@ p {
 ::slotted([slot="icon-box"]) {
   font-variation-settings: 'GRAD' -200, 'FILL' var(--icon-fill);
   font-family: var(--icon-font-family);
-  color: var(--background-brand-secondary);
+  color: var(--background-base-secondary);
   font-size: 50cqw;
   transition: 200ms var(--timing-decelerate);
   transition-property: font-variation-settings;

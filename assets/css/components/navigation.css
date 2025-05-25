@@ -15,7 +15,7 @@ site-navigation {
   scrollbar-gutter: stable;
   position: sticky;
   top: 0px;
-  height: 100%;
+  height: 100dvh;
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -31,7 +31,7 @@ site-navigation {
     "theme"
     "color"
   ;
-  border: 1px solid var(--border-brand);
+  border: 1px solid var(--border-base);
   background-color: var(--background-primary);
   box-sizing: border-box;
 
@@ -127,9 +127,9 @@ site-navigation {
 .active {
   transition: none;
   font-variation-settings: 'GRAD' 100;
-  color: var(--foreground-brand);
+  color: var(--foreground-base);
   anchor-name: --active;
-  background: var(--background-brand);
+  background: var(--background-base);
 
   .icon {
     font-variation-settings:
@@ -259,7 +259,7 @@ theme-slider {
 
   .active {
     border-color: transparent;
-    color: var(--foreground-brand);
+    color: var(--foreground-base);
   }
 
   :is(.description, .quick-theme) {

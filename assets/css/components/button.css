@@ -47,7 +47,7 @@ button:active {
 }
 
 button[variant="brand"] {
-  background: var(--background-brand-emphasis);
+  background: var(--background-base-emphasis);
   color: var(--foreground-onEmphasis);
   border: transparent;
 }

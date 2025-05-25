@@ -49,6 +49,8 @@ dialog {
 
 [popover] {
   opacity: 0;
+  width: 100%;
+  margin: auto;
   filter: blur(20px);
   transform-style: preserve-3d;
   transform: perspective(1000px) translateZ(-200px) translateY(0dvh);
@@ -69,7 +71,7 @@ dialog[open] {
 
 [popover]:popover-open {
   opacity: 1;
-  transform: initial;
+  
   filter: blur(0px);
 }
 

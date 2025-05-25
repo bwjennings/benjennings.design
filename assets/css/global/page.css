@@ -2,7 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  outline-color: var(--border-brand);
+  outline-color: var(--border-base);
   margin: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--border-primary) var(--background-page);
@@ -41,7 +41,7 @@ select {
   background: var(--background-accent-secondary);
   color: var(--foreground-accent);
   text-decoration: underline;
-  text-decoration-color: var(--border-brand-emphasis);
+  text-decoration-color: var(--border-base-emphasis);
 }
 
 body {
@@ -190,14 +190,14 @@ figure {
   height: 100%;
   min-height: 100px;
   width: 100%;
-  background: linear-gradient(to right in oklch decreasing hue, var(--background-brand), var(--background-accent));
+  background: linear-gradient(to right in oklch decreasing hue, var(--background-base), var(--background-accent));
 
   &.rgb {
-    background: linear-gradient(to right, var(--background-brand), var(--background-accent));
+    background: linear-gradient(to right, var(--background-base), var(--background-accent));
   }
 
   &.hsl {
-    background: linear-gradient(to right in hsl decreasing hue, var(--background-brand), var(--background-accent));
+    background: linear-gradient(to right in hsl decreasing hue, var(--background-base), var(--background-accent));
   }
 }
 

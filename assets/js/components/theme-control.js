@@ -2,23 +2,24 @@
 const template = document.createElement('template');
 template.innerHTML = `
   <link rel="stylesheet" href="/assets/css/components/button.css">
+  <link rel="stylesheet" href="/assets/css/components/dialog.css">
   <style>
     :host { display: inline-block; anchor-name: --theme-button; }
     button { display: none; }
     .slider {
       position: relative;
-      width: 250px;
-      height: 250px;
+      width:100%;
+      height: 100px;
       touch-action: none;
       overflow: hidden;
       border-radius: 0.5rem;
       border: 1px solid #cbd5e1;
-      box-shadow: 0px 2.8px 2.2px rgba(0,0,0,0.017),
-                 0px 6.7px 5.3px rgba(0,0,0,0.024),
-                 0px 12.5px 10px rgba(0,0,0,0.03),
-                 0px 22.3px 17.9px rgba(0,0,0,0.036),
-                 0px 41.8px 33.4px rgba(0,0,0,0.043),
-                 0px 100px 80px rgba(0,0,0,0.06);
+      &:hover{
+      cursor:grab;
+      }
+
+      &:active{
+      cursor:grabbing;}
     }
     canvas {
       position: absolute;
@@ -33,32 +34,26 @@ template.innerHTML = `
       position: absolute;
       width: 24px;
       height: 24px;
-      background: #3b82f6;
+      background: var(--background-base);
       border-radius: 50%;
       border: 3px solid #fff;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      
       transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
       z-index: 10;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      
     }
     .slider-handle:active,
     .slider-handle.dragging {
-      transform: translate(-50%, -50%) scale(1.15);
-      box-shadow: 0 0 0 10px rgba(59,130,246,0.35);
+      transform: scale(1.15);
+      cursor:grabbing;
+      box-shadow: 0 0 0 10px var(--background-base);
     }
     @media screen and (max-width: 800px), (max-height: 500px) {
       button { display: inline-flex; }
     }
-    [popover] {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      margin: 0;
-      z-index: 20;
-    }
+    
   </style>
   <button id="toggle" class="button sm" aria-label="Theme controls"><span class="icon">tune</span> Theme</button>
   <div class="slider" id="slider">
@@ -91,8 +86,8 @@ class ThemeControl extends HTMLElement {
   }
 
   connectedCallback() {
-    const storedHue  = parseFloat(localStorage.getItem('brandHue')) || 0;
-    const storedStim = parseFloat(localStorage.getItem('stimulationLevel')) || 0.50;
+    const storedHue  = parseFloat(localStorage.getItem('brandHue')) || '0';
+    const storedStim = parseFloat(localStorage.getItem('stimulationLevel')) || '0.50';
     this.slider.addEventListener('pointerdown', this.onDown);
     window.addEventListener('pointermove', this.onMove);
     window.addEventListener('pointerup',   this.onUp);
@@ -168,7 +163,7 @@ class ThemeControl extends HTMLElement {
     ctx.fillStyle = '#FFFFFF';
     ctx.fillRect(0, 0, width, height);
 
-    const dotRadius = 1.5;
+    const dotRadius = 3;
     const minVerticalGap = 8;
     const maxVerticalGap = 40;
     const minHorizontalGap = 8;

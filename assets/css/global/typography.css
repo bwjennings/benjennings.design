@@ -136,6 +136,6 @@ u {
   }
 
   &.brand {
-    color: var(--foreground-brand);
+    color: var(--foreground-base);
   }
 }
