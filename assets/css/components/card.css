@@ -70,6 +70,10 @@
     color: var(--foreground-accent);
     border-color: var(--border-accent);
     outline-color: var(--border-accent);
+    &.emphasis {
+      background-color: var(--background-accent-emphasis);
+      border-color: var(--border-accent-emphasis);
+    }
   }
 
   &.accent2 {
@@ -77,6 +81,10 @@
     color: var(--foreground-accent2);
     border-color: var(--border-accent2);
     outline-color: var(--border-accent2);
+    &.emphasis {
+      background-color: var(--background-accent2-emphasis);
+      border-color: var(--border-accent2-emphasis);
+    }
   }
 
   &.accent3 {
@@ -84,6 +92,10 @@
     color: var(--foreground-accent3);
     border-color: var(--border-accent3);
     outline-color: var(--border-accent3);
+    &.emphasis {
+      background-color: var(--background-accent3-emphasis);
+      border-color: var(--border-accent3-emphasis);
+    }
   }
 
 

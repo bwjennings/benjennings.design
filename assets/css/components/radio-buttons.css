@@ -19,8 +19,8 @@
   align-items: center;
   align-self: stretch;
   border: 1px solid var(--border-base);
-  background-color: var(--background-base-secondary);
-  border-radius: var(--radius-large);
+  background-color: var(--background-base);
+  border-radius: var(--radius-medium);
   
 }
 
@@ -33,7 +33,7 @@
   gap: var(--spacing-medium, 12px);
   align-self: stretch;
   
-border-radius: var(--radius-medium);
+border-radius: calc(var(--radius-medium) - var(--spacing-x-small) );
   font-size: var(--text-body-md-size);
   color: var(--foreground-primary);
   font-family: var(--text-font-family);
@@ -61,6 +61,6 @@ flex: 1;
 }
 
 .radio-button:has(input:checked) {
-  background-color: var(--background-accent);
+  background-color: var(--background-base-emphasis);
   color: var(--foreground-accent);
 }

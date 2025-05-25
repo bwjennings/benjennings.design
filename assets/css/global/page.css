@@ -12,6 +12,7 @@
 
 :is(a) {
   text-decoration: none;
+  color: unset;
 }
 
 img,
@@ -87,7 +88,7 @@ body {
     "sidebar content"
   ;
   perspective: 1500px;
-  min-height: 100dvh;
+  max-height: 100dvh;
   /* lock container to viewport height */
 
 
@@ -246,12 +247,14 @@ figure {
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
     overflow: auto;
+    height: fit-content;
   }
 
   .main-content {
     padding: 16px;
     gap: 16px;
   }
+
 
   .page-container {
 

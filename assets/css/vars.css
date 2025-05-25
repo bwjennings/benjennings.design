@@ -15,7 +15,8 @@
   initial-value: 0px;
   inherits: true;
 }
-@property --stimulation-level{
+
+@property --stimulation-level {
   syntax: '<number>';
   initial-value: 1.5;
   inherits: true;
@@ -286,15 +287,15 @@
 
 
 
-  
 
 
 
 
---stimulation-level:1;
+
+  --stimulation-level: 0.7;
 
 
-  --x5:  0.037;
+  --x5: 0.037;
   --x10: 0.074;
   --x20: 0.147;
   --x30: 0.221;
@@ -309,8 +310,8 @@
   /*------------------------------------
     Chroma Scale (mirrors lightness scale)
   ------------------------------------*/
-  --chroma-base-val: calc(var(--stimulation-level) * 0.2);
-  --chroma-scale-5:  calc(var(--chroma-base-val) * 0.1);
+  --chroma-base-val: calc(var(--stimulation-level) * 0.3);
+  --chroma-scale-5: calc(var(--chroma-base-val) * 0.1);
   --chroma-scale-10: calc(var(--chroma-base-val) * 0.2);
   --chroma-scale-20: calc(var(--chroma-base-val) * 0.4);
   --chroma-scale-30: calc(var(--chroma-base-val) * 0.6);
@@ -343,7 +344,7 @@
 
 
   /* HUE */
-  --hue-spread: calc(var(--stimulation-level) * 100deg);
+  --hue-spread: calc(var(--stimulation-level) * 60deg);
   --base-hue: 220deg;
   --base-hue-val: var(--base-hue);
   --accent-hue-val: calc(var(--base-hue) + (var(--hue-spread) * 2));
@@ -407,9 +408,9 @@
   --accent3-90: oklch(var(--lightness-90) var(--chroma-scale-90) var(--accent3-hue-val));
   --accent3-95: oklch(var(--lightness-95) var(--chroma-scale-95) var(--accent3-hue-val));
 
-    /* Neutral / Gray */
+  /* Neutral / Gray */
   --gray-hue: calc(var(--base-hue) + 30deg);
-  --gray-chroma:  calc(var(--chroma-base-val) * 0.1);
+  --gray-chroma: calc(var(--chroma-base-val) * 0.1);
   --gray-5: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue));
   --gray-10: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue));
   --gray-20: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue));
@@ -450,14 +451,15 @@
   --background-page: light-dark(var(--white), var(--gray-95));
   --background-primary: light-dark(var(--gray-10), var(--gray-90));
   --background-secondary: light-dark(var(--gray-20), var(--gray-80));
-  --background-base: light-dark(var(--base-30), var(--base-90));
-  --background-base-hover: light-dark(var(--base-30), var(--base-80));
-  --background-base-secondary: light-dark(var(--base-20), var(--base-80));
-  --background-base-emphasis: light-dark(var(--base-50), var(--base-60));
-  --background-accent: light-dark(var(--accent-30), var(--accent-90));
-  --background-accent2: light-dark(var(--accent2-30), var(--accent2-90));
-  --background-accent3: light-dark(var(--accent3-30), var(--accent3-90));
-  --background-accent-emphasis: light-dark(var(--accent-50), var(--accent-30));
+  --background-base: light-dark(var(--base-20), var(--base-80));
+  --background-base-hover: light-dark(var(--base-10), var(--base-80));
+  --background-base-emphasis: light-dark(var(--base-30), var(--base-70));
+  --background-accent: light-dark(var(--accent-20), var(--accent-80));
+  --background-accent-emphasis: light-dark(var(--accent-30), var(--accent-70));
+  --background-accent2: light-dark(var(--accent2-20), var(--accent2-80));
+  --background-accent2-emphasis: light-dark(var(--accent2-30), var(--accent2-70));
+  --background-accent3: light-dark(var(--accent3-20), var(--accent3-80));
+  --background-accent3-emphasis: light-dark(var(--accent3-30), var(--accent3-70));
   --background-backdrop: light-dark(var(--gray-20-alpha), var(--gray-50-alpha));
 
   /* Foreground Colors */
@@ -476,13 +478,16 @@
   --border-primary: light-dark(var(--gray-20), var(--gray-70));
   --border-primary-hover: light-dark(var(--gray-20), var(--gray-60));
   --border-secondary: light-dark(var(--gray-10), var(--gray-60));
-  --border-base: light-dark(var(--base-20), var(--base-80));
+  --border-base: light-dark(var(--base-10), var(--base-90));
   --border-base-hover: light-dark(var(--base-20), var(--gray-60));
-  --border-base-secondary: light-dark(var(--base-20), var(--base-60));
-  --border-base-emphasis: light-dark(var(--base-60), var(--base-70));
-  --border-accent: light-dark(var(--accent-20), var(--accent-80));
-  --border-accent2: light-dark(var(--accent2-20), var(--accent2-80));
-  --border-accent3: light-dark(var(--accent3-20), var(--accent3-80));
+  --border-base-secondary: light-dark(var(--base-10), var(--base-60));
+  --border-base-emphasis: light-dark(var(--base-20), var(--base-80));
+  --border-accent: light-dark(var(--accent-10), var(--accent-90));
+  --border-accent-emphasis: light-dark(var(--accent-20), var(--accent-80));
+  --border-accent2: light-dark(var(--accent2-10), var(--accent2-90));
+  --border-accent2-emphasis: light-dark(var(--accent2-20), var(--accent2-80));
+  --border-accent3: light-dark(var(--accent3-10), var(--accent3-90));
+  --border-accent3-emphasis: light-dark(var(--accent3-20), var(--accent3-80));
 
 
   --theme-slider-size: 20px;
