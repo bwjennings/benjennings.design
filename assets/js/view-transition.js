@@ -34,7 +34,8 @@ function applyViewTransitionNames() {
   // Assign name to detail page container if applicable
   if (document.body.classList.contains('detail-page')) {
     const slug = getSlug(location.pathname);
-    const container = document.querySelector('main');
+    const container =
+      document.querySelector('.page-detail') || document.querySelector('main');
     if (container) {
       // Include a generic "detail" name so CSS can target all detail pages
       container.style.viewTransitionName = `vt-${slug}, detail`;
