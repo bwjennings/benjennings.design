@@ -36,14 +36,11 @@ function applyViewTransitionNames() {
     const slug = getSlug(location.pathname);
     const container = document.querySelector('main');
     if (container) {
-      container.style.viewTransitionName = `vt-${slug}`;
+      // Include a generic "detail" name so CSS can target all detail pages
+      container.style.viewTransitionName = `vt-${slug}, detail`;
     }
   }
 }
 
-
-// Run immediately after the script loads since modules are deferred by default.
-// This ensures view-transition names are set before the browser captures the
-// new page during a transition.
-applyViewTransitionNames();
+document.addEventListener('DOMContentLoaded', applyViewTransitionNames);
 

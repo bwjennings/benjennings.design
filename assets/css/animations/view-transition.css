@@ -19,6 +19,9 @@ site-settings{
   --base-distance: -100px;
   --transition-duration: 500ms;
   --view-transition-timing:var(--timing-decelerate);
+  /* Default settings for detail page transitions */
+  --detail-distance: var(--base-distance);
+  --detail-duration: var(--transition-duration);
 
 
 }
@@ -64,6 +67,15 @@ main {
 }
 ::view-transition-old(main){
   animation: items-out var(--view-transition-timing) var(--transition-duration);
+}
+
+/* Generic styling for all detail page containers */
+::view-transition-new(detail){
+  animation: items-in var(--view-transition-timing) var(--detail-duration);
+}
+::view-transition-old(detail){
+  --distance: var(--detail-distance);
+  animation: items-out var(--view-transition-timing) var(--detail-duration);
 }
 
 
