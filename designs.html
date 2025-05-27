@@ -83,220 +83,53 @@
         These are some problems that I helped to solve
       </p>
     </header>
-    <main>
-      <div class="page-items">
-        <article class="card p-10">
-
-          <img slot="media" src="/assets/resources/Designs/arvest/thumbnail.png" />
-          <h1 class="title">The loan process is complicated</h1>
-          <div class="badge-group">
-            <div class="badge">
-              <span>account_balance</span>
-              Financial
-            </div>
-            <div class="badge">
-              <span>cloud</span>
-              Salesforce
-            </div>
-          </div>
-        </article>
-        <article class="card">
-
-          <img slot="media" src="/assets/resources/Designs/arvest/thumbnail.png" />
-          <h1 class="title">The loan process is complicated</h1>
-          <div class="badge-group">
-            <div class="badge">
-              <span>account_balance</span>
-              Financial
-            </div>
-            <div class="badge">
-              <span>cloud</span>
-              Salesforce
-            </div>
-          </div>
-        </article>
-
-        <!-- <simple-card
-            tabindex="0"
-            version="box"
-            title="The loan process is complicated"
-            dialog-id="dialog-1"
-          >
+      <main>
+        <div class="page-items">
+          <a class="card p-10" href="/designs/arvest.html">
             <img slot="media" src="/assets/resources/Designs/arvest/thumbnail.png" />
-            <div slot="badge" class="badge">
-              <span>account_balance</span>
-              Financial
+            <h1 class="title">The loan process is complicated</h1>
+            <div class="badge-group">
+              <div class="badge">
+                <span>account_balance</span>
+                Financial
+              </div>
+              <div class="badge">
+                <span>cloud</span>
+                Salesforce
+              </div>
             </div>
-            <div slot="badge" class="badge">
-              <span>cloud</span>
-              Salesforce
-            </div>
-
-            <div slot="post">
-              <p>
-                The existing method for loan officers to create and manage loans
-                required them to use several individual tools that required a
-                lot of training. This unorganization caused a lot of frustration
-                for employees as well as loan applicants.
-              </p>
-
-              <p>
-                To address this challenge, these processes were moved to the
-                Salesforce platform, allowing everything to be managed in one
-                place. Over several months, I designed experiences to handle the
-                complexities of the loan process, such as adding collateral,
-                including co-borrowers, and ensuring compliance with all
-                regulatory requirements.
-              </p>
-
-              <p>
-                Working within Salesforce comes with certain design constraints.
-                To create an intuitive experience, I first needed to understand
-                what loan officers aimed to accomplish—for example, gathering
-                all the required information for a collateral item. Then, using
-                an understanding of what is possible with salesforce tools like
-                Omniscripts, Flexcards, and Lightning Web Components, I then
-                designed solutions that prioritized user needs while remaining
-                realistic in terms of development effort.
-              </p>
-            </div>
-          </simple-card>
-
-          <simple-card
-            tabindex="0"
-            version="box"
-            title="It's hard to know a neighborhood"
-            badge="Large System Design"
-          >
+          </a>
+          <a class="card" href="/designs/dwellane.html">
             <img slot="media" src="/assets/resources/Designs/dwellane/thumbnail.png" />
-
-            <div slot="badge" class="badge">
-              <span>design_services</span>
-              Design System
+            <h1 class="title">It's hard to know a neighborhood</h1>
+            <div class="badge-group">
+              <div class="badge">
+                <span>design_services</span>
+                Design System
+              </div>
+              <div class="badge">Startup Company</div>
             </div>
-
-            <div slot="badge" class="badge">Startup Company</div>
-
-            <div slot="post">{Dwellane content here}</div>
-          </simple-card>
-
-          <simple-card
-            tabindex="0"
-            version="box"
-            title="Training Materials are unorganized"
-          >
+          </a>
+          <a class="card" href="/designs/pls.html">
             <img slot="media" src="/assets/resources/Designs/pls/thumbnail.png" />
-            <div slot="badge" class="badge">
-              <span>design_services</span>
-              Design System
+            <h1 class="title">Training Materials are unorganized</h1>
+            <div class="badge-group">
+              <div class="badge">
+                <span>design_services</span>
+                Design System
+              </div>
             </div>
-            <div slot="post">
-              <img src="/assets/resources/Designs/pls/thumbnail.png" />
-              <section>
-                <h2 class="heading sm">Introduction</h2>
-                <p>
-                  Police Legal Sciences has provided training for law
-                  enforcement for 25 years. They began with legal update
-                  training in only a few states and have since expanded their
-                  offerings and reach across North America.
-                </p>
-              </section>
-              <hr />
-              <section>
-                <h2 class="heading sm">The problem</h2>
-                <p>
-                  With their growth, managing and distributing content became
-                  increasingly challenging. They needed a more scalable solution
-                  to make management easier while also giving agencies more
-                  options, like adjusting content to fit their needs.
-                </p>
-                <iframe
-                  style="border: 1px solid rgba(0, 0, 0, 0.1)"
-                  height="600"
-                  src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=23175-6870&embed-host=share"
-                  allowfullscreen
-                ></iframe>
-              </section>
-              <section>
-                <h2 class="heading sm">
-                  Finding the right amount of complexity
-                </h2>
-                <p>
-                  This system serves users with different levels of
-                  responsibility:
-                </p>
-
-                <ul>
-                  <li>Global Admins: Manage the entire system.</li>
-                  <li>Agency Admins: Oversee their own users.</li>
-                  <li>Individuals: Simply consume content.</li>
-                </ul>
-
-                <p>
-                  responsibilities decrease, the interface adjusts, providing
-                  robust controls for admins while remaining simple and
-                  intuitive for end users.
-                </p>
-              </section>
-
-              <section>
-                <h3 class="heading sm">Example of necessary complexity</h3>
-                <p>
-                  In this example, a lesson is being created at a global level
-                  and these details will appear the same for everyone on the
-                  platform.
-                </p>
-                <p>
-                  That same lesson needs to be customized for an individual
-                  agency, allowing changes to due dates, assigned user groups,
-                  and other details.
-                </p>
-                <p>
-                  To visually distinguish an instance we introduced this modal
-                  pattern to represent an instance of content.
-                </p>
-
-                <figure>
-                  <img src="/assets/resources/Designs/pls/Nav Item/image 17.png" />
-                  <figcaption>
-                    A global admin changing a lesson inside the Buffalo Police
-                    dept.
-                  </figcaption>
-                </figure>
-
-                <p>
-                  From the agency admin’s perspective, the complexity is reduced
-                  since they only manage a single version of the lesson.
-                </p>
-
-                <figure>
-                  <img src="/assets/resources/Designs/pls/Nav Item/image 17.png" />
-                  <figcaption>
-                    A global admin changing a lesson inside the Buffalo Police
-                    dept.
-                  </figcaption>
-                </figure>
-              </section>
+          </a>
+          <a class="card" href="/designs/herff-jones.html">
+            <img slot="media" src="/assets/resources/Designs/herff-jones/thumbnail.png" />
+            <h1 class="title">Graduates need a cap and gown</h1>
+            <div class="badge-group">
+              <div class="badge">Design System</div>
+              <div class="badge">CMS</div>
             </div>
-          </simple-card>
-
-          <simple-card
-            tabindex="0"
-            version="box"
-            title="Graduates need a cap and gown"
-          >
-            <img
-              slot="media"
-              src="/assets/resources/Designs/herff-jones/thumbnail.png"
-            />
-
-            <div slot="badge" class="badge">Design System</div>
-
-            <div slot="badge" class="badge">CMS</div>
-            <div slot="post">{Herff Jones designs go here}</div>
-          </simple-card> -->
-      </div>
-    </main>
+          </a>
+        </div>
+      </main>
 </body>
 
 </html>
