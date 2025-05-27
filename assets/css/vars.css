@@ -35,16 +35,38 @@
 }
 
 :root {
-  /*------------------------------------
-    Layout & Containers
-  ------------------------------------*/
+  /* layout */
   --viewport-lg: 800px;
   --dialog-width: clamp(300px, 80dvw, 1200px);
   --bottom-nav-height: 80px;
 
-  /*------------------------------------
-    Typography Scale
-  ------------------------------------*/
+  /* spacing */
+  --spacing-none: 0px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-xxl: 32px;
+  --spacing-xxxl: 40px;
+  --gap-base: 1;
+  --gap-none: calc(var(--spacing-none) * var(--gap-base));
+  --gap-xs: calc(var(--spacing-xs) * var(--gap-base));
+  --gap-sm: calc(var(--spacing-sm) * var(--gap-base));
+  --gap-md: calc(var(--spacing-md) * var(--gap-base));
+  --gap-lg: calc(var(--spacing-lg) * var(--gap-base));
+  --gap-xl: calc(var(--spacing-xl) * var(--gap-base));
+  --gap-xxl: calc(var(--spacing-xxl) * var(--gap-base));
+  --gap-xxxl: calc(var(--spacing-xxxl) * var(--gap-base));
+
+  /* radii */
+  --base-radius: calc(var(--stimulation-level) * 5px);
+  --radius-none: 0px;
+  --radius-sm: calc(var(--base-radius) * 4);
+  --radius-md: calc(var(--base-radius) * 8);
+  --radius-lg: calc(var(--base-radius) * 16);
+
+  /* typography scale */
   --font-size-1: clamp(0.64rem, -0.02vi + 0.64rem, 0.63rem);
   --font-size-2: clamp(0.8rem, 0.12vi + 0.77rem, 0.84rem);
   --font-size-3: clamp(1rem, 0.33vi + 0.92rem, 1.13rem);
@@ -55,9 +77,8 @@
   --font-size-8: clamp(3.05rem, 4.49vi + 1.93rem, 4.73rem);
   --font-size-9: clamp(3.81rem, 6.66vi + 2.15rem, 6.31rem);
   --font-size-10: clamp(4.77rem, 9.72vi + 2.34rem, 8.41rem);
-  /*------------------------------------
-    Typography – Headings
-  ------------------------------------*/
+
+  /* heading text */
   --text-heading-weight: 550;
   --text-heading-font-family: "Roboto Flex";
   --text-heading-grade: 100;
@@ -71,9 +92,7 @@
   --text-heading-sm-size: var(--font-size-5);
   --text-heading-sm-line-height: var(--font-size-6);
 
-  /*------------------------------------
-    Typography – Body Text
-  ------------------------------------*/
+  /* body text */
   --text-body-font-family: "Roboto Flex";
   --text-body-weight: 400;
   --text-body-lg-size: var(--font-size-4);
@@ -85,9 +104,7 @@
   --text-body-xs-size: var(--font-size-1);
   --text-body-xs-line-height: var(--font-size-2);
 
-  /*------------------------------------
-    Icon Settings
-  ------------------------------------*/
+  /* icon settings */
   --icon-font-family: "Material Symbols Sharp";
   --icon-size-xl: var(--font-size-6);
   --icon-size-lg: var(--font-size-5);
@@ -100,51 +117,10 @@
   --icon-grade: 0;
   --icon-grade-emphasis: 100;
 
-  /*------------------------------------
-    Radii
-  ------------------------------------*/
-  --base-radius: calc(var(--stimulation-level) * 5px);
-  --radius-none: 0px;
-  --radius-sm: calc(var(--base-radius) * 4);
-  --radius-md: calc(var(--base-radius) * 8);
-  --radius-lg: calc(var(--base-radius) * 16);
-
-  /*------------------------------------
-    Spacing
-  ------------------------------------*/
-  --spacing-none: 0px;
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 12px;
-  --spacing-lg: 16px;
-  --spacing-xl: 24px;
-  --spacing-xxl: 32px;
-  --spacing-xxxl: 40px;
-
-  /* Base gap unit */
-  --gap-base: 1;
-
-  /*------------------------------------
-    Gaps
-  ------------------------------------*/
-  --gap-none: calc(var(--spacing-none) * var(--gap-base));
-  --gap-xs: calc(var(--spacing-xs) * var(--gap-base));
-  --gap-sm: calc(var(--spacing-sm) * var(--gap-base));
-  --gap-md: calc(var(--spacing-md) * var(--gap-base));
-  --gap-lg: calc(var(--spacing-lg) * var(--gap-base));
-  --gap-xl: calc(var(--spacing-xl) * var(--gap-base));
-  --gap-xxl: calc(var(--spacing-xxl) * var(--gap-base));
-  --gap-xxxl: calc(var(--spacing-xxxl) * var(--gap-base));
-
-  /*------------------------------------
-    Animation & Timing
-  ------------------------------------*/
+  /* animation */
   --amplitude: 1;
-  /* Initial strength */
   --damping: 2;
-  /* Damping coefficient */
   --frequency: 8;
-  /* Angular frequency */
   --duration: 1s;
   --timing-duration: 800ms;
   --timing-decelerate: linear(0,
@@ -226,15 +202,13 @@
       1.003 76.9%,
       1.004 83.8%,
       1);
-  /* Brand Hue Definitions */
+
+  /* color base */
   --base-hue: 230deg;
-  /* set this to your brand’s base hue angle */
   transition: --base-hue 500ms ease-in-out;
   transition-property: --contrast, --text-heading-grade, --text-heading-width,
     --base-hue, --base-radius, --spacing-base, --gap-base, --chroma-base,
     --hue-offset-base;
-
-  /* Brand with Alpha */
   --alpha: 0.4;
   --color-base-5-alpha: oklch(var(--lightness-5) var(--chroma-5) var(--base-hue) / var(--alpha));
   --color-base-10-alpha: oklch(var(--lightness-10) var(--chroma-10) var(--base-hue) / var(--alpha));
@@ -248,13 +222,9 @@
   --color-base-90-alpha: oklch(var(--lightness-90) var(--chroma-90) var(--base-hue) / var(--alpha));
   --color-base-95-alpha: oklch(var(--lightness-95) var(--chroma-95) var(--base-hue) / var(--alpha));
 
-  /*------------------------------------
-    Color – Neutral (Gray) Palette
-  ------------------------------------*/
+  /* neutral palette */
   --color-white: white;
-
   --stimulation-level: 0.7;
-
   --x5: 0.037;
   --x10: 0.074;
   --x20: 0.147;
@@ -267,9 +237,7 @@
   --x90: 0.663;
   --x95: 0.7;
 
-  /*------------------------------------
-    Chroma Scale (mirrors lightness scale)
-  ------------------------------------*/
+  /* chroma scale */
   --chroma-base-val: calc(var(--stimulation-level) * 0.3);
   --chroma-scale-5: calc(var(--chroma-base-val) * 0.1);
   --chroma-scale-10: calc(var(--chroma-base-val) * 0.2);
@@ -284,7 +252,6 @@
   --chroma-scale-95: calc(var(--chroma-base-val) * 0.1);
 
   --a: calc(var(--stimulation-level) * 2);
-
   --lightness-5: calc(pow(calc(1 - var(--x5)), var(--a)) / (pow(calc(1 - var(--x5)), var(--a)) + pow(var(--x5), var(--a))));
   --lightness-10: calc(pow(calc(1 - var(--x10)), var(--a)) / (pow(calc(1 - var(--x10)), var(--a)) + pow(var(--x10), var(--a))));
   --lightness-20: calc(pow(calc(1 - var(--x20)), var(--a)) / (pow(calc(1 - var(--x20)), var(--a)) + pow(var(--x20), var(--a))));
@@ -298,15 +265,14 @@
   --lightness-95: calc(pow(calc(1 - var(--x95)), var(--a)) / (pow(calc(1 - var(--x95)), var(--a)) + pow(var(--x95), var(--a))));
   --lightness-100: calc(pow(calc(1 - var(--x100)), var(--a)) / (pow(calc(1 - var(--x100)), var(--a)) + pow(var(--x100), var(--a))));
 
-  /* HUE */
+  /* hue */
   --hue-spread: calc(var(--stimulation-level) * 60deg);
-  --base-hue: 220deg;
   --base-hue-val: var(--base-hue);
   --accent-hue-val: calc(var(--base-hue) + (var(--hue-spread) * 2));
   --accent2-hue-val: calc(var(--base-hue) + (var(--hue-spread) * 1.6));
   --accent3-hue-val: calc(var(--base-hue) + (var(--hue-spread) * 1.3));
 
-  /* BASE COLOR SHADES - Using lightness and chroma/hue variables */
+  /* base shades */
   --color-base-5: oklch(var(--lightness-5) var(--chroma-scale-5) var(--base-hue-val));
   --color-base-10: oklch(var(--lightness-10) var(--chroma-scale-10) var(--base-hue-val));
   --color-base-20: oklch(var(--lightness-20) var(--chroma-scale-10) var(--base-hue-val));
@@ -319,7 +285,7 @@
   --color-base-90: oklch(var(--lightness-90) var(--chroma-scale-90) var(--base-hue-val));
   --color-base-95: oklch(var(--lightness-95) var(--chroma-scale-95) var(--base-hue-val));
 
-  /* ACCENT1 COLOR SHADES - Using lightness and chroma/hue variables */
+  /* accent shades */
   --color-accent-5: oklch(var(--lightness-5) var(--chroma-scale-5) var(--accent-hue-val));
   --color-accent-10: oklch(var(--lightness-10) var(--chroma-scale-10) var(--accent-hue-val));
   --color-accent-20: oklch(var(--lightness-20) var(--chroma-scale-20) var(--accent-hue-val));
@@ -332,7 +298,7 @@
   --color-accent-90: oklch(var(--lightness-90) var(--chroma-scale-90) var(--accent-hue-val));
   --color-accent-95: oklch(var(--lightness-95) var(--chroma-scale-95) var(--accent-hue-val));
 
-  /* ACCENT2 COLOR SHADES - Using lightness and chroma/hue variables */
+  /* accent2 shades */
   --color-accent2-5: oklch(var(--lightness-5) var(--chroma-scale-5) var(--accent2-hue-val));
   --color-accent2-10: oklch(var(--lightness-10) var(--chroma-scale-10) var(--accent2-hue-val));
   --color-accent2-20: oklch(var(--lightness-20) var(--chroma-scale-20) var(--accent2-hue-val));
@@ -345,7 +311,7 @@
   --color-accent2-90: oklch(var(--lightness-90) var(--chroma-scale-90) var(--accent2-hue-val));
   --color-accent2-95: oklch(var(--lightness-95) var(--chroma-scale-95) var(--accent2-hue-val));
 
-  /* ACCENT3 COLOR SHADES - Using lightness and chroma/hue variables */
+  /* accent3 shades */
   --color-accent3-5: oklch(var(--lightness-5) var(--chroma-scale-5) var(--accent3-hue-val));
   --color-accent3-10: oklch(var(--lightness-10) var(--chroma-scale-10) var(--accent3-hue-val));
   --color-accent3-20: oklch(var(--lightness-20) var(--chroma-scale-20) var(--accent3-hue-val));
@@ -358,7 +324,7 @@
   --color-accent3-90: oklch(var(--lightness-90) var(--chroma-scale-90) var(--accent3-hue-val));
   --color-accent3-95: oklch(var(--lightness-95) var(--chroma-scale-95) var(--accent3-hue-val));
 
-  /* Neutral / Gray */
+  /* gray palette */
   --gray-hue: calc(var(--base-hue) + 30deg);
   --gray-chroma: calc(var(--chroma-base-val) * 0.01);
   --color-gray-5: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue));
@@ -372,8 +338,6 @@
   --color-gray-80: oklch(var(--lightness-80) var(--gray-chroma) var(--gray-hue));
   --color-gray-90: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue));
   --color-gray-95: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue));
-
-  /* Gray with Alpha */
   --color-gray-5-alpha: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue) / var(--alpha));
   --color-gray-10-alpha: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue) / var(--alpha));
   --color-gray-20-alpha: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue) / var(--alpha));
@@ -386,89 +350,51 @@
   --color-gray-90-alpha: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue) / var(--alpha));
   --color-gray-95-alpha: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue) / var(--alpha));
 
-  /* Alternative approach using more refined exponential scaling */
-  /* You could also use these formulas for more controlled scaling: */
-
-  /*------------------------------------
-    Color System
-  ------------------------------------*/
+  /* color system */
   --current-color-scheme: light dark;
   color-scheme: var(--current-color-scheme);
 
-  /* Background Colors */
+  /* background colors */
   --color-background-page: light-dark(var(--color-white), var(--color-gray-95));
-  --color-background-primary: light-dark(var(--color-gray-10),
-      var(--color-gray-90));
-  --color-background-secondary: light-dark(var(--color-gray-20),
-      var(--color-gray-80));
-  --color-background-base: light-dark(var(--color-base-20),
-      var(--color-base-80));
-  --color-background-base-hover: light-dark(var(--color-base-10),
-      var(--color-base-80));
-  --color-background-base-emphasis: light-dark(var(--color-base-30),
-      var(--color-base-70));
-  --color-background-accent: light-dark(var(--color-accent-20),
-      var(--color-accent-80));
-  --color-background-accent-emphasis: light-dark(var(--color-accent-30),
-      var(--color-accent-70));
-  --color-background-accent2: light-dark(var(--color-accent2-20),
-      var(--color-accent2-80));
-  --color-background-accent2-emphasis: light-dark(var(--color-accent2-30),
-      var(--color-accent2-70));
-  --color-background-accent3: light-dark(var(--color-accent3-20),
-      var(--color-accent3-80));
-  --color-background-accent3-emphasis: light-dark(var(--color-accent3-30),
-      var(--color-accent3-70));
-  --color-background-backdrop: light-dark(var(--color-gray-20-alpha),
-      var(--color-gray-50-alpha));
+  --color-background-primary: light-dark(var(--color-gray-10), var(--color-gray-90));
+  --color-background-secondary: light-dark(var(--color-gray-20), var(--color-gray-80));
+  --color-background-base: light-dark(var(--color-base-20), var(--color-base-80));
+  --color-background-base-hover: light-dark(var(--color-base-10), var(--color-base-80));
+  --color-background-base-emphasis: light-dark(var(--color-base-30), var(--color-base-70));
+  --color-background-accent: light-dark(var(--color-accent-20), var(--color-accent-80));
+  --color-background-accent-emphasis: light-dark(var(--color-accent-30), var(--color-accent-70));
+  --color-background-accent2: light-dark(var(--color-accent2-20), var(--color-accent2-80));
+  --color-background-accent2-emphasis: light-dark(var(--color-accent2-30), var(--color-accent2-70));
+  --color-background-accent3: light-dark(var(--color-accent3-20), var(--color-accent3-80));
+  --color-background-accent3-emphasis: light-dark(var(--color-accent3-30), var(--color-accent3-70));
+  --color-background-backdrop: light-dark(var(--color-gray-20-alpha), var(--color-gray-50-alpha));
 
-  /* Foreground Colors */
-  --color-foreground-primary: light-dark(var(--color-gray-95),
-      var(--color-gray-5));
-  --color-foreground-secondary: light-dark(var(--color-gray-80),
-      var(--color-gray-10));
-  --color-foreground-tertiary: light-dark(var(--color-gray-60),
-      var(--color-gray-20));
-  --color-foreground-base: light-dark(var(--color-base-80),
-      var(--color-base-20));
-  --color-foreground-base-secondary: light-dark(var(--color-base-30),
-      var(--color-base-60));
-  --color-foreground-onBrand: light-dark(var(--color-base-50),
-      var(--color-base-10));
-  --color-foreground-accent: light-dark(var(--color-accent-95),
-      var(--color-accent-20));
-  --color-foreground-accent2: light-dark(var(--color-accent2-95),
-      var(--color-accent2-20));
-  --color-foreground-accent3: light-dark(var(--color-accent3-95),
-      var(--color-accent3-20));
+  /* foreground colors */
+  --color-foreground-primary: light-dark(var(--color-gray-95), var(--color-gray-5));
+  --color-foreground-secondary: light-dark(var(--color-gray-80), var(--color-gray-10));
+  --color-foreground-tertiary: light-dark(var(--color-gray-60), var(--color-gray-20));
+  --color-foreground-base: light-dark(var(--color-base-80), var(--color-base-20));
+  --color-foreground-base-secondary: light-dark(var(--color-base-30), var(--color-base-60));
+  --color-foreground-onBrand: light-dark(var(--color-base-50), var(--color-base-10));
+  --color-foreground-accent: light-dark(var(--color-accent-95), var(--color-accent-20));
+  --color-foreground-accent2: light-dark(var(--color-accent2-95), var(--color-accent2-20));
+  --color-foreground-accent3: light-dark(var(--color-accent3-95), var(--color-accent3-20));
   --color-foreground-onEmphasis: light-dark(white, white);
 
-  /* Border Colors */
-  --color-border-primary: light-dark(var(--color-gray-20),
-      var(--color-gray-70));
-  --color-border-primary-hover: light-dark(var(--color-gray-20),
-      var(--color-gray-60));
-  --color-border-secondary: light-dark(var(--color-gray-10),
-      var(--color-gray-60));
+  /* border colors */
+  --color-border-primary: light-dark(var(--color-gray-20), var(--color-gray-70));
+  --color-border-primary-hover: light-dark(var(--color-gray-20), var(--color-gray-60));
+  --color-border-secondary: light-dark(var(--color-gray-10), var(--color-gray-60));
   --color-border-base: light-dark(var(--color-base-10), var(--color-base-90));
-  --color-border-base-hover: light-dark(var(--color-base-20),
-      var(--color-gray-60));
-  --color-border-base-secondary: light-dark(var(--color-base-10),
-      var(--color-base-60));
-  --color-border-base-emphasis: light-dark(var(--color-base-20),
-      var(--color-base-80));
-  --color-border-accent: light-dark(var(--color-accent-10),
-      var(--color-accent-90));
-  --color-border-accent-emphasis: light-dark(var(--color-accent-20),
-      var(--color-accent-80));
-  --color-border-accent2: light-dark(var(--color-accent2-10),
-      var(--color-accent2-90));
-  --color-border-accent2-emphasis: light-dark(var(--color-accent2-20),
-      var(--color-accent2-80));
-  --color-border-accent3: light-dark(var(--color-accent3-10),
-      var(--color-accent3-90));
-  --color-border-accent3-emphasis: light-dark(var(--color-accent3-20),
-      var(--color-accent3-80));
+  --color-border-base-hover: light-dark(var(--color-base-20), var(--color-gray-60));
+  --color-border-base-secondary: light-dark(var(--color-base-10), var(--color-base-60));
+  --color-border-base-emphasis: light-dark(var(--color-base-20), var(--color-base-80));
+  --color-border-accent: light-dark(var(--color-accent-10), var(--color-accent-90));
+  --color-border-accent-emphasis: light-dark(var(--color-accent-20), var(--color-accent-80));
+  --color-border-accent2: light-dark(var(--color-accent2-10), var(--color-accent2-90));
+  --color-border-accent2-emphasis: light-dark(var(--color-accent2-20), var(--color-accent2-80));
+  --color-border-accent3: light-dark(var(--color-accent3-10), var(--color-accent3-90));
+  --color-border-accent3-emphasis: light-dark(var(--color-accent3-20), var(--color-accent3-80));
 
   --theme-slider-size: 20px;
   --theme-slider-outline: var(--color-background-primary);
@@ -486,124 +412,64 @@
   --stimulation-level: 0.5;
 }
 
-/*====================================
-   High Contrast Mode Overrides
-====================================*/
 [data-mode="high-contrast"] {
   --color-background-page: light-dark(var(--color-white), var(--color-gray-95));
-  --color-background-primary: light-dark(var(--color-white),
-      var(--color-gray-90));
-  --color-background-secondary: light-dark(var(--color-white),
-      var(--color-gray-80));
-  --color-background-base: light-dark(var(--color-base-60),
-      var(--color-base-60));
-  --color-background-base-secondary: light-dark(var(--color-base-10),
-      var(--color-base-80));
-  --color-background-base-emphasis: light-dark(var(--color-base-70),
-      var(--color-base-60));
-  --color-background-accent: light-dark(var(--color-accent-50),
-      var(--color-accent-70));
-  --color-background-accent-secondary: light-dark(var(--color-accent-10),
-      var(--color-accent-80));
-  --color-background-accent-emphasis: light-dark(var(--color-accent-60),
-      var(--color-accent-50));
-  --color-background-backdrop: light-dark(var(--color-gray-80-alpha),
-      var(--color-gray-30-alpha));
-
-  --color-foreground-primary: light-dark(var(--color-gray-95),
-      var(--color-gray-5));
-  --color-foreground-secondary: light-dark(var(--color-gray-80),
-      var(--color-gray-10));
-  --color-foreground-base: light-dark(var(--color-base-60),
-      var(--color-base-20));
-  --color-foreground-onBrand: light-dark(var(--color-white),
-      var(--color-white));
-  --color-foreground-base-secondary: light-dark(var(--color-base-60),
-      var(--color-base-20));
-  --color-foreground-accent: light-dark(var(--color-accent-10),
-      var(--color-accent-5));
-  --color-foreground-onEmphasis: light-dark(var(--color-white),
-      var(--color-white));
-
-  --color-border-primary: light-dark(var(--color-gray-40),
-      var(--color-gray-40));
-  --color-border-primary-hover: light-dark(var(--color-gray-20),
-      var(--color-gray-70));
-  --color-border-secondary: light-dark(var(--color-gray-30),
-      var(--color-gray-50));
+  --color-background-primary: light-dark(var(--color-white), var(--color-gray-90));
+  --color-background-secondary: light-dark(var(--color-white), var(--color-gray-80));
+  --color-background-base: light-dark(var(--color-base-60), var(--color-base-60));
+  --color-background-base-secondary: light-dark(var(--color-base-10), var(--color-base-80));
+  --color-background-base-emphasis: light-dark(var(--color-base-70), var(--color-base-60));
+  --color-background-accent: light-dark(var(--color-accent-50), var(--color-accent-70));
+  --color-background-accent-secondary: light-dark(var(--color-accent-10), var(--color-accent-80));
+  --color-background-accent-emphasis: light-dark(var(--color-accent-60), var(--color-accent-50));
+  --color-background-backdrop: light-dark(var(--color-gray-80-alpha), var(--color-gray-30-alpha));
+  --color-foreground-primary: light-dark(var(--color-gray-95), var(--color-gray-5));
+  --color-foreground-secondary: light-dark(var(--color-gray-80), var(--color-gray-10));
+  --color-foreground-base: light-dark(var(--color-base-60), var(--color-base-20));
+  --color-foreground-onBrand: light-dark(var(--color-white), var(--color-white));
+  --color-foreground-base-secondary: light-dark(var(--color-base-60), var(--color-base-20));
+  --color-foreground-accent: light-dark(var(--color-accent-10), var(--color-accent-5));
+  --color-foreground-onEmphasis: light-dark(var(--color-white), var(--color-white));
+  --color-border-primary: light-dark(var(--color-gray-40), var(--color-gray-40));
+  --color-border-primary-hover: light-dark(var(--color-gray-20), var(--color-gray-70));
+  --color-border-secondary: light-dark(var(--color-gray-30), var(--color-gray-50));
   --color-border-base: light-dark(var(--color-base-50), var(--color-base-40));
-  --color-border-base-secondary: light-dark(var(--color-base-30),
-      var(--color-base-60));
-  --color-border-base-emphasis: light-dark(var(--color-base-70),
-      var(--color-base-60));
-  --color-border-base-hover: light-dark(var(--color-base-40),
-      var(--color-base-10));
-  --color-border-accent: light-dark(var(--color-accent-50),
-      var(--color-accent-40));
+  --color-border-base-secondary: light-dark(var(--color-base-30), var(--color-base-60));
+  --color-border-base-emphasis: light-dark(var(--color-base-70), var(--color-base-60));
+  --color-border-base-hover: light-dark(var(--color-base-40), var(--color-base-10));
+  --color-border-accent: light-dark(var(--color-accent-50), var(--color-accent-40));
 }
 
-/*====================================
-   Preferred Contrast Overrides
-====================================*/
 @media (prefers-contrast: more) {
   :root {
-    --color-background-page: light-dark(var(--color-gray-5),
-        var(--color-gray-95));
-    --color-background-primary: light-dark(var(--color-white),
-        var(--color-gray-90));
-    --color-background-secondary: light-dark(var(--color-white),
-        var(--color-gray-80));
-    --color-background-base: light-dark(var(--color-base-60),
-        var(--color-base-60));
-    --color-background-base-secondary: light-dark(var(--color-base-10),
-        var(--color-base-80));
-    --color-background-base-emphasis: light-dark(var(--color-base-70),
-        var(--color-base-60));
-    --color-background-accent: light-dark(var(--color-accent-30),
-        var(--color-accent-70));
-    --color-background-accent-secondary: light-dark(var(--color-accent-10),
-        var(--color-accent-80));
-    --color-background-accent-emphasis: light-dark(var(--color-accent-60),
-        var(--color-accent-50));
-    --color-background-backdrop: light-dark(var(--color-gray-80-alpha),
-        var(--color-gray-30-alpha));
-
-    --color-foreground-primary: light-dark(var(--color-gray-95),
-        var(--color-gray-5));
-    --color-foreground-secondary: light-dark(var(--color-gray-80),
-        var(--color-gray-10));
-    --color-foreground-base: light-dark(var(--color-base-60),
-        var(--color-base-20));
-    --color-foreground-onBrand: light-dark(var(--color-white),
-        var(--color-white));
-    --color-foreground-base-secondary: light-dark(var(--color-base-60),
-        var(--color-base-20));
-    --color-foreground-accent: light-dark(var(--color-accent-10),
-        var(--color-accent-5));
-    --color-foreground-onEmphasis: light-dark(var(--color-white),
-        var(--color-white));
-
-    --color-border-primary: light-dark(var(--color-gray-40),
-        var(--color-gray-40));
-    --color-border-primary-hover: light-dark(var(--color-gray-20),
-        var(--color-gray-70));
-    --color-border-secondary: light-dark(var(--color-gray-30),
-        var(--color-gray-50));
+    --color-background-page: light-dark(var(--color-gray-5), var(--color-gray-95));
+    --color-background-primary: light-dark(var(--color-white), var(--color-gray-90));
+    --color-background-secondary: light-dark(var(--color-white), var(--color-gray-80));
+    --color-background-base: light-dark(var(--color-base-60), var(--color-base-60));
+    --color-background-base-secondary: light-dark(var(--color-base-10), var(--color-base-80));
+    --color-background-base-emphasis: light-dark(var(--color-base-70), var(--color-base-60));
+    --color-background-accent: light-dark(var(--color-accent-30), var(--color-accent-70));
+    --color-background-accent-secondary: light-dark(var(--color-accent-10), var(--color-accent-80));
+    --color-background-accent-emphasis: light-dark(var(--color-accent-60), var(--color-accent-50));
+    --color-background-backdrop: light-dark(var(--color-gray-80-alpha), var(--color-gray-30-alpha));
+    --color-foreground-primary: light-dark(var(--color-gray-95), var(--color-gray-5));
+    --color-foreground-secondary: light-dark(var(--color-gray-80), var(--color-gray-10));
+    --color-foreground-base: light-dark(var(--color-base-60), var(--color-base-20));
+    --color-foreground-onBrand: light-dark(var(--color-white), var(--color-white));
+    --color-foreground-base-secondary: light-dark(var(--color-base-60), var(--color-base-20));
+    --color-foreground-accent: light-dark(var(--color-accent-10), var(--color-accent-5));
+    --color-foreground-onEmphasis: light-dark(var(--color-white), var(--color-white));
+    --color-border-primary: light-dark(var(--color-gray-40), var(--color-gray-40));
+    --color-border-primary-hover: light-dark(var(--color-gray-20), var(--color-gray-70));
+    --color-border-secondary: light-dark(var(--color-gray-30), var(--color-gray-50));
     --color-border-base: light-dark(var(--color-base-50), var(--color-base-40));
-    --color-border-base-secondary: light-dark(var(--color-base-30),
-        var(--color-base-60));
-    --color-border-base-emphasis: light-dark(var(--color-base-70),
-        var(--color-base-60));
-    --color-border-base-hover: light-dark(var(--color-base-40),
-        var(--color-base-10));
-    --color-border-accent: light-dark(var(--color-accent-50),
-        var(--color-accent-40));
+    --color-border-base-secondary: light-dark(var(--color-base-30), var(--color-base-60));
+    --color-border-base-emphasis: light-dark(var(--color-base-70), var(--color-base-60));
+    --color-border-base-hover: light-dark(var(--color-base-40), var(--color-base-10));
+    --color-border-accent: light-dark(var(--color-accent-50), var(--color-accent-40));
   }
 }
 
-/*====================================
-   Container & Additional Styles
-====================================*/
 html {
   container-name: mypage;
 }
