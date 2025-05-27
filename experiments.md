@@ -1,81 +1,9 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "G-PLX2X0J846");
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
-    as="style" onload="this.rel='stylesheet'" />
-  <link rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
-    as="style" onload="this.rel='stylesheet'" />
-  <noscript>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
-      rel="stylesheet" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
-      rel="stylesheet" />
-  </noscript>
-  
-  <title>Ben Jennings</title>
-  <meta charset="UTF-8" />
-  <meta name="description" content="A collection of projects by Ben Jennings" />
-  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <script src="/assets/js/index.js"></script>
-
-  <link rel="modulepreload" href="/assets/js/components/index.js" />
-  <script type="module" src="/assets/js/components/index.js"></script>
-  <script type="module" src="/assets/js/view-transition.js"></script>
-  <link href="/assets/css/vars.css" rel="stylesheet" />
-  <link href="/assets/css/index.css" rel="stylesheet" />
-
-  <!-- Prefetch Links -->
-  <link rel="expect" href="/index.html" blocking="render" />
-  <link rel="expect" href="/fundamentals/" blocking="render" />
-  <link rel="expect" href="/designs.html" blocking="render" />
-  <link rel="expect" href="/resources.html" blocking="render" />
-  
-  <script type="speculationrules">
-      {
-        "prerender": [
-          {
-            "urls": [
-              "index.html",
-              "designs.html",
-              "fundamentals/",
-              "experiments.html",
-              "resources.html"
-            ],
-            "eagerness": "eager",
-            "referrer_policy": "same-origin"
-          }
-        ]
-      }
-    </script>
-
-  <!-- Icons and Manifest -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/resources/favicons/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/resources/favicons/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/resources/favicons/favicon-16x16.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
-    render="blocking"></script>
-</head>
-
-<body id="page-container" class="page-container">
+---
+layout: default
+title: Ben Jennings
+description: A collection of projects by Ben Jennings
+body_class: "page-container"
+---
     <site-navigation></site-navigation>
 
     <main>
@@ -203,5 +131,4 @@
       </div>
     </main>
 
-</body>
-</html>
+
