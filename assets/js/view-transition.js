@@ -43,3 +43,4 @@ function applyViewTransitionNames() {
 }
 
 document.addEventListener('DOMContentLoaded', applyViewTransitionNames);
+
