@@ -13,43 +13,84 @@ function isDesignDetail(url) {
   return /\/designs\/[^/]+\.html$/.test(url || '');
 }
 
-const cases = [
-  {
-    match: (from, to) => isDesignList(from) && isDesignDetail(to),
-    select: (_from, to) => {
-      const slug = getSlug(new URL(to, location.href).pathname);
-      const card = document.querySelector(`.page-items a.card[href$='${slug}.html']`);
-      const container = document.querySelector('.page-detail') || document.querySelector('main');
-      return [card, container];
-    },
-    names: ['item', 'detail'],
-  },
-  {
-    match: (_, to) => isDesignDetail(to),
-    select: () => {
-      const container = document.querySelector('.page-detail') || document.querySelector('main');
-      return [container];
-    },
-    names: ['detail'],
-  },
-];
-
 window.addEventListener('pageswap', async (e) => {
   if (!e.viewTransition) return;
 
-  const fromUrl = e.activation.from?.url || null;
-  const toUrl = e.activation.entry.url;
+  const currentUrl = e.activation.from?.url
+    ? new URL(e.activation.from.url)
+    : null;
+  const targetUrl = new URL(e.activation.entry.url);
 
-  for (const c of cases) {
-    if (!c.match(fromUrl, toUrl)) continue;
-    const elems = c.select(fromUrl, toUrl).filter(Boolean);
-    elems.forEach((el, i) => {
-      el.style.viewTransitionName = c.names[i] || `anon-${i}`;
-    });
+  // Leaving a design detail page back to the list
+  if (isDesignDetail(currentUrl?.pathname) && isDesignList(targetUrl.pathname)) {
+    const container =
+      document.querySelector('.page-detail') || document.querySelector('main');
+    if (container) {
+      container.style.viewTransitionName = 'detail';
+    }
+
     await e.viewTransition.finished;
-    elems.forEach((el) => {
-      el.style.viewTransitionName = 'none';
-    });
-    break;
+
+    if (container) {
+      container.style.viewTransitionName = 'none';
+    }
+  }
+
+  // Navigating to a design detail page
+  if (isDesignDetail(targetUrl.pathname)) {
+    const slug = getSlug(targetUrl.pathname);
+    const card = document.querySelector(
+      `.page-items a.card[href$='${slug}.html']`
+    );
+    if (card) {
+      card.style.viewTransitionName = 'item';
+    }
+
+    await e.viewTransition.finished;
+
+    if (card) {
+      card.style.viewTransitionName = 'none';
+    }
   }
 });
+
+window.addEventListener('pagereveal', async (e) => {
+  if (!navigation.activation.from) return;
+  if (!e.viewTransition) return;
+
+  const fromUrl = new URL(navigation.activation.from.url);
+  const currentUrl = new URL(navigation.activation.entry.url);
+
+  // Arrived at the list from a detail page
+  if (isDesignDetail(fromUrl.pathname) && isDesignList(currentUrl.pathname)) {
+    const slug = getSlug(fromUrl.pathname);
+    const card = document.querySelector(
+      `.page-items a.card[href$='${slug}.html']`
+    );
+    if (card) {
+      card.style.viewTransitionName = 'item';
+    }
+
+    await e.viewTransition.ready;
+
+    if (card) {
+      card.style.viewTransitionName = 'none';
+    }
+  }
+
+  // Arrived at a design detail page
+  if (isDesignDetail(currentUrl.pathname)) {
+    const container =
+      document.querySelector('.page-detail') || document.querySelector('main');
+    if (container) {
+      container.style.viewTransitionName = 'detail';
+    }
+
+    await e.viewTransition.ready;
+
+    if (container) {
+      container.style.viewTransitionName = 'none';
+    }
+  }
+});
+
