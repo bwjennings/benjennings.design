@@ -2,10 +2,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  outline-color: var(--border-base);
+  outline-color: var(--color-border-base);
   margin: 0;
   scrollbar-width: thin;
-  scrollbar-color: var(--border-primary) var(--background-page);
+  scrollbar-color: var(--color-border-primary) var(--color-background-page);
 
 
 }
@@ -33,21 +33,21 @@ select {
 
 
 :focus-visible {
-  outline: 4px solid var(--border-primary-hover);
+  outline: 4px solid var(--color-border-primary-hover);
 }
 
 
 
 ::selection {
-  background: var(--background-accent-secondary);
-  color: var(--foreground-accent);
+  background: var(--color-background-accent-secondary);
+  color: var(--color-foreground-accent);
   text-decoration: underline;
-  text-decoration-color: var(--border-base-emphasis);
+  text-decoration-color: var(--color-border-base-emphasis);
 }
 
 body {
   -webkit-font-smoothing: antialiased;
-  background: var(--background-page);
+  background: var(--color-background-page);
 
 }
 
@@ -56,11 +56,11 @@ body {
 
 @supports selector(::-webkit-scrollbar) {
   ::-webkit-scrollbar {
-    background: var(--background-page);
+    background: var(--color-background-page);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--border-primary);
+    background: var(--color-border-primary);
     width: 4px;
   }
 }
@@ -71,9 +71,9 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xxx-large);
-  padding-inline: var(--spacing-xxx-large);
-  padding-block: var(--spacing-x-large);
+  gap: var(--spacing-xxxl);
+  padding-inline: var(--spacing-xxxl);
+  padding-block: var(--spacing-xl);
 }
 
 .page-container {
@@ -118,19 +118,19 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: min-content;
-  gap: var(--spacing-x-large);
+  gap: var(--spacing-xl);
 
 }
 
 .page-title {
   transform-style: preserve-3d;
-  background-color: var(--background-page);
+  background-color: var(--color-background-page);
   scroll-snap-align: top;
   z-index: 2;
   margin-top: calc(20cqh - 40px);
-  color: var(--foreground-primary);
+  color: var(--color-foreground-primary);
   display: flex;
-  gap: var(--spacing-medium);
+  gap: var(--spacing-md);
   flex-direction: column;
   justify-content: start;
   align-items: start;
@@ -142,9 +142,9 @@ main {
   max-width: 1200px;
   position: sticky;
   top: 0px;
-  padding: var(--spacing-x-large);
-  scroll-padding: var(--spacing-x-large);
-  border-bottom: 1px solid var(--border-primary);
+  padding: var(--spacing-xl);
+  scroll-padding: var(--spacing-xl);
+  border-bottom: 1px solid var(--color-border-primary);
   user-select: none;
 
 
@@ -157,11 +157,11 @@ main {
 
 
 .page-detail {
-  background-color: var(--background-accent3);
-  color: var(--foreground-accent3);
-  padding: var(--spacing-xx-large);
-  border: 1px solid var(--border-accent);
-  border-radius: var(--radius-medium);
+  background-color: var(--color-background-accent3);
+  color: var(--color-foreground-accent3);
+  padding: var(--spacing-xxl);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-md);
 
 }
 
@@ -177,8 +177,8 @@ figure {
   figcaption {
     text-align: center;
     font-size: var(--text-body-md-size);
-    color: var(--foreground-secondary);
-    margin-block: var(--spacing-small);
+    color: var(--color-foreground-secondary);
+    margin-block: var(--spacing-sm);
 
 
   }
@@ -191,14 +191,14 @@ figure {
   height: 100%;
   min-height: 100px;
   width: 100%;
-  background: linear-gradient(to right in oklch decreasing hue, var(--background-base), var(--background-accent));
+  background: linear-gradient(to right in oklch decreasing hue, var(--color-background-base), var(--color-background-accent));
 
   &.rgb {
-    background: linear-gradient(to right, var(--background-base), var(--background-accent));
+    background: linear-gradient(to right, var(--color-background-base), var(--color-background-accent));
   }
 
   &.hsl {
-    background: linear-gradient(to right in hsl decreasing hue, var(--background-base), var(--background-accent));
+    background: linear-gradient(to right in hsl decreasing hue, var(--color-background-base), var(--color-background-accent));
   }
 }
 
@@ -211,10 +211,10 @@ figure {
   gap: 5cqh;
   padding-top: 30dvh;
   transform-style: preserve-3d;
-  background-color: var(--background-page);
+  background-color: var(--color-background-page);
   scroll-snap-align: top;
   z-index: 2;
-  color: var(--foreground-primary);
+  color: var(--color-foreground-primary);
   width: 100%;
   max-width: 700px;
   top: 0px;
@@ -240,7 +240,7 @@ figure {
   }
 
   main {
-    padding: var(--spacing-large);
+    padding: var(--spacing-lg);
     padding-right: env(safe-area-inset-right, 20px);
     padding-top: 0px;
     padding: 12px;
@@ -298,8 +298,8 @@ figure {
 
   .content {
 
-    padding-inline: var(--spacing-large);
-    padding-block: var(--spacing-large);
+    padding-inline: var(--spacing-lg);
+    padding-block: var(--spacing-lg);
   }
 
 
@@ -308,7 +308,7 @@ figure {
     max-width: none;
     position: initial;
     margin-top: calc(20cqh - 40px);
-    padding: var(--spacing-large) 0px;
+    padding: var(--spacing-lg) 0px;
   }
 }
 

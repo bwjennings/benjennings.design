@@ -3,26 +3,26 @@
     overflow: hidden;
     text-wrap: nowrap;
     height: 28px;
-    background-color: var(--background-accent);
-    color: var(--foreground-accent);
+    background-color: var(--color-background-accent);
+    color: var(--color-foreground-accent);
     display: flex;
-    padding: var(--spacing-x-small, 4px) var(--spacing-small, 8px);
+    padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-x-small, 4px);
+    gap: var(--spacing-xs, 4px);
     font-size: var(--text-body-sm-size);
     line-height: var(--text-body-sm-line-height);
-    border: 1px solid var(--border-primary);
+    border: 1px solid var(--color-border-primary);
     box-sizing: border-box;
     user-select: none;
 
     &.secondary {
-        background-color: var(--background-primary-secondary);
-        color: var(--foreground-secondary);
-        border: 1px solid var(--border-primary);
+        background-color: var(--color-background-primary-secondary);
+        color: var(--color-foreground-secondary);
+        border: 1px solid var(--color-border-primary);
     
         span {
-            color: var(--foreground-accent)
+            color: var(--color-foreground-accent)
         }
     
         ::slotted {
@@ -31,8 +31,8 @@
     }
 
     &.primary {
-        background-color: var(--background-accent);
-        color: var(--background-accent);
+        background-color: var(--color-background-accent);
+        color: var(--color-background-accent);
         border: none;
     
     }
@@ -42,12 +42,12 @@
   align-items: center;
   justify-content: center;
         font-family: var(--icon-font-family);
-        font-size: var(--icon-size-small);
+        font-size: var(--icon-size-sm);
         line-height: 100%;
-        font-weight: var(--icon-weight-small);
+        font-weight: var(--icon-weight-sm);
         aspect-ratio: 1/1;
-        width: var(--icon-size-small);
-        color: var(--foreground-accent);
+        width: var(--icon-size-sm);
+        color: var(--color-foreground-accent);
         font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
     }
     
@@ -57,6 +57,6 @@
 
 .badge-group {
   display: flex;
-  gap: var(--spacing-small);
+  gap: var(--spacing-sm);
   align-items: end;
 }

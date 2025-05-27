@@ -1,13 +1,13 @@
 dialog {
   margin: auto;
   opacity: 0;
-  color: var(--foreground-primary);
-  border: 1px solid var(--border-primary);
+  color: var(--color-foreground-primary);
+  border: 1px solid var(--color-border-primary);
   width: var(--dialog-width);
   min-width: 600px;
   filter: blur(20px);
   padding: 0px;
-  background-color: var(--background-page);
+  background-color: var(--color-background-page);
   transform-style: preserve-3d;
   transform: perspective(1000px) translateZ(-200px) translateY(0dvh);
   container-type: inline-size;
@@ -26,24 +26,24 @@ dialog {
 
   footer {
     display: flex;
-    border-top: 1px solid var(--border-primary);
-    padding-inline: var(--spacing-xxx-large);
-    padding-block: var(--spacing-x-large);
+    border-top: 1px solid var(--color-border-primary);
+    padding-inline: var(--spacing-xxxl);
+    padding-block: var(--spacing-xl);
     justify-content: flex-end;
-    gap: var(--spacing-large);
-    background-color: var(--background-page);
+    gap: var(--spacing-lg);
+    background-color: var(--color-background-page);
     flex: 0 0 auto;
   }
 
   header {
     flex: 0 0 auto;
     display: flex;
-    border-bottom: 1px solid var(--border-primary);
-    padding: var(--spacing-xxx-large);
+    border-bottom: 1px solid var(--color-border-primary);
+    padding: var(--spacing-xxxl);
     justify-content: space-between;
-    gap: var(--spacing-large);
+    gap: var(--spacing-lg);
     position: sticky;
-    background-color: var(--background-page);
+    background-color: var(--color-background-page);
   }
 }
 
@@ -91,7 +91,7 @@ dialog[open]::backdrop {
   transition-timing-function: var(--timing-decelerate);
 
 
-  background-color: var(--background-backdrop);
+  background-color: var(--color-background-backdrop);
 }
 
 @starting-style {
@@ -121,12 +121,12 @@ dialog[open]::backdrop {
 
 .dialog-header {
   margin: 0px;
-  margin-bottom: var(--spacing-large);
-  border-bottom: 1px solid var(--border-primary);
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border-primary);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: var(--foreground-primary);
+  color: var(--color-foreground-primary);
   font-size: var(--text-heading-md-size);
   font-weight: var(--text-heading-weight);
 }
@@ -150,7 +150,7 @@ dialog[open]::backdrop {
     height: fit-content;
     min-width: 0px;
     border: 0px;
-    border-top: 1px solid var(--border-primary);
+    border-top: 1px solid var(--color-border-primary);
     transition-duration: 600ms;
     ;
 
@@ -164,18 +164,18 @@ dialog[open]::backdrop {
     }
 
     ::slotted([slot="post"]) {
-      padding: var(--spacing-large);
+      padding: var(--spacing-lg);
     }
 
     header {
-      padding: var(--spacing-large);
+      padding: var(--spacing-lg);
     }
 
     footer {
-      gap: var(--spacing-small);
+      gap: var(--spacing-sm);
       flex-direction: row;
       align-items: stretch;
-      padding: var(--spacing-large);
+      padding: var(--spacing-lg);
 
       button {
         width: 100%;
@@ -188,7 +188,7 @@ dialog[open]::backdrop {
     transition-timing-function: var(--timing-decelerate);
     transition-duration: 500ms;
 
-    background-color: var(--background-backdrop);
+    background-color: var(--color-background-backdrop);
   }
 
   dialog[open]::backdrop {
@@ -196,7 +196,7 @@ dialog[open]::backdrop {
     transition-timing-function: var(--timing-decelerate);
     transition-duration: 500ms;
 
-    background-color: var(--background-backdrop);
+    background-color: var(--color-background-backdrop);
   }
 
   @starting-style {
