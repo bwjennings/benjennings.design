@@ -41,7 +41,9 @@ function applyViewTransitionNames() {
   }
 }
 
+
 // Run immediately after the script loads since modules are deferred by default.
 // This ensures view-transition names are set before the browser captures the
 // new page during a transition.
 applyViewTransitionNames();
+
