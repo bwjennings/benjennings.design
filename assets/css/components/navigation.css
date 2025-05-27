@@ -21,9 +21,9 @@ site-navigation {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: var(--spacing-large);
+  padding: var(--spacing-lg);
 
-  gap: var(--spacing-large);
+  gap: var(--spacing-lg);
   grid-template-areas:
     "site-title"
 
@@ -31,22 +31,22 @@ site-navigation {
     "theme"
     "color"
   ;
-  border: 1px solid var(--border-base);
-  background-color: var(--background-primary);
+  border: 1px solid var(--color-border-base);
+  background-color: var(--color-background-primary);
   box-sizing: border-box;
 
 
   menu {
     width: 100%;
     height: 100%;
-    gap: var(--spacing-small);
+    gap: var(--spacing-sm);
     display: flex;
     flex-direction: column;
     align-self: stretch;
     grid-area: nav-group;
     list-style-type: none;
     justify-content: center;
-    background-color: var(--background-primary);
+    background-color: var(--color-background-primary);
     /* Remove bullet points */
     padding: 0;
     /* Remove padding */
@@ -71,12 +71,12 @@ site-navigation {
 
 .nav-item {
   box-sizing: border-box;
-  color: var(--foreground-secondary);
+  color: var(--color-foreground-secondary);
   height: clamp(50px, 10cqh, 80px);
   display: flex;
-  padding: var(--spacing-x-large, 24px) var(--spacing-large, 16px);
+  padding: var(--spacing-xl, 24px) var(--spacing-lg, 16px);
   align-items: center;
-  gap: var(--spacing-medium);
+  gap: var(--spacing-md);
   background-color: transparent;
   flex-direction: row;
   justify-content: flex-start;
@@ -84,7 +84,7 @@ site-navigation {
   user-select: none;
   background: inherit;
   border: 1px solid transparent;
-  border-radius: var(--radius-medium);
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition-timing-function: var(--timing-decelerate);
   transition-duration: 300ms;
@@ -96,7 +96,7 @@ site-navigation {
 
   &:hover:not(.active) {
 
-    background: var(--background-page);
+    background: var(--color-background-page);
     --icon-grade: 200;
     font-variation-settings:
 
@@ -127,9 +127,9 @@ site-navigation {
 .active {
   transition: none;
   font-variation-settings: 'GRAD' 100;
-  color: var(--foreground-base);
+  color: var(--color-foreground-base);
   anchor-name: --active;
-  background: var(--background-base);
+  background: var(--color-background-base);
 
   .icon {
     font-variation-settings:
@@ -230,11 +230,11 @@ theme-slider {
     justify-content: center;
     height: 100%;
     background: transparent;
-    color: var(--foreground-tertiary);
+    color: var(--color-foreground-tertiary);
     flex-grow: 1;
     padding: 8px 2px 12px 2px;
     flex-direction: column;
-    gap: var(--spacing-small);
+    gap: var(--spacing-sm);
     border-color: transparent;
    
     height: fit-content;
@@ -249,7 +249,7 @@ theme-slider {
     }
 
     .icon {
-      font-size: var(--icon-size-medium);
+      font-size: var(--icon-size-md);
     }
 
     .title{
@@ -259,7 +259,7 @@ theme-slider {
 
   .active {
     border-color: transparent;
-    color: var(--foreground-base);
+    color: var(--color-foreground-base);
   }
 
   :is(.description, .quick-theme) {
@@ -296,7 +296,7 @@ theme-slider {
 
     border-radius: 0px;
     border: none;
-    border-top: 1px solid var(--border-primary);
+    border-top: 1px solid var(--color-border-primary);
 
     .divider {
       display: none;

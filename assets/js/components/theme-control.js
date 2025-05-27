@@ -34,7 +34,7 @@ template.innerHTML = `
       position: absolute;
       width: 24px;
       height: 24px;
-      background: var(--background-base);
+      background: var(--color-background-base);
       border-radius: 50%;
       border: 3px solid #fff;
       
@@ -48,7 +48,7 @@ template.innerHTML = `
     .slider-handle.dragging {
       transform: scale(1.15);
       cursor:grabbing;
-      box-shadow: 0 0 0 10px var(--background-base);
+      box-shadow: 0 0 0 10px var(--color-background-base);
     }
     @media screen and (max-width: 800px), (max-height: 500px) {
       button { display: inline-flex; }
