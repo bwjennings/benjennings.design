@@ -14,3 +14,32 @@ if ('startViewTransition' in document) {
     });
   });
 }
+
+function getSlug(pathname) {
+  const segments = pathname.split('/').filter(Boolean);
+  let last = segments.pop() || '';
+  if (last === 'index.html') last = segments.pop() || 'index';
+  return last.replace(/\.html$/, '');
+}
+
+function applyViewTransitionNames() {
+  // Assign names to cards linking to detail pages
+  const cards = document.querySelectorAll('.page-items a.card[href]');
+  cards.forEach((card) => {
+    const url = new URL(card.getAttribute('href'), location.href);
+    const slug = getSlug(url.pathname);
+    card.style.viewTransitionName = `vt-${slug}`;
+  });
+
+  // Assign name to detail page container if applicable
+  if (document.body.classList.contains('detail-page')) {
+    const slug = getSlug(location.pathname);
+    const container = document.querySelector('main');
+    if (container) {
+      // Include a generic "detail" name so CSS can target all detail pages
+      container.style.viewTransitionName = `vt-${slug}, detail`;
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', applyViewTransitionNames);
