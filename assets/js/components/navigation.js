@@ -51,7 +51,7 @@ class SiteNavigation extends HTMLElement {
       selector = '.item1';
     } else if (path.startsWith('/fundamentals')) {
       selector = '.item2';
-    } else if (path === '/designs.html') {
+    } else if (path === '/designs.html' || path.startsWith('/designs/')) {
       selector = '.item3';
     } else if (path === '/experiments.html') {
       selector = '.item4';
