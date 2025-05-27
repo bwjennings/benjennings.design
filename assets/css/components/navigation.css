@@ -31,7 +31,7 @@ site-navigation {
     "theme"
     "color"
   ;
-  border: 1px solid var(--color-border-base);
+  border: 1px solid var(--color-border-primary);
   background-color: var(--color-background-primary);
   box-sizing: border-box;
 
@@ -82,13 +82,13 @@ site-navigation {
   justify-content: flex-start;
   -webkit-user-select: none;
   user-select: none;
-  background: inherit;
+  
   border: 1px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition-timing-function: var(--timing-decelerate);
   transition-duration: 300ms;
-  transition-property: font-variation-settings, background;
+  transition-property: font-variation-settings, background-color;
   font-variation-settings: initial;
   font-variation-settings:
 
@@ -96,7 +96,7 @@ site-navigation {
 
   &:hover:not(.active) {
 
-    background: var(--color-background-page);
+    background-color: var(--color-background-secondary);
     --icon-grade: 200;
     font-variation-settings:
 
