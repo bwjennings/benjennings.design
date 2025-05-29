@@ -1,5 +1,8 @@
 const template = document.createElement('template');
 template.innerHTML = `
+
+  <link rel="stylesheet" href="css/components/slider.css">
+
   <style>
     :host { display:inline-block; anchor-name: --theme-button; }
     .picker { display:flex; gap:4px; margin-bottom:8px; }

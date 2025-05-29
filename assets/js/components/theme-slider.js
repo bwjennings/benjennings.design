@@ -1,7 +1,7 @@
 // Define and cache the template for the component
 const themeSliderTemplate = document.createElement('template');
 themeSliderTemplate.innerHTML = `
-  <link href="css/components/theme-slider.css" rel="stylesheet">
+  <link href="css/components/slider.css" rel="stylesheet">
   <label for="hueSlider">
     <span class="label-text"></span>
     <input type="range" class="theme" id="hueSlider" name="hue" min="0" max="360" step="2"
