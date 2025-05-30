@@ -1,14 +1,15 @@
 const template = document.createElement('template');
 template.innerHTML = `
 
-  <link rel="stylesheet" href="css/components/slider.css">
+  <link rel="stylesheet" href="/assets/css/components/slider.css">
 
   <style>
-    :host { display:inline-block; anchor-name: --theme-button; }
-    .picker { display:flex; gap:4px; margin-bottom:8px; }
-    .swatch { width:24px; height:24px; border-radius:50%; border:2px solid var(--color-border-primary); cursor:pointer; padding:0; background:transparent; }
+    :host { display:flex; flex-direction:column; anchor-name: --theme-button; }
+    .picker { display:flex; gap:4px; background-color:var(--color-background-secondary);border-radius:var(--radius-md); padding:8px;justify-items:stretch; margin-bottom:8px; height:40px;}
+    .swatch {  flex:1; border-radius:var(--radius-md); border:2px solid var(--color-border-primary); cursor:pointer; padding:0; background:transparent; }
     .swatch.selected { outline:2px solid var(--color-foreground-accent); }
-    input[type="range"] { width:100%; }
+    input[type="range"] { flex:1; }
+    
   </style>
   <div class="picker"></div>
   <input class="stim" type="range" min="0.5" max="0.9" step="0.01" aria-label="Stimulation">

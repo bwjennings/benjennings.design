@@ -106,7 +106,7 @@ body {
 
 main {
   grid-area: content;
-  padding: 24px;
+  padding: 4dvw;
   overflow: auto;
   height: 100%;
   min-height: 0;
@@ -142,7 +142,7 @@ main {
   max-width: 1200px;
   position: sticky;
   top: 0px;
-  padding: var(--spacing-xl);
+  padding: 4dvw;
   scroll-padding: var(--spacing-xl);
   border-bottom: 1px solid var(--color-border-primary);
   user-select: none;

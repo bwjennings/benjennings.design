@@ -81,8 +81,7 @@
   /* ---------- grid container ---------- */
  
 
-  /* every tile gets the same size */
-  .grid>div{aspect-ratio: 1;}
+
 
   /* ---------- utility background classes ---------- */
   /* grays */
@@ -150,7 +149,7 @@
   .bg-accent3-90 {background:var(--color-accent3-90);}
   .bg-accent3-95 {background:var(--color-accent3-95);}
 </style>
-  <div class="grid grid-cols-11">
+  <div class="grid grid-cols-11 *:aspect-square">
     <div class="bg-gray-5"></div>
     <div class="bg-gray-10"></div>
     <div class="bg-gray-20"></div>

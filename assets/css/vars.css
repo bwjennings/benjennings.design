@@ -60,11 +60,11 @@
   --gap-xxxl: calc(var(--spacing-xxxl) * var(--gap-base));
 
   /* radii */
-  --base-radius: calc(var(--stimulation-level) * 5px);
+  --level-scale: calc((var(--stimulation-level) - 0.5) / 0.4);
   --radius-none: 0px;
-  --radius-sm: calc(var(--base-radius) * 4);
-  --radius-md: calc(var(--base-radius) * 8);
-  --radius-lg: calc(var(--base-radius) * 16);
+  --radius-sm: calc(8px  * var(--level-scale));
+  --radius-md: calc(16px * var(--level-scale));
+  --radius-lg: calc(24px * var(--level-scale));
 
   /* typography scale */
   --font-size-1: clamp(0.64rem, -0.02vi + 0.64rem, 0.63rem);
@@ -85,7 +85,7 @@
   --text-heading-width: 125;
   --text-heading-xl-size: var(--font-size-9);
   --text-heading-xl-line-height: 110%;
-  --text-heading-lg-size: var(--font-size-7);
+  --text-heading-lg-size: var(--font-size-8);
   --text-heading-lg-line-height: 110%;
   --text-heading-md-size: var(--font-size-6);
   --text-heading-md-line-height: var(--font-size-7);
@@ -227,23 +227,31 @@
   --stimulation-level: 0.7;
 
 
-  /* chroma scale */
-  --chroma-base-val: calc(var(--stimulation-level) * 0.3);
-  --chroma-scale-5: calc(var(--chroma-base-val) * 0.1);
-  --chroma-scale-10: calc(var(--chroma-base-val) * 0.2);
-  --chroma-scale-20: calc(var(--chroma-base-val) * 0.4);
-  --chroma-scale-30: calc(var(--chroma-base-val) * 0.6);
-  --chroma-scale-40: calc(var(--chroma-base-val) * 0.8);
-  --chroma-scale-50: var(--chroma-base-val);
-  --chroma-scale-60: calc(var(--chroma-base-val) * 0.8);
-  --chroma-scale-70: calc(var(--chroma-base-val) * 0.6);
-  --chroma-scale-80: calc(var(--chroma-base-val) * 0.4);
-  --chroma-scale-90: calc(var(--chroma-base-val) * 0.2);
-  --chroma-scale-95: calc(var(--chroma-base-val) * 0.1);
+/* Core configuration */
+--peak: clamp(0.1, max(0.1, clamp(0, var(--stimulation-level), 1)), 1);
+--sigma: calc(3 - var(--stimulation-level) * 1);
 
+/* Gaussian calculation helper */
+--base: exp(-12.5 * pow(var(--sigma), -2));
+--scale: calc((var(--peak) - 0.1) / (1 - var(--base)));
+
+/* 11-stop chroma scale using simplified Gaussian */
+--chroma-scale-5:  calc((0.1 + (exp(-12.5 * pow(var(--sigma), -2)) - var(--base)) * var(--scale)) * 100%);
+--chroma-scale-10: calc((0.1 + (exp(-8 * pow(var(--sigma), -2)) - var(--base)) * var(--scale)) * 100%);
+--chroma-scale-20: calc((0.1 + (exp(-4.5 * pow(var(--sigma), -2)) - var(--base)) * var(--scale)) * 100%);
+--chroma-scale-30: calc((0.1 + (exp(-2 * pow(var(--sigma), -2)) - var(--base)) * var(--scale)) * 100%);
+--chroma-scale-40: calc((0.1 + (exp(-0.5 * pow(var(--sigma), -2)) - var(--base)) * var(--scale)) * 100%);
+--chroma-scale-50: calc(var(--peak) * 100%);
+--chroma-scale-60: calc((0.1 + (exp(-0.5 * pow(var(--sigma), -2)) - var(--base)) * var(--scale)) * 100%);
+--chroma-scale-70: calc((0.1 + (exp(-2 * pow(var(--sigma), -2)) - var(--base)) * var(--scale)) * 100%);
+--chroma-scale-80: calc((0.1 + (exp(-4.5 * pow(var(--sigma), -2)) - var(--base)) * var(--scale)) * 100%);
+--chroma-scale-90: calc((0.1 + (exp(-8 * pow(var(--sigma), -2)) - var(--base)) * var(--scale)) * 100%);
+--chroma-scale-95: calc((0.1 + (exp(-12.5 * pow(var(--sigma), -2)) - var(--base)) * var(--scale)) * 100%);
+  /* Base value retained for backward compatibility (uses peak chroma) */
+  --chroma-base-val: var(--chroma-scale-50);
   /* lightness scale */
-  --x5: 0.037;
-  --x10: 0.074;
+  --x5: 0.02;
+  --x10: 0.04;
   --x20: 0.147;
   --x30: 0.221;
   --x40: 0.295;
@@ -329,17 +337,19 @@
   /* gray palette */
   --gray-hue: calc(var(--base-hue) + 30deg);
   --gray-chroma: calc(var(--chroma-base-val) * 0.01);
-  --color-gray-5: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue));
-  --color-gray-10: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue));
-  --color-gray-20: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue));
-  --color-gray-30: oklch(var(--lightness-30) var(--gray-chroma) var(--gray-hue));
-  --color-gray-40: oklch(var(--lightness-40) var(--gray-chroma) var(--gray-hue));
-  --color-gray-50: oklch(var(--lightness-50) var(--gray-chroma) var(--gray-hue));
-  --color-gray-60: oklch(var(--lightness-60) var(--gray-chroma) var(--gray-hue));
-  --color-gray-70: oklch(var(--lightness-70) var(--gray-chroma) var(--gray-hue));
-  --color-gray-80: oklch(var(--lightness-80) var(--gray-chroma) var(--gray-hue));
-  --color-gray-90: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue));
-  --color-gray-95: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue));
+
+  --color-gray-5: oklch(var(--lightness-5) calc(var(--chroma-scale-5) * 0.01) var(--gray-hue));
+  --color-gray-10: oklch(var(--lightness-10) calc(var(--chroma-scale-10) * 0.01) var(--gray-hue));
+  --color-gray-20: oklch(var(--lightness-20) calc(var(--chroma-scale-20) * 0.01) var(--gray-hue));
+  --color-gray-30: oklch(var(--lightness-30) calc(var(--chroma-scale-30) * 0.01) var(--gray-hue));
+  --color-gray-40: oklch(var(--lightness-40) calc(var(--chroma-scale-40) * 0.01) var(--gray-hue));
+  --color-gray-50: oklch(var(--lightness-50) calc(var(--chroma-scale-50) * 0.01) var(--gray-hue));
+  --color-gray-60: oklch(var(--lightness-60) calc(var(--chroma-scale-60) * 0.01) var(--gray-hue));
+  --color-gray-70: oklch(var(--lightness-70) calc(var(--chroma-scale-70) * 0.01) var(--gray-hue));
+  --color-gray-80: oklch(var(--lightness-80) calc(var(--chroma-scale-80) * 0.01) var(--gray-hue));
+  --color-gray-90: oklch(var(--lightness-90) calc(var(--chroma-scale-90) * 0.01) var(--gray-hue));
+  --color-gray-95: oklch(var(--lightness-95) calc(var(--chroma-scale-95) * 0.01) var(--gray-hue));
+  
   --color-gray-5-alpha: oklch(var(--lightness-5) var(--gray-chroma) var(--gray-hue) / var(--alpha));
   --color-gray-10-alpha: oklch(var(--lightness-10) var(--gray-chroma) var(--gray-hue) / var(--alpha));
   --color-gray-20-alpha: oklch(var(--lightness-20) var(--gray-chroma) var(--gray-hue) / var(--alpha));
