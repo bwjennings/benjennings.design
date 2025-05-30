@@ -21,7 +21,7 @@
 
     // Set the hue and stimulation level
     if (selectedColorHue !== null) {
-      document.documentElement.style.setProperty('--base-hue', selectedColorHue + 'deg');
+      document.documentElement.style.setProperty('--color1-hue', selectedColorHue + 'deg');
     }
     if (selectedStimulation !== null) {
       document.documentElement.style.setProperty('--stimulation-level', selectedStimulation);

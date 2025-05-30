@@ -26,7 +26,7 @@ body {
 }
 
 u {
-  text-decoration-color: var(--color-border-accent);
+  text-decoration-color: var(--color-border-color2);
   text-decoration-thickness: 8px;
 }
 

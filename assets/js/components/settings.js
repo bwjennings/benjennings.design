@@ -42,7 +42,7 @@ class SiteSettings extends HTMLElement {
     // Apply persisted hue/radius/chroma if available
     const storedHue = localStorage.getItem('brandHue');
     if (storedHue) {
-      document.documentElement.style.setProperty('--base-hue', storedHue + 'deg');
+      document.documentElement.style.setProperty('--color1-hue', storedHue + 'deg');
     }
     const storedRadius = localStorage.getItem('baseRadius');
     if (storedRadius) {

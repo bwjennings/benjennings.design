@@ -7,7 +7,7 @@ template.innerHTML = `
     :host { display:flex; flex-direction:column; anchor-name: --theme-button; }
     .picker { display:flex; gap:4px; background-color:var(--color-background-secondary);border-radius:var(--radius-md); padding:8px;justify-items:stretch; margin-bottom:8px; height:40px;}
     .swatch {  flex:1; border-radius:var(--radius-md); border:2px solid var(--color-border-primary); cursor:pointer; padding:0; background:transparent; }
-    .swatch.selected { outline:2px solid var(--color-foreground-accent); }
+    .swatch.selected { outline:2px solid var(--color-foreground-color2); }
     input[type="range"] { flex:1; }
     
   </style>
@@ -49,7 +49,7 @@ class ThemeControl extends HTMLElement {
   }
 
   setHue(hue, store=true) {
-    document.documentElement.style.setProperty('--base-hue', `${hue}deg`);
+    document.documentElement.style.setProperty('--color1-hue', `${hue}deg`);
     if (store) localStorage.setItem('brandHue', hue);
     this.swatches.forEach(s => s.classList.toggle('selected', parseInt(s.dataset.hue) === parseInt(hue)));
   }
