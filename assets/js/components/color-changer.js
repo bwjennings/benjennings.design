@@ -34,7 +34,7 @@
 
                 // Set the CSS variable on the :root element (document.documentElement)
                 // Ensure the value is formatted as a degree string (e.g., "120deg")
-                document.documentElement.style.setProperty('--base-hue', randomHue + 'deg');
+                document.documentElement.style.setProperty('--color1-hue', randomHue + 'deg');
 
                 // Generate a random number between 0 and 8 inclusive
                 const randomRadius = Math.floor(Math.random() * 9); // 0 to 8 inclusive
@@ -50,7 +50,7 @@
               localStorage.setItem('contrast', randomContrast);
               console.log(`--contrast set to: ${randomContrast}`);
 
-                console.log(`--base-hue set to: ${randomHue}deg`);
+                console.log(`--color1-hue set to: ${randomHue}deg`);
 
                 // Optional: Update a display to show the current hue
                 const hueDisplay = document.getElementById('hueValue');

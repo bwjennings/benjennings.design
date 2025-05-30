@@ -8,7 +8,7 @@ label {
   flex-direction: column;
   background-color: inherit;
   gap: var(--spacing-sm);
-  accent-color: var(--color-background-base);
+  color2-color: var(--color-background-base);
 }
 
 
