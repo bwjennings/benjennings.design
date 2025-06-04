@@ -1,5 +1,53 @@
+/**
+ * @figmaComponent
+ * @description An icon card component that displays an icon, a title, and links to a URL.
+ * It can be styled with variants and can span multiple grid columns.
+ *
+ * To connect this code to your Figma component in Dev Mode:
+ * 1. Copy the URL to this file in your repository (e.g., GitHub URL).
+ * 2. In Figma, select the corresponding component.
+ * 3. In the Dev Mode panel, find the "Code connect" section and add the URL.
+ *
+ * @component icon-card
+ * @path assets/js/components/icon-card.js
+ *
+ * @property {string} icon - (Attribute: icon) The name of the icon to display (e.g., 'help', 'settings').
+ *                          Defaults to 'help'. Corresponds to _iconName.
+ * @property {string} title - (Attribute: title) The title text for the card.
+ *                           Defaults to 'Card Title'. Corresponds to _titleText.
+ * @property {string} href - (Attribute: href) The URL the card links to.
+ *                          Defaults to '#'. Corresponds to _hrefLink.
+ * @property {string} variant - (Attribute: variant) A styling variant for the card (e.g., 'primary', 'accent').
+ *                             Defaults to ''. Corresponds to _cardVariant and adds a class `variant-<variantValue>` to the host.
+ * @property {number} span - (Attribute: span) The number of columns the card should span in a grid.
+ *                          Defaults to 1. Corresponds to _colSpan and sets `grid-column: span <value>`.
+ */
 // icon-card.js
 
+/**
+ * @figmaComponent
+ * @description An icon card component that displays an icon, a title, and links to a URL.
+ * It can be styled with variants and can span multiple grid columns.
+ *
+ * To connect this code to your Figma component in Dev Mode:
+ * 1. Copy the URL to this file in your repository (e.g., GitHub URL).
+ * 2. In Figma, select the corresponding component.
+ * 3. In the Dev Mode panel, find the "Code connect" section and add the URL.
+ *
+ * @component icon-card
+ * @path assets/js/components/icon-card.js
+ *
+ * @property {string} icon - (Attribute: icon) The name of the icon to display (e.g., 'help', 'settings').
+ *                          Defaults to 'help'. Corresponds to _iconName.
+ * @property {string} title - (Attribute: title) The title text for the card.
+ *                           Defaults to 'Card Title'. Corresponds to _titleText.
+ * @property {string} href - (Attribute: href) The URL the card links to.
+ *                          Defaults to '#'. Corresponds to _hrefLink.
+ * @property {string} variant - (Attribute: variant) A styling variant for the card (e.g., 'primary', 'accent').
+ *                             Defaults to ''. Corresponds to _cardVariant and adds a class `variant-<variantValue>` to the host.
+ * @property {number} span - (Attribute: span) The number of columns the card should span in a grid.
+ *                          Defaults to 1. Corresponds to _colSpan and sets `grid-column: span <value>`.
+ */
 // Define the custom element
 class IconCard extends HTMLElement {
     constructor() {

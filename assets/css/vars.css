@@ -276,9 +276,9 @@
   --lightness-100: calc(pow(calc(1 - var(--x100)), var(--a)) / (pow(calc(1 - var(--x100)), var(--a)) + pow(var(--x100), var(--a))));
 
   /* hue */
-  --hue-spread: calc(var(--stimulation-level) * 60deg);
+  --hue-spread: calc(var(--stimulation-level) * 1deg);
   --color1-hue-val: var(--color1-hue);
-  --color2-hue-val: calc(var(--color1-hue) + (var(--hue-spread) * 2));
+  --color2-hue-val: calc(var(--color1-hue) + (var(--hue-spread) * 20));
   --color3-hue-val: calc(var(--color1-hue) + (var(--hue-spread) * 1.6));
   --color4-hue-val: calc(var(--color1-hue) + (var(--hue-spread) * 1.3));
 
