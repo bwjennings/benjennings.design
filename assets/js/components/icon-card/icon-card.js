@@ -9,7 +9,7 @@
  * 3. In the Dev Mode panel, find the "Code connect" section and add the URL.
  *
  * @component icon-card
- * @path assets/js/components/icon-card.js
+ * @path assets/js/components/icon-card/icon-card.js
  *
  * @property {string} icon - (Attribute: icon) The name of the icon to display (e.g., 'help', 'settings').
  *                          Defaults to 'help'. Corresponds to _iconName.
@@ -35,7 +35,7 @@
  * 3. In the Dev Mode panel, find the "Code connect" section and add the URL.
  *
  * @component icon-card
- * @path assets/js/components/icon-card.js
+ * @path assets/js/components/icon-card/icon-card.js
  *
  * @property {string} icon - (Attribute: icon) The name of the icon to display (e.g., 'help', 'settings').
  *                          Defaults to 'help'. Corresponds to _iconName.
