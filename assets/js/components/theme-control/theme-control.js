@@ -6,7 +6,7 @@ template.innerHTML = `
   <style>
     :host { display:flex; flex-direction:column; anchor-name: --theme-button; }
     .picker { display:flex; gap:4px; background-color:var(--color-background-secondary);border-radius:var(--radius-md); padding:8px;justify-items:stretch; margin-bottom:8px; height:40px;}
-    .swatch {  flex:1; border-radius:var(--radius-md); border:2px solid var(--color-border-primary); cursor:pointer; padding:0; background:transparent; }
+    .swatch {  flex:1; border-radius:calc(var(--radius-md) - 8px); border:2px solid var(--color-border-primary); cursor:pointer; padding:0; background:transparent; }
     .swatch.selected { outline:2px solid var(--color-foreground-color2); }
     input[type="range"] { flex:1; }
     
@@ -21,7 +21,7 @@ class ThemeControl extends HTMLElement {
     this.attachShadow({mode:'open'}).appendChild(template.content.cloneNode(true));
     this.picker = this.shadowRoot.querySelector('.picker');
     this.slider = this.shadowRoot.querySelector('.stim');
-    this.hues = [0,60,120,210,280];
+    this.hues = [25,80,150,210,300];
     this.swatches = [];
   }
 
@@ -39,7 +39,7 @@ class ThemeControl extends HTMLElement {
     this.hues.forEach(h => {
       const btn = document.createElement('button');
       btn.className = 'swatch';
-      btn.style.backgroundColor = `hsl(${h} 80% 60%)`;
+      btn.style.backgroundColor = `oklch(70% 35% ${h} )`;
       btn.dataset.hue = h;
       btn.addEventListener('click', () => this.setHue(h));
       this.picker.appendChild(btn);
