@@ -58,22 +58,22 @@
     <link href="/assets/css/vars.css" rel="stylesheet" />
     <link href="/assets/css/index.css" rel="stylesheet" />
 
-    <!-- Prefetch Links -->
-    <link rel="expect" href="/index.html" blocking="render" />
-    <link rel="expect" href="/fundamentals/" blocking="render" />
-    <link rel="expect" href="/designs.html" blocking="render" />
-    <link rel="expect" href="/resources.html" blocking="render" />
-
-    <script type="speculationrules">
+  <!-- Prefetch Links -->
+  <link rel="expect" href="/index.html" blocking="render" />
+  <link rel="expect" href="/fundamentals/" blocking="render" />
+  <link rel="expect" href="/designs/" blocking="render" />
+  <link rel="expect" href="/resources/" blocking="render" />
+  
+  <script type="speculationrules">
       {
         "prerender": [
           {
             "urls": [
               "index.html",
-              "designs.html",
+              "designs/",
               "fundamentals/",
-              "experiments.html",
-              "resources.html"
+              "experiments/",
+              "resources/"
             ],
             "eagerness": "eager",
             "referrer_policy": "same-origin"
@@ -122,7 +122,7 @@
 
       <div class="page-items">
         <article class="card">
-          <h1 class="title">Hello</h1>
+          <h1 class="title">Hello test</h1>
         </article>
         
 

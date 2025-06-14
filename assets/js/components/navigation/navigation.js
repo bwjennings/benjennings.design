@@ -24,15 +24,15 @@ class SiteNavigation extends HTMLElement {
             <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Fundamentals</span>
           </a></li>
-        <li><a class="nav-item item3" href="/designs.html">
+        <li><a class="nav-item item3" href="/designs/">
             <span class="icon" role="img" aria-hidden="true">web</span>
             <span class="title">Designs</span>
           </a></li>
-        <li><a class="nav-item item4" href="/experiments.html">
+        <li><a class="nav-item item4" href="/experiments/">
             <span class="icon" role="img" aria-hidden="true">experiment</span>
             <span class="title">Experiments</span>
           </a></li>
-        <li><a class="nav-item item5" href="/resources.html">
+        <li><a class="nav-item item5" href="/resources/">
             <span class="icon" role="img" aria-hidden="true">folder_open</span>
             <span class="title">Resources</span>
           </a></li>
@@ -51,11 +51,11 @@ class SiteNavigation extends HTMLElement {
       selector = '.item1';
     } else if (path.startsWith('/fundamentals')) {
       selector = '.item2';
-    } else if (path === '/designs.html' || path.startsWith('/designs/')) {
+    } else if (path === '/designs/' || path.startsWith('/designs/')) {
       selector = '.item3';
-    } else if (path === '/experiments.html') {
+    } else if (path === '/experiments/') {
       selector = '.item4';
-    } else if (path === '/resources.html') {
+    } else if (path === '/resources/') {
       selector = '.item5';
     }
 

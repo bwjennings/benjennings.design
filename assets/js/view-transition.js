@@ -6,7 +6,7 @@
 // }
 
 // function isDesignList(url) {
-//   return url ? url.endsWith('/designs.html') : false;
+//   return url ? url.endsWith('/designs/') : false;
 // }
 
 // function isDesignDetail(url) {
