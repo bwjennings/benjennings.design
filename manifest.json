@@ -9,15 +9,15 @@
     "shortcuts": [
         {
           "name": "Designs",
-          "url": "/designs.html"
+          "url": "/designs/"
         },
         {
           "name": "Experiments",
-          "url": "/experiments.html"
+          "url": "/experiments/"
         },
         {
             "name": "Resources",
-            "url": "/resources.html"
+            "url": "/resources/"
           }
       ],
       "icons": [
