@@ -1,7 +1,7 @@
 {
   "codeConnect": {
      
-    "include": ["icon-card.figma.ts"],
+    "include": ["assets/**/*.js", "assets/**/*.ts", "assets/**/*.jsx", "assets/**/*.tsx"],
     "label": "HTML",
     "parser": "html"
   }

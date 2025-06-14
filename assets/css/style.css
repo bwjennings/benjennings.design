@@ -43,7 +43,27 @@ model-viewer {
 
 
 
-
+ @property --ty {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+@property --tilt {
+  syntax: "<angle>";
+  initial-value: 30deg;
+  inherits: false;
+}
+     @keyframes scrollAnim {
+  from { --ty: 0.5;    --tilt: 45deg; }
+  to   { --ty: -0.5;  --tilt: 120deg; }
+}
+model-viewer {
+  view-timeline-name: --mv;
+  view-timeline-axis: block;
+  animation: scrollAnim linear both;
+  animation-timeline: --mv;
+  animation-range: entry 0% exit 100%;
+}
 
 
 

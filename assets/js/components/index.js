@@ -7,3 +7,4 @@ import './icon-card/icon-card.js';
 import './color-changer/color-changer.js';
 import './theme-control/theme-control.js';
 import './navigation/navigation.js';
+import './badge/badge.js';

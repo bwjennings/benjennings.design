@@ -18,7 +18,7 @@
 
 @property --text-heading-width {
   syntax: "<number>";
-  initial-value: 115;
+  initial-value: 125;
   inherits: true;
 }
 
@@ -228,7 +228,7 @@
 
 
 /* Core configuration */
---peak: clamp(0.1, max(0.1, clamp(0, var(--stimulation-level), 1)), 1);
+--peak: clamp(0.1, max(0.1, clamp(0, var(--stimulation-level), 1)), 0.5);
 --sigma: calc(3 - var(--stimulation-level) * 1);
 
 /* Gaussian calculation helper */
