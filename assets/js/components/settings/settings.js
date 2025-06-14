@@ -50,11 +50,7 @@ class SiteSettings extends HTMLElement {
     }
 
 
-    // Apply persisted text heading width if available
-    const storedTextHeadingWidth = localStorage.getItem('textHeadingWidth');
-    if (storedTextHeadingWidth) {
-      document.documentElement.style.setProperty('--text-heading-width', storedTextHeadingWidth);
-    }
+ 
    
   }
 

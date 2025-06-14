@@ -1,40 +1,40 @@
-
 class IconCard extends HTMLElement {
     constructor() {
         super();
-        // Create a shadow root
         this.attachShadow({ mode: 'open' });
 
-        // Define the component's internal structure and style from attributes
-        // Default values are provided if attributes are not set
+        // Default values
         this._iconName = this.getAttribute('icon') || 'help';
         this._titleText = this.getAttribute('title') || 'Card Title';
         this._hrefLink = this.getAttribute('href') || '#';
-        this._cardVariant = this.getAttribute('variant') || ''; // No default variant class
+        this._cardVariant = this.getAttribute('variant') || '';
         this._colSpan = parseInt(this.getAttribute('span')) || 1;
+
+        // Badge support: expects a JSON array of badge configs
+        // Example: '[{"icon":"star","text":"Featured","variant":"accent"}]'
+        this._badges = [];
+        const badgesAttr = this.getAttribute('badges');
+        if (badgesAttr) {
+            try {
+                this._badges = JSON.parse(badgesAttr);
+            } catch (e) {
+                this._badges = [];
+            }
+        }
 
         // Link the external stylesheet to the shadow DOM
         const linkElem = document.createElement('link');
         linkElem.setAttribute('rel', 'stylesheet');
-        linkElem.setAttribute('href', 'css/components/card.css'); // Path to your CSS file
+        linkElem.setAttribute('href', 'css/components/card.css');
         this.shadowRoot.appendChild(linkElem);
     }
 
-    // Called when the element is inserted into the DOM
-    connectedCallback() {
-        this._render();
-        this._applyVariantClass();
-        this._applyColSpan();
-    }
-
-    // Observe attributes for changes
     static get observedAttributes() {
-        return ['icon', 'title', 'href', 'variant', 'span'];
+        return ['icon', 'title', 'href', 'variant', 'span', 'badges'];
     }
 
-    // Called when an observed attribute changes
     attributeChangedCallback(name, oldValue, newValue) {
-        if (oldValue === newValue) return; // Do nothing if value hasn't changed
+        if (oldValue === newValue) return;
 
         switch (name) {
             case 'icon':
@@ -47,27 +47,36 @@ class IconCard extends HTMLElement {
                 this._hrefLink = newValue;
                 break;
             case 'variant':
-                // Update the class on the host element when the variant changes
                 this._updateVariantClass(oldValue, newValue);
-                this._cardVariant = newValue; // Update internal state
+                this._cardVariant = newValue;
                 break;
             case 'span':
                 this._colSpan = parseInt(newValue) || 1;
                 this._applyColSpan();
                 break;
+            case 'badges':
+                try {
+                    this._badges = JSON.parse(newValue);
+                } catch (e) {
+                    this._badges = [];
+                }
+                break;
         }
-        // Re-render only the HTML part, styles are now external
         this._renderHTML();
     }
 
-    // Helper method to add the initial variant class to the host element
+    connectedCallback() {
+        this._render();
+        this._applyVariantClass();
+        this._applyColSpan();
+    }
+
     _applyVariantClass() {
         if (this._cardVariant) {
             this.classList.add(`variant-${this._cardVariant}`);
         }
     }
 
-    // Helper method to update the variant class on the host element
     _updateVariantClass(oldVariant, newVariant) {
         const container = this.shadowRoot.querySelector('.card-container');
         if (oldVariant && container) {
@@ -76,7 +85,6 @@ class IconCard extends HTMLElement {
         if (newVariant && container) {
             container.classList.add(newVariant);
         }
-        // Update host element classes as before
         if (oldVariant) {
             this.classList.remove(`variant-${oldVariant}`);
         }
@@ -86,22 +94,14 @@ class IconCard extends HTMLElement {
     }
 
     _applyColSpan() {
-        // Ensure the component spans up to the specified number of columns
         this.style.gridColumn = `span ${this._colSpan}`;
     }
 
-    // Initial render method (called once or if fundamental structure needs rebuild)
     _render() {
-        // The stylesheet is already linked in the constructor.
-        // Now, just render the HTML structure.
         this._renderHTML();
     }
 
-    // Method to render only the component's HTML structure within the shadow DOM
-    // This is called on attribute changes to update content without re-adding styles
     _renderHTML() {
-        // Check if the card link container already exists to avoid duplicating it
-        // and to ensure we are just updating its content.
         let cardLinkContainer = this.shadowRoot.querySelector('.card-container');
         if (!cardLinkContainer) {
             cardLinkContainer = document.createElement('a');
@@ -112,19 +112,19 @@ class IconCard extends HTMLElement {
             this.shadowRoot.appendChild(cardLinkContainer);
         }
 
-        // Always update href on the container
         cardLinkContainer.setAttribute('href', this._hrefLink);
 
-        // Set the inner HTML of the container, creating or updating the card's content.
-        // This includes the icon and title.
+        // Render badges using <ben-badge>
+        const badgesHTML = this._badges.map(badge =>
+            `<ben-badge icon="${badge.icon || ''}" text="${badge.text || ''}" variant="${badge.variant || 'default'}"></ben-badge>`
+        ).join('');
+
         cardLinkContainer.innerHTML = `
             <span class="icon">${this._iconName}</span>
             <span class="title">${this._titleText}</span>
+            <div class="badges">${badgesHTML}</div>
         `;
     }
 }
 
-// Define the new custom element for use in HTML
-// This makes <icon-card> a valid HTML tag that the browser will recognize and process
-// using the IconCard class.
 customElements.define('icon-card', IconCard);
