@@ -90,6 +90,7 @@ body {
   perspective: 1500px;
   max-height: 100dvh;
   /* lock container to viewport height */
+  container-type: inline-size;
 
 
 

@@ -14,7 +14,7 @@ template.innerHTML = `
     
   </style>
   <div class="picker"></div>
-  <input class="stim" type="range" min="0.5" max="0.9" step="0.01" aria-label="Stimulation">
+  <input class="hue" type="range" min="0" max="360" step="1" aria-label="Hue">
 `;
 
 class ThemeControl extends HTMLElement {
@@ -22,7 +22,7 @@ class ThemeControl extends HTMLElement {
     super();
     this.attachShadow({mode:'open'}).appendChild(template.content.cloneNode(true));
     this.picker = this.shadowRoot.querySelector('.picker');
-    this.slider = this.shadowRoot.querySelector('.stim');
+    this.slider = this.shadowRoot.querySelector('.hue');
     this.hues = [25,80,150,210,300];
     this.swatches = [];
     this.customSwatchSelected = false;
@@ -30,10 +30,10 @@ class ThemeControl extends HTMLElement {
 
   connectedCallback() {
     this.initSwatches();
-    const storedStim = localStorage.getItem('stimulationLevel');
-    this.slider.value = storedStim !== null ? storedStim : '0.7';
-    this.updateStim(this.slider.value, false);
-    this.slider.addEventListener('input', () => this.updateStim(this.slider.value));
+    const storedHue = localStorage.getItem('brandHue');
+    this.slider.value = storedHue !== null ? storedHue : '230';
+    this.updateHue(this.slider.value, false);
+    this.slider.addEventListener('input', () => this.updateHue(this.slider.value));
   }
 
   initSwatches() {
@@ -74,10 +74,10 @@ class ThemeControl extends HTMLElement {
     this.swatches.forEach(s => s.classList.toggle('selected', s.dataset.hue === 'custom'));
   }
 
-  updateStim(value, store=true) {
-    const v = parseFloat(value).toFixed(2);
-    document.documentElement.style.setProperty('--stimulation-level', v);
-    if (store) localStorage.setItem('stimulationLevel', v);
+  updateHue(value, store=true) {
+    const v = parseInt(value);
+    document.documentElement.style.setProperty('--color1-hue', `${v}deg`);
+    if (store) localStorage.setItem('brandHue', v);
   }
 }
 

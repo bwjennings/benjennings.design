@@ -205,7 +205,7 @@
 
   /* color base */
   --color1-hue: 230deg;
-  transition: --color1-hue 500ms ease-in-out;
+  transition: --color1-hue 200ms linear;
   transition-property: --contrast, --text-heading-grade, --text-heading-width,
     --color1-hue, --base-radius, --spacing-base, --gap-base, --chroma-base,
     --hue-offset-base;
@@ -224,7 +224,7 @@
 
   /* palette */
   --color-white: white;
-  --stimulation-level: 0.7;
+  --stimulation-level: 1;
 
 
 /* Core configuration */

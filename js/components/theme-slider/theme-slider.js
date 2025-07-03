@@ -112,7 +112,7 @@ customElements.define(
 
     // Update the CSS variable for the hue
     updateHue(hue) {
-      document.documentElement.style.setProperty("--color1-hue", hue);
+      document.documentElement.style.setProperty("--color1-hue", hue + "deg");
     }
 
     // Save the hue value to localStorage
