@@ -25,32 +25,36 @@
             disconnectedCallback() {
                 // Remove event listener to prevent memory leaks
                 this.button.removeEventListener('click', this.boundChangeHue);
+                this.boundChangeHue = null;
             }
 
             // Method to change the hue
             changeHue() {
-                // Generate a random number between 0 and 360
-                const randomHue = Math.floor(Math.random() * 361); // 0 to 360 inclusive
+                // Constants for magic numbers
+                const MAX_HUE = 360;
+                const MAX_RADIUS = 8;
+                const MIN_CHROMA = 0.010;
+                const CHROMA_RANGE = 0.01;
+                const MIN_CONTRAST = 0.5;
+                const CONTRAST_RANGE = 1.0;
 
-                // Set the CSS variable on the :root element (document.documentElement)
-                // Ensure the value is formatted as a degree string (e.g., "120deg")
+                // Generate random values
+                const randomHue = Math.floor(Math.random() * (MAX_HUE + 1));
+                const randomRadius = Math.floor(Math.random() * (MAX_RADIUS + 1));
+                const randomChromaBase = (Math.random() * CHROMA_RANGE + MIN_CHROMA).toFixed(3);
+                const randomContrast = (Math.random() * CONTRAST_RANGE + MIN_CONTRAST).toFixed(2);
+
+                // Apply CSS variables
                 document.documentElement.style.setProperty('--color1-hue', randomHue + 'deg');
-
-                // Generate a random number between 0 and 8 inclusive
-                const randomRadius = Math.floor(Math.random() * 9); // 0 to 8 inclusive
                 document.documentElement.style.setProperty('--base-radius', randomRadius + 'px');
+                document.documentElement.style.setProperty('--chroma-base', randomChromaBase);
+                document.documentElement.style.setProperty('--contrast', randomContrast);
 
-              // Generate a random chroma strength (0.010–0.020)
-              const randomChromaBase = (Math.random() * 0.01 + 0.010).toFixed(3);
-              document.documentElement.style.setProperty('--chroma-base', randomChromaBase);
-
-              // Generate a random contrast value between 0.50 and 1.50
-              const randomContrast = (Math.random() + 0.5).toFixed(2);
-              document.documentElement.style.setProperty('--contrast', randomContrast);
-              localStorage.setItem('contrast', randomContrast);
-              console.log(`--contrast set to: ${randomContrast}`);
-
-                console.log(`--color1-hue set to: ${randomHue}deg`);
+                // Persist all values to localStorage for consistency
+                localStorage.setItem('brandHue', randomHue);
+                localStorage.setItem('baseRadius', randomRadius);
+                localStorage.setItem('chromaBase', randomChromaBase);
+                localStorage.setItem('contrast', randomContrast);
 
                 // Optional: Update a display to show the current hue
                 const hueDisplay = document.getElementById('hueValue');

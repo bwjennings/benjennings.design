@@ -39,5 +39,12 @@
     }
   } catch (e) {
     console.error('Error applying theme preferences:', e);
+    // Fallback to default theme if localStorage is corrupted
+    try {
+      document.documentElement.style.setProperty('--current-color-scheme', 'light dark');
+      localStorage.clear();
+    } catch (fallbackError) {
+      console.error('Failed to apply fallback theme:', fallbackError);
+    }
   }
 })();
