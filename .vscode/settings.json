@@ -4,5 +4,6 @@
   "IDX.aI.enableCodebaseIndexing": true,
   "cssVarHover.watchedFiles": [
     "js/components/resource-card.js"
-  ]
+  ],
+  "liveServer.settings.multiRootWorkspaceName": "ben.cards"
 }

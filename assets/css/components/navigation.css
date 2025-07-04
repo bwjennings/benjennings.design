@@ -39,14 +39,14 @@ site-navigation {
 
   menu {
     width: 100%;
-    height: 100%;
+    flex-grow: 1;
     gap: var(--spacing-sm);
     display: flex;
     flex-direction: column;
     align-self: stretch;
     grid-area: nav-group;
     list-style-type: none;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: var(--color-background-primary);
     /* Remove bullet points */
     padding: 0;

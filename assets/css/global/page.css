@@ -193,9 +193,84 @@ padding: 4dvw;
   gap: var(--spacing-md);
   border-radius: var(--radius-lg);
 
+  &.color1 {
+    background-color: var(--color-background-base);
+    color: var(--color-foreground-base);
+    border-color: var(--color-border-base);
+  }
 
+  &.color2 {
+    background-color: var(--color-background-color2);
+    color: var(--color-foreground-color2);
+    border-color: var(--color-border-color2);
+  }
+
+  &.color3 {
+    background-color: var(--color-background-color3);
+    color: var(--color-foreground-color3);
+    border-color: var(--color-border-color3);
+  }
+
+  &.color4 {
+    background-color: var(--color-background-color4);
+    color: var(--color-foreground-color4);
+    border-color: var(--color-border-color4);
+  }
+
+  .thumbnail {
+    width: 100%;
+    height: 150px;
+    background: var(--color-background-primary);
+    border-radius: var(--radius-none);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   
-
+  .icons-pattern {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    align-items: center;
+    justify-content: center;
+    width: 326px;
+    transform: rotate(-17deg);
+  }
+  
+  .icon-group {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    border-radius: 23px;
+    box-shadow: 
+      -8px -4px 10px 0px inset rgba(0,0,0,0.08),
+      1px 1px 0px 0px inset rgba(245,250,255,0.8),
+      2px 10px 31px 0px inset rgba(255,255,255,0.4);
+  }
+  
+  .icon-group.teal {
+    background: #007f63;
+  }
+  
+  .icon-group.purple {
+    background: #ae3ec9;
+  }
+  
+  .icon-group.blue {
+    background: #1c7ed6;
+  }
+  
+  .icon-group .icon {
+    font-family: var(--icon-font-family);
+    font-size: 46px;
+    color: var(--color-foreground-onEmphasis);
+    font-weight: 700;
+    line-height: 1;
+  }
 }
 
 
@@ -301,28 +376,6 @@ figure {
     margin-bottom: env(safe-area-inset-bottom);
   }
 
-  theme-control {
-    position: fixed;
-    position-anchor: --bottom-nav;
-    bottom: calc(anchor(top) + 24px);
-    right: 24px;
-    width: fit-content;
-    z-index: 10;
-  }
-
-  @supports not (position-anchor: --bottom-nav) {
-    theme-control {
-      bottom: calc(var(--bottom-nav-height) + 24px);
-      right: 24px;
-    }
-  }
-
-  @supports not (position-anchor: --bottom-nav) {
-    theme-control {
-      bottom: calc(var(--bottom-nav-height) + 24px);
-      right: 24px;
-    }
-  }
 
 
 

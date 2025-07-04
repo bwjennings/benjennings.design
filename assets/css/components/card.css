@@ -65,6 +65,17 @@
 
   }
 
+  &.color1 {
+    background-color: var(--color-background-base);
+    color: var(--color-foreground-base);
+    border-color: var(--color-border-base);
+    outline-color: var(--color-border-base);
+    &.emphasis {
+      background-color: var(--color-background-base-emphasis);
+      border-color: var(--color-border-base-emphasis);
+    }
+  }
+
   &.color2 {
     background-color: var(--color-background-color2);
     color: var(--color-foreground-color2);

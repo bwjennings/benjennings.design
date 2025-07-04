@@ -36,26 +36,115 @@
   <main>
     <div class="post">
       <a href="/designs/" class="button">Back</a>
-      <header style="view-transition-name: arvest;" class="post-header">
-        <img src="./assets/thumbnail.png" alt="Arvest Bank" />
-        <h1 class="heading">Bank employees need to manage loans</h1>
+      <header style="view-transition-name: arvest;" class="post-header color4">
+        <div class="thumbnail">
+          <div class="icons-pattern">
+            <div class="icon-group teal">
+              <span class="icon">local_police</span>
+              <span class="icon">groups</span>
+            </div>
+            <div class="icon-group purple">
+              <span class="icon">assignment</span>
+            </div>
+            <div class="icon-group teal">
+              <span class="icon">person</span>
+            </div>
+            <div class="icon-group blue">
+              <span class="icon">local_police</span>
+            </div>
+            <div class="icon-group teal">
+              <span class="icon">groups</span>
+            </div>
+            <div class="icon-group purple">
+              <span class="icon">local_police</span>
+              <span class="icon">assignment</span>
+            </div>
+          </div>
+        </div>
+        <h1 class="heading">Law enforcement officers need training materials</h1>
         <p class="body lg secondary">Centralizing lessons helped agencies customize content.</p>
       </header>
+
       <section class="section">
         <h2 class="heading sm">Introduction</h2>
         <p class="body lg">
-          The existing method for loan officers to create and manage loans required them to use several individual tools
-          that required a lot of training. This unorganization caused a lot of frustration for employees as well as loan
-          applicants.
-        </p>
-        <p class="body lg">
-          To address these challenges, a new centralized platform was developed to streamline the loan management
-          process.
+          Police Legal Sciences has provided training for law enforcement for 25 years. They began with legal update 
+          training in only a few states and have since expanded their offerings and reach across North America.
         </p>
       </section>
-      
-        <iframe  width="100%" height="450" src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=17584-4652&embed-host=share" ></iframe>
-        <iframe  width="100%" height="450" src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=19946-10526&embed-host=share" ></iframe>
+
+      <section class="section">
+        <h2 class="heading sm">The problem</h2>
+        <p class="body lg">
+          With their growth, managing and distributing content became increasingly challenging. They needed a more 
+          scalable solution to make management easier while also giving agencies more options, like adjusting content to 
+          fit their needs.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="heading sm">Content mapping</h2>
+        <p class="body lg">
+          I needed to understand the hierarchy of content organization, as it directly impacted how information is 
+          presented to different users. To ensure it was accurate, I worked with their team in FigJam to map out the 
+          relationships between key concepts. This visual map highlights the complexity of the system, from agencies to 
+          user groups, individual users, courses, and lessons.
+        </p>
+        <figure>
+          <img src="http://localhost:3845/assets/27c7832158de189a165334aab08781d81e5a26a6.png" alt="Content hierarchy mapping diagram" />
+        </figure>
+      </section>
+
+      <section class="section">
+        <h2 class="heading sm">Finding the right amount of complexity</h2>
+        <p class="body lg">
+          This system serves users with different levels of responsibility:
+        </p>
+        <ul class="body lg">
+          <li>Global Admins – Manage the entire system</li>
+          <li>Agency Admins – Oversee their own users.</li>
+          <li>Individuals – Simply consume content.</li>
+        </ul>
+        <p class="body lg">
+          As responsibilities decrease, the interface adjusts, providing robust controls for admins while remaining simple 
+          and intuitive for end users.
+        </p>
+
+        <h3 class="heading xs">Example of necessary complexity</h3>
+        <p class="body lg">
+          In this example, a lesson is being created at a global level and these details will appear the same for everyone on the platform.
+        </p>
+        <figure>
+          <img src="http://localhost:3845/assets/d622cd185532073db18c8dc5e1b3cc86cedd69a2.png" alt="Global lesson creation interface" />
+        </figure>
+
+        <p class="body lg">
+          That same lesson needs to be customized for an individual agency, allowing changes to due dates, assigned user groups, 
+          and other details.
+        </p>
+        <p class="body lg">
+          To visually distinguish an instance we introduced this modal pattern to represent an instance of content.
+        </p>
+        <figure>
+          <img src="http://localhost:3845/assets/832c8e063404da9c93c57d96e7440aacf40356a4.png" alt="Agency-specific lesson customization" />
+          <figcaption class="body sm secondary">A global admin changing a lesson inside the Buffalo Police dept.</figcaption>
+        </figure>
+
+        <p class="body lg">
+          From the agency admin's perspective, the complexity is reduced since they only manage a single version of the lesson.
+        </p>
+        <figure>
+          <img src="http://localhost:3845/assets/18c41187217bc54fdd05d2fedcdf3908958c58d3.png" alt="Simplified agency admin view" />
+          <figcaption class="body sm secondary">A global admin changing a lesson inside the Buffalo Police dept.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section">
+        <h2 class="heading sm">Other resources</h2>
+        <p class="body lg">
+          I often think about this talk from Config a few years ago about balancing simplicity and business expertise
+        </p>
+      </section>
 
     </div>
   </main>

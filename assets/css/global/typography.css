@@ -141,3 +141,21 @@ transition-timing-function: var(--timing-decelerate);
     color: var(--color-foreground-base);
   }
 }
+
+/* Additional heading sizes */
+.heading.xs {
+  font-size: var(--text-body-lg-size);
+  line-height: 1.15;
+  font-weight: var(--text-body-weight);
+  margin: var(--spacing-xl) 0 var(--spacing-md) 0;
+}
+
+/* List styles for body text */
+ul.body, ol.body {
+  margin: var(--spacing-lg) 0;
+  padding-left: var(--spacing-xl);
+}
+
+ul.body li, ol.body li {
+  margin-bottom: var(--spacing-sm);
+}

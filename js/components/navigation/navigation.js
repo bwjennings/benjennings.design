@@ -37,7 +37,6 @@ class SiteNavigation extends HTMLElement {
             <span class="title">Resources</span>
           </a></li>
       </menu>
-      <theme-control></theme-control>
       <site-settings></site-settings>
     </nav>`;
 
