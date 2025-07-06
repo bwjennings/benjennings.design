@@ -84,7 +84,7 @@
   --text-heading-grade: 100;
   --text-heading-width: 125;
   --text-heading-xl-size: var(--font-size-9);
-  --text-heading-xl-line-height: 110%;
+  --text-heading-xl-line-height: 100%;
   --text-heading-lg-size: var(--font-size-8);
   --text-heading-lg-line-height: 110%;
   --text-heading-md-size: var(--font-size-6);

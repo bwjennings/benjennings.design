@@ -43,7 +43,6 @@
   <script type="module" src="/js/view-transition.js"></script>
   <link href="/assets/css/vars.css" rel="stylesheet" />
   <link href="/assets/css/index.css" rel="stylesheet" />
-
   <!-- Prefetch Links -->
   <link rel="expect" href="/index.html" blocking="render" />
   <link rel="expect" href="/designs/" blocking="render" />
@@ -74,8 +73,10 @@
     <main>
       <div class="post">
         <a href="/fundamentals/" class="button">Back</a>
-        <header style="view-transition-name: simplicity;" class="post-header">
-          <div class="icon">step</div>
+        <header data-project="simplicity" class="post-header color1">
+          <div class="icon-placeholder">
+            <span class="icon xl">step</span>
+          </div>
           <h1 class="heading">Simplicity is not always the answer</h1>
           <p class="body lg secondary">Every project has these beliefs behind them</p>
         </header>

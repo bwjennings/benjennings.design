@@ -43,7 +43,6 @@
   <script type="module" src="/js/view-transition.js"></script>
   <link href="/assets/css/vars.css" rel="stylesheet" />
   <link href="/assets/css/index.css" rel="stylesheet" />
-
   <!-- Prefetch Links -->
   <link rel="expect" href="/index.html" blocking="render" />
   <link rel="expect" href="/designs/" blocking="render" />
@@ -71,35 +70,55 @@
 
 <body id="page-container" class="page-container">
   <site-navigation></site-navigation>
-  <main class="content fundamentals-main">
-    <header class="page-title fundamentals-title">
-      <h1 class="heading xl">Fundamentals</h1>
+  <main>
+    <header class="page-title">
+      <h1 class="heading">Fundamentals</h1>
       <p class="body lg secondary">With each project that I work on, I apply these fundamentals</p>
     </header>
-    <section class="fundamentals-section">
-      <div class="fundamentals-content">
-        <span class="icon xl brand" aria-hidden="true">account_tree</span>
-        <h2 class="heading md">Embrace Complexity</h2>
-        <p class="body md">Fast doesn't always mean better. While we often measure an experience by the amount of clicks and or visual complexity, oversimplifying can end up frustrating users who need advanced features to work efficiently. Design for the complexity your users actually need, not an arbitrary standard of simplicity.</p>
-      </div>
-      <img class="fundamentals-img" src="http://localhost:3845/assets/e38ab4fcfdbbbffac8ff461d2396599106a9e4fd.png" alt="Embrace Complexity" />
-    </section>
-    <section class="fundamentals-section">
-      <div class="fundamentals-content">
-        <span class="icon xl brand" aria-hidden="true">adaptive_audio_mic</span>
-        <h2 class="heading md">Talk to the right people</h2>
-        <p class="body md">I don't design in a vacuum. Product teams have ideas about what users need, and these ideas are good starting points. But the people who use the product every day see things others miss. They know what wastes their time, what actually helps, and what would make their jobs easier. When teams talk directly to users, everyone learns something new. The best designs happen when we combine what teams know about the business with what users know about their daily work.</p>
-      </div>
-      <img class="fundamentals-img" src="http://localhost:3845/assets/64c5ca88185c78ffba63c753e674d5599918a343.png" alt="Talk to the right people" />
-    </section>
-    <section class="fundamentals-section">
-      <div class="fundamentals-content">
-        <span class="icon xl brand" aria-hidden="true">integration_instructions</span>
-        <h2 class="heading md">Developers need better experiences too</h2>
-        <p class="body md">We often forget that developers are users too. The tools, systems, and processes they interact with shape the final product just as much as our user-facing designs. When we make their work frustrating or inefficient, it shows up in what we ship. Good design extends to everyone who touches the product.</p>
-      </div>
-      <img class="fundamentals-img" src="http://localhost:3845/assets/0e454b8afd8a36f965b77c39aaf995676bf9c614.png" alt="Developers need better experiences too" />
-    </section>
+    
+    <div class="page-items">
+      <a data-project="simplicity" class="card color1" href="/fundamentals/simplicity.html">
+        <div class="icon-placeholder">
+          <span class="icon xl">step</span>
+        </div>
+        <h1 class="title">Simplicity is not always the answer</h1>
+        <div class="badge-group">
+          <div class="badge">
+            <span>account_tree</span>
+            Complexity
+          </div>
+          <div class="badge">Design Philosophy</div>
+        </div>
+      </a>
+      
+      <a data-project="user-research" class="card color2" href="/fundamentals/user-research.html">
+        <div class="icon-placeholder">
+          <span class="icon xl">adaptive_audio_mic</span>
+        </div>
+        <h1 class="title">Talk to the right people</h1>
+        <div class="badge-group">
+          <div class="badge">
+            <span>groups</span>
+            User Research
+          </div>
+          <div class="badge">Discovery</div>
+        </div>
+      </a>
+      
+      <a data-project="developer-experience" class="card color3" href="/fundamentals/developer-experience.html">
+        <div class="icon-placeholder">
+          <span class="icon xl">integration_instructions</span>
+        </div>
+        <h1 class="title">Developers need better experiences too</h1>
+        <div class="badge-group">
+          <div class="badge">
+            <span>code</span>
+            Developer Experience
+          </div>
+          <div class="badge">Process</div>
+        </div>
+      </a>
+    </div>
   </main>
 </body>
 

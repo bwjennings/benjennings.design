@@ -150,27 +150,27 @@ site-navigation {
 
 .item1 {
   grid-area: item1;
-
+  view-transition-name: item1;
 }
 
 .item2 {
   grid-area: item2;
-
+  view-transition-name: item2;
 }
 
 .item3 {
   grid-area: item3;
-
+  view-transition-name: item3;
 }
 
 .item4 {
   grid-area: item4;
-
+  view-transition-name: item4;
 }
 
 .item5 {
   grid-area: item5;
-
+  view-transition-name: item5;
 }
 
 
