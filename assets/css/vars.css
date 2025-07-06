@@ -368,8 +368,10 @@
 
   /* background colors */
   --color-background-page: light-dark(var(--color-white), var(--color-gray-95));
-  --color-background-primary: light-dark(var(--color-gray-10), var(--color-gray-90));
-  --color-background-secondary: light-dark(var(--color-gray-20), var(--color-gray-80));
+  --color-background-primary: light-dark(var(--color-gray-5), var(--color-gray-90));
+    --color-background-emphasis: light-dark(var(--color-gray-30), var(--color-gray-70));
+
+  --color-background-secondary: light-dark(var(--color-gray-10), var(--color-gray-80));
   --color-background-base: light-dark(var(--color-color1-20), var(--color-color1-80));
   --color-background-base-hover: light-dark(var(--color-color1-10), var(--color-color1-80));
   --color-background-base-emphasis: light-dark(var(--color-color1-30), var(--color-color1-70));
@@ -386,7 +388,7 @@
   --color-foreground-secondary: light-dark(var(--color-gray-80), var(--color-gray-10));
   --color-foreground-tertiary: light-dark(var(--color-gray-60), var(--color-gray-20));
   --color-foreground-base: light-dark(var(--color-color1-80), var(--color-color1-20));
-  --color-foreground-base-secondary: light-dark(var(--color-color1-30), var(--color-color1-60));
+  --color-foreground-base-secondary: light-dark(var(--color-color1-60), var(--color-color1-30));
   --color-foreground-onBrand: light-dark(var(--color-color1-50), var(--color-color1-10));
   --color-foreground-color2: light-dark(var(--color-color2-95), var(--color-color2-20));
   --color-foreground-color3: light-dark(var(--color-color3-95), var(--color-color3-20));

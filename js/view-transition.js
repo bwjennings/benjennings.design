@@ -12,18 +12,17 @@ const basePath = '';
     let shouldThrow = false;
 
     if (!window.navigation) {
-        console.error('❌ Navigation API not supported');
+        document.querySelector('.warning[data-reason="navigation-api"]').style.display = "block";
         shouldThrow = true;
     }
 
     if (!("CSSViewTransitionRule" in window)) {
-        console.error('❌ Cross-document view transitions not supported');
+        document.querySelector('.warning[data-reason="cross-document-view-transitions"]').style.display = "block";
         shouldThrow = true;
     }
 
     if (shouldThrow) {
-        console.log('🔄 Falling back to standard navigation without transitions');
-        return;
+        throw new Error('Browser is lacking support …');
     }
 
     console.log('✅ Cross-document view transitions supported');
@@ -110,6 +109,12 @@ const setTemporaryViewTransitionNames = async (entries, vtPromise) => {
 
 // OLD PAGE LOGIC - Handle outgoing navigation
 window.addEventListener('pageswap', async (e) => {
+    const targetPath = new URL(e.activation.entry.url).pathname;
+    if (!targetPath.startsWith(basePath)) {
+        e.viewTransition.skipTransition();
+        return;
+    }
+
     if (e.viewTransition) {
         const currentUrl = e.activation.from?.url ? new URL(e.activation.from.url) : new URL(window.location.href);
         const targetUrl = new URL(e.activation.entry.url);
@@ -163,6 +168,11 @@ window.addEventListener('pageswap', async (e) => {
 // NEW PAGE LOGIC - Handle incoming navigation
 window.addEventListener('pagereveal', async (e) => {
     if (!navigation.activation.from) return;
+    const fromPath = new URL(navigation.activation.from.url).pathname;
+    if (!fromPath.startsWith(basePath)) {
+        e.viewTransition.skipTransition();
+        return;
+    }
 
     if (e.viewTransition) {
         const fromUrl = new URL(navigation.activation.from.url);
@@ -229,17 +239,3 @@ window.addEventListener('pagereveal', async (e) => {
         }
     }
 });
-
-// Debug function to check current transition names
-function debugViewTransitionNames() {
-    console.log('🔍 Current View Transition Names:');
-    
-    document.querySelectorAll('[style*="view-transition-name"]').forEach(el => {
-        const name = el.style.viewTransitionName;
-        const project = el.closest('[data-project]')?.dataset.project || 'unknown';
-        console.log(`   - ${name}:`, { project, element: el });
-    });
-}
-
-// Make debug function available globally for manual testing
-window.debugViewTransitionNames = debugViewTransitionNames;

@@ -33,7 +33,7 @@ site-navigation {
     "color"
   ;
   border: 1px solid var(--color-border-primary);
-  background-color: var(--color-background-primary);
+  background-color: var(--color-background-secondary);
   box-sizing: border-box;
 
 
@@ -47,10 +47,9 @@ site-navigation {
     grid-area: nav-group;
     list-style-type: none;
     justify-content: flex-start;
-    background-color: var(--color-background-primary);
-    /* Remove bullet points */
+    
     padding: 0;
-    /* Remove padding */
+   
     margin: 0;
     transform-style: preserve-3d;
 
@@ -89,7 +88,9 @@ site-navigation {
   cursor: pointer;
   transition-timing-function: var(--timing-decelerate);
   transition-duration: 300ms;
-  transition-property: font-variation-settings, background-color;
+  transition-property: font-variation-settings, background-color,outline-width,outline-color;
+  outline-width: 0px;
+  outline-color: transparent;
   font-variation-settings: initial;
   font-variation-settings:
 
@@ -97,7 +98,8 @@ site-navigation {
 
   &:hover:not(.active) {
 
-    background-color: var(--color-background-secondary);
+    outline: var(--color-border-primary) 2px solid;
+    outline-width: 2px;
     --icon-grade: 200;
     font-variation-settings:
 
@@ -128,14 +130,15 @@ site-navigation {
 .active {
   transition: none;
   font-variation-settings: 'GRAD' 100;
-  color: var(--color-foreground-base);
+  color: var(--color-foreground-emphasis);
   anchor-name: --active;
-  background: var(--color-background-base);
+  background: var(--color-background-emphasis);
 
   .icon {
     font-variation-settings:
       "FILL" 1,
       "GRAD" var(--icon-grade-emphasis);
+      color: var(--color-foreground-base-secondary);
   }
 
 }
@@ -200,13 +203,18 @@ theme-slider {
 @media screen and (max-width: 800px),
 (max-height:500px) {
   .page-container {
+    overflow: hidden;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 1fr 80px;
     grid-template-areas:
-      "header"
+      
       "content"
       "sidebar"
     ;
+  }
+
+  main{
+    height: 100%;
   }
   .sidebar {
     anchor-name: --bottom-nav;
