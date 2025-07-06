@@ -1,8 +1,9 @@
 // Check browser support for cross-document view transitions
 function supportsViewTransitions() {
-  return 'startViewTransition' in document && 
-         CSS.supports('view-transition-name', 'none') &&
-         'navigation' in window;
+  return (
+    'startViewTransition' in document &&
+    CSS.supports('view-transition-name', 'none')
+  );
 }
 
 // Dynamic view transition names using direct style properties
@@ -74,6 +75,32 @@ if (document.readyState === 'loading') {
 } else {
   setupViewTransitionNames();
 }
+
+function handleLinkClick(event) {
+  const anchor = event.target.closest('a');
+  if (!anchor || anchor.target || anchor.download) return;
+
+  const url = new URL(anchor.href, location.href);
+  if (url.origin !== location.origin) return;
+
+  const isCard = anchor.matches('.card[data-project]');
+  const isBack = anchor.matches('.button') && url.pathname === '/designs/';
+  const transitionType = isCard
+    ? 'card-to-detail'
+    : isBack
+    ? 'detail-to-card'
+    : 'page-navigation';
+
+  if (!supportsViewTransitions()) return;
+
+  event.preventDefault();
+  document.documentElement.dataset.activeViewTransitionType = transitionType;
+  document.startViewTransition(() => {
+    window.location.href = anchor.href;
+  });
+}
+
+document.addEventListener('click', handleLinkClick);
 
 // Debug function to check current transition names
 function debugViewTransitionNames() {
