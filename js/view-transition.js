@@ -57,7 +57,9 @@ function handleLinkClick(event) {
     }
 
     document.startViewTransition(() => {
-        window.location.href = anchor.href;
+        // Use the Navigation API so the new page participates
+        // in the cross-document view transition.
+        return navigation.navigate(anchor.href);
     });
 }
 
