@@ -29,6 +29,11 @@
   <script type="module" src="/js/view-transition.js"></script>
   <link href="/assets/css/vars.css" rel="stylesheet" />
   <link href="/assets/css/index.css" rel="stylesheet" />
+
+  <!-- Render blocking for view transition elements -->
+  <link rel="expect" blocking="render" href="#project-header" />
+  <link rel="expect" blocking="render" href="#project-image" />
+  <link rel="expect" blocking="render" href="#project-title" />
 </head>
 
 <body id="page-container" class="page-container detail-page">
@@ -36,33 +41,10 @@
   <main>
     <div class="post">
       <a href="/designs/" class="button">Back</a>
-      <header data-project="arvest" class="post-header color4">
-        <img slot="media" src="./assets/thumbnail.png" alt="Arvest project thumbnail" />
-        <div class="thumbnail">
-          <div class="icons-pattern">
-            <div class="icon-group teal">
-              <span class="icon">local_police</span>
-              <span class="icon">groups</span>
-            </div>
-            <div class="icon-group purple">
-              <span class="icon">assignment</span>
-            </div>
-            <div class="icon-group teal">
-              <span class="icon">person</span>
-            </div>
-            <div class="icon-group blue">
-              <span class="icon">local_police</span>
-            </div>
-            <div class="icon-group teal">
-              <span class="icon">groups</span>
-            </div>
-            <div class="icon-group purple">
-              <span class="icon">local_police</span>
-              <span class="icon">assignment</span>
-            </div>
-          </div>
-        </div>
-        <h1 class="heading">The loan process is complicated</h1>
+      <header id="project-header" data-project="arvest" class="post-header color4">
+        <img id="project-image" slot="media" src="./assets/thumbnail.png" alt="Arvest project thumbnail" />
+        
+        <h1 id="project-title" class="heading">The loan process is complicated</h1>
         <p class="body lg secondary">Centralizing lessons helped agencies customize content.</p>
       </header>
 

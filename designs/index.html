@@ -41,6 +41,11 @@
   <script type="module" src="/js/view-transition.js"></script>
   <link href="/assets/css/vars.css" rel="stylesheet" />
   <link href="/assets/css/index.css" rel="stylesheet" />
+
+  <!-- Render blocking for view transition card elements -->
+  <link rel="expect" blocking="render" href="#card-arvest" />
+  <link rel="expect" blocking="render" href="#card-arvest-image" />
+  <link rel="expect" blocking="render" href="#card-arvest-title" />
   
   <!-- Prefetch Links -->
   <link rel="expect" href="/index.html" blocking="render" />
@@ -85,9 +90,9 @@
     </header>
      
         <div class="page-items">
-          <a data-project="arvest" class="card color4" href="/designs/arvest/">
-            <img  slot="media" src="./arvest/assets/thumbnail.png" />
-            <h1 class="title">The loan process is complicated</h1>
+          <a id="card-arvest" data-project="arvest" class="card color4" href="/designs/arvest/">
+            <img id="card-arvest-image" slot="media" src="./arvest/assets/thumbnail.png" />
+            <h1 id="card-arvest-title" class="title">The loan process is complicated</h1>
             <div class="badge-group">
               <div class="badge">
                 <span>account_balance</span>

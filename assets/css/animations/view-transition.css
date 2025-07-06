@@ -11,118 +11,23 @@ site-settings {
   view-transition-name: settings;
 }
 
-/* Dynamic View Transition Names - Set via JavaScript */
-/* Container transitions for smooth morphing */
-.card[data-project] {
-  /* view-transition-name set via JavaScript */
-  contain: layout style paint;
-}
-
+/* View transition containment for performance - names set dynamically via JavaScript */
+.card[data-project],
 .post-header[data-project] {
-  /* view-transition-name set via JavaScript */
   contain: layout style paint;
 }
 
-/* Image transitions - handle all structures */
 .card[data-project] img[slot="media"],
-.card[data-project] .icon-placeholder {
-  /* view-transition-name set via JavaScript */
-  contain: layout style paint;
-}
-
+.card[data-project] .icon-placeholder,
 .post-header[data-project] img[slot="media"],
 .post-header[data-project] img,
 .post-header[data-project] .icon-placeholder {
-  /* view-transition-name set via JavaScript */
   contain: layout style paint;
 }
 
-/* Title transitions */
-.card[data-project] .title {
-  /* view-transition-name set via JavaScript */
-  contain: layout style paint;
-}
-
+.card[data-project] .title,
 .post-header[data-project] .heading {
-  /* view-transition-name set via JavaScript */
   contain: layout style paint;
-}
-
-/* Performance Optimizations */
-::view-transition {
-  /* Shorter, snappier transitions for better performance */
-  --transition-duration: 400ms;
-  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
-  --base-distance: -60px;
-}
-
-/* Default morphing animations for all elements */
-html::view-transition-group(*) {
-  animation-duration: var(--transition-duration);
-  animation-timing-function: var(--transition-timing);
-}
-
-/* Simplified transition animations that work reliably */
-::view-transition-group(*-container) {
-  animation-duration: 500ms;
-  animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
-}
-
-::view-transition-group(*-image) {
-  animation-duration: 500ms;
-  animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
-}
-
-::view-transition-group(*-title) {
-  animation-duration: 500ms;
-  animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
-}
-
-/* Card-to-Detail transition animations */
-html:active-view-transition-type(card-to-detail) ::view-transition-group(*-container) {
-  animation-duration: 600ms;
-  animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
-}
-
-html:active-view-transition-type(card-to-detail) ::view-transition-group(*-image) {
-  animation-duration: 600ms;
-  animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
-}
-
-html:active-view-transition-type(card-to-detail) ::view-transition-group(*-title) {
-  animation-duration: 600ms;
-  animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
-}
-
-/* Detail-to-Card transition animations (faster, snappier) */
-html:active-view-transition-type(detail-to-card) ::view-transition-group(*-container) {
-  animation-duration: 400ms;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-html:active-view-transition-type(detail-to-card) ::view-transition-group(*-image) {
-  animation-duration: 400ms;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-html:active-view-transition-type(detail-to-card) ::view-transition-group(*-title) {
-  animation-duration: 400ms;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* General page navigation (subtle transitions) */
-html:active-view-transition-type(page-navigation) ::view-transition-group(*) {
-  animation-duration: 300ms;
-  animation-timing-function: ease-in-out;
-}
-
-/* Default fade for non-morphing elements */
-::view-transition-old(*) {
-  animation: fade-out var(--transition-timing) var(--transition-duration) forwards;
-}
-
-::view-transition-new(*) {
-  animation: fade-in var(--transition-timing) var(--transition-duration) forwards;
 }
 
 /* Keep navigation and settings static */
@@ -136,133 +41,88 @@ html:active-view-transition-type(page-navigation) ::view-transition-group(*) {
   animation: none;
 }
 
-
-
-
-/* Smooth morphing for card elements - context-aware animations */
-::view-transition-old(*-container),
-::view-transition-new(*-container),
-::view-transition-old(*-image),
-::view-transition-new(*-image),
-::view-transition-old(*-title),
-::view-transition-new(*-title) {
-  /* Allow natural morphing without custom animations */
-  animation: none;
+/* Card-to-Detail transition animations with blur morphing */
+html:active-view-transition-type(card-to-detail) ::view-transition-old(card-container),
+html:active-view-transition-type(card-to-detail) ::view-transition-old(card-image),
+html:active-view-transition-type(card-to-detail) ::view-transition-old(card-title) {
+  animation: blur-morph-out 600ms cubic-bezier(0.2, 0, 0.2, 1);
+  transform-origin: center center;
 }
 
-/* Enhanced morphing for card-to-detail transitions */
-html:active-view-transition-type(card-to-detail) {
-  ::view-transition-old(*-container),
-  ::view-transition-new(*-container) {
-    animation: none;
-    /* Smooth scaling and positioning */
-    transform-origin: center center;
-  }
-  
-  ::view-transition-old(*-image),
-  ::view-transition-new(*-image) {
-    animation: none;
-    /* Maintain aspect ratio during morphing */
-    object-fit: cover;
-  }
-  
-  ::view-transition-old(*-title),
-  ::view-transition-new(*-title) {
-    animation: none;
-    /* Smooth text morphing */
-    text-rendering: optimizeLegibility;
-  }
+html:active-view-transition-type(card-to-detail) ::view-transition-new(card-container),
+html:active-view-transition-type(card-to-detail) ::view-transition-new(card-image),
+html:active-view-transition-type(card-to-detail) ::view-transition-new(card-title) {
+  animation: blur-morph-in 600ms cubic-bezier(0.2, 0, 0.2, 1);
+  transform-origin: center center;
 }
 
-/* Enhanced morphing for detail-to-card transitions */
-html:active-view-transition-type(detail-to-card) {
-  ::view-transition-old(*-container),
-  ::view-transition-new(*-container) {
-    animation: none;
-    /* Faster, snappier scaling */
-    transform-origin: center center;
-  }
-  
-  ::view-transition-old(*-image),
-  ::view-transition-new(*-image) {
-    animation: none;
-    /* Quick image morphing */
-    object-fit: cover;
-  }
+html:active-view-transition-type(card-to-detail) ::view-transition-new(card-image) {
+  object-fit: cover;
 }
 
-/* Optimized Keyframes - Using transform and opacity only for best performance */
-@keyframes items-in {
-  0% {
-    opacity: 0;
-    transform: perspective(500px) translateZ(calc(var(--base-distance) * -0.5)) scale(0.98);
-  }
-  
-  100% {
-    opacity: 1;
-    transform: perspective(500px) translateZ(0px) scale(1);
-  }
+html:active-view-transition-type(card-to-detail) ::view-transition-new(card-title) {
+  text-rendering: optimizeLegibility;
 }
 
-@keyframes items-out {
+/* Detail-to-Card transition animations (faster, snappier) */
+html:active-view-transition-type(detail-to-card) ::view-transition-old(card-container),
+html:active-view-transition-type(detail-to-card) ::view-transition-old(card-image),
+html:active-view-transition-type(detail-to-card) ::view-transition-old(card-title) {
+  animation: blur-morph-out 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+html:active-view-transition-type(detail-to-card) ::view-transition-new(card-container),
+html:active-view-transition-type(detail-to-card) ::view-transition-new(card-image),
+html:active-view-transition-type(detail-to-card) ::view-transition-new(card-title) {
+  animation: blur-morph-in 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+html:active-view-transition-type(detail-to-card) ::view-transition-new(card-image) {
+  object-fit: cover;
+}
+
+/* Blur morphing keyframes */
+@keyframes blur-morph-out {
   0% {
     opacity: 1;
-    transform: perspective(500px) translateZ(0px) scale(1);
-  }
-
-
-  
-  100% {
-    opacity: 0;
-    transform: perspective(500px) translateZ(var(--base-distance)) scale(0.98);
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-   40% {
-    opacity: 0
-   }
-  
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-   70% {
-    opacity: 0
-   }
-  
-  100% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-}
-
-@keyframes morph-only {
-   0% {
-    opacity: 0;
- 
+    filter: blur(0px);
   }
   50% {
-    opacity: 0;
- 
+    opacity: 0.5;
+    filter: blur(24px);
   }
-  
+  100% {
+    opacity: 0;
+    filter: blur(24px);
+  }
+}
+
+@keyframes blur-morph-in {
+  0% {
+    opacity: 0;
+    filter: blur(24px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(24px);
+  }
   100% {
     opacity: 1;
-   
+    filter: blur(0px);
   }
+}
+
+/* Hardware acceleration for smooth transitions */
+::view-transition-group(card-container),
+::view-transition-group(card-image),
+::view-transition-group(card-title) {
+  isolation: isolate;
+  contain: layout style paint;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Respect user preferences */
@@ -271,30 +131,4 @@ html:active-view-transition-type(detail-to-card) {
   ::view-transition-new(*) {
     animation-duration: 0.01ms !important;
   }
-}
-
-/* Hardware acceleration for smooth transitions */
-::view-transition-group(*) {
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
-
-/* Specific optimizations for card morphing */
-::view-transition-group(*-container) {
-  isolation: isolate;
-  contain: layout style paint;
-  will-change: transform, opacity;
-}
-
-::view-transition-group(*-image) {
-  isolation: isolate;
-  contain: layout style paint;
-  will-change: transform, opacity;
-}
-
-::view-transition-group(*-title) {
-  isolation: isolate;
-  contain: layout style paint;
-  will-change: transform, opacity;
 }

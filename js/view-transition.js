@@ -1,134 +1,242 @@
-// Check browser support for cross-document view transitions
-function supportsViewTransitions() {
-  return (
-    'startViewTransition' in document &&
-    CSS.supports('view-transition-name', 'none')
-  );
+// URLPattern Polyfill
+if (!globalThis.URLPattern) {
+    const URLPatternPolyfill = await import("https://esm.sh/urlpattern-polyfill");
+    globalThis.URLPattern = URLPatternPolyfill.URLPattern;
 }
 
-// Dynamic view transition names using direct style properties
-function setupViewTransitionNames() {
-  console.log('🔄 Setting up dynamic view transition names...');
-  
-  document.querySelectorAll('[data-project]').forEach(element => {
-    const project = element.dataset.project;
-    if (project) {
-      // Set view-transition-name for the container element
-      element.style.viewTransitionName = `${project}-container`;
-      console.log(`✅ Container: ${project}-container assigned to`, element);
-      
-      // Find and set view-transition-name for image elements
-      const imageSelectors = [
-        'img[slot="media"]',
-        '.icon-placeholder',
-        'img',
-        '.thumbnail'
-      ];
-      
-      let imageElement = null;
-      for (const selector of imageSelectors) {
-        imageElement = element.querySelector(selector);
-        if (imageElement) break;
-      }
-      
-      if (imageElement) {
-        imageElement.style.viewTransitionName = `${project}-image`;
-        console.log(`✅ Image: ${project}-image assigned to`, imageElement);
-      }
-      
-      // Find and set view-transition-name for title elements
-      const titleSelectors = [
-        '.title',
-        '.heading',
-        'h1',
-        'h2'
-      ];
-      
-      let titleElement = null;
-      for (const selector of titleSelectors) {
-        titleElement = element.querySelector(selector);
-        if (titleElement) break;
-      }
-      
-      if (titleElement) {
-        titleElement.style.viewTransitionName = `${project}-title`;
-        console.log(`✅ Title: ${project}-title assigned to`, titleElement);
-      }
-      
-      console.log(`✅ Setup complete for project: ${project}`);
+// Path where this app is deployed. Adjust if deploying at a subdirectory
+const basePath = '';
+
+// Make sure browser has support
+(() => {
+    let shouldThrow = false;
+
+    if (!window.navigation) {
+        console.error('❌ Navigation API not supported');
+        shouldThrow = true;
     }
-  });
-  
-  console.log('🎯 Dynamic view transition setup complete');
-}
 
-// Check browser support and log status
-if (supportsViewTransitions()) {
-  console.log('✅ Cross-document view transitions supported - using dynamic view-transition-name assignment');
-} else {
-  console.log('❌ Cross-document view transitions not supported - graceful fallback');
-}
+    if (!("CSSViewTransitionRule" in window)) {
+        console.error('❌ Cross-document view transitions not supported');
+        shouldThrow = true;
+    }
 
-// Set up view transition names on page load
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', setupViewTransitionNames);
-} else {
-  setupViewTransitionNames();
-}
+    if (shouldThrow) {
+        console.log('🔄 Falling back to standard navigation without transitions');
+        return;
+    }
 
+    console.log('✅ Cross-document view transitions supported');
+})();
+
+// Link click handler to trigger cross-document view transitions
 function handleLinkClick(event) {
-  const anchor = event.target.closest('a');
-  if (!anchor || anchor.target || anchor.download) return;
+    const anchor = event.target.closest('a');
+    if (!anchor || anchor.target || anchor.download) return;
 
-  const url = new URL(anchor.href, location.href);
-  if (url.origin !== location.origin) return;
+    const url = new URL(anchor.href, location.href);
+    if (url.origin !== location.origin) return;
 
-  const isCard = anchor.matches('.card[data-project]');
-  const isBack = anchor.matches('.button') && url.pathname === '/designs/';
-  const transitionType = isCard
-    ? 'card-to-detail'
-    : isBack
-    ? 'detail-to-card'
-    : 'page-navigation';
+    // Check if this is a navigation that should have a view transition
+    const currentUrl = new URL(window.location.href);
+    const isCardToDetail = isHomePage(currentUrl) && isProjectPage(url);
+    const isDetailToCard = isProjectPage(currentUrl) && isHomePage(url);
+    
+    if (!isCardToDetail && !isDetailToCard) return;
+    if (!window.navigation) return;
 
-  if (!supportsViewTransitions()) return;
+    event.preventDefault();
+    
+    console.log('🚀 Intercepted link click - starting view transition:', currentUrl.pathname, '→', url.pathname);
+    
+    // Start the cross-document view transition
+    if (!document.startViewTransition) {
+        console.warn('❌ document.startViewTransition not available');
+        window.location.href = anchor.href;
+        return;
+    }
 
-  event.preventDefault();
-  document.documentElement.dataset.activeViewTransitionType = transitionType;
-  document.startViewTransition(() => {
-    window.location.href = anchor.href;
-  });
+    document.startViewTransition(() => {
+        window.location.href = anchor.href;
+    });
 }
 
+// Add click event listener
 document.addEventListener('click', handleLinkClick);
+
+// URL Pattern matching
+const homePagePattern = new URLPattern(`${basePath}(/designs/)*`, window.origin);
+const isHomePage = (url) => {
+    const urlObj = typeof url === 'string' ? new URL(url) : url;
+    return homePagePattern.exec(urlObj) || urlObj.pathname === '/' || urlObj.pathname === '/designs/';
+}
+
+const projectPagePattern = new URLPattern(`${basePath}/designs/:project/`, window.origin);
+const isProjectPage = (url) => {
+    const urlObj = typeof url === 'string' ? new URL(url) : url;
+    return projectPagePattern.exec(urlObj);
+}
+
+const extractProjectNameFromUrl = (url) => {
+    const urlObj = typeof url === 'string' ? new URL(url) : url;
+    const match = projectPagePattern.exec(urlObj);
+    const project = match?.pathname.groups.project;
+    console.log(`🔍 Extracting project from URL: ${urlObj.pathname} → ${project}`);
+    return project;
+}
+
+// Utility function to set temporary view transition names
+const setTemporaryViewTransitionNames = async (entries, vtPromise) => {
+    console.log('🎯 Setting temporary view transition names:', entries.map(([el, name]) => name));
+    
+    for (const [$el, name] of entries) {
+        if ($el) {
+            $el.style.viewTransitionName = name;
+        }
+    }
+
+    await vtPromise;
+
+    for (const [$el, name] of entries) {
+        if ($el) {
+            $el.style.viewTransitionName = '';
+        }
+    }
+    
+    console.log('🧹 Temporary view transition names cleaned up');
+}
+
+// OLD PAGE LOGIC - Handle outgoing navigation
+window.addEventListener('pageswap', async (e) => {
+    if (e.viewTransition) {
+        const currentUrl = e.activation.from?.url ? new URL(e.activation.from.url) : new URL(window.location.href);
+        const targetUrl = new URL(e.activation.entry.url);
+
+        console.log('📤 Pageswap:', currentUrl.pathname, '→', targetUrl.pathname);
+
+        // Going from project page to homepage
+        // ~> The detail page elements are the ones!
+        if (isProjectPage(currentUrl) && isHomePage(targetUrl)) {
+            const project = extractProjectNameFromUrl(currentUrl);
+            
+            if (project) {
+                const detailContainer = document.querySelector(`.post-header[data-project="${project}"]`);
+                const detailImage = document.querySelector(`.post-header[data-project="${project}"] img, .post-header[data-project="${project}"] .icon-placeholder`);
+                const detailTitle = document.querySelector(`.post-header[data-project="${project}"] .heading, .post-header[data-project="${project}"] h1`);
+
+                // Set transition type for CSS animations
+                document.documentElement.dataset.activeViewTransitionType = 'detail-to-card';
+
+                setTemporaryViewTransitionNames([
+                    [detailContainer, 'card-container'],
+                    [detailImage, 'card-image'],
+                    [detailTitle, 'card-title'],
+                ].filter(([el]) => el), e.viewTransition.finished);
+            }
+        }
+
+        // Going to project page
+        // ~> The clicked card elements are the ones!
+        if (isProjectPage(targetUrl)) {
+            const project = extractProjectNameFromUrl(targetUrl);
+
+            if (project) {
+                const cardContainer = document.querySelector(`.card[data-project="${project}"]`);
+                const cardImage = document.querySelector(`.card[data-project="${project}"] img[slot="media"], .card[data-project="${project}"] .icon-placeholder, .card[data-project="${project}"] img`);
+                const cardTitle = document.querySelector(`.card[data-project="${project}"] .title, .card[data-project="${project}"] h1, .card[data-project="${project}"] h2`);
+
+                // Set transition type for CSS animations
+                document.documentElement.dataset.activeViewTransitionType = 'card-to-detail';
+
+                setTemporaryViewTransitionNames([
+                    [cardContainer, 'card-container'],
+                    [cardImage, 'card-image'],
+                    [cardTitle, 'card-title'],
+                ].filter(([el]) => el), e.viewTransition.finished);
+            }
+        }
+    }
+});
+
+// NEW PAGE LOGIC - Handle incoming navigation
+window.addEventListener('pagereveal', async (e) => {
+    if (!navigation.activation.from) return;
+
+    if (e.viewTransition) {
+        const fromUrl = new URL(navigation.activation.from.url);
+        const currentUrl = new URL(navigation.activation.entry.url);
+
+        console.log('📥 Pagereveal:', fromUrl.pathname, '→', currentUrl.pathname);
+
+        // Went from project page to homepage
+        // ~> Set VT names on the relevant card in the list
+        if (isProjectPage(fromUrl) && isHomePage(currentUrl)) {
+            const project = extractProjectNameFromUrl(fromUrl);
+
+            if (project) {
+                // Try multiple selector strategies to find the card elements
+                const cardContainer = document.querySelector(`.card[data-project="${project}"]`) || 
+                                   document.querySelector(`#card-${project}`) ||
+                                   document.querySelector(`a[href*="${project}"]`);
+                
+                const cardImage = document.querySelector(`.card[data-project="${project}"] img[slot="media"]`) ||
+                                document.querySelector(`.card[data-project="${project}"] img`) ||
+                                document.querySelector(`#card-${project}-image`) ||
+                                (cardContainer && cardContainer.querySelector('img'));
+                
+                const cardTitle = document.querySelector(`.card[data-project="${project}"] .title`) ||
+                                document.querySelector(`.card[data-project="${project}"] h1`) ||
+                                document.querySelector(`#card-${project}-title`) ||
+                                (cardContainer && cardContainer.querySelector('.title, h1'));
+                
+                console.log(`🔍 Looking for card elements for project: ${project}`);
+                console.log('Card container:', cardContainer);
+                console.log('Card image:', cardImage);
+                console.log('Card title:', cardTitle);
+
+                if (cardContainer) {
+                    setTemporaryViewTransitionNames([
+                        [cardContainer, 'card-container'],
+                        [cardImage, 'card-image'],
+                        [cardTitle, 'card-title'],
+                    ].filter(([el]) => el), e.viewTransition.ready);
+                    
+                    console.log(`✅ Set view transition names for return to card: ${project}`);
+                } else {
+                    console.warn(`⚠️ Could not find card container for project: ${project}`);
+                }
+            }
+        }
+
+        // Went to project page
+        // ~> Set VT names on the detail page elements
+        if (isProjectPage(currentUrl)) {
+            const project = extractProjectNameFromUrl(currentUrl);
+
+            if (project) {
+                const detailContainer = document.querySelector(`.post-header[data-project="${project}"]`);
+                const detailImage = document.querySelector(`.post-header[data-project="${project}"] img, .post-header[data-project="${project}"] .icon-placeholder`);
+                const detailTitle = document.querySelector(`.post-header[data-project="${project}"] .heading, .post-header[data-project="${project}"] h1`);
+
+                setTemporaryViewTransitionNames([
+                    [detailContainer, 'card-container'],
+                    [detailImage, 'card-image'],
+                    [detailTitle, 'card-title'],
+                ].filter(([el]) => el), e.viewTransition.ready);
+            }
+        }
+    }
+});
 
 // Debug function to check current transition names
 function debugViewTransitionNames() {
-  console.log('🔍 View Transition Names Set via JavaScript:');
-  
-  // Check all elements with view-transition-name style property
-  document.querySelectorAll('[style*="view-transition-name"]').forEach(el => {
-    const name = el.style.viewTransitionName;
-    const project = el.closest('[data-project]')?.dataset.project || 'unknown';
-    console.log(`   - ${name}:`, { project, element: el });
-  });
-  
-  // Also check all data-project containers
-  console.log('🔍 Data-project containers:');
-  document.querySelectorAll('[data-project]').forEach(el => {
-    const project = el.dataset.project;
-    const containerName = el.style.viewTransitionName;
+    console.log('🔍 Current View Transition Names:');
     
-    // Find child elements with transition names
-    const children = el.querySelectorAll('[style*="view-transition-name"]');
-    const childNames = Array.from(children).map(child => child.style.viewTransitionName);
-    
-    console.log(`   - ${project}:`, {
-      container: containerName,
-      children: childNames,
-      element: el
+    document.querySelectorAll('[style*="view-transition-name"]').forEach(el => {
+        const name = el.style.viewTransitionName;
+        const project = el.closest('[data-project]')?.dataset.project || 'unknown';
+        console.log(`   - ${name}:`, { project, element: el });
     });
-  });
 }
 
 // Make debug function available globally for manual testing
