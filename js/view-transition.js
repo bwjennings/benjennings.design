@@ -28,8 +28,58 @@ const basePath = '';
     console.log('✅ Cross-document view transitions supported');
 })();
 
+// DOM readiness check utility
+function waitForElement(selector, timeout = 5000) {
+    return new Promise((resolve) => {
+        const element = document.querySelector(selector);
+        if (element) {
+            resolve(element);
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            const element = document.querySelector(selector);
+            if (element) {
+                observer.disconnect();
+                resolve(element);
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        setTimeout(() => {
+            observer.disconnect();
+            resolve(null);
+        }, timeout);
+    });
+}
+
+// Check if all required elements for view transition are present
+async function ensureTransitionElementsReady(project) {
+    if (!project) return true;
+
+    const requiredSelectors = [
+        `.card[data-project="${project}"]`,
+        `.card[data-project="${project}"] img`,
+        `.card[data-project="${project}"] .title`
+    ];
+
+    for (const selector of requiredSelectors) {
+        const element = await waitForElement(selector);
+        if (!element) {
+            console.warn(`⚠️ Required element not found: ${selector}`);
+            return false;
+        }
+    }
+
+    return true;
+}
+
 // Link click handler to trigger cross-document view transitions
-function handleLinkClick(event) {
+async function handleLinkClick(event) {
     const anchor = event.target.closest('a');
     if (!anchor || anchor.target || anchor.download) return;
 
@@ -47,6 +97,17 @@ function handleLinkClick(event) {
     event.preventDefault();
     
     console.log('🚀 Intercepted link click - starting view transition:', currentUrl.pathname, '→', url.pathname);
+    
+    // Ensure DOM elements are ready before starting transition
+    if (isCardToDetail) {
+        const project = extractProjectNameFromUrl(url);
+        const elementsReady = await ensureTransitionElementsReady(project);
+        if (!elementsReady) {
+            console.warn('❌ Required elements not ready, falling back to regular navigation');
+            window.location.href = anchor.href;
+            return;
+        }
+    }
     
     // Start the cross-document view transition
     if (!document.startViewTransition) {
@@ -90,15 +151,15 @@ const extractProjectNameFromUrl = (url) => {
 const setTemporaryViewTransitionNames = async (entries, vtPromise) => {
     console.log('🎯 Setting temporary view transition names:', entries.map(([el, name]) => name));
     
-    for (const [$el, name] of entries) {
+    for (const [$el] of entries) {
         if ($el) {
-            $el.style.viewTransitionName = name;
+            $el.style.viewTransitionName = entries.find(([el]) => el === $el)?.[1] || '';
         }
     }
 
     await vtPromise;
 
-    for (const [$el, name] of entries) {
+    for (const [$el] of entries) {
         if ($el) {
             $el.style.viewTransitionName = '';
         }
@@ -138,7 +199,7 @@ window.addEventListener('pageswap', async (e) => {
                     [detailContainer, 'card-container'],
                     [detailImage, 'card-image'],
                     [detailTitle, 'card-title'],
-                ].filter(([el]) => el), e.viewTransition.finished);
+                ].filter(([element]) => element), e.viewTransition.finished);
             }
         }
 
@@ -159,7 +220,7 @@ window.addEventListener('pageswap', async (e) => {
                     [cardContainer, 'card-container'],
                     [cardImage, 'card-image'],
                     [cardTitle, 'card-title'],
-                ].filter(([el]) => el), e.viewTransition.finished);
+                ].filter(([element]) => element), e.viewTransition.finished);
             }
         }
     }
@@ -211,7 +272,7 @@ window.addEventListener('pagereveal', async (e) => {
                         [cardContainer, 'card-container'],
                         [cardImage, 'card-image'],
                         [cardTitle, 'card-title'],
-                    ].filter(([el]) => el), e.viewTransition.ready);
+                    ].filter(([element]) => element), e.viewTransition.ready);
                     
                     console.log(`✅ Set view transition names for return to card: ${project}`);
                 } else {
@@ -234,7 +295,7 @@ window.addEventListener('pagereveal', async (e) => {
                     [detailContainer, 'card-container'],
                     [detailImage, 'card-image'],
                     [detailTitle, 'card-title'],
-                ].filter(([el]) => el), e.viewTransition.ready);
+                ].filter(([element]) => element), e.viewTransition.ready);
             }
         }
     }
