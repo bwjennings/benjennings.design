@@ -57,18 +57,10 @@ function waitForElement(selector, timeout = 5000) {
     });
 }
 
-// Check if all required elements for view transition are present
-async function ensureTransitionElementsReady(project) {
-    if (!project) return true;
-
-    const requiredSelectors = [
-        `.card[data-project="${project}"]`,
-        `.card[data-project="${project}"] img`,
-        `.card[data-project="${project}"] .title`
-    ];
-
-    for (const selector of requiredSelectors) {
-        const element = await waitForElement(selector);
+// Wait for a group of selectors to appear in the DOM
+async function waitForSelectors(selectors, timeout = 5000) {
+    for (const selector of selectors) {
+        const element = await waitForElement(selector, timeout);
         if (!element) {
             console.warn(`⚠️ Required element not found: ${selector}`);
             return false;
@@ -76,6 +68,32 @@ async function ensureTransitionElementsReady(project) {
     }
 
     return true;
+}
+
+// Ensure card elements are ready before starting a transition
+async function ensureCardElementsReady(project) {
+    if (!project) return true;
+
+    const selectors = [
+        `.card[data-project="${project}"]`,
+        `.card[data-project="${project}"] img[slot="media"], .card[data-project="${project}"] img`,
+        `.card[data-project="${project}"] .title, .card[data-project="${project}"] h1, .card[data-project="${project}"] h2`
+    ];
+
+    return waitForSelectors(selectors);
+}
+
+// Ensure detail page elements are ready before starting a transition
+async function ensureDetailElementsReady(project) {
+    if (!project) return true;
+
+    const selectors = [
+        `.post-header[data-project="${project}"]`,
+        `.post-header[data-project="${project}"] img, .post-header[data-project="${project}"] .icon-placeholder`,
+        `.post-header[data-project="${project}"] .heading, .post-header[data-project="${project}"] h1`
+    ];
+
+    return waitForSelectors(selectors);
 }
 
 // Link click handler to trigger cross-document view transitions
@@ -101,7 +119,7 @@ async function handleLinkClick(event) {
     // Ensure DOM elements are ready before starting transition
     if (isCardToDetail) {
         const project = extractProjectNameFromUrl(url);
-        const elementsReady = await ensureTransitionElementsReady(project);
+        const elementsReady = await ensureCardElementsReady(project);
         if (!elementsReady) {
             console.warn('❌ Required elements not ready, falling back to regular navigation');
             window.location.href = anchor.href;
@@ -247,21 +265,27 @@ window.addEventListener('pagereveal', async (e) => {
             const project = extractProjectNameFromUrl(fromUrl);
 
             if (project) {
+                const ready = await ensureCardElementsReady(project);
+                if (!ready) {
+                    console.warn(`⚠️ Could not find required card elements for project: ${project}`);
+                    return;
+                }
+
                 // Try multiple selector strategies to find the card elements
-                const cardContainer = document.querySelector(`.card[data-project="${project}"]`) || 
+                const cardContainer = document.querySelector(`.card[data-project="${project}"]`) ||
                                    document.querySelector(`#card-${project}`) ||
                                    document.querySelector(`a[href*="${project}"]`);
-                
+
                 const cardImage = document.querySelector(`.card[data-project="${project}"] img[slot="media"]`) ||
                                 document.querySelector(`.card[data-project="${project}"] img`) ||
                                 document.querySelector(`#card-${project}-image`) ||
                                 (cardContainer && cardContainer.querySelector('img'));
-                
+
                 const cardTitle = document.querySelector(`.card[data-project="${project}"] .title`) ||
                                 document.querySelector(`.card[data-project="${project}"] h1`) ||
                                 document.querySelector(`#card-${project}-title`) ||
                                 (cardContainer && cardContainer.querySelector('.title, h1'));
-                
+
                 console.log(`🔍 Looking for card elements for project: ${project}`);
                 console.log('Card container:', cardContainer);
                 console.log('Card image:', cardImage);
@@ -273,7 +297,7 @@ window.addEventListener('pagereveal', async (e) => {
                         [cardImage, 'card-image'],
                         [cardTitle, 'card-title'],
                     ].filter(([element]) => element), e.viewTransition.ready);
-                    
+
                     console.log(`✅ Set view transition names for return to card: ${project}`);
                 } else {
                     console.warn(`⚠️ Could not find card container for project: ${project}`);
@@ -287,6 +311,12 @@ window.addEventListener('pagereveal', async (e) => {
             const project = extractProjectNameFromUrl(currentUrl);
 
             if (project) {
+                const ready = await ensureDetailElementsReady(project);
+                if (!ready) {
+                    console.warn(`⚠️ Could not find required detail elements for project: ${project}`);
+                    return;
+                }
+
                 const detailContainer = document.querySelector(`.post-header[data-project="${project}"]`);
                 const detailImage = document.querySelector(`.post-header[data-project="${project}"] img, .post-header[data-project="${project}"] .icon-placeholder`);
                 const detailTitle = document.querySelector(`.post-header[data-project="${project}"] .heading, .post-header[data-project="${project}"] h1`);
