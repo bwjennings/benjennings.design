@@ -65,6 +65,12 @@ customElements.define(
       this._cardTitle = this.shadowRoot.querySelector(".card-title");
       this._dialogTitle = this.shadowRoot.getElementById("dialog-title");
 
+      // Check if required elements exist
+      if (!this._cardContainer || !this._dialog) {
+        console.error("Required card elements not found in shadow DOM");
+        return;
+      }
+
       // Consolidated event listener on shadowRoot for clicks
       this.shadowRoot.addEventListener("click", this.handleClick);
 
@@ -157,7 +163,7 @@ customElements.define(
       }
 
       // If clicking on the dialog background (outside the .wrapper), close the dialog
-      if (event.target.nodeName === "DIALOG") {
+      if (event.target.nodeName === "DIALOG" && this._dialog) {
         const wrapper = this._dialog.querySelector(".wrapper");
         if (wrapper) {
           const rect = wrapper.getBoundingClientRect();

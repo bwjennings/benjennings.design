@@ -1,332 +1,166 @@
-// URLPattern Polyfill
-if (!globalThis.URLPattern) {
-    const URLPatternPolyfill = await import("https://esm.sh/urlpattern-polyfill");
-    globalThis.URLPattern = URLPatternPolyfill.URLPattern;
-}
-
 // Path where this app is deployed. Adjust if deploying at a subdirectory
 const basePath = '';
 
+// Helper functions for page type detection
+const isTopLevelPage = (pathname) => {
+    const normalizedPath = pathname.endsWith('/') ? pathname : pathname + '/';
+    return ['/', '/fundamentals/', '/designs/', '/experiments/', '/resources/'].includes(normalizedPath);
+};
+
+const isProjectPage = (pathname) => {
+    // Match patterns like /designs/arvest/, /designs/dwellane/, etc.
+    return /^\/designs\/[^\/]+\/?$/.test(pathname);
+};
+
+const isHomePage = (pathname) => {
+    const normalizedPath = pathname.endsWith('/') ? pathname : pathname + '/';
+    return normalizedPath === '/' || normalizedPath === '/designs/';
+};
+
+// Determine the View Transition class to use based on the old and new navigation entries
+const determineTransitionType = (oldNavigationEntry, newNavigationEntry) => {
+    if (!oldNavigationEntry || !newNavigationEntry) {
+        return 'unknown';
+    }
+
+    const currentURL = new URL(oldNavigationEntry.url);
+    const destinationURL = new URL(newNavigationEntry.url);
+
+    const currentPathname = currentURL.pathname.replace(basePath, '');
+    const destinationPathname = destinationURL.pathname.replace(basePath, '');
+
+    console.log(`🔍 Transition: ${currentPathname} → ${destinationPathname}`);
+
+    if (currentPathname === destinationPathname) {
+        return "reload";
+    }
+
+    // Check for card-to-detail transitions (home/designs page → project page)
+    if (isHomePage(currentPathname) && isProjectPage(destinationPathname)) {
+        console.log(`🎯 Card-to-detail transition detected`);
+        return 'card-to-detail';
+    }
+
+    // Check for detail-to-card transitions (project page → home/designs page)
+    if (isProjectPage(currentPathname) && isHomePage(destinationPathname)) {
+        console.log(`🎯 Detail-to-card transition detected`);
+        return 'detail-to-card';
+    }
+
+    // Check for top-level page navigation
+    if (isTopLevelPage(currentPathname) && isTopLevelPage(destinationPathname)) {
+        // Map paths to navigation order: Home, Fundamentals, Designs, Experiments, Resources
+        const getPageIndex = (pathname) => {
+            const normalizedPath = pathname.endsWith('/') ? pathname : pathname + '/';
+            switch (normalizedPath) {
+                case '/': return 0;
+                case '/fundamentals/': return 1;
+                case '/designs/': return 2;
+                case '/experiments/': return 3;
+                case '/resources/': return 4;
+                default: return -1;
+            }
+        };
+
+        const currentPageIndex = getPageIndex(currentPathname);
+        const destinationPageIndex = getPageIndex(destinationPathname);
+
+        console.log(`🔍 Page indices: ${currentPageIndex} → ${destinationPageIndex}`);
+
+        if (currentPageIndex === -1 || destinationPageIndex === -1) {
+            return 'unknown';
+        }
+
+        if (currentPageIndex > destinationPageIndex) {
+            return 'up';
+        }
+        if (currentPageIndex < destinationPageIndex) {
+            return 'down';
+        }
+    }
+
+    return 'unknown';
+};
+
+// Critical: Set up pagereveal listener IMMEDIATELY (before DOM loads)
+window.addEventListener("pagereveal", async (e) => {
+    console.log("🚨 PAGEREVEAL EVENT FIRED!", e);
+    console.log("🚨 viewTransition object:", e.viewTransition);
+    console.log("🚨 navigation.activation:", navigation.activation);
+    
+    if (e.viewTransition) {
+        // Get transitionType from localStorage or derive it using the NavigationActivationInformation
+        let transitionType;
+        if (!window.navigation) {
+            transitionType = localStorage.getItem("transitionType");
+        } else {
+            transitionType = determineTransitionType(navigation.activation.from, navigation.activation.entry);
+        }
+
+        console.log(`pageReveal: ${transitionType}`);
+        e.viewTransition.types.add(transitionType);
+    } else {
+        console.log("🚨 NO VIEW TRANSITION OBJECT IN PAGEREVEAL");
+    }
+});
+
+// URLPattern Polyfill - Load synchronously for immediate availability
+if (!globalThis.URLPattern) {
+    // For now, we'll skip the polyfill since it requires async import
+    // Modern browsers should support URLPattern natively
+    console.warn('URLPattern not available - some features may not work in older browsers');
+}
+
 // Make sure browser has support
-(() => {
+document.addEventListener("DOMContentLoaded", (e) => {
     let shouldThrow = false;
 
     if (!window.navigation) {
-        document.querySelector('.warning[data-reason="navigation-api"]').style.display = "block";
-        shouldThrow = true;
+        const warningElement = document.querySelector('.warning[data-reason="navigation-api"]');
+        if (warningElement) {
+            warningElement.style.display = "block";
+        }
+        shouldThrow = false;
     }
 
     if (!("CSSViewTransitionRule" in window)) {
-        document.querySelector('.warning[data-reason="cross-document-view-transitions"]').style.display = "block";
+        const warningElement = document.querySelector('.warning[data-reason="cross-document-view-transitions"]');
+        if (warningElement) {
+            warningElement.style.display = "block";
+        }
         shouldThrow = true;
     }
 
     if (shouldThrow) {
+        // Throwing here, to prevent the rest of the code from getting executed
+        // If only JS (in the browser) had something like process.exit().
         throw new Error('Browser is lacking support …');
     }
 
     console.log('✅ Cross-document view transitions supported');
-})();
-
-// DOM readiness check utility
-function waitForElement(selector, timeout = 5000) {
-    return new Promise((resolve) => {
-        const element = document.querySelector(selector);
-        if (element) {
-            resolve(element);
-            return;
-        }
-
-        const observer = new MutationObserver(() => {
-            const element = document.querySelector(selector);
-            if (element) {
-                observer.disconnect();
-                resolve(element);
-            }
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        setTimeout(() => {
-            observer.disconnect();
-            resolve(null);
-        }, timeout);
-    });
-}
-
-// Wait for a group of selectors to appear in the DOM
-async function waitForSelectors(selectors, timeout = 5000) {
-    for (const selector of selectors) {
-        const element = await waitForElement(selector, timeout);
-        if (!element) {
-            console.warn(`⚠️ Required element not found: ${selector}`);
-            return false;
-        }
-    }
-
-    return true;
-}
-
-// Ensure card elements are ready before starting a transition
-async function ensureCardElementsReady(project) {
-    if (!project) return true;
-
-    const selectors = [
-        `.card[data-project="${project}"]`,
-        `.card[data-project="${project}"] img[slot="media"], .card[data-project="${project}"] img`,
-        `.card[data-project="${project}"] .title, .card[data-project="${project}"] h1, .card[data-project="${project}"] h2`
-    ];
-
-    return waitForSelectors(selectors);
-}
-
-// Ensure detail page elements are ready before starting a transition
-async function ensureDetailElementsReady(project) {
-    if (!project) return true;
-
-    const selectors = [
-        `.post-header[data-project="${project}"]`,
-        `.post-header[data-project="${project}"] img, .post-header[data-project="${project}"] .icon-placeholder`,
-        `.post-header[data-project="${project}"] .heading, .post-header[data-project="${project}"] h1`
-    ];
-
-    return waitForSelectors(selectors);
-}
-
-// Link click handler to trigger cross-document view transitions
-async function handleLinkClick(event) {
-    const anchor = event.target.closest('a');
-    if (!anchor || anchor.target || anchor.download) return;
-
-    const url = new URL(anchor.href, location.href);
-    if (url.origin !== location.origin) return;
-
-    // Check if this is a navigation that should have a view transition
-    const currentUrl = new URL(window.location.href);
-    const isCardToDetail = isHomePage(currentUrl) && isProjectPage(url);
-    const isDetailToCard = isProjectPage(currentUrl) && isHomePage(url);
-    
-    if (!isCardToDetail && !isDetailToCard) return;
-    if (!window.navigation) return;
-
-    event.preventDefault();
-    
-    console.log('🚀 Intercepted link click - starting view transition:', currentUrl.pathname, '→', url.pathname);
-    
-    // Ensure DOM elements are ready before starting transition
-    if (isCardToDetail) {
-        const project = extractProjectNameFromUrl(url);
-        const elementsReady = await ensureCardElementsReady(project);
-        if (!elementsReady) {
-            console.warn('❌ Required elements not ready, falling back to regular navigation');
-            window.location.href = anchor.href;
-            return;
-        }
-    }
-    
-    // Start the cross-document view transition
-    if (!document.startViewTransition) {
-        console.warn('❌ document.startViewTransition not available');
-        window.location.href = anchor.href;
-        return;
-    }
-
-    document.startViewTransition(() => {
-        // Use the Navigation API so the new page participates
-        // in the cross-document view transition.
-        return navigation.navigate(anchor.href);
-    });
-}
-
-// Add click event listener
-document.addEventListener('click', handleLinkClick);
-
-// URL Pattern matching
-const homePagePattern = new URLPattern(`${basePath}(/designs/)*`, window.origin);
-const isHomePage = (url) => {
-    const urlObj = typeof url === 'string' ? new URL(url) : url;
-    return homePagePattern.exec(urlObj) || urlObj.pathname === '/' || urlObj.pathname === '/designs/';
-}
-
-const projectPagePattern = new URLPattern(`${basePath}/designs/:project/`, window.origin);
-const isProjectPage = (url) => {
-    const urlObj = typeof url === 'string' ? new URL(url) : url;
-    return projectPagePattern.exec(urlObj);
-}
-
-const extractProjectNameFromUrl = (url) => {
-    const urlObj = typeof url === 'string' ? new URL(url) : url;
-    const match = projectPagePattern.exec(urlObj);
-    const project = match?.pathname.groups.project;
-    console.log(`🔍 Extracting project from URL: ${urlObj.pathname} → ${project}`);
-    return project;
-}
-
-// Utility function to set temporary view transition names
-const setTemporaryViewTransitionNames = async (entries, vtPromise) => {
-    console.log('🎯 Setting temporary view transition names:', entries.map(([el, name]) => name));
-    
-    for (const [$el] of entries) {
-        if ($el) {
-            $el.style.viewTransitionName = entries.find(([el]) => el === $el)?.[1] || '';
-        }
-    }
-
-    await vtPromise;
-
-    for (const [$el] of entries) {
-        if ($el) {
-            $el.style.viewTransitionName = '';
-        }
-    }
-    
-    console.log('🧹 Temporary view transition names cleaned up');
-}
-
-// OLD PAGE LOGIC - Handle outgoing navigation
-window.addEventListener('pageswap', async (e) => {
-    const targetPath = new URL(e.activation.entry.url).pathname;
-    if (!targetPath.startsWith(basePath)) {
-        e.viewTransition.skipTransition();
-        return;
-    }
-
-    if (e.viewTransition) {
-        const currentUrl = e.activation.from?.url ? new URL(e.activation.from.url) : new URL(window.location.href);
-        const targetUrl = new URL(e.activation.entry.url);
-
-        console.log('📤 Pageswap:', currentUrl.pathname, '→', targetUrl.pathname);
-
-        // Going from project page to homepage
-        // ~> The detail page elements are the ones!
-        if (isProjectPage(currentUrl) && isHomePage(targetUrl)) {
-            const project = extractProjectNameFromUrl(currentUrl);
-            
-            if (project) {
-                const detailContainer = document.querySelector(`.post-header[data-project="${project}"]`);
-                const detailImage = document.querySelector(`.post-header[data-project="${project}"] img, .post-header[data-project="${project}"] .icon-placeholder`);
-                const detailTitle = document.querySelector(`.post-header[data-project="${project}"] .heading, .post-header[data-project="${project}"] h1`);
-
-                // Set transition type for CSS animations
-                document.documentElement.dataset.activeViewTransitionType = 'detail-to-card';
-
-                setTemporaryViewTransitionNames([
-                    [detailContainer, 'card-container'],
-                    [detailImage, 'card-image'],
-                    [detailTitle, 'card-title'],
-                ].filter(([element]) => element), e.viewTransition.finished);
-            }
-        }
-
-        // Going to project page
-        // ~> The clicked card elements are the ones!
-        if (isProjectPage(targetUrl)) {
-            const project = extractProjectNameFromUrl(targetUrl);
-
-            if (project) {
-                const cardContainer = document.querySelector(`.card[data-project="${project}"]`);
-                const cardImage = document.querySelector(`.card[data-project="${project}"] img[slot="media"], .card[data-project="${project}"] .icon-placeholder, .card[data-project="${project}"] img`);
-                const cardTitle = document.querySelector(`.card[data-project="${project}"] .title, .card[data-project="${project}"] h1, .card[data-project="${project}"] h2`);
-
-                // Set transition type for CSS animations
-                document.documentElement.dataset.activeViewTransitionType = 'card-to-detail';
-
-                setTemporaryViewTransitionNames([
-                    [cardContainer, 'card-container'],
-                    [cardImage, 'card-image'],
-                    [cardTitle, 'card-title'],
-                ].filter(([element]) => element), e.viewTransition.finished);
-            }
-        }
-    }
 });
 
-// NEW PAGE LOGIC - Handle incoming navigation
-window.addEventListener('pagereveal', async (e) => {
-    if (!navigation.activation.from) return;
-    const fromPath = new URL(navigation.activation.from.url).pathname;
-    if (!fromPath.startsWith(basePath)) {
-        e.viewTransition.skipTransition();
-        return;
-    }
-
+// Note: determining the types is typically needed only on the new page (thus: in `pagereveal`)
+// However, because we set the `view-transition-names` based on the types (see CSS)
+// we also determine it on the outgoing page.
+window.addEventListener("pageswap", async (e) => {
+    console.log("🚨 PAGESWAP EVENT FIRED!", e);
+    console.log("🚨 viewTransition object:", e.viewTransition);
+    console.log("🚨 activation:", e.activation);
+    
     if (e.viewTransition) {
-        const fromUrl = new URL(navigation.activation.from.url);
-        const currentUrl = new URL(navigation.activation.entry.url);
 
-        console.log('📥 Pagereveal:', fromUrl.pathname, '→', currentUrl.pathname);
+        // @TODO: If destination does not start with basePath, abort the VT
 
-        // Went from project page to homepage
-        // ~> Set VT names on the relevant card in the list
-        if (isProjectPage(fromUrl) && isHomePage(currentUrl)) {
-            const project = extractProjectNameFromUrl(fromUrl);
+        const transitionType = determineTransitionType(e.activation.from, e.activation.entry);
+        console.log(`pageSwap: ${transitionType}`);
+        e.viewTransition.types.add(transitionType);
 
-            if (project) {
-                const ready = await ensureCardElementsReady(project);
-                if (!ready) {
-                    console.warn(`⚠️ Could not find required card elements for project: ${project}`);
-                    return;
-                }
-
-                // Try multiple selector strategies to find the card elements
-                const cardContainer = document.querySelector(`.card[data-project="${project}"]`) ||
-                                   document.querySelector(`#card-${project}`) ||
-                                   document.querySelector(`a[href*="${project}"]`);
-
-                const cardImage = document.querySelector(`.card[data-project="${project}"] img[slot="media"]`) ||
-                                document.querySelector(`.card[data-project="${project}"] img`) ||
-                                document.querySelector(`#card-${project}-image`) ||
-                                (cardContainer && cardContainer.querySelector('img'));
-
-                const cardTitle = document.querySelector(`.card[data-project="${project}"] .title`) ||
-                                document.querySelector(`.card[data-project="${project}"] h1`) ||
-                                document.querySelector(`#card-${project}-title`) ||
-                                (cardContainer && cardContainer.querySelector('.title, h1'));
-
-                console.log(`🔍 Looking for card elements for project: ${project}`);
-                console.log('Card container:', cardContainer);
-                console.log('Card image:', cardImage);
-                console.log('Card title:', cardTitle);
-
-                if (cardContainer) {
-                    setTemporaryViewTransitionNames([
-                        [cardContainer, 'card-container'],
-                        [cardImage, 'card-image'],
-                        [cardTitle, 'card-title'],
-                    ].filter(([element]) => element), e.viewTransition.ready);
-
-                    console.log(`✅ Set view transition names for return to card: ${project}`);
-                } else {
-                    console.warn(`⚠️ Could not find card container for project: ${project}`);
-                }
-            }
+        // Persist transitionType for browsers that don't have the Navigation API
+        if (!window.navigation) {
+            localStorage.setItem("transitionType", transitionType);
         }
-
-        // Went to project page
-        // ~> Set VT names on the detail page elements
-        if (isProjectPage(currentUrl)) {
-            const project = extractProjectNameFromUrl(currentUrl);
-
-            if (project) {
-                const ready = await ensureDetailElementsReady(project);
-                if (!ready) {
-                    console.warn(`⚠️ Could not find required detail elements for project: ${project}`);
-                    return;
-                }
-
-                const detailContainer = document.querySelector(`.post-header[data-project="${project}"]`);
-                const detailImage = document.querySelector(`.post-header[data-project="${project}"] img, .post-header[data-project="${project}"] .icon-placeholder`);
-                const detailTitle = document.querySelector(`.post-header[data-project="${project}"] .heading, .post-header[data-project="${project}"] h1`);
-
-                setTemporaryViewTransitionNames([
-                    [detailContainer, 'card-container'],
-                    [detailImage, 'card-image'],
-                    [detailTitle, 'card-title'],
-                ].filter(([element]) => element), e.viewTransition.ready);
-            }
-        }
+    } else {
+        console.log("🚨 NO VIEW TRANSITION OBJECT IN PAGESWAP");
     }
 });

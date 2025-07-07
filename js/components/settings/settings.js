@@ -287,20 +287,54 @@ class SiteSettings extends HTMLElement {
     const customColorButton = this.shadowRoot.querySelector('[data-hue="custom"]');
     const hueSlider = this.shadowRoot.querySelector('.hue-slider');
     
-    // Store swatches reference
-    this.swatches = [...swatchButtons, customColorButton];
+    // Store swatches reference - filter out null values
+    this.swatches = [...swatchButtons, customColorButton].filter(Boolean);
     
-    // Add event listeners
+    // Add event listeners with keyboard support
     themeButtons.forEach(button => {
-      button.addEventListener('click', this.themeChangeHandler);
+      if (button) {
+        button.addEventListener('click', this.themeChangeHandler);
+        button.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.themeChangeHandler(e);
+          }
+        });
+        // Make focusable
+        button.setAttribute('tabindex', '0');
+        button.setAttribute('role', 'button');
+        button.setAttribute('aria-pressed', button.classList.contains('active'));
+      }
     });
     
     swatchButtons.forEach(button => {
-      button.addEventListener('click', this.swatchClickHandler);
+      if (button) {
+        button.addEventListener('click', this.swatchClickHandler);
+        button.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.swatchClickHandler(e);
+          }
+        });
+        // Make focusable
+        button.setAttribute('tabindex', '0');
+        button.setAttribute('role', 'button');
+        button.setAttribute('aria-label', `Select color hue ${button.dataset.hue}`);
+      }
     });
     
     if (customColorButton) {
       customColorButton.addEventListener('click', this.customColorHandler);
+      customColorButton.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.customColorHandler(e);
+        }
+      });
+      // Make focusable
+      customColorButton.setAttribute('tabindex', '0');
+      customColorButton.setAttribute('role', 'button');
+      customColorButton.setAttribute('aria-label', 'Select custom color');
     }
     
     if (hueSlider) {
@@ -334,7 +368,11 @@ class SiteSettings extends HTMLElement {
   setActiveTheme(theme) {
     const themeButtons = this.shadowRoot.querySelectorAll('[data-theme]');
     themeButtons.forEach(button => {
-      button.classList.toggle('active', button.dataset.theme === theme);
+      if (button) {
+        const isActive = button.dataset.theme === theme;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-pressed', isActive);
+      }
     });
   }
 
@@ -364,7 +402,7 @@ class SiteSettings extends HTMLElement {
   swatchClickHandler(event) {
     const hue = parseInt(event.currentTarget.dataset.hue);
     if (!isNaN(hue)) {
-      this.setHue(hue);
+      this.setHue(hue, true, true); // true for store, true for transition
     }
   }
 
@@ -376,9 +414,13 @@ class SiteSettings extends HTMLElement {
       colorSlider.classList.add('visible');
     }
     
-    // Update selected state
+    // Update selected state and ARIA attributes
     this.swatches.forEach(s => {
-      s.classList.toggle('selected', s.dataset.hue === 'custom');
+      if (s) {
+        const isSelected = s.dataset.hue === 'custom';
+        s.classList.toggle('selected', isSelected);
+        s.setAttribute('aria-pressed', isSelected);
+      }
     });
   }
 
@@ -388,8 +430,70 @@ class SiteSettings extends HTMLElement {
     localStorage.setItem('brandHue', hue);
   }
 
-  setHue(hue, store = true) {
-    document.documentElement.style.setProperty('--color1-hue', `${hue}deg`);
+  // Calculate the shortest path between two hues on a 360-degree circle
+  calculateShortestHuePath(currentHue, targetHue) {
+    const diff = targetHue - currentHue;
+    const absDiff = Math.abs(diff);
+    
+    if (absDiff <= 180) {
+      // Direct path is shortest
+      return targetHue;
+    } else {
+      // Wrap around is shorter
+      if (diff > 0) {
+        // Going clockwise but wrap counter-clockwise is shorter
+        return targetHue - 360;
+      } else {
+        // Going counter-clockwise but wrap clockwise is shorter
+        return targetHue + 360;
+      }
+    }
+  }
+
+  // Animate hue changes with easing
+  animateHueTransition(currentHue, targetHue, duration = 400) {
+    const startTime = performance.now();
+    const startHue = currentHue;
+    const endHue = this.calculateShortestHuePath(currentHue, targetHue);
+    
+    // Easing function (ease-out cubic)
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+    
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutCubic(progress);
+      
+      const currentAnimatedHue = startHue + (endHue - startHue) * easedProgress;
+      const normalizedHue = ((currentAnimatedHue % 360) + 360) % 360;
+      
+      document.documentElement.style.setProperty('--color1-hue', `${normalizedHue}deg`);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        // Ensure final value is exactly the target
+        const finalNormalizedHue = ((targetHue % 360) + 360) % 360;
+        document.documentElement.style.setProperty('--color1-hue', `${finalNormalizedHue}deg`);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  }
+
+  setHue(hue, store = true, withTransition = false) {
+    if (withTransition) {
+      // Get current hue value
+      const currentHueStr = getComputedStyle(document.documentElement).getPropertyValue('--color1-hue');
+      const currentHue = parseInt(currentHueStr) || 230;
+      
+      // Animate the transition
+      this.animateHueTransition(currentHue, hue);
+    } else {
+      // Immediate update (for slider input)
+      document.documentElement.style.setProperty('--color1-hue', `${hue}deg`);
+    }
+    
     if (store) localStorage.setItem('brandHue', hue);
     
     this.customSwatchSelected = false;
@@ -398,9 +502,13 @@ class SiteSettings extends HTMLElement {
       colorSlider.classList.remove('visible');
     }
     
-    // Update selected state
+    // Update selected state and ARIA attributes
     this.swatches.forEach(s => {
-      s.classList.toggle('selected', parseInt(s.dataset.hue) === parseInt(hue));
+      if (s) {
+        const isSelected = parseInt(s.dataset.hue) === parseInt(hue);
+        s.classList.toggle('selected', isSelected);
+        s.setAttribute('aria-pressed', isSelected);
+      }
     });
   }
 

@@ -60,7 +60,9 @@ class SiteNavigation extends HTMLElement {
 
     if (selector) {
       const link = this.querySelector(selector);
-      if (link) link.classList.add('active');
+      if (link) {
+        link.classList.add('active');
+      }
     }
   }
 }

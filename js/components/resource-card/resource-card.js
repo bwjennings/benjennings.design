@@ -119,12 +119,14 @@
         this.buttonIconElement = shadow.querySelector('.button .icon'); // Icon in the button
     
         // Add click event listener to the button
-        this.buttonElement.addEventListener('click', () => {
-          const url = this.getAttribute('button-url');
-          if (url) {
-            window.location.href = url;
-          }
-        });
+        if (this.buttonElement) {
+          this.buttonElement.addEventListener('click', () => {
+            const url = this.getAttribute('button-url');
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        }
       }
     
       static get observedAttributes() {
@@ -161,16 +163,16 @@
     
       connectedCallback() {
         // Initialize the component with current attribute values
-        if (this.hasAttribute('icon')) {
+        if (this.hasAttribute('icon') && this.boxIconElement) {
           this.boxIconElement.textContent = this.getAttribute('icon');
         }
-        if (this.hasAttribute('title')) {
+        if (this.hasAttribute('title') && this.titleElement) {
           this.titleElement.textContent = this.getAttribute('title');
         }
-        if (this.hasAttribute('description')) {
+        if (this.hasAttribute('description') && this.descriptionElement) {
           this.descriptionElement.textContent = this.getAttribute('description');
         }
-        if (this.hasAttribute('button-text')) {
+        if (this.hasAttribute('button-text') && this.buttonTextElement) {
           this.buttonTextElement.textContent = this.getAttribute('button-text');
         }
       }

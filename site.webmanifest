@@ -2,9 +2,8 @@
     "name": "cards",
     "short_name": "ben",
     "start_url": ".",
-    "display": "fullscreen",
+    "display": "standalone",
     "background_color": "#005EFF",
-   "display": "standalone",
     "description": "A set of things made by Ben",
     "shortcuts": [
         {

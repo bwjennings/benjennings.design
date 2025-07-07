@@ -22,7 +22,7 @@ customElements.define(
 
       // Conditionally set label text based on the data-hide-label attribute
       const labelTextEl = this.shadowRoot.querySelector(".label-text");
-      if (!this.hasAttribute("data-hide-label")) {
+      if (!this.hasAttribute("data-hide-label") && labelTextEl) {
         labelTextEl.textContent = "Theme Color:";
       }
 
@@ -48,6 +48,11 @@ customElements.define(
     }
 
     connectedCallback() {
+      if (!this.hueSlider) {
+        console.error("Hue slider element not found in shadow DOM");
+        return;
+      }
+
       const storedHue = localStorage.getItem("brandHue");
       if (storedHue !== null) {
         this.hueSlider.value = storedHue;
@@ -68,7 +73,9 @@ customElements.define(
 
     disconnectedCallback() {
       // Remove event listeners to prevent memory leaks
-      this.hueSlider.removeEventListener("input", this.handleInput);
+      if (this.hueSlider) {
+        this.hueSlider.removeEventListener("input", this.handleInput);
+      }
       window.removeEventListener("globalHueChange", this.handleGlobalHueChange);
       window.removeEventListener("storage", this.handleStorageChange);
     }
@@ -80,6 +87,8 @@ customElements.define(
 
     // Processes the slider input: updates hue, saves value, and dispatches events
     processInput() {
+      if (!this.hueSlider) return;
+      
       const newHue = this.hueSlider.value;
       this.updateHue(newHue);
       this.saveHue(newHue);
@@ -89,7 +98,7 @@ customElements.define(
 
     // Updates the slider value if a global hue change event occurs
     handleGlobalHueChange(event) {
-      if (event.detail !== this.hueSlider.value) {
+      if (this.hueSlider && event.detail !== this.hueSlider.value) {
         this.hueSlider.value = event.detail;
         this.updateHue(event.detail);
       }
@@ -97,7 +106,7 @@ customElements.define(
 
     // Syncs the slider when localStorage changes (e.g., from another tab)
     handleStorageChange(event) {
-      if (event.key === "brandHue") {
+      if (event.key === "brandHue" && this.hueSlider) {
         const newHue = event.newValue;
         if (newHue && newHue !== this.hueSlider.value) {
           this.hueSlider.value = newHue;
@@ -122,13 +131,15 @@ customElements.define(
 
     // Returns the current hue value
     getHue() {
-      return this.hueSlider.value;
+      return this.hueSlider ? this.hueSlider.value : null;
     }
 
     // Sets the hue value programmatically
     setHue(hue) {
-      this.hueSlider.value = hue;
-      this.updateHue(hue);
+      if (this.hueSlider) {
+        this.hueSlider.value = hue;
+        this.updateHue(hue);
+      }
     }
   }
 );

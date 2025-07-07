@@ -54,7 +54,7 @@
 
     <link rel="modulepreload" href="/js/components/index.js" />
     <script type="module" src="/js/components/index.js"></script>
-    <script type="module" src="/js/view-transition.js"></script>
+    <script src="/js/view-transition.js"></script>
     <link href="/assets/css/vars.css" rel="stylesheet" />
     <link href="/assets/css/index.css" rel="stylesheet" />
 
@@ -112,9 +112,10 @@
   </head>
 
   <body id="page-container" class="page-container">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <site-navigation></site-navigation>
 
-    <main>
+    <main id="main-content">
       <header class="page-title">
         <h1 class="heading">Experiments</h1>
         <p class="body lg secondary">A place that I can test new ideas</p>
@@ -125,7 +126,8 @@
           <h1 class="title">Hello test</h1>
         </article>
         
-
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.22/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/WPTydPmUQycfEmxQ/scene.splinecode"></spline-viewer>
         <model-viewer
           style="
             height: 600px;

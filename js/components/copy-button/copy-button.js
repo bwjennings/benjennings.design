@@ -16,6 +16,12 @@ class CopyButton extends HTMLElement {
       this.copyBtn = this.shadowRoot.getElementById('copyBtn');
       this.icon = this.shadowRoot.querySelector('.icon');
       this.textSlot = this.shadowRoot.querySelector('slot');
+      
+      if (!this.copyBtn) {
+        console.error("Copy button not found in shadow DOM");
+        return;
+      }
+      
       this.copyBtn.addEventListener('click', () => this.copyText());
       this.updateTextToCopy();
     }
@@ -32,26 +38,71 @@ class CopyButton extends HTMLElement {
 
     updateTextToCopy() {
       const input = this.shadowRoot.getElementById('textToCopy');
-      input.value = this.getAttribute('copy-text') || 'Default text to copy';
+      if (input) {
+        input.value = this.getAttribute('copy-text') || 'Default text to copy';
+      }
     }
 
-    copyText() {
-      const input = this.shadowRoot.getElementById('textToCopy');
-      input.style.display = 'block';
-      input.select();
-      document.execCommand('copy');
-      input.style.display = 'none';
-      this.showCopiedMessage();
+    async copyText() {
+      const textToCopy = this.getAttribute('copy-text') || 'Default text to copy';
+      
+      try {
+        // Use modern Clipboard API if available
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(textToCopy);
+          this.showCopiedMessage();
+        } else {
+          // Fallback to execCommand for older browsers
+          const input = this.shadowRoot.getElementById('textToCopy');
+          if (input) {
+            input.style.display = 'block';
+            input.select();
+            document.execCommand('copy');
+            input.style.display = 'none';
+            this.showCopiedMessage();
+          }
+        }
+      } catch (error) {
+        console.error('Failed to copy text:', error);
+        // Try fallback method
+        try {
+          const input = this.shadowRoot.getElementById('textToCopy');
+          if (input) {
+            input.style.display = 'block';
+            input.select();
+            document.execCommand('copy');
+            input.style.display = 'none';
+            this.showCopiedMessage();
+          }
+        } catch (fallbackError) {
+          console.error('All copy methods failed:', fallbackError);
+        }
+      }
     }
 
     showCopiedMessage() {
-      const originalText = this.textSlot.assignedNodes()[0]?.textContent || 'Copy Text';
+      if (!this.textSlot || !this.icon) {
+        console.warn("Text slot or icon element not found");
+        return;
+      }
+      
+      const assignedNodes = this.textSlot.assignedNodes();
+      const textNode = assignedNodes[0];
+      const originalText = textNode?.textContent || 'Copy Text';
       const originalIcon = this.icon.textContent;
-      this.textSlot.assignedNodes()[0].textContent = 'Copied!';
+      
+      if (textNode) {
+        textNode.textContent = 'Copied!';
+      }
       this.icon.textContent = 'check';
+      
       setTimeout(() => {
-        this.textSlot.assignedNodes()[0].textContent = originalText;
-        this.icon.textContent = originalIcon;
+        if (textNode) {
+          textNode.textContent = originalText;
+        }
+        if (this.icon) {
+          this.icon.textContent = originalIcon;
+        }
       }, 3000);
     }
   }

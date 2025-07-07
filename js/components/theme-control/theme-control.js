@@ -26,9 +26,18 @@ class ThemeControl extends HTMLElement {
     this.hues = [25,80,150,210,300];
     this.swatches = [];
     this.customSwatchSelected = false;
+
+    // Check if required elements exist
+    if (!this.picker || !this.slider) {
+      console.error("Required theme control elements not found in shadow DOM");
+    }
   }
 
   connectedCallback() {
+    if (!this.picker || !this.slider) {
+      return; // Exit early if required elements are missing
+    }
+    
     this.initSwatches();
     const storedHue = localStorage.getItem('brandHue');
     this.slider.value = storedHue !== null ? storedHue : '230';
@@ -37,6 +46,11 @@ class ThemeControl extends HTMLElement {
   }
 
   initSwatches() {
+    if (!this.picker) {
+      console.error("Picker element not found, cannot initialize swatches");
+      return;
+    }
+    
     const storedHue = parseInt(localStorage.getItem('brandHue')) || 230;
     const defaultHue = storedHue;
     this.hues.forEach(h => {
@@ -60,22 +74,97 @@ class ThemeControl extends HTMLElement {
     this.setHue(defaultHue, false);
   }
 
-  setHue(hue, store=true) {
-    document.documentElement.style.setProperty('--color1-hue', `${hue}deg`);
+  // Calculate the shortest path between two hues on a 360-degree circle
+  calculateShortestHuePath(currentHue, targetHue) {
+    const diff = targetHue - currentHue;
+    const absDiff = Math.abs(diff);
+    
+    if (absDiff <= 180) {
+      // Direct path is shortest
+      return targetHue;
+    } else {
+      // Wrap around is shorter
+      if (diff > 0) {
+        // Going clockwise but wrap counter-clockwise is shorter
+        return targetHue - 360;
+      } else {
+        // Going counter-clockwise but wrap clockwise is shorter
+        return targetHue + 360;
+      }
+    }
+  }
+
+  // Animate hue changes with easing
+  animateHueTransition(currentHue, targetHue, duration = 400) {
+    const startTime = performance.now();
+    const startHue = currentHue;
+    const endHue = this.calculateShortestHuePath(currentHue, targetHue);
+    
+    // Easing function (ease-out cubic)
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+    
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutCubic(progress);
+      
+      const currentAnimatedHue = startHue + (endHue - startHue) * easedProgress;
+      const normalizedHue = ((currentAnimatedHue % 360) + 360) % 360;
+      
+      document.documentElement.style.setProperty('--color1-hue', `${normalizedHue}deg`);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        // Ensure final value is exactly the target
+        const finalNormalizedHue = ((targetHue % 360) + 360) % 360;
+        document.documentElement.style.setProperty('--color1-hue', `${finalNormalizedHue}deg`);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  }
+
+  setHue(hue, store=true, withTransition=true) {
+    if (withTransition) {
+      // Get current hue value
+      const currentHueStr = getComputedStyle(document.documentElement).getPropertyValue('--color1-hue');
+      const currentHue = parseInt(currentHueStr) || 230;
+      
+      // Animate the transition
+      this.animateHueTransition(currentHue, hue);
+    } else {
+      // Immediate update (for slider input)
+      document.documentElement.style.setProperty('--color1-hue', `${hue}deg`);
+    }
+    
     if (store) localStorage.setItem('brandHue', hue);
     this.customSwatchSelected = false;
-    this.slider.classList.remove('visible');
-    this.swatches.forEach(s => s.classList.toggle('selected', parseInt(s.dataset.hue) === parseInt(hue)));
+    if (this.slider) {
+      this.slider.classList.remove('visible');
+    }
+    this.swatches.forEach(s => {
+      if (s) {
+        s.classList.toggle('selected', parseInt(s.dataset.hue) === parseInt(hue));
+      }
+    });
   }
 
   setCustomMode() {
     this.customSwatchSelected = true;
-    this.slider.classList.add('visible');
-    this.swatches.forEach(s => s.classList.toggle('selected', s.dataset.hue === 'custom'));
+    if (this.slider) {
+      this.slider.classList.add('visible');
+    }
+    this.swatches.forEach(s => {
+      if (s) {
+        s.classList.toggle('selected', s.dataset.hue === 'custom');
+      }
+    });
   }
 
   updateHue(value, store=true) {
     const v = parseInt(value);
+    // Slider input should be immediate (no transition)
     document.documentElement.style.setProperty('--color1-hue', `${v}deg`);
     if (store) localStorage.setItem('brandHue', v);
   }

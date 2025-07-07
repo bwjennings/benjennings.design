@@ -205,9 +205,8 @@
 
   /* color base */
   --color1-hue: 230deg;
-  transition: --color1-hue 200ms linear;
   transition-property: --contrast, --text-heading-grade, --text-heading-width,
-    --color1-hue, --base-radius, --spacing-base, --gap-base, --chroma-base,
+    --base-radius, --spacing-base, --gap-base, --chroma-base,
     --hue-offset-base;
   --alpha: 0.4;
   --color-color1-5-alpha: oklch(var(--lightness-5) var(--chroma-5) var(--color1-hue) / var(--alpha));

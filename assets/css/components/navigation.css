@@ -55,9 +55,10 @@ site-navigation {
 
 
     li {
-      &:focus {
+      &:focus-visible {
         transform: perspective(300px) translateZ(-50px);
-
+        outline: 2px solid var(--color-foreground-base);
+        outline-offset: 2px;
       }
     }
   }
@@ -97,13 +98,17 @@ site-navigation {
     "GRAD" 0;
 
   &:hover:not(.active) {
-
     outline: var(--color-border-primary) 2px solid;
     outline-width: 2px;
     --icon-grade: 200;
     font-variation-settings:
-
       "GRAD" 200;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-foreground-base);
+    outline-offset: 2px;
+    transform: perspective(300px) translateZ(-50px);
   }
 
 
@@ -196,7 +201,6 @@ theme-slider {
   font-variation-settings:
     'GRAD' 150;
 
-  &:hover {}
 }
 
 
