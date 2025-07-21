@@ -9,16 +9,39 @@ permalink: pretty
 baseurl: ""
 url: "https://benjennings.design"
 
+# Collections
+collections:
+  designs:
+    output: true
+    permalink: /designs/:name/
+  experiments:
+    output: true
+    permalink: /experiments/:name/
+  fundamentals:
+    output: true
+    permalink: /fundamentals/:name/
+  resources:
+    output: true
+    permalink: /resources/:name/
+
 markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
 
+# Include source files
+include:
+  - src
+
+# Exclude build and config files
+exclude:
+  - config
+  - node_modules
+  - vendor
+  - README.md
+  - LICENSE.md
+
 # plugins:
 #   - jekyll-feed
 #   - jekyll-seo-tag
 #   - jekyll-sitemap
-
-# exclude:
-#   - README.md
-#   - LICENSE.md
