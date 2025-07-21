@@ -40,6 +40,14 @@ kramdown:
 # Include source files
 include:
   - src
+  - _designs
+  - _experiments
+  - _fundamentals
+  - _resources
+
+# Keep files setting to preserve directory structure
+keep_files:
+  - assets
 
 # Exclude build and config files
 exclude:
