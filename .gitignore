@@ -3,3 +3,13 @@
 node_modules/
 *.min.html
 .figma.json
+
+# Jekyll build output
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ruby
+Gemfile.lock
+.bundle/
