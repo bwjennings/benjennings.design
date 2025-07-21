@@ -3,6 +3,11 @@
   types: up, down, reload, card-to-detail, detail-to-card;
 }
 
+::view-transition {
+  --transition-duration: 2000ms;
+  --transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+}
+
 /* Component View Transition Names */
 site-navigation {
   view-transition-name: nav;
@@ -258,7 +263,7 @@ html:active-view-transition-type(card-to-detail) ::view-transition-old(pls-title
 html:active-view-transition-type(card-to-detail) ::view-transition-old(herff-jones-container),
 html:active-view-transition-type(card-to-detail) ::view-transition-old(herff-jones-image),
 html:active-view-transition-type(card-to-detail) ::view-transition-old(herff-jones-title) {
-  animation: blur-morph-out 600ms cubic-bezier(0.2, 0, 0.2, 1);
+  animation: blur-morph-out var(--transition-duration) var(--transition-timing-function);
   transform-origin: center center;
 }
 
@@ -274,7 +279,7 @@ html:active-view-transition-type(card-to-detail) ::view-transition-new(pls-title
 html:active-view-transition-type(card-to-detail) ::view-transition-new(herff-jones-container),
 html:active-view-transition-type(card-to-detail) ::view-transition-new(herff-jones-image),
 html:active-view-transition-type(card-to-detail) ::view-transition-new(herff-jones-title) {
-  animation: blur-morph-in 600ms cubic-bezier(0.2, 0, 0.2, 1);
+  animation: blur-morph-in var(--transition-duration) var(--transition-timing-function);
   transform-origin: center center;
 }
 
@@ -305,7 +310,7 @@ html:active-view-transition-type(detail-to-card) ::view-transition-old(pls-title
 html:active-view-transition-type(detail-to-card) ::view-transition-old(herff-jones-container),
 html:active-view-transition-type(detail-to-card) ::view-transition-old(herff-jones-image),
 html:active-view-transition-type(detail-to-card) ::view-transition-old(herff-jones-title) {
-  animation: blur-morph-out 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  animation: blur-morph-out calc(var(--transition-duration) * 0.67) var(--transition-timing-function);
   transform-origin: center center;
 }
 
@@ -321,7 +326,7 @@ html:active-view-transition-type(detail-to-card) ::view-transition-new(pls-title
 html:active-view-transition-type(detail-to-card) ::view-transition-new(herff-jones-container),
 html:active-view-transition-type(detail-to-card) ::view-transition-new(herff-jones-image),
 html:active-view-transition-type(detail-to-card) ::view-transition-new(herff-jones-title) {
-  animation: blur-morph-in 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  animation: blur-morph-in calc(var(--transition-duration) * 0.67) var(--transition-timing-function);
   transform-origin: center center;
 }
 
@@ -393,31 +398,31 @@ html:active-view-transition-type(reload) {
 /* Animation styles for down type only (going down in navigation order) */
 html:active-view-transition-type(down) {
   &::view-transition-old(main-content) {
-    animation: slide-out-to-top 600ms var(--timing-decelerate);
+    animation: slide-out-to-top var(--transition-duration) var(--timing-decelerate);
   }
   &::view-transition-new(main-content) {
-    animation: slide-in-from-bottom 600ms var(--timing-decelerate);
+    animation: slide-in-from-bottom var(--transition-duration) var(--timing-decelerate);
   }
 }
 
 /* Animation styles for up type only (going up in navigation order) */
 html:active-view-transition-type(up) {
   &::view-transition-old(main-content) {
-    animation: slide-out-to-bottom 600ms var(--timing-decelerate);
+    animation: slide-out-to-bottom var(--transition-duration) var(--timing-decelerate);
   }
   &::view-transition-new(main-content) {
-    animation: slide-in-from-top 600ms var(--timing-decelerate);
+    animation: slide-in-from-top var(--transition-duration) var(--timing-decelerate);
   }
 }
 
 /* Animation styles for reload type only */
 html:active-view-transition-type(reload) {
   &::view-transition-old(main-content) {
-    animation: fade-out 200ms ease-out;
+    animation: fade-out calc(var(--transition-duration) * 0.33) ease-out;
   }
   &::view-transition-new(main-content) {
-    animation: fade-in 200ms ease-in;
-    animation-delay: 150ms;
+    animation: fade-in calc(var(--transition-duration) * 0.33) ease-in;
+    animation-delay: calc(var(--transition-duration) * 0.25);
   }
 }
 
