@@ -24,6 +24,14 @@ collections:
     output: true
     permalink: /resources/:name/
 
+# Default permalink structure
+defaults:
+  - scope:
+      path: "_designs"
+      type: "designs"
+    values:
+      layout: "none"
+
 markdown: kramdown
 kramdown:
   input: GFM
