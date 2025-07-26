@@ -239,12 +239,9 @@ theme-slider {
     border: none;
   }
 
+  /* Hide desktop settings on mobile */
   site-settings {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    width: fit-content;
-
+    display: none;
   }
 
   .nav-item {
@@ -339,4 +336,177 @@ theme-slider {
     }
   }
 
+}
+
+/* Mobile settings styles - apply globally but only visible on mobile */
+.settings-button {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 82px;
+  height: 32px;
+  background-color: #e4e4e6;
+  border: 1px solid #e4e4e6;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  cursor: pointer;
+  font-family: 'Roboto Flex', sans-serif;
+  font-size: 16px;
+  color: #19202b;
+  z-index: 1000;
+  /* Ensure it's always positioned relative to viewport */
+  transform: none;
+  margin: 0;
+}
+
+.settings-button .icon {
+  font-family: 'Material Symbols Sharp', sans-serif;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.settings-popover {
+  position: fixed;
+  top: 56px;
+  right: 16px;
+  width: 318px;
+  background: #ffffff;
+  border: 1px solid #e4e4e6;
+  border-radius: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  display: none;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.settings-popover site-settings {
+  display: block !important;
+  width: 100%;
+}
+
+.settings-popover .settings-container {
+  border: none;
+  padding: 0;
+}
+
+.settings-popover .settings-content {
+  padding: 0;
+  gap: 32px;
+}
+
+.settings-popover .color-picker {
+  background: #ffffff;
+  border-radius: 100px;
+  padding: 4px;
+  height: 40px;
+}
+
+.settings-popover .color-picker-content {
+  gap: 4px;
+  padding: 0;
+}
+
+.settings-popover .color-item {
+  border-radius: 100px;
+}
+
+.settings-popover .color-item:nth-child(1) { 
+  background: #fbf5ee; 
+}
+.settings-popover .color-item:nth-child(2) { 
+  background: #f0fbee; 
+}
+.settings-popover .color-item:nth-child(3) { 
+  background: #eef6fb; 
+}
+.settings-popover .color-item:nth-child(4) { 
+  background: #f7eefb; 
+}
+
+.settings-popover .color-item.custom {
+  background: #e4e4e6;
+  border: none;
+}
+
+.settings-popover .color-item.custom .icon {
+  color: #565e6a;
+  font-size: 20px;
+}
+
+.settings-popover .segmented-buttons {
+  border: 1px solid #e4e4e6;
+  border-radius: 0;
+  height: 40px;
+}
+
+.settings-popover .segmented-button {
+  padding: 8px 16px;
+}
+
+.settings-popover .segmented-button-content {
+  gap: 12px;
+  padding: 0;
+}
+
+.settings-popover .segmented-button .icon {
+  font-size: 24px;
+}
+
+.settings-popover .segmented-button .text {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.settings-popover .segmented-button.active {
+  background: #e4f5fb;
+  color: #006e9b;
+}
+
+.settings-popover .segmented-button.active .icon,
+.settings-popover .segmented-button.active .text {
+  color: #006e9b;
+}
+
+.settings-popover .segmented-button:not(.active) .icon,
+.settings-popover .segmented-button:not(.active) .text {
+  color: #19202b;
+}
+
+.settings-popover .color-slider {
+  display: none !important;
+}
+
+.settings-popover.open {
+  display: block;
+}
+
+.settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: none;
+}
+
+.settings-overlay.open {
+  display: block;
+}
+
+/* Desktop: hide mobile settings and show regular settings */
+@media screen and (min-width: 801px) {
+  .settings-button,
+  .settings-popover,
+  .settings-overlay {
+    display: none !important;
+  }
 }

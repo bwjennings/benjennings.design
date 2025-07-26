@@ -41,6 +41,51 @@ class SiteNavigation extends HTMLElement {
     </nav>`;
 
     this.setActiveItem();
+    this.setupMobileSettings();
+  }
+
+  setupMobileSettings() {
+    // Create mobile settings elements and append to body
+    if (!document.getElementById('mobile-settings-overlay')) {
+      const overlay = document.createElement('div');
+      overlay.className = 'settings-overlay';
+      overlay.id = 'mobile-settings-overlay';
+      document.body.appendChild(overlay);
+
+      const button = document.createElement('button');
+      button.className = 'settings-button';
+      button.id = 'mobile-settings-btn';
+      button.innerHTML = `
+        <span class="icon">settings</span>
+        <span>Settings</span>
+      `;
+      document.body.appendChild(button);
+
+      const popover = document.createElement('div');
+      popover.className = 'settings-popover';
+      popover.id = 'mobile-settings-popover';
+      popover.innerHTML = '<site-settings id="popover-settings"></site-settings>';
+      document.body.appendChild(popover);
+
+      // Add event listeners
+      button.addEventListener('click', () => {
+        popover.classList.toggle('open');
+        overlay.classList.toggle('open');
+      });
+
+      overlay.addEventListener('click', () => {
+        popover.classList.remove('open');
+        overlay.classList.remove('open');
+      });
+
+      // Close on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popover.classList.contains('open')) {
+          popover.classList.remove('open');
+          overlay.classList.remove('open');
+        }
+      });
+    }
   }
 
   setActiveItem() {
