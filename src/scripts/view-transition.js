@@ -1,9 +1,15 @@
 // Path where this app is deployed. Adjust if deploying at a subdirectory
 const basePath = '';
 
+const normalizePath = (pathname) => {
+    // Strip trailing "index.html" if present and ensure a trailing slash
+    const withoutIndex = pathname.replace(/index\.html$/, '');
+    return withoutIndex.endsWith('/') ? withoutIndex : withoutIndex + '/';
+};
+
 // Helper functions for page type detection
 const isTopLevelPage = (pathname) => {
-    const normalizedPath = pathname.endsWith('/') ? pathname : pathname + '/';
+    const normalizedPath = normalizePath(pathname);
     return ['/', '/fundamentals/', '/designs/', '/experiments/', '/resources/'].includes(normalizedPath);
 };
 
@@ -13,7 +19,7 @@ const isProjectPage = (pathname) => {
 };
 
 const isHomePage = (pathname) => {
-    const normalizedPath = pathname.endsWith('/') ? pathname : pathname + '/';
+   const normalizedPath = normalizePath(pathname);
     return normalizedPath === '/' || normalizedPath === '/designs/';
 };
 
