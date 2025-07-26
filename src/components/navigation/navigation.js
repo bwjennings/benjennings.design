@@ -17,7 +17,7 @@ class SiteNavigation extends HTMLElement {
       <div class="active-box"></div>
       <menu>
         <li><a class="nav-item item1" href="/">
-            <span class="icon" role="img" aria-hidden="true">waving_hand</span>
+            <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Home</span>
           </a></li>
         <li><a class="nav-item item2" href="/fundamentals/">
