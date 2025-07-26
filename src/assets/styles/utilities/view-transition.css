@@ -58,34 +58,9 @@ main#main-content {
   animation: none;
 }
 
-/* Navigation background transitions */
-::view-transition-old(nav-background),
-::view-transition-new(nav-background) {
-  animation-duration: var(--transition-duration);
-  animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
-}
 
-/* Desktop: smooth vertical movement */
-@media screen and (min-width: 801px) {
-  ::view-transition-old(nav-background) {
-    animation-name: nav-bg-fade-out;
-  }
-  
-  ::view-transition-new(nav-background) {
-    animation-name: nav-bg-fade-in;
-  }
-}
 
-/* Mobile: smooth horizontal movement */
-@media screen and (max-width: 800px) {
-  ::view-transition-old(nav-background) {
-    animation-name: nav-bg-slide-out;
-  }
-  
-  ::view-transition-new(nav-background) {
-    animation-name: nav-bg-slide-in;
-  }
-}
+
 
 /* Determine what gets captured when the type is card-to-detail */
 html:active-view-transition-type(card-to-detail) {
@@ -549,32 +524,7 @@ html:active-view-transition-type(reload) {
   perspective: 1000px;
 }
 
-/* Navigation background animation keyframes */
-@keyframes nav-bg-fade-out {
-  to {
-    opacity: 0;
-  }
-}
 
-@keyframes nav-bg-fade-in {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes nav-bg-slide-out {
-  to {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-}
-
-@keyframes nav-bg-slide-in {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-}
 
 /* Respect user preferences */
 @media (prefers-reduced-motion: reduce) {
