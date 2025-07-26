@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Ben Jennings</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
+    as="style" onload="this.rel='stylesheet'" />
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+    as="style" onload="this.rel='stylesheet'" />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+      rel="stylesheet" />
+  </noscript>
+
+  <script src="../../src/scripts/index.js"></script>
+  <link rel="modulepreload" href="../../src/components/index.js" />
+  <script type="module" src="../../src/components/index.js"></script>
+  <script src="../../src/scripts/view-transition.js"></script>
+  <link href="../../src/assets/styles/base/vars.css" rel="stylesheet" />
+  <link href="../../src/assets/styles/base/index.css" rel="stylesheet" />
+</head>
+
+<body id="page-container" class="page-container detail-page">
+  <site-navigation></site-navigation>
+  <main>
+
+    <div class="post">
+      <a href="../" class="button">Back</a>
+      <header id="project-header" data-project="pls" class="post-header color2">
+      <img id="project-image" src="../../public/pls-thumbnail.png" alt="PLS" />
+      <h1 id="project-title" class="heading">Training Materials are unorganized</h1>
+      <p class="body lg secondary">Centralizing lessons helped agencies customize content.</p>
+    </header>
+
+      <section class="section">
+        <h2 class="heading sm">Introduction</h2>
+        <p class="body lg">
+          Police Legal Sciences has provided training for law enforcement for 25 years. They began with legal update
+          training in only a few states and have since expanded their offerings and reach across North America.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="heading sm">The problem</h2>
+        <p class="body lg">
+          With their growth, managing and distributing content became increasingly challenging. They needed a more
+          scalable solution to make management easier while also giving agencies more options, like adjusting content to
+          fit their needs.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="heading sm">Content mapping</h2>
+        <p class="body lg">
+          I needed to understand the hierarchy of content organization, as it directly impacted how information is
+          presented to different users. To ensure it was accurate, I worked with their team in FigJam to map out the
+          relationships between key concepts. This visual map highlights the complexity of the system, from agencies to
+          user groups, individual users, courses, and lessons.
+        </p>
+        <figure>
+          <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450"
+            src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=23175-6870&embed-host=share"
+            ></iframe>
+          <figcaption class="body sm secondary">Content hierarchy mapping for agencies, users, courses, and lessons
+          </figcaption>
+        </figure>
+      </section>
+      <section class="section">
+        <h2 class="heading sm">Finding the right amount of complexity</h2>
+        <p class="body lg">
+          This system serves users with different levels of responsibility:
+        <ul>
+          <li>Global Admins – Manage the entire system</li>
+          <li>Agency Admins – Oversee their own users.</li>
+          <li>Individuals – Simply consume content.</li>
+        </ul>
+
+        As responsibilities decrease, the interface adjusts, providing robust controls for admins while remaining simple
+        and intuitive for end users.
+        </p>
+      </section>
+      <section class="section">
+        <h2 class="heading sm">The problem</h2>
+        <p class="body lg">
+          With their growth, managing and distributing content became increasingly challenging. They needed a more
+          scalable solution to make management easier while also giving agencies more options, like adjusting content to
+          fit their needs.
+        </p>
+      </section>
+    </div>
+  </main>
+</body>
+
+</html>

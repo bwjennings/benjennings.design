@@ -47,6 +47,7 @@ site-navigation {
     grid-area: nav-group;
     list-style-type: none;
     justify-content: flex-start;
+    position: relative;
     
     padding: 0;
    
@@ -83,6 +84,8 @@ site-navigation {
   justify-content: flex-start;
   -webkit-user-select: none;
   user-select: none;
+  position: relative;
+  z-index: 1;
   
   border: 1px solid transparent;
   border-radius: var(--radius-md);
@@ -93,16 +96,13 @@ site-navigation {
   outline-width: 0px;
   outline-color: transparent;
   font-variation-settings: initial;
-  font-variation-settings:
-
-    "GRAD" 0;
+  font-variation-settings: "GRAD" 0;
 
   &:hover:not(.active) {
     outline: var(--color-border-primary) 2px solid;
     outline-width: 2px;
     --icon-grade: 200;
-    font-variation-settings:
-      "GRAD" 200;
+    font-variation-settings: "GRAD" 200;
   }
 
   &:focus-visible {
@@ -113,17 +113,13 @@ site-navigation {
 
 
 
-
 .title {
   font-weight: var(--text-body-weight);
   font-size: var(--text-body-lg-size);
   line-height: var(--text-body-lg-line-height);
-
-
   align-items: center;
   justify-content: center;
   justify-items: center;
-  align-items: center;
   grid-area: title;
 }
 
@@ -132,21 +128,70 @@ site-navigation {
 
 
 
+/* Active nav item styles */
 .active {
   transition: none;
   font-variation-settings: 'GRAD' 100;
   color: var(--color-foreground-emphasis);
-  anchor-name: --active;
+  anchor-name: --active-nav-item;
+  
+  /* Fallback for browsers without anchor positioning */
   background: var(--color-background-emphasis);
 
   .icon {
-    font-variation-settings:
-      "FILL" 1,
-      "GRAD" var(--icon-grade-emphasis);
-      color: var(--color-foreground-base-secondary);
+    font-variation-settings: "FILL" 1, "GRAD" var(--icon-grade-emphasis);
+    color: var(--color-foreground-base-secondary);
   }
-
 }
+
+/* Navigation background element */
+.nav-background {
+  position: absolute;
+  background: var(--color-background-emphasis);
+  border-radius: var(--radius-md);
+  pointer-events: none;
+  z-index: 0;
+  view-transition-name: nav-background;
+}
+
+/* Modern: CSS Anchor Positioning */
+@supports (anchor-name: --test) {
+  .active {
+    background: transparent;
+  }
+  
+  .nav-background {
+    /* Anchor to the active nav item */
+    position-anchor: --active-nav-item;
+    top: anchor(top);
+    left: anchor(left);
+    width: anchor-size(width);
+    height: anchor-size(height);
+  }
+}
+
+/* Fallback: Manual positioning for view-transition supporting browsers without anchor positioning */
+@supports not (anchor-name: --test) {
+  .active {
+    background: transparent;
+  }
+  
+  /* Desktop positioning */
+  @media screen and (min-width: 801px) {
+    .nav-background {
+      width: 100%;
+      height: clamp(50px, 10cqh, 80px);
+      left: 0;
+    }
+    
+    .nav-background.item1 { top: calc(0 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+    .nav-background.item2 { top: calc(1 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+    .nav-background.item3 { top: calc(2 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+    .nav-background.item4 { top: calc(3 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+    .nav-background.item5 { top: calc(4 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+  }
+}
+
 
 
 
@@ -158,27 +203,27 @@ site-navigation {
 
 .item1 {
   grid-area: item1;
-  view-transition-name: item1;
+  view-transition-name: nav-item1;
 }
 
 .item2 {
   grid-area: item2;
-  view-transition-name: item2;
+  view-transition-name: nav-item2;
 }
 
 .item3 {
   grid-area: item3;
-  view-transition-name: item3;
+  view-transition-name: nav-item3;
 }
 
 .item4 {
   grid-area: item4;
-  view-transition-name: item4;
+  view-transition-name: nav-item4;
 }
 
 .item5 {
   grid-area: item5;
-  view-transition-name: item5;
+  view-transition-name: nav-item5;
 }
 
 
@@ -198,38 +243,53 @@ theme-slider {
 .site-title {
   font-size: var(--text-heading-sm-size);
   font-weight: var(--text-body-weight);
-  font-variation-settings:
-    'GRAD' 150;
+  font-variation-settings: 'GRAD' 150;
 
 }
 
 
 @media screen and (max-width: 800px),
 (max-height:500px) {
-  /* Reset site-navigation to not use grid-area */
+  /* Completely remove site-navigation from page layout */
   site-navigation {
-    grid-area: unset;
-    position: fixed;
+    position: fixed !important;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    display: block;
+    display: block !important;
+    /* Remove from grid layout completely */
+    grid-area: none !important;
+    grid-column: unset !important;
+    grid-row: unset !important;
+    /* Ensure stable fixed positioning */
+    transform: none;
+    will-change: auto;
+    contain: layout;
   }
 
-  /* Page container - content only */
+  /* Page container - content only, no navigation */
   .page-container {
     overflow: visible;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "content";
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+      "header"
+      "content";
+    min-height: auto;
+    max-height: none;
+    /* Remove perspective and transforms that interfere with fixed positioning */
+    perspective: none !important;
+    transform: none !important;
+    transform-style: flat !important;
   }
 
-  /* Main content takes full viewport */
+  /* Main content flows naturally */
   main {
-    height: 100vh;
-    height: 100dvh;
-    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    height: auto;
+    min-height: calc(100dvh - 80px - env(safe-area-inset-bottom));
+    padding-bottom: 0;
+    overflow: visible;
   }
 
   /* Mobile navigation container */
@@ -267,10 +327,13 @@ theme-slider {
     margin: 0 auto;
     list-style: none;
     gap: 0;
+    position: relative;
 
     li {
       flex: 1;
       display: flex;
+      position: relative;
+      z-index: 1;
     }
   }
 
@@ -292,6 +355,8 @@ theme-slider {
     transition: all 300ms ease;
     margin: 0 -4px;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
+    z-index: 1;
 
     .icon {
       font-size: 24px;
@@ -312,15 +377,56 @@ theme-slider {
     }
 
     &.active {
+      /* Fallback for browsers without anchor positioning */
       background-color: #e4f5fb;
       color: #006e9b;
     }
+  }
+  
+  /* Mobile: Override nav-background styles */
+  .nav-background {
+    background: #e4f5fb;
+    border-radius: 999px;
+  }
+  
+  /* Mobile: CSS Anchor Positioning */
+  @supports (anchor-name: --test) {
+    .active {
+      background-color: transparent;
+    }
+    
+    .nav-background {
+      /* Anchor to the active nav item with mobile-specific adjustments */
+      position-anchor: --active-nav-item;
+      top: anchor(top, 4px);
+      left: anchor(left, 4px);
+      width: anchor-size(width, -8px);
+      height: anchor-size(height, -8px);
+    }
+  }
+  
+  /* Mobile: Manual positioning fallback */
+  @supports not (anchor-name: --test) {
+    .active {
+      background-color: transparent;
+    }
+    
+    .nav-background {
+      height: calc(100% - 8px);
+      top: 4px;
+    }
+    
+    .nav-background.item1 { left: calc(0 * 20% + 4px); width: calc(20% - 8px); }
+    .nav-background.item2 { left: calc(1 * 20% + 4px); width: calc(20% - 8px); }
+    .nav-background.item3 { left: calc(2 * 20% + 4px); width: calc(20% - 8px); }
+    .nav-background.item4 { left: calc(3 * 20% + 4px); width: calc(20% - 8px); }
+    .nav-background.item5 { left: calc(4 * 20% + 4px); width: calc(20% - 8px); }
   }
 }
 
 /* Mobile settings styles - apply globally but only visible on mobile */
 .settings-button {
-  position: fixed;
+  position: fixed !important;
   top: 16px;
   right: 16px;
   width: 82px;
@@ -338,9 +444,10 @@ theme-slider {
   font-size: 16px;
   color: #19202b;
   z-index: 1000;
-  /* Ensure it's always positioned relative to viewport */
+  /* Ensure it stays fixed during body scroll */
   transform: none;
   margin: 0;
+  will-change: auto;
 }
 
 .settings-button .icon {

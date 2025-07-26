@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-PLX2X0J846");
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <title>Ben Jennings</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="A collection of projects by Ben Jennings"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1, viewport-fit=cover"
+    />
+    <script src="../src/scripts/index.js"></script>
+
+    <link rel="modulepreload" href="../src/components/index.js" />
+    <script type="module" src="../src/components/index.js"></script>
+    <script src="../src/scripts/view-transition.js"></script>
+    <link href="../src/assets/styles/base/vars.css" rel="stylesheet" />
+    <link href="../src/assets/styles/base/index.css" rel="stylesheet" />
+
+  <!-- Prefetch Links -->
+  <link rel="expect" href="../index.html" blocking="render" />
+  <link rel="expect" href="../fundamentals/" blocking="render" />
+  <link rel="expect" href="../designs/" blocking="render" />
+  <link rel="expect" href="../resources/" blocking="render" />
+  
+  <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "urls": [
+              "index.html",
+              "designs/",
+              "fundamentals/",
+              "experiments/",
+              "resources/"
+            ],
+            "eagerness": "eager",
+            "referrer_policy": "same-origin"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Icons and Manifest -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../public/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../public/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../public/site.webmanifest" />
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+      render="blocking"
+    ></script>
+    <style>
+    
+    </style>
+  </head>
+
+  <body id="page-container" class="page-container">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <site-navigation></site-navigation>
+
+    <main id="main-content">
+      <header class="page-title">
+        <h1 class="heading">Experiments</h1>
+        <p class="body lg secondary">A place that I can test new ideas</p>
+      </header>
+
+      <div class="page-items">
+        <article class="card">
+          <h1 class="title">Hello test</h1>
+        </article>
+        
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.22/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/WPTydPmUQycfEmxQ/scene.splinecode"></spline-viewer>
+        <!-- 3D model viewers removed - assets need to be relocated -->
+
+        
+
+        <simple-card title="Spline" version="box">
+          <spline-viewer
+            slot="media"
+            url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode"
+          ></spline-viewer>
+
+          <div slot="post" class="post-body horizontal">
+            <!-- Link the Spline viewer module -->
+            <script
+              type="module"
+              src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"
+            ></script>
+
+            <spline-viewer
+              url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode"
+              events-target="global"
+              background="rgba(0,0,0,0.1)"
+            ></spline-viewer>
+          </div>
+
+          <div slot="badge" class="badge">
+            <span>view_in_ar</span>
+            3D Scan
+          </div>
+
+          Don't make it simple, make it clear
+        </simple-card>
+
+        <simple-card title="A better digital frame" version="box">
+          <div class="icon-placeholder" slot="media">
+            <span class="icon xl">tablet</span>
+          </div>
+
+          <div slot="post" class="post-body grid">
+            <div class="full-row">
+              <p>
+                I have always found e-ink so fascinating. The way that a lot of
+                people have experienced e-ink is with a Kindle. When I
+                discovered that the technology had advanced to have colors, I
+                thought it would be perfect for a digital(ish) photo frame.
+              </p>
+
+              <p>
+                The types of digital frames that a lot of people have use LCD
+                screens with a pretty bright backlight. They feel tacky and draw
+                too much attention than they need to.
+              </p>
+
+              <p>
+                Currently this is work in progress with only a proof of concept
+                UI. I plan on continuing to iterate on the design and to find
+                frame that can hold all of the computer parts.
+              </p>
+            </div>
+          </div>
+
+          <div slot="badge" class="badge">
+            <span>construction</span>
+            Work in progress
+          </div>
+          <div slot="badge" class="badge">
+            <span>developer_board</span>
+            Hardware
+          </div>
+
+          Don't make it simple, make it clear
+        </simple-card>
+      </div>
+    </main>
+
+    <script>
+     const mv = document.querySelector('model-viewer');
+function step() {
+  const style = getComputedStyle(mv);
+  const y    = parseFloat(style.getPropertyValue('--ty'));
+  const tilt = style.getPropertyValue('--tilt').trim();
+  mv.cameraTarget = `0m ${y}m 0m`;
+  mv.cameraOrbit  = `0deg ${tilt} 3m`;
+  requestAnimationFrame(step);
+}
+step();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-PLX2X0J846');
+
+
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
+    as="style" onload="this.rel='stylesheet'">
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+    as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap"
+      rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+      rel="stylesheet">
+  </noscript>
+
+ 
+  <title>Ben Jennings</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+  <script src="../src/scripts/index.js"></script>
+
+  <link rel="modulepreload" href="../src/components/index.js" />
+  <script type="module" src="../src/components/index.js"></script>
+  <script src="../src/scripts/view-transition.js"></script>
+  <link href="../src/assets/styles/base/vars.css" rel="stylesheet" />
+  <link href="../src/assets/styles/base/index.css" rel="stylesheet" />
+  <!-- Prefetch Links -->
+  <link rel="expect" href="../index.html" blocking="render" />
+  <link rel="expect" href="../designs/" blocking="render" />
+  <link rel="expect" href="../experiments/" blocking="render" />
+  <link rel="expect" href="../resources/" blocking="render" />
+  <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "urls": ["index.html", "designs/","fundamentals/","experiments/","resources/"],
+          "eagerness": "eager",
+          "referrer_policy": "same-origin"
+        }
+      ]
+    }
+    </script>
+
+  <!-- Icons and Manifest -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../public/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../public/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../public/favicons/favicon-16x16.png">
+  <link rel="manifest" href="../public/site.webmanifest">
+
+</head>
+
+<body id="page-container" class="page-container">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <site-navigation></site-navigation>
+  <main id="main-content">
+    <header class="page-title">
+      <h1 class="heading">Fundamentals</h1>
+      <p class="body lg secondary">With each project that I work on, I apply these fundamentals</p>
+    </header>
+    
+    <div class="page-items">
+      <a data-project="simplicity" class="card color1" href="simplicity/">
+        <div class="icon-placeholder">
+          <span class="icon xl">step</span>
+        </div>
+        <h1 class="title">Simplicity is not always the answer</h1>
+        <div class="badge-group">
+          <div class="badge">
+            <span>account_tree</span>
+            Complexity
+          </div>
+          <div class="badge">Design Philosophy</div>
+        </div>
+      </a>
+      
+      <a data-project="user-research" class="card color2" href="user-research/">
+        <div class="icon-placeholder">
+          <span class="icon xl">adaptive_audio_mic</span>
+        </div>
+        <h1 class="title">Talk to the right people</h1>
+        <div class="badge-group">
+          <div class="badge">
+            <span>groups</span>
+            User Research
+          </div>
+          <div class="badge">Discovery</div>
+        </div>
+      </a>
+      
+      <a data-project="developer-experience" class="card color3" href="developer-experience/">
+        <div class="icon-placeholder">
+          <span class="icon xl">integration_instructions</span>
+        </div>
+        <h1 class="title">Developers need better experiences too</h1>
+        <div class="badge-group">
+          <div class="badge">
+            <span>code</span>
+            Developer Experience
+          </div>
+          <div class="badge">Process</div>
+        </div>
+      </a>
+    </div>
+  </main>
+</body>
+
+</html>

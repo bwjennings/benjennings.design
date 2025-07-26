@@ -10,29 +10,35 @@ class SiteNavigation extends HTMLElement {
     }
   }
 
+
   render() {
+    // Calculate relative paths based on current location
+    const path = window.location.pathname;
+    const depth = (path.match(/\//g) || []).length - 1;
+    const baseUrl = depth === 0 ? '' : '../'.repeat(depth);
+    
     this.innerHTML = `
     <nav class="sidebar">
-      <h2 class="site-title"><a href="/">Ben Jennings</a></h2>
+      <h2 class="site-title"><a href="${baseUrl}index.html">Ben Jennings</a></h2>
       <div class="active-box"></div>
       <menu>
-        <li><a class="nav-item item1" href="/">
+        <li><a class="nav-item item1" href="${baseUrl}index.html">
             <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Home</span>
           </a></li>
-        <li><a class="nav-item item2" href="/fundamentals/">
+        <li><a class="nav-item item2" href="${baseUrl}fundamentals/">
             <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Fundamentals</span>
           </a></li>
-        <li><a class="nav-item item3" href="/designs/">
+        <li><a class="nav-item item3" href="${baseUrl}designs/">
             <span class="icon" role="img" aria-hidden="true">web</span>
             <span class="title">Designs</span>
           </a></li>
-        <li><a class="nav-item item4" href="/experiments/">
+        <li><a class="nav-item item4" href="${baseUrl}experiments/">
             <span class="icon" role="img" aria-hidden="true">experiment</span>
             <span class="title">Experiments</span>
           </a></li>
-        <li><a class="nav-item item5" href="/resources/">
+        <li><a class="nav-item item5" href="${baseUrl}resources/">
             <span class="icon" role="img" aria-hidden="true">folder_open</span>
             <span class="title">Resources</span>
           </a></li>
@@ -42,6 +48,13 @@ class SiteNavigation extends HTMLElement {
 
     this.setActiveItem();
     this.setupMobileSettings();
+    this.setupNavigationBackground();
+    
+    // Ensure background positioning is correct immediately and after render
+    this.updateBackgroundPosition();
+    requestAnimationFrame(() => {
+      this.updateBackgroundPosition();
+    });
   }
 
   setupMobileSettings() {
@@ -91,15 +104,17 @@ class SiteNavigation extends HTMLElement {
   setActiveItem() {
     const path = window.location.pathname;
     let selector = null;
-    if (path === '/' || path === '/index.html') {
+    
+    // Handle different path structures
+    if (path === '/' || path.endsWith('/index.html') || path.endsWith('/ben.cards/')) {
       selector = '.item1';
-    } else if (path.startsWith('/fundamentals')) {
+    } else if (path.includes('/fundamentals')) {
       selector = '.item2';
-    } else if (path === '/designs/' || path.startsWith('/designs/')) {
+    } else if (path.includes('/designs')) {
       selector = '.item3';
-    } else if (path === '/experiments/') {
+    } else if (path.includes('/experiments')) {
       selector = '.item4';
-    } else if (path === '/resources/') {
+    } else if (path.includes('/resources')) {
       selector = '.item5';
     }
 
@@ -110,6 +125,53 @@ class SiteNavigation extends HTMLElement {
       }
     }
   }
+
+  setupNavigationBackground() {
+    // Only create background if browser supports view transitions
+    if (!('CSSViewTransitionRule' in window)) return;
+    
+    const menu = this.querySelector('menu');
+    if (!menu) return;
+
+    // Check if background already exists
+    if (menu.querySelector('.nav-background')) return;
+
+    // Create simple background element
+    const background = document.createElement('div');
+    background.className = 'nav-background';
+    
+    // Add positioning class only for browsers without anchor positioning
+    if (!CSS.supports('anchor-name', '--test')) {
+      const activeItem = this.querySelector('.nav-item.active');
+      if (activeItem) {
+        const itemClass = Array.from(activeItem.classList).find(cls => cls.startsWith('item'));
+        if (itemClass) {
+          background.classList.add(itemClass);
+        }
+      }
+    }
+    
+    menu.appendChild(background);
+  }
+
+  updateBackgroundPosition() {
+    const background = this.querySelector('.nav-background');
+    if (!background || CSS.supports('anchor-name', '--test')) return;
+
+    // For manual positioning browsers, update the item class
+    const activeItem = this.querySelector('.nav-item.active');
+    if (activeItem) {
+      // Remove existing item classes
+      background.classList.remove('item1', 'item2', 'item3', 'item4', 'item5');
+      
+      // Add correct item class
+      const itemClass = Array.from(activeItem.classList).find(cls => cls.startsWith('item'));
+      if (itemClass) {
+        background.classList.add(itemClass);
+      }
+    }
+  }
+
 }
 
 customElements.define('site-navigation', SiteNavigation);
