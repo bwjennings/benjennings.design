@@ -49,13 +49,7 @@ class SiteNavigation extends HTMLElement {
 
     this.setActiveItem();
     this.setupMobileSettings();
-    this.setupNavigationBackground();
-    
-    // Ensure background positioning is correct immediately and after render
-    this.updateBackgroundPosition();
-    requestAnimationFrame(() => {
-      this.updateBackgroundPosition();
-    });
+    // Navigation background is now handled purely with CSS
   }
 
   setupMobileSettings() {
@@ -127,51 +121,7 @@ class SiteNavigation extends HTMLElement {
     }
   }
 
-  setupNavigationBackground() {
-    // Only create background if browser supports view transitions
-    if (!('CSSViewTransitionRule' in window)) return;
-    
-    const menu = this.querySelector('menu');
-    if (!menu) return;
-
-    // Get existing background element or create one if missing
-    let background = menu.querySelector('.nav-background');
-    if (!background) {
-      background = document.createElement('div');
-      background.className = 'nav-background';
-      menu.prepend(background);
-    }
-
-    // Add positioning class only for browsers without anchor positioning
-    if (!CSS.supports('anchor-name', '--test')) {
-      const activeItem = this.querySelector('.nav-item.active');
-      if (activeItem) {
-        background.classList.remove('item1', 'item2', 'item3', 'item4', 'item5');
-        const itemClass = Array.from(activeItem.classList).find(cls => cls.startsWith('item'));
-        if (itemClass) {
-          background.classList.add(itemClass);
-        }
-      }
-    }
-  }
-
-  updateBackgroundPosition() {
-    const background = this.querySelector('.nav-background');
-    if (!background || CSS.supports('anchor-name', '--test')) return;
-
-    // For manual positioning browsers, update the item class
-    const activeItem = this.querySelector('.nav-item.active');
-    if (activeItem) {
-      // Remove existing item classes
-      background.classList.remove('item1', 'item2', 'item3', 'item4', 'item5');
-      
-      // Add correct item class
-      const itemClass = Array.from(activeItem.classList).find(cls => cls.startsWith('item'));
-      if (itemClass) {
-        background.classList.add(itemClass);
-      }
-    }
-  }
+  // Navigation background positioning is fully handled in CSS
 
 }
 
