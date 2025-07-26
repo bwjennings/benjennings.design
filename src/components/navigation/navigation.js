@@ -22,6 +22,7 @@ class SiteNavigation extends HTMLElement {
       <h2 class="site-title"><a href="${baseUrl}index.html">Ben Jennings</a></h2>
       <div class="active-box"></div>
       <menu>
+        <div class="nav-background"></div>
         <li><a class="nav-item item1" href="${baseUrl}index.html">
             <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Home</span>
@@ -133,25 +134,25 @@ class SiteNavigation extends HTMLElement {
     const menu = this.querySelector('menu');
     if (!menu) return;
 
-    // Check if background already exists
-    if (menu.querySelector('.nav-background')) return;
+    // Get existing background element or create one if missing
+    let background = menu.querySelector('.nav-background');
+    if (!background) {
+      background = document.createElement('div');
+      background.className = 'nav-background';
+      menu.prepend(background);
+    }
 
-    // Create simple background element
-    const background = document.createElement('div');
-    background.className = 'nav-background';
-    
     // Add positioning class only for browsers without anchor positioning
     if (!CSS.supports('anchor-name', '--test')) {
       const activeItem = this.querySelector('.nav-item.active');
       if (activeItem) {
+        background.classList.remove('item1', 'item2', 'item3', 'item4', 'item5');
         const itemClass = Array.from(activeItem.classList).find(cls => cls.startsWith('item'));
         if (itemClass) {
           background.classList.add(itemClass);
         }
       }
     }
-    
-    menu.appendChild(background);
   }
 
   updateBackgroundPosition() {
