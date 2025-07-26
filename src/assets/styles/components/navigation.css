@@ -184,11 +184,11 @@ site-navigation {
       left: 0;
     }
     
-    .nav-background.item1 { top: calc(0 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
-    .nav-background.item2 { top: calc(1 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
-    .nav-background.item3 { top: calc(2 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
-    .nav-background.item4 { top: calc(3 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
-    .nav-background.item5 { top: calc(4 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+    menu:has(.item1.active) .nav-background { top: calc(0 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+    menu:has(.item2.active) .nav-background { top: calc(1 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+    menu:has(.item3.active) .nav-background { top: calc(2 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+    menu:has(.item4.active) .nav-background { top: calc(3 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+    menu:has(.item5.active) .nav-background { top: calc(4 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
   }
 }
 
@@ -416,11 +416,11 @@ theme-slider {
       top: 4px;
     }
     
-    .nav-background.item1 { left: calc(0 * 20% + 4px); width: calc(20% - 8px); }
-    .nav-background.item2 { left: calc(1 * 20% + 4px); width: calc(20% - 8px); }
-    .nav-background.item3 { left: calc(2 * 20% + 4px); width: calc(20% - 8px); }
-    .nav-background.item4 { left: calc(3 * 20% + 4px); width: calc(20% - 8px); }
-    .nav-background.item5 { left: calc(4 * 20% + 4px); width: calc(20% - 8px); }
+    menu:has(.item1.active) .nav-background { left: calc(0 * 20% + 4px); width: calc(20% - 8px); }
+    menu:has(.item2.active) .nav-background { left: calc(1 * 20% + 4px); width: calc(20% - 8px); }
+    menu:has(.item3.active) .nav-background { left: calc(2 * 20% + 4px); width: calc(20% - 8px); }
+    menu:has(.item4.active) .nav-background { left: calc(3 * 20% + 4px); width: calc(20% - 8px); }
+    menu:has(.item5.active) .nav-background { left: calc(4 * 20% + 4px); width: calc(20% - 8px); }
   }
 }
 

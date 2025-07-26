@@ -49,7 +49,7 @@ class SiteNavigation extends HTMLElement {
 
     this.setActiveItem();
     this.setupMobileSettings();
-    // Navigation background handled purely by CSS
+
   }
 
   setupMobileSettings() {
@@ -121,8 +121,7 @@ class SiteNavigation extends HTMLElement {
     }
   }
 
-  // Navigation background handled purely with CSS, so these
-  // previous JavaScript helpers are no longer needed.
+
 
 }
 
