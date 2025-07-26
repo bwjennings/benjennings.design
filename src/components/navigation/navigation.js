@@ -49,8 +49,6 @@ class SiteNavigation extends HTMLElement {
 
     this.setActiveItem();
     this.setupMobileSettings();
-
-    this.setupLinkActivation();
     // Navigation background is now handled purely with CSS
 
   }
@@ -122,16 +120,6 @@ class SiteNavigation extends HTMLElement {
         link.classList.add('active');
       }
     }
-  }
-
-  setupLinkActivation() {
-    const links = this.querySelectorAll('.nav-item');
-    links.forEach((link) => {
-      link.addEventListener('pointerdown', () => {
-        links.forEach((l) => l.classList.remove('active'));
-        link.classList.add('active');
-      });
-    });
   }
 
   // Navigation background positioning is fully handled in CSS
