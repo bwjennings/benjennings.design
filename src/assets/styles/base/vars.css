@@ -361,6 +361,91 @@
   --color-gray-90-alpha: oklch(var(--lightness-90) var(--gray-chroma) var(--gray-hue) / var(--alpha));
   --color-gray-95-alpha: oklch(var(--lightness-95) var(--gray-chroma) var(--gray-hue) / var(--alpha));
 
+ /* Base colors in OKLCH */
+            --color-base: oklch(0.65 0.15 var(--color1-hue));
+            
+            /* Base color set - 11 steps with exponential bell curve chroma */
+            --color-base-5: oklch(from var(--color-base) 0.98 5% h);
+            --color-base-10: oklch(from var(--color-base) 0.95 12% h);
+            --color-base-20: oklch(from var(--color-base) 0.90 25% h);
+            --color-base-30: oklch(from var(--color-base) 0.80 45% h);
+            --color-base-40: oklch(from var(--color-base) 0.70 62% h);
+            --color-base-50: oklch(from var(--color-base) 0.60 70% h);
+            --color-base-60: oklch(from var(--color-base) 0.55 62% h);
+            --color-base-70: oklch(from var(--color-base) 0.45 45% h);
+            --color-base-80: oklch(from var(--color-base) 0.35 25% h);
+            --color-base-90: oklch(from var(--color-base) 0.25 12% h);
+            --color-base-95: oklch(from var(--color-base) 0.15 5% h);
+
+            /* color 1 - Hue shifted +72 degrees */
+            --color1-hue-shift: 20;
+            --color-color1-5: oklch(from var(--color-base-5) l c calc(h + var(--color1-hue-shift)));
+            --color-color1-10: oklch(from var(--color-base-10) l c calc(h + var(--color1-hue-shift)));
+            --color-color1-20: oklch(from var(--color-base-20) l c calc(h + var(--color1-hue-shift)));
+            --color-color1-30: oklch(from var(--color-base-30) l c calc(h + var(--color1-hue-shift)));
+            --color-color1-40: oklch(from var(--color-base-40) l c calc(h + var(--color1-hue-shift)));
+            --color-color1-50: oklch(from var(--color-base-50) l c calc(h + var(--color1-hue-shift)));
+            --color-color1-60: oklch(from var(--color-base-60) l c calc(h + var(--color1-hue-shift)));
+            --color-color1-70: oklch(from var(--color-base-70) l c calc(h + var(--color1-hue-shift)));
+            --color-color1-80: oklch(from var(--color-base-80) l c calc(h + var(--color1-hue-shift)));
+            --color-color1-90: oklch(from var(--color-base-90) l c calc(h + var(--color1-hue-shift)));
+            --color-color1-95: oklch(from var(--color-base-95) l c calc(h + var(--color1-hue-shift)));
+            
+            /* color 2 - Hue shifted +144 degrees */
+            --color2-hue-shift: 30;
+            --color-color2-5: oklch(from var(--color-base-5) l c calc(h + var(--color2-hue-shift)));
+            --color-color2-10: oklch(from var(--color-base-10) l c calc(h + var(--color2-hue-shift)));
+            --color-color2-20: oklch(from var(--color-base-20) l c calc(h + var(--color2-hue-shift)));
+            --color-color2-30: oklch(from var(--color-base-30) l c calc(h + var(--color2-hue-shift)));
+            --color-color2-40: oklch(from var(--color-base-40) l c calc(h + var(--color2-hue-shift)));
+            --color-color2-50: oklch(from var(--color-base-50) l c calc(h + var(--color2-hue-shift)));
+            --color-color2-60: oklch(from var(--color-base-60) l c calc(h + var(--color2-hue-shift)));
+            --color-color2-70: oklch(from var(--color-base-70) l c calc(h + var(--color2-hue-shift)));
+            --color-color2-80: oklch(from var(--color-base-80) l c calc(h + var(--color2-hue-shift)));
+            --color-color2-90: oklch(from var(--color-base-90) l c calc(h + var(--color2-hue-shift)));
+            --color-color2-95: oklch(from var(--color-base-95) l c calc(h + var(--color2-hue-shift)));
+            
+            /* color 3 - Hue shifted -72 degrees */
+            --color3-hue-shift: -20;
+            --color-color3-5: oklch(from var(--color-base-5) l c calc(h + var(--color3-hue-shift)));
+            --color-color3-10: oklch(from var(--color-base-10) l c calc(h + var(--color3-hue-shift)));
+            --color-color3-20: oklch(from var(--color-base-20) l c calc(h + var(--color3-hue-shift)));
+            --color-color3-30: oklch(from var(--color-base-30) l c calc(h + var(--color3-hue-shift)));
+            --color-color3-40: oklch(from var(--color-base-40) l c calc(h + var(--color3-hue-shift)));
+            --color-color3-50: oklch(from var(--color-base-50) l c calc(h + var(--color3-hue-shift)));
+            --color-color3-60: oklch(from var(--color-base-60) l c calc(h + var(--color3-hue-shift)));
+            --color-color3-70: oklch(from var(--color-base-70) l c calc(h + var(--color3-hue-shift)));
+            --color-color3-80: oklch(from var(--color-base-80) l c calc(h + var(--color3-hue-shift)));
+            --color-color3-90: oklch(from var(--color-base-90) l c calc(h + var(--color3-hue-shift)));
+            --color-color3-95: oklch(from var(--color-base-95) l c calc(h + var(--color3-hue-shift)));
+            
+            /* color 4 - Hue shifted -144 degrees */
+            --color4-hue-shift: -30;
+            --color-color4-5: oklch(from var(--color-base-5) l c calc(h + var(--color4-hue-shift)));
+            --color-color4-10: oklch(from var(--color-base-10) l c calc(h + var(--color4-hue-shift)));
+            --color-color4-20: oklch(from var(--color-base-20) l c calc(h + var(--color4-hue-shift)));
+            --color-color4-30: oklch(from var(--color-base-30) l c calc(h + var(--color4-hue-shift)));
+            --color-color4-40: oklch(from var(--color-base-40) l c calc(h + var(--color4-hue-shift)));
+            --color-color4-50: oklch(from var(--color-base-50) l c calc(h + var(--color4-hue-shift)));
+            --color-color4-60: oklch(from var(--color-base-60) l c calc(h + var(--color4-hue-shift)));
+            --color-color4-70: oklch(from var(--color-base-70) l c calc(h + var(--color4-hue-shift)));
+            --color-color4-80: oklch(from var(--color-base-80) l c calc(h + var(--color4-hue-shift)));
+            --color-color4-90: oklch(from var(--color-base-90) l c calc(h + var(--color4-hue-shift)));
+            --color-color4-95: oklch(from var(--color-base-95) l c calc(h + var(--color4-hue-shift)));
+            
+            /* Neutral color set - 11 steps */
+            --color-neutral-5: oklch(from var(--color-base-5) l 0.02 h);
+            --color-neutral-10: oklch(from var(--color-base-10) l 0.02 h);
+            --color-neutral-20: oklch(from var(--color-base-20) l 0.02 h);
+            --color-neutral-30: oklch(from var(--color-base-30) l 0.02 h);
+            --color-neutral-40: oklch(from var(--color-base-40) l 0.02 h);
+            --color-neutral-50: oklch(from var(--color-base-50) l 0.02 h);
+            --color-neutral-60: oklch(from var(--color-base-60) l 0.02 h);
+            --color-neutral-70: oklch(from var(--color-base-70) l 0.02 h);
+            --color-neutral-80: oklch(from var(--color-base-80) l 0.02 h);
+            --color-neutral-90: oklch(from var(--color-base-90) l 0.02 h);
+            --color-neutral-95: oklch(from var(--color-base-95) l 0.02 h);
+  
   /* color system */
   --current-color-scheme: light dark;
   color-scheme: var(--current-color-scheme);
@@ -393,6 +478,30 @@
   --color-foreground-color3: light-dark(var(--color-color3-95), var(--color-color3-20));
   --color-foreground-color4: light-dark(var(--color-color4-95), var(--color-color4-20));
   --color-foreground-onEmphasis: light-dark(white, white);
+
+  /* text colors */
+  --color-text-primary: light-dark(var(--color-gray-95), var(--color-gray-5));
+  --color-text-secondary: light-dark(var(--color-gray-80), var(--color-gray-10));
+  --color-text-tertiary: light-dark(var(--color-gray-60), var(--color-gray-20));
+  --color-text-base: light-dark(var(--color-color1-80), var(--color-color1-20));
+  --color-text-base-secondary: light-dark(var(--color-color1-60), var(--color-color1-30));
+  --color-text-onBrand: light-dark(var(--color-color1-50), var(--color-color1-10));
+  --color-text-color2: light-dark(var(--color-color2-95), var(--color-color2-20));
+  --color-text-color3: light-dark(var(--color-color3-95), var(--color-color3-20));
+  --color-text-color4: light-dark(var(--color-color4-95), var(--color-color4-20));
+  --color-text-onEmphasis: light-dark(white, white);
+
+  /* icon colors */
+  --color-icon-primary: light-dark(var(--color-gray-95), var(--color-gray-5));
+  --color-icon-secondary: light-dark(var(--color-gray-80), var(--color-gray-10));
+  --color-icon-tertiary: light-dark(var(--color-gray-60), var(--color-gray-20));
+  --color-icon-base: light-dark(var(--color-color1-80), var(--color-color1-20));
+  --color-icon-base-secondary: light-dark(var(--color-color1-60), var(--color-color1-30));
+  --color-icon-onBrand: light-dark(var(--color-color1-50), var(--color-color1-10));
+  --color-icon-color2: light-dark(var(--color-color2-95), var(--color-color2-20));
+  --color-icon-color3: light-dark(var(--color-color3-95), var(--color-color3-20));
+  --color-icon-color4: light-dark(var(--color-color4-95), var(--color-color4-20));
+  --color-icon-onEmphasis: light-dark(white, white);
 
   /* border colors */
   --color-border-primary: light-dark(var(--color-gray-20), var(--color-gray-70));

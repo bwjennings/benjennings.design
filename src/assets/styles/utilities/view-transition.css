@@ -17,6 +17,11 @@ site-settings {
   view-transition-name: settings;
 }
 
+/* Always include nav background for consistent transitions */
+.nav-background {
+  view-transition-name: nav-background;
+}
+
 /* View transition containment for performance - names set dynamically via JavaScript */
 .card[data-project],
 .post-header[data-project] {
@@ -52,9 +57,11 @@ main#main-content {
   animation: none;
 }
 
-/* Keep nav items static during transitions */
+/* Keep nav items and background static during transitions */
 ::view-transition-old(nav-items),
-::view-transition-new(nav-items) {
+::view-transition-new(nav-items),
+::view-transition-old(nav-background),
+::view-transition-new(nav-background) {
   animation: none;
 }
 
@@ -390,9 +397,6 @@ html:active-view-transition-type(up, down) {
   site-navigation {
     view-transition-name: nav;
   }
-  .nav-background {
-    view-transition-name: nav-background;
-  }
   .nav-item {
     view-transition-name: nav-items;
   }
@@ -408,9 +412,6 @@ html:active-view-transition-type(reload) {
   }
   site-navigation {
     view-transition-name: nav;
-  }
-  .nav-background {
-    view-transition-name: nav-background;
   }
   .nav-item {
     view-transition-name: nav-items;

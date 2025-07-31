@@ -17,39 +17,40 @@ class SiteNavigation extends HTMLElement {
     const depth = (path.match(/\//g) || []).length - 1;
     const baseUrl = depth === 0 ? '' : '../'.repeat(depth);
     
+    // Determine active item first
+    const activeClass = this.getActiveItemClass();
+    
     this.innerHTML = `
     <nav class="sidebar">
       <h2 class="site-title"><a href="${baseUrl}index.html">Ben Jennings</a></h2>
       <div class="active-box"></div>
       <menu>
         <div class="nav-background"></div>
-        <li><a class="nav-item item1" href="${baseUrl}index.html">
+        <li><a class="nav-item item1${activeClass === 'item1' ? ' active' : ''}" href="${baseUrl}index.html">
             <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Home</span>
           </a></li>
-        <li><a class="nav-item item2" href="${baseUrl}fundamentals/">
+        <li><a class="nav-item item2${activeClass === 'item2' ? ' active' : ''}" href="${baseUrl}fundamentals/">
             <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Fundamentals</span>
           </a></li>
-        <li><a class="nav-item item3" href="${baseUrl}designs/">
+        <li><a class="nav-item item3${activeClass === 'item3' ? ' active' : ''}" href="${baseUrl}designs/">
             <span class="icon" role="img" aria-hidden="true">web</span>
             <span class="title">Designs</span>
           </a></li>
-        <li><a class="nav-item item4" href="${baseUrl}experiments/">
+        <li><a class="nav-item item4${activeClass === 'item4' ? ' active' : ''}" href="${baseUrl}experiments/">
             <span class="icon" role="img" aria-hidden="true">experiment</span>
             <span class="title">Experiments</span>
           </a></li>
-        <li><a class="nav-item item5" href="${baseUrl}resources/">
+        <li><a class="nav-item item5${activeClass === 'item5' ? ' active' : ''}" href="${baseUrl}resources/">
             <span class="icon" role="img" aria-hidden="true">folder_open</span>
             <span class="title">Resources</span>
           </a></li>
       </menu>
       <site-settings></site-settings>
     </nav>`;
-
-    this.setActiveItem();
     this.setupMobileSettings();
-    // Navigation background is now handled purely with CSS
+    this.setNavBackgroundPosition(activeClass);
 
   }
 
@@ -97,32 +98,41 @@ class SiteNavigation extends HTMLElement {
     }
   }
 
-  setActiveItem() {
+  getActiveItemClass() {
     const path = window.location.pathname;
-    let selector = null;
     
     // Handle different path structures
     if (path === '/' || path.endsWith('/index.html') || path.endsWith('/ben.cards/')) {
-      selector = '.item1';
+      return 'item1';
     } else if (path.includes('/fundamentals')) {
-      selector = '.item2';
+      return 'item2';
     } else if (path.includes('/designs')) {
-      selector = '.item3';
+      return 'item3';
     } else if (path.includes('/experiments')) {
-      selector = '.item4';
+      return 'item4';
     } else if (path.includes('/resources')) {
-      selector = '.item5';
+      return 'item5';
     }
 
-    if (selector) {
-      const link = this.querySelector(selector);
-      if (link) {
-        link.classList.add('active');
-      }
-    }
+    return null;
   }
 
-  // Navigation background positioning is fully handled in CSS
+  setNavBackgroundPosition(activeClass) {
+    const navBackground = this.querySelector('.nav-background');
+    if (!navBackground || !activeClass) return;
+    
+    const itemIndex = parseInt(activeClass.replace('item', '')) - 1;
+    
+    // Set CSS custom properties for reliable positioning
+    if (window.innerWidth > 800) {
+      // Desktop positioning
+      navBackground.style.setProperty('--nav-bg-top', `calc(${itemIndex} * (clamp(50px, 10cqh, 80px) + var(--spacing-sm)))`);
+    } else {
+      // Mobile positioning
+      navBackground.style.setProperty('--nav-bg-left', `calc(${itemIndex} * 20% + 4px)`);
+      navBackground.style.setProperty('--nav-bg-width', 'calc(20% - 8px)');
+    }
+  }
 
 
 }

@@ -133,10 +133,7 @@ site-navigation {
   transition: none;
   font-variation-settings: 'GRAD' 100;
   color: var(--color-foreground-emphasis);
-  anchor-name: --active-nav-item;
-  
-  /* Fallback for browsers without anchor positioning */
-  background: var(--color-background-emphasis);
+  background: transparent;
 
   .icon {
     font-variation-settings: "FILL" 1, "GRAD" var(--icon-grade-emphasis);
@@ -151,45 +148,29 @@ site-navigation {
   border-radius: var(--radius-md);
   pointer-events: none;
   z-index: 0;
-  view-transition-name: nav-background;
+  /* Default position - should be overridden by :has() selectors */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(50px, 10cqh, 80px);
 }
 
-/* Modern: CSS Anchor Positioning */
-@supports (anchor-name: --test) {
-  .active {
-    background: transparent;
-  }
-  
+/* Desktop positioning */
+@media screen and (min-width: 801px) {
   .nav-background {
-    /* Anchor to the active nav item */
-    position-anchor: --active-nav-item;
-    top: anchor(top);
-    left: anchor(left);
-    width: anchor-size(width);
-    height: anchor-size(height);
-  }
-}
-
-/* Fallback: Manual positioning for view-transition supporting browsers without anchor positioning */
-@supports not (anchor-name: --test) {
-  .active {
-    background: transparent;
+    width: 100%;
+    height: clamp(50px, 10cqh, 80px);
+    left: 0;
+    /* Use CSS custom property for positioning, fallback to :has() selectors */
+    top: var(--nav-bg-top, calc(0 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))));
   }
   
-  /* Desktop positioning */
-  @media screen and (min-width: 801px) {
-    .nav-background {
-      width: 100%;
-      height: clamp(50px, 10cqh, 80px);
-      left: 0;
-    }
-    
-    menu:has(.item1.active) .nav-background { top: calc(0 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
-    menu:has(.item2.active) .nav-background { top: calc(1 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
-    menu:has(.item3.active) .nav-background { top: calc(2 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
-    menu:has(.item4.active) .nav-background { top: calc(3 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
-    menu:has(.item5.active) .nav-background { top: calc(4 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
-  }
+  /* :has() selector fallbacks for browsers that support it */
+  menu:has(.item1.active) .nav-background { --nav-bg-top: calc(0 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+  menu:has(.item2.active) .nav-background { --nav-bg-top: calc(1 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+  menu:has(.item3.active) .nav-background { --nav-bg-top: calc(2 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+  menu:has(.item4.active) .nav-background { --nav-bg-top: calc(3 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
+  menu:has(.item5.active) .nav-background { --nav-bg-top: calc(4 * (clamp(50px, 10cqh, 80px) + var(--spacing-sm))); }
 }
 
 
@@ -377,8 +358,7 @@ theme-slider {
     }
 
     &.active {
-      /* Fallback for browsers without anchor positioning */
-      background-color: #e4f5fb;
+      background-color: transparent;
       color: #006e9b;
     }
   }
@@ -387,41 +367,19 @@ theme-slider {
   .nav-background {
     background: #e4f5fb;
     border-radius: 999px;
+    height: calc(100% - 8px);
+    top: 4px;
+    /* Use CSS custom properties for positioning, fallback to :has() selectors */
+    left: var(--nav-bg-left, calc(0 * 20% + 4px));
+    width: var(--nav-bg-width, calc(20% - 8px));
   }
   
-  /* Mobile: CSS Anchor Positioning */
-  @supports (anchor-name: --test) {
-    .active {
-      background-color: transparent;
-    }
-    
-    .nav-background {
-      /* Anchor to the active nav item with mobile-specific adjustments */
-      position-anchor: --active-nav-item;
-      top: anchor(top, 4px);
-      left: anchor(left, 4px);
-      width: anchor-size(width, -8px);
-      height: anchor-size(height, -8px);
-    }
-  }
-  
-  /* Mobile: Manual positioning fallback */
-  @supports not (anchor-name: --test) {
-    .active {
-      background-color: transparent;
-    }
-    
-    .nav-background {
-      height: calc(100% - 8px);
-      top: 4px;
-    }
-    
-    menu:has(.item1.active) .nav-background { left: calc(0 * 20% + 4px); width: calc(20% - 8px); }
-    menu:has(.item2.active) .nav-background { left: calc(1 * 20% + 4px); width: calc(20% - 8px); }
-    menu:has(.item3.active) .nav-background { left: calc(2 * 20% + 4px); width: calc(20% - 8px); }
-    menu:has(.item4.active) .nav-background { left: calc(3 * 20% + 4px); width: calc(20% - 8px); }
-    menu:has(.item5.active) .nav-background { left: calc(4 * 20% + 4px); width: calc(20% - 8px); }
-  }
+  /* :has() selector fallbacks for browsers that support it */
+  menu:has(.item1.active) .nav-background { --nav-bg-left: calc(0 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
+  menu:has(.item2.active) .nav-background { --nav-bg-left: calc(1 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
+  menu:has(.item3.active) .nav-background { --nav-bg-left: calc(2 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
+  menu:has(.item4.active) .nav-background { --nav-bg-left: calc(3 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
+  menu:has(.item5.active) .nav-background { --nav-bg-left: calc(4 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
 }
 
 /* Mobile settings styles - apply globally but only visible on mobile */

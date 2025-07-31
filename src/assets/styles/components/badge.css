@@ -12,14 +12,14 @@
     gap: var(--spacing-xs, 4px);
     font-size: var(--text-body-sm-size);
     line-height: var(--text-body-sm-line-height);
-    border: 1px solid var(--color-border-primary);
+    border: 1px solid var(--color-border-color1);
     box-sizing: border-box;
     user-select: none;
 
     &.secondary {
         background-color: var(--color-background-primary-secondary);
         color: var(--color-foreground-secondary);
-        border: 1px solid var(--color-border-primary);
+        border: 1px solid var(--color-border-color2);
     
         span {
             color: var(--color-foreground-color2)
