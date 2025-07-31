@@ -7,7 +7,7 @@ template.innerHTML = `
     :host { display:flex; flex-direction:column; anchor-name: --theme-button; }
     .picker { display:flex; gap:4px; background-color:var(--color-background-secondary);border-radius:var(--radius-md); padding:8px;justify-items:stretch; margin-bottom:8px; height:40px;}
     .swatch {  flex:1; border-radius:calc(var(--radius-md) - 8px); border:2px solid var(--color-border-primary); cursor:pointer; padding:0; background:transparent; }
-    .swatch.selected { outline:2px solid var(--color-foreground-color2); }
+    .swatch.selected { outline:2px solid var(--color-text-color2); }
     .custom-swatch { background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #f0932b); }
     input[type="range"] { flex:1; display:none; }
     input[type="range"].visible { display:block; }

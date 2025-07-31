@@ -17,7 +17,7 @@
   container-type: inline-size;
   transition: outline 500ms var(--timing-bounce);
   font-variation-settings: "GRAD" 0;
-  color: var(--color-foreground-primary);
+  color: var(--color-text-primary);
   gap: var(--spacing-xl);
   overflow: hidden;
   outline-offset: 0px;
@@ -67,7 +67,7 @@
 
   &.color1 {
     background-color: var(--color-background-base);
-    color: var(--color-foreground-base);
+    color: var(--color-text-base);
     border-color: var(--color-border-base);
     outline-color: var(--color-border-base);
     &.emphasis {
@@ -78,7 +78,7 @@
 
   &.color2 {
     background-color: var(--color-background-color2);
-    color: var(--color-foreground-color2);
+    color: var(--color-text-color2);
     border-color: var(--color-border-color2);
     outline-color: var(--color-border-color2);
     &.emphasis {
@@ -89,7 +89,7 @@
 
   &.color3 {
     background-color: var(--color-background-color3);
-    color: var(--color-foreground-color3);
+    color: var(--color-text-color3);
     border-color: var(--color-border-color3);
     outline-color: var(--color-border-color3);
     &.emphasis {
@@ -100,7 +100,7 @@
 
   &.color4 {
     background-color: var(--color-background-color4);
-    color: var(--color-foreground-color4);
+    color: var(--color-text-color4);
     border-color: var(--color-border-color4);
     outline-color: var(--color-border-color4);
     &.emphasis {
@@ -134,7 +134,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: var(--color-foreground-base-secondary);
+  color: var(--color-icon-base-secondary);
   user-select: none;
   -webkit-user-select: none;
 }
@@ -167,7 +167,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: var(--color-foreground-base-secondary);
+  color: var(--color-icon-base-secondary);
   margin-top: calc(-1 * var(--spacing-xxl));
   margin-inline: calc(-1 * var(--spacing-xxl));
   user-select: none;

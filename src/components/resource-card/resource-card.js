@@ -28,7 +28,7 @@
           transition: outline 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58),
             font-variation-settings 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58);
           font-variation-settings: "GRAD" 0;
-          color: var(--color-foreground-primary);
+          color: var(--color-text-primary);
           overflow: hidden;
           outline-offset: 0px;
           anchor-name: --card;
@@ -48,7 +48,7 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          color: var(--color-foreground-color3);
+          color: var(--color-icon-color3);
           user-select: none;
           -webkit-user-select: none;
           container-name:iconbox;

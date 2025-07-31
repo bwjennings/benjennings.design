@@ -12,7 +12,7 @@
   gap: var(--spacing-xs, 4px);
   font-family: var(--text-font-family);
   font-size: var(--text-body-md-size);
-  color: var(--color-foreground-primary);
+  color: var(--color-text-primary);
   line-height: var(--text-body-md-line-height);
   height: 48px;
   cursor: pointer;
@@ -48,7 +48,7 @@ button:active {
 
 button[variant="brand"] {
   background: var(--color-background-base-emphasis);
-  color: var(--color-foreground-onEmphasis);
+  color: var(--color-text-onEmphasis);
   border: transparent;
 }
 
