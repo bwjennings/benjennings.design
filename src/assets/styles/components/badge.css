@@ -4,7 +4,7 @@
     text-wrap: nowrap;
     height: 28px;
     background-color: var(--color-background-color2);
-    color: var(--color-foreground-color2);
+    color: var(--color-text-color2);
     display: flex;
     padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
     justify-content: center;
@@ -18,11 +18,11 @@
 
     &.secondary {
         background-color: var(--color-background-primary-secondary);
-        color: var(--color-foreground-secondary);
+        color: var(--color-text-secondary);
         border: 1px solid var(--color-border-color2);
     
         span {
-            color: var(--color-foreground-color2)
+            color: var(--color-text-color2)
         }
     
         ::slotted {
@@ -47,7 +47,7 @@
         font-weight: var(--icon-weight-sm);
         aspect-ratio: 1/1;
         width: var(--icon-size-sm);
-        color: var(--color-foreground-color2);
+        color: var(--color-icon-color2);
         font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
     }
     

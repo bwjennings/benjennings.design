@@ -58,7 +58,7 @@ site-navigation {
     li {
       &:focus-visible {
         transform: perspective(300px) translateZ(-50px);
-        outline: 2px solid var(--color-foreground-base);
+        outline: 2px solid var(--color-text-base);
         outline-offset: 2px;
       }
     }
@@ -73,7 +73,7 @@ site-navigation {
 
 .nav-item {
   box-sizing: border-box;
-  color: var(--color-foreground-secondary);
+  color: var(--color-text-secondary);
   height: clamp(50px, 10cqh, 80px);
   display: flex;
   padding: var(--spacing-xl, 24px) var(--spacing-lg, 16px);
@@ -106,7 +106,7 @@ site-navigation {
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-foreground-base);
+    outline: 2px solid var(--color-text-base);
     outline-offset: 2px;
     transform: perspective(300px) translateZ(-50px);
   }
@@ -132,12 +132,12 @@ site-navigation {
 .active {
   transition: none;
   font-variation-settings: 'GRAD' 100;
-  color: var(--color-foreground-emphasis);
+  color: var(--color-text-base);
   background: transparent;
 
   .icon {
     font-variation-settings: "FILL" 1, "GRAD" var(--icon-grade-emphasis);
-    color: var(--color-foreground-base-secondary);
+    color: var(--color-icon-base-secondary);
   }
 }
 

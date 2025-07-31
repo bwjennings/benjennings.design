@@ -79,7 +79,7 @@ template.innerHTML = `
     }
     
     .color-item.custom.selected {
-      outline: 2px solid var(--color-foreground-base);
+      outline: 2px solid var(--color-text-base);
     }
     
     .color-item.swatch {
@@ -89,7 +89,7 @@ template.innerHTML = `
     }
     
     .color-item.swatch.selected {
-      outline: 2px solid var(--color-foreground-base);
+      outline: 2px solid var(--color-text-base);
     }
     
     .color-item.custom .icon {
@@ -97,12 +97,12 @@ template.innerHTML = `
       font-size: var(--icon-size-md);
       line-height: 1;
       font-weight: var(--icon-weight-md);
-      color: var(--color-foreground-secondary);
+      color: var(--color-icon-secondary);
       white-space: nowrap;
     }
     
     .color-item.custom.selected .icon {
-      color: var(--color-foreground-onEmphasis);
+      color: var(--color-icon-onEmphasis);
     }
     
     .color-slider {
@@ -218,14 +218,18 @@ template.innerHTML = `
       flex-shrink: 0;
     }
     
-    .segmented-button:not(.active) .icon,
-    .segmented-button:not(.active) .text {
-      color: var(--color-foreground-primary);
+    .segmented-button:not(.active) .icon {
+      color: var(--color-icon-primary);
     }
-    
-    .segmented-button.active .icon,
+    .segmented-button:not(.active) .text {
+      color: var(--color-text-primary);
+    }
+
+    .segmented-button.active .icon {
+      color: var(--color-icon-base);
+    }
     .segmented-button.active .text {
-      color: var(--color-foreground-base);
+      color: var(--color-text-base);
     }
   </style>
   

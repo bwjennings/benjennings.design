@@ -467,17 +467,6 @@
   --color-background-color4-emphasis: light-dark(var(--color-color4-30), var(--color-color4-70));
   --color-background-backdrop: light-dark(var(--color-gray-20-alpha), var(--color-gray-50-alpha));
 
-  /* foreground colors */
-  --color-foreground-primary: light-dark(var(--color-gray-95), var(--color-gray-5));
-  --color-foreground-secondary: light-dark(var(--color-gray-80), var(--color-gray-10));
-  --color-foreground-tertiary: light-dark(var(--color-gray-60), var(--color-gray-20));
-  --color-foreground-base: light-dark(var(--color-color1-80), var(--color-color1-20));
-  --color-foreground-base-secondary: light-dark(var(--color-color1-60), var(--color-color1-30));
-  --color-foreground-onBrand: light-dark(var(--color-color1-50), var(--color-color1-10));
-  --color-foreground-color2: light-dark(var(--color-color2-95), var(--color-color2-20));
-  --color-foreground-color3: light-dark(var(--color-color3-95), var(--color-color3-20));
-  --color-foreground-color4: light-dark(var(--color-color4-95), var(--color-color4-20));
-  --color-foreground-onEmphasis: light-dark(white, white);
 
   /* text colors */
   --color-text-primary: light-dark(var(--color-gray-95), var(--color-gray-5));
@@ -545,13 +534,6 @@
   --color-background-color2-secondary: light-dark(var(--color-color2-10), var(--color-color2-80));
   --color-background-color2-emphasis: light-dark(var(--color-color2-60), var(--color-color2-50));
   --color-background-backdrop: light-dark(var(--color-gray-80-alpha), var(--color-gray-30-alpha));
-  --color-foreground-primary: light-dark(var(--color-gray-95), var(--color-gray-5));
-  --color-foreground-secondary: light-dark(var(--color-gray-80), var(--color-gray-10));
-  --color-foreground-base: light-dark(var(--color-color1-60), var(--color-color1-20));
-  --color-foreground-onBrand: light-dark(var(--color-white), var(--color-white));
-  --color-foreground-base-secondary: light-dark(var(--color-color1-60), var(--color-color1-20));
-  --color-foreground-color2: light-dark(var(--color-color2-10), var(--color-color2-5));
-  --color-foreground-onEmphasis: light-dark(var(--color-white), var(--color-white));
   --color-border-primary: light-dark(var(--color-gray-40), var(--color-gray-40));
   --color-border-primary-hover: light-dark(var(--color-gray-20), var(--color-gray-70));
   --color-border-secondary: light-dark(var(--color-gray-30), var(--color-gray-50));
@@ -574,13 +556,6 @@
     --color-background-color2-secondary: light-dark(var(--color-color2-10), var(--color-color2-80));
     --color-background-color2-emphasis: light-dark(var(--color-color2-60), var(--color-color2-50));
     --color-background-backdrop: light-dark(var(--color-gray-80-alpha), var(--color-gray-30-alpha));
-    --color-foreground-primary: light-dark(var(--color-gray-95), var(--color-gray-5));
-    --color-foreground-secondary: light-dark(var(--color-gray-80), var(--color-gray-10));
-    --color-foreground-base: light-dark(var(--color-color1-60), var(--color-color1-20));
-    --color-foreground-onBrand: light-dark(var(--color-white), var(--color-white));
-    --color-foreground-base-secondary: light-dark(var(--color-color1-60), var(--color-color1-20));
-    --color-foreground-color2: light-dark(var(--color-color2-10), var(--color-color2-5));
-    --color-foreground-onEmphasis: light-dark(var(--color-white), var(--color-white));
     --color-border-primary: light-dark(var(--color-gray-40), var(--color-gray-40));
     --color-border-primary-hover: light-dark(var(--color-gray-20), var(--color-gray-70));
     --color-border-secondary: light-dark(var(--color-gray-30), var(--color-gray-50));

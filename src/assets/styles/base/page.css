@@ -42,7 +42,7 @@ select {
   top: -40px;
   left: 6px;
   background: var(--color-background-base-emphasis);
-  color: var(--color-foreground-onEmphasis);
+  color: var(--color-text-onEmphasis);
   padding: 8px;
   border-radius: 4px;
   text-decoration: none;
@@ -59,7 +59,7 @@ select {
 
 ::selection {
   background: var(--color-background-color2-secondary);
-  color: var(--color-foreground-color2);
+  color: var(--color-text-color2);
   text-decoration: underline;
   text-decoration-color: var(--color-border-base-emphasis);
 }
@@ -148,7 +148,7 @@ padding: 4dvw;
   scroll-snap-align: top;
   z-index: 2;
   margin-top: calc(20cqh - 40px);
-  color: var(--color-foreground-primary);
+  color: var(--color-text-primary);
   display: flex;
   gap: var(--spacing-md);
   flex-direction: column;
@@ -178,7 +178,7 @@ padding: 4dvw;
 
 .post {
   background-color: var(--color-background-page);
-  color: var(--color-foreground-color4);
+  color: var(--color-text-color4);
  padding: 4dvw;
  margin-inline: auto;
   display: flex;
@@ -205,7 +205,7 @@ padding: 4dvw;
 
 .post-header {
   background-color: var(--color-background-color2);
-  color: var(--color-foreground-color4);
+  color: var(--color-text-color4);
   padding: var(--spacing-xxl);
   border-bottom: 1px solid var(--color-border-primary);
   display: flex;
@@ -215,25 +215,25 @@ padding: 4dvw;
 
   &.color1 {
     background-color: var(--color-background-base);
-    color: var(--color-foreground-base);
+    color: var(--color-text-base);
     border-color: var(--color-border-base);
   }
 
   &.color2 {
     background-color: var(--color-background-color2);
-    color: var(--color-foreground-color2);
+    color: var(--color-text-color2);
     border-color: var(--color-border-color2);
   }
 
   &.color3 {
     background-color: var(--color-background-color3);
-    color: var(--color-foreground-color3);
+    color: var(--color-text-color3);
     border-color: var(--color-border-color3);
   }
 
   &.color4 {
     background-color: var(--color-background-color4);
-    color: var(--color-foreground-color4);
+    color: var(--color-text-color4);
     border-color: var(--color-border-color4);
   }
 
@@ -287,7 +287,7 @@ padding: 4dvw;
   .icon-group .icon {
     font-family: var(--icon-font-family);
     font-size: 46px;
-    color: var(--color-foreground-onEmphasis);
+    color: var(--color-icon-onEmphasis);
     font-weight: 700;
     line-height: 1;
   }
@@ -304,7 +304,7 @@ figure {
   figcaption {
     text-align: center;
     font-size: var(--text-body-md-size);
-    color: var(--color-foreground-secondary);
+    color: var(--color-text-secondary);
     margin-block: var(--spacing-sm);
 
 
@@ -341,7 +341,7 @@ figure {
   background-color: var(--color-background-page);
   scroll-snap-align: top;
   z-index: 2;
-  color: var(--color-foreground-primary);
+  color: var(--color-text-primary);
   width: 100%;
   max-width: 700px;
   top: 0px;

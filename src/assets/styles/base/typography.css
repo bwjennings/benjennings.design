@@ -17,7 +17,7 @@ p {
 body {
   margin: 0;
   padding: 0;
-  color: var(--color-foreground-primary);
+  color: var(--color-text-primary);
   background-color: var(--color-background-page);
   min-height: 100dvh;
   font-family: var(--text-body-font-family);
@@ -65,7 +65,7 @@ u {
   }
 
   &.secondary {
-    color: var(--color-foreground-secondary);
+    color: var(--color-text-secondary);
   }
 }
 
@@ -97,7 +97,7 @@ u {
   }
 
   &.secondary {
-    color: var(--color-foreground-secondary);
+    color: var(--color-text-secondary);
   }
 }
 
@@ -138,7 +138,7 @@ transition-timing-function: var(--timing-decelerate);
   }
 
   &.brand {
-    color: var(--color-foreground-base);
+    color: var(--color-icon-base);
   }
 }
 
