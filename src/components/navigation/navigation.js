@@ -17,15 +17,15 @@ class SiteNavigation extends HTMLElement {
     const depth = (path.match(/\//g) || []).length - 1;
     const baseUrl = depth === 0 ? '' : '../'.repeat(depth);
     
-    // Determine active item first
-    const activeClass = this.getActiveItemClass();
+    // Get active item from attribute or fall back to URL detection
+    const activeClass = this.getAttribute('active-item') || this.getActiveItemClass();
     
     this.innerHTML = `
-    <nav class="sidebar">
+    <section class="sidebar">
       <h2 class="site-title"><a href="${baseUrl}index.html">Ben Jennings</a></h2>
       <div class="active-box"></div>
-      <menu>
-        <div class="nav-background"></div>
+      <nav >
+       
         <li><a class="nav-item item1${activeClass === 'item1' ? ' active' : ''}" href="${baseUrl}index.html">
             <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Home</span>
@@ -46,11 +46,12 @@ class SiteNavigation extends HTMLElement {
             <span class="icon" role="img" aria-hidden="true">folder_open</span>
             <span class="title">Resources</span>
           </a></li>
-      </menu>
+           <div class="nav-background"></div>
+      </nav>
       <site-settings></site-settings>
-    </nav>`;
+    </section>`;
     this.setupMobileSettings();
-    this.setNavBackgroundPosition(activeClass);
+   
 
   }
 
@@ -117,22 +118,7 @@ class SiteNavigation extends HTMLElement {
     return null;
   }
 
-  setNavBackgroundPosition(activeClass) {
-    const navBackground = this.querySelector('.nav-background');
-    if (!navBackground || !activeClass) return;
-    
-    const itemIndex = parseInt(activeClass.replace('item', '')) - 1;
-    
-    // Set CSS custom properties for reliable positioning
-    if (window.innerWidth > 800) {
-      // Desktop positioning
-      navBackground.style.setProperty('--nav-bg-top', `calc(${itemIndex} * (clamp(50px, 10cqh, 80px) + var(--spacing-sm)))`);
-    } else {
-      // Mobile positioning
-      navBackground.style.setProperty('--nav-bg-left', `calc(${itemIndex} * 20% + 4px)`);
-      navBackground.style.setProperty('--nav-bg-width', 'calc(20% - 8px)');
-    }
-  }
+
 
 
 }

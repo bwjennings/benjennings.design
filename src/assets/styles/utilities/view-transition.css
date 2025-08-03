@@ -20,6 +20,7 @@ site-settings {
 /* Always include nav background for consistent transitions */
 .nav-background {
   view-transition-name: nav-background;
+  z-index: 1;
 }
 
 /* View transition containment for performance - names set dynamically via JavaScript */

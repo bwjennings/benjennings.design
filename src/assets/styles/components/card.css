@@ -1,11 +1,11 @@
 .card {
   cursor: pointer;
   display: grid;
-  
+
   grid-template-rows: auto 1fr auto;
   height: 100%;
   /* min-height: 300px; */
- 
+
   width: 100%;
   background: var(--color-background-base);
   border: 1px solid var(--color-border-base);
@@ -25,15 +25,13 @@
   align-items: start;
   justify-content: start;
   justify-items: start;
-  
 
-  img{
+
+  img {
     grid-column: -1 /1;
   }
 
-  .icon {
-    color: currentColor;
-  }
+
 
   .title {
     text-wrap: pretty;
@@ -42,11 +40,11 @@
     font-weight: 400;
     grid-column: -1 /1;
     font-variation-settings:
-    "wdth" var(--text-heading-width),
-    "GRAD" var(--text-heading-grade),
-    "XOPQ" 80,
-    "YOPQ" 80;
-  font-optical-sizing: auto;
+      "wdth" var(--text-heading-width),
+      "GRAD" var(--text-heading-grade),
+      "XOPQ" 80,
+      "YOPQ" 80;
+    font-optical-sizing: auto;
   }
 
   &:hover {
@@ -70,6 +68,11 @@
     color: var(--color-text-base);
     border-color: var(--color-border-base);
     outline-color: var(--color-border-base);
+
+    .icon {
+      color: var(--color-icon-base);
+    }
+
     &.emphasis {
       background-color: var(--color-background-base-emphasis);
       border-color: var(--color-border-base-emphasis);
@@ -81,6 +84,11 @@
     color: var(--color-text-color2);
     border-color: var(--color-border-color2);
     outline-color: var(--color-border-color2);
+
+    .icon {
+      color: var(--color-icon-color2);
+    }
+
     &.emphasis {
       background-color: var(--color-background-color2-emphasis);
       border-color: var(--color-border-color2-emphasis);
@@ -92,6 +100,11 @@
     color: var(--color-text-color3);
     border-color: var(--color-border-color3);
     outline-color: var(--color-border-color3);
+
+    .icon {
+      color: var(--color-icon-color3);
+    }
+
     &.emphasis {
       background-color: var(--color-background-color3-emphasis);
       border-color: var(--color-border-color3-emphasis);
@@ -103,6 +116,10 @@
     color: var(--color-text-color4);
     border-color: var(--color-border-color4);
     outline-color: var(--color-border-color4);
+    .icon {
+      color: var(--color-icon-color4);
+    }
+
     &.emphasis {
       background-color: var(--color-background-color4-emphasis);
       border-color: var(--color-border-color4-emphasis);

@@ -95,13 +95,7 @@ window.addEventListener("pagereveal", async (e) => {
     console.log("🚨 navigation.activation:", navigation?.activation);
     
     // Simple check for nav background element
-    setTimeout(() => {
-        const navBg = document.querySelector('.nav-background');
-        console.log('🎬 PAGEREVEAL - Nav background element:', navBg ? 'exists' : 'missing');
-        if (navBg) {
-            console.log('🎬 PAGEREVEAL - Background classes:', navBg.className);
-        }
-    }, 10);
+ 
     
     if (e.viewTransition) {
         // Get transitionType from localStorage or derive it using the NavigationActivationInformation
@@ -171,12 +165,7 @@ window.addEventListener("pageswap", async (e) => {
     console.log("🚨 viewTransition object:", e.viewTransition);
     console.log("🚨 activation:", e.activation);
     
-    // Simple check for nav background element
-    const navBg = document.querySelector('.nav-background');
-    console.log('🎬 PAGESWAP - Nav background element:', navBg ? 'exists' : 'missing');
-    if (navBg) {
-        console.log('🎬 PAGESWAP - Background classes:', navBg.className);
-    }
+  
     
     if (e.viewTransition) {
 

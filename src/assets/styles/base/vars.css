@@ -392,7 +392,7 @@
             --color-color1-95: oklch(from var(--color-base-95) l c calc(h + var(--color1-hue-shift)));
             
             /* color 2 - Hue shifted +144 degrees */
-            --color2-hue-shift: 30;
+            --color2-hue-shift: -20;
             --color-color2-5: oklch(from var(--color-base-5) l c calc(h + var(--color2-hue-shift)));
             --color-color2-10: oklch(from var(--color-base-10) l c calc(h + var(--color2-hue-shift)));
             --color-color2-20: oklch(from var(--color-base-20) l c calc(h + var(--color2-hue-shift)));
@@ -406,7 +406,7 @@
             --color-color2-95: oklch(from var(--color-base-95) l c calc(h + var(--color2-hue-shift)));
             
             /* color 3 - Hue shifted -72 degrees */
-            --color3-hue-shift: -20;
+            --color3-hue-shift: 30;
             --color-color3-5: oklch(from var(--color-base-5) l c calc(h + var(--color3-hue-shift)));
             --color-color3-10: oklch(from var(--color-base-10) l c calc(h + var(--color3-hue-shift)));
             --color-color3-20: oklch(from var(--color-base-20) l c calc(h + var(--color3-hue-shift)));
@@ -484,12 +484,12 @@
   --color-icon-primary: light-dark(var(--color-gray-95), var(--color-gray-5));
   --color-icon-secondary: light-dark(var(--color-gray-80), var(--color-gray-10));
   --color-icon-tertiary: light-dark(var(--color-gray-60), var(--color-gray-20));
-  --color-icon-base: light-dark(var(--color-color1-80), var(--color-color1-20));
-  --color-icon-base-secondary: light-dark(var(--color-color1-60), var(--color-color1-30));
+  --color-icon-base: light-dark(var(--color-color1-60), var(--color-color1-20));
+  --color-icon-base-secondary: light-dark(var(--color-color1-50), var(--color-color1-30));
   --color-icon-onBrand: light-dark(var(--color-color1-50), var(--color-color1-10));
-  --color-icon-color2: light-dark(var(--color-color2-95), var(--color-color2-20));
-  --color-icon-color3: light-dark(var(--color-color3-95), var(--color-color3-20));
-  --color-icon-color4: light-dark(var(--color-color4-95), var(--color-color4-20));
+  --color-icon-color2: light-dark(var(--color-color2-60), var(--color-color2-20));
+  --color-icon-color3: light-dark(var(--color-color3-60), var(--color-color3-20));
+  --color-icon-color4: light-dark(var(--color-color4-60), var(--color-color4-20));
   --color-icon-onEmphasis: light-dark(white, white);
 
   /* border colors */
