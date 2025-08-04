@@ -1,48 +1,83 @@
+// Theme cache to avoid redundant localStorage reads
+window.themeCache = window.themeCache || {
+  lastUpdate: 0,
+  values: {},
+  isValid() {
+    // Cache valid for 1000ms to handle rapid navigation
+    return Date.now() - this.lastUpdate < 1000;
+  },
+  update() {
+    try {
+      this.values = {
+        theme: localStorage.getItem('myCustomTheme'),
+        highContrast: localStorage.getItem('highContrast') === 'true',
+        colorHue: localStorage.getItem('brandHue'),
+        stimulation: localStorage.getItem('stimulationLevel'),
+        radius: localStorage.getItem('baseRadius'),
+        dataTheme: localStorage.getItem('dataTheme'),
+        contrast: localStorage.getItem('contrast')
+      };
+      this.lastUpdate = Date.now();
+    } catch (e) {
+      console.error('Error reading theme from localStorage:', e);
+      this.values = {};
+    }
+  },
+  get() {
+    if (!this.isValid()) {
+      this.update();
+    }
+    return this.values;
+  }
+};
+
 (function () {
   try {
-    // Retrieve saved values from local storage (if any)
-    const theme = localStorage.getItem('myCustomTheme');
-    const highContrast = localStorage.getItem('highContrast') === 'true';
-    const selectedColorHue = localStorage.getItem('brandHue');
-    const selectedStimulation = localStorage.getItem('stimulationLevel');
-    const selectedRadius = localStorage.getItem('baseRadius');
-    const selectedDataTheme = localStorage.getItem('dataTheme');
-    const selectedContrast = localStorage.getItem('contrast');
+    const cached = window.themeCache.get();
 
-    if (theme !== null) {
-      const colorScheme = theme === '' || theme === 'system' ? 'light dark' : theme;
-      document.documentElement.style.setProperty('--current-color-scheme', colorScheme);
+    // Batch DOM updates to minimize reflows
+    const updates = [];
+    
+    if (cached.theme !== null) {
+      const colorScheme = cached.theme === '' || cached.theme === 'system' ? 'light dark' : cached.theme;
+      updates.push(['--current-color-scheme', colorScheme]);
     }
 
-    // Set high-contrast mode if enabled
-    if (highContrast) {
+    if (cached.highContrast) {
       document.documentElement.dataset.mode = 'high-contrast';
     }
 
-    // Set the hue and stimulation level
-    if (selectedColorHue !== null) {
-      document.documentElement.style.setProperty('--color1-hue', selectedColorHue + 'deg');
+    if (cached.colorHue !== null) {
+      updates.push(['--color1-hue', cached.colorHue + 'deg']);
     }
-    if (selectedStimulation !== null) {
-      document.documentElement.style.setProperty('--stimulation-level', selectedStimulation);
+    if (cached.stimulation !== null) {
+      updates.push(['--stimulation-level', cached.stimulation]);
     }
-    // Apply persisted radius if available
-    if (selectedRadius !== null) {
-      document.documentElement.style.setProperty('--base-radius', selectedRadius + 'px');
+    if (cached.radius !== null) {
+      updates.push(['--base-radius', cached.radius + 'px']);
     }
-    // Apply saved data-theme if available
-    if (selectedDataTheme) {
-      document.documentElement.setAttribute('data-theme', selectedDataTheme);
+    if (cached.contrast !== null) {
+      updates.push(['--contrast', cached.contrast]);
     }
-    if (selectedContrast !== null) {
-      document.documentElement.style.setProperty('--contrast', selectedContrast);
+
+    // Apply all CSS updates in one batch
+    updates.forEach(([property, value]) => {
+      document.documentElement.style.setProperty(property, value);
+    });
+
+    if (cached.dataTheme) {
+      document.documentElement.setAttribute('data-theme', cached.dataTheme);
     }
+    
   } catch (e) {
     console.error('Error applying theme preferences:', e);
     // Fallback to default theme if localStorage is corrupted
     try {
       document.documentElement.style.setProperty('--current-color-scheme', 'light dark');
       localStorage.clear();
+      // Reset cache
+      window.themeCache.values = {};
+      window.themeCache.lastUpdate = 0;
     } catch (fallbackError) {
       console.error('Failed to apply fallback theme:', fallbackError);
     }

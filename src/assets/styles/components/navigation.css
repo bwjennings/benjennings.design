@@ -203,13 +203,12 @@ site-navigation {
 
 
 .nav-background{
-    background-color:#e4f5fb ;
+    background-color:var(--color-background-base) ;
     
     width: 100%;
     grid-column: 1;
     grid-row: var(--nav-background-position, 1);
     z-index: 1;
-    view-transition-name: nav-background;
 }
 
 /* Set nav-background-position variable with :has() selectors */
@@ -233,11 +232,11 @@ nav:has(li:nth-child(5) > a.nav-item.active) { --nav-background-position: 5; }
   }
 }
 
-nav li:nth-child(1) .nav-item { grid-row: 1; grid-column: 1; view-transition-name: nav-item-1; }
-nav li:nth-child(2) .nav-item { grid-row: 2; grid-column: 1; view-transition-name: nav-item-2; }
-nav li:nth-child(3) .nav-item { grid-row: 3; grid-column: 1; view-transition-name: nav-item-3; }
-nav li:nth-child(4) .nav-item { grid-row: 4; grid-column: 1; view-transition-name: nav-item-4; }
-nav li:nth-child(5) .nav-item { grid-row: 5; grid-column: 1; view-transition-name: nav-item-5; }
+nav li:nth-child(1) .nav-item { grid-row: 1; grid-column: 1; }
+nav li:nth-child(2) .nav-item { grid-row: 2; grid-column: 1; }
+nav li:nth-child(3) .nav-item { grid-row: 3; grid-column: 1; }
+nav li:nth-child(4) .nav-item { grid-row: 4; grid-column: 1; }
+nav li:nth-child(5) .nav-item { grid-row: 5; grid-column: 1; }
 
 nav li:nth-child(1) { grid-row: 1; grid-column: 1; }
 nav li:nth-child(2) { grid-row: 2; grid-column: 1; }

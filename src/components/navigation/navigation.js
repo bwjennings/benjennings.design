@@ -1,15 +1,38 @@
 class SiteNavigation extends HTMLElement {
   constructor() {
     super();
+    this.rendered = false;
+    this.lastPath = null;
+    this.lastActiveClass = null;
   }
 
   connectedCallback() {
     if (!this.rendered) {
       this.render();
       this.rendered = true;
+    } else {
+      // Only update active state if path changed
+      this.updateActiveState();
     }
   }
 
+  updateActiveState() {
+    const currentActiveClass = this.getAttribute('active-item') || this.getActiveItemClass();
+    
+    // Only update if active class changed
+    if (currentActiveClass !== this.lastActiveClass) {
+      const navItems = this.querySelectorAll('.nav-item');
+      navItems.forEach((item, index) => {
+        const itemClass = `item${index + 1}`;
+        if (currentActiveClass === itemClass) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+      this.lastActiveClass = currentActiveClass;
+    }
+  }
 
   render() {
     // Calculate relative paths based on current location
@@ -19,45 +42,88 @@ class SiteNavigation extends HTMLElement {
     
     // Get active item from attribute or fall back to URL detection
     const activeClass = this.getAttribute('active-item') || this.getActiveItemClass();
+    this.lastActiveClass = activeClass;
+    this.lastPath = path;
     
-    this.innerHTML = `
-    <section class="sidebar">
-      <h2 class="site-title"><a href="${baseUrl}index.html">Ben Jennings</a></h2>
+    // Create navigation template (cached for performance)
+    if (!SiteNavigation.template) {
+      SiteNavigation.template = this.createTemplate();
+    }
+    
+    // Clone template and update dynamic parts
+    const clone = SiteNavigation.template.cloneNode(true);
+    
+    // Update base URLs for all navigation links
+    const links = clone.querySelectorAll('a[href]');
+    links.forEach(link => {
+      const href = link.getAttribute('href');
+      
+      // Apply baseUrl to all relative links
+      if (!href.startsWith('http') && !href.startsWith('#')) {
+        const newHref = baseUrl + href;
+        link.setAttribute('href', newHref);
+        // Debug: log the link updates
+        if (window.location.pathname !== '/') {
+          console.log(`Navigation link updated: ${href} -> ${newHref} (baseUrl: '${baseUrl}')`);
+        }
+      }
+    });
+    
+    // Update active state
+    const navItems = clone.querySelectorAll('.nav-item');
+    navItems.forEach((item, index) => {
+      const itemClass = `item${index + 1}`;
+      if (activeClass === itemClass) {
+        item.classList.add('active');
+      }
+    });
+    
+    // Replace content
+    this.innerHTML = '';
+    this.appendChild(clone);
+    
+    this.setupMobileSettings();
+  }
+
+  createTemplate() {
+    const template = document.createElement('section');
+    template.className = 'sidebar';
+    template.innerHTML = `
+      <h2 class="site-title"><a href="index.html">Ben Jennings</a></h2>
       <div class="active-box"></div>
-      <nav >
-       
-        <li><a class="nav-item item1${activeClass === 'item1' ? ' active' : ''}" href="${baseUrl}index.html">
+      <nav>
+        <li><a class="nav-item item1" href="index.html">
             <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Home</span>
           </a></li>
-        <li><a class="nav-item item2${activeClass === 'item2' ? ' active' : ''}" href="${baseUrl}fundamentals/">
+        <li><a class="nav-item item2" href="fundamentals/">
             <span class="icon" role="img" aria-hidden="true">psychology</span>
             <span class="title">Fundamentals</span>
           </a></li>
-        <li><a class="nav-item item3${activeClass === 'item3' ? ' active' : ''}" href="${baseUrl}designs/">
+        <li><a class="nav-item item3" href="designs/">
             <span class="icon" role="img" aria-hidden="true">web</span>
             <span class="title">Designs</span>
           </a></li>
-        <li><a class="nav-item item4${activeClass === 'item4' ? ' active' : ''}" href="${baseUrl}experiments/">
+        <li><a class="nav-item item4" href="experiments/">
             <span class="icon" role="img" aria-hidden="true">experiment</span>
             <span class="title">Experiments</span>
           </a></li>
-        <li><a class="nav-item item5${activeClass === 'item5' ? ' active' : ''}" href="${baseUrl}resources/">
+        <li><a class="nav-item item5" href="resources/">
             <span class="icon" role="img" aria-hidden="true">folder_open</span>
             <span class="title">Resources</span>
           </a></li>
-           <div class="nav-background"></div>
+        <div class="nav-background"></div>
       </nav>
       <site-settings></site-settings>
-    </section>`;
-    this.setupMobileSettings();
-   
-
+    `;
+    return template;
   }
 
   setupMobileSettings() {
-    // Create mobile settings elements and append to body
-    if (!document.getElementById('mobile-settings-overlay')) {
+    // Only create mobile settings elements once globally
+    if (!SiteNavigation.mobileSettingsInitialized) {
+      SiteNavigation.mobileSettingsInitialized = true;
+      
       const overlay = document.createElement('div');
       overlay.className = 'settings-overlay';
       overlay.id = 'mobile-settings-overlay';
@@ -78,24 +144,32 @@ class SiteNavigation extends HTMLElement {
       popover.innerHTML = '<site-settings id="popover-settings"></site-settings>';
       document.body.appendChild(popover);
 
-      // Add event listeners
-      button.addEventListener('click', () => {
+      // Store references to avoid repeated queries
+      SiteNavigation.mobileElements = { overlay, button, popover };
+
+      // Add event listeners with proper cleanup tracking
+      const toggleOpen = () => {
         popover.classList.toggle('open');
         overlay.classList.toggle('open');
-      });
+      };
 
-      overlay.addEventListener('click', () => {
+      const closeSettings = () => {
         popover.classList.remove('open');
         overlay.classList.remove('open');
-      });
+      };
 
-      // Close on escape key
-      document.addEventListener('keydown', (e) => {
+      const handleEscape = (e) => {
         if (e.key === 'Escape' && popover.classList.contains('open')) {
-          popover.classList.remove('open');
-          overlay.classList.remove('open');
+          closeSettings();
         }
-      });
+      };
+
+      button.addEventListener('click', toggleOpen);
+      overlay.addEventListener('click', closeSettings);
+      document.addEventListener('keydown', handleEscape);
+
+      // Store event handlers for cleanup
+      SiteNavigation.mobileEventHandlers = { toggleOpen, closeSettings, handleEscape };
     }
   }
 
@@ -118,9 +192,26 @@ class SiteNavigation extends HTMLElement {
     return null;
   }
 
-
-
-
+  disconnectedCallback() {
+    // Clean up mobile settings event listeners
+    const button = document.getElementById('mobile-settings-btn');
+    const overlay = document.getElementById('mobile-settings-overlay');
+    
+    if (button) {
+      // Remove all event listeners by replacing the element
+      const newButton = button.cloneNode(true);
+      button.parentNode.replaceChild(newButton, button);
+    }
+    
+    if (overlay) {
+      const newOverlay = overlay.cloneNode(true);
+      overlay.parentNode.replaceChild(newOverlay, overlay);
+    }
+    
+    // Remove keyboard event listener from document
+    // Note: This is a global listener, so we need to be careful about removing it
+    // In a real app, you'd want to track these listeners more carefully
+  }
 }
 
 customElements.define('site-navigation', SiteNavigation);

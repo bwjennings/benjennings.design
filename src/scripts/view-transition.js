@@ -1,186 +1,219 @@
 // Path where this app is deployed. Adjust if deploying at a subdirectory
 const basePath = '';
 
+/* ---------- Internal utils ---------- */
+
+// Generate a stable per-tab id so our localStorage fallback is tab-scoped.
+const TAB_ID_KEY = 'vt-tab-id';
+const tabId = (() => {
+  try {
+    let id = sessionStorage.getItem(TAB_ID_KEY);
+    if (!id) {
+      id = Math.random().toString(36).slice(2);
+      sessionStorage.setItem(TAB_ID_KEY, id);
+    }
+    return id;
+  } catch {
+    // sessionStorage can be disabled; fall back to a constant (best effort)
+    return 'no-session';
+  }
+})();
+
+const DEBUG = false;
+const log = (...args) => { if (DEBUG) console.log(...args); };
+
+// Simple transition cache to avoid repeated calculations
+const transitionCache = new Map();
+const CACHE_SIZE = 10; // Limit cache size
+
+// Strip trailing "index.html" if present and ensure a trailing slash.
+// Keep this helper *scoped to routing logic* only.
 const normalizePath = (pathname) => {
-    // Strip trailing "index.html" if present and ensure a trailing slash
-    const withoutIndex = pathname.replace(/index\.html$/, '');
-    return withoutIndex.endsWith('/') ? withoutIndex : withoutIndex + '/';
+  const withoutIndex = pathname.replace(/index\.html$/, '');
+  return withoutIndex.endsWith('/') ? withoutIndex : withoutIndex + '/';
 };
 
-// Helper functions for page type detection
+// Remove basePath ONLY when it is a prefix.
+const stripBasePath = (pathname) => {
+  if (!basePath) return pathname;
+  return pathname.startsWith(basePath) ? pathname.slice(basePath.length) : pathname;
+};
+
+// Top-level navigation order is defined once here.
+const NAV_ORDER = ['/', '/fundamentals/', '/designs/', '/experiments/', '/resources/'];
+const getPageIndex = (pathname) => {
+  const normalizedPath = pathname.endsWith('/') ? pathname : pathname + '/';
+  return NAV_ORDER.indexOf(normalizedPath);
+};
+
+/* ---------- Page type helpers ---------- */
+
 const isTopLevelPage = (pathname) => {
-    const normalizedPath = normalizePath(pathname);
-    return ['/', '/fundamentals/', '/designs/', '/experiments/', '/resources/'].includes(normalizedPath);
+  const p = normalizePath(pathname);
+  return NAV_ORDER.includes(p);
 };
 
 const isProjectPage = (pathname) => {
-    // Match patterns like /designs/arvest/, /designs/dwellane/, etc.
-    return /^\/designs\/[^\/]+\/?$/.test(pathname);
+  // Match patterns like /designs/arvest/, /designs/dwellane/, etc.
+  return /^\/designs\/[^/]+\/?$/.test(pathname);
 };
 
 const isHomePage = (pathname) => {
-   const normalizedPath = normalizePath(pathname);
-    return normalizedPath === '/' || normalizedPath === '/designs/';
+  const p = normalizePath(pathname);
+  return p === '/' || p === '/designs/';
 };
 
-// Determine the View Transition class to use based on the old and new navigation entries
-const determineTransitionType = (oldNavigationEntry, newNavigationEntry) => {
-    if (!oldNavigationEntry || !newNavigationEntry) {
-        return 'unknown';
-    }
+/* ---------- Transition classifier ---------- */
 
+const determineTransitionType = (oldNavigationEntry, newNavigationEntry) => {
+  // Be robust to early loads / first page where .from can be null.
+  if (!oldNavigationEntry || !newNavigationEntry) return 'unknown';
+  if (!oldNavigationEntry.url || !newNavigationEntry.url) return 'unknown';
+
+  try {
     const currentURL = new URL(oldNavigationEntry.url);
     const destinationURL = new URL(newNavigationEntry.url);
 
-    const currentPathname = currentURL.pathname.replace(basePath, '');
-    const destinationPathname = destinationURL.pathname.replace(basePath, '');
+    const currentPathname = stripBasePath(currentURL.pathname);
+    const destinationPathname = stripBasePath(destinationURL.pathname);
 
-    console.log(`🔍 Transition: ${currentPathname} → ${destinationPathname}`);
+    // Create cache key for this transition
+    const cacheKey = `${currentPathname}→${destinationPathname}`;
+    
+    // Check cache first
+    if (transitionCache.has(cacheKey)) {
+      log(`🔍 Using cached transition: ${cacheKey}`);
+      return transitionCache.get(cacheKey);
+    }
+
+    log(`🔍 Transition: ${currentPathname} → ${destinationPathname}`);
+
+    let transitionType = 'unknown';
 
     if (currentPathname === destinationPathname) {
-        return "reload";
+      transitionType = 'reload';
+    }
+    // Simplified transition detection - only handle most common cases
+    else if (isHomePage(currentPathname) && isProjectPage(destinationPathname)) {
+      log(`🎯 Card-to-detail transition detected`);
+      transitionType = 'card-to-detail';
+    }
+    else if (isProjectPage(currentPathname) && isHomePage(destinationPathname)) {
+      log(`🎯 Detail-to-card transition detected`);
+      transitionType = 'detail-to-card';
+    }
+    // Simplified nav detection - just check if both are top-level
+    else if (isTopLevelPage(currentPathname) && isTopLevelPage(destinationPathname)) {
+      const fromIdx = getPageIndex(currentPathname);
+      const toIdx = getPageIndex(destinationPathname);
+      
+      if (fromIdx !== -1 && toIdx !== -1) {
+        transitionType = fromIdx > toIdx ? 'nav-up' : 'nav-down';
+      }
     }
 
-    // Check for card-to-detail transitions (home/designs page → project page)
-    if (isHomePage(currentPathname) && isProjectPage(destinationPathname)) {
-        console.log(`🎯 Card-to-detail transition detected`);
-        return 'card-to-detail';
+    // Cache the result
+    if (transitionCache.size >= CACHE_SIZE) {
+      // Simple LRU: remove first entry
+      const firstKey = transitionCache.keys().next().value;
+      transitionCache.delete(firstKey);
     }
+    transitionCache.set(cacheKey, transitionType);
 
-    // Check for detail-to-card transitions (project page → home/designs page)
-    if (isProjectPage(currentPathname) && isHomePage(destinationPathname)) {
-        console.log(`🎯 Detail-to-card transition detected`);
-        return 'detail-to-card';
-    }
-
-    // Check for top-level page navigation
-    if (isTopLevelPage(currentPathname) && isTopLevelPage(destinationPathname)) {
-        // Map paths to navigation order: Home, Fundamentals, Designs, Experiments, Resources
-        const getPageIndex = (pathname) => {
-            const normalizedPath = pathname.endsWith('/') ? pathname : pathname + '/';
-            switch (normalizedPath) {
-                case '/': return 0;
-                case '/fundamentals/': return 1;
-                case '/designs/': return 2;
-                case '/experiments/': return 3;
-                case '/resources/': return 4;
-                default: return -1;
-            }
-        };
-
-        const currentPageIndex = getPageIndex(currentPathname);
-        const destinationPageIndex = getPageIndex(destinationPathname);
-
-        console.log(`🔍 Page indices: ${currentPageIndex} → ${destinationPageIndex}`);
-
-        if (currentPageIndex === -1 || destinationPageIndex === -1) {
-            return 'unknown';
-        }
-
-        if (currentPageIndex > destinationPageIndex) {
-            return 'up';
-        }
-        if (currentPageIndex < destinationPageIndex) {
-            return 'down';
-        }
-    }
-
+    return transitionType;
+  } catch (error) {
+    console.warn('Error determining transition type:', error);
     return 'unknown';
+  }
 };
 
-// Critical: Set up pagereveal listener IMMEDIATELY (before DOM loads)
-window.addEventListener("pagereveal", async (e) => {
-    console.log("🚨 PAGEREVEAL EVENT FIRED!", e);
-    console.log("🚨 viewTransition object:", e.viewTransition);
-    console.log("🚨 navigation.activation:", navigation?.activation);
-    
-    // Simple check for nav background element
- 
-    
-    if (e.viewTransition) {
-        // Get transitionType from localStorage or derive it using the NavigationActivationInformation
-        let transitionType;
-        if (!window.navigation) {
-            // Fallback for browsers without Navigation API
-            transitionType = localStorage.getItem("transitionType") || "unknown";
-            console.log(`📦 Using localStorage transitionType: ${transitionType}`);
-        } else {
-            transitionType = determineTransitionType(navigation.activation.from, navigation.activation.entry);
-        }
+/* ---------- Event wiring ---------- */
 
-        console.log(`🎬 pageReveal: Adding transition type "${transitionType}"`);
-        e.viewTransition.types.add(transitionType);
-        console.log('🎬 Current transition types:', Array.from(e.viewTransition.types));
-        
-        // Clean up localStorage after use
-        if (!window.navigation) {
-            localStorage.removeItem("transitionType");
-        }
-    } else {
-        console.log("🚨 NO VIEW TRANSITION OBJECT IN PAGEREVEAL");
+// Critical: Set up pagereveal listener IMMEDIATELY (before DOM loads)
+window.addEventListener('pagereveal', (e) => {
+  if (!e.viewTransition) return;
+
+  // Prefer Navigation API; fall back to tab-scoped localStorage handoff.
+  let transitionType = 'unknown';
+  const nav = globalThis.navigation;
+  const act = nav?.activation;
+
+  if (act?.from && act?.entry) {
+    transitionType = determineTransitionType(act.from, act.entry);
+  } else {
+    // Fallback to localStorage with error handling
+    try {
+      const key = `transitionType:${tabId}`;
+      const stored = localStorage.getItem(key);
+      if (stored) {
+        transitionType = stored;
+        localStorage.removeItem(key); // cleanup immediately
+      }
+    } catch {
+      // Silently ignore storage errors
     }
+  }
+
+  log(`🎬 pageReveal: Adding transition type "${transitionType}"`);
+  e.viewTransition.types.add(transitionType);
+});
+
+// For cross-document handoff on outgoing page
+window.addEventListener('pageswap', (e) => {
+  const act = e.activation;
+  let transitionType = 'unknown';
+
+  if (act?.from && act?.entry) {
+    transitionType = determineTransitionType(act.from, act.entry);
+    if (e.viewTransition) {
+      e.viewTransition.types.add(transitionType);
+    }
+  }
+
+  // Persist transitionType for browsers without Navigation API
+  try {
+    const nav = globalThis.navigation;
+    if (!nav?.activation) {
+      localStorage.setItem(`transitionType:${tabId}`, transitionType);
+    }
+  } catch {
+    // Silently ignore storage errors
+  }
+});
+
+// Some engines use pagehide / pageshow semantics around bfcache.
+// Not strictly required, but keeps behaviour consistent.
+window.addEventListener('pageshow', () => {
+  log('🔁 PAGESHOW (bfcache restore)');
 });
 
 // URLPattern Polyfill - Load synchronously for immediate availability
 if (!globalThis.URLPattern) {
-    // For now, we'll skip the polyfill since it requires async import
-    // Modern browsers should support URLPattern natively
-    console.warn('URLPattern not available - some features may not work in older browsers');
+  // For now, we'll skip the polyfill since it requires async import
+  // Modern browsers should support URLPattern natively
+  console.warn('URLPattern not available - some features may not work in older browsers');
 }
 
-// Make sure browser has support
-document.addEventListener("DOMContentLoaded", (e) => {
-    let shouldThrow = false;
+/* ---------- Capability checks ---------- */
 
-    if (!window.navigation) {
-        const warningElement = document.querySelector('.warning[data-reason="navigation-api"]');
-        if (warningElement) {
-            warningElement.style.display = "block";
-        }
-        shouldThrow = false;
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  let shouldThrow = false;
 
-    if (!("CSSViewTransitionRule" in window)) {
-        const warningElement = document.querySelector('.warning[data-reason="cross-document-view-transitions"]');
-        if (warningElement) {
-            warningElement.style.display = "block";
-        }
-        shouldThrow = true;
-    }
+  if (!window.navigation) {
+    const el = document.querySelector('.warning[data-reason="navigation-api"]');
+    if (el) el.style.display = 'block';
+    // We DO NOT throw here because we provide a localStorage fallback.
+  }
 
-    if (shouldThrow) {
-        // Throwing here, to prevent the rest of the code from getting executed
-        // If only JS (in the browser) had something like process.exit().
-        throw new Error('Browser is lacking support …');
-    }
+  if (!('CSSViewTransitionRule' in window)) {
+    const el = document.querySelector('.warning[data-reason="cross-document-view-transitions"]');
+    if (el) el.style.display = 'block';
+    shouldThrow = true; // We rely on this for core behaviour; abort to avoid half-broken UX.
+  }
 
-    console.log('✅ Cross-document view transitions supported');
-});
+  if (shouldThrow) {
+    throw new Error('Browser is lacking support …');
+  }
 
-// Note: determining the types is typically needed only on the new page (thus: in `pagereveal`)
-// However, because we set the `view-transition-names` based on the types (see CSS)
-// we also determine it on the outgoing page.
-window.addEventListener("pageswap", async (e) => {
-    console.log("🚨 PAGESWAP EVENT FIRED!", e);
-    console.log("🚨 viewTransition object:", e.viewTransition);
-    console.log("🚨 activation:", e.activation);
-    
-  
-    
-    if (e.viewTransition) {
-
-        // @TODO: If destination does not start with basePath, abort the VT
-
-        const transitionType = determineTransitionType(e.activation.from, e.activation.entry);
-        console.log(`🎬 pageSwap: Adding transition type "${transitionType}"`);
-        e.viewTransition.types.add(transitionType);
-        console.log('🎬 Current transition types:', Array.from(e.viewTransition.types));
-
-        // Persist transitionType for browsers that don't have the Navigation API
-        if (!window.navigation) {
-            localStorage.setItem("transitionType", transitionType);
-        }
-    } else {
-        console.log("🚨 NO VIEW TRANSITION OBJECT IN PAGESWAP");
-    }
+  log('✅ Cross-document view transitions supported');
 });

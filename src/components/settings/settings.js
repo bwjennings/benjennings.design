@@ -10,260 +10,145 @@ template.innerHTML = `
     .settings-container {
       position: relative;
       width: 100%;
-      height: 100%;
-      border: 1px solid var(--color-border-primary);
-      border-radius: var(--radius-none);
-      
+      height: auto;
+      background: var(--color-background-page);
+      border-radius: 24px;
+      padding: 8px;
+      box-sizing: border-box;
     }
     
     .settings-content {
-      position: relative;
-      width: 100%;
-      height: 100%;
       display: flex;
-      flex-direction: column;
-      gap: var(--spacing-xxl);
-      align-items: flex-start;
-      justify-content: flex-start;
-      padding: var(--spacing-xxl);
-      box-sizing: border-box;
-    }
-    
-    .color-picker {
-      background: var(--color-background-primary);
-      height: 40px;
-      border-radius: 100px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      position: relative;
-    }
-    
-    .color-picker-content {
-      display: flex;
-      gap: var(--spacing-xs);
-      height: 40px;
+      flex-direction: row;
+      gap: 8px;
       align-items: center;
       justify-content: flex-start;
-      padding: var(--spacing-xs);
       width: 100%;
-      box-sizing: border-box;
     }
     
-    .color-item {
+    .hue-slider-container {
       flex: 1;
-      height: 100%;
-      min-height: 1px;
-      min-width: 1px;
-      border-radius: 100px;
-      flex-shrink: 0;
-    }
-    
-    .color-item:nth-child(1) { background: oklch(70% 35% 25deg); }
-    .color-item:nth-child(2) { background: oklch(70% 35% 80deg); }
-    .color-item:nth-child(3) { background: oklch(70% 35% 150deg); }
-    .color-item:nth-child(4) { background: oklch(70% 35% 210deg); }
-    .color-item:nth-child(5) { background: oklch(70% 35% 300deg); }
-    
-    .color-item.custom {
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #f0932b);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 0;
-      box-sizing: border-box;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border: 2px solid var(--color-border-primary);
-    }
-    
-    .color-item.custom.selected {
-      outline: 2px solid var(--color-text-base);
-    }
-    
-    .color-item.swatch {
-      border: 2px solid var(--color-border-primary);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    
-    .color-item.swatch.selected {
-      outline: 2px solid var(--color-text-base);
-    }
-    
-    .color-item.custom .icon {
-      font-family: var(--icon-font-family);
-      font-size: var(--icon-size-md);
-      line-height: 1;
-      font-weight: var(--icon-weight-md);
-      color: var(--color-icon-secondary);
-      white-space: nowrap;
-    }
-    
-    .color-item.custom.selected .icon {
-      color: var(--color-icon-onEmphasis);
-    }
-    
-    .color-slider {
-      width: 100%;
-      height: 32px;
-      display: none;
-      position: relative;
-    }
-    
-    .color-slider.visible {
-      display: block;
     }
     
     .hue-slider {
-      width: 100%;
-      height: 32px;
       -webkit-appearance: none;
       appearance: none;
-      background: linear-gradient(to left in oklch longer hue, 
-        oklch(70% 35% 0deg), 
-        oklch(70% 35% 0deg));
-      border-radius: 0;
-      outline: none;
+      cursor: grab;
+      width: 100%;
+      height: 32px;
+      border-radius: 20px;
       border: none;
+      outline: none;
+      background: linear-gradient(to right,
+        hsl(0, 100%, 50%),
+        hsl(60, 100%, 50%),
+        hsl(120, 100%, 50%),
+        hsl(180, 100%, 50%),
+        hsl(240, 100%, 50%),
+        hsl(300, 100%, 50%),
+        hsl(360, 100%, 50%));
+    }
+    
+    .hue-slider:active {
+      cursor: grabbing;
     }
     
     .hue-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: var(--spacing-xxl);
-      height: var(--spacing-xxl);
-      background: var(--color-background-base-emphasis);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 4px solid #ffffff;
       cursor: pointer;
-      border: none;
-      border-radius: var(--radius-none);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+      transition: transform 0.15s ease;
+    }
+    
+    .hue-slider:hover::-webkit-slider-thumb {
+      transform: scale(1.1);
     }
     
     .hue-slider::-moz-range-thumb {
-      width: var(--spacing-xxl);
-      height: var(--spacing-xxl);
-      background: var(--color-background-base-emphasis);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 4px solid #ffffff;
       cursor: pointer;
-      border: none;
-      border-radius: var(--radius-none);
+      box-shadow: none;
+      transition: transform 0.15s ease;
     }
     
-    .segmented-buttons {
-      height: 40px;
-      position: relative;
-      width: 100%;
+    .hue-slider:hover::-moz-range-thumb {
+      transform: scale(1.1);
+    }
+    
+    .hue-slider::-moz-range-track {
+      height: 32px;
+      border-radius: 20px;
+      border: none;
+      background: linear-gradient(to right,
+        hsl(0, 100%, 50%),
+        hsl(60, 100%, 50%),
+        hsl(120, 100%, 50%),
+        hsl(180, 100%, 50%),
+        hsl(240, 100%, 50%),
+        hsl(300, 100%, 50%),
+        hsl(360, 100%, 50%));
+    }
+    
+    .theme-buttons {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    
+    .theme-button {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      border: 1px solid var(--color-border-primary);
-      border-radius: var(--radius-none);
-    }
-    
-    .segmented-button {
-      flex: 1;
-      height: 100%;
-      min-height: 1px;
-      min-width: 1px;
-      position: relative;
-      flex-shrink: 0;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
       transition: all 0.2s ease;
+      background: var(--color-background-primary);
     }
     
-    .segmented-button:not(:last-child) {
-      border-right: 1px solid var(--color-border-primary);
+    .theme-button.active {
+      background: var(--color-background-base-emphasis);
     }
     
-    .segmented-button.active {
-      background: var(--color-background-base);
-    }
-    
-    .segmented-button-content {
-      display: flex;
-      gap: var(--spacing-md);
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-sm) var(--spacing-lg);
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
+    .theme-button .icon {
+      font-family: 'Material Symbols Sharp', sans-serif;
+      font-size: 20px;
       line-height: 1;
-      font-weight: var(--text-body-weight);
-      font-size: var(--text-body-md-size);
-      text-align: left;
-      white-space: nowrap;
+      font-weight: 400;
+      color: var(--color-icon-secondary);
     }
     
-    .segmented-button .icon {
-      font-family: var(--icon-font-family);
-      font-size: var(--icon-size-lg);
-      line-height: 1;
-      font-weight: var(--icon-weight-md);
-      flex-shrink: 0;
-    }
-    
-    .segmented-button .text {
-      font-family: var(--text-body-font-family);
-      font-size: var(--text-body-md-size);
-      line-height: var(--text-body-md-line-height);
-      font-weight: var(--text-body-weight);
-      flex-shrink: 0;
-    }
-    
-    .segmented-button:not(.active) .icon {
-      color: var(--color-icon-primary);
-    }
-    .segmented-button:not(.active) .text {
-      color: var(--color-text-primary);
-    }
-
-    .segmented-button.active .icon {
-      color: var(--color-icon-base);
-    }
-    .segmented-button.active .text {
-      color: var(--color-text-base);
+    .theme-button.active .icon {
+      color: var(--color-icon-onEmphasis);
     }
   </style>
   
   <div class="settings-container">
     <div class="settings-content">
-      <div class="color-slider" data-color-slider>
-        <input type="range" class="hue-slider" min="0" max="360" step="1" aria-label="Hue">
+      <div class="hue-slider-container">
+        <input type="range" class="hue-slider" id="hue-slider" min="0" max="360" step="1" aria-label="Theme Color Hue">
       </div>
       
-      <div class="color-picker">
-        <div class="color-picker-content">
-          <div class="color-item swatch" data-hue="25"></div>
-          <div class="color-item swatch" data-hue="80"></div>
-          <div class="color-item swatch" data-hue="150"></div>
-          <div class="color-item swatch" data-hue="210"></div>
-          <div class="color-item swatch" data-hue="300"></div>
-          <div class="color-item custom" data-hue="custom">
-            <span class="icon">colorize</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="segmented-buttons">
-        <button class="segmented-button active" data-theme="light">
-          <div class="segmented-button-content">
-            <span class="icon">light_mode</span>
-            <span class="text">Light</span>
-          </div>
+      <div class="theme-buttons">
+        <button class="theme-button active" data-theme="light">
+          <span class="icon">light_mode</span>
         </button>
-        <button class="segmented-button" data-theme="dark">
-          <div class="segmented-button-content">
-            <span class="icon">dark_mode</span>
-            <span class="text">Dark</span>
-          </div>
+        <button class="theme-button" data-theme="dark">
+          <span class="icon">dark_mode</span>
         </button>
       </div>
     </div>
@@ -276,23 +161,46 @@ class SiteSettings extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.themeChangeHandler = this.themeChangeHandler.bind(this);
-    this.swatchClickHandler = this.swatchClickHandler.bind(this);
-    this.customColorHandler = this.customColorHandler.bind(this);
     this.hueSliderHandler = this.hueSliderHandler.bind(this);
-    this.hues = [25, 80, 150, 210, 300];
-    this.swatches = [];
-    this.customSwatchSelected = false;
+    this.debouncedHueSliderHandler = this.debounce(this.hueSliderHandler, 5);
+    this.throttledUpdateHue = this.throttle(this.updateHue.bind(this), 16); // ~60fps
+  }
+
+  // Utility: Debounce function to reduce rapid-fire events
+  debounce(func, delay) {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
+  // Throttle function for CSS updates to prevent layout thrashing
+  throttle(func, delay) {
+    let lastCall = 0;
+    return (...args) => {
+      const now = Date.now();
+      if (now - lastCall >= delay) {
+        lastCall = now;
+        return func.apply(this, args);
+      }
+    };
+  }
+
+  // Batched CSS update utility
+  batchCssUpdates(updates) {
+    // Use requestAnimationFrame for optimal timing
+    requestAnimationFrame(() => {
+      updates.forEach(([property, value]) => {
+        document.documentElement.style.setProperty(property, value);
+      });
+    });
   }
 
   connectedCallback() {
     // Initialize theme buttons
     const themeButtons = this.shadowRoot.querySelectorAll('[data-theme]');
-    const swatchButtons = this.shadowRoot.querySelectorAll('.swatch');
-    const customColorButton = this.shadowRoot.querySelector('[data-hue="custom"]');
     const hueSlider = this.shadowRoot.querySelector('.hue-slider');
-    
-    // Store swatches reference - filter out null values
-    this.swatches = [...swatchButtons, customColorButton].filter(Boolean);
     
     // Add event listeners with keyboard support
     themeButtons.forEach(button => {
@@ -311,38 +219,10 @@ class SiteSettings extends HTMLElement {
       }
     });
     
-    swatchButtons.forEach(button => {
-      if (button) {
-        button.addEventListener('click', this.swatchClickHandler);
-        button.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.swatchClickHandler(e);
-          }
-        });
-        // Make focusable
-        button.setAttribute('tabindex', '0');
-        button.setAttribute('role', 'button');
-        button.setAttribute('aria-label', `Select color hue ${button.dataset.hue}`);
-      }
-    });
-    
-    if (customColorButton) {
-      customColorButton.addEventListener('click', this.customColorHandler);
-      customColorButton.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          this.customColorHandler(e);
-        }
-      });
-      // Make focusable
-      customColorButton.setAttribute('tabindex', '0');
-      customColorButton.setAttribute('role', 'button');
-      customColorButton.setAttribute('aria-label', 'Select custom color');
-    }
     
     if (hueSlider) {
       hueSlider.addEventListener('input', this.hueSliderHandler);
+      hueSlider.addEventListener('change', this.hueSliderHandler);
     }
     
     // Load stored theme
@@ -354,13 +234,15 @@ class SiteSettings extends HTMLElement {
     
     // Initialize hue from storage
     const storedHue = localStorage.getItem('brandHue');
-    const defaultHue = storedHue ? parseInt(storedHue) : 230;
+    const parsedHue = storedHue ? parseInt(storedHue, 10) : null;
+    const defaultHue = (!isNaN(parsedHue) && parsedHue >= 0 && parsedHue <= 360) ? parsedHue : 230;
     
     if (hueSlider) {
       hueSlider.value = defaultHue;
     }
     
-    this.setHue(defaultHue, false);
+    this.updateHue(defaultHue);
+    localStorage.setItem('brandHue', defaultHue);
     
     // Apply persisted radius if available
     const storedRadius = localStorage.getItem('baseRadius');
@@ -403,121 +285,51 @@ class SiteSettings extends HTMLElement {
     }
   }
 
-  swatchClickHandler(event) {
-    const hue = parseInt(event.currentTarget.dataset.hue);
-    if (!isNaN(hue)) {
-      this.setHue(hue, true, true); // true for store, true for transition
-    }
-  }
-
-  customColorHandler(event) {
-    this.customSwatchSelected = true;
-    const colorSlider = this.shadowRoot.querySelector('[data-color-slider]');
-    
-    if (colorSlider) {
-      colorSlider.classList.add('visible');
-    }
-    
-    // Update selected state and ARIA attributes
-    this.swatches.forEach(s => {
-      if (s) {
-        const isSelected = s.dataset.hue === 'custom';
-        s.classList.toggle('selected', isSelected);
-        s.setAttribute('aria-pressed', isSelected);
-      }
-    });
-  }
 
   hueSliderHandler(event) {
-    const hue = parseInt(event.target.value);
-    this.updateHue(hue);
-    localStorage.setItem('brandHue', hue);
-  }
-
-  // Calculate the shortest path between two hues on a 360-degree circle
-  calculateShortestHuePath(currentHue, targetHue) {
-    const diff = targetHue - currentHue;
-    const absDiff = Math.abs(diff);
-    
-    if (absDiff <= 180) {
-      // Direct path is shortest
-      return targetHue;
-    } else {
-      // Wrap around is shorter
-      if (diff > 0) {
-        // Going clockwise but wrap counter-clockwise is shorter
-        return targetHue - 360;
-      } else {
-        // Going counter-clockwise but wrap clockwise is shorter
-        return targetHue + 360;
+    const hue = parseInt(event.target.value, 10);
+    if (!isNaN(hue) && hue >= 0 && hue <= 360) {
+      // Use throttled update for smooth performance
+      this.throttledUpdateHue(hue);
+      
+      // Update cache immediately for consistency
+      if (window.themeCache) {
+        window.themeCache.values.colorHue = hue.toString();
       }
+      
+      // Debounce localStorage and event dispatch to avoid excessive writes
+      clearTimeout(this.saveTimeout);
+      this.saveTimeout = setTimeout(() => {
+        localStorage.setItem('brandHue', hue);
+        window.dispatchEvent(new CustomEvent('globalHueChange', { detail: hue }));
+      }, 100);
     }
-  }
-
-  // Animate hue changes with easing
-  animateHueTransition(currentHue, targetHue, duration = 400) {
-    const startTime = performance.now();
-    const startHue = currentHue;
-    const endHue = this.calculateShortestHuePath(currentHue, targetHue);
-    
-    // Easing function (ease-out cubic)
-    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-    
-    const animate = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = easeOutCubic(progress);
-      
-      const currentAnimatedHue = startHue + (endHue - startHue) * easedProgress;
-      const normalizedHue = ((currentAnimatedHue % 360) + 360) % 360;
-      
-      document.documentElement.style.setProperty('--color1-hue', `${normalizedHue}deg`);
-      
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        // Ensure final value is exactly the target
-        const finalNormalizedHue = ((targetHue % 360) + 360) % 360;
-        document.documentElement.style.setProperty('--color1-hue', `${finalNormalizedHue}deg`);
-      }
-    };
-    
-    requestAnimationFrame(animate);
-  }
-
-  setHue(hue, store = true, withTransition = false) {
-    if (withTransition) {
-      // Get current hue value
-      const currentHueStr = getComputedStyle(document.documentElement).getPropertyValue('--color1-hue');
-      const currentHue = parseInt(currentHueStr) || 230;
-      
-      // Animate the transition
-      this.animateHueTransition(currentHue, hue);
-    } else {
-      // Immediate update (for slider input)
-      document.documentElement.style.setProperty('--color1-hue', `${hue}deg`);
-    }
-    
-    if (store) localStorage.setItem('brandHue', hue);
-    
-    this.customSwatchSelected = false;
-    const colorSlider = this.shadowRoot.querySelector('[data-color-slider]');
-    if (colorSlider) {
-      colorSlider.classList.remove('visible');
-    }
-    
-    // Update selected state and ARIA attributes
-    this.swatches.forEach(s => {
-      if (s) {
-        const isSelected = parseInt(s.dataset.hue) === parseInt(hue);
-        s.classList.toggle('selected', isSelected);
-        s.setAttribute('aria-pressed', isSelected);
-      }
-    });
   }
 
   updateHue(hue) {
-    document.documentElement.style.setProperty('--color1-hue', `${hue}deg`);
+    if (!isNaN(hue) && hue >= 0 && hue <= 360) {
+      document.documentElement.style.setProperty('--color1-hue', `${hue}deg`);
+    }
+  }
+
+  disconnectedCallback() {
+    // Clean up event listeners to prevent memory leaks
+    const themeButtons = this.shadowRoot.querySelectorAll('[data-theme]');
+    const hueSlider = this.shadowRoot.querySelector('.hue-slider');
+    
+    themeButtons.forEach(button => {
+      if (button) {
+        button.removeEventListener('click', this.themeChangeHandler);
+      }
+    });
+    
+    if (hueSlider) {
+      hueSlider.removeEventListener('input', this.hueSliderHandler);
+      hueSlider.removeEventListener('change', this.hueSliderHandler);
+    }
+    
+    // Clean up any global event listeners if they exist
+    // (These would be added if we had global theme sync)
   }
 }
 

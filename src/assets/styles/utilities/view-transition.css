@@ -1,6 +1,6 @@
 @view-transition {
   navigation: auto;
-  types: up, down, reload, card-to-detail, detail-to-card;
+  types: nav-up, nav-down, reload, card-to-detail, detail-to-card;
 }
 
 ::view-transition {
@@ -58,13 +58,7 @@ main#main-content {
   animation: none;
 }
 
-/* Keep nav items and background static during transitions */
-::view-transition-old(nav-items),
-::view-transition-new(nav-items),
-::view-transition-old(nav-background),
-::view-transition-new(nav-background) {
-  animation: none;
-}
+
 
 
 
@@ -167,6 +161,10 @@ html:active-view-transition-type(card-to-detail) {
   site-navigation {
     view-transition-name: nav;
   }
+  .nav-background {
+    view-transition-name: nav-background;
+  }
+  
 }
 
 /* Determine what gets captured when the type is detail-to-card */
@@ -266,6 +264,10 @@ html:active-view-transition-type(detail-to-card) {
   site-navigation {
     view-transition-name: nav;
   }
+  .nav-background {
+    view-transition-name: nav-background;
+  }
+  
 }
 
 /* Card-to-Detail transition animations with blur morphing */
@@ -388,7 +390,8 @@ html:active-view-transition-type(detail-to-card) ::view-transition-new(herff-jon
 
 
 /* Determine what gets captured when the type is up or down */
-html:active-view-transition-type(up, down) {
+html:active-view-transition-type(nav-up), 
+html:active-view-transition-type(nav-down) {
   :root {
     view-transition-name: none;
   }
@@ -398,9 +401,11 @@ html:active-view-transition-type(up, down) {
   site-navigation {
     view-transition-name: nav;
   }
-  .nav-item {
-    view-transition-name: nav-items;
+  .nav-background {
+    view-transition-name: nav-background;
   }
+ 
+  /* Individual nav items handled by component CSS */
 }
 
 /* Determine what gets captured when the type is reload */
@@ -414,13 +419,15 @@ html:active-view-transition-type(reload) {
   site-navigation {
     view-transition-name: nav;
   }
-  .nav-item {
-    view-transition-name: nav-items;
+  .nav-background {
+    view-transition-name: nav-background;
   }
+  
+  /* Individual nav items handled by component CSS */
 }
 
 /* Animation styles for down type only (going down in navigation order) */
-html:active-view-transition-type(down) {
+html:active-view-transition-type(nav-down) {
   &::view-transition-old(main-content) {
     animation: slide-out-to-top var(--transition-duration) var(--timing-decelerate);
   }
@@ -430,7 +437,7 @@ html:active-view-transition-type(down) {
 }
 
 /* Animation styles for up type only (going up in navigation order) */
-html:active-view-transition-type(up) {
+html:active-view-transition-type(nav-up) {
   &::view-transition-old(main-content) {
     animation: slide-out-to-bottom var(--transition-duration) var(--timing-decelerate);
   }
