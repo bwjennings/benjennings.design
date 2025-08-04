@@ -50,13 +50,19 @@
       name="viewport"
       content="width=device-width,initial-scale=1, viewport-fit=cover"
     />
-    <script src="../src/scripts/index.js"></script>
-
-    <link rel="modulepreload" href="../src/components/index.js" />
-    <script type="module" src="../src/components/index.js"></script>
-    <script src="../src/scripts/view-transition.js"></script>
+    <!-- Critical CSS - load first for view-transition-name definitions -->
     <link href="../src/assets/styles/base/vars.css" rel="stylesheet" />
     <link href="../src/assets/styles/base/index.css" rel="stylesheet" />
+    
+    <!-- Critical JavaScript - theme initialization -->
+    <script src="../src/scripts/index.js"></script>
+
+    <!-- Web Components - preload then load -->
+    <link rel="modulepreload" href="../src/components/index.js" />
+    <script type="module" src="../src/components/index.js"></script>
+    
+    <!-- View transition script - after CSS and components -->
+    <script src="../src/scripts/view-transition.js"></script>
 
   <!-- Prefetch Links -->
   <link rel="expect" href="../index.html" blocking="render" />
@@ -69,11 +75,11 @@
         "prerender": [
           {
             "urls": [
-              "index.html",
-              "designs/",
-              "fundamentals/",
-              "experiments/",
-              "resources/"
+              "../index.html",
+              "../designs/",
+              "../fundamentals/",
+              "../experiments/",
+              "../resources/"
             ],
             "eagerness": "eager",
             "referrer_policy": "same-origin"

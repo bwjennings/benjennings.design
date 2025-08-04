@@ -32,15 +32,22 @@
       rel="stylesheet">
   </noscript>
   
-  <link href="../src/assets/styles/base/vars.css" rel="stylesheet" />
-  <link href="../src/assets/styles/base/index.css" rel="stylesheet" />
   <title>Ben Jennings</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+  
+  <!-- Critical CSS - load first for view-transition-name definitions -->
+  <link href="../src/assets/styles/base/vars.css" rel="stylesheet" />
+  <link href="../src/assets/styles/base/index.css" rel="stylesheet" />
+  
+  <!-- Critical JavaScript - theme initialization -->
   <script src="../src/scripts/index.js"></script>
 
+  <!-- Web Components - preload then load -->
   <link rel="modulepreload" href="../src/components/index.js" />
   <script type="module" src="../src/components/index.js"></script>
+  
+  <!-- View transition script - after CSS and components -->
   <script src="../src/scripts/view-transition.js"></script>
 
 
@@ -53,7 +60,7 @@
     {
       "prerender": [
         {
-          "urls": ["index.html", "designs/","fundamentals/","experiments/","resources/"],
+          "urls": ["../index.html", "../designs/","../fundamentals/","../experiments/","../resources/"],
           "eagerness": "eager",
           "referrer_policy": "same-origin"
         }

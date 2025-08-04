@@ -10,11 +10,6 @@
   inherits: true;
 }
 
-@property --stimulation-level {
-  syntax: "<number>";
-  initial-value: 1.5;
-  inherits: true;
-}
 
 @property --text-heading-width {
   syntax: "<number>";
@@ -51,11 +46,11 @@
   --spacing-xxxl: 40px;
 
   /* radii */
-  --level-scale: calc((var(--stimulation-level) - 0.5) / 0.4);
+
   --radius-none: 0px;
-  --radius-sm: calc(8px * var(--level-scale));
-  --radius-md: calc(16px * var(--level-scale));
-  --radius-lg: calc(24px * var(--level-scale));
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 
   /* typography scale */
   --font-size-1: clamp(0.64rem, -0.02vi + 0.64rem, 0.63rem);
@@ -352,17 +347,7 @@
   --theme-slider-outline: var(--color-background-primary);
 }
 
-[data-theme="energized"] {
-  --stimulation-level: 0.7;
-}
 
-[data-theme="balanced"] {
-  --stimulation-level: 0.6;
-}
-
-[data-theme="calm"] {
-  --stimulation-level: 0.5;
-}
 
 [data-mode="high-contrast"] {
   --color-background-page: light-dark(var(--color-white), var(--color-neutral-95));

@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLX2X0J846"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PLX2X0J846');
+  </script>
+  
   <title>Ben Jennings</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
@@ -23,17 +32,30 @@
       rel="stylesheet" />
   </noscript>
 
-  <script src="../../src/scripts/index.js"></script>
-  <link rel="modulepreload" href="../../src/components/index.js" />
-  <script type="module" src="../../src/components/index.js"></script>
-  <script src="../../src/scripts/view-transition.js"></script>
+  <!-- Critical CSS - load first for view-transition-name definitions -->
   <link href="../../src/assets/styles/base/vars.css" rel="stylesheet" />
   <link href="../../src/assets/styles/base/index.css" rel="stylesheet" />
+  
+  <!-- Critical JavaScript - theme initialization -->
+  <script src="../../src/scripts/index.js"></script>
+  
+  <!-- Web Components - preload then load -->
+  <link rel="modulepreload" href="../../src/components/index.js" />
+  <script type="module" src="../../src/components/index.js"></script>
+  
+  <!-- View transition script - after CSS and components -->
+  <script src="../../src/scripts/view-transition.js"></script>
 
   <!-- Render blocking for view transition elements -->
   <link rel="expect" blocking="render" href="#project-header" />
   <link rel="expect" blocking="render" href="#project-image" />
   <link rel="expect" blocking="render" href="#project-title" />
+  
+  <!-- Icons and Manifest -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../../public/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../public/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../public/favicons/favicon-16x16.png">
+  <link rel="manifest" href="../../public/site.webmanifest">
 </head>
 
 <body id="page-container" class="page-container detail-page">
