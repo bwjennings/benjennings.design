@@ -96,7 +96,7 @@ site-navigation {
   font-variation-settings: initial;
   font-variation-settings: "GRAD" 0;
 
-  &:hover:not(.active) {
+  &:hover {
     outline: var(--color-border-primary) 2px solid;
     outline-width: 2px;
     --icon-grade: 200;
@@ -127,11 +127,18 @@ site-navigation {
 
 
 /* Active nav item styles */
-.active {
+.active,
+site-navigation[active-item="item1"] .item1,
+site-navigation[active-item="item2"] .item2,
+site-navigation[active-item="item3"] .item3,
+site-navigation[active-item="item4"] .item4,
+site-navigation[active-item="item5"] .item5 {
   transition: none;
   font-variation-settings: 'GRAD' 100;
   color: var(--color-text-base);
   background: transparent;
+  outline-width: 0;
+  outline-color: transparent;
 
   .icon {
     font-variation-settings: "FILL" 1, "GRAD" var(--icon-grade-emphasis);
@@ -211,19 +218,12 @@ site-navigation {
     z-index: 1;
 }
 
-/* Set nav-background-position variable with :has() selectors */
-nav:has(.nav-item:nth-child(1).active) { --nav-background-position: 1; }
-nav:has(.nav-item:nth-child(2).active) { --nav-background-position: 2; }
-nav:has(.nav-item:nth-child(3).active) { --nav-background-position: 3; }
-nav:has(.nav-item:nth-child(4).active) { --nav-background-position: 4; }
-nav:has(.nav-item:nth-child(5).active) { --nav-background-position: 5; }
-
-/* Fallback for li > a.nav-item.active structure */
-nav:has(li:nth-child(1) > a.nav-item.active) { --nav-background-position: 1; }
-nav:has(li:nth-child(2) > a.nav-item.active) { --nav-background-position: 2; }
-nav:has(li:nth-child(3) > a.nav-item.active) { --nav-background-position: 3; }
-nav:has(li:nth-child(4) > a.nav-item.active) { --nav-background-position: 4; }
-nav:has(li:nth-child(5) > a.nav-item.active) { --nav-background-position: 5; }
+/* Set nav-background-position variable based on active-item attribute */
+site-navigation[active-item="item1"] nav { --nav-background-position: 1; }
+site-navigation[active-item="item2"] nav { --nav-background-position: 2; }
+site-navigation[active-item="item3"] nav { --nav-background-position: 3; }
+site-navigation[active-item="item4"] nav { --nav-background-position: 4; }
+site-navigation[active-item="item5"] nav { --nav-background-position: 5; }
 
 @media (max-width: 768px) {
   .nav-background {
@@ -452,11 +452,15 @@ theme-slider {
       white-space: nowrap;
     }
 
-    &:hover:not(.active) {
+    &:hover {
       background-color: transparent;
     }
 
-    &.active {
+    site-navigation[active-item="item1"] &.item1,
+    site-navigation[active-item="item2"] &.item2,
+    site-navigation[active-item="item3"] &.item3,
+    site-navigation[active-item="item4"] &.item4,
+    site-navigation[active-item="item5"] &.item5 {
       background-color: transparent;
       color: #006e9b;
     }
@@ -473,12 +477,12 @@ theme-slider {
     width: var(--nav-bg-width, calc(20% - 8px));
   }
   
-  /* :has() selector fallbacks for browsers that support it */
-  nav:has(.item1.active) .nav-background { --nav-bg-left: calc(0 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
-  nav:has(.item2.active) .nav-background { --nav-bg-left: calc(1 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
-  nav:has(.item3.active) .nav-background { --nav-bg-left: calc(2 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
-  nav:has(.item4.active) .nav-background { --nav-bg-left: calc(3 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
-  nav:has(.item5.active) .nav-background { --nav-bg-left: calc(4 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
+  /* Active state position for mobile */
+  site-navigation[active-item="item1"] .nav-background { --nav-bg-left: calc(0 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
+  site-navigation[active-item="item2"] .nav-background { --nav-bg-left: calc(1 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
+  site-navigation[active-item="item3"] .nav-background { --nav-bg-left: calc(2 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
+  site-navigation[active-item="item4"] .nav-background { --nav-bg-left: calc(3 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
+  site-navigation[active-item="item5"] .nav-background { --nav-bg-left: calc(4 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
 }
 
 /* Mobile settings styles - apply globally but only visible on mobile */
