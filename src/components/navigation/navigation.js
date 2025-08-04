@@ -2,35 +2,12 @@ class SiteNavigation extends HTMLElement {
   constructor() {
     super();
     this.rendered = false;
-    this.lastPath = null;
-    this.lastActiveClass = null;
   }
 
   connectedCallback() {
     if (!this.rendered) {
       this.render();
       this.rendered = true;
-    } else {
-      // Only update active state if path changed
-      this.updateActiveState();
-    }
-  }
-
-  updateActiveState() {
-    const currentActiveClass = this.getAttribute('active-item') || this.getActiveItemClass();
-    
-    // Only update if active class changed
-    if (currentActiveClass !== this.lastActiveClass) {
-      const navItems = this.querySelectorAll('.nav-item');
-      navItems.forEach((item, index) => {
-        const itemClass = `item${index + 1}`;
-        if (currentActiveClass === itemClass) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
-      });
-      this.lastActiveClass = currentActiveClass;
     }
   }
 
@@ -39,25 +16,20 @@ class SiteNavigation extends HTMLElement {
     const path = window.location.pathname;
     const depth = (path.match(/\//g) || []).length - 1;
     const baseUrl = depth === 0 ? '' : '../'.repeat(depth);
-    
-    // Get active item from attribute or fall back to URL detection
-    const activeClass = this.getAttribute('active-item') || this.getActiveItemClass();
-    this.lastActiveClass = activeClass;
-    this.lastPath = path;
-    
+
     // Create navigation template (cached for performance)
     if (!SiteNavigation.template) {
       SiteNavigation.template = this.createTemplate();
     }
-    
+
     // Clone template and update dynamic parts
     const clone = SiteNavigation.template.cloneNode(true);
-    
+
     // Update base URLs for all navigation links
     const links = clone.querySelectorAll('a[href]');
     links.forEach(link => {
       const href = link.getAttribute('href');
-      
+
       // Apply baseUrl to all relative links
       if (!href.startsWith('http') && !href.startsWith('#')) {
         const newHref = baseUrl + href;
@@ -68,20 +40,11 @@ class SiteNavigation extends HTMLElement {
         }
       }
     });
-    
-    // Update active state
-    const navItems = clone.querySelectorAll('.nav-item');
-    navItems.forEach((item, index) => {
-      const itemClass = `item${index + 1}`;
-      if (activeClass === itemClass) {
-        item.classList.add('active');
-      }
-    });
-    
+
     // Replace content
     this.innerHTML = '';
     this.appendChild(clone);
-    
+
     this.setupMobileSettings();
   }
 
@@ -171,25 +134,6 @@ class SiteNavigation extends HTMLElement {
       // Store event handlers for cleanup
       SiteNavigation.mobileEventHandlers = { toggleOpen, closeSettings, handleEscape };
     }
-  }
-
-  getActiveItemClass() {
-    const path = window.location.pathname;
-    
-    // Handle different path structures
-    if (path === '/' || path.endsWith('/index.html') || path.endsWith('/ben.cards/')) {
-      return 'item1';
-    } else if (path.includes('/fundamentals')) {
-      return 'item2';
-    } else if (path.includes('/designs')) {
-      return 'item3';
-    } else if (path.includes('/experiments')) {
-      return 'item4';
-    } else if (path.includes('/resources')) {
-      return 'item5';
-    }
-
-    return null;
   }
 
   disconnectedCallback() {
