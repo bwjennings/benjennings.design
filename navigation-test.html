@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Responsiveness Test</title>
+    
+    <!-- Load fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+    
+    <!-- Load CSS -->
+    <link href="src/assets/styles/base/vars.css" rel="stylesheet">
+    <link href="src/assets/styles/base/index.css" rel="stylesheet">
+    <link href="src/assets/styles/base/page.css" rel="stylesheet">
+    <link href="src/assets/styles/components/navigation.css" rel="stylesheet">
+    
+    <!-- Load theme initialization script -->
+    <script src="src/scripts/index.js"></script>
+    
+    <!-- Load components -->
+    <script type="module" src="src/components/index.js"></script>
+    
+    <style>
+        .test-container {
+            padding: 2rem;
+            background: var(--color-background-page);
+            min-height: 100vh;
+        }
+        
+        .test-title {
+            font-size: var(--text-heading-lg-size);
+            color: var(--color-text-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .resize-demo {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-container {
+            border: 2px solid var(--color-border-primary);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--color-background-primary);
+            position: relative;
+            resize: horizontal;
+            min-width: 200px;
+            max-width: 100%;
+        }
+        
+        .demo-label {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--color-background-base);
+            color: var(--color-text-base);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            font-size: var(--text-body-xs-size);
+            z-index: 200;
+            pointer-events: none;
+        }
+        
+        .demo-nav {
+            width: 100%;
+            height: 400px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas: "sidebar";
+        }
+        
+        .instructions {
+            background: var(--color-background-secondary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: 2rem;
+        }
+        
+        .instructions h3 {
+            color: var(--color-text-primary);
+            margin-top: 0;
+        }
+        
+        .instructions p {
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .breakpoint-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .breakpoint {
+            background: var(--color-background-base);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--color-border-base);
+        }
+        
+        .breakpoint h4 {
+            color: var(--color-text-base);
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .breakpoint p {
+            color: var(--color-text-secondary);
+            margin: 0;
+            font-size: var(--text-body-sm-size);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="test-title">Navigation Container Query Responsiveness Test</h1>
+        
+        <div class="instructions">
+            <h3>How to Test</h3>
+            <p>Drag the resize handle (bottom-right corner) of each demo container to see how the navigation adapts to different container sizes using container queries (on desktop) and media queries (for mobile fixed positioning).</p>
+            <p><strong>Note:</strong> Container queries work when the viewport is wider than 800px. On mobile/narrow viewports, the navigation switches to fixed positioning with media queries.</p>
+            
+            <div class="breakpoint-info">
+                <div class="breakpoint">
+                    <h4>Ultra Compact</h4>
+                    <p>≤ 280px: Icons only, no text labels</p>
+                </div>
+                <div class="breakpoint">
+                    <h4>Compact Mobile</h4>
+                    <p>281px - 349px: Small icons + tiny text</p>
+                </div>
+                <div class="breakpoint">
+                    <h4>Tablet/Small Desktop</h4>
+                    <p>350px - 450px: Medium spacing and text</p>
+                </div>
+                <div class="breakpoint">
+                    <h4>Full Desktop</h4>
+                    <p>≥ 451px: Full spacing and large text</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resize-demo">
+            <!-- Ultra narrow test -->
+            <div class="demo-container" style="width: 250px;">
+                <div class="demo-label">Ultra Narrow (250px)</div>
+                <div class="demo-nav">
+                    <site-navigation></site-navigation>
+                </div>
+            </div>
+            
+            <!-- Compact mobile test -->
+            <div class="demo-container" style="width: 320px;">
+                <div class="demo-label">Compact Mobile (320px)</div>
+                <div class="demo-nav">
+                    <site-navigation></site-navigation>
+                </div>
+            </div>
+            
+            <!-- Tablet test -->
+            <div class="demo-container" style="width: 400px;">
+                <div class="demo-label">Tablet (400px)</div>
+                <div class="demo-nav">
+                    <site-navigation></site-navigation>
+                </div>
+            </div>
+            
+            <!-- Desktop test -->
+            <div class="demo-container" style="width: 500px;">
+                <div class="demo-label">Desktop (500px)</div>
+                <div class="demo-nav">
+                    <site-navigation></site-navigation>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Add resize feedback
+        document.querySelectorAll('.demo-container').forEach(container => {
+            const label = container.querySelector('.demo-label');
+            const observer = new ResizeObserver(entries => {
+                for (const entry of entries) {
+                    const width = Math.round(entry.contentRect.width);
+                    let breakpoint = '';
+                    
+                    if (width <= 280) {
+                        breakpoint = 'Ultra Narrow';
+                    } else if (width <= 349) {
+                        breakpoint = 'Compact Mobile';
+                    } else if (width <= 450) {
+                        breakpoint = 'Tablet';
+                    } else {
+                        breakpoint = 'Desktop';
+                    }
+                    
+                    label.textContent = `${breakpoint} (${width}px)`;
+                }
+            });
+            observer.observe(container);
+        });
+    </script>
+</body>
+</html>

@@ -3,6 +3,20 @@ site-navigation {
   display: block;
   z-index: 100;
   contain: layout;
+  container-type: inline-size;
+  container-name: navigation;
+  transition: all 300ms var(--timing-decelerate);
+}
+
+/* Enhanced responsive behavior based on data-layout attribute */
+site-navigation[data-layout="mobile"] .sidebar {
+  flex-direction: column;
+  justify-content: center;
+}
+
+site-navigation[data-layout="desktop"] .sidebar {
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .sidebar {
@@ -97,8 +111,7 @@ site-navigation {
   font-variation-settings: "GRAD" 0;
 
   &:hover {
-    outline: var(--color-border-primary) 2px solid;
-    outline-width: 2px;
+    
     --icon-grade: 200;
     font-variation-settings: "GRAD" 200;
   }
@@ -149,7 +162,7 @@ site-navigation[active-item="item5"] .item5 {
 /* Navigation background element */
 .nav-background {
   position: absolute;
-  background: var(--color-background-emphasis);
+  background: var(--color-background-secondary);
   border-radius: var(--radius-md);
   pointer-events: none;
   z-index: 0;
@@ -161,16 +174,70 @@ site-navigation[active-item="item5"] .item5 {
   view-transition-name: nav-background;
 }
 
-/* Desktop positioning */
+/* Container queries only apply in desktop mode */
 @media screen and (min-width: 801px) {
-  .nav-background {
-    width: 100%;
-    height: clamp(50px, 10cqh, 80px);
-
-    /* Use CSS custom property for positioning, fallback to :has() selectors */
+  /* Very narrow container - ultra compact mobile */
+  @container navigation (max-width: 280px) {
+    .nav-item .title {
+      display: none;
+    }
     
-  
-  
+    .nav-item .icon {
+      font-size: var(--icon-size-sm);
+    }
+    
+    .sidebar nav {
+      height: 48px;
+    }
+  }
+
+  /* Narrow container - compact mobile layout */
+  @container navigation (min-width: 281px) and (max-width: 349px) {
+    .nav-item .title {
+      font-size: calc(var(--text-body-xs-size) * 0.8);
+    }
+    
+    .nav-item .icon {
+      font-size: var(--icon-size-sm);
+    }
+  }
+
+  /* Medium container - tablet/desktop sidebar */
+  @container navigation (min-width: 350px) and (max-width: 450px) {
+    .sidebar {
+      padding: var(--spacing-md);
+    }
+    
+    .nav-item {
+      height: clamp(45px, 8cqh, 70px);
+      padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .nav-item .title {
+      font-size: var(--text-body-md-size);
+    }
+  }
+
+  /* Wide container - full desktop sidebar */
+  @container navigation (min-width: 451px) {
+    .nav-background {
+      width: 100%;
+      height: clamp(50px, 10cqh, 80px);
+    }
+    
+    .sidebar {
+      padding: var(--spacing-lg);
+    }
+    
+    .nav-item {
+      height: clamp(50px, 10cqh, 80px);
+      padding: var(--spacing-xl) var(--spacing-lg);
+    }
+    
+    .nav-item .title {
+      font-size: var(--text-body-lg-size);
+    }
+  }
 }
 
 
@@ -210,13 +277,13 @@ site-navigation[active-item="item5"] .item5 {
 
 
 .nav-background{
-    background-color:var(--color-background-base) ;
+    background-color:var(--color-background-primary) ;
     
     width: 100%;
     grid-column: 1;
     grid-row: var(--nav-background-position, 1);
     z-index: 1;
-}
+   }
 
 /* Set nav-background-position variable based on active-item attribute */
 site-navigation[active-item="item1"] nav { --nav-background-position: 1; }
@@ -225,10 +292,19 @@ site-navigation[active-item="item3"] nav { --nav-background-position: 3; }
 site-navigation[active-item="item4"] nav { --nav-background-position: 4; }
 site-navigation[active-item="item5"] nav { --nav-background-position: 5; }
 
-@media (max-width: 768px) {
-  .nav-background {
-    grid-row: 1;
-    grid-column: var(--nav-background-position, 1);
+/* Container queries only apply in desktop mode (when not using fixed mobile nav) */
+@media screen and (min-width: 801px) {
+  /* Mobile layout - when container is narrow in desktop mode */
+  @container navigation (max-width: 349px) {
+    .nav-background {
+      grid-row: 1;
+      grid-column: var(--nav-background-position) / span 1;
+      height: calc(100% - 8px);
+      top: 4px;
+      border-radius: 999px;
+      left: var(--nav-bg-left, calc(0 * 20% + 4px));
+      width: var(--nav-bg-width, calc(20% - 8px));
+    }
   }
 }
 
@@ -238,11 +314,23 @@ nav li:nth-child(3) .nav-item { grid-row: 3; grid-column: 1; }
 nav li:nth-child(4) .nav-item { grid-row: 4; grid-column: 1; }
 nav li:nth-child(5) .nav-item { grid-row: 5; grid-column: 1; }
 
-nav li:nth-child(1) { grid-row: 1; grid-column: 1; }
-nav li:nth-child(2) { grid-row: 2; grid-column: 1; }
-nav li:nth-child(3) { grid-row: 3; grid-column: 1; }
-nav li:nth-child(4) { grid-row: 4; grid-column: 1; }
-nav li:nth-child(5) { grid-row: 5; grid-column: 1; }
+/* Desktop: vertical grid positioning */
+@media screen and (min-width: 801px) {
+  nav li:nth-child(1) { grid-row: 1; grid-column: 1; }
+  nav li:nth-child(2) { grid-row: 2; grid-column: 1; }
+  nav li:nth-child(3) { grid-row: 3; grid-column: 1; }
+  nav li:nth-child(4) { grid-row: 4; grid-column: 1; }
+  nav li:nth-child(5) { grid-row: 5; grid-column: 1; }
+}
+
+/* Mobile: horizontal grid positioning */
+@media screen and (max-width: 800px) {
+  nav li:nth-child(1) { grid-row: 1; grid-column: 1; }
+  nav li:nth-child(2) { grid-row: 1; grid-column: 2; }
+  nav li:nth-child(3) { grid-row: 1; grid-column: 3; }
+  nav li:nth-child(4) { grid-row: 1; grid-column: 4; }
+  nav li:nth-child(5) { grid-row: 1; grid-column: 5; }
+}
 
 nav {
   li {
@@ -253,60 +341,6 @@ nav {
   }
 }
 
-/* Mobile equivalents */
-@media (max-width: 768px) {
-    .nav-container {
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: 1fr;
-        width: 100%;
-        max-width: 600px;
-    }
-
-    .nav-item {
-        grid-template-columns: 1fr;
-        grid-template-rows: 24px 1fr;
-        gap: 8px;
-        padding: 16px 8px;
-        text-align: center;
-    }
-
-    .nav-item .title {
-        font-size: 14px;
-        line-height: 16px;
-    }
-
-    .nav-item:nth-child(1) {
-        grid-row: 1;
-        grid-column: 1;
-    }
-
-    .nav-item:nth-child(2) {
-        grid-row: 1;
-        grid-column: 2;
-    }
-
-    .nav-item:nth-child(3) {
-        grid-row: 1;
-        grid-column: 3;
-    }
-
-    .nav-item:nth-child(4) {
-        grid-row: 1;
-        grid-column: 4;
-    }
-
-    .nav-item:nth-child(5) {
-        grid-row: 1;
-        grid-column: 5;
-    }
-
-    
-    .nav-container li:nth-child(1) .nav-item { grid-row: 1; grid-column: 1; }
-    .nav-container li:nth-child(2) .nav-item { grid-row: 1; grid-column: 2; }
-    .nav-container li:nth-child(3) .nav-item { grid-row: 1; grid-column: 3; }
-    .nav-container li:nth-child(4) .nav-item { grid-row: 1; grid-column: 4; }
-    .nav-container li:nth-child(5) .nav-item { grid-row: 1; grid-column: 5; }
-}
 
 
 
@@ -328,8 +362,8 @@ theme-slider {
 }
 
 
-@media screen and (max-width: 800px),
-(max-height:500px) {
+/* Media query for mobile layout - needs to break out of container for fixed positioning */
+@media screen and (max-width: 800px), (max-height: 500px) {
   /* Completely remove site-navigation from page layout */
   site-navigation {
     position: fixed !important;
@@ -346,6 +380,8 @@ theme-slider {
     transform: none;
     will-change: auto;
     contain: layout;
+    container-type: inline-size;
+    container-name: navigation;
   }
 
   /* Page container - content only, no navigation */
@@ -378,13 +414,14 @@ theme-slider {
     position: static;
     height: auto;
     width: 100%;
-    padding: 16px;
-    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+    padding: var(--spacing-lg);
+    padding-bottom: calc(var(--spacing-lg) + env(safe-area-inset-bottom));
     background: transparent;
     border: none;
     display: flex;
     flex-direction: column;
     gap: 0;
+    container-type: inline-size;
   }
 
   /* Hide desktop elements */
@@ -394,14 +431,17 @@ theme-slider {
     display: none;
   }
 
-  /* Mobile nav styling */
+  /* Mobile nav styling - use grid like desktop but horizontal */
   .sidebar nav {
-    display: flex;
-    flex-direction: row;
+   
+    
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
     height: 64px;
-    background-color: #fcfcfc;
-    border: 1px solid #e4e4e6;
-    border-radius: 999px;
+    background-color: var(--color-background-primary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: 24px;
     padding: 0 4px;
     max-width: 500px;
     margin: 0 auto;
@@ -410,10 +450,11 @@ theme-slider {
     position: relative;
 
     li {
-      flex: 1;
       display: flex;
       position: relative;
-      z-index: 1;
+      align-items: center;
+      justify-content: center;
+      
     }
   }
 
@@ -424,31 +465,31 @@ theme-slider {
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 8px;
+    padding: var(--spacing-sm);
     flex-direction: column;
     gap: 2px;
     background: transparent;
-    color: #565e6a;
+    color: var(--color-text-secondary);
     border: none;
-    border-radius: 999px;
+    border-radius: var(--nav-item-radius);
     text-decoration: none;
-    transition: all 300ms ease;
-    margin: 0 -4px;
+    transition: all 300ms var(--timing-decelerate);
+    margin: 0;
     -webkit-tap-highlight-color: transparent;
     position: relative;
-    z-index: 1;
+   
 
     .icon {
-      font-size: 24px;
+      font-size: var(--icon-size-md);
       line-height: 1;
-      font-family: 'Material Symbols Sharp', sans-serif;
+      font-family: var(--icon-font-family);
     }
 
     .title {
-      font-size: 10px;
-      line-height: 12px;
-      font-family: 'Roboto Flex', sans-serif;
-      font-weight: 400;
+      font-size: var(--text-body-xs-size);
+      line-height: var(--text-body-xs-line-height);
+      font-family: var(--text-body-font-family);
+      font-weight: var(--text-body-weight);
       white-space: nowrap;
     }
 
@@ -456,33 +497,49 @@ theme-slider {
       background-color: transparent;
     }
 
-    site-navigation[active-item="item1"] &.item1,
-    site-navigation[active-item="item2"] &.item2,
-    site-navigation[active-item="item3"] &.item3,
-    site-navigation[active-item="item4"] &.item4,
-    site-navigation[active-item="item5"] &.item5 {
+    &.active {
       background-color: transparent;
-      color: #006e9b;
+      color: var(--color-text-base);
     }
   }
   
-  /* Mobile: Override nav-background styles */
+  /* Mobile: Override nav-background styles - use grid positioning */
   .nav-background {
-    background: #e4f5fb;
-    border-radius: 999px;
+    background-color: var(--color-background-base);
+    border-radius: 20px;
     height: calc(100% - 8px);
     top: 4px;
-    /* Use CSS custom properties for positioning, fallback to :has() selectors */
-    left: var(--nav-bg-left, calc(0 * 20% + 4px));
-    width: var(--nav-bg-width, calc(20% - 8px));
+    left: -4px;
+    width: calc(100% + 8px);
+    grid-row: 1;
+    grid-column: var(--nav-background-position, 1) / span 1;
+    position: absolute;
+    transition: all 300ms var(--timing-decelerate);
   }
   
-  /* Active state position for mobile */
-  site-navigation[active-item="item1"] .nav-background { --nav-bg-left: calc(0 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
-  site-navigation[active-item="item2"] .nav-background { --nav-bg-left: calc(1 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
-  site-navigation[active-item="item3"] .nav-background { --nav-bg-left: calc(2 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
-  site-navigation[active-item="item4"] .nav-background { --nav-bg-left: calc(3 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
-  site-navigation[active-item="item5"] .nav-background { --nav-bg-left: calc(4 * 20% + 4px); --nav-bg-width: calc(20% - 8px); }
+  /* Fix padding for first item - don't extend left beyond container padding */
+  site-navigation[active-item="item1"] .nav-background {
+    left: 0;
+    width: calc(100% + 4px);
+  }
+  
+  /* Fix padding for last item - don't extend right beyond container padding */
+  site-navigation[active-item="item5"] .nav-background {
+    left: -4px;
+    width: calc(100% + 4px);
+  }
+}
+
+/* Desktop: Ensure nav-background uses grid-row positioning */
+@media screen and (min-width: 801px) {
+  .nav-background {
+    grid-row: var(--nav-background-position, 1) / span 1;
+    grid-column: 1;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
 }
 
 /* Mobile settings styles - apply globally but only visible on mobile */

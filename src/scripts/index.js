@@ -48,7 +48,7 @@ window.themeCache = window.themeCache || {
     }
 
     if (cached.colorHue !== null) {
-      updates.push(['--color1-hue', cached.colorHue + 'deg']);
+      updates.push(['--hue-root', cached.colorHue + 'deg']);
     }
     if (cached.stimulation !== null) {
       updates.push(['--stimulation-level', cached.stimulation]);

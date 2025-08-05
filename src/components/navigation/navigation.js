@@ -2,6 +2,7 @@ class SiteNavigation extends HTMLElement {
   constructor() {
     super();
     this.rendered = false;
+    this.resizeObserver = null;
   }
 
   connectedCallback() {
@@ -9,6 +10,7 @@ class SiteNavigation extends HTMLElement {
       this.render();
       this.rendered = true;
     }
+    this.setupResizeObserver();
   }
 
   render() {
@@ -46,6 +48,49 @@ class SiteNavigation extends HTMLElement {
     this.appendChild(clone);
 
     this.setupMobileSettings();
+    this.updateActiveState();
+  }
+
+  setupResizeObserver() {
+    // Use ResizeObserver to detect container size changes
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
+    
+    this.resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        // Add CSS custom property for more fine-grained control
+        this.style.setProperty('--nav-container-width', `${width}px`);
+        
+        // Update layout mode based on container width
+        if (width <= 349) {
+          this.setAttribute('data-layout', 'mobile');
+        } else {
+          this.setAttribute('data-layout', 'desktop');
+        }
+      }
+    });
+    
+    this.resizeObserver.observe(this);
+  }
+
+  updateActiveState() {
+    // Determine active navigation item based on current path
+    const path = window.location.pathname;
+    let activeItem = 'item1'; // default to home
+    
+    if (path.includes('/fundamentals')) {
+      activeItem = 'item2';
+    } else if (path.includes('/designs')) {
+      activeItem = 'item3';
+    } else if (path.includes('/experiments')) {
+      activeItem = 'item4';
+    } else if (path.includes('/resources')) {
+      activeItem = 'item5';
+    }
+    
+    this.setAttribute('active-item', activeItem);
   }
 
   createTemplate() {
@@ -137,6 +182,12 @@ class SiteNavigation extends HTMLElement {
   }
 
   disconnectedCallback() {
+    // Clean up ResizeObserver
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
+    
     // Clean up mobile settings event listeners
     const button = document.getElementById('mobile-settings-btn');
     const overlay = document.getElementById('mobile-settings-overlay');

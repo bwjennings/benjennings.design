@@ -26,6 +26,11 @@ figma.connect(
         hover: "hover",
       }),
     },
-    example: (props) => html`<icon-card />`,
+    example: (props) => html`<icon-card 
+      title="${props.title}"
+      icon="${props.icon}"
+      variant="${props.style}"
+      ${props.showBadges ? 'show-badges' : ''}
+    ></icon-card>`,
   },
 )

@@ -58,8 +58,8 @@ select {
 
 
 ::selection {
-  background: var(--color-background-color2-secondary);
-  color: var(--color-text-color2);
+  background: var(--color-background-base-2-secondary);
+  color: var(--color-text-base-2);
   text-decoration: underline;
   text-decoration-color: var(--color-border-base-emphasis);
 }
@@ -67,7 +67,6 @@ select {
 body {
   -webkit-font-smoothing: antialiased;
   background: var(--color-background-page);
-
 }
 
 
@@ -178,7 +177,7 @@ padding: 4dvw;
 
 .post {
   background-color: var(--color-background-page);
-  color: var(--color-text-color4);
+  color: var(--color-text-base-4);
  padding: 4dvw;
  margin-inline: auto;
   display: flex;
@@ -204,8 +203,8 @@ padding: 4dvw;
 }
 
 .post-header {
-  background-color: var(--color-background-color2);
-  color: var(--color-text-color4);
+  background-color: var(--color-background-base-2);
+  color: var(--color-text-base-4);
   padding: var(--spacing-xxl);
   border-bottom: 1px solid var(--color-border-primary);
   display: flex;
@@ -220,21 +219,21 @@ padding: 4dvw;
   }
 
   &.color2 {
-    background-color: var(--color-background-color2);
-    color: var(--color-text-color2);
-    border-color: var(--color-border-color2);
+    background-color: var(--color-background-base-2);
+    color: var(--color-text-base-2);
+    border-color: var(--color-border-base-2);
   }
 
   &.color3 {
-    background-color: var(--color-background-color3);
-    color: var(--color-text-color3);
-    border-color: var(--color-border-color3);
+    background-color: var(--color-background-base-3);
+    color: var(--color-text-base-3);
+    border-color: var(--color-border-base-3);
   }
 
   &.color4 {
-    background-color: var(--color-background-color4);
-    color: var(--color-text-color4);
-    border-color: var(--color-border-color4);
+    background-color: var(--color-background-base-4);
+    color: var(--color-text-base-4);
+    border-color: var(--color-border-base-4);
   }
 
   .thumbnail {
@@ -318,14 +317,14 @@ figure {
   height: 100%;
   min-height: 100px;
   width: 100%;
-  background: linear-gradient(to right in oklch decreasing hue, var(--color-background-base), var(--color-background-color2));
+  background: linear-gradient(to right in oklch decreasing hue, var(--color-background-base), var(--color-background-base-2));
 
   &.rgb {
-    background: linear-gradient(to right, var(--color-background-base), var(--color-background-color2));
+    background: linear-gradient(to right, var(--color-background-base), var(--color-background-base-2));
   }
 
   &.hsl {
-    background: linear-gradient(to right in hsl decreasing hue, var(--color-background-base), var(--color-background-color2));
+    background: linear-gradient(to right in hsl decreasing hue, var(--color-background-base), var(--color-background-base-2));
   }
 }
 
@@ -360,8 +359,7 @@ figure {
 
 
 
-@media screen and (max-width: 800px),
-(max-height:500px) {
+@media screen and (max-width: 800px), (max-height: 500px) {
   body {
     min-height: 100dvh;
     overflow-y: auto;
@@ -392,8 +390,9 @@ figure {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     grid-template-areas:
-      "header"
+      
       "content"
+      "sidebar"
     ;
     margin-bottom: 0;
     min-height: auto;

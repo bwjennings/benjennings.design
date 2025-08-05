@@ -1,4 +1,4 @@
-@property --color1-hue {
+@property --hue-root {
   syntax: "<angle>";
   initial-value: 210deg;
   inherits: false;
@@ -188,7 +188,7 @@
       1);
 
   /* color base */
-  --color1-hue: 230deg;
+  --hue-root: 230deg;
   transition-property: --contrast, --text-heading-grade, --text-heading-width,
     --base-radius;
   --alpha: 0.4;
@@ -198,7 +198,7 @@
   --color-white: white;
   
   /* Base colors in OKLCH */
-  --color-base: oklch(0.65 0.15 var(--color1-hue));
+  --color-base: oklch(0.65 0.15 var(--hue-root));
 
   /* Base color set - 11 steps with exponential bell curve chroma */
   --color-base-5: oklch(from var(--color-base) 99% 1% h);
@@ -213,61 +213,61 @@
   --color-base-90: oklch(from var(--color-base) 40% 13% h);
   --color-base-95: oklch(from var(--color-base) 35% 9% h);
 
-  /* color 1 - Hue shifted +20 degrees */
-  --color1-hue-shift: 0;
-  --color-color1-5: oklch(from var(--color-base-5) l c calc(h + var(--color1-hue-shift)));
-  --color-color1-10: oklch(from var(--color-base-10) l c calc(h + var(--color1-hue-shift)));
-  --color-color1-20: oklch(from var(--color-base-20) l c calc(h + var(--color1-hue-shift)));
-  --color-color1-30: oklch(from var(--color-base-30) l c calc(h + var(--color1-hue-shift)));
-  --color-color1-40: oklch(from var(--color-base-40) l c calc(h + var(--color1-hue-shift)));
-  --color-color1-50: oklch(from var(--color-base-50) l c calc(h + var(--color1-hue-shift)));
-  --color-color1-60: oklch(from var(--color-base-60) l c calc(h + var(--color1-hue-shift)));
-  --color-color1-70: oklch(from var(--color-base-70) l c calc(h + var(--color1-hue-shift)));
-  --color-color1-80: oklch(from var(--color-base-80) l c calc(h + var(--color1-hue-shift)));
-  --color-color1-90: oklch(from var(--color-base-90) l c calc(h + var(--color1-hue-shift)));
-  --color-color1-95: oklch(from var(--color-base-95) l c calc(h + var(--color1-hue-shift)));
+  /* base 1 - Hue shifted +0 degrees */
+  --base-1-hue-shift: 20;
+  --color-base-1-5: oklch(from var(--color-base-5) l c calc(h + var(--base-1-hue-shift)));
+  --color-base-1-10: oklch(from var(--color-base-10) l c calc(h + var(--base-1-hue-shift)));
+  --color-base-1-20: oklch(from var(--color-base-20) l c calc(h + var(--base-1-hue-shift)));
+  --color-base-1-30: oklch(from var(--color-base-30) l c calc(h + var(--base-1-hue-shift)));
+  --color-base-1-40: oklch(from var(--color-base-40) l c calc(h + var(--base-1-hue-shift)));
+  --color-base-1-50: oklch(from var(--color-base-50) l c calc(h + var(--base-1-hue-shift)));
+  --color-base-1-60: oklch(from var(--color-base-60) l c calc(h + var(--base-1-hue-shift)));
+  --color-base-1-70: oklch(from var(--color-base-70) l c calc(h + var(--base-1-hue-shift)));
+  --color-base-1-80: oklch(from var(--color-base-80) l c calc(h + var(--base-1-hue-shift)));
+  --color-base-1-90: oklch(from var(--color-base-90) l c calc(h + var(--base-1-hue-shift)));
+  --color-base-1-95: oklch(from var(--color-base-95) l c calc(h + var(--base-1-hue-shift)));
 
-  /* color 2 - Hue shifted +40 degrees */
-  --color2-hue-shift: 20;
-  --color-color2-5: oklch(from var(--color-base-5) l c calc(h + var(--color2-hue-shift)));
-  --color-color2-10: oklch(from var(--color-base-10) l c calc(h + var(--color2-hue-shift)));
-  --color-color2-20: oklch(from var(--color-base-20) l c calc(h + var(--color2-hue-shift)));
-  --color-color2-30: oklch(from var(--color-base-30) l c calc(h + var(--color2-hue-shift)));
-  --color-color2-40: oklch(from var(--color-base-40) l c calc(h + var(--color2-hue-shift)));
-  --color-color2-50: oklch(from var(--color-base-50) l c calc(h + var(--color2-hue-shift)));
-  --color-color2-60: oklch(from var(--color-base-60) l c calc(h + var(--color2-hue-shift)));
-  --color-color2-70: oklch(from var(--color-base-70) l c calc(h + var(--color2-hue-shift)));
-  --color-color2-80: oklch(from var(--color-base-80) l c calc(h + var(--color2-hue-shift)));
-  --color-color2-90: oklch(from var(--color-base-90) l c calc(h + var(--color2-hue-shift)));
-  --color-color2-95: oklch(from var(--color-base-95) l c calc(h + var(--color2-hue-shift)));
+  /* base 2 - Hue shifted +20 degrees */
+  --base-2-hue-shift: 40;
+  --color-base-2-5: oklch(from var(--color-base-5) l c calc(h + var(--base-2-hue-shift)));
+  --color-base-2-10: oklch(from var(--color-base-10) l c calc(h + var(--base-2-hue-shift)));
+  --color-base-2-20: oklch(from var(--color-base-20) l c calc(h + var(--base-2-hue-shift)));
+  --color-base-2-30: oklch(from var(--color-base-30) l c calc(h + var(--base-2-hue-shift)));
+  --color-base-2-40: oklch(from var(--color-base-40) l c calc(h + var(--base-2-hue-shift)));
+  --color-base-2-50: oklch(from var(--color-base-50) l c calc(h + var(--base-2-hue-shift)));
+  --color-base-2-60: oklch(from var(--color-base-60) l c calc(h + var(--base-2-hue-shift)));
+  --color-base-2-70: oklch(from var(--color-base-70) l c calc(h + var(--base-2-hue-shift)));
+  --color-base-2-80: oklch(from var(--color-base-80) l c calc(h + var(--base-2-hue-shift)));
+  --color-base-2-90: oklch(from var(--color-base-90) l c calc(h + var(--base-2-hue-shift)));
+  --color-base-2-95: oklch(from var(--color-base-95) l c calc(h + var(--base-2-hue-shift)));
 
-  /* color 3 - Hue shifted +60 degrees */
-  --color3-hue-shift: 40;
-  --color-color3-5: oklch(from var(--color-base-5) l c calc(h + var(--color3-hue-shift)));
-  --color-color3-10: oklch(from var(--color-base-10) l c calc(h + var(--color3-hue-shift)));
-  --color-color3-20: oklch(from var(--color-base-20) l c calc(h + var(--color3-hue-shift)));
-  --color-color3-30: oklch(from var(--color-base-30) l c calc(h + var(--color3-hue-shift)));
-  --color-color3-40: oklch(from var(--color-base-40) l c calc(h + var(--color3-hue-shift)));
-  --color-color3-50: oklch(from var(--color-base-50) l c calc(h + var(--color3-hue-shift)));
-  --color-color3-60: oklch(from var(--color-base-60) l c calc(h + var(--color3-hue-shift)));
-  --color-color3-70: oklch(from var(--color-base-70) l c calc(h + var(--color3-hue-shift)));
-  --color-color3-80: oklch(from var(--color-base-80) l c calc(h + var(--color3-hue-shift)));
-  --color-color3-90: oklch(from var(--color-base-90) l c calc(h + var(--color3-hue-shift)));
-  --color-color3-95: oklch(from var(--color-base-95) l c calc(h + var(--color3-hue-shift)));
+  /* base 3 - Hue shifted +40 degrees */
+  --base-3-hue-shift: 60;
+  --color-base-3-5: oklch(from var(--color-base-5) l c calc(h + var(--base-3-hue-shift)));
+  --color-base-3-10: oklch(from var(--color-base-10) l c calc(h + var(--base-3-hue-shift)));
+  --color-base-3-20: oklch(from var(--color-base-20) l c calc(h + var(--base-3-hue-shift)));
+  --color-base-3-30: oklch(from var(--color-base-30) l c calc(h + var(--base-3-hue-shift)));
+  --color-base-3-40: oklch(from var(--color-base-40) l c calc(h + var(--base-3-hue-shift)));
+  --color-base-3-50: oklch(from var(--color-base-50) l c calc(h + var(--base-3-hue-shift)));
+  --color-base-3-60: oklch(from var(--color-base-60) l c calc(h + var(--base-3-hue-shift)));
+  --color-base-3-70: oklch(from var(--color-base-70) l c calc(h + var(--base-3-hue-shift)));
+  --color-base-3-80: oklch(from var(--color-base-80) l c calc(h + var(--base-3-hue-shift)));
+  --color-base-3-90: oklch(from var(--color-base-90) l c calc(h + var(--base-3-hue-shift)));
+  --color-base-3-95: oklch(from var(--color-base-95) l c calc(h + var(--base-3-hue-shift)));
 
-  /* color 4 - Hue shifted +80 degrees */
-  --color4-hue-shift: 60;
-  --color-color4-5: oklch(from var(--color-base-5) l c calc(h + var(--color4-hue-shift)));
-  --color-color4-10: oklch(from var(--color-base-10) l c calc(h + var(--color4-hue-shift)));
-  --color-color4-20: oklch(from var(--color-base-20) l c calc(h + var(--color4-hue-shift)));
-  --color-color4-30: oklch(from var(--color-base-30) l c calc(h + var(--color4-hue-shift)));
-  --color-color4-40: oklch(from var(--color-base-40) l c calc(h + var(--color4-hue-shift)));
-  --color-color4-50: oklch(from var(--color-base-50) l c calc(h + var(--color4-hue-shift)));
-  --color-color4-60: oklch(from var(--color-base-60) l c calc(h + var(--color4-hue-shift)));
-  --color-color4-70: oklch(from var(--color-base-70) l c calc(h + var(--color4-hue-shift)));
-  --color-color4-80: oklch(from var(--color-base-80) l c calc(h + var(--color4-hue-shift)));
-  --color-color4-90: oklch(from var(--color-base-90) l c calc(h + var(--color4-hue-shift)));
-  --color-color4-95: oklch(from var(--color-base-95) l c calc(h + var(--color4-hue-shift)));
+  /* base 4 - Hue shifted +60 degrees */
+  --base-4-hue-shift: 80;
+  --color-base-4-5: oklch(from var(--color-base-5) l c calc(h + var(--base-4-hue-shift)));
+  --color-base-4-10: oklch(from var(--color-base-10) l c calc(h + var(--base-4-hue-shift)));
+  --color-base-4-20: oklch(from var(--color-base-20) l c calc(h + var(--base-4-hue-shift)));
+  --color-base-4-30: oklch(from var(--color-base-30) l c calc(h + var(--base-4-hue-shift)));
+  --color-base-4-40: oklch(from var(--color-base-40) l c calc(h + var(--base-4-hue-shift)));
+  --color-base-4-50: oklch(from var(--color-base-50) l c calc(h + var(--base-4-hue-shift)));
+  --color-base-4-60: oklch(from var(--color-base-60) l c calc(h + var(--base-4-hue-shift)));
+  --color-base-4-70: oklch(from var(--color-base-70) l c calc(h + var(--base-4-hue-shift)));
+  --color-base-4-80: oklch(from var(--color-base-80) l c calc(h + var(--base-4-hue-shift)));
+  --color-base-4-90: oklch(from var(--color-base-90) l c calc(h + var(--base-4-hue-shift)));
+  --color-base-4-95: oklch(from var(--color-base-95) l c calc(h + var(--base-4-hue-shift)));
 
   /* Neutral color set - 11 steps */
   --color-neutral-5: oklch(from var(--color-base-5) l 0.005 h);
@@ -292,15 +292,19 @@
   --color-background-emphasis: light-dark(var(--color-neutral-30), var(--color-neutral-70));
 
   --color-background-secondary: light-dark(var(--color-neutral-10), var(--color-neutral-80));
-  --color-background-base: light-dark(var(--color-color1-20), var(--color-color1-80));
-  --color-background-base-hover: light-dark(var(--color-color1-10), var(--color-color1-80));
-  --color-background-base-emphasis: light-dark(var(--color-color1-30), var(--color-color1-70));
-  --color-background-color2: light-dark(var(--color-color2-20), var(--color-color2-80));
-  --color-background-color2-emphasis: light-dark(var(--color-color2-30), var(--color-color2-70));
-  --color-background-color3: light-dark(var(--color-color3-20), var(--color-color3-80));
-  --color-background-color3-emphasis: light-dark(var(--color-color3-30), var(--color-color3-70));
-  --color-background-color4: light-dark(var(--color-color4-20), var(--color-color4-80));
-  --color-background-color4-emphasis: light-dark(var(--color-color4-30), var(--color-color4-70));
+  --color-background-base: light-dark(var(--color-base-1-20), var(--color-base-1-80));
+  --color-background-base-hover: light-dark(var(--color-base-1-10), var(--color-base-1-80));
+  --color-background-base-emphasis: light-dark(var(--color-base-1-30), var(--color-base-1-70));
+  --color-background-base-secondary: light-dark(var(--color-base-1-10), var(--color-base-1-90));
+  --color-background-base-2: light-dark(var(--color-base-2-20), var(--color-base-2-80));
+  --color-background-base-2-emphasis: light-dark(var(--color-base-2-30), var(--color-base-2-70));
+  --color-background-base-2-secondary: light-dark(var(--color-base-2-10), var(--color-base-2-90));
+  --color-background-base-3: light-dark(var(--color-base-3-20), var(--color-base-3-80));
+  --color-background-base-3-emphasis: light-dark(var(--color-base-3-30), var(--color-base-3-70));
+  --color-background-base-3-secondary: light-dark(var(--color-base-3-10), var(--color-base-3-90));
+  --color-background-base-4: light-dark(var(--color-base-4-20), var(--color-base-4-80));
+  --color-background-base-4-emphasis: light-dark(var(--color-base-4-30), var(--color-base-4-70));
+  --color-background-base-4-secondary: light-dark(var(--color-base-4-10), var(--color-base-4-90));
   --color-background-backdrop: light-dark(var(--color-neutral-20-alpha), var(--color-neutral-50-alpha));
 
 
@@ -308,40 +312,40 @@
   --color-text-primary: light-dark(var(--color-neutral-95), var(--color-neutral-5));
   --color-text-secondary: light-dark(var(--color-neutral-80), var(--color-neutral-10));
   --color-text-tertiary: light-dark(var(--color-neutral-60), var(--color-neutral-20));
-  --color-text-base: light-dark(var(--color-color1-80), var(--color-color1-20));
-  --color-text-base-secondary: light-dark(var(--color-color1-60), var(--color-color1-30));
-  --color-text-onBrand: light-dark(var(--color-color1-50), var(--color-color1-10));
-  --color-text-color2: light-dark(var(--color-color2-95), var(--color-color2-20));
-  --color-text-color3: light-dark(var(--color-color3-95), var(--color-color3-20));
-  --color-text-color4: light-dark(var(--color-color4-95), var(--color-color4-20));
+  --color-text-base: light-dark(var(--color-base-1-80), var(--color-base-1-20));
+  --color-text-base-secondary: light-dark(var(--color-base-1-60), var(--color-base-1-30));
+  --color-text-onBrand: light-dark(var(--color-base-1-50), var(--color-base-1-10));
+  --color-text-base-2: light-dark(var(--color-base-2-95), var(--color-base-2-20));
+  --color-text-base-3: light-dark(var(--color-base-3-95), var(--color-base-3-20));
+  --color-text-base-4: light-dark(var(--color-base-4-95), var(--color-base-4-20));
   --color-text-onEmphasis: light-dark(white, white);
 
   /* icon colors */
   --color-icon-primary: light-dark(var(--color-neutral-95), var(--color-neutral-5));
   --color-icon-secondary: light-dark(var(--color-neutral-80), var(--color-neutral-10));
   --color-icon-tertiary: light-dark(var(--color-neutral-60), var(--color-neutral-20));
-  --color-icon-base: light-dark(var(--color-color1-60), var(--color-color1-20));
-  --color-icon-base-secondary: light-dark(var(--color-color1-50), var(--color-color1-30));
-  --color-icon-onBrand: light-dark(var(--color-color1-50), var(--color-color1-10));
-  --color-icon-color2: light-dark(var(--color-color2-60), var(--color-color2-20));
-  --color-icon-color3: light-dark(var(--color-color3-60), var(--color-color3-20));
-  --color-icon-color4: light-dark(var(--color-color4-60), var(--color-color4-20));
+  --color-icon-base: light-dark(var(--color-base-1-60), var(--color-base-1-20));
+  --color-icon-base-secondary: light-dark(var(--color-base-1-50), var(--color-base-1-30));
+  --color-icon-onBrand: light-dark(var(--color-base-1-50), var(--color-base-1-10));
+  --color-icon-base-2: light-dark(var(--color-base-2-60), var(--color-base-2-20));
+  --color-icon-base-3: light-dark(var(--color-base-3-60), var(--color-base-3-20));
+  --color-icon-base-4: light-dark(var(--color-base-4-60), var(--color-base-4-20));
   --color-icon-onEmphasis: light-dark(var(--color-base-10), white);
 
   /* border colors */
   --color-border-primary: light-dark(var(--color-neutral-20), var(--color-neutral-70));
   --color-border-primary-hover: light-dark(var(--color-neutral-20), var(--color-neutral-60));
   --color-border-secondary: light-dark(var(--color-neutral-10), var(--color-neutral-60));
-  --color-border-base: light-dark(var(--color-color1-10), var(--color-color1-90));
-  --color-border-base-hover: light-dark(var(--color-color1-20), var(--color-neutral-60));
-  --color-border-base-secondary: light-dark(var(--color-color1-10), var(--color-color1-60));
-  --color-border-base-emphasis: light-dark(var(--color-color1-20), var(--color-color1-80));
-  --color-border-color2: light-dark(var(--color-color2-10), var(--color-color2-90));
-  --color-border-color2-emphasis: light-dark(var(--color-color2-20), var(--color-color2-80));
-  --color-border-color3: light-dark(var(--color-color3-10), var(--color-color3-90));
-  --color-border-color3-emphasis: light-dark(var(--color-color3-20), var(--color-color3-80));
-  --color-border-color4: light-dark(var(--color-color4-10), var(--color-color4-90));
-  --color-border-color4-emphasis: light-dark(var(--color-color4-20), var(--color-color4-80));
+  --color-border-base: light-dark(var(--color-base-1-10), var(--color-base-1-90));
+  --color-border-base-hover: light-dark(var(--color-base-1-20), var(--color-neutral-60));
+  --color-border-base-secondary: light-dark(var(--color-base-1-10), var(--color-base-1-60));
+  --color-border-base-emphasis: light-dark(var(--color-base-1-20), var(--color-base-1-80));
+  --color-border-base-2: light-dark(var(--color-base-2-10), var(--color-base-2-90));
+  --color-border-base-2-emphasis: light-dark(var(--color-base-2-20), var(--color-base-2-80));
+  --color-border-base-3: light-dark(var(--color-base-3-10), var(--color-base-3-90));
+  --color-border-base-3-emphasis: light-dark(var(--color-base-3-20), var(--color-base-3-80));
+  --color-border-base-4: light-dark(var(--color-base-4-10), var(--color-base-4-90));
+  --color-border-base-4-emphasis: light-dark(var(--color-base-4-20), var(--color-base-4-80));
 
   --theme-slider-size: 20px;
   --theme-slider-outline: var(--color-background-primary);
@@ -353,21 +357,21 @@
   --color-background-page: light-dark(var(--color-white), var(--color-neutral-95));
   --color-background-primary: light-dark(var(--color-white), var(--color-neutral-90));
   --color-background-secondary: light-dark(var(--color-white), var(--color-neutral-80));
-  --color-background-base: light-dark(var(--color-color1-60), var(--color-color1-60));
-  --color-background-base-secondary: light-dark(var(--color-color1-10), var(--color-color1-80));
-  --color-background-base-emphasis: light-dark(var(--color-color1-70), var(--color-color1-60));
-  --color-background-color2: light-dark(var(--color-color2-50), var(--color-color2-70));
-  --color-background-color2-secondary: light-dark(var(--color-color2-10), var(--color-color2-80));
-  --color-background-color2-emphasis: light-dark(var(--color-color2-60), var(--color-color2-50));
+  --color-background-base: light-dark(var(--color-base-1-60), var(--color-base-1-60));
+  --color-background-base-secondary: light-dark(var(--color-base-1-10), var(--color-base-1-80));
+  --color-background-base-emphasis: light-dark(var(--color-base-1-70), var(--color-base-1-60));
+  --color-background-base-2: light-dark(var(--color-base-2-50), var(--color-base-2-70));
+  --color-background-base-2-secondary: light-dark(var(--color-base-2-10), var(--color-base-2-80));
+  --color-background-base-2-emphasis: light-dark(var(--color-base-2-60), var(--color-base-2-50));
   --color-background-backdrop: light-dark(var(--color-neutral-80-alpha), var(--color-neutral-30-alpha));
   --color-border-primary: light-dark(var(--color-neutral-40), var(--color-neutral-40));
   --color-border-primary-hover: light-dark(var(--color-neutral-20), var(--color-neutral-70));
   --color-border-secondary: light-dark(var(--color-neutral-30), var(--color-neutral-50));
-  --color-border-base: light-dark(var(--color-color1-50), var(--color-color1-40));
-  --color-border-base-secondary: light-dark(var(--color-color1-30), var(--color-color1-60));
-  --color-border-base-emphasis: light-dark(var(--color-color1-70), var(--color-color1-60));
-  --color-border-base-hover: light-dark(var(--color-color1-40), var(--color-color1-10));
-  --color-border-color2: light-dark(var(--color-color2-50), var(--color-color2-40));
+  --color-border-base: light-dark(var(--color-base-1-50), var(--color-base-1-40));
+  --color-border-base-secondary: light-dark(var(--color-base-1-30), var(--color-base-1-60));
+  --color-border-base-emphasis: light-dark(var(--color-base-1-70), var(--color-base-1-60));
+  --color-border-base-hover: light-dark(var(--color-base-1-40), var(--color-base-1-10));
+  --color-border-base-2: light-dark(var(--color-base-2-50), var(--color-base-2-40));
 }
 
 @media (prefers-contrast: more) {
@@ -375,21 +379,21 @@
     --color-background-page: light-dark(var(--color-neutral-5), var(--color-neutral-95));
     --color-background-primary: light-dark(var(--color-white), var(--color-neutral-90));
     --color-background-secondary: light-dark(var(--color-white), var(--color-neutral-80));
-    --color-background-base: light-dark(var(--color-color1-60), var(--color-color1-60));
-    --color-background-base-secondary: light-dark(var(--color-color1-10), var(--color-color1-80));
-    --color-background-base-emphasis: light-dark(var(--color-color1-70), var(--color-color1-60));
-    --color-background-color2: light-dark(var(--color-color2-30), var(--color-color2-70));
-    --color-background-color2-secondary: light-dark(var(--color-color2-10), var(--color-color2-80));
-    --color-background-color2-emphasis: light-dark(var(--color-color2-60), var(--color-color2-50));
+    --color-background-base: light-dark(var(--color-base-1-60), var(--color-base-1-60));
+    --color-background-base-secondary: light-dark(var(--color-base-1-10), var(--color-base-1-80));
+    --color-background-base-emphasis: light-dark(var(--color-base-1-70), var(--color-base-1-60));
+    --color-background-base-2: light-dark(var(--color-base-2-30), var(--color-base-2-70));
+    --color-background-base-2-secondary: light-dark(var(--color-base-2-10), var(--color-base-2-80));
+    --color-background-base-2-emphasis: light-dark(var(--color-base-2-60), var(--color-base-2-50));
     --color-background-backdrop: light-dark(var(--color-neutral-80-alpha), var(--color-neutral-30-alpha));
     --color-border-primary: light-dark(var(--color-neutral-40), var(--color-neutral-40));
     --color-border-primary-hover: light-dark(var(--color-neutral-20), var(--color-neutral-70));
     --color-border-secondary: light-dark(var(--color-neutral-30), var(--color-neutral-50));
-    --color-border-base: light-dark(var(--color-color1-50), var(--color-color1-40));
-    --color-border-base-secondary: light-dark(var(--color-color1-30), var(--color-color1-60));
-    --color-border-base-emphasis: light-dark(var(--color-color1-70), var(--color-color1-60));
-    --color-border-base-hover: light-dark(var(--color-color1-40), var(--color-color1-10));
-    --color-border-color2: light-dark(var(--color-color2-50), var(--color-color2-40));
+    --color-border-base: light-dark(var(--color-base-1-50), var(--color-base-1-40));
+    --color-border-base-secondary: light-dark(var(--color-base-1-30), var(--color-base-1-60));
+    --color-border-base-emphasis: light-dark(var(--color-base-1-70), var(--color-base-1-60));
+    --color-border-base-hover: light-dark(var(--color-base-1-40), var(--color-base-1-10));
+    --color-border-base-2: light-dark(var(--color-base-2-50), var(--color-base-2-40));
   }
 }
 

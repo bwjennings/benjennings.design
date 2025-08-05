@@ -62,5 +62,5 @@ flex: 1;
 
 .radio-button:has(input:checked) {
   background-color: var(--color-background-base-emphasis);
-  color: var(--color-text-color2);
+  color: var(--color-text-base-2);
 }

@@ -45,7 +45,7 @@
                 const randomContrast = (Math.random() * CONTRAST_RANGE + MIN_CONTRAST).toFixed(2);
 
                 // Apply CSS variables
-                document.documentElement.style.setProperty('--color1-hue', randomHue + 'deg');
+                document.documentElement.style.setProperty('--hue-root', randomHue + 'deg');
                 document.documentElement.style.setProperty('--base-radius', randomRadius + 'px');
                 document.documentElement.style.setProperty('--chroma-base', randomChromaBase);
                 document.documentElement.style.setProperty('--contrast', randomContrast);

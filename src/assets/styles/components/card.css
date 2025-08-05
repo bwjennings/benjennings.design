@@ -80,49 +80,49 @@
   }
 
   &.color2 {
-    background-color: var(--color-background-color2);
-    color: var(--color-text-color2);
-    border-color: var(--color-border-color2);
-    outline-color: var(--color-border-color2);
+    background-color: var(--color-background-base-2);
+    color: var(--color-text-base-2);
+    border-color: var(--color-border-base-2);
+    outline-color: var(--color-border-base-2);
 
     .icon {
-      color: var(--color-icon-color2);
+      color: var(--color-icon-base-2);
     }
 
     &.emphasis {
-      background-color: var(--color-background-color2-emphasis);
-      border-color: var(--color-border-color2-emphasis);
+      background-color: var(--color-background-base-2-emphasis);
+      border-color: var(--color-border-base-2-emphasis);
     }
   }
 
   &.color3 {
-    background-color: var(--color-background-color3);
-    color: var(--color-text-color3);
-    border-color: var(--color-border-color3);
-    outline-color: var(--color-border-color3);
+    background-color: var(--color-background-base-3);
+    color: var(--color-text-base-3);
+    border-color: var(--color-border-base-3);
+    outline-color: var(--color-border-base-3);
 
     .icon {
-      color: var(--color-icon-color3);
+      color: var(--color-icon-base-3);
     }
 
     &.emphasis {
-      background-color: var(--color-background-color3-emphasis);
-      border-color: var(--color-border-color3-emphasis);
+      background-color: var(--color-background-base-3-emphasis);
+      border-color: var(--color-border-base-3-emphasis);
     }
   }
 
   &.color4 {
-    background-color: var(--color-background-color4);
-    color: var(--color-text-color4);
-    border-color: var(--color-border-color4);
-    outline-color: var(--color-border-color4);
+    background-color: var(--color-background-base-4);
+    color: var(--color-text-base-4);
+    border-color: var(--color-border-base-4);
+    outline-color: var(--color-border-base-4);
     .icon {
-      color: var(--color-icon-color4);
+      color: var(--color-icon-base-4);
     }
 
     &.emphasis {
-      background-color: var(--color-background-color4-emphasis);
-      border-color: var(--color-border-color4-emphasis);
+      background-color: var(--color-background-base-4-emphasis);
+      border-color: var(--color-border-base-4-emphasis);
     }
   }
 
@@ -180,7 +180,7 @@ p {
   height: 150px;
   width: auto;
   align-self: stretch;
-  background: var(--color-background-color2);
+  background: var(--color-background-base-2);
   flex-direction: column;
   justify-content: center;
   align-items: center;

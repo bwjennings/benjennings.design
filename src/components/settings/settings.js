@@ -308,7 +308,7 @@ class SiteSettings extends HTMLElement {
 
   updateHue(hue) {
     if (!isNaN(hue) && hue >= 0 && hue <= 360) {
-      document.documentElement.style.setProperty('--color1-hue', `${hue}deg`);
+      document.documentElement.style.setProperty('--hue-root', `${hue}deg`);
     }
   }
 

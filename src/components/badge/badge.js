@@ -52,7 +52,9 @@ class Badge extends HTMLElement {
       this.textNode.textContent = newValue || '';
     }
     if (name === 'variant') {
-      this.badge.classList.remove('default', 'accent', 'accent-2', 'accent-3', 'primary', 'secondary');
+      // Remove all variant classes
+      this.badge.classList.remove('default', 'primary', 'secondary', 'accent-1', 'accent-2', 'accent-3');
+      // Add the new variant class if it's not default
       if (newValue && newValue !== 'default') {
         this.badge.classList.add(newValue);
       }

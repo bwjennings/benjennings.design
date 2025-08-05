@@ -4,8 +4,9 @@
 }
 
 ::view-transition {
-  --transition-duration: 500ms;
-  --transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+  --transition-duration: 600ms;
+  --transition-timing-function: var(--timing-bounce);
+ 
 }
 
 /* Component View Transition Names */
@@ -283,7 +284,7 @@ html:active-view-transition-type(card-to-detail) ::view-transition-old(pls-title
 html:active-view-transition-type(card-to-detail) ::view-transition-old(herff-jones-container),
 html:active-view-transition-type(card-to-detail) ::view-transition-old(herff-jones-image),
 html:active-view-transition-type(card-to-detail) ::view-transition-old(herff-jones-title) {
-  animation: blur-morph-out var(--transition-duration) var(--transition-timing-function);
+  animation: blur-morph-out var(--transition-duration) var(--timing-bounce);
   transform-origin: center center;
 }
 
@@ -299,7 +300,7 @@ html:active-view-transition-type(card-to-detail) ::view-transition-new(pls-title
 html:active-view-transition-type(card-to-detail) ::view-transition-new(herff-jones-container),
 html:active-view-transition-type(card-to-detail) ::view-transition-new(herff-jones-image),
 html:active-view-transition-type(card-to-detail) ::view-transition-new(herff-jones-title) {
-  animation: blur-morph-in var(--transition-duration) var(--transition-timing-function);
+  animation: blur-morph-in var(--transition-duration) var(--timing-bounce);
   transform-origin: center center;
 }
 
@@ -330,7 +331,7 @@ html:active-view-transition-type(detail-to-card) ::view-transition-old(pls-title
 html:active-view-transition-type(detail-to-card) ::view-transition-old(herff-jones-container),
 html:active-view-transition-type(detail-to-card) ::view-transition-old(herff-jones-image),
 html:active-view-transition-type(detail-to-card) ::view-transition-old(herff-jones-title) {
-  animation: blur-morph-out calc(var(--transition-duration) * 0.67) var(--transition-timing-function);
+  animation: blur-morph-out calc(var(--transition-duration) * 0.67) var(--timing-bounce);
   transform-origin: center center;
 }
 
@@ -346,7 +347,7 @@ html:active-view-transition-type(detail-to-card) ::view-transition-new(pls-title
 html:active-view-transition-type(detail-to-card) ::view-transition-new(herff-jones-container),
 html:active-view-transition-type(detail-to-card) ::view-transition-new(herff-jones-image),
 html:active-view-transition-type(detail-to-card) ::view-transition-new(herff-jones-title) {
-  animation: blur-morph-in calc(var(--transition-duration) * 0.67) var(--transition-timing-function);
+  animation: blur-morph-in calc(var(--transition-duration) * 0.67) var(--timing-bounce);
   transform-origin: center center;
 }
 
@@ -511,6 +512,14 @@ html:active-view-transition-type(reload) {
     opacity: 1;
   }
 }
+
+::view-transition-group(nav-background) {
+ 
+  animation-timing-function: var(--timing-decelerate);
+  animation-duration: var(--transition-duration);
+
+}
+
 
 /* Hardware acceleration for smooth transitions */
 ::view-transition-group(arvest-container),

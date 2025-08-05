@@ -21,7 +21,7 @@
           flex-direction: row;
           flex-wrap: wrap;
           height: 100%;
-          background: var(--color-background-color2);
+          background: var(--color-background-base-2);
           border: 1px solid var(--color-border-primary);
           border-radius:var(--radius-md);
           container-type: inline-size;
@@ -44,11 +44,11 @@
           aspect-ratio: 1 / 1;
           display: flex;
           align-self: stretch;
-          background: var(--color-background-color3);
+          background: var(--color-background-base-3);
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          color: var(--color-icon-color3);
+          color: var(--color-icon-base-3);
           user-select: none;
           -webkit-user-select: none;
           container-name:iconbox;
