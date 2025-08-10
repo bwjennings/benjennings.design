@@ -30,12 +30,7 @@ class Badge extends HTMLElement {
     varsCss.setAttribute('rel', 'stylesheet');
     varsCss.setAttribute('href', '/src/assets/styles/base/vars.css');
 
-    // Attach icon font
-    const iconFont = document.createElement('link');
-    iconFont.setAttribute('rel', 'stylesheet');
-    iconFont.setAttribute('href', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:wght@400&display=swap');
-
-    this.shadowRoot.append(varsCss, badgeCss, iconFont, this.badge);
+    this.shadowRoot.append(varsCss, badgeCss, this.badge);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

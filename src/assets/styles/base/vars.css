@@ -29,6 +29,13 @@
   inherits: true;
 }
 
+/* Registered property for transition timing (easing) */
+@property --transition-timing {
+  syntax: "<easing-function>";
+  initial-value: ease;
+  inherits: true;
+}
+
 :root {
   /* layout */
   --viewport-lg: 800px;
@@ -186,6 +193,9 @@
       1.003 76.9%,
       1.004 83.8%,
       1);
+
+  /* Default timing for transitions/animations (override per-need) */
+  --transition-timing: var(--timing-bounce);
 
   /* color base */
   --hue-root: 230deg;

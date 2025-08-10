@@ -108,7 +108,8 @@ site-navigation {
   cursor: pointer;
   transition-timing-function: var(--timing-decelerate);
   transition-duration: 300ms;
-  transition-property: font-variation-settings, background-color,outline-width,outline-color;
+  /* Avoid animating font-variation-settings to prevent icon flicker */
+  transition-property: background-color, outline-width, outline-color;
   outline-width: 0px;
   outline-color: transparent;
   font-variation-settings: initial;
@@ -480,11 +481,20 @@ theme-slider {
     position: relative;
    
 
-    .icon {
-      font-size: var(--icon-size-md);
-      line-height: 1;
-      font-family: var(--icon-font-family);
-    }
+  .icon {
+    font-size: var(--icon-size-md);
+    line-height: 1;
+    font-family: var(--icon-font-family);
+    font-synthesis: none;
+    /* Promote to its own layer to prevent flicker during transitions */
+    display: inline-block;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: paint;
+    /* Do not animate font variation axes on icons */
+    transition: color 200ms var(--transition-timing);
+  }
 
     .title {
       font-size: var(--text-body-xs-size);

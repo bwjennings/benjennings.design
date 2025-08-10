@@ -18,7 +18,7 @@ site-navigation {
 
 
 ::view-transition {
-  --transition-duration: 600ms;
+  --transition-duration: 700ms;
 }
 
 main {
@@ -29,11 +29,11 @@ main {
 }
 
 ::view-transition-old(page) {
-  animation: blur-out var(--transition-duration) var(--timing-decelerate);
+  animation: blur-out var(--transition-duration) var(--transition-timing);
 }
 
 ::view-transition-new(page) {
-  animation: blur-in var(--transition-duration) var(--timing-decelerate);
+  animation: blur-in var(--transition-duration) var(--transition-timing);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -45,13 +45,13 @@ main {
 
 ::view-transition-group(nav-background) {
   animation-duration: var(--transition-duration);
-  animation-timing-function: var(--timing-decelerate);
+  animation-timing-function: var(--transition-timing);
 }
 
 ::view-transition-old(nav-background),
 ::view-transition-new(nav-background) {
   animation-duration: var(--transition-duration);
-  animation-timing-function: var(--timing-decelerate);
+  animation-timing-function: var(--transition-timing);
   mix-blend-mode: normal;
 }
 
