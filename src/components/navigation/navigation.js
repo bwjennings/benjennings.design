@@ -1,212 +1,242 @@
 class SiteNavigation extends HTMLElement {
+  // Static template cached at class level
+  static template = null;
+  static mobileSettingsInitialized = false;
+  static mobileElements = null;
+  static pathMap = new Map([
+    ['/fundamentals', 'item2'],
+    ['/designs', 'item3'],
+    ['/experiments', 'item4'],
+    ['/resources', 'item5']
+  ]);
+
   constructor() {
     super();
     this.rendered = false;
-    this.resizeObserver = null;
-  }
+    
+    // Pre-bind methods to avoid repeated binding
+    this.handleIntersection = this.handleIntersection.bind(this);
 
-  connectedCallback() {
-    if (!this.rendered) {
-      this.render();
-      this.rendered = true;
-    }
-    this.setupResizeObserver();
+    // Synchronously render nav so view-transition elements exist before snapshot
+    this.render();
+    this.rendered = true;
+    this.updateActiveState();
   }
 
   render() {
-    // Calculate relative paths based on current location
-    const path = window.location.pathname;
-    const depth = (path.match(/\//g) || []).length - 1;
-    const baseUrl = depth === 0 ? '' : '../'.repeat(depth);
-
-    // Create navigation template (cached for performance)
+    // Create and cache template once
     if (!SiteNavigation.template) {
       SiteNavigation.template = this.createTemplate();
     }
 
-    // Clone template and update dynamic parts
-    const clone = SiteNavigation.template.cloneNode(true);
+    // Use DocumentFragment for better performance
+    const fragment = document.createDocumentFragment();
+    fragment.appendChild(SiteNavigation.template.cloneNode(true));
+    
+    // Single DOM update
+    this.replaceChildren(fragment);
 
-    // Update base URLs for all navigation links
-    const links = clone.querySelectorAll('a[href]');
-    links.forEach(link => {
-      const href = link.getAttribute('href');
-
-      // Apply baseUrl to all relative links
-      if (!href.startsWith('http') && !href.startsWith('#')) {
-        const newHref = baseUrl + href;
-        link.setAttribute('href', newHref);
-        // Debug: log the link updates
-        if (window.location.pathname !== '/') {
-          console.log(`Navigation link updated: ${href} -> ${newHref} (baseUrl: '${baseUrl}')`);
-        }
-      }
-    });
-
-    // Replace content
-    this.innerHTML = '';
-    this.appendChild(clone);
-
-    this.setupMobileSettings();
-    this.updateActiveState();
+    // Defer non-critical setup
+    this.deferredSetup();
   }
 
-  setupResizeObserver() {
-    // Use ResizeObserver to detect container size changes
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    }
-    
-    this.resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const width = entry.contentRect.width;
-        // Add CSS custom property for more fine-grained control
-        this.style.setProperty('--nav-container-width', `${width}px`);
-        
-        // Update layout mode based on container width
-        if (width <= 349) {
-          this.setAttribute('data-layout', 'mobile');
-        } else {
-          this.setAttribute('data-layout', 'desktop');
-        }
+  deferredSetup() {
+    // Synchronously update active state
+    this.updateActiveState();
+    // Use requestAnimationFrame only for non-critical mobile setup
+    requestAnimationFrame(() => {
+      // Lazy-load mobile settings only when needed
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        this.setupMobileSettingsLazy();
+      } else {
+        // Add listener for viewport changes
+        this.mediaQueryList = window.matchMedia('(max-width: 768px)');
+        this.mediaQueryList.addEventListener('change', (e) => {
+          if (e.matches) {
+            this.setupMobileSettingsLazy();
+          }
+        });
       }
     });
-    
-    this.resizeObserver.observe(this);
   }
 
   updateActiveState() {
-    // Determine active navigation item based on current path
     const path = window.location.pathname;
-    let activeItem = 'item1'; // default to home
     
-    if (path.includes('/fundamentals')) {
-      activeItem = 'item2';
-    } else if (path.includes('/designs')) {
-      activeItem = 'item3';
-    } else if (path.includes('/experiments')) {
-      activeItem = 'item4';
-    } else if (path.includes('/resources')) {
-      activeItem = 'item5';
+    // Use Map for O(1) lookup instead of multiple string operations
+    let activeItem = 'item1'; // default
+    
+    for (const [pathSegment, itemId] of SiteNavigation.pathMap) {
+      if (path.startsWith(pathSegment)) {
+        activeItem = itemId;
+        break;
+      }
     }
     
-    this.setAttribute('active-item', activeItem);
+    // Only update if changed
+    if (this.getAttribute('active-item') !== activeItem) {
+      this.setAttribute('active-item', activeItem);
+    }
   }
 
   createTemplate() {
-    const template = document.createElement('section');
-    template.className = 'sidebar';
+    // Use template element for better performance
+    const template = document.createElement('template');
+    
+    // Pre-compile the HTML string
     template.innerHTML = `
-      <h2 class="site-title"><a href="index.html">Ben Jennings</a></h2>
-      <div class="active-box"></div>
-      <nav>
-        <li><a class="nav-item item1" href="index.html">
-            <span class="icon" role="img" aria-hidden="true">psychology</span>
-            <span class="title">Home</span>
-          </a></li>
-        <li><a class="nav-item item2" href="fundamentals/">
-            <span class="icon" role="img" aria-hidden="true">psychology</span>
-            <span class="title">Fundamentals</span>
-          </a></li>
-        <li><a class="nav-item item3" href="designs/">
-            <span class="icon" role="img" aria-hidden="true">web</span>
-            <span class="title">Designs</span>
-          </a></li>
-        <li><a class="nav-item item4" href="experiments/">
-            <span class="icon" role="img" aria-hidden="true">experiment</span>
-            <span class="title">Experiments</span>
-          </a></li>
-        <li><a class="nav-item item5" href="resources/">
-            <span class="icon" role="img" aria-hidden="true">folder_open</span>
-            <span class="title">Resources</span>
-          </a></li>
-        <div class="nav-background"></div>
-      </nav>
-      <site-settings></site-settings>
+      <section class="sidebar">
+        <h2 class="site-title"><a href="/">Ben Jennings</a></h2>
+        <div class="active-box"></div>
+        <nav>
+          <li><a class="nav-item item1" href="/" style="view-transition-name: home">
+              <span class="icon" role="img" aria-hidden="true">psychology</span>
+              <span class="title">Home</span>
+            </a></li>
+          <li><a class="nav-item item2" href="/fundamentals/" style="view-transition-name: fundamentals">
+              <span class="icon" role="img" aria-hidden="true">psychology</span>
+              <span class="title">Fundamentals</span>
+            </a></li>
+          <li><a class="nav-item item3" href="/designs/" style="view-transition-name: designs">
+              <span class="icon" role="img" aria-hidden="true">web</span>
+              <span class="title">Designs</span>
+            </a></li>
+          <li><a class="nav-item item4" href="/experiments/" style="view-transition-name: experiments">
+              <span class="icon" role="img" aria-hidden="true">experiment</span>
+              <span class="title">Experiments</span>
+            </a></li>
+          <li><a class="nav-item item5" href="/resources/" style="view-transition-name: resources">
+              <span class="icon" role="img" aria-hidden="true">folder_open</span>
+              <span class="title">Resources</span>
+            </a></li>
+          <div class="nav-background" style="view-transition-name: nav-background"></div>
+        </nav>
+        <site-settings></site-settings>
+      </section>
     `;
-    return template;
+    
+    return template.content.firstElementChild;
   }
 
-  setupMobileSettings() {
-    // Only create mobile settings elements once globally
-    if (!SiteNavigation.mobileSettingsInitialized) {
-      SiteNavigation.mobileSettingsInitialized = true;
-      
-      const overlay = document.createElement('div');
-      overlay.className = 'settings-overlay';
-      overlay.id = 'mobile-settings-overlay';
-      document.body.appendChild(overlay);
+  setupMobileSettingsLazy() {
+    if (SiteNavigation.mobileSettingsInitialized) return;
+    
+    // Use IntersectionObserver to load when component is visible
+    this._observer = new IntersectionObserver(this.handleIntersection, {
+      rootMargin: '50px'
+    });
+    
+    this._observer.observe(this);
+  }
 
-      const button = document.createElement('button');
-      button.className = 'settings-button';
-      button.id = 'mobile-settings-btn';
-      button.innerHTML = `
-        <span class="icon">settings</span>
-        <span>Settings</span>
-      `;
-      document.body.appendChild(button);
+  handleIntersection(entries) {
+    const [entry] = entries;
+    if (entry.isIntersecting) {
+      this.initializeMobileSettings();
+      if (this._observer) {
+        this._observer.disconnect();
+        this._observer = null;
+      }
+    }
+  }
 
-      const popover = document.createElement('div');
-      popover.className = 'settings-popover';
-      popover.id = 'mobile-settings-popover';
-      popover.innerHTML = '<site-settings id="popover-settings"></site-settings>';
-      document.body.appendChild(popover);
+  initializeMobileSettings() {
+    if (SiteNavigation.mobileSettingsInitialized) return;
+    SiteNavigation.mobileSettingsInitialized = true;
+    
+    // Create elements in a fragment first
+    const fragment = document.createDocumentFragment();
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'settings-overlay';
+    overlay.id = 'mobile-settings-overlay';
+    
+    const button = document.createElement('button');
+    button.className = 'settings-button';
+    button.id = 'mobile-settings-btn';
+    button.innerHTML = `
+      <span class="icon">settings</span>
+      <span>Settings</span>
+    `;
+    
+    const popover = document.createElement('div');
+    popover.className = 'settings-popover';
+    popover.id = 'mobile-settings-popover';
+    
+    // Lazy-load site-settings component
+    const settingsEl = document.createElement('site-settings');
+    settingsEl.id = 'popover-settings';
+    popover.appendChild(settingsEl);
+    
+    // Add all to fragment
+    fragment.appendChild(overlay);
+    fragment.appendChild(button);
+    fragment.appendChild(popover);
+    
+    // Single DOM update
+    document.body.appendChild(fragment);
+    
+    // Store references
+    SiteNavigation.mobileElements = { overlay, button, popover };
+    
+    // Use event delegation and passive listeners where appropriate
+    this.attachMobileListeners();
+  }
 
-      // Store references to avoid repeated queries
-      SiteNavigation.mobileElements = { overlay, button, popover };
-
-      // Add event listeners with proper cleanup tracking
-      const toggleOpen = () => {
+  attachMobileListeners() {
+    const { overlay, button, popover } = SiteNavigation.mobileElements;
+    
+    // Use a single delegated handler
+    const handleClick = (e) => {
+      if (e.target === button || button.contains(e.target)) {
         popover.classList.toggle('open');
         overlay.classList.toggle('open');
-      };
-
-      const closeSettings = () => {
+      } else if (e.target === overlay) {
         popover.classList.remove('open');
         overlay.classList.remove('open');
-      };
-
-      const handleEscape = (e) => {
-        if (e.key === 'Escape' && popover.classList.contains('open')) {
-          closeSettings();
-        }
-      };
-
-      button.addEventListener('click', toggleOpen);
-      overlay.addEventListener('click', closeSettings);
-      document.addEventListener('keydown', handleEscape);
-
-      // Store event handlers for cleanup
-      SiteNavigation.mobileEventHandlers = { toggleOpen, closeSettings, handleEscape };
-    }
+      }
+    };
+    
+    // Passive listener for better scroll performance
+    document.addEventListener('click', handleClick, { passive: true });
+    
+    // Keyboard handler with early exit
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && popover.classList.contains('open')) {
+        popover.classList.remove('open');
+        overlay.classList.remove('open');
+      }
+    };
+    
+    document.addEventListener('keydown', handleEscape);
+    
+    // Store for cleanup
+    SiteNavigation.mobileEventHandlers = { handleClick, handleEscape };
   }
 
   disconnectedCallback() {
-    // Clean up ResizeObserver
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-      this.resizeObserver = null;
+    // Clean up media query listener
+    if (this.mediaQueryList) {
+      this.mediaQueryList.removeEventListener('change', this.handleMediaChange);
     }
     
-    // Clean up mobile settings event listeners
-    const button = document.getElementById('mobile-settings-btn');
-    const overlay = document.getElementById('mobile-settings-overlay');
-    
-    if (button) {
-      // Remove all event listeners by replacing the element
-      const newButton = button.cloneNode(true);
-      button.parentNode.replaceChild(newButton, button);
+    // Clean up mobile settings if initialized
+    if (SiteNavigation.mobileEventHandlers) {
+      const { handleClick, handleEscape } = SiteNavigation.mobileEventHandlers;
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('keydown', handleEscape);
     }
     
-    if (overlay) {
-      const newOverlay = overlay.cloneNode(true);
-      overlay.parentNode.replaceChild(newOverlay, overlay);
+    // Remove mobile elements from DOM
+    if (SiteNavigation.mobileElements) {
+      Object.values(SiteNavigation.mobileElements).forEach(el => {
+        el?.remove();
+      });
+      SiteNavigation.mobileElements = null;
+      SiteNavigation.mobileSettingsInitialized = false;
     }
-    
-    // Remove keyboard event listener from document
-    // Note: This is a global listener, so we need to be careful about removing it
-    // In a real app, you'd want to track these listeners more carefully
   }
 }
 
+// Optional: Preload component definition if critical
 customElements.define('site-navigation', SiteNavigation);

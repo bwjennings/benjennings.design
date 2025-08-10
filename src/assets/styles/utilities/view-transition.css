@@ -5,22 +5,42 @@
 :root {
   view-transition-name: none;
 }
+site-navigation {
+  view-transition-name: navigation;
+  
+}
+
+
+/* match-element only works for same-document transitions, not cross-document */
+/* Keeping for potential future same-document usage */
+
+
+
 
 ::view-transition {
-  --transition-duration: 400ms;
+  --transition-duration: 600ms;
 }
 
 main {
   view-transition-name: page;
   contain: layout style paint;
+  /* Improve compositing during cross-document transitions */
+  will-change: opacity, transform;
 }
 
 ::view-transition-old(page) {
-  animation: fade-out var(--transition-duration) ease-out;
+  animation: blur-out var(--transition-duration) var(--timing-decelerate);
 }
 
 ::view-transition-new(page) {
-  animation: fade-in var(--transition-duration) ease-in;
+  animation: blur-in var(--transition-duration) var(--timing-decelerate);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page),
+  ::view-transition-new(page) {
+    animation: none !important;
+  }
 }
 
 ::view-transition-group(nav-background) {
@@ -28,12 +48,47 @@ main {
   animation-timing-function: var(--timing-decelerate);
 }
 
-@keyframes fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
+::view-transition-old(nav-background),
+::view-transition-new(nav-background) {
+  animation-duration: var(--transition-duration);
+  animation-timing-function: var(--timing-decelerate);
+  mix-blend-mode: normal;
 }
 
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+
+
+@keyframes blur-out {
+  from {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 0;
+    
+    transform: scale(0.98);
+  }
+}
+
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(0.98);
+  }
+  40% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
 }

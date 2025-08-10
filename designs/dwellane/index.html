@@ -31,24 +31,24 @@
 
   <!-- Web Components - preload then load -->
   <link rel="modulepreload" href="../../src/components/index.js" />
-  <script type="module" src="../../src/components/index.js"></script>
+  <script type="module" src="../../src/components/index.js" blocking="render"></script>
 
   <!-- View transition script - after CSS and components -->
   <script src="../../src/scripts/view-transition.js"></script>
 
-  
-  <!-- Prefetch Links -->
-  <link rel="expect" href="../../index.html" blocking="render" />
-  <link rel="expect" href="../../designs/" blocking="render" />
-  <link rel="expect" href="../../fundamentals/" blocking="render" />
-  <link rel="expect" href="../../experiments/" blocking="render" />
-  <link rel="expect" href="../../resources/" blocking="render" />
+  <!-- Modern speculation rules for prefetch and prerender -->
   <script type="speculationrules">
     {
+      "prefetch": [
+        {
+          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
+          "eagerness": "moderate"
+        }
+      ],
       "prerender": [
         {
-          "urls": ["../../index.html", "../../designs/","../../fundamentals/","../../experiments/","../../resources/"],
-          "eagerness": "eager",
+          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
+          "eagerness": "conservative",
           "referrer_policy": "same-origin"
         }
       ]
@@ -66,7 +66,7 @@
   <main>
     <div class="post">
       <a href="../" class="button">Back</a>
-      <header id="project-header" data-project="dwellane" class="post-header color1">
+      <header id="project-header" data-project="dwellane" class="post-header color1" style="view-transition-name: design-dwellane">
         <img id="project-image" src="../../public/dwellane-thumbnail.png" alt="Dwellane" />
         <h1 id="project-title" class="heading">It's hard to know a neighborhood</h1>
         <p class="body lg secondary">A platform for exploring local communities.</p>

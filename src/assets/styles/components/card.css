@@ -26,6 +26,10 @@
   justify-content: start;
   justify-items: start;
 
+  /* Improve compositing and reduce paint work during transitions */
+  contain: paint;
+  will-change: transform, opacity;
+
 
   img {
     grid-column: -1 /1;
@@ -55,7 +59,8 @@
     outline-width: 16px;
     transition: outline 300ms var(--timing-decelerate);
     perspective: 100px;
-    transform: scaleZ(20%);
+    /* Prefer 2D transform for better performance */
+    transform: scale(0.98);
   }
 
   &.large {

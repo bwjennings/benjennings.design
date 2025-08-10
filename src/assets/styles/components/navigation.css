@@ -8,15 +8,19 @@ site-navigation {
   transition: all 300ms var(--timing-decelerate);
 }
 
-/* Enhanced responsive behavior based on data-layout attribute */
-site-navigation[data-layout="mobile"] .sidebar {
-  flex-direction: column;
-  justify-content: center;
+/* Enhanced responsive behavior using container queries */
+@container navigation (max-width: 349px) {
+  .sidebar {
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
-site-navigation[data-layout="desktop"] .sidebar {
-  flex-direction: column;
-  justify-content: flex-start;
+@container navigation (min-width: 350px) {
+  .sidebar {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 }
 
 .sidebar {
@@ -171,7 +175,9 @@ site-navigation[active-item="item5"] .item5 {
   left: 0;
   width: 100%;
   height: clamp(50px, 10cqh, 80px);
-  view-transition-name: nav-background;
+  /* Hint compositing for smoother transitions */
+  will-change: transform, opacity;
+  contain: paint;
 }
 
 /* Container queries only apply in desktop mode */

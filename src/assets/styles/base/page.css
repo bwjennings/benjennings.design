@@ -211,6 +211,9 @@ padding: 4dvw;
   flex-direction: column;
   gap: var(--spacing-md);
   border-radius: var(--radius-lg);
+  /* Isolate header for smoother cross-document morph */
+  contain: paint;
+  will-change: transform, opacity;
 
   &.color1 {
     background-color: var(--color-background-base);
@@ -290,6 +293,13 @@ padding: 4dvw;
     font-weight: 700;
     line-height: 1;
   }
+}
+
+/* Avoid painting offscreen content during transitions for better FPS */
+.post .section,
+.post figure {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px auto;
 }
 
 

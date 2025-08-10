@@ -40,14 +40,11 @@ template.innerHTML = `
       border-radius: 20px;
       border: none;
       outline: none;
-      background: linear-gradient(to right,
-        hsl(0, 100%, 50%),
-        hsl(60, 100%, 50%),
-        hsl(120, 100%, 50%),
-        hsl(180, 100%, 50%),
-        hsl(240, 100%, 50%),
-        hsl(300, 100%, 50%),
-        hsl(360, 100%, 50%));
+      background: linear-gradient(to right in oklch longer hue,
+        oklch(60% 0.2 0),
+
+        oklch(60% 0.2 360));
+  }
     }
     
     .hue-slider:active {
@@ -129,11 +126,11 @@ template.innerHTML = `
       font-size: 20px;
       line-height: 1;
       font-weight: 400;
-      color: var(--color-icon-secondary);
+      color: var(--color-icon-primary);
     }
     
     .theme-button.active .icon {
-      color: var(--color-icon-onEmphasis);
+      color: var(--color-icon-base);
     }
   </style>
   

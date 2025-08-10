@@ -33,38 +33,28 @@
 
   <!-- Web Components - preload then load -->
   <link rel="modulepreload" href="../src/components/index.js" />
-  <script type="module" src="../src/components/index.js"></script>
+  <script type="module" src="../src/components/index.js" blocking="render"></script>
 
   <!-- View transition script - after CSS and components -->
   <script src="../src/scripts/view-transition.js"></script>
 
-  <!-- Render blocking for view transition card elements -->
-  <link rel="expect" blocking="render" href="#card-arvest" />
-  <link rel="expect" blocking="render" href="#card-arvest-image" />
-  <link rel="expect" blocking="render" href="#card-arvest-title" />
-  <link rel="expect" blocking="render" href="#card-dwellane" />
-  <link rel="expect" blocking="render" href="#card-dwellane-image" />
-  <link rel="expect" blocking="render" href="#card-dwellane-title" />
-  <link rel="expect" blocking="render" href="#card-pls" />
-  <link rel="expect" blocking="render" href="#card-pls-image" />
-  <link rel="expect" blocking="render" href="#card-pls-title" />
-  <link rel="expect" blocking="render" href="#card-herff-jones" />
-  <link rel="expect" blocking="render" href="#card-herff-jones-image" />
-  <link rel="expect" blocking="render" href="#card-herff-jones-title" />
-
-  <!-- Prefetch Links -->
-  <link rel="expect" href="../index.html" blocking="render" />
-  <link rel="expect" href="../fundamentals/" blocking="render" />
-  <link rel="expect" href="../experiments/" blocking="render" />
-  <link rel="expect" href="../resources/" blocking="render" />
-
+  <!-- Modern speculation rules for optimal performance -->
   <script type="speculationrules">
     {
+      "prefetch": [
+        {
+          "urls": ["../index.html", "../fundamentals/", "../experiments/", "../resources/", "arvest/", "dwellane/", "pls/", "herff-jones/"],
+          "eagerness": "moderate"
+        }
+      ],
       "prerender": [
         {
-          "urls": ["../index.html", "../designs/","../fundamentals/","../experiments/","../resources/"],
-          "eagerness": "eager",
-          "referrer_policy": "same-origin"
+          "where": { "href_matches": "^/(index\\.html|fundamentals/|experiments/|resources/)" },
+          "eagerness": "conservative"
+        },
+        {
+          "where": { "href_matches": "/designs/(arvest|dwellane|pls|herff-jones)/" },
+          "eagerness": "moderate"
         }
       ]
     }
@@ -90,7 +80,7 @@
     </header>
 
     <div class="page-items">
-      <a id="card-arvest" data-project="arvest" class="card color4" href="arvest/">
+      <a id="card-arvest" data-project="arvest" class="card color4" href="arvest/" data-vt-target="design-arvest">
         <img id="card-arvest-image" slot="media" src="../public/arvest-thumbnail.png" />
         <h1 id="card-arvest-title" class="title">The loan process is complicated</h1>
         <div class="badge-group">
@@ -104,7 +94,7 @@
           </div>
         </div>
       </a>
-      <a id="card-dwellane" data-project="dwellane" class="card color1" href="dwellane/">
+      <a id="card-dwellane" data-project="dwellane" class="card color1" href="dwellane/" data-vt-target="design-dwellane">
         <img id="card-dwellane-image" slot="media" src="../public/dwellane-thumbnail.png" />
         <h1 id="card-dwellane-title" class="title">It's hard to know a neighborhood</h1>
         <div class="badge-group">
@@ -115,7 +105,7 @@
           <div class="badge">Startup Company</div>
         </div>
       </a>
-      <a id="card-pls" data-project="pls" class="card color2" href="pls/">
+      <a id="card-pls" data-project="pls" class="card color2" href="pls/" data-vt-target="design-pls">
         <img id="card-pls-image" slot="media" src="../public/pls-thumbnail.png" />
         <h1 id="card-pls-title" class="title">Training Materials are unorganized</h1>
         <div class="badge-group">
@@ -125,7 +115,7 @@
           </div>
         </div>
       </a>
-      <a id="card-herff-jones" data-project="herff-jones" class="card color3" href="herff-jones/">
+      <a id="card-herff-jones" data-project="herff-jones" class="card color3" href="herff-jones/" data-vt-target="design-herff-jones">
         <img id="card-herff-jones-image" slot="media" src="../public/herff-jones-thumbnail.png" />
         <h1 id="card-herff-jones-title" class="title">Graduates need a cap and gown</h1>
         <div class="badge-group">

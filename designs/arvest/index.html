@@ -32,28 +32,24 @@
 
   <!-- Web Components - preload then load -->
   <link rel="modulepreload" href="../../src/components/index.js" />
-  <script type="module" src="../../src/components/index.js"></script>
+  <script type="module" src="../../src/components/index.js" blocking="render"></script>
 
   <!-- View transition script - after CSS and components -->
   <script src="../../src/scripts/view-transition.js"></script>
 
-  <!-- Render blocking for view transition elements -->
-  <link rel="expect" blocking="render" href="#project-header" />
-  <link rel="expect" blocking="render" href="#project-image" />
-  <link rel="expect" blocking="render" href="#project-title" />
-
-  <!-- Prefetch Links -->
-  <link rel="expect" href="../../index.html" blocking="render" />
-  <link rel="expect" href="../../designs/" blocking="render" />
-  <link rel="expect" href="../../fundamentals/" blocking="render" />
-  <link rel="expect" href="../../experiments/" blocking="render" />
-  <link rel="expect" href="../../resources/" blocking="render" />
+  <!-- Modern speculation rules for prefetch and prerender -->
   <script type="speculationrules">
     {
+      "prefetch": [
+        {
+          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
+          "eagerness": "moderate"
+        }
+      ],
       "prerender": [
         {
-          "urls": ["../../index.html", "../../designs/","../../fundamentals/","../../experiments/","../../resources/"],
-          "eagerness": "eager",
+          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
+          "eagerness": "conservative",
           "referrer_policy": "same-origin"
         }
       ]
@@ -72,7 +68,7 @@
   <main>
     <div class="post">
       <a href="../" class="button">Back</a>
-      <header id="project-header" data-project="arvest" class="post-header color4">
+      <header id="project-header" data-project="arvest" class="post-header color4" style="view-transition-name: design-arvest">
         <img id="project-image" slot="media" src="../../public/arvest-thumbnail.png" alt="Arvest project thumbnail" />
         
         <h1 id="project-title" class="heading">The loan process is complicated</h1>
