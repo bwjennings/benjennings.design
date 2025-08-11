@@ -10,12 +10,7 @@ window.themeCache = window.themeCache || {
     try {
       this.values = {
         theme: localStorage.getItem('myCustomTheme'),
-        highContrast: localStorage.getItem('highContrast') === 'true',
-        colorHue: localStorage.getItem('brandHue'),
-        stimulation: localStorage.getItem('stimulationLevel'),
-        radius: localStorage.getItem('baseRadius'),
-        dataTheme: localStorage.getItem('dataTheme'),
-        contrast: localStorage.getItem('contrast')
+        hue: localStorage.getItem('brandHue')
       };
       this.lastUpdate = Date.now();
     } catch (e) {
@@ -42,22 +37,8 @@ window.themeCache = window.themeCache || {
       const colorScheme = cached.theme === '' || cached.theme === 'system' ? 'light dark' : cached.theme;
       updates.push(['--current-color-scheme', colorScheme]);
     }
-
-    if (cached.highContrast) {
-      document.documentElement.dataset.mode = 'high-contrast';
-    }
-
-    if (cached.colorHue !== null) {
-      updates.push(['--hue-root', cached.colorHue + 'deg']);
-    }
-    if (cached.stimulation !== null) {
-      updates.push(['--stimulation-level', cached.stimulation]);
-    }
-    if (cached.radius !== null) {
-      updates.push(['--base-radius', cached.radius + 'px']);
-    }
-    if (cached.contrast !== null) {
-      updates.push(['--contrast', cached.contrast]);
+    if (cached.hue !== null) {
+      updates.push(['--hue-root', cached.hue + 'deg']);
     }
 
     // Apply all CSS updates in one batch
@@ -65,19 +46,12 @@ window.themeCache = window.themeCache || {
       document.documentElement.style.setProperty(property, value);
     });
 
-    if (cached.dataTheme) {
-      document.documentElement.setAttribute('data-theme', cached.dataTheme);
-    }
-    
+    // Removed legacy attributes and variables not controlled via UI
   } catch (e) {
     console.error('Error applying theme preferences:', e);
-    // Fallback to default theme if localStorage is corrupted
+    // Fallback to default theme
     try {
       document.documentElement.style.setProperty('--current-color-scheme', 'light dark');
-      localStorage.clear();
-      // Reset cache
-      window.themeCache.values = {};
-      window.themeCache.lastUpdate = 0;
     } catch (fallbackError) {
       console.error('Failed to apply fallback theme:', fallbackError);
     }

@@ -41,35 +41,26 @@ main {
 
 
 
-::view-transition-group(nav-background) {
+
+
+
+
+
+
+
+::view-transition-group(*) {
   animation-duration: var(--transition-duration);
   animation-timing-function: var(--transition-timing);
-}
-
-::view-transition-old(nav-background),
-::view-transition-new(nav-background) {
-  animation-name: move;
-  animation-duration: var(--transition-duration);
-  animation-timing-function: var(--transition-timing);
-  mix-blend-mode: normal;
+  isolation: isolate;
+  overflow: clip;
 }
 
 
-@keyframes move{
-  from {
-   
-    transform: scale(1);
-  }
-  50% {
-   
-    transform: scale(1.05);
-  }
-  to {
-   
-    
-    transform: scale(1);
-  }
-}
+
+
+
+
+
 
 @keyframes blur-out {
   from {
@@ -77,14 +68,14 @@ main {
     filter: blur(0px);
     transform: scale(1);
   }
-  60% {
+  30% {
     opacity: 0;
     filter: blur(4px);
     transform: scale(0.99);
   }
   to {
     opacity: 0;
-    
+    filter: blur(4px);
     transform: scale(0.99);
   }
 }
@@ -95,7 +86,7 @@ main {
     filter: blur(4px);
     transform: scale(0.98);
   }
-  30% {
+  40% {
     opacity: 0;
     filter: blur(4px);
     transform: scale(0.98);

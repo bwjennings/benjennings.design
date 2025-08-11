@@ -102,6 +102,9 @@ template.innerHTML = `
       gap: 8px;
       align-items: center;
       justify-content: flex-start;
+      padding:8px;
+      background:var(--color-background-secondary);
+      border-radius: 24px;
     }
     
     .theme-button {
@@ -114,7 +117,7 @@ template.innerHTML = `
       align-items: center;
       justify-content: center;
       transition: all 0.2s ease;
-      background: var(--color-background-primary);
+      background: none;
     }
     
     .theme-button.active {
@@ -126,7 +129,7 @@ template.innerHTML = `
       font-size: 20px;
       line-height: 1;
       font-weight: 400;
-      color: var(--color-icon-primary);
+      color: var(--color-icon-secondary);
     }
     
     .theme-button.active .icon {
@@ -240,12 +243,6 @@ class SiteSettings extends HTMLElement {
     
     this.updateHue(defaultHue);
     localStorage.setItem('brandHue', defaultHue);
-    
-    // Apply persisted radius if available
-    const storedRadius = localStorage.getItem('baseRadius');
-    if (storedRadius) {
-      document.documentElement.style.setProperty('--base-radius', storedRadius + 'px');
-    }
   }
 
   setActiveTheme(theme) {
@@ -291,7 +288,7 @@ class SiteSettings extends HTMLElement {
       
       // Update cache immediately for consistency
       if (window.themeCache) {
-        window.themeCache.values.colorHue = hue.toString();
+        window.themeCache.values.hue = hue.toString();
       }
       
       // Debounce localStorage and event dispatch to avoid excessive writes

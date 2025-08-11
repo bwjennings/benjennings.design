@@ -184,7 +184,7 @@ padding: 4dvw;
   flex-direction: column;
   gap: 5dvh;
   max-width: 120ch;
-  align-items: center;
+  align-items: stretch;
 
   :is(p,h2) {
     max-width: 60ch;
@@ -210,7 +210,8 @@ padding: 4dvw;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  border-radius: var(--radius-lg);
+  /* Match card corner radius for smoother cross-document morphs */
+  border-radius: var(--radius-md);
   /* Isolate header for smoother cross-document morph */
   contain: paint;
   will-change: transform, opacity;

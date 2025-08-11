@@ -39,13 +39,13 @@
     {
       "prefetch": [
         {
-          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
+          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../", "../../resources/"],
           "eagerness": "moderate"
         }
       ],
       "prerender": [
         {
-          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
+          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../", "../../resources/"],
           "eagerness": "conservative",
           "referrer_policy": "same-origin"
         }
@@ -60,30 +60,51 @@
   <link rel="manifest" href="../../public/site.webmanifest" />
 </head>
 <body id="page-container" class="page-container detail-page">
-  <site-navigation active-item="item3"></site-navigation>
+  <site-navigation active-item="item4"></site-navigation>
   <main>
     <div class="post">
       <a href="../" class="button">Back</a>
-      <header id="project-header" data-project="herff-jones" class="post-header color3" style="view-transition-name: design-herff-jones">
-        <img id="project-image" src="../../public/herff-jones-thumbnail.png" alt="Herff Jones" style="view-transition-name: design-herff-jones-image" />
-        <h1 id="project-title" class="heading" style="view-transition-name: design-herff-jones-title">Graduates need a cap and gown</h1>
-        <div class="badge-group" style="view-transition-name: design-herff-jones-badges">
-          <div class="badge">Design System</div>
-          <div class="badge">CMS</div>
+      <header id="project-header" data-project="digital-frame" class="post-header color2" style="view-transition-name: experiment-digital-frame">
+        <img id="project-image" src="../../public/digital-frame-thumbnail.svg" alt="Digital frame" style="view-transition-name: experiment-digital-frame-image" />
+        <h1 id="project-title" class="heading" style="view-transition-name: experiment-digital-frame-title">A better digital frame</h1>
+        <div class="badge-group" style="view-transition-name: experiment-digital-frame-badges">
+          <div class="badge">
+            <span>construction</span>
+            Work in progress
+          </div>
+          <div class="badge">
+            <span>developer_board</span>
+            Hardware
+          </div>
         </div>
-        <p class="body lg secondary">E-commerce tools for ordering regalia.</p>
+        <p class="body lg secondary">Exploring a low-distraction, e-ink inspired frame.</p>
       </header>
+
       <section class="section">
-        <h2 class="heading sm">Introduction</h2>
-        <p class="body lg">
-          Graduation ceremonies are milestone moments that require proper academic regalia. However, the traditional 
-          ordering process for caps, gowns, and accessories was often complicated and time-consuming for both students 
-          and institutions.
-        </p>
-        <p class="body lg">
-          The redesigned e-commerce platform streamlined the ordering experience, making it easier for graduates to 
-          find the right regalia while ensuring institutions could manage bulk orders efficiently.
-        </p>
+        <h2 class="heading sm">Overview</h2>
+        <div class="body lg">
+          <p>
+            I have always found e-ink so fascinating. The way that a lot of
+            people have experienced e-ink is with a Kindle. When I
+            discovered that the technology had advanced to have colors, I
+            thought it would be perfect for a digital(ish) photo frame.
+          </p>
+          <p>
+            The types of digital frames that a lot of people have use LCD
+            screens with a pretty bright backlight. They feel tacky and draw
+            too much attention than they need to.
+          </p>
+          <p>
+            Currently this is work in progress with only a proof of concept
+            UI. I plan on continuing to iterate on the design and to find
+            frame that can hold all of the computer parts.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="heading sm">Status</h2>
+        <p class="body lg">Work in progress. Hardware exploration + UI prototype.</p>
       </section>
     </div>
   </main>

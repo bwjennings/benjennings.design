@@ -39,13 +39,13 @@
     {
       "prefetch": [
         {
-          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
+          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../", "../../resources/"],
           "eagerness": "moderate"
         }
       ],
       "prerender": [
         {
-          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
+          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../", "../../resources/"],
           "eagerness": "conservative",
           "referrer_policy": "same-origin"
         }
@@ -60,30 +60,39 @@
   <link rel="manifest" href="../../public/site.webmanifest" />
 </head>
 <body id="page-container" class="page-container detail-page">
-  <site-navigation active-item="item3"></site-navigation>
+  <site-navigation active-item="item4"></site-navigation>
   <main>
     <div class="post">
       <a href="../" class="button">Back</a>
-      <header id="project-header" data-project="herff-jones" class="post-header color3" style="view-transition-name: design-herff-jones">
-        <img id="project-image" src="../../public/herff-jones-thumbnail.png" alt="Herff Jones" style="view-transition-name: design-herff-jones-image" />
-        <h1 id="project-title" class="heading" style="view-transition-name: design-herff-jones-title">Graduates need a cap and gown</h1>
-        <div class="badge-group" style="view-transition-name: design-herff-jones-badges">
-          <div class="badge">Design System</div>
-          <div class="badge">CMS</div>
+      <header id="project-header" data-project="spline" class="post-header color1" style="view-transition-name: experiment-spline">
+        <img id="project-image" src="../../public/spline-thumbnail.svg" alt="Spline" style="view-transition-name: experiment-spline-image" />
+        <h1 id="project-title" class="heading" style="view-transition-name: experiment-spline-title">Spline</h1>
+        <div class="badge-group" style="view-transition-name: experiment-spline-badges">
+          <div class="badge">
+            <span>view_in_ar</span>
+            3D Scan
+          </div>
         </div>
-        <p class="body lg secondary">E-commerce tools for ordering regalia.</p>
+        <p class="body lg secondary">A quick exploration of 3D scenes on the web.</p>
       </header>
+
       <section class="section">
-        <h2 class="heading sm">Introduction</h2>
-        <p class="body lg">
-          Graduation ceremonies are milestone moments that require proper academic regalia. However, the traditional 
-          ordering process for caps, gowns, and accessories was often complicated and time-consuming for both students 
-          and institutions.
-        </p>
-        <p class="body lg">
-          The redesigned e-commerce platform streamlined the ordering experience, making it easier for graduates to 
-          find the right regalia while ensuring institutions could manage bulk orders efficiently.
-        </p>
+        <h2 class="heading sm">Interactive scene</h2>
+        <p class="body lg">This embeds a Spline scene directly on the page.</p>
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.22/build/spline-viewer.js"></script>
+        <div class="full-row" style="margin-block: 1rem;">
+          <spline-viewer
+            url="https://prod.spline.design/JFdKLEEFV4sfOXrM/scene.splinecode"
+            events-target="global"
+            background="rgba(0,0,0,0.06)"
+            style="width: 100%; height: min(70vh, 720px); border-radius: 16px; overflow: hidden; display: block;"
+          ></spline-viewer>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="heading sm">Notes</h2>
+        <p class="body lg">Don't make it simple, make it clear.</p>
       </section>
     </div>
   </main>
