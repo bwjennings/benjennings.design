@@ -135,12 +135,15 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const isTopNav = anyAnchor.classList?.contains('nav-item') || anyAnchor.closest('site-navigation');
       if (isTopNav) {
-        // Navigating to another top-level page: clear stored key and any inline names,
-        // and remove vt from the URL so the next visit doesn't pre-name incorrectly.
+        // Navigating to another top-level page: clear stored key and remove vt
         sessionStorage.removeItem('lastVtName');
         clearVtInUrl();
-        document.querySelectorAll('[style]')
-          .forEach((el) => el.style?.removeProperty('view-transition-name'));
+
+        // Only clear names from card elements and their parts; do NOT touch navigation
+        const toClear = document.querySelectorAll(
+          'a[data-vt-target], a[data-vt-target] img, a[data-vt-target] .icon-placeholder, a[data-vt-target] h1.title, a[data-vt-target] .badge-group'
+        );
+        toClear.forEach((el) => el.style?.removeProperty('view-transition-name'));
       }
       // IMPORTANT: Do not clear names for non-card, non-topnav links (e.g., Back buttons).
       // Keeping names enables reverse morph into the cached listing card.

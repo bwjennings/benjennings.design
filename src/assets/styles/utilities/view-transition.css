@@ -5,10 +5,8 @@
 :root {
   view-transition-name: none;
 }
-site-navigation {
-  view-transition-name: navigation;
-  
-}
+/* Keep navigation elements unnamed at the container level; only the
+   moving highlight (.nav-background) participates in transitions. */
 
 
 /* match-element only works for same-document transitions, not cross-document */
