@@ -195,7 +195,7 @@
       1);
 
   /* Default timing for transitions/animations (override per-need) */
-  --transition-timing: var(--timing-bounce);
+  --transition-timing: linear(0.00, -0.0231, 0.0289, 0.133, 0.263, 0.396, 0.527, 0.646, 0.747, 0.831, 0.897, 0.948, 0.984, 1.01, 1.02, 1.03, 1.04, 1.04, 1.03, 1.03, 1.02, 1.02, 1.01, 1.01, 1.01, 1.00, 1.00, 1.00, 1.00, 1.00);
 
   /* color base */
   --hue-root: 230deg;
@@ -322,7 +322,7 @@
   --color-text-primary: light-dark(var(--color-neutral-95), var(--color-neutral-5));
   --color-text-secondary: light-dark(var(--color-neutral-80), var(--color-neutral-10));
   --color-text-tertiary: light-dark(var(--color-neutral-60), var(--color-neutral-20));
-  --color-text-base: light-dark(var(--color-base-1-80), var(--color-base-1-20));
+  --color-text-base: light-dark(var(--color-base-1-95), var(--color-base-1-20));
   --color-text-base-secondary: light-dark(var(--color-base-1-60), var(--color-base-1-30));
   --color-text-onBrand: light-dark(var(--color-base-1-50), var(--color-base-1-10));
   --color-text-base-2: light-dark(var(--color-base-2-95), var(--color-base-2-20));
@@ -357,8 +357,7 @@
   --color-border-base-4: light-dark(var(--color-base-4-10), var(--color-base-4-90));
   --color-border-base-4-emphasis: light-dark(var(--color-base-4-20), var(--color-base-4-80));
 
-  --theme-slider-size: 20px;
-  --theme-slider-outline: var(--color-background-primary);
+  /* cleaned legacy theme-slider variables */
 }
 
 

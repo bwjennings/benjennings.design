@@ -167,7 +167,7 @@ site-navigation[active-item="item5"] .item5 {
 /* Navigation background element */
 .nav-background {
   position: absolute;
-  background: var(--color-background-secondary);
+  background: var(--color-background-base);
   border-radius: var(--radius-md);
   pointer-events: none;
   z-index: 0;
@@ -279,7 +279,7 @@ site-navigation[active-item="item5"] .item5 {
 
 
 .nav-background{
-    background-color:var(--color-background-primary) ;
+   
     
     width: 100%;
     grid-column: 1;
@@ -350,9 +350,7 @@ nav {
 
 
 
-theme-slider {
-  grid-area: theme-slider;
-}
+/* removed legacy theme-slider hook */
 
 
 

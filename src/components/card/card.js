@@ -15,7 +15,7 @@ customElements.define(
             .card-container { cursor: pointer; position: relative; }
             /* Additional styles as needed */
           </style>
-          <link href="css/components/card.css" rel="stylesheet" />
+          <link href="/src/assets/styles/components/card.css" rel="stylesheet" />
           <div class="card-container">
             <slot name="media"></slot>
             <h2 class="card-title heading sm"></h2>

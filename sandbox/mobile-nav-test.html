@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Navigation Test</title>
+    
+    <!-- Load fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    
+    <!-- Load CSS -->
+    <link href="src/assets/styles/base/vars.css" rel="stylesheet">
+    <link href="src/assets/styles/base/index.css" rel="stylesheet">
+    <link href="src/assets/styles/base/page.css" rel="stylesheet">
+    <link href="src/assets/styles/components/navigation.css" rel="stylesheet">
+    
+    <!-- Load theme initialization script -->
+    <script src="src/scripts/index.js"></script>
+    
+    <!-- Load components -->
+    <script type="module" src="src/components/index.js" blocking="render"></script>
+    
+    <style>
+        .viewport-size {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: var(--color-background-base);
+            color: var(--color-text-base);
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            font-size: var(--text-body-sm-size);
+            z-index: 1000;
+            border: 1px solid var(--color-border-base);
+        }
+        
+        .test-content {
+            padding: 2rem;
+            padding-bottom: 120px; /* Extra space for mobile nav */
+            min-height: 200vh; /* Make it tall to test scrolling */
+        }
+        
+        .instruction {
+            background: var(--color-background-secondary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: 2rem;
+        }
+        
+        .instruction h2 {
+            color: var(--color-text-primary);
+            margin-top: 0;
+        }
+        
+        .instruction p {
+            color: var(--color-text-secondary);
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--color-background-primary);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border-primary);
+        }
+        
+        .section h3 {
+            color: var(--color-text-primary);
+            margin-top: 0;
+        }
+        
+        .section p {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="viewport-size" id="viewport-size">Viewport: <span id="size-display"></span></div>
+    
+    <div class="page-container">
+        <site-navigation></site-navigation>
+        
+        <main>
+            <div class="test-content">
+                <div class="instruction">
+                    <h2>Mobile Navigation Test</h2>
+                    <p>Resize your browser window or use device simulation to test mobile navigation behavior:</p>
+                    <ul>
+                        <li><strong>Desktop (> 800px):</strong> Navigation should be in sidebar</li>
+                        <li><strong>Mobile (≤ 800px):</strong> Navigation should be fixed at bottom</li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h3>Section 1</h3>
+                    <p>This is test content to demonstrate the page layout. The navigation should adapt based on viewport size using media queries for the mobile/desktop switch, while using container queries for responsive behavior within each layout mode.</p>
+                </div>
+                
+                <div class="section">
+                    <h3>Section 2</h3>
+                    <p>Scroll down to see more content. On mobile, the navigation should stay fixed at the bottom of the screen. On desktop, it should remain in the sidebar.</p>
+                </div>
+                
+                <div class="section">
+                    <h3>Section 3</h3>
+                    <p>Try resizing the browser window to see the navigation switch between desktop sidebar mode and mobile bottom-fixed mode at the 800px breakpoint.</p>
+                </div>
+                
+                <div class="section">
+                    <h3>Section 4</h3>
+                    <p>More content to demonstrate scrolling behavior. The mobile navigation should remain accessible while scrolling.</p>
+                </div>
+                
+                <div class="section">
+                    <h3>Section 5</h3>
+                    <p>Final section to test the full page experience with the responsive navigation system.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Display current viewport size
+        function updateViewportSize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const sizeDisplay = document.getElementById('size-display');
+            const mode = width <= 800 ? 'Mobile' : 'Desktop';
+            sizeDisplay.textContent = `${width}x${height} (${mode})`;
+        }
+        
+        updateViewportSize();
+        window.addEventListener('resize', updateViewportSize);
+    </script>
+</body>
+</html>

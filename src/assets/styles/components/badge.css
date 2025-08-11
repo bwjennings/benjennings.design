@@ -89,3 +89,43 @@
   gap: var(--spacing-sm);
   align-items: end;
 }
+
+/* Match card color variants so badges inherit the card's palette */
+.card.color1 .badge {
+  background-color: var(--color-background-base-secondary);
+  color: var(--color-text-base);
+  border: 1px solid var(--color-border-base);
+}
+.card.color1 .badge span {
+  color: var(--color-icon-base);
+}
+
+.card.color2 .badge {
+  /* Equivalent to .badge.accent-1 */
+  background-color: var(--color-background-base-2-secondary);
+  color: var(--color-text-base-2);
+  border: 1px solid var(--color-border-base-2);
+}
+.card.color2 .badge span {
+  color: var(--color-icon-base-2);
+}
+
+.card.color3 .badge {
+  /* Equivalent to .badge.accent-2 */
+  background-color: var(--color-background-base-3-secondary);
+  color: var(--color-text-base-3);
+  border: 1px solid var(--color-border-base-3);
+}
+.card.color3 .badge span {
+  color: var(--color-icon-base-3);
+}
+
+.card.color4 .badge {
+  /* Equivalent to .badge.accent-3 */
+  background-color: var(--color-background-base-4-secondary);
+  color: var(--color-text-base-4);
+  border: 1px solid var(--color-border-base-4);
+}
+.card.color4 .badge span {
+  color: var(--color-icon-base-4);
+}

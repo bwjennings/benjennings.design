@@ -42,18 +42,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const onClick = (e) => {
     // Only handle primary-button navigations without modifiers
     if ((e.button !== 0 && e.detail !== 0) || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    const anchor = e.target && (e.target.closest ? e.target.closest('a[data-vt-target]') : null);
-    if (!anchor) return;
 
-    // Apply the name to the clicked card only
-    const name = anchor.getAttribute('data-vt-target');
-    if (name) {
-      try {
-        anchor.style.setProperty('view-transition-name', name);
-        // Update session for reverse morph on back
-        sessionStorage.setItem('lastVtName', name);
-      } catch {}
+    // Find any anchor (we may need to clean up even for non-card links)
+    const anyAnchor = e.target && (e.target.closest ? e.target.closest('a') : null);
+    if (!anyAnchor) return;
+
+    // If this is a card click, set its transition name and record it
+    const cardAnchor = anyAnchor.matches('a[data-vt-target]') ? anyAnchor : null;
+    if (cardAnchor) {
+      const name = cardAnchor.getAttribute('data-vt-target');
+      if (name) {
+        try {
+          // Remove any previously applied names so only the clicked card is named
+          document.querySelectorAll('a[data-vt-target]').forEach((a) => {
+            if (a !== cardAnchor) a.style.removeProperty('view-transition-name');
+          });
+          cardAnchor.style.setProperty('view-transition-name', name);
+          // Update session for reverse morph on back
+          sessionStorage.setItem('lastVtName', name);
+        } catch {}
+      }
+      return;
     }
+
+    // If this is a top-level navigation click, clear lastVtName so
+    // listing pages don't pre-name a card from a previous section.
+    try {
+      const isTopNav = anyAnchor.classList?.contains('nav-item') || anyAnchor.closest('site-navigation');
+      if (isTopNav) {
+        sessionStorage.removeItem('lastVtName');
+      }
+    } catch {}
+
+    // For non-card navigations (e.g., top-level nav), remove any lingering inline names
+    // so the outgoing snapshot doesn't create stray named transition groups.
+    try {
+      document.querySelectorAll('a[data-vt-target]').forEach((a) => {
+        a.style.removeProperty('view-transition-name');
+      });
+    } catch {}
   };
 
   // Capture phase to run before navigation handling

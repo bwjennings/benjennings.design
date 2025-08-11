@@ -6,7 +6,6 @@
 
 @import '../utilities/view-transition.css' layer(base);
 @import '../utilities/keyframes.css' layer(base);
-@import '../components/radio-buttons.css' layer(components);
 @import '../components/button.css' layer(components);
 @import '../components/dialog.css' layer(components);
 @import '../components/navigation.css' layer(components);

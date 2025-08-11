@@ -20,6 +20,9 @@ site-navigation {
 ::view-transition {
   --transition-duration: 700ms;
 }
+::view-transition-group(*){
+  animation-timing-function: var(--transition-timing);
+}
 
 main {
   view-transition-name: page;
@@ -36,12 +39,7 @@ main {
   animation: blur-in var(--transition-duration) var(--transition-timing);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(page),
-  ::view-transition-new(page) {
-    animation: none !important;
-  }
-}
+
 
 ::view-transition-group(nav-background) {
   animation-duration: var(--transition-duration);
@@ -50,12 +48,28 @@ main {
 
 ::view-transition-old(nav-background),
 ::view-transition-new(nav-background) {
+  animation-name: move;
   animation-duration: var(--transition-duration);
   animation-timing-function: var(--transition-timing);
   mix-blend-mode: normal;
 }
 
 
+@keyframes move{
+  from {
+   
+    transform: scale(1);
+  }
+  50% {
+   
+    transform: scale(1.05);
+  }
+  to {
+   
+    
+    transform: scale(1);
+  }
+}
 
 @keyframes blur-out {
   from {
@@ -63,32 +77,40 @@ main {
     filter: blur(0px);
     transform: scale(1);
   }
-  50% {
+  60% {
     opacity: 0;
-    filter: blur(8px);
-    transform: scale(0.98);
+    filter: blur(4px);
+    transform: scale(0.99);
   }
   to {
     opacity: 0;
     
-    transform: scale(0.98);
+    transform: scale(0.99);
   }
 }
 
 @keyframes blur-in {
   from {
     opacity: 0;
-    filter: blur(8px);
+    filter: blur(4px);
     transform: scale(0.98);
   }
-  40% {
+  30% {
     opacity: 0;
-    filter: blur(8px);
+    filter: blur(4px);
     transform: scale(0.98);
   }
   to {
     opacity: 1;
     filter: blur(0px);
     transform: scale(1);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(),
+  ::view-transition-new(ge) {
+    animation:none;
   }
 }

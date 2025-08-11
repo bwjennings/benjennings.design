@@ -1,0 +1,8 @@
+{
+  "codeConnect": {
+     
+    "include": ["assets/**/*.js", "assets/**/*.ts", "assets/**/*.jsx", "assets/**/*.tsx"],
+    "label": "HTML",
+    "parser": "html"
+  }
+}

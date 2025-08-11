@@ -13,7 +13,6 @@
         // Define the HTML structure in the template
         template.innerHTML = `
          <style>
-            @import 'css/index.css' ;
         :host {
         }
         .resource-card {
@@ -90,7 +89,8 @@
       
  
       </style>
-          <div class="resource-card">
+      <link rel="stylesheet" href="/src/assets/styles/components/button.css">
+      <div class="resource-card">
             <div class="iconbox">
               <span>demography</span>
             </div>
