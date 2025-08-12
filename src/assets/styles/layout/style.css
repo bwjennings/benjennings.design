@@ -145,3 +145,10 @@ body {
   container-name: page;
   container-type: inline-size;
 }
+
+/* During history restoration, disable snapping/smooth scrolling
+   so the browser can restore the exact scroll position. */
+html.restoring main {
+  scroll-behavior: auto !important;
+  scroll-snap-type: none !important;
+}

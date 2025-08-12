@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     console.warn('View transitions are not supported in this browser.');
   }
 
-  // If we're on a detail page, record the header's view-transition-name for back navigation.
+  // Ensure the browser restores scroll on history navigations
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'auto'; } catch {}
+
+  // If we're on a detail page, record the header's view-transition-name for back navigation
+  // and ensure we have proper history state
   try {
     const detailHeader = document.querySelector('.post-header[style]');
     if (detailHeader) {
@@ -17,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const name = (inline || computed || '').trim();
       if (name && name !== 'none') {
         sessionStorage.setItem('lastVtName', name);
+        
+        // Ensure we have proper history state for this detail page
+        if (!history.state || !history.state.page) {
+          history.replaceState({ page: 'detail', vt: name }, '', window.location.href);
+        }
       }
     }
   } catch {}
@@ -98,12 +107,41 @@ document.addEventListener('DOMContentLoaded', () => {
   // This sets the view-transition-name only on the activated card so
   // non-activated cards remain unnamed and participate in the page animation.
   const onClick = (e) => {
-    // Only handle primary-button navigations without modifiers
-    if ((e.button !== 0 && e.detail !== 0) || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    // Only ignore non-primary mouse buttons and modified clicks
+    // Mobile taps may have undefined button and non-zero detail; allow those.
+    if ((typeof e.button === 'number' && e.button > 0) || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
     // Find any anchor (we may need to clean up even for non-card links)
     const anyAnchor = e.target && (e.target.closest ? e.target.closest('a') : null);
     if (!anyAnchor) return;
+
+    // Prefer History API for in-page "Back" buttons on detail pages
+    // Matches: a.button inside a .post-header that navigates to parent (../)
+    try {
+      const isBackButton = anyAnchor.matches('a.button[href$="../"]') && anyAnchor.closest('.post-header');
+      if (isBackButton) {
+        e.preventDefault();
+        // Defer to next tick to avoid interfering with UA scroll restoration
+        const goBack = () => {
+          // Prefer the Navigation API if available
+          try {
+            if (('navigation' in window) && window.navigation?.canGoBack) {
+              window.navigation.back();
+              return;
+            }
+          } catch {}
+          // Otherwise use the History API
+          const hasHistory = window.history.length > 1;
+          const sameOriginReferrer = document.referrer && new URL(document.referrer).origin === window.location.origin;
+          if (hasHistory || sameOriginReferrer) window.history.back();
+          else window.location.assign(anyAnchor.href);
+        };
+        // Use rAF first, fallback to setTimeout
+        if ('requestAnimationFrame' in window) requestAnimationFrame(() => setTimeout(goBack, 0));
+        else setTimeout(goBack, 0);
+        return;
+      }
+    } catch {}
 
     // If this is a card click, set its transition name and record it
     const cardAnchor = anyAnchor.matches('a[data-vt-target]') ? anyAnchor : null;
@@ -125,6 +163,17 @@ document.addEventListener('DOMContentLoaded', () => {
           sessionStorage.setItem('lastVtName', name);
           // Persist key in URL of the listing page's history entry for robust back navigation
           setVtInUrl(name);
+          
+          // Ensure we have a proper history entry by adding state before navigation
+          e.preventDefault();
+          const currentUrl = window.location.href;
+          const targetUrl = cardAnchor.href;
+          
+          // Push current page state to history so back button works properly
+          history.pushState({ page: 'listing', vt: name }, '', currentUrl);
+          
+          // Navigate to detail page
+          window.location.assign(targetUrl);
         } catch {}
       }
       return;
@@ -153,8 +202,51 @@ document.addEventListener('DOMContentLoaded', () => {
   // Capture phase to run before navigation handling
   document.addEventListener('click', onClick, true);
 
+  // Handle browser back/forward navigation
+  window.addEventListener('popstate', (e) => {
+    try {
+      // If we have state indicating this is a listing page, restore it properly
+      if (e.state && e.state.page === 'listing') {
+        const vt = e.state.vt;
+        if (vt) {
+          // Restore the view transition name on the correct card
+          const cards = document.querySelectorAll('a[data-vt-target]');
+          const target = Array.from(cards).find(a => a.getAttribute('data-vt-target') === vt);
+          if (target) {
+            cards.forEach((a) => {
+              if (a !== target) {
+                a.style.removeProperty('view-transition-name');
+                applyCardPartNames(a, a.getAttribute('data-vt-target'), false);
+              }
+            });
+            target.style.setProperty('view-transition-name', vt);
+            applyCardPartNames(target, vt, true);
+            sessionStorage.setItem('lastVtName', vt);
+          }
+        }
+      }
+    } catch {}
+  });
+
   // Clean up lingering inline names on bfcache restore
   window.addEventListener('pageshow', (e) => {
+    // Detect history restores (bfcache or back/forward nav)
+    try {
+      const perfNav = (performance && performance.getEntriesByType) ? performance.getEntriesByType('navigation')[0] : null;
+      const isHistoryRestore = Boolean(e.persisted) || (perfNav && perfNav.type === 'back_forward');
+      if (isHistoryRestore) {
+        document.documentElement.classList.add('restoring');
+        // Allow UA to restore scroll, then drop the override
+        if ('requestAnimationFrame' in window) {
+          requestAnimationFrame(() => setTimeout(() => {
+            document.documentElement.classList.remove('restoring');
+          }, 150));
+        } else {
+          setTimeout(() => document.documentElement.classList.remove('restoring'), 150);
+        }
+      }
+    } catch {}
+
     const vt = getVtFromUrl();
     const cards = document.querySelectorAll('a[data-vt-target]');
     const onListing = cards.length > 0;
