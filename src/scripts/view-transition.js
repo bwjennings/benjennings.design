@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const getCardParts = (card) => {
     if (!card) return {};
     const imageEl = card.querySelector('img, .icon-placeholder');
-    const titleEl = card.querySelector('h1.title');
+    const titleEl = card.querySelector('h1[class*="heading"]');
     const badgesEl = card.querySelector('.badge-group');
     return { imageEl, titleEl, badgesEl };
   };
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Only clear names from card elements and their parts; do NOT touch navigation
         const toClear = document.querySelectorAll(
-          'a[data-vt-target], a[data-vt-target] img, a[data-vt-target] .icon-placeholder, a[data-vt-target] h1.title, a[data-vt-target] .badge-group'
+          'a[data-vt-target], a[data-vt-target] img, a[data-vt-target] .icon-placeholder, a[data-vt-target] h1[class*="heading"], a[data-vt-target] .badge-group'
         );
         toClear.forEach((el) => el.style?.removeProperty('view-transition-name'));
       }

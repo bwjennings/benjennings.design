@@ -8,7 +8,7 @@ label {
   flex-direction: column;
   background-color: inherit;
   gap: var(--spacing-sm);
-  color: var(--color-background-base);
+  color: var(--color-surface-a);
 }
 
 
@@ -145,4 +145,3 @@ body {
   container-name: page;
   container-type: inline-size;
 }
-

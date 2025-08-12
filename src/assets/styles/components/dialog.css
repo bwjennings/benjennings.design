@@ -7,7 +7,7 @@ dialog {
   min-width: 600px;
   filter: blur(20px);
   padding: 0px;
-  background-color: var(--color-background-page);
+  background-color: var(--color-surface-page);
   transform-style: preserve-3d;
   transform: perspective(1000px) translateZ(-200px) translateY(0dvh);
   container-type: inline-size;
@@ -31,7 +31,7 @@ dialog {
     padding-block: var(--spacing-xl);
     justify-content: flex-end;
     gap: var(--spacing-lg);
-    background-color: var(--color-background-page);
+    background-color: var(--color-surface-page);
     flex: 0 0 auto;
   }
 
@@ -43,7 +43,7 @@ dialog {
     justify-content: space-between;
     gap: var(--spacing-lg);
     position: sticky;
-    background-color: var(--color-background-page);
+    background-color: var(--color-surface-page);
   }
 }
 
@@ -91,7 +91,7 @@ dialog[open]::backdrop {
   transition-timing-function: var(--timing-decelerate);
 
 
-  background-color: var(--color-background-backdrop);
+  background-color: var(--color-surface-backdrop);
 }
 
 @starting-style {
@@ -188,7 +188,7 @@ dialog[open]::backdrop {
     transition-timing-function: var(--timing-decelerate);
     transition-duration: 500ms;
 
-    background-color: var(--color-background-backdrop);
+    background-color: var(--color-surface-backdrop);
   }
 
   dialog[open]::backdrop {
@@ -196,7 +196,7 @@ dialog[open]::backdrop {
     transition-timing-function: var(--timing-decelerate);
     transition-duration: 500ms;
 
-    background-color: var(--color-background-backdrop);
+    background-color: var(--color-surface-backdrop);
   }
 
   @starting-style {

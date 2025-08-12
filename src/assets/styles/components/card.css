@@ -7,7 +7,7 @@
   /* min-height: 300px; */
 
   width: 100%;
-  background: var(--color-background-base);
+  background: var(--color-surface-a);
   border: 1px solid var(--color-border-base);
   border-radius: var(--radius-md);
 
@@ -37,19 +37,6 @@
 
 
 
-  .title {
-    text-wrap: pretty;
-    flex: 0 0 0;
-    font-size: var(--text-heading-sm-size);
-    font-weight: 400;
-    grid-column: -1 /1;
-    font-variation-settings:
-      "wdth" var(--text-heading-width),
-      "GRAD" var(--text-heading-grade),
-      "XOPQ" 80,
-      "YOPQ" 80;
-    font-optical-sizing: auto;
-  }
 
   &:hover {
     outline: 4px solid var(--color-border-base);
@@ -69,7 +56,7 @@
   }
 
   &.color1 {
-    background-color: var(--color-background-base);
+    background-color: var(--color-surface-a);
     color: var(--color-text-base);
     border-color: var(--color-border-base);
     outline-color: var(--color-border-base);
@@ -79,55 +66,75 @@
     }
 
     &.emphasis {
-      background-color: var(--color-background-base-emphasis);
+      background-color: var(--color-fill-a);
       border-color: var(--color-border-base-emphasis);
+      color: var(--color-text-onFill);
+
+      .icon {
+        color: var(--color-icon-onFill);
+      }
     }
   }
 
   &.color2 {
-    background-color: var(--color-background-base-2);
-    color: var(--color-text-base-2);
-    border-color: var(--color-border-base-2);
-    outline-color: var(--color-border-base-2);
+    background-color: var(--color-surface-b);
+    color: var(--color-text-base-b);
+    border-color: var(--color-border-base-b);
+    outline-color: var(--color-border-base-b);
 
     .icon {
-      color: var(--color-icon-base-2);
+      color: var(--color-icon-base-b);
     }
 
     &.emphasis {
-      background-color: var(--color-background-base-2-emphasis);
-      border-color: var(--color-border-base-2-emphasis);
+      background-color: var(--color-fill-b);
+      border-color: var(--color-border-base-b-emphasis);
+      color: var(--color-text-onFill);
+
+      .icon {
+        color: var(--color-icon-onFill);
+      }
     }
   }
 
   &.color3 {
-    background-color: var(--color-background-base-3);
-    color: var(--color-text-base-3);
-    border-color: var(--color-border-base-3);
-    outline-color: var(--color-border-base-3);
+    background-color: var(--color-surface-c);
+    color: var(--color-text-base-c);
+    border-color: var(--color-border-base-c);
+    outline-color: var(--color-border-base-c);
 
     .icon {
-      color: var(--color-icon-base-3);
+      color: var(--color-icon-base-c);
     }
 
     &.emphasis {
-      background-color: var(--color-background-base-3-emphasis);
-      border-color: var(--color-border-base-3-emphasis);
+      background-color: var(--color-fill-c);
+      border-color: var(--color-border-base-c-emphasis);
+      color: var(--color-text-onFill);
+
+      .icon {
+        color: var(--color-icon-onFill);
+      }
     }
   }
 
   &.color4 {
-    background-color: var(--color-background-base-4);
-    color: var(--color-text-base-4);
-    border-color: var(--color-border-base-4);
-    outline-color: var(--color-border-base-4);
+    background-color: var(--color-surface-d);
+    color: var(--color-text-base-d);
+    border-color: var(--color-border-base-d);
+    outline-color: var(--color-border-base-d);
     .icon {
-      color: var(--color-icon-base-4);
+      color: var(--color-icon-base-d);
     }
 
     &.emphasis {
-      background-color: var(--color-background-base-4-emphasis);
-      border-color: var(--color-border-base-4-emphasis);
+      background-color: var(--color-fill-d);
+      border-color: var(--color-border-base-d-emphasis);
+      color: var(--color-text-onFill);
+
+      .icon {
+        color: var(--color-icon-onFill);
+      }
     }
   }
 
@@ -152,7 +159,7 @@ p {
   display: block;
   width: auto;
   align-self: stretch;
-  background: var(--color-background-base-secondary);
+  background: var(--color-surface-a-secondary);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -185,7 +192,7 @@ p {
   height: 150px;
   width: auto;
   align-self: stretch;
-  background: var(--color-background-base-2);
+  background: var(--color-surface-b);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -200,7 +207,7 @@ p {
 ::slotted([slot="icon-box"]) {
   font-variation-settings: 'GRAD' -200, 'FILL' var(--icon-fill);
   font-family: var(--icon-font-family);
-  color: var(--color-background-base-secondary);
+  color: var(--color-surface-a-secondary);
   font-size: 50cqw;
   transition: 200ms var(--timing-decelerate);
   transition-property: font-variation-settings;

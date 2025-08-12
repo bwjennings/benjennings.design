@@ -5,7 +5,7 @@
   outline-color: var(--color-border-base);
   margin: 0;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border-primary) var(--color-background-page);
+  scrollbar-color: var(--color-border-primary) var(--color-surface-page);
 
 
 }
@@ -41,8 +41,8 @@ select {
   position: absolute;
   top: -40px;
   left: 6px;
-  background: var(--color-background-base-emphasis);
-  color: var(--color-text-onEmphasis);
+  background: var(--color-fill-a);
+  color: var(--color-text-onFill);
   padding: 8px;
   border-radius: 4px;
   text-decoration: none;
@@ -58,15 +58,15 @@ select {
 
 
 ::selection {
-  background: var(--color-background-base-2-secondary);
-  color: var(--color-text-base-2);
+  background: var(--color-surface-b-secondary);
+  color: var(--color-text-base-b);
   text-decoration: underline;
   text-decoration-color: var(--color-border-base-emphasis);
 }
 
 body {
   -webkit-font-smoothing: antialiased;
-  background: var(--color-background-page);
+  background: var(--color-surface-page);
 }
 
 
@@ -74,7 +74,7 @@ body {
 
 @supports selector(::-webkit-scrollbar) {
   ::-webkit-scrollbar {
-    background: var(--color-background-page);
+    background: var(--color-surface-page);
   }
 
   ::-webkit-scrollbar-thumb {
@@ -176,8 +176,8 @@ padding: 4dvw;
 
 
 .post {
-  background-color: var(--color-background-page);
-  color: var(--color-text-base-4);
+  background-color: var(--color-surface-page);
+  color: var(--color-text-base-d);
  padding: 4dvw;
  margin-inline: auto;
   display: flex;
@@ -203,8 +203,8 @@ padding: 4dvw;
 }
 
 .post-header {
-  background-color: var(--color-background-base-2);
-  color: var(--color-text-base-4);
+  background-color: var(--color-surface-b);
+  color: var(--color-text-base-d);
   padding: var(--spacing-xxl);
   border-bottom: 1px solid var(--color-border-primary);
   display: flex;
@@ -217,33 +217,33 @@ padding: 4dvw;
   will-change: transform, opacity;
 
   &.color1 {
-    background-color: var(--color-background-base);
+    background-color: var(--color-surface-a);
     color: var(--color-text-base);
     border-color: var(--color-border-base);
   }
 
   &.color2 {
-    background-color: var(--color-background-base-2);
-    color: var(--color-text-base-2);
-    border-color: var(--color-border-base-2);
+    background-color: var(--color-surface-b);
+    color: var(--color-text-base-b);
+    border-color: var(--color-border-base-b);
   }
 
   &.color3 {
-    background-color: var(--color-background-base-3);
-    color: var(--color-text-base-3);
-    border-color: var(--color-border-base-3);
+    background-color: var(--color-surface-c);
+    color: var(--color-text-base-c);
+    border-color: var(--color-border-base-c);
   }
 
   &.color4 {
-    background-color: var(--color-background-base-4);
-    color: var(--color-text-base-4);
-    border-color: var(--color-border-base-4);
+    background-color: var(--color-surface-d);
+    color: var(--color-text-base-d);
+    border-color: var(--color-border-base-d);
   }
 
   .thumbnail {
     width: 100%;
     height: 150px;
-    background: var(--color-background-primary);
+    background: var(--color-surface-1);
     border-radius: var(--radius-none);
     overflow: hidden;
     position: relative;
@@ -290,7 +290,7 @@ padding: 4dvw;
   .icon-group .icon {
     font-family: var(--icon-font-family);
     font-size: 46px;
-    color: var(--color-icon-onEmphasis);
+    color: var(--color-icon-onFill);
     font-weight: 700;
     line-height: 1;
   }
@@ -328,14 +328,14 @@ figure {
   height: 100%;
   min-height: 100px;
   width: 100%;
-  background: linear-gradient(to right in oklch decreasing hue, var(--color-background-base), var(--color-background-base-2));
+  background: linear-gradient(to right in oklch decreasing hue, var(--color-surface-a), var(--color-surface-b));
 
   &.rgb {
-    background: linear-gradient(to right, var(--color-background-base), var(--color-background-base-2));
+    background: linear-gradient(to right, var(--color-surface-a), var(--color-surface-b));
   }
 
   &.hsl {
-    background: linear-gradient(to right in hsl decreasing hue, var(--color-background-base), var(--color-background-base-2));
+    background: linear-gradient(to right in hsl decreasing hue, var(--color-surface-a), var(--color-surface-b));
   }
 }
 
@@ -348,7 +348,7 @@ figure {
   gap: 5cqh;
   padding-top: 30dvh;
   transform-style: preserve-3d;
-  background-color: var(--color-background-page);
+  background-color: var(--color-surface-page);
   scroll-snap-align: top;
   z-index: 2;
   color: var(--color-text-primary);

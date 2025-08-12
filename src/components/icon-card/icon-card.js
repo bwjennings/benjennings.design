@@ -12,7 +12,7 @@ template.innerHTML = `
       grid-template-rows: auto auto 1fr auto;
       height: 100%;
       width: 100%;
-      background: var(--color-background-base);
+      background: var(--color-surface-a);
       border: 1px solid var(--color-border-base);
       border-radius: var(--radius-md);
       outline-style: solid;
@@ -41,7 +41,7 @@ template.innerHTML = `
     .icon-box {
       width: 100%;
       height: 80px;
-      background: var(--color-background-base-secondary);
+      background: var(--color-surface-a-secondary);
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
@@ -52,18 +52,6 @@ template.innerHTML = `
       font-variation-settings: 'FILL' var(--icon-fill), 'wght' var(--icon-weight-lg), 'GRAD' var(--icon-grade);
     }
 
-    .title {
-      font-family: var(--text-heading-font-family);
-      font-size: var(--text-heading-md-size);
-      line-height: var(--text-heading-md-line-height);
-      font-weight: var(--text-heading-weight);
-      color: var(--color-text-primary);
-      text-wrap: pretty;
-      margin: 0;
-      font-variation-settings:
-        "wdth" var(--text-heading-width),
-        "GRAD" var(--text-heading-grade);
-    }
 
     .badge-group {
       display: flex;
@@ -73,51 +61,51 @@ template.innerHTML = `
 
     /* Variant styles */
     .icon-card.brand {
-      background: var(--color-background-base);
+      background: var(--color-surface-a);
       color: var(--color-text-base);
       border-color: var(--color-border-base);
       outline-color: var(--color-border-base);
     }
 
     .icon-card.brand .icon-box {
-      background: var(--color-background-base-secondary);
+      background: var(--color-surface-a-secondary);
       color: var(--color-icon-base);
     }
 
     .icon-card.accent-1 {
-      background: var(--color-background-base-2);
-      color: var(--color-text-base-2);
-      border-color: var(--color-border-base-2);
-      outline-color: var(--color-border-base-2);
+      background: var(--color-surface-b);
+      color: var(--color-text-base-b);
+      border-color: var(--color-border-base-b);
+      outline-color: var(--color-border-base-b);
     }
 
     .icon-card.accent-1 .icon-box {
-      background: var(--color-background-base-2-secondary);
-      color: var(--color-icon-base-2);
+      background: var(--color-surface-b-secondary);
+      color: var(--color-icon-base-b);
     }
 
     .icon-card.accent-2 {
-      background: var(--color-background-base-3);
-      color: var(--color-text-base-3);
-      border-color: var(--color-border-base-3);
-      outline-color: var(--color-border-base-3);
+      background: var(--color-surface-c);
+      color: var(--color-text-base-c);
+      border-color: var(--color-border-base-c);
+      outline-color: var(--color-border-base-c);
     }
 
     .icon-card.accent-2 .icon-box {
-      background: var(--color-background-base-3-secondary);
-      color: var(--color-icon-base-3);
+      background: var(--color-surface-c-secondary);
+      color: var(--color-icon-base-c);
     }
 
     .icon-card.accent-3 {
-      background: var(--color-background-base-4);
-      color: var(--color-text-base-4);
-      border-color: var(--color-border-base-4);
-      outline-color: var(--color-border-base-4);
+      background: var(--color-surface-d);
+      color: var(--color-text-base-d);
+      border-color: var(--color-border-base-d);
+      outline-color: var(--color-border-base-d);
     }
 
     .icon-card.accent-3 .icon-box {
-      background: var(--color-background-base-4-secondary);
-      color: var(--color-icon-base-4);
+      background: var(--color-surface-d-secondary);
+      color: var(--color-icon-base-d);
     }
   </style>
   
@@ -127,7 +115,7 @@ template.innerHTML = `
     <div class="icon-box">
       <span class="icon" id="icon-display">step</span>
     </div>
-    <h3 class="title" id="card-title">Create Clarity, not simplicity</h3>
+    <h3 class="heading md" id="card-title">Create Clarity, not simplicity</h3>
     <div class="badge-group" id="badge-container" style="display: none;">
       <ben-badge icon="edit" text="Badge"></ben-badge>
       <ben-badge icon="edit" text="Badge"></ben-badge>

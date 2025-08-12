@@ -18,7 +18,7 @@ body {
   margin: 0;
   padding: 0;
   color: var(--color-text-primary);
-  background-color: var(--color-background-page);
+  background-color: var(--color-surface-page);
   min-height: 100dvh;
   font-family: var(--text-body-font-family);
   font-weight: var(--text-body-weight);
@@ -26,7 +26,7 @@ body {
 }
 
 u {
-  text-decoration-color: var(--color-border-base-2);
+  text-decoration-color: var(--color-border-base-b);
   text-decoration-thickness: 8px;
 }
 
@@ -37,8 +37,7 @@ u {
   font-weight: 550;
   line-height: var(--text-heading-lg-line-height);
   text-wrap: balance;
-  width: fit-content;
-  max-width: 40ch;
+ 
   font-variation-settings:
     "wdth" var(--text-heading-width),
     "GRAD" var(--text-heading-grade),
@@ -158,4 +157,18 @@ ul.body, ol.body {
 
 ul.body li, ol.body li {
   margin-bottom: var(--spacing-sm);
+}
+
+/* View transition fixes for smooth text morphing */
+::view-transition-old(design-dwellane-title),
+::view-transition-new(design-dwellane-title),
+::view-transition-old(design-pls-title),
+::view-transition-new(design-pls-title),
+::view-transition-old(design-herff-jones-title),
+::view-transition-new(design-herff-jones-title),
+::view-transition-old(design-arvest-title),
+::view-transition-new(design-arvest-title) {
+  height: 100%;
+  object-fit: cover;
+  overflow: clip;
 }

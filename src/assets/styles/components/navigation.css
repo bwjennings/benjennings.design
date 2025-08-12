@@ -46,7 +46,7 @@ site-navigation {
     "color"
   ;
   border: 1px solid var(--color-border-primary);
-  background-color: var(--color-background-secondary);
+  background-color: var(--color-surface-2);
   box-sizing: border-box;
 
 
@@ -90,9 +90,8 @@ site-navigation {
 .nav-item {
   box-sizing: border-box;
   color: var(--color-text-secondary);
-  height: clamp(50px, 10cqh, 80px);
   display: flex;
-  padding: var(--spacing-xl, 24px) var(--spacing-lg, 16px);
+  padding: var(--spacing-lg, 16px);
   align-items: center;
   gap: var(--spacing-md);
   background-color: transparent;
@@ -107,9 +106,8 @@ site-navigation {
   border-radius: var(--radius-md);
   cursor: pointer;
   transition-timing-function: var(--timing-decelerate);
-  transition-duration: 300ms;
-  /* Avoid animating font-variation-settings to prevent icon flicker */
-  transition-property: background-color, outline-width, outline-color;
+  transition-duration: 400ms;
+  transition-property: background-color, outline-width, outline-color, font-variation-settings;
   outline-width: 0px;
   outline-color: transparent;
   font-variation-settings: initial;
@@ -130,7 +128,7 @@ site-navigation {
 
 
 .title {
-  font-weight: var(--text-body-weight);
+  font-weight: 500;
   font-size: var(--text-body-lg-size);
   line-height: var(--text-body-lg-line-height);
   align-items: center;
@@ -153,21 +151,21 @@ site-navigation[active-item="item4"] .item4,
 site-navigation[active-item="item5"] .item5 {
   transition: none;
   font-variation-settings: 'GRAD' 100;
-  color: var(--color-text-base);
+  color: var(--color-text-primary);
   background: transparent;
   outline-width: 0;
   outline-color: transparent;
 
   .icon {
     font-variation-settings: "FILL" 1, "GRAD" var(--icon-grade-emphasis);
-    color: var(--color-icon-base-secondary);
+    color: var(--color-icon-base);
   }
 }
 
 /* Navigation background element */
 .nav-background {
   position: absolute;
-  background: var(--color-background-base);
+  background: var(--color-border-primary);
   border-radius: var(--radius-md);
   pointer-events: none;
   z-index: 0;
@@ -175,7 +173,7 @@ site-navigation[active-item="item5"] .item5 {
   top: 0;
   left: 0;
   width: 100%;
-  height: clamp(50px, 10cqh, 80px);
+  height: 100%;
   /* Hint compositing for smoother transitions */
   will-change: transform, opacity;
   contain: paint;
@@ -216,8 +214,7 @@ site-navigation[active-item="item5"] .item5 {
     }
     
     .nav-item {
-      height: clamp(45px, 8cqh, 70px);
-      padding: var(--spacing-md) var(--spacing-sm);
+      padding: var(--spacing-md);
     }
     
     .nav-item .title {
@@ -229,7 +226,7 @@ site-navigation[active-item="item5"] .item5 {
   @container navigation (min-width: 451px) {
     .nav-background {
       width: 100%;
-      height: clamp(50px, 10cqh, 80px);
+      height: 100%;
     }
     
     .sidebar {
@@ -237,8 +234,7 @@ site-navigation[active-item="item5"] .item5 {
     }
     
     .nav-item {
-      height: clamp(50px, 10cqh, 80px);
-      padding: var(--spacing-xl) var(--spacing-lg);
+      padding: var(--spacing-lg);
     }
     
     .nav-item .title {
@@ -439,7 +435,7 @@ nav {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
     height: 64px;
-    background-color: var(--color-background-primary);
+    background-color: var(--color-surface-1);
     border: 1px solid var(--color-border-primary);
     border-radius: 24px;
     padding: 0 4px;
@@ -514,7 +510,7 @@ nav {
   
   /* Mobile: Override nav-background styles - use grid positioning */
   .nav-background {
-    background-color: var(--color-background-base);
+    background-color: var(--color-border-primary);
     border-radius: 20px;
     height: calc(100% - 8px);
     top: 4px;

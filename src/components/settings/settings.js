@@ -11,8 +11,8 @@ template.innerHTML = `
       position: relative;
       width: 100%;
       height: auto;
-      background: var(--color-background-page);
-      border-radius: 24px;
+      background: var(--color-surface-page);
+      border-radius: 32px;
       padding: 8px;
       box-sizing: border-box;
     }
@@ -36,7 +36,7 @@ template.innerHTML = `
       appearance: none;
       cursor: grab;
       width: 100%;
-      height: 32px;
+      height: 40px;
       border-radius: 20px;
       border: none;
       outline: none;
@@ -103,7 +103,7 @@ template.innerHTML = `
       align-items: center;
       justify-content: flex-start;
       padding:8px;
-      background:var(--color-background-secondary);
+      background:var(--color-surface-2);
       border-radius: 24px;
     }
     
@@ -121,7 +121,7 @@ template.innerHTML = `
     }
     
     .theme-button.active {
-      background: var(--color-background-base-emphasis);
+      background: var(--color-fill-a);
     }
     
     .theme-button .icon {
@@ -133,7 +133,7 @@ template.innerHTML = `
     }
     
     .theme-button.active .icon {
-      color: var(--color-icon-base);
+      color: var(--color-icon-onFill);
     }
   </style>
   

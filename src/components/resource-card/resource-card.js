@@ -20,7 +20,7 @@
           flex-direction: row;
           flex-wrap: wrap;
           height: 100%;
-          background: var(--color-background-base-2);
+          background: var(--color-surface-b);
           border: 1px solid var(--color-border-primary);
           border-radius:var(--radius-md);
           container-type: inline-size;
@@ -43,11 +43,11 @@
           aspect-ratio: 1 / 1;
           display: flex;
           align-self: stretch;
-          background: var(--color-background-base-3);
+          background: var(--color-surface-c);
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          color: var(--color-icon-base-3);
+          color: var(--color-icon-base-c);
           user-select: none;
           -webkit-user-select: none;
           container-name:iconbox;
@@ -96,7 +96,7 @@
             </div>
             <div class="content-area">
               <div class="title-group">
-                <div class="heading sm title">Title</div>
+                <div class="heading sm">Title</div>
                 <div class="body secondary description">Description</div>
               </div>
               <button part="button" class="button">
@@ -112,7 +112,7 @@
     
         // Store references to the elements
         this.boxIconElement = shadow.querySelector('.iconbox span'); // Icon in the box
-        this.titleElement = shadow.querySelector('.title');
+        this.titleElement = shadow.querySelector('.heading.sm');
         this.descriptionElement = shadow.querySelector('.description');
         this.buttonElement = shadow.querySelector('.button');
         this.buttonTextElement = shadow.querySelector('.button-text');

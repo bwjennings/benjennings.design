@@ -3,8 +3,8 @@
     overflow: hidden;
     text-wrap: nowrap;
     height: 28px;
-    background-color: var(--color-background-base-2);
-    color: var(--color-text-base-2);
+    background-color: var(--color-surface-b);
+    color: var(--color-text-base-b);
     display: flex;
     padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
     justify-content: center;
@@ -17,12 +17,12 @@
     user-select: none;
 
     &.secondary {
-        background-color: var(--color-background-primary);
+        background-color: var(--color-surface-1);
         color: var(--color-text-secondary);
-        border: 1px solid var(--color-border-base-2);
+        border: 1px solid var(--color-border-base-b);
     
         span {
-            color: var(--color-text-base-2)
+            color: var(--color-text-base-b)
         }
     
         ::slotted {
@@ -31,38 +31,38 @@
     }
 
     &.primary {
-        background-color: var(--color-background-base-2);
-        color: var(--color-text-base-2);
+        background-color: var(--color-surface-b);
+        color: var(--color-text-base-b);
         border: none;
     }
 
     &.accent-1 {
-        background-color: var(--color-background-base-2-secondary);
-        color: var(--color-text-base-2);
-        border: 1px solid var(--color-border-base-2);
+        background-color: var(--color-surface-b-secondary);
+        color: var(--color-text-base-b);
+        border: 1px solid var(--color-border-base-b);
         
         span {
-            color: var(--color-icon-base-2);
+            color: var(--color-icon-base-b);
         }
     }
 
     &.accent-2 {
-        background-color: var(--color-background-base-3-secondary);
-        color: var(--color-text-base-3);
-        border: 1px solid var(--color-border-base-3);
+        background-color: var(--color-surface-c-secondary);
+        color: var(--color-text-base-c);
+        border: 1px solid var(--color-border-base-c);
         
         span {
-            color: var(--color-icon-base-3);
+            color: var(--color-icon-base-c);
         }
     }
 
     &.accent-3 {
-        background-color: var(--color-background-base-4-secondary);
-        color: var(--color-text-base-4);
-        border: 1px solid var(--color-border-base-4);
+        background-color: var(--color-surface-d-secondary);
+        color: var(--color-text-base-d);
+        border: 1px solid var(--color-border-base-d);
         
         span {
-            color: var(--color-icon-base-4);
+            color: var(--color-icon-base-d);
         }
     }
 
@@ -76,7 +76,7 @@
         font-weight: var(--icon-weight-sm);
         aspect-ratio: 1/1;
         width: var(--icon-size-sm);
-        color: var(--color-icon-base-2);
+        color: var(--color-icon-base-b);
         font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
     }
     
@@ -106,7 +106,7 @@
 
 /* Match card color variants so badges inherit the card's palette */
 :is(.card, .post-header).color1 .badge {
-  background-color: var(--color-background-base-secondary);
+  background-color: var(--color-surface-a-secondary);
   color: var(--color-text-base);
   border: 1px solid var(--color-border-base);
 }
@@ -116,9 +116,9 @@
 
 :is(.card, .post-header).color2 .badge {
   /* Equivalent to .badge.accent-1 */
-  background-color: var(--color-background-base-2-secondary);
-  color: var(--color-text-base-2);
-  border: 1px solid var(--color-border-base-2);
+  background-color: var(--color-surface-b-secondary);
+  color: var(--color-text-base-b);
+  border: 1px solid var(--color-border-base-b);
 }
 :is(.card, .post-header).color2 .badge span {
   color: var(--color-icon-base-2);
@@ -126,9 +126,9 @@
 
 :is(.card, .post-header).color3 .badge {
   /* Equivalent to .badge.accent-2 */
-  background-color: var(--color-background-base-3-secondary);
-  color: var(--color-text-base-3);
-  border: 1px solid var(--color-border-base-3);
+  background-color: var(--color-surface-c-secondary);
+  color: var(--color-text-base-c);
+  border: 1px solid var(--color-border-base-c);
 }
 :is(.card, .post-header).color3 .badge span {
   color: var(--color-icon-base-3);
@@ -136,9 +136,9 @@
 
 :is(.card, .post-header).color4 .badge {
   /* Equivalent to .badge.accent-3 */
-  background-color: var(--color-background-base-4-secondary);
-  color: var(--color-text-base-4);
-  border: 1px solid var(--color-border-base-4);
+  background-color: var(--color-surface-d-secondary);
+  color: var(--color-text-base-d);
+  border: 1px solid var(--color-border-base-d);
 }
 :is(.card, .post-header).color4 .badge span {
   color: var(--color-icon-base-4);

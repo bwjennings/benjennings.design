@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Reference — Surfaces & Fills</title>
+
+    <link href="/src/assets/styles/base/vars.css" rel="stylesheet" />
+    <link href="/src/assets/styles/base/index.css" rel="stylesheet" />
+    <link href="/src/assets/styles/base/page.css" rel="stylesheet" />
+    <link href="/src/assets/styles/base/typography.css" rel="stylesheet" />
+
+    <style>
+      .wrap {
+        display: grid;
+        gap: var(--spacing-xxl);
+        padding: 4dvw;
+      }
+
+      .group {
+        display: grid;
+        gap: var(--spacing-lg);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: var(--spacing-lg);
+      }
+
+      .swatch {
+        border: 1px solid var(--color-border-primary);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        display: grid;
+        gap: var(--spacing-sm);
+        background: var(--swatch-bg, transparent);
+        color: var(--color-text-primary);
+      }
+
+      .chip-row {
+        display: inline-flex;
+        gap: var(--spacing-xs);
+      }
+
+      .chip {
+        padding: 6px 10px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--color-border-primary);
+        background: var(--chip-bg, transparent);
+        color: var(--chip-fg, var(--color-text-onFill));
+        font-size: var(--text-body-sm-size);
+      }
+
+      .token {
+        font-size: var(--text-body-xs-size);
+        color: var(--color-text-secondary);
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: var(--spacing-sm);
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="heading">Color Reference</div>
+
+      <div class="group">
+        <div class="heading sm secondary">Neutral Surfaces</div>
+        <div class="grid">
+          <div class="swatch" style="--swatch-bg: var(--color-surface-page)">
+            <div>Surface Page</div>
+            <div class="token">--color-surface-page</div>
+          </div>
+          <div class="swatch" style="--swatch-bg: var(--color-surface-1)">
+            <div>Surface 1</div>
+            <div class="token">--color-surface-1</div>
+          </div>
+          <div class="swatch" style="--swatch-bg: var(--color-surface-2)">
+            <div>Surface 2</div>
+            <div class="token">--color-surface-2</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="heading sm secondary">Brand Surfaces</div>
+        <div class="grid">
+          <div class="swatch" style="--swatch-bg: var(--color-surface-a)">
+            <div>A</div>
+            <div class="token">--color-surface-a</div>
+          </div>
+          <div class="swatch" style="--swatch-bg: var(--color-surface-a-secondary)">
+            <div>A Secondary</div>
+            <div class="token">--color-surface-a-secondary</div>
+          </div>
+          <div class="swatch" style="--swatch-bg: var(--color-surface-b)">
+            <div>B</div>
+            <div class="token">--color-surface-b</div>
+          </div>
+          <div class="swatch" style="--swatch-bg: var(--color-surface-b-secondary)">
+            <div>B Secondary</div>
+            <div class="token">--color-surface-b-secondary</div>
+          </div>
+          <div class="swatch" style="--swatch-bg: var(--color-surface-c)">
+            <div>C</div>
+            <div class="token">--color-surface-c</div>
+          </div>
+          <div class="swatch" style="--swatch-bg: var(--color-surface-c-secondary)">
+            <div>C Secondary</div>
+            <div class="token">--color-surface-c-secondary</div>
+          </div>
+          <div class="swatch" style="--swatch-bg: var(--color-surface-d)">
+            <div>D</div>
+            <div class="token">--color-surface-d</div>
+          </div>
+          <div class="swatch" style="--swatch-bg: var(--color-surface-d-secondary)">
+            <div>D Secondary</div>
+            <div class="token">--color-surface-d-secondary</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="heading sm secondary">Fills</div>
+        <div class="grid">
+          <div class="swatch">
+            <div class="chip-row">
+              <div class="chip" style="--chip-bg: var(--color-fill-neutral); --chip-fg: var(--color-text-onFill)">Neutral Fill</div>
+            </div>
+            <div class="token">--color-fill-neutral</div>
+          </div>
+          <div class="swatch">
+            <div class="chip-row">
+              <div class="chip" style="--chip-bg: var(--color-fill-a)">Fill A</div>
+              <div class="chip" style="--chip-bg: var(--color-fill-b)">Fill B</div>
+              <div class="chip" style="--chip-bg: var(--color-fill-c)">Fill C</div>
+              <div class="chip" style="--chip-bg: var(--color-fill-d)">Fill D</div>
+            </div>
+            <div class="token">--color-fill-a/b/c/d</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="heading sm secondary">Text, Icons, Borders</div>
+        <div class="grid">
+          <div class="swatch">
+            <div class="row"><span>Text Primary</span><span class="token">--color-text-primary</span></div>
+            <div class="row"><span>Text Secondary</span><span class="token">--color-text-secondary</span></div>
+            <div class="row"><span>On Fill</span><span class="token">--color-text-onFill</span></div>
+          </div>
+          <div class="swatch">
+            <div class="row"><span>Icon Primary</span><span class="token">--color-icon-primary</span></div>
+            <div class="row"><span>Icon Secondary</span><span class="token">--color-icon-secondary</span></div>
+            <div class="row"><span>On Fill</span><span class="token">--color-icon-onFill</span></div>
+          </div>
+          <div class="swatch">
+            <div class="row"><span>Border Primary</span><span class="token">--color-border-primary</span></div>
+            <div class="row"><span>Border Secondary</span><span class="token">--color-border-secondary</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+  </html>

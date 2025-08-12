@@ -37,6 +37,20 @@
 }
 
 :root {
+  /*
+    COLOR SEMANTICS
+    - Surfaces: large, subtle containers (pages, cards, sections)
+      - Neutral: surface-page, surface-1, surface-2, surface-backdrop
+      - Brand variants: surface-a, surface-b, surface-c, surface-d (+ -hover, -secondary)
+    - Fills: bold colors for small controls (buttons, chips)
+      - Neutral emphasis: fill-neutral
+      - Brand variants: fill-a, fill-b, fill-c, fill-d
+
+    Guidance:
+    - Use surface-* for backgrounds of larger areas.
+    - Use fill-* for interactive or accent elements that should stand out.
+    - Choose letter variants (a–d) for thematic accents or product areas.
+  */
   /* layout */
   --viewport-lg: 800px;
   --dialog-width: clamp(300px, 80dvw, 1200px);
@@ -197,16 +211,24 @@
   /* Default timing for transitions/animations (override per-need) */
   --transition-timing: linear(0.00, -0.00240, 0.0955, 0.217, 0.331, 0.428, 0.518, 0.591, 0.656, 0.708, 0.754, 0.793, 0.825, 0.852, 0.874, 0.894, 0.911, 0.925, 0.936, 0.946, 0.955, 0.962, 0.968, 0.973, 0.977, 0.980, 0.983, 0.986, 0.988, 0.990, 0.992, 0.993, 0.994, 0.995, 0.996, 0.996, 0.997, 0.997, 0.998, 0.998, 0.998, 0.999, 0.999, 0.999, 1.00);
 
+  /*
+    FOUNDATIONS — DO NOT USE DIRECTLY
+    Base hues and generated scales used to build semantic tokens.
+    Prefer surface/fill/text/icon/border variables below.
+  */
   /* color base */
-  --hue-root: 230deg;
+ 
   transition-property: --contrast, --text-heading-grade, --text-heading-width,
     --base-radius;
   --alpha: 0.4;
   --stimulation-level: 1;
+ /* color system */
+  --current-color-scheme: light dark;
+  color-scheme: var(--current-color-scheme);
 
   /* Complete color system with full scale options */
   --color-white: white;
-  
+   --hue-root: 230deg;
   /* Base colors in OKLCH */
   --color-base: oklch(0.65 0.15 var(--hue-root));
 
@@ -223,61 +245,61 @@
   --color-base-90: oklch(from var(--color-base) 40% 13% h);
   --color-base-95: oklch(from var(--color-base) 30% 9% h);
 
-  /* base 1 - Hue shifted +0 degrees */
-  --base-1-hue-shift: 20;
-  --color-base-1-5: oklch(from var(--color-base-5) l c calc(h + var(--base-1-hue-shift)));
-  --color-base-1-10: oklch(from var(--color-base-10) l c calc(h + var(--base-1-hue-shift)));
-  --color-base-1-20: oklch(from var(--color-base-20) l c calc(h + var(--base-1-hue-shift)));
-  --color-base-1-30: oklch(from var(--color-base-30) l c calc(h + var(--base-1-hue-shift)));
-  --color-base-1-40: oklch(from var(--color-base-40) l c calc(h + var(--base-1-hue-shift)));
-  --color-base-1-50: oklch(from var(--color-base-50) l c calc(h + var(--base-1-hue-shift)));
-  --color-base-1-60: oklch(from var(--color-base-60) l c calc(h + var(--base-1-hue-shift)));
-  --color-base-1-70: oklch(from var(--color-base-70) l c calc(h + var(--base-1-hue-shift)));
-  --color-base-1-80: oklch(from var(--color-base-80) l c calc(h + var(--base-1-hue-shift)));
-  --color-base-1-90: oklch(from var(--color-base-90) l c calc(h + var(--base-1-hue-shift)));
-  --color-base-1-95: oklch(from var(--color-base-95) l c calc(h + var(--base-1-hue-shift)));
+  /* base a - Hue shifted +0 degrees */
+  --base-a-hue-shift: 20;
+  --color-base-a-5: oklch(from var(--color-base-5) l c calc(h + var(--base-a-hue-shift)));
+  --color-base-a-10: oklch(from var(--color-base-10) l c calc(h + var(--base-a-hue-shift)));
+  --color-base-a-20: oklch(from var(--color-base-20) l c calc(h + var(--base-a-hue-shift)));
+  --color-base-a-30: oklch(from var(--color-base-30) l c calc(h + var(--base-a-hue-shift)));
+  --color-base-a-40: oklch(from var(--color-base-40) l c calc(h + var(--base-a-hue-shift)));
+  --color-base-a-50: oklch(from var(--color-base-50) l c calc(h + var(--base-a-hue-shift)));
+  --color-base-a-60: oklch(from var(--color-base-60) l c calc(h + var(--base-a-hue-shift)));
+  --color-base-a-70: oklch(from var(--color-base-70) l c calc(h + var(--base-a-hue-shift)));
+  --color-base-a-80: oklch(from var(--color-base-80) l c calc(h + var(--base-a-hue-shift)));
+  --color-base-a-90: oklch(from var(--color-base-90) l c calc(h + var(--base-a-hue-shift)));
+  --color-base-a-95: oklch(from var(--color-base-95) l c calc(h + var(--base-a-hue-shift)));
 
-  /* base 2 - Hue shifted +20 degrees */
-  --base-2-hue-shift: 40;
-  --color-base-2-5: oklch(from var(--color-base-5) l c calc(h + var(--base-2-hue-shift)));
-  --color-base-2-10: oklch(from var(--color-base-10) l c calc(h + var(--base-2-hue-shift)));
-  --color-base-2-20: oklch(from var(--color-base-20) l c calc(h + var(--base-2-hue-shift)));
-  --color-base-2-30: oklch(from var(--color-base-30) l c calc(h + var(--base-2-hue-shift)));
-  --color-base-2-40: oklch(from var(--color-base-40) l c calc(h + var(--base-2-hue-shift)));
-  --color-base-2-50: oklch(from var(--color-base-50) l c calc(h + var(--base-2-hue-shift)));
-  --color-base-2-60: oklch(from var(--color-base-60) l c calc(h + var(--base-2-hue-shift)));
-  --color-base-2-70: oklch(from var(--color-base-70) l c calc(h + var(--base-2-hue-shift)));
-  --color-base-2-80: oklch(from var(--color-base-80) l c calc(h + var(--base-2-hue-shift)));
-  --color-base-2-90: oklch(from var(--color-base-90) l c calc(h + var(--base-2-hue-shift)));
-  --color-base-2-95: oklch(from var(--color-base-95) l c calc(h + var(--base-2-hue-shift)));
+  /* base b - Hue shifted +20 degrees */
+  --base-b-hue-shift: 40;
+  --color-base-b-5: oklch(from var(--color-base-5) l c calc(h + var(--base-b-hue-shift)));
+  --color-base-b-10: oklch(from var(--color-base-10) l c calc(h + var(--base-b-hue-shift)));
+  --color-base-b-20: oklch(from var(--color-base-20) l c calc(h + var(--base-b-hue-shift)));
+  --color-base-b-30: oklch(from var(--color-base-30) l c calc(h + var(--base-b-hue-shift)));
+  --color-base-b-40: oklch(from var(--color-base-40) l c calc(h + var(--base-b-hue-shift)));
+  --color-base-b-50: oklch(from var(--color-base-50) l c calc(h + var(--base-b-hue-shift)));
+  --color-base-b-60: oklch(from var(--color-base-60) l c calc(h + var(--base-b-hue-shift)));
+  --color-base-b-70: oklch(from var(--color-base-70) l c calc(h + var(--base-b-hue-shift)));
+  --color-base-b-80: oklch(from var(--color-base-80) l c calc(h + var(--base-b-hue-shift)));
+  --color-base-b-90: oklch(from var(--color-base-90) l c calc(h + var(--base-b-hue-shift)));
+  --color-base-b-95: oklch(from var(--color-base-95) l c calc(h + var(--base-b-hue-shift)));
 
-  /* base 3 - Hue shifted +40 degrees */
-  --base-3-hue-shift: 60;
-  --color-base-3-5: oklch(from var(--color-base-5) l c calc(h + var(--base-3-hue-shift)));
-  --color-base-3-10: oklch(from var(--color-base-10) l c calc(h + var(--base-3-hue-shift)));
-  --color-base-3-20: oklch(from var(--color-base-20) l c calc(h + var(--base-3-hue-shift)));
-  --color-base-3-30: oklch(from var(--color-base-30) l c calc(h + var(--base-3-hue-shift)));
-  --color-base-3-40: oklch(from var(--color-base-40) l c calc(h + var(--base-3-hue-shift)));
-  --color-base-3-50: oklch(from var(--color-base-50) l c calc(h + var(--base-3-hue-shift)));
-  --color-base-3-60: oklch(from var(--color-base-60) l c calc(h + var(--base-3-hue-shift)));
-  --color-base-3-70: oklch(from var(--color-base-70) l c calc(h + var(--base-3-hue-shift)));
-  --color-base-3-80: oklch(from var(--color-base-80) l c calc(h + var(--base-3-hue-shift)));
-  --color-base-3-90: oklch(from var(--color-base-90) l c calc(h + var(--base-3-hue-shift)));
-  --color-base-3-95: oklch(from var(--color-base-95) l c calc(h + var(--base-3-hue-shift)));
+  /* base c - Hue shifted +40 degrees */
+  --base-c-hue-shift: 60;
+  --color-base-c-5: oklch(from var(--color-base-5) l c calc(h + var(--base-c-hue-shift)));
+  --color-base-c-10: oklch(from var(--color-base-10) l c calc(h + var(--base-c-hue-shift)));
+  --color-base-c-20: oklch(from var(--color-base-20) l c calc(h + var(--base-c-hue-shift)));
+  --color-base-c-30: oklch(from var(--color-base-30) l c calc(h + var(--base-c-hue-shift)));
+  --color-base-c-40: oklch(from var(--color-base-40) l c calc(h + var(--base-c-hue-shift)));
+  --color-base-c-50: oklch(from var(--color-base-50) l c calc(h + var(--base-c-hue-shift)));
+  --color-base-c-60: oklch(from var(--color-base-60) l c calc(h + var(--base-c-hue-shift)));
+  --color-base-c-70: oklch(from var(--color-base-70) l c calc(h + var(--base-c-hue-shift)));
+  --color-base-c-80: oklch(from var(--color-base-80) l c calc(h + var(--base-c-hue-shift)));
+  --color-base-c-90: oklch(from var(--color-base-90) l c calc(h + var(--base-c-hue-shift)));
+  --color-base-c-95: oklch(from var(--color-base-95) l c calc(h + var(--base-c-hue-shift)));
 
-  /* base 4 - Hue shifted +60 degrees */
-  --base-4-hue-shift: 80;
-  --color-base-4-5: oklch(from var(--color-base-5) l c calc(h + var(--base-4-hue-shift)));
-  --color-base-4-10: oklch(from var(--color-base-10) l c calc(h + var(--base-4-hue-shift)));
-  --color-base-4-20: oklch(from var(--color-base-20) l c calc(h + var(--base-4-hue-shift)));
-  --color-base-4-30: oklch(from var(--color-base-30) l c calc(h + var(--base-4-hue-shift)));
-  --color-base-4-40: oklch(from var(--color-base-40) l c calc(h + var(--base-4-hue-shift)));
-  --color-base-4-50: oklch(from var(--color-base-50) l c calc(h + var(--base-4-hue-shift)));
-  --color-base-4-60: oklch(from var(--color-base-60) l c calc(h + var(--base-4-hue-shift)));
-  --color-base-4-70: oklch(from var(--color-base-70) l c calc(h + var(--base-4-hue-shift)));
-  --color-base-4-80: oklch(from var(--color-base-80) l c calc(h + var(--base-4-hue-shift)));
-  --color-base-4-90: oklch(from var(--color-base-90) l c calc(h + var(--base-4-hue-shift)));
-  --color-base-4-95: oklch(from var(--color-base-95) l c calc(h + var(--base-4-hue-shift)));
+  /* base d - Hue shifted +60 degrees */
+  --base-d-hue-shift: 80;
+  --color-base-d-5: oklch(from var(--color-base-5) l c calc(h + var(--base-d-hue-shift)));
+  --color-base-d-10: oklch(from var(--color-base-10) l c calc(h + var(--base-d-hue-shift)));
+  --color-base-d-20: oklch(from var(--color-base-20) l c calc(h + var(--base-d-hue-shift)));
+  --color-base-d-30: oklch(from var(--color-base-30) l c calc(h + var(--base-d-hue-shift)));
+  --color-base-d-40: oklch(from var(--color-base-40) l c calc(h + var(--base-d-hue-shift)));
+  --color-base-d-50: oklch(from var(--color-base-50) l c calc(h + var(--base-d-hue-shift)));
+  --color-base-d-60: oklch(from var(--color-base-60) l c calc(h + var(--base-d-hue-shift)));
+  --color-base-d-70: oklch(from var(--color-base-70) l c calc(h + var(--base-d-hue-shift)));
+  --color-base-d-80: oklch(from var(--color-base-80) l c calc(h + var(--base-d-hue-shift)));
+  --color-base-d-90: oklch(from var(--color-base-90) l c calc(h + var(--base-d-hue-shift)));
+  --color-base-d-95: oklch(from var(--color-base-95) l c calc(h + var(--base-d-hue-shift)));
 
   /* Neutral color set - 11 steps */
   --color-neutral-5: oklch(from var(--color-base-5) l 0.005 h);
@@ -292,70 +314,79 @@
   --color-neutral-90: oklch(from var(--color-base-90) l 0.005 h);
   --color-neutral-95: oklch(from var(--color-base-95) l 0.005 h);
 
-  /* color system */
-  --current-color-scheme: light dark;
-  color-scheme: var(--current-color-scheme);
+ 
 
-  /* background colors */
-  --color-background-page: light-dark(var(--color-white), var(--color-neutral-95));
-  --color-background-primary: light-dark(var(--color-neutral-5), var(--color-neutral-90));
-  --color-background-emphasis: light-dark(var(--color-neutral-30), var(--color-neutral-90));
+  /* surface and fill colors (replacing old background tokens) */
+  --color-surface-page: light-dark(var(--color-white), var(--color-neutral-95));
+  --color-surface-1: light-dark(var(--color-neutral-5), var(--color-neutral-90)); /* default subtle control surfaces */
+  --color-surface-2: light-dark(var(--color-neutral-10), var(--color-neutral-90)); /* secondary subtle surfaces */
+  --color-surface-backdrop: light-dark(var(--color-neutral-20-alpha), var(--color-neutral-50-alpha));
 
-  --color-background-secondary: light-dark(var(--color-neutral-10), var(--color-neutral-90));
-  --color-background-base: light-dark(var(--color-base-1-20), var(--color-base-1-80));
-  --color-background-base-hover: light-dark(var(--color-base-1-10), var(--color-base-1-80));
-  --color-background-base-emphasis: light-dark(var(--color-base-1-30), var(--color-base-1-80));
-  --color-background-base-secondary: light-dark(var(--color-base-1-10), var(--color-base-1-90));
-  --color-background-base-2: light-dark(var(--color-base-2-20), var(--color-base-2-80));
-  --color-background-base-2-emphasis: light-dark(var(--color-base-2-30), var(--color-base-2-70));
-  --color-background-base-2-secondary: light-dark(var(--color-base-2-10), var(--color-base-2-90));
-  --color-background-base-3: light-dark(var(--color-base-3-20), var(--color-base-3-80));
-  --color-background-base-3-emphasis: light-dark(var(--color-base-3-30), var(--color-base-3-70));
-  --color-background-base-3-secondary: light-dark(var(--color-base-3-10), var(--color-base-3-90));
-  --color-background-base-4: light-dark(var(--color-base-4-20), var(--color-base-4-80));
-  --color-background-base-4-emphasis: light-dark(var(--color-base-4-30), var(--color-base-4-70));
-  --color-background-base-4-secondary: light-dark(var(--color-base-4-10), var(--color-base-4-90));
-  --color-background-backdrop: light-dark(var(--color-neutral-20-alpha), var(--color-neutral-50-alpha));
+  /* Surfaces — brand variants */
+  --color-surface-a: light-dark(var(--color-base-a-20), var(--color-base-a-80)); /* primary brand surface */
+  --color-surface-a-hover: light-dark(var(--color-base-a-10), var(--color-base-a-80));
+  --color-surface-a-secondary: light-dark(var(--color-base-a-10), var(--color-base-a-90));
+
+  --color-surface-b: light-dark(var(--color-base-b-20), var(--color-base-b-80));
+  --color-surface-b-secondary: light-dark(var(--color-base-b-10), var(--color-base-b-90));
+
+  --color-surface-c: light-dark(var(--color-base-c-20), var(--color-base-c-80));
+  --color-surface-c-secondary: light-dark(var(--color-base-c-10), var(--color-base-c-90));
+
+  --color-surface-d: light-dark(var(--color-base-d-20), var(--color-base-d-80));
+  --color-surface-d-secondary: light-dark(var(--color-base-d-10), var(--color-base-d-90));
+
+  /* Fills — neutral and brand variants */
+  --color-fill-neutral: light-dark(var(--color-neutral-30), var(--color-neutral-90)); /* neutral emphasis for small elements */
+  --color-fill-a: light-dark(var(--color-base-a-60), var(--color-base-a-80)); /* bold brand fill */
+  --color-fill-b: light-dark(var(--color-base-b-60), var(--color-base-b-70));
+  --color-fill-c: light-dark(var(--color-base-c-60), var(--color-base-c-70));
+  --color-fill-d: light-dark(var(--color-base-d-60), var(--color-base-d-70));
+
+  /* legacy background aliases removed */
 
 
   /* text colors */
+  /* Default text is assumed to be placed on surfaces. */
   --color-text-primary: light-dark(var(--color-neutral-95), var(--color-neutral-5));
   --color-text-secondary: light-dark(var(--color-neutral-80), var(--color-neutral-10));
   --color-text-tertiary: light-dark(var(--color-neutral-60), var(--color-neutral-20));
-  --color-text-base: light-dark(var(--color-base-1-95), var(--color-base-1-20));
-  --color-text-base-secondary: light-dark(var(--color-base-1-60), var(--color-base-1-30));
-  --color-text-onBrand: light-dark(var(--color-base-1-50), var(--color-base-1-10));
-  --color-text-base-2: light-dark(var(--color-base-2-95), var(--color-base-2-20));
-  --color-text-base-3: light-dark(var(--color-base-3-95), var(--color-base-3-20));
-  --color-text-base-4: light-dark(var(--color-base-4-95), var(--color-base-4-20));
-  --color-text-onEmphasis: light-dark(white, white);
+  --color-text-base: light-dark(var(--color-base-a-95), var(--color-base-a-20));
+  --color-text-base-secondary: light-dark(var(--color-base-a-60), var(--color-base-a-30));
+  /* Text placed on fill colors (buttons, chips, etc.) */
+  --color-text-onFill: light-dark(var(--color-white), var(--color-white));
+  --color-text-base-b: light-dark(var(--color-base-b-95), var(--color-base-b-20));
+  --color-text-base-c: light-dark(var(--color-base-c-95), var(--color-base-c-20));
+  --color-text-base-d: light-dark(var(--color-base-d-95), var(--color-base-d-20));
+  
 
   /* icon colors */
+  /* Default icons are assumed to be placed on surfaces. */
   --color-icon-primary: light-dark(var(--color-neutral-95), var(--color-neutral-5));
   --color-icon-secondary: light-dark(var(--color-neutral-80), var(--color-neutral-10));
   --color-icon-tertiary: light-dark(var(--color-neutral-60), var(--color-neutral-20));
-  --color-icon-base: light-dark(var(--color-base-1-60), var(--color-base-1-20));
-  --color-icon-base-secondary: light-dark(var(--color-base-1-50), var(--color-base-1-30));
-  --color-icon-onBrand: light-dark(var(--color-base-1-50), var(--color-base-1-10));
-  --color-icon-base-2: light-dark(var(--color-base-2-60), var(--color-base-2-20));
-  --color-icon-base-3: light-dark(var(--color-base-3-60), var(--color-base-3-20));
-  --color-icon-base-4: light-dark(var(--color-base-4-60), var(--color-base-4-20));
-  --color-icon-onEmphasis: light-dark(var(--color-base-10), white);
+  --color-icon-base: light-dark(var(--color-base-a-60), var(--color-base-a-20));
+  --color-icon-base-secondary: light-dark(var(--color-base-a-50), var(--color-base-a-30));
+  --color-icon-base-b: light-dark(var(--color-base-b-60), var(--color-base-b-20));
+  --color-icon-base-c: light-dark(var(--color-base-c-60), var(--color-base-c-20));
+  --color-icon-base-d: light-dark(var(--color-base-d-60), var(--color-base-d-20));
+  /* Icons placed on fill colors (buttons, chips, etc.) */
+  --color-icon-onFill: light-dark(var(--color-white), var(--color-white));
 
   /* border colors */
   --color-border-primary: light-dark(var(--color-neutral-20), var(--color-neutral-70));
   --color-border-primary-hover: light-dark(var(--color-neutral-20), var(--color-neutral-60));
   --color-border-secondary: light-dark(var(--color-neutral-10), var(--color-neutral-60));
-  --color-border-base: light-dark(var(--color-base-1-10), var(--color-base-1-90));
-  --color-border-base-hover: light-dark(var(--color-base-1-20), var(--color-neutral-60));
-  --color-border-base-secondary: light-dark(var(--color-base-1-10), var(--color-base-1-60));
-  --color-border-base-emphasis: light-dark(var(--color-base-1-20), var(--color-base-1-80));
-  --color-border-base-2: light-dark(var(--color-base-2-10), var(--color-base-2-90));
-  --color-border-base-2-emphasis: light-dark(var(--color-base-2-20), var(--color-base-2-80));
-  --color-border-base-3: light-dark(var(--color-base-3-10), var(--color-base-3-90));
-  --color-border-base-3-emphasis: light-dark(var(--color-base-3-20), var(--color-base-3-80));
-  --color-border-base-4: light-dark(var(--color-base-4-10), var(--color-base-4-90));
-  --color-border-base-4-emphasis: light-dark(var(--color-base-4-20), var(--color-base-4-80));
+  --color-border-base: light-dark(var(--color-base-a-10), var(--color-base-a-90));
+  --color-border-base-hover: light-dark(var(--color-base-a-20), var(--color-neutral-60));
+  --color-border-base-secondary: light-dark(var(--color-base-a-10), var(--color-base-a-60));
+  --color-border-base-emphasis: light-dark(var(--color-base-a-20), var(--color-base-a-80));
+  --color-border-base-b: light-dark(var(--color-base-b-10), var(--color-base-b-90));
+  --color-border-base-b-emphasis: light-dark(var(--color-base-b-20), var(--color-base-b-80));
+  --color-border-base-c: light-dark(var(--color-base-c-10), var(--color-base-c-90));
+  --color-border-base-c-emphasis: light-dark(var(--color-base-c-20), var(--color-base-c-80));
+  --color-border-base-d: light-dark(var(--color-base-d-10), var(--color-base-d-90));
+  --color-border-base-d-emphasis: light-dark(var(--color-base-d-20), var(--color-base-d-80));
 
   /* cleaned legacy theme-slider variables */
 }
@@ -363,46 +394,46 @@
 
 
 [data-mode="high-contrast"] {
-  --color-background-page: light-dark(var(--color-white), var(--color-neutral-95));
-  --color-background-primary: light-dark(var(--color-white), var(--color-neutral-90));
-  --color-background-secondary: light-dark(var(--color-white), var(--color-neutral-80));
-  --color-background-base: light-dark(var(--color-base-1-60), var(--color-base-1-60));
-  --color-background-base-secondary: light-dark(var(--color-base-1-10), var(--color-base-1-80));
-  --color-background-base-emphasis: light-dark(var(--color-base-1-70), var(--color-base-1-60));
-  --color-background-base-2: light-dark(var(--color-base-2-50), var(--color-base-2-70));
-  --color-background-base-2-secondary: light-dark(var(--color-base-2-10), var(--color-base-2-80));
-  --color-background-base-2-emphasis: light-dark(var(--color-base-2-60), var(--color-base-2-50));
-  --color-background-backdrop: light-dark(var(--color-neutral-80-alpha), var(--color-neutral-30-alpha));
+  --color-surface-page: light-dark(var(--color-white), var(--color-neutral-95));
+  --color-surface-1: light-dark(var(--color-white), var(--color-neutral-90));
+  --color-surface-2: light-dark(var(--color-white), var(--color-neutral-80));
+  --color-surface-a: light-dark(var(--color-base-a-60), var(--color-base-a-60));
+  --color-surface-a-secondary: light-dark(var(--color-base-a-10), var(--color-base-a-80));
+  --color-fill-a: light-dark(var(--color-base-a-70), var(--color-base-a-60));
+  --color-surface-b: light-dark(var(--color-base-b-50), var(--color-base-b-70));
+  --color-surface-b-secondary: light-dark(var(--color-base-b-10), var(--color-base-b-80));
+  --color-fill-b: light-dark(var(--color-base-b-60), var(--color-base-b-50));
+  --color-surface-backdrop: light-dark(var(--color-neutral-80-alpha), var(--color-neutral-30-alpha));
   --color-border-primary: light-dark(var(--color-neutral-40), var(--color-neutral-40));
   --color-border-primary-hover: light-dark(var(--color-neutral-20), var(--color-neutral-70));
   --color-border-secondary: light-dark(var(--color-neutral-30), var(--color-neutral-50));
-  --color-border-base: light-dark(var(--color-base-1-50), var(--color-base-1-40));
-  --color-border-base-secondary: light-dark(var(--color-base-1-30), var(--color-base-1-60));
-  --color-border-base-emphasis: light-dark(var(--color-base-1-70), var(--color-base-1-60));
-  --color-border-base-hover: light-dark(var(--color-base-1-40), var(--color-base-1-10));
-  --color-border-base-2: light-dark(var(--color-base-2-50), var(--color-base-2-40));
+  --color-border-base: light-dark(var(--color-base-a-50), var(--color-base-a-40));
+  --color-border-base-secondary: light-dark(var(--color-base-a-30), var(--color-base-a-60));
+  --color-border-base-emphasis: light-dark(var(--color-base-a-70), var(--color-base-a-60));
+  --color-border-base-hover: light-dark(var(--color-base-a-40), var(--color-base-a-10));
+  --color-border-base-b: light-dark(var(--color-base-b-50), var(--color-base-b-40));
 }
 
 @media (prefers-contrast: more) {
   :root {
-    --color-background-page: light-dark(var(--color-neutral-5), var(--color-neutral-95));
-    --color-background-primary: light-dark(var(--color-white), var(--color-neutral-90));
-    --color-background-secondary: light-dark(var(--color-white), var(--color-neutral-80));
-    --color-background-base: light-dark(var(--color-base-1-60), var(--color-base-1-60));
-    --color-background-base-secondary: light-dark(var(--color-base-1-10), var(--color-base-1-80));
-    --color-background-base-emphasis: light-dark(var(--color-base-1-70), var(--color-base-1-60));
-    --color-background-base-2: light-dark(var(--color-base-2-30), var(--color-base-2-70));
-    --color-background-base-2-secondary: light-dark(var(--color-base-2-10), var(--color-base-2-80));
-    --color-background-base-2-emphasis: light-dark(var(--color-base-2-60), var(--color-base-2-50));
-    --color-background-backdrop: light-dark(var(--color-neutral-80-alpha), var(--color-neutral-30-alpha));
+    --color-surface-page: light-dark(var(--color-neutral-5), var(--color-neutral-95));
+    --color-surface-1: light-dark(var(--color-white), var(--color-neutral-90));
+    --color-surface-2: light-dark(var(--color-white), var(--color-neutral-80));
+    --color-surface-a: light-dark(var(--color-base-a-60), var(--color-base-a-60));
+    --color-surface-a-secondary: light-dark(var(--color-base-a-10), var(--color-base-a-80));
+    --color-fill-a: light-dark(var(--color-base-a-70), var(--color-base-a-60));
+    --color-surface-b: light-dark(var(--color-base-b-30), var(--color-base-b-70));
+    --color-surface-b-secondary: light-dark(var(--color-base-b-10), var(--color-base-b-80));
+    --color-fill-b: light-dark(var(--color-base-b-60), var(--color-base-b-50));
+    --color-surface-backdrop: light-dark(var(--color-neutral-80-alpha), var(--color-neutral-30-alpha));
     --color-border-primary: light-dark(var(--color-neutral-40), var(--color-neutral-40));
     --color-border-primary-hover: light-dark(var(--color-neutral-20), var(--color-neutral-70));
     --color-border-secondary: light-dark(var(--color-neutral-30), var(--color-neutral-50));
-    --color-border-base: light-dark(var(--color-base-1-50), var(--color-base-1-40));
-    --color-border-base-secondary: light-dark(var(--color-base-1-30), var(--color-base-1-60));
-    --color-border-base-emphasis: light-dark(var(--color-base-1-70), var(--color-base-1-60));
-    --color-border-base-hover: light-dark(var(--color-base-1-40), var(--color-base-1-10));
-    --color-border-base-2: light-dark(var(--color-base-2-50), var(--color-base-2-40));
+    --color-border-base: light-dark(var(--color-base-a-50), var(--color-base-a-40));
+    --color-border-base-secondary: light-dark(var(--color-base-a-30), var(--color-base-a-60));
+    --color-border-base-emphasis: light-dark(var(--color-base-a-70), var(--color-base-a-60));
+    --color-border-base-hover: light-dark(var(--color-base-a-40), var(--color-base-a-10));
+    --color-border-base-b: light-dark(var(--color-base-b-50), var(--color-base-b-40));
   }
 }
 
