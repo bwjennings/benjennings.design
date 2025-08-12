@@ -158,17 +158,3 @@ ul.body, ol.body {
 ul.body li, ol.body li {
   margin-bottom: var(--spacing-sm);
 }
-
-/* View transition fixes for smooth text morphing */
-::view-transition-old(design-dwellane-title),
-::view-transition-new(design-dwellane-title),
-::view-transition-old(design-pls-title),
-::view-transition-new(design-pls-title),
-::view-transition-old(design-herff-jones-title),
-::view-transition-new(design-herff-jones-title),
-::view-transition-old(design-arvest-title),
-::view-transition-new(design-arvest-title) {
-  height: 100%;
-  object-fit: cover;
-  overflow: clip;
-}

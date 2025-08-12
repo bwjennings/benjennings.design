@@ -55,25 +55,14 @@ site-navigation {
   animation-timing-function: var(--transition-timing);
   isolation: isolate;
   overflow: clip;
+  
 }
 
 
 
 
 
- /* View transition fixes for smooth text morphing */
-   ::view-transition-old(design-dwellane-title),
-   ::view-transition-new(design-dwellane-title),
-   ::view-transition-old(design-pls-title),
-   ::view-transition-new(design-pls-title),
-   ::view-transition-old(design-herff-jones-title),
-   ::view-transition-new(design-herff-jones-title),
-   ::view-transition-old(design-arvest-title),
-   ::view-transition-new(design-arvest-title) {
-     height: 100%;
-     object-fit: cover;
-     overflow: clip;
-       }
+
 
 
 @keyframes blur-out {
@@ -117,5 +106,74 @@ site-navigation {
   ::view-transition-old(),
   ::view-transition-new(ge) {
     animation:none;
+  }
+}
+
+
+
+/* Shared-element: card title → post header title only */
+/* Designs (titles) */
+::view-transition-old(design-dwellane-title),
+::view-transition-old(design-pls-title),
+::view-transition-old(design-herff-jones-title),
+::view-transition-old(design-arvest-title) {
+  animation: card-header-out var(--transition-duration) var(--transition-timing);
+}
+::view-transition-new(design-dwellane-title),
+::view-transition-new(design-pls-title),
+::view-transition-new(design-herff-jones-title),
+::view-transition-new(design-arvest-title) {
+  animation: card-header-in var(--transition-duration) var(--transition-timing);
+}
+
+/* Fundamentals (titles) */
+::view-transition-old(fundamental-simplicity-title) {
+  animation: card-header-out var(--transition-duration) var(--transition-timing);
+}
+::view-transition-new(fundamental-simplicity-title) {
+  animation: card-header-in var(--transition-duration) var(--transition-timing);
+}
+
+/* Experiments (titles) */
+::view-transition-old(experiment-spline-title),
+::view-transition-old(experiment-spline-2-title),
+::view-transition-old(experiment-digital-frame-title) {
+  animation: card-header-out var(--transition-duration) var(--transition-timing);
+}
+::view-transition-new(experiment-spline-title),
+::view-transition-new(experiment-spline-2-title),
+::view-transition-new(experiment-digital-frame-title) {
+  animation: card-header-in var(--transition-duration) var(--transition-timing);
+}
+/* Card → Post Header morph
+   - Outgoing (card) slightly scales and fades
+   - Incoming (header) grows from the card and settles with a soft pop */
+@keyframes card-header-out {
+  from {
+    opacity: 1;
+    filter:  blur(0px);
+  }
+  40% {
+    opacity: 0.1;
+    filter:   blur(8px);
+  }
+  to {
+    opacity: 0;
+    filter:  blur(2px);
+  }
+}
+
+@keyframes card-header-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+      ;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
   }
 }
