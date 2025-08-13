@@ -16,10 +16,24 @@
 
 
 ::view-transition {
-  --transition-duration: 700ms;
+  --transition-duration: 500ms;
+  --transition-timing: linear(0.00, -0.00240, 0.0955, 0.217, 0.331, 0.428, 0.518, 0.591, 0.656, 0.708, 0.754, 0.793, 0.825, 0.852, 0.874, 0.894, 0.911, 0.925, 0.936, 0.946, 0.955, 0.962, 0.968, 0.973, 0.977, 0.980, 0.983, 0.986, 0.988, 0.990, 0.992, 0.993, 0.994, 0.995, 0.996, 0.996, 0.997, 0.997, 0.998, 0.998, 0.998, 0.999, 0.999, 0.999, 1.00);
+--transition-timing:cubic-bezier(0.4, 1.3, 0.35, 1);
 }
 ::view-transition-group(*){
   animation-timing-function: var(--transition-timing);
+}
+
+/* Customize timing for the navigation highlight shared element */
+::view-transition-group(nav-background) {
+  animation-duration:500ms;
+  animation-timing-function: cubic-bezier(0.4, 1.20, 0.22, 1.00);
+}
+
+/* Optional: allow separate duration/timing if desired */
+::view-transition-old(nav-background),
+::view-transition-new(nav-background) {
+  
 }
 
 main {

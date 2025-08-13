@@ -116,7 +116,7 @@ template.innerHTML = `
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease;
+      
       background: none;
     }
     
