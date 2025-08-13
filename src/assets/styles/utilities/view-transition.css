@@ -29,9 +29,6 @@ main {
   will-change: opacity, transform;
 }
 
-site-navigation {
-  view-transition-name: navigation;
-}
 
 ::view-transition-old(page) {
   animation: blur-out var(--transition-duration) var(--transition-timing);
@@ -103,10 +100,18 @@ site-navigation {
 
 
 @media (prefers-reduced-motion: reduce) {
+  /* Disable cross-document transitions entirely for reduced motion */
+  @view-transition { navigation: none; }
   ::view-transition-old(),
-  ::view-transition-new(ge) {
-    animation:none;
+  ::view-transition-new() {
+    animation: none !important;
   }
+}
+
+/* During history/BFCache restore, avoid page group animations briefly */
+html.restoring ::view-transition-old(page),
+html.restoring ::view-transition-new(page) {
+  animation: none !important;
 }
 
 

@@ -4,9 +4,11 @@
  * - Ensure only the clicked card gets a named transition so others fall back to page blur.
  */
 document.addEventListener('DOMContentLoaded', () => {
-  if (!('CSSViewTransitionRule' in window)) {
-    console.warn('View transitions are not supported in this browser.');
-  }
+  try {
+    if (!(window.CSS && CSS.supports && CSS.supports('view-transition-name', 'page'))) {
+      console.warn('View Transitions not fully supported; falling back gracefully.');
+    }
+  } catch {}
 
   // Ensure the browser restores scroll on history navigations
   try { if ('scrollRestoration' in history) history.scrollRestoration = 'auto'; } catch {}
@@ -24,7 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Ensure we have proper history state for this detail page
         if (!history.state || !history.state.page) {
-          history.replaceState({ page: 'detail', vt: name }, '', window.location.href);
+          try {
+            if ('navigation' in window && window.navigation?.updateCurrentEntry) {
+              const current = (window.navigation.currentEntry?.getState?.() || {});
+              window.navigation.updateCurrentEntry({ state: { ...current, page: 'detail', vt: name } });
+            } else {
+              history.replaceState({ page: 'detail', vt: name }, '', window.location.href);
+            }
+          } catch {}
         }
       }
     }
@@ -52,28 +61,35 @@ document.addEventListener('DOMContentLoaded', () => {
     setOrClear(badgesEl, `${key}-badges`);
   };
 
-  // URL helpers to persist the last VT key in history for robust back/forward
-  const getVtFromUrl = () => {
+  // State helpers: prefer history.state, fall back to sessionStorage
+  const getVtFromState = () => {
     try {
-      const params = new URLSearchParams(window.location.search);
-      const vt = params.get('vt');
-      return vt && vt.trim() ? vt.trim() : null;
+      // Prefer Navigation API state if available
+      if ('navigation' in window && window.navigation?.currentEntry?.getState) {
+        const navState = window.navigation.currentEntry.getState();
+        const vt = navState && navState.vt;
+        if (vt && String(vt).trim()) return String(vt).trim();
+      }
+    } catch {}
+    try {
+      const vt = history.state && history.state.vt;
+      return vt && String(vt).trim() ? String(vt).trim() : null;
     } catch { return null; }
   };
 
-  const setVtInUrl = (name) => {
+  const writeVtToState = (obj) => {
     try {
-      const url = new URL(window.location.href);
-      url.searchParams.set('vt', name);
-      history.replaceState(history.state, '', url);
+      const vt = obj && obj.vt;
+      const page = obj && obj.page;
+      const base = { vt, page };
+      if ('navigation' in window && window.navigation?.updateCurrentEntry) {
+        const current = (window.navigation.currentEntry?.getState?.() || {});
+        window.navigation.updateCurrentEntry({ state: { ...current, ...base } });
+        return;
+      }
     } catch {}
-  };
-
-  const clearVtInUrl = () => {
     try {
-      const url = new URL(window.location.href);
-      url.searchParams.delete('vt');
-      history.replaceState(history.state, '', url);
+      history.replaceState({ ...(history.state || {}), ...obj }, '');
     } catch {}
   };
 
@@ -82,8 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     const cards = document.querySelectorAll('a[data-vt-target]');
     if (cards.length) {
-      const vtFromUrl = getVtFromUrl();
-      const last = vtFromUrl || sessionStorage.getItem('lastVtName');
+      const vtFromState = getVtFromState();
+      const last = vtFromState || sessionStorage.getItem('lastVtName');
       const target = last ? Array.from(cards).find(a => a.getAttribute('data-vt-target') === last) : null;
       // Clear others first
       cards.forEach((a) => {
@@ -97,8 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
           target.style.setProperty('view-transition-name', last);
         }
         applyCardPartNames(target, last, true);
-        // Ensure URL carries the vt key for reliable reverse transitions
-        if (!vtFromUrl) setVtInUrl(last);
+        // Persist in history.state for reliable reverse transitions
+        try { writeVtToState({ page: 'listing', vt: last }); } catch {}
       }
     }
   } catch {}
@@ -115,33 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const anyAnchor = e.target && (e.target.closest ? e.target.closest('a') : null);
     if (!anyAnchor) return;
 
-    // Prefer History API for in-page "Back" buttons on detail pages
-    // Matches: a.button inside a .post-header that navigates to parent (../)
-    try {
-      const isBackButton = anyAnchor.matches('a.button[href$="../"]') && anyAnchor.closest('.post-header');
-      if (isBackButton) {
-        e.preventDefault();
-        // Defer to next tick to avoid interfering with UA scroll restoration
-        const goBack = () => {
-          // Prefer the Navigation API if available
-          try {
-            if (('navigation' in window) && window.navigation?.canGoBack) {
-              window.navigation.back();
-              return;
-            }
-          } catch {}
-          // Otherwise use the History API
-          const hasHistory = window.history.length > 1;
-          const sameOriginReferrer = document.referrer && new URL(document.referrer).origin === window.location.origin;
-          if (hasHistory || sameOriginReferrer) window.history.back();
-          else window.location.assign(anyAnchor.href);
-        };
-        // Use rAF first, fallback to setTimeout
-        if ('requestAnimationFrame' in window) requestAnimationFrame(() => setTimeout(goBack, 0));
-        else setTimeout(goBack, 0);
-        return;
-      }
-    } catch {}
+    // Let back links navigate normally; state is already managed elsewhere
+    // (leaving logic intact for future custom handling if needed)
 
     // If this is a card click, set its transition name and record it
     const cardAnchor = anyAnchor.matches('a[data-vt-target]') ? anyAnchor : null;
@@ -161,19 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           // Update session for reverse morph on back
           sessionStorage.setItem('lastVtName', name);
-          // Persist key in URL of the listing page's history entry for robust back navigation
-          setVtInUrl(name);
-          
-          // Ensure we have a proper history entry by adding state before navigation
-          e.preventDefault();
-          const currentUrl = window.location.href;
-          const targetUrl = cardAnchor.href;
-          
-          // Push current page state to history so back button works properly
-          history.pushState({ page: 'listing', vt: name }, '', currentUrl);
-          
-          // Navigate to detail page
-          window.location.assign(targetUrl);
+          // Persist key in entry state for robust back navigation
+          writeVtToState({ page: 'listing', vt: name });
+          // Allow default navigation to proceed for proper cross-document VT
         } catch {}
       }
       return;
@@ -186,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isTopNav) {
         // Navigating to another top-level page: clear stored key and remove vt
         sessionStorage.removeItem('lastVtName');
-        clearVtInUrl();
 
         // Only clear names from card elements and their parts; do NOT touch navigation
         const toClear = document.querySelectorAll(
@@ -202,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Capture phase to run before navigation handling
   document.addEventListener('click', onClick, true);
 
-  // Handle browser back/forward navigation
+  // Handle browser back/forward navigation (fallback)
   window.addEventListener('popstate', (e) => {
     try {
       // If we have state indicating this is a listing page, restore it properly
@@ -229,11 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Clean up lingering inline names on bfcache restore
-  window.addEventListener('pageshow', (e) => {
+  const handleRevealOrShow = (isRevealEvent, e) => {
     // Detect history restores (bfcache or back/forward nav)
     try {
       const perfNav = (performance && performance.getEntriesByType) ? performance.getEntriesByType('navigation')[0] : null;
-      const isHistoryRestore = Boolean(e.persisted) || (perfNav && perfNav.type === 'back_forward');
+      const isHistoryRestore = Boolean(e?.persisted) || (perfNav && perfNav.type === 'back_forward');
       if (isHistoryRestore) {
         document.documentElement.classList.add('restoring');
         // Allow UA to restore scroll, then drop the override
@@ -247,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch {}
 
-    const vt = getVtFromUrl();
+    const vt = getVtFromState() || sessionStorage.getItem('lastVtName');
     const cards = document.querySelectorAll('a[data-vt-target]');
     const onListing = cards.length > 0;
 
@@ -273,5 +253,23 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       // On detail pages, never strip header names here; they need to persist for reverse morph.
     }
-  });
+  };
+
+  // Prefer pagereveal for precise timing; fallback to pageshow
+  if ('onpagereveal' in window) {
+    window.addEventListener('pagereveal', (e) => handleRevealOrShow(true, e));
+  } else {
+    window.addEventListener('pageshow', (e) => handleRevealOrShow(false, e));
+  }
+
+  // On outgoing navigation, persist VT key if needed and pause work
+  if ('onpageswap' in window) {
+    window.addEventListener('pageswap', (e) => {
+      try {
+        const vt = getVtFromState() || sessionStorage.getItem('lastVtName');
+        if (vt) writeVtToState({ page: document.querySelector('a[data-vt-target]') ? 'listing' : (document.body?.classList?.contains('detail-page') ? 'detail' : undefined), vt });
+      } catch {}
+      // If needed, pause timers/observers here
+    });
+  }
 });
