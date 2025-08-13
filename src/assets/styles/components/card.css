@@ -179,7 +179,7 @@
       "title"
       "media"
       "badges");
-  grid-template-rows: var(--card-rows-no-content, auto auto auto);
+  grid-template-rows: var(--card-rows-no-content, 1fr 1fr auto);
 }
 
 /* If there is neither media nor content, collapse to title + badges only */
