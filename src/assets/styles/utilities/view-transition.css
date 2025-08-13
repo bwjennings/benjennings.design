@@ -28,22 +28,34 @@
 }
 
 /* Customize timing for the navigation highlight shared element */
-::view-transition-group(nav-background) {
+::view-transition-group(nav-background),
+::view-transition-group(.nav-background) {
   animation-duration: var(--transition-duration);
   animation-timing-function: var(--transition-timing);
 }
 
 /* Optional: allow separate duration/timing if desired */
 ::view-transition-old(nav-background),
-::view-transition-new(nav-background) {
+::view-transition-new(nav-background),
+::view-transition-old(.nav-background),
+::view-transition-new(.nav-background) {
   
 }
 
 main {
   view-transition-name: page;
+  /* Reuse existing label for scalable styling */
+  view-transition-class: page;
   contain: layout style paint;
   /* Improve compositing during cross-document transitions */
   will-change: opacity, transform;
+}
+
+/* Optional page timing via class-based hook */
+::view-transition-group(page),
+::view-transition-group(.page) {
+  animation-duration: var(--transition-duration);
+  animation-timing-function: var(--transition-timing);
 }
 
 /* Theme toggle: enable a short root cross-fade when switching schemes */
@@ -98,6 +110,7 @@ html.theme-transition * {
   overflow: clip;
   
 }
+
 
 
 
@@ -162,38 +175,18 @@ html.restoring ::view-transition-new(page) {
 
 /* Shared-element: card title → post header title only */
 /* Designs (titles) */
-::view-transition-old(design-dwellane-title),
-::view-transition-old(design-pls-title),
-::view-transition-old(design-herff-jones-title),
-::view-transition-old(design-arvest-title) {
+::view-transition-group(.heading){
+  overflow: visible;
+}
+::view-transition-old(.heading) {
   animation: card-header-out var(--transition-duration) var(--transition-timing);
 }
-::view-transition-new(design-dwellane-title),
-::view-transition-new(design-pls-title),
-::view-transition-new(design-herff-jones-title),
-::view-transition-new(design-arvest-title) {
+  ::view-transition-new(.heading) {
+    
   animation: card-header-in var(--transition-duration) var(--transition-timing);
 }
 
-/* Fundamentals (titles) */
-::view-transition-old(fundamental-simplicity-title) {
-  animation: card-header-out var(--transition-duration) var(--transition-timing);
-}
-::view-transition-new(fundamental-simplicity-title) {
-  animation: card-header-in var(--transition-duration) var(--transition-timing);
-}
 
-/* Experiments (titles) */
-::view-transition-old(experiment-spline-title),
-::view-transition-old(experiment-spline-2-title),
-::view-transition-old(experiment-digital-frame-title) {
-  animation: card-header-out var(--transition-duration) var(--transition-timing);
-}
-::view-transition-new(experiment-spline-title),
-::view-transition-new(experiment-spline-2-title),
-::view-transition-new(experiment-digital-frame-title) {
-  animation: card-header-in var(--transition-duration) var(--transition-timing);
-}
 /* Card → Post Header morph
    - Outgoing (card) slightly scales and fades
    - Incoming (header) grows from the card and settles with a soft pop */
@@ -203,7 +196,7 @@ html.restoring ::view-transition-new(page) {
     filter:  blur(0px);
   }
   40% {
-    opacity: 0.1;
+    opacity: 0;
     filter:   blur(8px);
   }
   to {

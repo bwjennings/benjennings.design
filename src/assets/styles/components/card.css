@@ -2,7 +2,15 @@
   cursor: pointer;
   display: grid;
 
-  grid-template-rows: auto 1fr auto;
+  /* Configure layout via CSS variables */
+  grid-template-columns: var(--card-columns, 1fr);
+  grid-template-rows: var(--card-rows, 1fr 1fr auto auto);
+  grid-template-areas: var(--card-areas,
+
+      "title"
+      "media"
+      "badges"
+      "content");
   height: 100%;
   /* min-height: 300px; */
 
@@ -32,7 +40,21 @@
 
 
   img {
-    grid-column: -1 /1;
+    grid-area: media;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  >.thumbnail,
+  >.media {
+    grid-area: media;
+  }
+
+  /* Map simple text directly under the card to content */
+  >p {
+    grid-area: content;
+    margin: 0;
   }
 
 
@@ -123,6 +145,7 @@
     color: var(--color-text-base-d);
     border-color: var(--color-border-base-d);
     outline-color: var(--color-border-base-d);
+
     .icon {
       color: var(--color-icon-base-d);
     }
@@ -141,6 +164,58 @@
 
 }
 
+/* When a card has no media-like child, collapse the media row */
+.card:not(:has(.icon-box, img, .thumbnail, .media)) {
+  grid-template-areas: var(--card-areas-no-media,
+      "title"
+      "content"
+      "badges");
+  grid-template-rows: var(--card-rows-no-media, auto 1fr auto);
+}
+
+/* If there is no content element, remove the content row to avoid empty gaps */
+.card:not(:has(.content, > p)) {
+  grid-template-areas: var(--card-areas-no-content,
+      "title"
+      "media"
+      "badges");
+  grid-template-rows: var(--card-rows-no-content, auto auto auto);
+}
+
+/* If there is neither media nor content, collapse to title + badges only */
+.card:not(:has(.icon-box, img, .thumbnail, .media)):not(:has(.content, > p)) {
+  grid-template-areas: var(--card-areas-no-media-no-content,
+      "title"
+      "badges");
+  grid-template-rows: var(--card-rows-no-media-no-content, auto auto);
+}
+
+/* Map common children to named areas so order is controlled in CSS */
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.card h5,
+.card h6 {
+  grid-area: title;
+  margin: 0;
+}
+
+.card .content {
+  grid-area: content;
+}
+
+.card .badge-group {
+  grid-area: badges;
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+/* Optional plain icon box (non-webcomponent) */
+.icon-box {
+  grid-area: media;
+}
 
 
 p {
@@ -153,11 +228,10 @@ p {
 
 .thumbnail {
   max-height: 120px;
-  margin-top: calc(-1 * var(--spacing-xxl));
-  margin-inline: calc(-1 * var(--spacing-xl));
+
   overflow: hidden;
   display: block;
-  width: auto;
+  width: 100%;
   align-self: stretch;
   background: var(--color-surface-a-secondary);
   flex-direction: column;

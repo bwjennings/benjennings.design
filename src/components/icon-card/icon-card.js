@@ -9,6 +9,11 @@ template.innerHTML = `
     .icon-card {
       cursor: pointer;
       display: grid;
+      grid-template-areas: 
+        "icon"
+        "title" 
+        "content"
+        "badges";
       grid-template-rows: auto auto 1fr auto;
       height: 100%;
       width: 100%;

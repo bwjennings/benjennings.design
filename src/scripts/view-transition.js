@@ -51,14 +51,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const applyCardPartNames = (card, key, enable) => {
     if (!card || !key) return;
     const { imageEl, titleEl, badgesEl } = getCardParts(card);
-    const setOrClear = (el, name) => {
+    const setOrClear = (el, name, cls) => {
       if (!el) return;
-      if (enable) el.style.setProperty('view-transition-name', name);
-      else el.style.removeProperty('view-transition-name');
+      if (enable) {
+        el.style.setProperty('view-transition-name', name);
+        if (cls) el.style.setProperty('view-transition-class', cls);
+      } else {
+        el.style.removeProperty('view-transition-name');
+        if (cls) el.style.removeProperty('view-transition-class');
+      }
     };
-    setOrClear(imageEl, `${key}-image`);
-    setOrClear(titleEl, `${key}-title`);
-    setOrClear(badgesEl, `${key}-badges`);
+    // Reuse existing classes for scalable styling
+    setOrClear(imageEl, `${key}-image`, 'thumbnail');
+    setOrClear(titleEl, `${key}-title`, 'heading');
+    setOrClear(badgesEl, `${key}-badges`, 'badge-group');
+  };
+
+  // Apply class hooks to detail header and parts if they already have names
+  const applyDetailClassesIfPresent = () => {
+    try {
+      const detailHeader = document.querySelector('.post-header[style]');
+      if (!detailHeader) return;
+      const headerName = (detailHeader.style.getPropertyValue('view-transition-name') || '').trim();
+      if (headerName && headerName !== 'none') {
+        // Header container
+        detailHeader.style.setProperty('view-transition-class', 'post-header');
+        // Known parts
+        const img = detailHeader.querySelector('img, .icon-placeholder');
+        const title = detailHeader.querySelector('h1[class*="heading"]');
+        const badges = detailHeader.querySelector('.badge-group');
+        if (img && img.style.getPropertyValue('view-transition-name')) img.style.setProperty('view-transition-class', 'thumbnail');
+        if (title && title.style.getPropertyValue('view-transition-name')) title.style.setProperty('view-transition-class', 'heading');
+        if (badges && badges.style.getPropertyValue('view-transition-name')) badges.style.setProperty('view-transition-class', 'badge-group');
+      }
+    } catch {}
   };
 
   // State helpers: prefer history.state, fall back to sessionStorage
@@ -105,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cards.forEach((a) => {
         if (a !== target) {
           a.style.removeProperty('view-transition-name');
+          a.style.removeProperty('view-transition-class');
           applyCardPartNames(a, a.getAttribute('data-vt-target'), false);
         }
       });
@@ -112,6 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!target.style.getPropertyValue('view-transition-name')) {
           target.style.setProperty('view-transition-name', last);
         }
+        // Class hook for anchor snapshot
+        target.style.setProperty('view-transition-class', 'vt-card');
         applyCardPartNames(target, last, true);
         // Persist in history.state for reliable reverse transitions
         try { writeVtToState({ page: 'listing', vt: last }); } catch {}
@@ -145,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (a !== cardAnchor) a.style.removeProperty('view-transition-name');
           });
           cardAnchor.style.setProperty('view-transition-name', name);
+          cardAnchor.style.setProperty('view-transition-class', 'card');
           // Also set names on the clicked card's parts and clear others
           document.querySelectorAll('a[data-vt-target]').forEach((a) => {
             const key = a.getAttribute('data-vt-target');
@@ -172,7 +202,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const toClear = document.querySelectorAll(
           'a[data-vt-target], a[data-vt-target] img, a[data-vt-target] .icon-placeholder, a[data-vt-target] h1[class*="heading"], a[data-vt-target] .badge-group'
         );
-        toClear.forEach((el) => el.style?.removeProperty('view-transition-name'));
+        toClear.forEach((el) => {
+          el.style?.removeProperty('view-transition-name');
+          el.style?.removeProperty('view-transition-class');
+        });
       }
       // IMPORTANT: Do not clear names for non-card, non-topnav links (e.g., Back buttons).
       // Keeping names enables reverse morph into the cached listing card.
@@ -196,10 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
             cards.forEach((a) => {
               if (a !== target) {
                 a.style.removeProperty('view-transition-name');
+                a.style.removeProperty('view-transition-class');
                 applyCardPartNames(a, a.getAttribute('data-vt-target'), false);
               }
             });
             target.style.setProperty('view-transition-name', vt);
+            target.style.setProperty('view-transition-class', 'card');
             applyCardPartNames(target, vt, true);
             sessionStorage.setItem('lastVtName', vt);
           }
@@ -236,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!vt) {
         cards.forEach((a) => {
           a.style.removeProperty('view-transition-name');
+          a.style.removeProperty('view-transition-class');
           applyCardPartNames(a, a.getAttribute('data-vt-target'), false);
         });
       }
@@ -245,10 +281,16 @@ document.addEventListener('DOMContentLoaded', () => {
         cards.forEach((a) => {
           const key = a.getAttribute('data-vt-target');
           const active = a === target;
-          if (!active) a.style.removeProperty('view-transition-name');
+          if (!active) {
+            a.style.removeProperty('view-transition-name');
+            a.style.removeProperty('view-transition-class');
+          }
           applyCardPartNames(a, key, active);
         });
-        if (target) target.style.setProperty('view-transition-name', vt);
+        if (target) {
+          target.style.setProperty('view-transition-name', vt);
+          target.style.setProperty('view-transition-class', 'card');
+        }
       }
     } else {
       // On detail pages, never strip header names here; they need to persist for reverse morph.
@@ -261,6 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     window.addEventListener('pageshow', (e) => handleRevealOrShow(false, e));
   }
+
+  // Ensure detail pages also get class hooks applied
+  applyDetailClassesIfPresent();
 
   // On outgoing navigation, persist VT key if needed and pause work
   if ('onpageswap' in window) {
