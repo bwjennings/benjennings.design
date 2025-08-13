@@ -4,6 +4,9 @@
 
 :root {
   view-transition-name: none;
+  /* Single source of truth for VT timing */
+  --transition-duration: 500ms;
+  --transition-timing: cubic-bezier(0.4, 1.20, 0.22, 1.00);
 }
 /* Keep navigation elements unnamed at the container level; only the
    moving highlight (.nav-background) participates in transitions. */
@@ -16,9 +19,9 @@
 
 
 ::view-transition {
+  /* Mirror variables here for broader support (also in :root) */
   --transition-duration: 500ms;
-  --transition-timing: linear(0.00, -0.00240, 0.0955, 0.217, 0.331, 0.428, 0.518, 0.591, 0.656, 0.708, 0.754, 0.793, 0.825, 0.852, 0.874, 0.894, 0.911, 0.925, 0.936, 0.946, 0.955, 0.962, 0.968, 0.973, 0.977, 0.980, 0.983, 0.986, 0.988, 0.990, 0.992, 0.993, 0.994, 0.995, 0.996, 0.996, 0.997, 0.997, 0.998, 0.998, 0.998, 0.999, 0.999, 0.999, 1.00);
---transition-timing:cubic-bezier(0.4, 1.3, 0.35, 1);
+  --transition-timing: cubic-bezier(0.4, 1.20, 0.22, 1.00);
 }
 ::view-transition-group(*){
   animation-timing-function: var(--transition-timing);
@@ -26,8 +29,8 @@
 
 /* Customize timing for the navigation highlight shared element */
 ::view-transition-group(nav-background) {
-  animation-duration:500ms;
-  animation-timing-function: cubic-bezier(0.4, 1.20, 0.22, 1.00);
+  animation-duration: var(--transition-duration);
+  animation-timing-function: var(--transition-timing);
 }
 
 /* Optional: allow separate duration/timing if desired */
@@ -42,6 +45,33 @@ main {
   /* Improve compositing during cross-document transitions */
   will-change: opacity, transform;
 }
+
+/* Theme toggle: enable a short root cross-fade when switching schemes */
+html.theme-transition {
+  /* Temporarily name the root for same-document theme transitions */
+  view-transition-name: theme;
+}
+::view-transition-group(theme) {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.34, 0.88, 0.34, 1.00);
+}
+
+
+/* Avoid running page-level animations during a theme-only transition */
+/* Use :root to target the transition pseudos correctly */
+:root.theme-transition::view-transition-old(page),
+:root.theme-transition::view-transition-new(page) {
+  animation: none !important;
+}
+
+/* During a theme-only transition, prevent any descendant from being a named
+   shared element so only the root crossfades. This covers nav background,
+   card targets, and any other named elements. */
+html.theme-transition * {
+  view-transition-name: none !important;
+}
+
+
 
 
 ::view-transition-old(page) {

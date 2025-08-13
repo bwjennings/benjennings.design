@@ -273,9 +273,36 @@ class SiteSettings extends HTMLElement {
 
   themeChangeHandler(event) {
     const theme = event.currentTarget.dataset.theme;
-    if (theme) {
+    if (!theme) return;
+
+    // If View Transitions are supported, animate the theme change
+    const supportsVT = typeof document.startViewTransition === 'function';
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Helper to apply theme immediately (fallback)
+    const apply = () => {
       this.setActiveTheme(theme);
       this.updateTheme(theme);
+    };
+
+    if (!supportsVT || prefersReduced) {
+      apply();
+      return;
+    }
+
+    // Add a class to give :root a temporary view-transition-name
+    document.documentElement.classList.add('theme-transition');
+    try {
+      const transition = document.startViewTransition(() => {
+        apply();
+      });
+      // Clean up the class when finished (success or failure)
+      transition.finished.finally(() => {
+        document.documentElement.classList.remove('theme-transition');
+      });
+    } catch (e) {
+      document.documentElement.classList.remove('theme-transition');
+      apply();
     }
   }
 
