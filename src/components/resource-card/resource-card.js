@@ -38,7 +38,7 @@
           font-family: var(--icon-font-family);
           width:15cqw;
           text-align: center;
-          font-variation-settings: 'FILL' var(--icon-fill), 'wght' 700, 'GRAD' 200;
+          font-variation-settings: 'FILL' var(--icon-fill), 'wght' var(--icon-weight-lg), 'GRAD' var(--icon-grade-emphasis);
           overflow: hidden;
           aspect-ratio: 1 / 1;
           display: flex;
@@ -82,7 +82,7 @@
           rotate: -20deg;
           opacity: 0.5;
           animation: iconAnimate 5s var(--timing-decelerate) infinite alternate;
-          font-weight: 600;
+          font-weight: var(--icon-weight-lg);
           font-size: 130cqw;
 
         }

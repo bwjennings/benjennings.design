@@ -34,10 +34,10 @@ u {
   margin: 0;
   font-family: var(--text-heading-font-family);
   font-size: var(--text-heading-lg-size);
-  font-weight: 550;
+  font-weight: var(--text-heading-weight);
   line-height: var(--text-heading-lg-line-height);
   text-wrap: balance;
- 
+
   font-variation-settings:
     "wdth" var(--text-heading-width),
     "GRAD" var(--text-heading-grade),
@@ -47,15 +47,15 @@ u {
   font-style: normal;
 
   &.sm {
-    font-weight: 450;
+    font-weight: var(--text-heading-weight);
     font-size: var(--text-heading-sm-size);
-    line-height: 130%;
+    line-height: var(--text-heading-sm-line-height);
   }
 
   &.md {
     font-size: var(--text-heading-md-size);
     line-height: var(--text-heading-md-line-height);
-    font-weight: 400;
+    font-weight: var(--text-heading-weight);
   }
 
   &.xl {
@@ -106,12 +106,12 @@ u {
   height: 1em;
   overflow: hidden;
   text-align: center;
-transition-property: --icon-grade ;
-transition-duration: inherit;
-transition-timing-function: var(--timing-decelerate);
+  transition-property: --icon-grade;
+  transition-duration: inherit;
+  transition-timing-function: var(--timing-decelerate);
   font-family: var(--icon-font-family, "Material Symbols Sharp");
   font-size: var(--icon-size-lg);
-  
+
   font-style: normal;
   font-weight: var(--icon-weight-lg);
   line-height: 100%;
@@ -123,14 +123,17 @@ transition-timing-function: var(--timing-decelerate);
   &.xl {
     font-size: var(--icon-size-xl);
   }
+
   &.lg {
     font-size: var(--icon-size-lg);
     font-weight: var(--icon-weight-lg);
   }
+
   &.md {
     font-size: var(--icon-size-md);
     font-weight: var(--icon-weight-md);
   }
+
   &.sm {
     font-size: var(--icon-size-sm);
     font-weight: var(--icon-weight-sm);
@@ -144,17 +147,19 @@ transition-timing-function: var(--timing-decelerate);
 /* Additional heading sizes */
 .heading.xs {
   font-size: var(--text-body-lg-size);
-  line-height: 1.15;
+  line-height: var(--text-body-lg-line-height);
   font-weight: var(--text-body-weight);
   margin: var(--spacing-xl) 0 var(--spacing-md) 0;
 }
 
 /* List styles for body text */
-ul.body, ol.body {
+ul.body,
+ol.body {
   margin: var(--spacing-lg) 0;
   padding-left: var(--spacing-xl);
 }
 
-ul.body li, ol.body li {
+ul.body li,
+ol.body li {
   margin-bottom: var(--spacing-sm);
 }

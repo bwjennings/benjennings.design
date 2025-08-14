@@ -78,7 +78,7 @@
         aspect-ratio: 1/1;
         width: var(--icon-size-sm);
         color: var(--color-icon-base-b);
-        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0;
+        font-variation-settings: "FILL" var(--icon-fill), "wght" var(--icon-weight-sm), "GRAD" var(--icon-grade);
     }
     
 

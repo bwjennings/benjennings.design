@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   gap: var(--spacing-xs, 4px);
-  font-family: var(--text-font-family);
+  font-family: var(--text-body-font-family);
   font-size: var(--text-body-md-size);
   color: var(--color-text-primary);
   line-height: var(--text-body-md-line-height);

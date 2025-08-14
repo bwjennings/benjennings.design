@@ -127,7 +127,7 @@ site-navigation {
 
 
 .title {
-  font-weight: 500;
+  font-weight: var(--text-body-weight);
   font-size: var(--text-body-lg-size);
   line-height: var(--text-body-lg-line-height);
   align-items: center;
@@ -553,8 +553,8 @@ nav {
   right: 16px;
   width: 82px;
   height: 32px;
-  background-color: #e4e4e6;
-  border: 1px solid #e4e4e6;
+  background-color: var(--color-surface-1);
+  border: 1px solid var(--color-border-primary);
   border-radius: 0;
   display: flex;
   align-items: center;
@@ -562,9 +562,9 @@ nav {
   gap: 4px;
   padding: 8px;
   cursor: pointer;
-  font-family: 'Roboto Flex', sans-serif;
-  font-size: 16px;
-  color: #19202b;
+  font-family: var(--text-body-font-family);
+  font-size: var(--text-body-md-size);
+  color: var(--color-text-primary);
   z-index: 1000;
   /* Ensure it stays fixed during body scroll */
   transform: none;
@@ -573,8 +573,8 @@ nav {
 }
 
 .settings-button .icon {
-  font-family: 'Material Symbols Sharp', sans-serif;
-  font-size: 18px;
+  font-family: var(--icon-font-family);
+  font-size: var(--icon-size-sm);
   line-height: 1;
 }
 
@@ -583,8 +583,8 @@ nav {
   top: 56px;
   right: 16px;
   width: 318px;
-  background: #ffffff;
-  border: 1px solid #e4e4e6;
+  background: var(--color-surface-page);
+  border: 1px solid var(--color-border-primary);
   border-radius: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 1001;
@@ -611,10 +611,15 @@ nav {
 }
 
 .settings-popover .color-picker {
-  background: #ffffff;
+  background: var(--color-surface-1);
   border-radius: 100px;
   padding: 4px;
   height: 40px;
+}
+
+/* Ensure the slider matches the popover control height */
+.settings-popover .hue-slider {
+  height: 100%;
 }
 
 .settings-popover .color-picker-content {
@@ -626,31 +631,23 @@ nav {
   border-radius: 100px;
 }
 
-.settings-popover .color-item:nth-child(1) { 
-  background: #fbf5ee; 
-}
-.settings-popover .color-item:nth-child(2) { 
-  background: #f0fbee; 
-}
-.settings-popover .color-item:nth-child(3) { 
-  background: #eef6fb; 
-}
-.settings-popover .color-item:nth-child(4) { 
-  background: #f7eefb; 
-}
+.settings-popover .color-item:nth-child(1) { background: var(--color-surface-a-secondary); }
+.settings-popover .color-item:nth-child(2) { background: var(--color-surface-b-secondary); }
+.settings-popover .color-item:nth-child(3) { background: var(--color-surface-c-secondary); }
+.settings-popover .color-item:nth-child(4) { background: var(--color-surface-d-secondary); }
 
 .settings-popover .color-item.custom {
-  background: #e4e4e6;
+  background: var(--color-surface-2);
   border: none;
 }
 
 .settings-popover .color-item.custom .icon {
-  color: #565e6a;
-  font-size: 20px;
+  color: var(--color-icon-secondary);
+  font-size: var(--icon-size-md);
 }
 
 .settings-popover .segmented-buttons {
-  border: 1px solid #e4e4e6;
+  border: 1px solid var(--color-border-primary);
   border-radius: 0;
   height: 40px;
 }
@@ -664,29 +661,18 @@ nav {
   padding: 0;
 }
 
-.settings-popover .segmented-button .icon {
-  font-size: 24px;
-}
-
+.settings-popover .segmented-button .icon { font-size: var(--icon-size-md); }
 .settings-popover .segmented-button .text {
-  font-size: 18px;
-  line-height: 1.4;
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-line-height);
 }
 
-.settings-popover .segmented-button.active {
-  background: #e4f5fb;
-  color: #006e9b;
-}
-
+.settings-popover .segmented-button.active { background: var(--color-surface-b-secondary); color: var(--color-text-base-b); }
 .settings-popover .segmented-button.active .icon,
-.settings-popover .segmented-button.active .text {
-  color: #006e9b;
-}
+.settings-popover .segmented-button.active .text { color: var(--color-text-base-b); }
 
 .settings-popover .segmented-button:not(.active) .icon,
-.settings-popover .segmented-button:not(.active) .text {
-  color: #19202b;
-}
+.settings-popover .segmented-button:not(.active) .text { color: var(--color-text-primary); }
 
 .settings-popover .color-slider {
   display: none !important;
@@ -702,7 +688,7 @@ nav {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--color-surface-backdrop);
   z-index: 999;
   display: none;
 }

@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!detailHeader) return;
       const headerName = (detailHeader.style.getPropertyValue('view-transition-name') || '').trim();
       if (headerName && headerName !== 'none') {
-        // Header container
-        detailHeader.style.setProperty('view-transition-class', 'post-header');
+        // Header container should share the same class as list cards
+        detailHeader.style.setProperty('view-transition-class', 'card');
         // Known parts
         const img = detailHeader.querySelector('img, .icon-placeholder');
         const title = detailHeader.querySelector('h1[class*="heading"]');
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
           target.style.setProperty('view-transition-name', last);
         }
         // Class hook for anchor snapshot
-        target.style.setProperty('view-transition-class', 'vt-card');
+        target.style.setProperty('view-transition-class', 'card');
         applyCardPartNames(target, last, true);
         // Persist in history.state for reliable reverse transitions
         try { writeVtToState({ page: 'listing', vt: last }); } catch {}

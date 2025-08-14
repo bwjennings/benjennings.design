@@ -46,7 +46,7 @@ select {
   padding: 8px;
   border-radius: 4px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: var(--text-body-weight);
   z-index: 1000;
   transition: top 0.3s;
 }
@@ -210,6 +210,8 @@ padding: 4dvw;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  /* Ensure header sizes to content, not full container */
+  height: auto;
   /* Match card corner radius for smoother cross-document morphs */
   border-radius: var(--radius-md);
   /* Isolate header for smoother cross-document morph */
@@ -242,11 +244,15 @@ padding: 4dvw;
 
   .thumbnail {
     width: 100%;
-    height: 150px;
+    /* Keep header image cropping aligned with card thumbnails */
+    object-fit: cover;
+    object-position: center;
+    /* Keep header image consistent with card thumbnails */
+    height: 120px;
     background: var(--color-surface-1);
     border-radius: var(--radius-none);
     overflow: hidden;
-    position: relative;
+  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -276,22 +282,22 @@ padding: 4dvw;
   }
   
   .icon-group.teal {
-    background: #007f63;
+    background: var(--color-surface-a);
   }
   
   .icon-group.purple {
-    background: #ae3ec9;
+    background: var(--color-surface-d);
   }
   
   .icon-group.blue {
-    background: #1c7ed6;
+    background: var(--color-surface-c);
   }
   
   .icon-group .icon {
     font-family: var(--icon-font-family);
-    font-size: 46px;
+    font-size: var(--icon-size-xl);
     color: var(--color-icon-onFill);
-    font-weight: 700;
+    font-weight: var(--icon-weight-lg);
     line-height: 1;
   }
 }

@@ -7,28 +7,27 @@ template.innerHTML = `
       font-family: var(--text-body-font-family);
     }
     
-    .settings-container {
-      position: relative;
-      width: 100%;
-      height: auto;
-      background: var(--color-surface-page);
-      border-radius: 32px;
-      padding: 8px;
+    .color-picker {
+      background: var(--color-surface-2);
       box-sizing: border-box;
-    }
-    
-    .settings-content {
       display: flex;
       flex-direction: row;
       gap: 8px;
-      align-items: center;
+      align-items: flex-start;
       justify-content: flex-start;
+      padding: 8px;
+      position: relative;
+      border-radius: 32px;
       width: 100%;
     }
     
-    .hue-slider-container {
-      flex: 1;
-      display: flex;
+    .color-picker::before {
+      content: '';
+      position: absolute;
+      border: 1px solid var(--color-border-secondary);
+      inset: 0;
+      pointer-events: none;
+      border-radius: 32px;
     }
     
     .hue-slider {
@@ -36,31 +35,52 @@ template.innerHTML = `
       appearance: none;
       cursor: grab;
       width: 100%;
-      height: 40px;
-      border-radius: 20px;
+      height: 100%;
+      border-radius: 24px;
       border: none;
       outline: none;
-      background: linear-gradient(to right in oklch longer hue,
-        oklch(60% 0.2 0),
-
-        oklch(60% 0.2 360));
-  }
+      background: none;
+      box-sizing: border-box;
+      flex: 1;
+      align-self: stretch;
+      min-width: 1px;
     }
     
     .hue-slider:active {
       cursor: grabbing;
     }
     
+    .thumb {
+      aspect-ratio: 1;
+      background: rgba(0, 0, 0, 0.4);
+      height: 31px;
+      position: relative;
+      border-radius: 99px;
+      flex-shrink: 0;
+    }
+    
+   
+    
+    /* WebKit track styled directly; use inset box-shadow to simulate padding */
+    .hue-slider::-webkit-slider-runnable-track {
+      height: 100%;
+      border-radius: 24px;
+      background: linear-gradient(to right in oklch longer hue,
+        oklch(60% 0.2 0),
+        oklch(60% 0.2 360));
+      box-shadow: inset 0 0 0 4px #fbf5ee;
+      border: none;
+    }
+
     .hue-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 24px;
-      height: 24px;
+      width: 39px;
+      height: 39px;
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.4);
       border: 4px solid #ffffff;
       cursor: pointer;
-      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
       transition: transform 0.15s ease;
     }
     
@@ -69,8 +89,8 @@ template.innerHTML = `
     }
     
     .hue-slider::-moz-range-thumb {
-      width: 24px;
-      height: 24px;
+      width: 39px;
+      height: 39px;
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.4);
       border: 4px solid #ffffff;
@@ -84,8 +104,8 @@ template.innerHTML = `
     }
     
     .hue-slider::-moz-range-track {
-      height: 32px;
-      border-radius: 20px;
+      height: 100%;
+      border-radius: 24px;
       border: none;
       background: linear-gradient(to right,
         hsl(0, 100%, 50%),
@@ -95,60 +115,88 @@ template.innerHTML = `
         hsl(240, 100%, 50%),
         hsl(300, 100%, 50%),
         hsl(360, 100%, 50%));
+      box-shadow: inset 0 0 0 4px #fbf5ee;
     }
     
-    .theme-buttons {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      justify-content: flex-start;
-      padding:8px;
-      background:var(--color-surface-2);
+    .segmented-button-group {
+      position: relative;
+      border-radius: 24px;
+      background: var(--color-surface-3);
+      flex-shrink: 0;
+      align-self: stretch;
+    }
+    
+    .segmented-button-group::before {
+      content: '';
+      position: absolute;
+      border: 1px solid var(--color-border-primary);
+      inset: 0;
+      pointer-events: none;
       border-radius: 24px;
     }
     
-    .theme-button {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: none;
-      cursor: pointer;
+    .segmented-buttons {
+      box-sizing: border-box;
       display: flex;
+      flex-direction: row;
+      gap: 4px;
       align-items: center;
       justify-content: center;
-      
+      overflow: hidden;
+      padding: 4px;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .segmented-button {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 8px;
+      position: relative;
+      border-radius: 32px;
+      width: 39px;
+      height: 39px;
+      flex-shrink: 0;
+      border: none;
+      cursor: pointer;
       background: none;
     }
     
-    .theme-button.active {
+    .segmented-button.active {
       background: var(--color-fill-a);
     }
     
-    .theme-button .icon {
+    .segmented-button .icon {
       font-family: 'Material Symbols Sharp', sans-serif;
-      font-size: 20px;
-      line-height: 1;
-      font-weight: 400;
+      line-height: 0;
+      position: relative;
+      flex-shrink: 0;
+      font-size: 22.66px;
       color: var(--color-icon-secondary);
+      text-align: left;
+      white-space: nowrap;
     }
     
-    .theme-button.active .icon {
-      color: var(--color-icon-onFill);
+    .segmented-button.active .icon {
+      color: rgba(255, 255, 255, 0.8);
     }
   </style>
   
-  <div class="settings-container">
-    <div class="settings-content">
-      <div class="hue-slider-container">
-        <input type="range" class="hue-slider" id="hue-slider" min="0" max="360" step="1" aria-label="Theme Color Hue">
-      </div>
-      
-      <div class="theme-buttons">
-        <button class="theme-button active" data-theme="light">
-          <span class="icon">light_mode</span>
+  <div class="color-picker">
+    <input type="range" class="hue-slider" id="hue-slider" min="0" max="360" step="1" aria-label="Theme Color Hue">
+    
+    <div class="segmented-button-group">
+      <div class="segmented-buttons">
+        <button class="segmented-button active" data-theme="light">
+          <div class="icon">light_mode</div>
         </button>
-        <button class="theme-button" data-theme="dark">
-          <span class="icon">dark_mode</span>
+        <button class="segmented-button" data-theme="dark">
+          <div class="icon">dark_mode</div>
         </button>
       </div>
     </div>

@@ -221,13 +221,19 @@
 
 p {
 
-  font-family: var(--body-medium-font-family, "Inter-Regular", sans-serif);
+  font-family: var(--text-body-font-family);
   font-size: var(--text-body-lg-size);
   line-height: var(--text-body-lg-line-height);
   font-weight: var(--text-body-weight);
 }
 
 .thumbnail {
+  /* Keep thumbnail cropping and centering consistent across views */
+  object-fit: cover;
+  object-position: center;
+  
+  
+  /* Card grid may constrain height; keep a soft cap */
   max-height: 120px;
 
   overflow: hidden;
@@ -260,8 +266,8 @@ p {
   font-size: 40cqw;
   font-variation-settings:
     'FILL' var(--icon-fill),
-    'wght' 700,
-    'GRAD' 200;
+    'wght' var(--icon-weight-lg),
+    'GRAD' var(--icon-grade-emphasis);
   overflow: hidden;
   display: flex;
   height: 150px;
@@ -319,7 +325,7 @@ slot[name="post"] {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xxxl);
-  font-size: var(--body-small-font-size);
+  font-size: var(--text-body-sm-size);
   overflow-y: auto;
   flex: 1 1 auto;
   align-items: center;
