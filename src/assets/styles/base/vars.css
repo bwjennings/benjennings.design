@@ -74,16 +74,16 @@
   --radius-lg: 12px;
 
   /* typography scale */
---font-size-1: clamp(0.64rem, -0.02vi + 0.65rem, 0.7rem);
---font-size-2: clamp(0.8rem, 0.12vi + 0.78rem, 0.94rem);
---font-size-3: clamp(1rem, 0.33vi + 0.93rem, 1.25rem);
---font-size-4: clamp(1.25rem, 0.67vi + 1.1rem, 1.7rem);
---font-size-5: clamp(1.56rem, 1.16vi + 1.29rem, 2.25rem);
---font-size-6: clamp(1.95rem, 1.9vi + 1.5rem, 3rem);
---font-size-7: clamp(2.44rem, 2.96vi + 1.73rem, 4rem);
---font-size-8: clamp(3.05rem, 4.49vi + 1.96rem, 5.35rem);
---font-size-9: clamp(3.81rem, 6.66vi + 2.18rem, 7.15rem);
---font-size-10: clamp(4.77rem, 9.72vi + 2.37rem, 9.5rem);
+--font-size-1: clamp(0.64rem, -0.065vi + 0.656rem, 0.598rem);
+--font-size-2: clamp(0.8rem, -0.005vi + 0.801rem, 0.797rem);
+--font-size-3: clamp(1rem, 0.096vi + 0.976rem, 1.063rem);
+--font-size-4: clamp(1.25rem, 0.256vi + 1.186rem, 1.416rem);
+--font-size-5: clamp(1.563rem, 0.501vi + 1.437rem, 1.888rem);
+--font-size-6: clamp(1.953rem, 0.867vi + 1.736rem, 2.517rem);
+--font-size-7: clamp(2.441rem, 1.405vi + 2.09rem, 3.355rem);
+--font-size-8: clamp(3.052rem, 2.185vi + 2.506rem, 4.472rem);
+--font-size-9: clamp(3.815rem, 3.302vi + 2.989rem, 5.961rem);
+--font-size-10: clamp(4.768rem, 4.888vi + 3.546rem, 7.946rem);
 
   /* heading text */
   --text-heading-weight: 550;
