@@ -24,7 +24,7 @@
   outline-color: var(--color-border-base);
   container-type: inline-size;
   transition: outline 500ms var(--timing-bounce);
-  transition-property: transform,outline;
+  transition-property: transform, outline;
   font-variation-settings: "GRAD" 0;
   color: var(--color-text-primary);
   gap: var(--spacing-xl);
