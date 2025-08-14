@@ -24,6 +24,7 @@
   outline-color: var(--color-border-base);
   container-type: inline-size;
   transition: outline 500ms var(--timing-bounce);
+  transition-property: transform,outline;
   font-variation-settings: "GRAD" 0;
   color: var(--color-text-primary);
   gap: var(--spacing-xl);
@@ -66,7 +67,7 @@
 
   &:active {
     outline-width: 16px;
-    transition: outline 300ms var(--timing-decelerate);
+    transition-duration: 300ms;
     perspective: 100px;
     /* Prefer 2D transform for better performance */
     transform: scale(0.98);
