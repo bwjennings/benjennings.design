@@ -108,7 +108,7 @@ u {
   text-align: center;
   transition-property: --icon-grade;
   transition-duration: inherit;
-  transition-timing-function: var(--timing-decelerate);
+  transition-timing-function: var(--transition-timing-style);
   font-family: var(--icon-font-family, "Material Symbols Sharp");
   font-size: var(--icon-size-lg);
 

@@ -104,7 +104,7 @@ site-navigation {
   border: 1px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition-timing-function: var(--timing-decelerate);
+  transition-timing-function: var(--transition-timing-style);
   transition-duration: 400ms;
   transition-property: background-color, outline-width, outline-color, font-variation-settings;
   outline-width: 0px;
@@ -361,47 +361,23 @@ nav {
 @media screen and (max-width: 800px), (max-height: 500px) {
   /* Completely remove site-navigation from page layout */
   site-navigation {
-    position: fixed !important;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 100;
     display: block !important;
     /* Remove from grid layout completely */
-    grid-area: none !important;
-    grid-column: unset !important;
-    grid-row: unset !important;
-    /* Ensure stable fixed positioning */
-    transform: none;
+   
     will-change: auto;
     contain: layout;
     container-type: inline-size;
     container-name: navigation;
   }
 
-  /* Page container - content only, no navigation */
-  .page-container {
-    overflow: visible;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    grid-template-areas: 
-      "header"
-      "content";
-    min-height: auto;
-    max-height: none;
-    /* Remove perspective and transforms that interfere with fixed positioning */
-    perspective: none !important;
-    transform: none !important;
-    transform-style: flat !important;
-  }
 
-  /* Main content flows naturally */
-  main {
-    height: auto;
-    min-height: calc(100dvh - 80px - env(safe-area-inset-bottom));
-    padding-bottom: 0;
-    overflow: visible;
-  }
+
+  
 
   /* Mobile navigation container */
   .sidebar {
@@ -486,7 +462,7 @@ nav {
     backface-visibility: hidden;
     contain: paint;
     /* Do not animate font variation axes on icons */
-    transition: color 200ms var(--transition-timing);
+    transition: color 200ms var(--transition-timing-style);
   }
 
     .title {

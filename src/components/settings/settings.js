@@ -81,7 +81,7 @@ template.innerHTML = `
       background: rgba(0, 0, 0, 0.4);
       border: 4px solid #ffffff;
       cursor: pointer;
-      transition: transform 0.15s ease;
+      transition: transform 0.15s var(--transition-timing-motion);
     }
     
     .hue-slider:hover::-webkit-slider-thumb {
@@ -96,7 +96,7 @@ template.innerHTML = `
       border: 4px solid #ffffff;
       cursor: pointer;
       box-shadow: none;
-      transition: transform 0.15s ease;
+      transition: transform 0.15s var(--transition-timing-motion);
     }
     
     .hue-slider:hover::-moz-range-thumb {

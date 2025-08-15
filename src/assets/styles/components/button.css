@@ -21,7 +21,7 @@
   -webkit-user-select: none;
   outline: 0px solid var(--color-border-primary);
 
-  transition: outline var(--timing-bounce) 300ms;
+  transition: outline 300ms var(--transition-timing-style);
 
   &:hover {
     outline: 4px solid var(--color-border-primary);

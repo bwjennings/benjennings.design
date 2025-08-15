@@ -18,7 +18,7 @@ dialog {
     transform,
     filter,
     overlay;
-  transition-timing-function: var(--timing-decelerate);
+  transition-timing-function: var(--transition-timing-motion);
   transition-duration: 700ms;
   transition-behavior: allow-discrete;
 
@@ -55,7 +55,7 @@ dialog {
   transform-style: preserve-3d;
   transform: perspective(1000px) translateZ(-200px) translateY(0dvh);
   transition-property: opacity, transform, filter;
-  transition-timing-function: var(--timing-decelerate);
+  transition-timing-function: var(--transition-timing-motion);
   transition-duration: 700ms;
   transition-behavior: allow-discrete;
 }
@@ -88,7 +88,7 @@ dialog::backdrop {
 
 dialog[open]::backdrop {
   backdrop-filter: blur(24px);
-  transition-timing-function: var(--timing-decelerate);
+  transition-timing-function: var(--transition-timing-style);
 
 
   background-color: var(--color-surface-backdrop);
@@ -185,7 +185,7 @@ dialog[open]::backdrop {
 
   dialog::backdrop {
     backdrop-filter: initial;
-    transition-timing-function: var(--timing-decelerate);
+    transition-timing-function: var(--transition-timing-style);
     transition-duration: 500ms;
 
     background-color: var(--color-surface-backdrop);
@@ -193,7 +193,7 @@ dialog[open]::backdrop {
 
   dialog[open]::backdrop {
     backdrop-filter: blur(8px);
-    transition-timing-function: var(--timing-decelerate);
+    transition-timing-function: var(--transition-timing-style);
     transition-duration: 500ms;
 
     background-color: var(--color-surface-backdrop);

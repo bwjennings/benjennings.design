@@ -23,8 +23,9 @@
   outline-width: 0px;
   outline-color: var(--color-border-base);
   container-type: inline-size;
-  transition: outline 500ms var(--timing-bounce);
   transition-property: transform, outline;
+  transition-duration: 500ms;
+  transition-timing-function: var(--transition-timing-motion), var(--transition-timing-style);
   font-variation-settings: "GRAD" 0;
   color: var(--color-text-primary);
   gap: var(--spacing-xl);
@@ -290,7 +291,7 @@ p {
   font-family: var(--icon-font-family);
   color: var(--color-surface-a-secondary);
   font-size: 50cqw;
-  transition: 200ms var(--timing-decelerate);
+  transition: 200ms var(--transition-timing-style);
   transition-property: font-variation-settings;
   rotate: -30deg;
 }

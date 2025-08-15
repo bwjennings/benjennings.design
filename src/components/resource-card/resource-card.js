@@ -24,8 +24,8 @@
           border: 1px solid var(--color-border-primary);
           border-radius:var(--radius-md);
           container-type: inline-size;
-          transition: outline 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58),
-            font-variation-settings 300ms cubic-bezier(0.46, 1.33, 0.68, 1.58);
+          transition: outline 300ms var(--transition-timing-style),
+            font-variation-settings 300ms var(--transition-timing-style);
           font-variation-settings: "GRAD" 0;
           color: var(--color-text-primary);
           overflow: hidden;
@@ -81,7 +81,7 @@
           line-height: 100%;
           rotate: -20deg;
           opacity: 0.5;
-          animation: iconAnimate 5s var(--timing-decelerate) infinite alternate;
+          animation: iconAnimate 5s var(--transition-timing-motion) infinite alternate;
           font-weight: var(--icon-weight-lg);
           font-size: 130cqw;
 

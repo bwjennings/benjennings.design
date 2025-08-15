@@ -23,7 +23,7 @@ template.innerHTML = `
       outline-style: solid;
       outline-width: 0px;
       outline-color: var(--color-border-base);
-      transition: outline 500ms var(--timing-bounce);
+      transition: outline 500ms var(--transition-timing-style);
       color: var(--color-text-base);
       gap: var(--spacing-lg);
       overflow: hidden;
@@ -40,7 +40,7 @@ template.innerHTML = `
 
     .icon-card:active {
       outline-width: 16px;
-      transition: outline 300ms var(--timing-decelerate);
+      transition: outline 300ms var(--transition-timing-style);
     }
 
     .icon-box {

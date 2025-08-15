@@ -48,7 +48,7 @@ select {
   text-decoration: none;
   font-weight: var(--text-body-weight);
   z-index: 1000;
-  transition: top 0.3s;
+  transition: top 0.3s var(--transition-timing-motion);
 }
 
 .skip-link:focus {
@@ -97,7 +97,7 @@ body {
 .page-container {
 
   box-sizing: border-box;
-  min-height: 100dvh;
+  
   display: grid;
   grid-template-columns: clamp(350px, 20dvw, 400px) 1fr;
   grid-template-rows: auto minmax(0, 1fr);
@@ -106,30 +106,25 @@ body {
     "sidebar content"
   ;
   perspective: 1500px;
-  max-height: 100dvh;
+  /* Allow the page to grow with content; body uses this class */
+  /* Previously set to 100dvh which capped body height to viewport */
+  max-height: none;
   /* lock container to viewport height */
   container-type: inline-size;
 
 
 
 
-  &.detail-page {
-
-    grid-template-areas:
-      "sidebar content"
-      "sidebar content"
-    ;
-
-  }
+  
 }
 
 main {
   grid-area: content;
-  
-  overflow: scroll;
-  height: 100%;
-  min-height: 0;
-  scrollbar-gutter: stable;
+  /* Let content define height; avoid nested scrolling */
+  overflow: visible;
+  height: auto;
+
+
 }
 
 .page-items {
@@ -381,7 +376,7 @@ figure {
     min-height: 100dvh;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    
     /* Ensure fixed elements work properly */
     position: relative;
     transform: none;
@@ -392,9 +387,9 @@ figure {
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
     padding-bottom: 0;
-    overflow: visible;
-    height: auto;
-    min-height: calc(100dvh - 80px - env(safe-area-inset-bottom));
+    overflow: scroll;
+   
+    
   }
 
   .main-content {
@@ -405,17 +400,14 @@ figure {
 
   .page-container {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: 1fr auto;
     grid-template-areas:
       
       "content"
       "sidebar"
     ;
-    margin-bottom: 0;
-    min-height: auto;
     max-height: none;
-    /* Ensure no transforms that could affect fixed positioning */
-    transform: none;
+    /* Remove perspective on mobile to allow fixed positioning to work */
     perspective: none;
   }
 

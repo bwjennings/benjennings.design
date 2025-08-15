@@ -6,11 +6,13 @@
   view-transition-name: none;
   /* Single source of truth for VT timing */
   --transition-duration: 600ms;
-  --transition-timing: cubic-bezier(0.4, 1.20, 0.22, 1.00);
+
 }
-nav{
+
+nav {
   view-transition-name: nav-container;
 }
+
 
 /* Keep navigation elements unnamed at the container level; only the
    moving highlight (.nav-background) participates in transitions. */
@@ -25,18 +27,18 @@ nav{
 ::view-transition {
   /* Mirror variables here for broader support (also in :root) */
   --transition-duration: 500ms;
-  --transition-timing: cubic-bezier(0.4, 1.20, 0.22, 1.00);
+
 }
 
 ::view-transition-group(*) {
-  animation-timing-function: var(--transition-timing);
+  animation-timing-function: var(--transition-timing-motion);
 }
 
 /* Customize timing for the navigation highlight shared element */
 ::view-transition-group(nav-background),
 ::view-transition-group(.nav-background) {
   animation-duration: var(--transition-duration);
-  animation-timing-function: var(--transition-timing);
+  animation-timing-function: var(--transition-timing-motion);
 }
 
 /* Optional: allow separate duration/timing if desired */
@@ -54,17 +56,8 @@ main {
   will-change: opacity, transform;
 }
 
-/* Optional page timing via class-based hook */
-::view-transition-group(page),
-::view-transition-group(.page) {
-  animation-duration: var(--transition-duration);
-  animation-timing-function: var(--transition-timing);
-}
 
-::view-transition-old(*),
-::view-transition-new(*) {
-  height: 100%;
-}
+
 
 ::view-transition-old(.title),
 ::view-transition-new(.title) {
@@ -79,14 +72,13 @@ html.theme-transition {
 
 ::view-transition-group(theme) {
   animation-duration: 300ms;
-  animation-timing-function: cubic-bezier(0.34, 0.88, 0.34, 1.00);
+  animation-timing-function: var(--transition-timing-style);
 }
 
 
-/* Avoid running page-level animations during a theme-only transition */
-/* Use :root to target the transition pseudos correctly */
-:root.theme-transition::view-transition-old(page),
-:root.theme-transition::view-transition-new(page) {
+/* Avoid running root fade during a theme-only transition */
+:root.theme-transition::view-transition-old(root),
+:root.theme-transition::view-transition-new(root) {
   animation: none !important;
 }
 
@@ -100,13 +92,24 @@ html.theme-transition * {
 
 
 
-::view-transition-old(page) {
-  animation: blur-out var(--transition-duration) var(--transition-timing);
+/* Root-level cross-fade without motion */
+::view-transition-old(.page) {
+  animation:
+    page-exit-opacity-blur var(--transition-duration) var(--transition-timing-style) 0s 1 normal both,
+    page-exit-scale var(--transition-duration) var(--transition-timing-motion) 0s 1 normal both;
 }
 
-::view-transition-new(page) {
-  animation: blur-in var(--transition-duration) var(--transition-timing);
+::view-transition-new(.page) {
+  animation:
+    page-enter-opacity-blur var(--transition-duration) var(--transition-timing-style) 0s 1 normal both,
+    page-enter-scale var(--transition-duration) var(--transition-timing-motion) 0s 1 normal both;
 }
+
+
+
+/* Ensure snapshots render as-is without cropping/alignment shifts */
+::view-transition-old(.page),
+::view-transition-new(.page) {}
 
 
 
@@ -119,7 +122,7 @@ html.theme-transition * {
 
 ::view-transition-group(*) {
   animation-duration: var(--transition-duration);
-  animation-timing-function: var(--transition-timing);
+  animation-timing-function: var(--transition-timing-motion);
   isolation: isolate;
   overflow: clip;
 
@@ -149,45 +152,65 @@ html.theme-transition * {
 
 
 
-@keyframes blur-out {
+@keyframes page-exit-opacity-blur {
   from {
     opacity: 1;
     filter: blur(0px);
-    transform: scale(1);
-  }
-
-  30% {
-    opacity: 0;
-    filter: blur(4px);
-    transform: scale(0.99);
-  }
-
-  to {
-    opacity: 0;
-    filter: blur(4px);
-    transform: scale(0.99);
-  }
-}
-
-@keyframes blur-in {
-  from {
-    opacity: 0;
-    filter: blur(4px);
-    transform: scale(0.98);
   }
 
   40% {
     opacity: 0;
-    filter: blur(4px);
-    transform: scale(0.98);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 0;
+    filter: blur(8px);
+  }
+}
+
+@keyframes page-exit-scale {
+  from {
+    transform: scale(1);
+  }
+
+  
+
+  to {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes page-enter-opacity-blur {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+
+  30% {
+    opacity: 0;
+    filter: blur(8px);
   }
 
   to {
     opacity: 1;
     filter: blur(0px);
+  }
+}
+
+@keyframes page-enter-scale {
+  from {
+    transform: scale(0.95);
+  }
+
+  
+
+  to {
     transform: scale(1);
   }
 }
+
+/* (Removed mobile override to keep code simple and consistent) */
 
 
 @media (prefers-reduced-motion: reduce) {
@@ -204,8 +227,8 @@ html.theme-transition * {
 }
 
 /* During history/BFCache restore, avoid page group animations briefly */
-html.restoring ::view-transition-old(page),
-html.restoring ::view-transition-new(page) {
+html.restoring ::view-transition-old(root),
+html.restoring ::view-transition-new(root) {
   animation: none !important;
 }
 
@@ -216,6 +239,7 @@ html.restoring ::view-transition-new(page) {
 ::view-transition-group(.heading) {
   overflow: visible;
 }
+
 ::view-transition-group(.thumbnail) {
   overflow: clip;
 }
@@ -223,14 +247,13 @@ html.restoring ::view-transition-new(page) {
 ::view-transition-old(.heading),
 ::view-transition-old(.thumbnail),
 ::view-transition-old(.badge-group) {
-  animation: card-header-out var(--transition-duration) var(--transition-timing);
+  animation: card-header-out var(--transition-duration) var(--transition-timing-motion);
 }
 
 ::view-transition-new(.heading),
 ::view-transition-new(.thumbnail),
 ::view-transition-new(.badge-group) {
-
-  animation: card-header-in var(--transition-duration) var(--transition-timing);
+  animation: card-header-in var(--transition-duration) var(--transition-timing-motion);
 }
 
 
