@@ -19,7 +19,7 @@ dialog {
     filter,
     overlay;
   transition-timing-function: var(--transition-timing-motion);
-  transition-duration: 700ms;
+  transition-duration: var(--transition-duration);
   transition-behavior: allow-discrete;
 
 
@@ -53,10 +53,10 @@ dialog {
   margin: auto;
   filter: blur(20px);
   transform-style: preserve-3d;
-  transform: perspective(1000px) translateZ(-200px) translateY(0dvh);
+  transform: translateY(-24px);
   transition-property: opacity, transform, filter;
   transition-timing-function: var(--transition-timing-motion);
-  transition-duration: 700ms;
+  transition-duration: var(--transition-duration);
   transition-behavior: allow-discrete;
 }
 
@@ -71,7 +71,7 @@ dialog[open] {
 
 [popover]:popover-open {
   opacity: 1;
-  
+  transform: translateY(0);
   filter: blur(0px);
 }
 
@@ -79,7 +79,7 @@ dialog[open] {
 
 dialog::backdrop {
   backdrop-filter: initial;
-  transition-duration: 500ms;
+  transition-duration: var(--transition-duration);
 
   background-color: transparent;
 
@@ -89,8 +89,7 @@ dialog::backdrop {
 dialog[open]::backdrop {
   backdrop-filter: blur(24px);
   transition-timing-function: var(--transition-timing-style);
-
-
+  transition-duration: var(--transition-duration);
   background-color: var(--color-surface-backdrop);
 }
 
@@ -105,9 +104,18 @@ dialog[open]::backdrop {
 
 @starting-style {
   [popover]:popover-open {
-    transform: perspective(1000px) translateZ(-200px) translateY(0dvh);
+    transform: translateY(-24px);
     opacity: 0;
     filter: blur(24px);
+  }
+}
+
+/* Animate popover closing (reverse) */
+@starting-style {
+  [popover] {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0px);
   }
 }
 
@@ -128,7 +136,7 @@ dialog[open]::backdrop {
   justify-content: space-between;
   color: var(--color-text-primary);
   font-size: var(--text-heading-md-size);
-  font-weight: var(--text-heading-weight);
+  font-weight: var(--text-heading-md-weight);
 }
 
 .dialog-content {
@@ -151,7 +159,7 @@ dialog[open]::backdrop {
     min-width: 0px;
     border: 0px;
     border-top: 1px solid var(--color-border-primary);
-    transition-duration: 600ms;
+    transition-duration: var(--transition-duration);
     ;
 
     form {
@@ -163,9 +171,7 @@ dialog[open]::backdrop {
       min-height: 50dvh;
     }
 
-    ::slotted([slot="post"]) {
-      padding: var(--spacing-lg);
-    }
+    /* Removed unused ::slotted styling (no shadow host uses this file) */
 
     header {
       padding: var(--spacing-lg);
@@ -186,7 +192,7 @@ dialog[open]::backdrop {
   dialog::backdrop {
     backdrop-filter: initial;
     transition-timing-function: var(--transition-timing-style);
-    transition-duration: 500ms;
+    transition-duration: var(--transition-duration);
 
     background-color: var(--color-surface-backdrop);
   }
@@ -194,7 +200,7 @@ dialog[open]::backdrop {
   dialog[open]::backdrop {
     backdrop-filter: blur(8px);
     transition-timing-function: var(--transition-timing-style);
-    transition-duration: 500ms;
+    transition-duration: var(--transition-duration);
 
     background-color: var(--color-surface-backdrop);
   }
@@ -203,7 +209,7 @@ dialog[open]::backdrop {
     dialog[open]::backdrop {
       backdrop-filter: initial;
       background-color: transparent;
-      transition-duration: 500ms;
+      transition-duration: var(--transition-duration);
 
     }
   }
@@ -215,11 +221,34 @@ dialog[open]::backdrop {
     }
   }
 
-  @starting-style {
-    [popover]:popover-open {
-      transform: perspective(500px) translateZ(0px) translateY(100dvh);
-    }
+[popover]:popover-open {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+[popover] {
+
+  /* Final state of the exit animation */
+  opacity: 0;
+  transform: translateY(-100%);
+
+  transition:
+    opacity var(--transition-duration) var(--transition-timing-motion),
+    transform var(--transition-duration) var(--transition-timing-motion),
+    filter var(--transition-duration) var(--transition-timing-motion),
+    overlay var(--transition-duration) var(--transition-timing-style) allow-discrete,
+    display var(--transition-duration) var(--transition-timing-style) allow-discrete;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+/* Include after the [popover]:popover-open rule */
+@starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+    transform: translateY(-100%);
   }
+}
 
   @keyframes in {
     from {

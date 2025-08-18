@@ -34,7 +34,7 @@ u {
   margin: 0;
   font-family: var(--text-heading-font-family);
   font-size: var(--text-heading-lg-size);
-  font-weight: var(--text-heading-weight);
+  font-weight: var(--text-heading-lg-weight);
   line-height: var(--text-heading-lg-line-height);
   text-wrap: balance;
 
@@ -46,8 +46,15 @@ u {
   font-optical-sizing: auto;
   font-style: normal;
 
+  &.xs {
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line-height);
+    font-weight: var(--text-body-weight);
+    margin: var(--spacing-xl) 0 var(--spacing-md) 0;
+  }
+
   &.sm {
-    font-weight: var(--text-heading-weight);
+    font-weight: var(--text-heading-sm-weight);
     font-size: var(--text-heading-sm-size);
     line-height: var(--text-heading-sm-line-height);
   }
@@ -55,12 +62,13 @@ u {
   &.md {
     font-size: var(--text-heading-md-size);
     line-height: var(--text-heading-md-line-height);
-    font-weight: var(--text-heading-weight);
+    font-weight: var(--text-heading-md-weight);
   }
 
   &.xl {
     font-size: var(--text-heading-xl-size);
     line-height: var(--text-heading-xl-line-height);
+    font-weight: var(--text-heading-xl-weight);
   }
 
   &.secondary {
@@ -111,7 +119,6 @@ u {
   transition-timing-function: var(--transition-timing-style);
   font-family: var(--icon-font-family, "Material Symbols Sharp");
   font-size: var(--icon-size-lg);
-
   font-style: normal;
   font-weight: var(--icon-weight-lg);
   line-height: 100%;
@@ -119,6 +126,7 @@ u {
     "FILL" var(--icon-fill),
     "GRAD" var(--icon-grade);
   font-optical-sizing: auto;
+
 
   &.xl {
     font-size: var(--icon-size-xl);
@@ -144,13 +152,7 @@ u {
   }
 }
 
-/* Additional heading sizes */
-.heading.xs {
-  font-size: var(--text-body-lg-size);
-  line-height: var(--text-body-lg-line-height);
-  font-weight: var(--text-body-weight);
-  margin: var(--spacing-xl) 0 var(--spacing-md) 0;
-}
+
 
 /* List styles for body text */
 ul.body,

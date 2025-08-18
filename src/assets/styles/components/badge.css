@@ -2,11 +2,12 @@
     text-overflow: ellipsis;
     overflow: hidden;
     text-wrap: nowrap;
-    height: 28px;
+    height: auto;
     background-color: var(--color-fill-b);
     color: var(--color-text-base-b);
     display: flex;
-    padding: var(--spacing-x-small, 4px) var(--spacing-small, 8px) var(--spacing-x-small, 4px) var(--spacing-x-small, 4px);
+    padding: var(--spacing-xs);
+    padding-right: var(--spacing-sm);
     justify-content: center;
     align-items: center;
     gap: var(--spacing-xs, 4px);
@@ -26,9 +27,7 @@
             color: var(--color-text-base-b)
         }
     
-        ::slotted {
-            text-overflow: ellipsis;
-        }
+        /* Removed invalid ::slotted usage (not in shadow DOM) */
     }
 
     &.primary {
@@ -86,26 +85,26 @@
 
 
 .badge-group {
-  /* Make the transition snapshot identical between list and header */
+  /* Inline flex group */
   display: inline-flex;
   flex-wrap: wrap;
   gap: var(--spacing-sm);
   align-items: center;
-  /* Avoid stretch in flex parents; keep box sized to content */
+  /* No stretch */
   align-self: flex-start;
 }
 
-/* Ensure header context doesn't stretch the group to full width */
+/* Header: no stretch */
 .post-header .badge-group {
   align-self: flex-start;
 }
 
-/* Explicitly mirror in cards (grid children) for consistency */
+/* Cards: no stretch */
 .card .badge-group {
   align-self: flex-start;
 }
 
-/* Match card color variants so badges inherit the card's palette */
+/* Match card variants */
 :is(.card, .post-header).color1 .badge {
   background-color: var(--color-surface-a-secondary);
   color: var(--color-text-base);
@@ -116,31 +115,28 @@
 }
 
 :is(.card, .post-header).color2 .badge {
-  /* Equivalent to .badge.accent-1 */
   background-color: var(--color-surface-b-secondary);
   color: var(--color-text-base-b);
   border: 1px solid var(--color-border-base-b);
 }
 :is(.card, .post-header).color2 .badge span {
-  color: var(--color-icon-base-2);
+  color: var(--color-icon-base-b);
 }
 
 :is(.card, .post-header).color3 .badge {
-  /* Equivalent to .badge.accent-2 */
   background-color: var(--color-surface-c-secondary);
   color: var(--color-text-base-c);
   border: 1px solid var(--color-border-base-c);
 }
 :is(.card, .post-header).color3 .badge span {
-  color: var(--color-icon-base-3);
+  color: var(--color-icon-base-c);
 }
 
 :is(.card, .post-header).color4 .badge {
-  /* Equivalent to .badge.accent-3 */
   background-color: var(--color-surface-d-secondary);
   color: var(--color-text-base-d);
   border: 1px solid var(--color-border-base-d);
 }
 :is(.card, .post-header).color4 .badge span {
-  color: var(--color-icon-base-4);
+  color: var(--color-icon-base-d);
 }

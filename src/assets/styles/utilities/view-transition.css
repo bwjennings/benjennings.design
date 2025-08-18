@@ -4,7 +4,7 @@
 
 :root {
   view-transition-name: none;
-  /* Single source of truth for VT timing */
+  /* View-transition timing */
   --transition-duration: 600ms;
 
 }
@@ -14,34 +14,30 @@ nav {
 }
 
 
-/* Keep navigation elements unnamed at the container level; only the
-   moving highlight (.nav-background) participates in transitions. */
+/* Only .nav-background participates */
 
 
-/* match-element only works for same-document transitions, not cross-document */
-/* Keeping for potential future same-document usage */
+/* match-element is for same-document only */
 
 
 
 
 ::view-transition {
-  /* Mirror variables here for broader support (also in :root) */
+  /* Mirror variables */
   --transition-duration: 500ms;
-
 }
 
 ::view-transition-group(*) {
   animation-timing-function: var(--transition-timing-motion);
 }
 
-/* Customize timing for the navigation highlight shared element */
+/* Nav highlight timing */
 ::view-transition-group(nav-background),
 ::view-transition-group(.nav-background) {
   animation-duration: var(--transition-duration);
   animation-timing-function: var(--transition-timing-motion);
 }
 
-/* Optional: allow separate duration/timing if desired */
 ::view-transition-old(nav-background),
 ::view-transition-new(nav-background),
 ::view-transition-old(.nav-background),
@@ -49,10 +45,10 @@ nav {
 
 main {
   view-transition-name: page;
-  /* Reuse existing label for scalable styling */
+  /* Label for styling */
   view-transition-class: page;
   contain: layout style paint;
-  /* Improve compositing during cross-document transitions */
+  /* Compositing hints */
   will-change: opacity, transform;
 }
 
@@ -64,9 +60,9 @@ main {
   object-position: left;
 }
 
-/* Theme toggle: enable a short root cross-fade when switching schemes */
+/* Theme toggle */
 html.theme-transition {
-  /* Temporarily name the root for same-document theme transitions */
+  /* Temporary root name */
   view-transition-name: theme;
 }
 
@@ -76,15 +72,13 @@ html.theme-transition {
 }
 
 
-/* Avoid running root fade during a theme-only transition */
+/* Disable root fade for theme */
 :root.theme-transition::view-transition-old(root),
 :root.theme-transition::view-transition-new(root) {
   animation: none !important;
 }
 
-/* During a theme-only transition, prevent any descendant from being a named
-   shared element so only the root crossfades. This covers nav background,
-   card targets, and any other named elements. */
+/* Limit to root during theme transition */
 html.theme-transition * {
   view-transition-name: none !important;
 }
@@ -92,7 +86,7 @@ html.theme-transition * {
 
 
 
-/* Root-level cross-fade without motion */
+/* Root cross-fade */
 ::view-transition-old(.page) {
   animation:
     page-exit-opacity-blur var(--transition-duration) var(--transition-timing-style) 0s 1 normal both,
@@ -107,9 +101,12 @@ html.theme-transition * {
 
 
 
-/* Ensure snapshots render as-is without cropping/alignment shifts */
-::view-transition-old(.page),
-::view-transition-new(.page) {}
+/* Preserve snapshot alignment */
+::view-transition-old(.card),
+::view-transition-new(.card) {
+height: 100%;
+border-radius: 8px;
+}
 
 
 
@@ -124,20 +121,16 @@ html.theme-transition * {
   animation-duration: var(--transition-duration);
   animation-timing-function: var(--transition-timing-motion);
   isolation: isolate;
-  overflow: clip;
-
+  
 }
 
-/* Handle aspect-ratio changes for thumbnails per Jake Archibald's guidance */
+/* Thumbnail aspect-ratio */
 ::view-transition-group(.thumbnail) {
-  /* Clip the image snapshots as they overflow the group during resize */
   overflow: clip;
-  /* Give a little margin to avoid clipping antialiasing at edges */
 }
 
 ::view-transition-old(.thumbnail),
 ::view-transition-new(.thumbnail) {
-  /* Match the group's block size while preserving intrinsic ratio */
   object-fit: cover;
   object-position: center;
   width: 100%;
@@ -210,12 +203,12 @@ html.theme-transition * {
   }
 }
 
-/* (Removed mobile override to keep code simple and consistent) */
+/* Mobile override removed */
 
 
 @media (prefers-reduced-motion: reduce) {
 
-  /* Disable cross-document transitions entirely for reduced motion */
+  /* Reduced motion: disable */
   @view-transition {
     navigation: none;
   }
@@ -226,7 +219,7 @@ html.theme-transition * {
   }
 }
 
-/* During history/BFCache restore, avoid page group animations briefly */
+/* BFCache restore: disable root anim */
 html.restoring ::view-transition-old(root),
 html.restoring ::view-transition-new(root) {
   animation: none !important;
@@ -234,8 +227,7 @@ html.restoring ::view-transition-new(root) {
 
 
 
-/* Shared-element: card title → post header title only */
-/* Designs (titles) */
+/* Shared elements */
 ::view-transition-group(.heading) {
   overflow: visible;
 }
@@ -245,21 +237,18 @@ html.restoring ::view-transition-new(root) {
 }
 
 ::view-transition-old(.heading),
-::view-transition-old(.thumbnail),
-::view-transition-old(.badge-group) {
+::view-transition-old(.thumbnail)
+ {
   animation: card-header-out var(--transition-duration) var(--transition-timing-motion);
 }
 
 ::view-transition-new(.heading),
-::view-transition-new(.thumbnail),
-::view-transition-new(.badge-group) {
+::view-transition-new(.thumbnail) {
   animation: card-header-in var(--transition-duration) var(--transition-timing-motion);
 }
 
 
-/* Card → Post Header morph
-   - Outgoing (card) slightly scales and fades
-   - Incoming (header) grows from the card and settles with a soft pop */
+/* Card→Header keyframes */
 @keyframes card-header-out {
   from {
     opacity: 1;

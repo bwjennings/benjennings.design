@@ -36,7 +36,7 @@ select {
   outline: 4px solid var(--color-border-primary-hover);
 }
 
-/* Skip link for accessibility */
+/* Skip link */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -102,7 +102,7 @@ body {
   grid-template-columns: clamp(350px, 20dvw, 400px) 1fr;
   grid-template-rows: auto minmax(0, 1fr);
   grid-template-areas:
-    "sidebar header"
+   
     "sidebar content"
   ;
   perspective: 1500px;
@@ -120,7 +120,7 @@ body {
 
 main {
   grid-area: content;
-  /* Let content define height; avoid nested scrolling */
+  /* Content controls height */
   overflow: visible;
   height: auto;
 
@@ -171,8 +171,8 @@ padding: 4dvw;
 
 
 .post {
-  background-color: var(--color-surface-page);
-  color: var(--color-text-base-d);
+
+ 
  padding: 4dvw;
  margin-inline: auto;
   display: flex;
@@ -205,11 +205,11 @@ padding: 4dvw;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  /* Ensure header sizes to content, not full container */
+  /* Auto height */
   height: auto;
-  /* Match card corner radius for smoother cross-document morphs */
+  /* Corner radius */
   border-radius: var(--radius-md);
-  /* Isolate header for smoother cross-document morph */
+  /* Isolate paint */
   contain: paint;
   will-change: transform, opacity;
 
@@ -239,10 +239,9 @@ padding: 4dvw;
 
   .thumbnail {
     width: 100%;
-    /* Keep header image cropping aligned with card thumbnails */
+    /* Header media */
     object-fit: cover;
     object-position: center;
-    /* Keep header image consistent with card thumbnails */
     height: 120px;
     background: var(--color-surface-1);
     border-radius: var(--radius-none);
@@ -297,7 +296,7 @@ padding: 4dvw;
   }
 }
 
-/* Avoid painting offscreen content during transitions for better FPS */
+/* Defer offscreen rendering during transitions */
 .post .section,
 .post figure {
   content-visibility: auto;
@@ -346,8 +345,9 @@ figure {
   align-self: center;
   align-items: start;
   text-align: start;
-  gap: 5cqh;
-  padding-top: 30dvh;
+  gap: clamp(var(--spacing-xl), 4cqh, var(--spacing-xxxl));
+  padding-top: 14dvh;
+  padding-inline: 4dvw;
   transform-style: preserve-3d;
   background-color: var(--color-surface-page);
   scroll-snap-align: top;
@@ -364,6 +364,17 @@ figure {
     max-width: 50ch;
   }
 
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+  }
+
+  .heading {
+    text-wrap: balance;
+  }
+
 }
 
 
@@ -376,8 +387,6 @@ figure {
     min-height: 100dvh;
     overflow-y: auto;
     overflow-x: hidden;
-    
-    /* Ensure fixed elements work properly */
     position: relative;
     transform: none;
   }
@@ -407,7 +416,7 @@ figure {
       "sidebar"
     ;
     max-height: none;
-    /* Remove perspective on mobile to allow fixed positioning to work */
+    /* No perspective on mobile */
     perspective: none;
   }
 
@@ -428,7 +437,18 @@ figure {
     max-width: none;
     position: initial;
     margin-top: calc(20cqh - 40px);
-    padding: var(--spacing-lg) 0px;
+    padding: 4dvw;
+  }
+
+  /* Match mobile padding with page-title */
+  .page-items {
+    padding: 4dvw;
+  }
+
+  .welcome {
+    padding-top: 10dvh;
+    padding-inline: 4dvw;
+    gap: var(--spacing-xl);
   }
 }
 

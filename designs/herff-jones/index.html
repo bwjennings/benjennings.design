@@ -17,21 +17,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
 
-  <!-- Critical CSS - load first for view-transition-name definitions -->
+  <!-- Critical CSS -->
   <link href="../../src/assets/styles/base/vars.css" rel="stylesheet" />
   <link href="../../src/assets/styles/base/index.css" rel="stylesheet" />
 
-  <!-- Critical JavaScript - theme initialization -->
+  <!-- Theme init -->
   <script src="../../src/scripts/index.js"></script>
 
-  <!-- Web Components - preload then load -->
+  <!-- Web components -->
   <link rel="modulepreload" href="../../src/components/index.js" />
   <script type="module" src="../../src/components/index.js" blocking="render"></script>
 
-  <!-- View transition script - after CSS and components -->
+  <!-- View transitions -->
   <script src="../../src/scripts/view-transition.js"></script>
 
-  <!-- Modern speculation rules for prefetch and prerender -->
+  <!-- Speculation rules -->
   <script type="speculationrules">
     {
       "prefetch": [
@@ -50,7 +50,7 @@
     }
   </script>
 
-  <!-- Icons and Manifest -->
+  <!-- Icons and manifest -->
   <link rel="apple-touch-icon" sizes="180x180" href="../../public/favicons/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="../../public/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../../public/favicons/favicon-16x16.png" />
@@ -65,8 +65,8 @@
         <img id="project-image" class="thumbnail" src="../../public/herff-jones-thumbnail.png" alt="Herff Jones" style="view-transition-name: design-herff-jones-image" />
         <h1 id="project-title" class="heading" style="view-transition-name: design-herff-jones-title">Graduates need a cap and gown</h1>
         <div class="badge-group" style="view-transition-name: design-herff-jones-badges">
-          <div class="badge">Design System</div>
-          <div class="badge">CMS</div>
+          <div class="badge"><span>shopping_bag</span>E-commerce</div>
+          <div class="badge"><span>design_services</span>Design System</div>
         </div>
         <p class="body lg secondary">E-commerce tools for ordering regalia.</p>
       </header>

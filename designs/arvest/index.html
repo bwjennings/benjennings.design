@@ -18,21 +18,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
 
-  <!-- Critical CSS - load first for view-transition-name definitions -->
+  <!-- Critical CSS -->
   <link href="../../src/assets/styles/base/vars.css" rel="stylesheet" />
   <link href="../../src/assets/styles/base/index.css" rel="stylesheet" />
 
-  <!-- Critical JavaScript - theme initialization -->
+  <!-- Theme init -->
   <script src="../../src/scripts/index.js"></script>
 
-  <!-- Web Components - preload then load -->
+  <!-- Web components -->
   <link rel="modulepreload" href="../../src/components/index.js" />
   <script type="module" src="../../src/components/index.js" blocking="render"></script>
 
-  <!-- View transition script - after CSS and components -->
+  <!-- View transitions -->
   <script src="../../src/scripts/view-transition.js"></script>
 
-  <!-- Modern speculation rules for prefetch and prerender -->
+  <!-- Speculation rules -->
   <script type="speculationrules">
     {
       "prefetch": [
@@ -51,7 +51,7 @@
     }
   </script>
 
-  <!-- Icons and Manifest -->
+  <!-- Icons and manifest -->
   <link rel="apple-touch-icon" sizes="180x180" href="../../public/favicons/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="../../public/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../../public/favicons/favicon-16x16.png" />
@@ -64,100 +64,39 @@
     <div class="post">
       <a href="../" class="button" rel="prev">Back</a>
       <header id="project-header" data-project="arvest" class="card post-header color4" style="view-transition-name: design-arvest">
-        <img id="project-image" class="thumbnail" slot="media" src="../../public/arvest-thumbnail.png" alt="Arvest project thumbnail" style="view-transition-name: design-arvest-image" />
+        <img id="project-image" class="thumbnail" src="../../public/arvest-thumbnail.png" alt="Arvest project thumbnail" style="view-transition-name: design-arvest-image" />
         
-        <h1 id="project-title" class="heading" style="view-transition-name: design-arvest-title">The loan process is complicated</h1>
+        <h1 id="project-title" class="heading" style="view-transition-name: design-arvest-title">Bank employees need to manage loans</h1>
         <div class="badge-group" style="view-transition-name: design-arvest-badges">
-          <div class="badge">
-            <span>account_balance</span>
-            Financial
-          </div>
-          <div class="badge">
-            <span>cloud</span>
-            Salesforce
-          </div>
+          <div class="badge"><span>account_balance</span>Financial Services</div>
+          <div class="badge"><span>domain</span>Enterprise</div>
         </div>
-        <p class="body lg secondary">Centralizing lessons helped agencies customize content.</p>
+        <p class="body lg secondary">Streamlining loan management processes within Salesforce platform.</p>
       </header>
 
       <section class="section">
-        <h2 class="heading sm">Introduction</h2>
         <p class="body lg">
-          Police Legal Sciences has provided training for law enforcement for 25 years. They began with legal update 
-          training in only a few states and have since expanded their offerings and reach across North America.
+          The existing method for loan officers to create and manage loans required them to use several individual tools that required a lot of training. This unorganization caused a lot of frustration for employees as well as loan applicants.
         </p>
       </section>
 
       <section class="section">
-        <h2 class="heading sm">The problem</h2>
         <p class="body lg">
-          With their growth, managing and distributing content became increasingly challenging. They needed a more 
-          scalable solution to make management easier while also giving agencies more options, like adjusting content to 
-          fit their needs.
+          To address this challenge, these processes were moved to the Salesforce platform, allowing everything to be managed in one place. Over several months, I designed experiences to handle the complexities of the loan process, such as adding collateral, including co-borrowers, and ensuring compliance with all regulatory requirements.
         </p>
       </section>
 
       <section class="section">
-        <h2 class="heading sm">Content mapping</h2>
-        <p class="body lg">
-          I needed to understand the hierarchy of content organization, as it directly impacted how information is 
-          presented to different users. To ensure it was accurate, I worked with their team in FigJam to map out the 
-          relationships between key concepts. This visual map highlights the complexity of the system, from agencies to 
-          user groups, individual users, courses, and lessons.
-        </p>
         <figure>
-          <img src="../../public/arvest-thumbnail.png" alt="Content hierarchy mapping diagram" />
+          <div class="placeholder-image" style="width: 100%; height: 300px; background: #c0c0c0; border: 1px solid #e3e5e5; display: flex; align-items: center; justify-content: center; color: #666;">
+            [Loan management interface placeholder]
+          </div>
         </figure>
       </section>
 
       <section class="section">
-        <h2 class="heading sm">Finding the right amount of complexity</h2>
         <p class="body lg">
-          This system serves users with different levels of responsibility:
-        </p>
-        <ul class="body lg">
-          <li>Global Admins – Manage the entire system</li>
-          <li>Agency Admins – Oversee their own users.</li>
-          <li>Individuals – Simply consume content.</li>
-        </ul>
-        <p class="body lg">
-          As responsibilities decrease, the interface adjusts, providing robust controls for admins while remaining simple 
-          and intuitive for end users.
-        </p>
-
-        <h3 class="heading xs">Example of necessary complexity</h3>
-        <p class="body lg">
-          In this example, a lesson is being created at a global level and these details will appear the same for everyone on the platform.
-        </p>
-        <figure>
-          <img src="../../public/arvest-thumbnail.png" alt="Global lesson creation interface" />
-        </figure>
-
-        <p class="body lg">
-          That same lesson needs to be customized for an individual agency, allowing changes to due dates, assigned user groups, 
-          and other details.
-        </p>
-        <p class="body lg">
-          To visually distinguish an instance we introduced this modal pattern to represent an instance of content.
-        </p>
-        <figure>
-          <img src="../../public/arvest-thumbnail.png" alt="Agency-specific lesson customization" />
-          <figcaption class="body sm secondary">A global admin changing a lesson inside the Buffalo Police dept.</figcaption>
-        </figure>
-
-        <p class="body lg">
-          From the agency admin's perspective, the complexity is reduced since they only manage a single version of the lesson.
-        </p>
-        <figure>
-          <img src="../../public/arvest-thumbnail.png" alt="Simplified agency admin view" />
-          <figcaption class="body sm secondary">A global admin changing a lesson inside the Buffalo Police dept.</figcaption>
-        </figure>
-      </section>
-
-      <section class="section">
-        <h2 class="heading sm">Other resources</h2>
-        <p class="body lg">
-          I often think about this talk from Config a few years ago about balancing simplicity and business expertise
+          Working within Salesforce comes with certain design constraints. To create an intuitive experience, I first needed to understand what loan officers aimed to accomplish—for example, gathering all the required information for a collateral item. Then, using an understanding of what is possible with salesforce tools like Omniscripts, Flexcards, and Lightning Web Components, I then designed solutions that prioritized user needs while remaining realistic in terms of development effort.
         </p>
       </section>
 

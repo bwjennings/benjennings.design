@@ -4,13 +4,12 @@
     class ResourceCard extends HTMLElement {
       constructor() {
         super();
-        // Attach a shadow DOM tree to this instance
+        // Attach shadow DOM
         const shadow = this.attachShadow({ mode: "open" });
     
-        // Create a template element
+        // Template
         const template = document.createElement("template");
     
-        // Define the HTML structure in the template
         template.innerHTML = `
          <style>
         :host {
@@ -67,7 +66,7 @@
           flex: 1 0 0;
           padding: 24px;
           align-items: center;
-          gap: 16px; /* Optional spacing between items */
+          gap: 16px;
           min-width:200px
 }
         .title-group {
@@ -107,18 +106,18 @@
           </div>
         `;
     
-        // Clone the template content and attach it to the shadow DOM
+        // Attach template
         shadow.appendChild(template.content.cloneNode(true));
     
-        // Store references to the elements
-        this.boxIconElement = shadow.querySelector('.iconbox span'); // Icon in the box
+        // Cache refs
+        this.boxIconElement = shadow.querySelector('.iconbox span');
         this.titleElement = shadow.querySelector('.heading.sm');
         this.descriptionElement = shadow.querySelector('.description');
         this.buttonElement = shadow.querySelector('.button');
         this.buttonTextElement = shadow.querySelector('.button-text');
-        this.buttonIconElement = shadow.querySelector('.button .icon'); // Icon in the button
+        this.buttonIconElement = shadow.querySelector('.button .icon');
     
-        // Add click event listener to the button
+        // Button click
         if (this.buttonElement) {
           this.buttonElement.addEventListener('click', () => {
             const url = this.getAttribute('button-url');
@@ -156,13 +155,13 @@
             }
             break;
           case 'button-url':
-            // No action needed; the click handler reads the attribute directly
+            // Handled in click
             break;
         }
       }
     
       connectedCallback() {
-        // Initialize the component with current attribute values
+        // Init from attributes
         if (this.hasAttribute('icon') && this.boxIconElement) {
           this.boxIconElement.textContent = this.getAttribute('icon');
         }
@@ -178,5 +177,4 @@
       }
     }
     
-    // Define the new element
     customElements.define("resource-card", ResourceCard);

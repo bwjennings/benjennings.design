@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typography Reference — Text Styles</title>
+
+    <!-- Design system CSS -->
+    <link href="/src/assets/styles/base/vars.css" rel="stylesheet" />
+    <link href="/src/assets/styles/base/index.css" rel="stylesheet" />
+    <link href="/src/assets/styles/base/page.css" rel="stylesheet" />
+    <link href="/src/assets/styles/base/typography.css" rel="stylesheet" />
+
+    <!-- Fonts for typography and icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+
+    <!-- Web components (for <site-settings>) -->
+    <script type="module" src="/src/components/index.js"></script>
+
+    <style>
+      .wrap {
+        display: grid;
+        gap: var(--spacing-xxl);
+        padding: 4dvw;
+      }
+
+      .group {
+        display: grid;
+        gap: var(--spacing-lg);
+      }
+
+      /* Stack samples vertically like default HTML flow */
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+      }
+
+      .sample {
+        display: grid;
+        gap: var(--spacing-sm);
+        padding: 0; /* no card chrome */
+        border: none;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      /* Property labels removed for a cleaner, default look */
+
+      .row {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        align-items: center;
+        gap: var(--spacing-sm);
+      }
+
+      .divider {
+        height: 1px;
+        background: var(--color-border-secondary);
+        margin: var(--spacing-md) 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="heading">Typography Reference</div>
+
+      <!-- Theme controls: hue + light/dark/contrast -->
+      <site-settings></site-settings>
+
+      <div class="group">
+        <div class="heading sm secondary">Headings</div>
+        <div class="grid">
+          <div class="sample">
+            <div class="heading xl">Heading XL</div>
+          </div>
+          <div class="sample">
+            <div class="heading">Heading LG</div>
+          </div>
+          <div class="sample">
+            <div class="heading md">Heading MD</div>
+          </div>
+          <div class="sample">
+            <div class="heading sm">Heading SM</div>
+          </div>
+          <div class="sample">
+            <div class="heading xs">Heading XS</div>
+          </div>
+          <div class="sample">
+            <div class="heading sm secondary">Heading SM — Secondary</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="heading sm secondary">Body Text</div>
+        <div class="grid">
+          <div class="sample">
+            <p class="body lg">Body LG</p>
+            <p class="body lg secondary">Body LG — Secondary</p>
+          </div>
+          <div class="sample">
+            <p class="body">Body MD</p>
+            <p class="body secondary">Body MD — Secondary</p>
+          </div>
+          <div class="sample">
+            <p class="body sm">Body SM</p>
+            <p class="body sm secondary">Body SM — Secondary</p>
+          </div>
+          <div class="sample">
+            <p class="body xs">Body XS</p>
+            <p class="body xs secondary">Body XS — Secondary</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="heading sm secondary">Lists</div>
+        <div class="grid">
+          <div class="sample">
+            <ul class="body">
+              <li>Body MD — List item 1</li>
+              <li>Body MD — List item 2</li>
+              <li>Body MD — List item 3</li>
+            </ul>
+          </div>
+          <div class="sample">
+            <ol class="body sm">
+              <li>Body SM — List item 1</li>
+              <li>Body SM — List item 2</li>
+              <li>Body SM — List item 3</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="heading sm secondary">Icons (text-based)</div>
+        <div class="grid">
+          <div class="sample">
+            <div class="row">Icon XL <span class="icon xl">auto_awesome</span></div>
+            <div class="row">Icon LG <span class="icon lg">auto_awesome</span></div>
+            <div class="row">Icon MD <span class="icon md">auto_awesome</span></div>
+            <div class="row">Icon SM <span class="icon sm">auto_awesome</span></div>
+            <div class="divider"></div>
+            <div class="row">Icon Brand <span class="icon lg brand">auto_awesome</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+  </html>

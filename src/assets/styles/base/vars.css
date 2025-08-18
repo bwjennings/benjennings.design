@@ -13,13 +13,13 @@
 
 @property --text-heading-width {
   syntax: "<number>";
-  initial-value: 125;
+  initial-value: 115;
   inherits: true;
 }
 
 @property --text-heading-grade {
   syntax: "<number>";
-  initial-value: 115;
+  initial-value: 120;
   inherits: true;
 }
 
@@ -29,7 +29,7 @@
   inherits: true;
 }
 
-/* Registered properties for transition timing (easing) */
+/* Transition timing properties */
 @property --transition-timing-motion {
   syntax: "<easing-function>";
   initial-value: linear(0, 0.006, 0.025 2.6%, 0.057, 0.103 5.7%, 0.203 8.6%, 0.549 17.6%, 0.651 20.7%,
@@ -40,25 +40,12 @@
 
 @property --transition-timing-style {
   syntax: "<easing-function>";
-  initial-value: cubic-bezier(.43,.37,.6,.97);
+  initial-value: cubic-bezier(.43, .37, .6, .97);
   inherits: true;
 }
 
 :root {
-  /*
-    COLOR SEMANTICS
-    - Surfaces: large, subtle containers (pages, cards, sections)
-      - Neutral: surface-page, surface-1, surface-2, surface-backdrop
-      - Brand variants: surface-a, surface-b, surface-c, surface-d (+ -hover, -secondary)
-    - Fills: bold colors for small controls (buttons, chips)
-      - Neutral emphasis: fill-neutral
-      - Brand variants: fill-a, fill-b, fill-c, fill-d
-
-    Guidance:
-    - Use surface-* for backgrounds of larger areas.
-    - Use fill-* for interactive or accent elements that should stand out.
-    - Choose letter variants (a–d) for thematic accents or product areas.
-  */
+  /* Color semantics */
   /* layout */
   --viewport-lg: 800px;
   --dialog-width: clamp(300px, 80dvw, 1200px);
@@ -74,38 +61,49 @@
   --spacing-xxl: 32px;
   --spacing-xxxl: 40px;
 
-  /* radii */
+  /* Radii */
 
   --radius-none: 0px;
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
 
-  /* typography scale */
---font-size-1: clamp(0.64rem, -0.065vi + 0.656rem, 0.598rem);
---font-size-2: clamp(0.8rem, -0.005vi + 0.801rem, 0.797rem);
---font-size-3: clamp(1rem, 0.096vi + 0.976rem, 1.063rem);
---font-size-4: clamp(1.25rem, 0.256vi + 1.186rem, 1.416rem);
---font-size-5: clamp(1.563rem, 0.501vi + 1.437rem, 1.888rem);
---font-size-6: clamp(1.953rem, 0.867vi + 1.736rem, 2.517rem);
---font-size-7: clamp(2.441rem, 1.405vi + 2.09rem, 3.355rem);
---font-size-8: clamp(3.052rem, 2.185vi + 2.506rem, 4.472rem);
---font-size-9: clamp(3.815rem, 3.302vi + 2.989rem, 5.961rem);
---font-size-10: clamp(4.768rem, 4.888vi + 3.546rem, 7.946rem);
+  /* Type scale */
+  --font-size-1: clamp(0.64rem, -0.065vi + 0.656rem, 0.598rem);
+  --font-size-2: clamp(0.8rem, -0.005vi + 0.801rem, 0.797rem);
+  --font-size-3: clamp(1rem, 0.096vi + 0.976rem, 1.063rem);
+  --font-size-4: clamp(1.25rem, 0.256vi + 1.186rem, 1.416rem);
+  --font-size-5: clamp(1.563rem, 0.501vi + 1.437rem, 1.888rem);
+  --font-size-6: clamp(1.953rem, 0.867vi + 1.736rem, 2.517rem);
+  --font-size-7: clamp(2.441rem, 1.405vi + 2.09rem, 3.355rem);
+  --font-size-8: clamp(3.052rem, 2.185vi + 2.506rem, 4.472rem);
+  --font-size-9: clamp(3.815rem, 3.302vi + 2.989rem, 5.961rem);
+  --font-size-10: clamp(4.768rem, 4.888vi + 3.546rem, 7.946rem);
 
-  /* heading text */
-  --text-heading-weight: 550;
+  /* Heading text */
+  
   --text-heading-font-family: "Roboto Flex";
-  --text-heading-xl-size: var(--font-size-9);
-  --text-heading-xl-line-height: 100%;
-  --text-heading-lg-size: var(--font-size-8);
-  --text-heading-lg-line-height: 110%;
-  --text-heading-md-size: var(--font-size-6);
-  --text-heading-md-line-height: var(--font-size-7);
-  --text-heading-sm-size: var(--font-size-5);
-  --text-heading-sm-line-height: var(--font-size-6);
+  --text-heading-grade: 120;
+   --text-heading-weight: 550;
+  --text-heading-width: 115;
 
-  /* body text */
+  --text-heading-xl-line-height: 110%;
+  --text-heading-xl-size: var(--font-size-10);
+  --text-heading-xl-weight: var(--text-heading-weight);
+  --text-heading-lg-line-height: 110%;
+  --text-heading-lg-size: var(--font-size-9);
+  --text-heading-lg-weight: var(--text-heading-weight);
+  --text-heading-md-line-height: 110%;
+  --text-heading-md-size: var(--font-size-6);
+  --text-heading-md-weight: 500;
+  --text-heading-sm-line-height: 110%;
+  --text-heading-sm-size: var(--font-size-5);
+  --text-heading-sm-weight: 500
+  ;
+ 
+  
+/* Heading weights per size (defaults to global) */
+  /* Body text */
   --text-body-font-family: "Roboto Flex";
   --text-body-weight: 400;
   --text-body-lg-size: var(--font-size-4);
@@ -117,67 +115,74 @@
   --text-body-xs-size: var(--font-size-1);
   --text-body-xs-line-height: var(--font-size-2);
 
-  /* icon settings */
+  /* Icon settings */
   --icon-font-family: "Material Symbols Sharp";
   --icon-size-xl: var(--font-size-6);
   --icon-size-lg: var(--font-size-5);
   --icon-size-md: var(--font-size-4);
   --icon-size-sm: var(--font-size-3);
   --icon-weight-lg: 500;
-  --icon-weight-md: 400;
-  --icon-weight-sm: 300;
+  --icon-weight-md: 500;
+  --icon-weight-sm: 400;
   --icon-fill: 1;
   --icon-grade: 0;
   --icon-grade-emphasis: 100;
 
-  /* animation */
+  /* Animation */
   --amplitude: 1;
   --damping: 2;
   --frequency: 8;
   --duration: 1s;
-  --timing-duration: 800ms;
-  /* Unified timing tokens */
+
+  /* Timing tokens */
+  --timing-duration: 500ms;
   --transition-timing-motion: linear(0, 0.006, 0.025 2.6%, 0.057, 0.103 5.7%, 0.203 8.6%, 0.549 17.6%, 0.651 20.7%,
       0.736, 0.807, 0.866, 0.914 32.6%, 0.952, 0.98 39.2%, 1 42.8%, 1.013 46.7%,
       1.02 51.2% 58.6%, 1.003 82.8%, 1);
-  --transition-timing-style: cubic-bezier(.43,.37,.6,.97);
+  --transition-timing-style: cubic-bezier(.43, .37, .6, .97);
 
-  
-  /*
-    FOUNDATIONS — DO NOT USE DIRECTLY
-    Base hues and generated scales used to build semantic tokens.
-    Prefer surface/fill/text/icon/border variables below.
-  */
-  /* color base */
- 
+
+  /* Foundations (internal) */
+  /* Color base */
+
   transition-property: --contrast, --text-heading-grade, --text-heading-width,
     --base-radius;
   --alpha: 0.4;
   --stimulation-level: 1;
- /* color system */
+  /* Color system */
   --current-color-scheme: light dark;
   color-scheme: var(--current-color-scheme);
 
-  /* Complete color system with full scale options */
+
   --color-white: white;
-   --hue-root: 230deg;
-  /* Base colors in OKLCH */
-  --color-base: oklch(0.65 0.15 var(--hue-root));
+  --hue-root: 230deg;
 
-  /* Base color set - 11 steps with exponential bell curve chroma */
-  --color-base-5: oklch(from var(--color-base) 99% 1% h);
-  --color-base-10: oklch(from var(--color-base) 98% 10% h);
-  --color-base-20: oklch(from var(--color-base) 90% 20% h);
-  --color-base-30: oklch(from var(--color-base) 80% 40% h);
-  --color-base-40: oklch(from var(--color-base) 78% 60% h);
-  --color-base-50: oklch(from var(--color-base) 70% 63% h);
-  --color-base-60: oklch(from var(--color-base) 61% 55% h);
-  --color-base-70: oklch(from var(--color-base) 54% 41% h);
-  --color-base-80: oklch(from var(--color-base) 47% 26% h);
-  --color-base-90: oklch(from var(--color-base) 40% 13% h);
-  --color-base-95: oklch(from var(--color-base) 30% 9% h);
 
-  /* base a - Hue shifted +0 degrees */
+--blue-50: oklch(98.8% 9.5% 0.0deg);
+--blue-100: oklch(96.9% 13.8% 0.0deg);
+--blue-200: oklch(91.2% 28.0% 0.0deg);
+--blue-300: oklch(83.6% 45.4% 0.0deg);
+--blue-400: oklch(74.5% 61.0% 0.0deg);
+--blue-500: oklch(64.6% 69.8% 0.0deg);
+--blue-600: oklch(54.4% 66.8% 0.0deg);
+--blue-700: oklch(44.6% 52.0% 0.0deg);
+--blue-800: oklch(35.7% 32.4% 0.0deg);
+--blue-900: oklch(28.3% 15.1% 0.0deg);
+--blue-950: oklch(25.4% 9.6% 0.0deg);
+
+  --color-base-5: oklch(99% 9.5% var(--hue-root));
+  --color-base-10: oklch(96.9% 13.8% var(--hue-root));
+  --color-base-20: oklch(91.2% 28.0% var(--hue-root));
+  --color-base-30: oklch(83.6% 45.4% var(--hue-root));
+  --color-base-40: oklch(74.5% 61.0% var(--hue-root));
+  --color-base-50: oklch(64.6% 69.8% var(--hue-root));
+  --color-base-60: oklch(54.4% 66.8% var(--hue-root));
+  --color-base-70: oklch(44.6% 52.0% var(--hue-root));
+  --color-base-80: oklch(35.7% 32.4% var(--hue-root));
+  --color-base-90: oklch(28.3% 15.1% var(--hue-root));
+  --color-base-95: oklch(25.4% 9.6%  var(--hue-root));
+
+  /* Base A hue shift */
   --base-a-hue-shift: 20;
   --color-base-a-5: oklch(from var(--color-base-5) l c calc(h + var(--base-a-hue-shift)));
   --color-base-a-10: oklch(from var(--color-base-10) l c calc(h + var(--base-a-hue-shift)));
@@ -191,7 +196,7 @@
   --color-base-a-90: oklch(from var(--color-base-90) l c calc(h + var(--base-a-hue-shift)));
   --color-base-a-95: oklch(from var(--color-base-95) l c calc(h + var(--base-a-hue-shift)));
 
-  /* base b - Hue shifted +20 degrees */
+  /* Base B hue shift */
   --base-b-hue-shift: 40;
   --color-base-b-5: oklch(from var(--color-base-5) l c calc(h + var(--base-b-hue-shift)));
   --color-base-b-10: oklch(from var(--color-base-10) l c calc(h + var(--base-b-hue-shift)));
@@ -205,7 +210,7 @@
   --color-base-b-90: oklch(from var(--color-base-90) l c calc(h + var(--base-b-hue-shift)));
   --color-base-b-95: oklch(from var(--color-base-95) l c calc(h + var(--base-b-hue-shift)));
 
-  /* base c - Hue shifted +40 degrees */
+  /* Base C hue shift */
   --base-c-hue-shift: 60;
   --color-base-c-5: oklch(from var(--color-base-5) l c calc(h + var(--base-c-hue-shift)));
   --color-base-c-10: oklch(from var(--color-base-10) l c calc(h + var(--base-c-hue-shift)));
@@ -219,7 +224,7 @@
   --color-base-c-90: oklch(from var(--color-base-90) l c calc(h + var(--base-c-hue-shift)));
   --color-base-c-95: oklch(from var(--color-base-95) l c calc(h + var(--base-c-hue-shift)));
 
-  /* base d - Hue shifted +60 degrees */
+  /* Base D hue shift */
   --base-d-hue-shift: 80;
   --color-base-d-5: oklch(from var(--color-base-5) l c calc(h + var(--base-d-hue-shift)));
   --color-base-d-10: oklch(from var(--color-base-10) l c calc(h + var(--base-d-hue-shift)));
@@ -233,7 +238,7 @@
   --color-base-d-90: oklch(from var(--color-base-90) l c calc(h + var(--base-d-hue-shift)));
   --color-base-d-95: oklch(from var(--color-base-95) l c calc(h + var(--base-d-hue-shift)));
 
-  /* Neutral color set - 11 steps */
+  /* Neutral set */
   --color-neutral-5: oklch(from var(--color-base-5) l 0.005 h);
   --color-neutral-10: oklch(from var(--color-base-10) l 0.005 h);
   --color-neutral-20: oklch(from var(--color-base-20) l 0.005 h);
@@ -246,16 +251,17 @@
   --color-neutral-90: oklch(from var(--color-base-90) l 0.005 h);
   --color-neutral-95: oklch(from var(--color-base-95) l 0.005 h);
 
- 
 
-  /* surface and fill colors (replacing old background tokens) */
+
+  /* Surface and fill colors */
   --color-surface-page: light-dark(var(--color-white), var(--color-neutral-95));
-  --color-surface-1: light-dark(var(--color-neutral-5), var(--color-neutral-90)); /* default subtle control surfaces */
-  --color-surface-2: light-dark(var(--color-neutral-10), var(--color-neutral-90)); /* secondary subtle surfaces */
+  --color-surface-1: light-dark(var(--color-neutral-5), var(--color-neutral-90));
+  --color-surface-2: light-dark(var(--color-neutral-10), var(--color-neutral-90));
   --color-surface-backdrop: light-dark(var(--color-neutral-20-alpha), var(--color-neutral-50-alpha));
+  --color-surface-neutral: light-dark(var(--color-neutral-10), var(--color-neutral-70));
 
-  /* Surfaces — brand variants */
-  --color-surface-a: light-dark(var(--color-base-a-20), var(--color-base-a-80)); /* primary brand surface */
+  /* Surfaces (brand) */
+  --color-surface-a: light-dark(var(--color-base-a-20), var(--color-base-a-80));
   --color-surface-a-hover: light-dark(var(--color-base-a-10), var(--color-base-a-80));
   --color-surface-a-secondary: light-dark(var(--color-base-a-10), var(--color-base-a-90));
 
@@ -268,32 +274,30 @@
   --color-surface-d: light-dark(var(--color-base-d-20), var(--color-base-d-80));
   --color-surface-d-secondary: light-dark(var(--color-base-d-10), var(--color-base-d-90));
 
-  /* Fills — neutral and brand variants */
-  --color-fill-neutral: light-dark(var(--color-neutral-30), var(--color-neutral-90)); /* neutral emphasis for small elements */
-  --color-fill-a: light-dark(var(--color-base-a-60), var(--color-base-a-80)); /* bold brand fill */
+  /* Fills */
+  --color-fill-neutral: light-dark(var(--color-neutral-30), var(--color-neutral-90));
+  --color-fill-a: light-dark(var(--color-base-a-60), var(--color-base-a-80));
   --color-fill-b: light-dark(var(--color-base-b-60), var(--color-base-b-70));
   --color-fill-c: light-dark(var(--color-base-c-60), var(--color-base-c-70));
   --color-fill-d: light-dark(var(--color-base-d-60), var(--color-base-d-70));
 
-  /* legacy background aliases removed */
+  /* Legacy background aliases removed */
 
 
-  /* text colors */
-  /* Default text is assumed to be placed on surfaces. */
+  /* Text colors */
   --color-text-primary: light-dark(var(--color-neutral-95), var(--color-neutral-5));
   --color-text-secondary: light-dark(var(--color-neutral-80), var(--color-neutral-10));
   --color-text-tertiary: light-dark(var(--color-neutral-60), var(--color-neutral-20));
   --color-text-base: light-dark(var(--color-base-a-95), var(--color-base-a-20));
   --color-text-base-secondary: light-dark(var(--color-base-a-60), var(--color-base-a-30));
-  /* Text placed on fill colors (buttons, chips, etc.) */
+  /* Text on fills */
   --color-text-onFill: light-dark(var(--color-white), var(--color-white));
   --color-text-base-b: light-dark(var(--color-base-b-95), var(--color-base-b-20));
   --color-text-base-c: light-dark(var(--color-base-c-95), var(--color-base-c-20));
   --color-text-base-d: light-dark(var(--color-base-d-95), var(--color-base-d-20));
-  
 
-  /* icon colors */
-  /* Default icons are assumed to be placed on surfaces. */
+
+  /* Icon colors */
   --color-icon-primary: light-dark(var(--color-neutral-95), var(--color-neutral-5));
   --color-icon-secondary: light-dark(var(--color-neutral-80), var(--color-neutral-10));
   --color-icon-tertiary: light-dark(var(--color-neutral-60), var(--color-neutral-20));
@@ -302,10 +306,10 @@
   --color-icon-base-b: light-dark(var(--color-base-b-60), var(--color-base-b-20));
   --color-icon-base-c: light-dark(var(--color-base-c-60), var(--color-base-c-20));
   --color-icon-base-d: light-dark(var(--color-base-d-60), var(--color-base-d-20));
-  /* Icons placed on fill colors (buttons, chips, etc.) */
+  /* Icons on fills */
   --color-icon-onFill: light-dark(var(--color-white), var(--color-white));
 
-  /* border colors */
+  /* Border colors */
   --color-border-primary: light-dark(var(--color-neutral-20), var(--color-neutral-70));
   --color-border-primary-hover: light-dark(var(--color-neutral-20), var(--color-neutral-60));
   --color-border-secondary: light-dark(var(--color-neutral-10), var(--color-neutral-60));
@@ -320,7 +324,7 @@
   --color-border-base-d: light-dark(var(--color-base-d-10), var(--color-base-d-90));
   --color-border-base-d-emphasis: light-dark(var(--color-base-d-20), var(--color-base-d-80));
 
-  /* cleaned legacy theme-slider variables */
+  /* Legacy theme-slider variables removed */
 }
 
 

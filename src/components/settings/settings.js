@@ -1,4 +1,4 @@
-// Define and cache the template
+// Template
 const template = document.createElement('template');
 template.innerHTML = `
   <style>
@@ -61,7 +61,7 @@ template.innerHTML = `
     
    
     
-    /* WebKit track styled directly; use inset box-shadow to simulate padding */
+    /* WebKit track */
     .hue-slider::-webkit-slider-runnable-track {
       height: 100%;
       border-radius: 24px;
@@ -214,7 +214,7 @@ class SiteSettings extends HTMLElement {
     this.throttledUpdateHue = this.throttle(this.updateHue.bind(this), 16); // ~60fps
   }
 
-  // Utility: Debounce function to reduce rapid-fire events
+  // Debounce
   debounce(func, delay) {
     let timeout;
     return (...args) => {
@@ -223,7 +223,7 @@ class SiteSettings extends HTMLElement {
     };
   }
 
-  // Throttle function for CSS updates to prevent layout thrashing
+  // Throttle
   throttle(func, delay) {
     let lastCall = 0;
     return (...args) => {
@@ -235,9 +235,9 @@ class SiteSettings extends HTMLElement {
     };
   }
 
-  // Batched CSS update utility
+  // Batch CSS updates
   batchCssUpdates(updates) {
-    // Use requestAnimationFrame for optimal timing
+    // rAF timing
     requestAnimationFrame(() => {
       updates.forEach(([property, value]) => {
         document.documentElement.style.setProperty(property, value);
@@ -246,11 +246,11 @@ class SiteSettings extends HTMLElement {
   }
 
   connectedCallback() {
-    // Initialize theme buttons
+    // Init controls
     const themeButtons = this.shadowRoot.querySelectorAll('[data-theme]');
     const hueSlider = this.shadowRoot.querySelector('.hue-slider');
     
-    // Add event listeners with keyboard support
+    // Bind events
     themeButtons.forEach(button => {
       if (button) {
         button.addEventListener('click', this.themeChangeHandler);
@@ -311,10 +311,10 @@ class SiteSettings extends HTMLElement {
         ? "dark"
         : "light dark";
     
-    // Persist the chosen theme so it can be restored on other pages
+    // Persist theme
     localStorage.setItem("myCustomTheme", theme);
 
-    // Batch style updates to avoid multiple reflows
+    // Apply styles
     document.documentElement.style.setProperty("--current-color-scheme", colorScheme);
     window.dispatchEvent(new CustomEvent('globalSchemeChange', { detail: theme }));
   }
@@ -323,11 +323,11 @@ class SiteSettings extends HTMLElement {
     const theme = event.currentTarget.dataset.theme;
     if (!theme) return;
 
-    // If View Transitions are supported, animate the theme change
+    // Animate if supported
     const supportsVT = typeof document.startViewTransition === 'function';
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Helper to apply theme immediately (fallback)
+    // Apply fallback
     const apply = () => {
       this.setActiveTheme(theme);
       this.updateTheme(theme);
@@ -338,13 +338,13 @@ class SiteSettings extends HTMLElement {
       return;
     }
 
-    // Add a class to give :root a temporary view-transition-name
+    // Add class
     document.documentElement.classList.add('theme-transition');
     try {
       const transition = document.startViewTransition(() => {
         apply();
       });
-      // Clean up the class when finished (success or failure)
+      // Cleanup class
       transition.finished.finally(() => {
         document.documentElement.classList.remove('theme-transition');
       });
@@ -358,15 +358,15 @@ class SiteSettings extends HTMLElement {
   hueSliderHandler(event) {
     const hue = parseInt(event.target.value, 10);
     if (!isNaN(hue) && hue >= 0 && hue <= 360) {
-      // Use throttled update for smooth performance
+      // Throttle updates
       this.throttledUpdateHue(hue);
       
-      // Update cache immediately for consistency
+      // Update cache
       if (window.themeCache) {
         window.themeCache.values.hue = hue.toString();
       }
       
-      // Debounce localStorage and event dispatch to avoid excessive writes
+      // Debounce storage + event
       clearTimeout(this.saveTimeout);
       this.saveTimeout = setTimeout(() => {
         localStorage.setItem('brandHue', hue);
@@ -382,7 +382,7 @@ class SiteSettings extends HTMLElement {
   }
 
   disconnectedCallback() {
-    // Clean up event listeners to prevent memory leaks
+    // Cleanup listeners
     const themeButtons = this.shadowRoot.querySelectorAll('[data-theme]');
     const hueSlider = this.shadowRoot.querySelector('.hue-slider');
     
@@ -396,9 +396,6 @@ class SiteSettings extends HTMLElement {
       hueSlider.removeEventListener('input', this.hueSliderHandler);
       hueSlider.removeEventListener('change', this.hueSliderHandler);
     }
-    
-    // Clean up any global event listeners if they exist
-    // (These would be added if we had global theme sync)
   }
 }
 

@@ -10,6 +10,14 @@
     <link href="/src/assets/styles/base/page.css" rel="stylesheet" />
     <link href="/src/assets/styles/base/typography.css" rel="stylesheet" />
 
+    <!-- Fonts for icons and typography used by site-settings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,25..151,100..1000,-200..150&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+
+    <!-- Register web components (including site-settings) -->
+    <script type="module" src="/src/components/index.js"></script>
+
     <style>
       .wrap {
         display: grid;
@@ -25,12 +33,10 @@
       .grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: var(--spacing-lg);
+        gap: var(-spacing-lg);
       }
 
       .swatch {
-        border: 1px solid var(--color-border-primary);
-        border-radius: var(--radius-md);
         padding: var(--spacing-lg);
         display: grid;
         gap: var(--spacing-sm);
@@ -63,11 +69,124 @@
         gap: var(--spacing-sm);
         align-items: center;
       }
+
+      /* Unified comparison grid */
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: 140px repeat(11, 1fr);
+        gap: 0; /* no space between swatches */
+        align-items: stretch;
+      }
+
+      .comparison-grid .label {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        background: var(--color-surface-1);
+        color: var(--color-text-primary);
+        font-size: var(--text-body-md-size);
+      }
+
+      .comparison-grid .swatch {
+        height: 48px;
+        padding: 0; /* visual swatch only */
+      }
     </style>
   </head>
   <body>
     <div class="wrap">
+      
       <div class="heading">Color Reference</div>
+
+      <!-- Site settings: hue slider + theme toggle -->
+      <site-settings></site-settings>
+
+      <!-- Unified comparison grid: rows are hue families, columns are steps (5..95) -->
+      <div class="comparison-grid">
+        <!-- Core base row -->
+        <div class="label">Base — Core</div>
+        <div class="swatch" title="--color-base-5" style="background: var(--color-base-5)"></div>
+        <div class="swatch" title="--color-base-10" style="background: var(--color-base-10)"></div>
+        <div class="swatch" title="--color-base-20" style="background: var(--color-base-20)"></div>
+        <div class="swatch" title="--color-base-30" style="background: var(--color-base-30)"></div>
+        <div class="swatch" title="--color-base-40" style="background: var(--color-base-40)"></div>
+        <div class="swatch" title="--color-base-50" style="background: var(--color-base-50)"></div>
+        <div class="swatch" title="--color-base-60" style="background: var(--color-base-60)"></div>
+        <div class="swatch" title="--color-base-70" style="background: var(--color-base-70)"></div>
+        <div class="swatch" title="--color-base-80" style="background: var(--color-base-80)"></div>
+        <div class="swatch" title="--color-base-90" style="background: var(--color-base-90)"></div>
+        <div class="swatch" title="--color-base-95" style="background: var(--color-base-95)"></div>
+
+        <!-- Base A row -->
+        <div class="label">Base — A</div>
+        <div class="swatch" title="--color-base-a-5" style="background: var(--color-base-a-5)"></div>
+        <div class="swatch" title="--color-base-a-10" style="background: var(--color-base-a-10)"></div>
+        <div class="swatch" title="--color-base-a-20" style="background: var(--color-base-a-20)"></div>
+        <div class="swatch" title="--color-base-a-30" style="background: var(--color-base-a-30)"></div>
+        <div class="swatch" title="--color-base-a-40" style="background: var(--color-base-a-40)"></div>
+        <div class="swatch" title="--color-base-a-50" style="background: var(--color-base-a-50)"></div>
+        <div class="swatch" title="--color-base-a-60" style="background: var(--color-base-a-60)"></div>
+        <div class="swatch" title="--color-base-a-70" style="background: var(--color-base-a-70)"></div>
+        <div class="swatch" title="--color-base-a-80" style="background: var(--color-base-a-80)"></div>
+        <div class="swatch" title="--color-base-a-90" style="background: var(--color-base-a-90)"></div>
+        <div class="swatch" title="--color-base-a-95" style="background: var(--color-base-a-95)"></div>
+
+        <!-- Base B row -->
+        <div class="label">Base — B</div>
+        <div class="swatch" title="--color-base-b-5" style="background: var(--color-base-b-5)"></div>
+        <div class="swatch" title="--color-base-b-10" style="background: var(--color-base-b-10)"></div>
+        <div class="swatch" title="--color-base-b-20" style="background: var(--color-base-b-20)"></div>
+        <div class="swatch" title="--color-base-b-30" style="background: var(--color-base-b-30)"></div>
+        <div class="swatch" title="--color-base-b-40" style="background: var(--color-base-b-40)"></div>
+        <div class="swatch" title="--color-base-b-50" style="background: var(--color-base-b-50)"></div>
+        <div class="swatch" title="--color-base-b-60" style="background: var(--color-base-b-60)"></div>
+        <div class="swatch" title="--color-base-b-70" style="background: var(--color-base-b-70)"></div>
+        <div class="swatch" title="--color-base-b-80" style="background: var(--color-base-b-80)"></div>
+        <div class="swatch" title="--color-base-b-90" style="background: var(--color-base-b-90)"></div>
+        <div class="swatch" title="--color-base-b-95" style="background: var(--color-base-b-95)"></div>
+
+        <!-- Base C row -->
+        <div class="label">Base — C</div>
+        <div class="swatch" title="--color-base-c-5" style="background: var(--color-base-c-5)"></div>
+        <div class="swatch" title="--color-base-c-10" style="background: var(--color-base-c-10)"></div>
+        <div class="swatch" title="--color-base-c-20" style="background: var(--color-base-c-20)"></div>
+        <div class="swatch" title="--color-base-c-30" style="background: var(--color-base-c-30)"></div>
+        <div class="swatch" title="--color-base-c-40" style="background: var(--color-base-c-40)"></div>
+        <div class="swatch" title="--color-base-c-50" style="background: var(--color-base-c-50)"></div>
+        <div class="swatch" title="--color-base-c-60" style="background: var(--color-base-c-60)"></div>
+        <div class="swatch" title="--color-base-c-70" style="background: var(--color-base-c-70)"></div>
+        <div class="swatch" title="--color-base-c-80" style="background: var(--color-base-c-80)"></div>
+        <div class="swatch" title="--color-base-c-90" style="background: var(--color-base-c-90)"></div>
+        <div class="swatch" title="--color-base-c-95" style="background: var(--color-base-c-95)"></div>
+
+        <!-- Base D row -->
+        <div class="label">Base — D</div>
+        <div class="swatch" title="--color-base-d-5" style="background: var(--color-base-d-5)"></div>
+        <div class="swatch" title="--color-base-d-10" style="background: var(--color-base-d-10)"></div>
+        <div class="swatch" title="--color-base-d-20" style="background: var(--color-base-d-20)"></div>
+        <div class="swatch" title="--color-base-d-30" style="background: var(--color-base-d-30)"></div>
+        <div class="swatch" title="--color-base-d-40" style="background: var(--color-base-d-40)"></div>
+        <div class="swatch" title="--color-base-d-50" style="background: var(--color-base-d-50)"></div>
+        <div class="swatch" title="--color-base-d-60" style="background: var(--color-base-d-60)"></div>
+        <div class="swatch" title="--color-base-d-70" style="background: var(--color-base-d-70)"></div>
+        <div class="swatch" title="--color-base-d-80" style="background: var(--color-base-d-80)"></div>
+        <div class="swatch" title="--color-base-d-90" style="background: var(--color-base-d-90)"></div>
+        <div class="swatch" title="--color-base-d-95" style="background: var(--color-base-d-95)"></div>
+
+        <!-- Neutral row -->
+        <div class="label">Neutral</div>
+        <div class="swatch" title="--color-neutral-5" style="background: var(--color-neutral-5)"></div>
+        <div class="swatch" title="--color-neutral-10" style="background: var(--color-neutral-10)"></div>
+        <div class="swatch" title="--color-neutral-20" style="background: var(--color-neutral-20)"></div>
+        <div class="swatch" title="--color-neutral-30" style="background: var(--color-neutral-30)"></div>
+        <div class="swatch" title="--color-neutral-40" style="background: var(--color-neutral-40)"></div>
+        <div class="swatch" title="--color-neutral-50" style="background: var(--color-neutral-50)"></div>
+        <div class="swatch" title="--color-neutral-60" style="background: var(--color-neutral-60)"></div>
+        <div class="swatch" title="--color-neutral-70" style="background: var(--color-neutral-70)"></div>
+        <div class="swatch" title="--color-neutral-80" style="background: var(--color-neutral-80)"></div>
+        <div class="swatch" title="--color-neutral-90" style="background: var(--color-neutral-90)"></div>
+        <div class="swatch" title="--color-neutral-95" style="background: var(--color-neutral-95)"></div>
+      </div>
 
       <div class="group">
         <div class="heading sm secondary">Neutral Surfaces</div>

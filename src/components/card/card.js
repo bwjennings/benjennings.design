@@ -5,7 +5,7 @@ customElements.define(
       return ["title", "version", "dialog-id"];
     }
 
-    // Cache and reuse the template
+    // Template cache
     static getTemplate() {
       if (!this.template) {
         this.template = document.createElement("template");
@@ -13,7 +13,6 @@ customElements.define(
           <style>
             :host { display: block; }
             .card-container { cursor: pointer; position: relative; }
-            /* Additional styles as needed */
           </style>
           <link href="/src/assets/styles/components/card.css" rel="stylesheet" />
           <div class="card-container">
@@ -46,12 +45,12 @@ customElements.define(
         this.constructor.getTemplate().content.cloneNode(true)
       );
 
-      // Initialize properties from attributes
+      // Init from attributes
       this._title = this.getAttribute("title") || "";
       this._version = this.getAttribute("version") || "";
       this._dialogId = this.getAttribute("dialog-id") || "";
 
-      // Bind methods
+      // Bind handlers
       this.handleClick = this.handleClick.bind(this);
     }
 
@@ -59,19 +58,19 @@ customElements.define(
       this.tabIndex = 0;
       this.setAttribute("role", "button");
 
-      // Cache DOM references
+      // Cache refs
       this._cardContainer = this.shadowRoot.querySelector(".card-container");
       this._dialog = this.shadowRoot.querySelector("dialog");
       this._cardTitle = this.shadowRoot.querySelector(".card-title");
       this._dialogTitle = this.shadowRoot.getElementById("dialog-title");
 
-      // Check if required elements exist
+      // Verify required elements
       if (!this._cardContainer || !this._dialog) {
         console.error("Required card elements not found in shadow DOM");
         return;
       }
 
-      // Consolidated event listener on shadowRoot for clicks
+      // Delegated click listener
       this.shadowRoot.addEventListener("click", this.handleClick);
 
       this.updateComponent();
@@ -98,7 +97,6 @@ customElements.define(
       );
     }
   
-    // Getters and setters
     get title() {
       return this._title;
     }
@@ -133,25 +131,25 @@ customElements.define(
       const mediaSlot = this.shadowRoot.querySelector('slot[name="media"]');
       if (mediaSlot) mediaSlot.className = this._version || "";
 
-      // Generate a unique dialog ID if not provided
+      // Generate dialog ID
       if (!this._dialogId) {
         this._dialogId = `dialog-${Math.random().toString(36).substr(2, 9)}`;
         this.setAttribute("dialog-id", this._dialogId);
       }
     }
 
-    // Single click handler for event delegation
+    // Delegated click handler
     handleClick(event) {
       const path = event.composedPath();
 
-      // If a close button was clicked, close the dialog
+      // Close dialog
       if (path.some((el) => el.id === "closeBtn1" || el.id === "closeBtn2")) {
         event.stopPropagation();
         this.closeDialog(event);
         return;
       }
 
-      // If the click originates from the card container (or its slotted children), open the dialog
+      // Open dialog
       if (
         path.some(
           (el) =>
@@ -162,7 +160,7 @@ customElements.define(
         return;
       }
 
-      // If clicking on the dialog background (outside the .wrapper), close the dialog
+      // Backdrop click closes
       if (event.target.nodeName === "DIALOG" && this._dialog) {
         const wrapper = this._dialog.querySelector(".wrapper");
         if (wrapper) {

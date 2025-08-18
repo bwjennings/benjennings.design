@@ -1,20 +1,15 @@
-/**
- * View transition helpers.
- * - Warn if unsupported.
- * - Ensure only the clicked card gets a named transition so others fall back to page blur.
- */
+/** View transition helpers */
 document.addEventListener('DOMContentLoaded', () => {
   try {
     if (!(window.CSS && CSS.supports && CSS.supports('view-transition-name', 'page'))) {
-      console.warn('View Transitions not fully supported; falling back gracefully.');
+      console.warn('View Transitions not fully supported');
     }
   } catch {}
 
-  // Ensure the browser restores scroll on history navigations
+  // Scroll restoration
   try { if ('scrollRestoration' in history) history.scrollRestoration = 'auto'; } catch {}
 
-  // If we're on a detail page, record the header's view-transition-name for back navigation
-  // and ensure we have proper history state
+  // Detail header: persist vt name and state
   try {
     const detailHeader = document.querySelector('.post-header[style]');
     if (detailHeader) {
@@ -24,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (name && name !== 'none') {
         sessionStorage.setItem('lastVtName', name);
         
-        // Ensure we have proper history state for this detail page
+        // Ensure history state
         if (!history.state || !history.state.page) {
           try {
             if ('navigation' in window && window.navigation?.updateCurrentEntry) {
@@ -39,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   } catch {}
 
-  // Helpers to manage per-card part names (image/title/badges)
+  // Card part helpers
   const getCardParts = (card) => {
     if (!card) return {};
     const imageEl = card.querySelector('img, .icon-placeholder');
@@ -67,14 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setOrClear(badgesEl, `${key}-badges`, 'badge-group');
   };
 
-  // Apply class hooks to detail header and parts if they already have names
+  // Apply classes to detail header parts if named
   const applyDetailClassesIfPresent = () => {
     try {
       const detailHeader = document.querySelector('.post-header[style]');
       if (!detailHeader) return;
       const headerName = (detailHeader.style.getPropertyValue('view-transition-name') || '').trim();
       if (headerName && headerName !== 'none') {
-        // Header container should share the same class as list cards
+        // Header uses same class as cards
         detailHeader.style.setProperty('view-transition-class', 'card');
         // Known parts
         const img = detailHeader.querySelector('img, .icon-placeholder');
@@ -87,10 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch {}
   };
 
-  // State helpers: prefer history.state, fall back to sessionStorage
+  // State helpers
   const getVtFromState = () => {
     try {
-      // Prefer Navigation API state if available
+      // Use Navigation API if available
       if ('navigation' in window && window.navigation?.currentEntry?.getState) {
         const navState = window.navigation.currentEntry.getState();
         const vt = navState && navState.vt;
@@ -119,15 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch {}
   };
 
-  // If we're on a listing page, pre-name the matching card + parts using URL param (preferred)
-  // and fall back to sessionStorage as a secondary hint.
+  // Listing page: pre-name target card
   try {
     const cards = document.querySelectorAll('a[data-vt-target]');
     if (cards.length) {
       const vtFromState = getVtFromState();
       const last = vtFromState || sessionStorage.getItem('lastVtName');
       const target = last ? Array.from(cards).find(a => a.getAttribute('data-vt-target') === last) : null;
-      // Clear others first
+      // Clear others
       cards.forEach((a) => {
         if (a !== target) {
           a.style.removeProperty('view-transition-name');
@@ -139,66 +133,60 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!target.style.getPropertyValue('view-transition-name')) {
           target.style.setProperty('view-transition-name', last);
         }
-        // Class hook for anchor snapshot
+        // Class hook
         target.style.setProperty('view-transition-class', 'card');
         applyCardPartNames(target, last, true);
-        // Persist in history.state for reliable reverse transitions
+        // Persist in history.state
         try { writeVtToState({ page: 'listing', vt: last }); } catch {}
       }
     }
   } catch {}
 
-  // Delegate clicks to anchors that declare a data-vt-target
-  // This sets the view-transition-name only on the activated card so
-  // non-activated cards remain unnamed and participate in the page animation.
+  // Delegate clicks (name only clicked card)
   const onClick = (e) => {
-    // Only ignore non-primary mouse buttons and modified clicks
-    // Mobile taps may have undefined button and non-zero detail; allow those.
+    // Ignore non-primary or modified clicks
     if ((typeof e.button === 'number' && e.button > 0) || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-    // Find any anchor (we may need to clean up even for non-card links)
+    // Anchor lookup
     const anyAnchor = e.target && (e.target.closest ? e.target.closest('a') : null);
     if (!anyAnchor) return;
 
-    // Let back links navigate normally; state is already managed elsewhere
-    // (leaving logic intact for future custom handling if needed)
+    // Back links navigate normally
 
-    // If this is a card click, set its transition name and record it
+    // Card click: set name and record
     const cardAnchor = anyAnchor.matches('a[data-vt-target]') ? anyAnchor : null;
     if (cardAnchor) {
       const name = cardAnchor.getAttribute('data-vt-target');
       if (name) {
         try {
-          // Remove any previously applied names so only the clicked card is named
+          // Clear others
           document.querySelectorAll('a[data-vt-target]').forEach((a) => {
             if (a !== cardAnchor) a.style.removeProperty('view-transition-name');
           });
           cardAnchor.style.setProperty('view-transition-name', name);
           cardAnchor.style.setProperty('view-transition-class', 'card');
-          // Also set names on the clicked card's parts and clear others
+          // Sync parts
           document.querySelectorAll('a[data-vt-target]').forEach((a) => {
             const key = a.getAttribute('data-vt-target');
             applyCardPartNames(a, key, a === cardAnchor);
           });
-          // Update session for reverse morph on back
+          // Persist
           sessionStorage.setItem('lastVtName', name);
-          // Persist key in entry state for robust back navigation
+          // Entry state
           writeVtToState({ page: 'listing', vt: name });
-          // Allow default navigation to proceed for proper cross-document VT
         } catch {}
       }
       return;
     }
 
-    // If this is a top-level navigation click, clear lastVtName so
-    // listing pages don't pre-name a card from a previous section.
+    // Top nav: clear vt
     try {
       const isTopNav = anyAnchor.classList?.contains('nav-item') || anyAnchor.closest('site-navigation');
       if (isTopNav) {
-        // Navigating to another top-level page: clear stored key and remove vt
+        // Clear stored key and names
         sessionStorage.removeItem('lastVtName');
 
-        // Only clear names from card elements and their parts; do NOT touch navigation
+        // Clear names from cards only
         const toClear = document.querySelectorAll(
           'a[data-vt-target], a[data-vt-target] img, a[data-vt-target] .icon-placeholder, a[data-vt-target] h1[class*="heading"], a[data-vt-target] .badge-group'
         );
@@ -207,22 +195,20 @@ document.addEventListener('DOMContentLoaded', () => {
           el.style?.removeProperty('view-transition-class');
         });
       }
-      // IMPORTANT: Do not clear names for non-card, non-topnav links (e.g., Back buttons).
-      // Keeping names enables reverse morph into the cached listing card.
     } catch {}
   };
 
-  // Capture phase to run before navigation handling
+  // Capture phase
   document.addEventListener('click', onClick, true);
 
-  // Handle browser back/forward navigation (fallback)
+  // Popstate fallback
   window.addEventListener('popstate', (e) => {
     try {
-      // If we have state indicating this is a listing page, restore it properly
+      // Restore listing state
       if (e.state && e.state.page === 'listing') {
         const vt = e.state.vt;
         if (vt) {
-          // Restore the view transition name on the correct card
+          // Restore names
           const cards = document.querySelectorAll('a[data-vt-target]');
           const target = Array.from(cards).find(a => a.getAttribute('data-vt-target') === vt);
           if (target) {
@@ -243,15 +229,15 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch {}
   });
 
-  // Clean up lingering inline names on bfcache restore
+  // BFCache/restore maintenance
   const handleRevealOrShow = (isRevealEvent, e) => {
-    // Detect history restores (bfcache or back/forward nav)
+    // Detect restores
     try {
       const perfNav = (performance && performance.getEntriesByType) ? performance.getEntriesByType('navigation')[0] : null;
       const isHistoryRestore = Boolean(e?.persisted) || (perfNav && perfNav.type === 'back_forward');
       if (isHistoryRestore) {
         document.documentElement.classList.add('restoring');
-        // Allow UA to restore scroll, then drop the override
+        // Restore scroll then drop override
         if ('requestAnimationFrame' in window) {
           requestAnimationFrame(() => setTimeout(() => {
             document.documentElement.classList.remove('restoring');
@@ -267,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const onListing = cards.length > 0;
 
     if (onListing) {
-      // On listing pages, if vt is missing, clear any lingering names on cards only.
+      // No vt: clear card names
       if (!vt) {
         cards.forEach((a) => {
           a.style.removeProperty('view-transition-name');
@@ -275,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
           applyCardPartNames(a, a.getAttribute('data-vt-target'), false);
         });
       }
-      // If vt exists, ensure target card remains named (parts too) and others are clear.
+      // With vt: keep target named
       else {
         const target = Array.from(cards).find(a => a.getAttribute('data-vt-target') === vt);
         cards.forEach((a) => {
@@ -293,11 +279,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     } else {
-      // On detail pages, never strip header names here; they need to persist for reverse morph.
+      // Detail pages: keep header names
     }
   };
 
-  // Prefer pagereveal for precise timing; fallback to pageshow
+  // Use pagereveal if available
   if ('onpagereveal' in window) {
     window.addEventListener('pagereveal', (e) => handleRevealOrShow(true, e));
   } else {
@@ -307,14 +293,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Ensure detail pages also get class hooks applied
   applyDetailClassesIfPresent();
 
-  // On outgoing navigation, persist VT key if needed and pause work
+  // Persist VT on pageswap
   if ('onpageswap' in window) {
     window.addEventListener('pageswap', (e) => {
       try {
         const vt = getVtFromState() || sessionStorage.getItem('lastVtName');
         if (vt) writeVtToState({ page: document.querySelector('a[data-vt-target]') ? 'listing' : (document.body?.classList?.contains('detail-page') ? 'detail' : undefined), vt });
       } catch {}
-      // If needed, pause timers/observers here
     });
   }
 });

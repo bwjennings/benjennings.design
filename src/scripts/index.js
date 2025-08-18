@@ -1,9 +1,9 @@
-// Theme cache to avoid redundant localStorage reads
+// Theme cache
 window.themeCache = window.themeCache || {
   lastUpdate: 0,
   values: {},
   isValid() {
-    // Cache valid for 1000ms to handle rapid navigation
+    // 1000ms cache TTL
     return Date.now() - this.lastUpdate < 1000;
   },
   update() {
@@ -30,7 +30,7 @@ window.themeCache = window.themeCache || {
   try {
     const cached = window.themeCache.get();
 
-    // Batch DOM updates to minimize reflows
+    // Batch updates
     const updates = [];
     
     if (cached.theme !== null) {
@@ -41,19 +41,19 @@ window.themeCache = window.themeCache || {
       updates.push(['--hue-root', cached.hue + 'deg']);
     }
 
-    // Apply all CSS updates in one batch
+    // Apply updates
     updates.forEach(([property, value]) => {
       document.documentElement.style.setProperty(property, value);
     });
 
-    // Removed legacy attributes and variables not controlled via UI
+    // Legacy attributes removed
   } catch (e) {
     console.error('Error applying theme preferences:', e);
-    // Fallback to default theme
+    // Fallback
     try {
       document.documentElement.style.setProperty('--current-color-scheme', 'light dark');
     } catch (fallbackError) {
-      console.error('Failed to apply fallback theme:', fallbackError);
+      console.error('Fallback theme error:', fallbackError);
     }
   }
 })();

@@ -19,21 +19,21 @@
   <meta name="description" content="A collection of projects by Ben Jennings" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
 
-  <!-- Critical CSS - load first for view-transition-name definitions -->
+  <!-- Critical CSS -->
   <link href="../src/assets/styles/base/vars.css" rel="stylesheet" />
   <link href="../src/assets/styles/base/index.css" rel="stylesheet" />
 
-  <!-- Critical JavaScript - theme initialization -->
+  <!-- Theme init -->
   <script src="../src/scripts/index.js"></script>
 
-  <!-- Web Components - preload then load -->
+  <!-- Web components -->
   <link rel="modulepreload" href="../src/components/index.js" />
   <script type="module" src="../src/components/index.js" blocking="render"></script>
 
-  <!-- View transition script - after CSS and components -->
+  <!-- View transitions -->
   <script src="../src/scripts/view-transition.js"></script>
 
-  <!-- Modern speculation rules for optimal performance -->
+  <!-- Speculation rules -->
   <script type="speculationrules">
     {
       "prefetch": [
@@ -55,7 +55,7 @@
     }
   </script>
 
-  <!-- Icons and Manifest -->
+  <!-- Icons and manifest -->
   <link rel="apple-touch-icon" sizes="180x180" href="../public/favicons/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="../public/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../public/favicons/favicon-16x16.png" />
@@ -77,49 +77,38 @@
     <div class="page-items">
       <!-- color1 -->
       <a id="card-dwellane" data-project="dwellane" class="card color1" href="dwellane/" data-vt-target="design-dwellane">
-        <img id="card-dwellane-image" class="thumbnail" slot="media" src="../public/dwellane-thumbnail.png" style="view-transition-name: design-dwellane-image" />
+        <img id="card-dwellane-image" class="thumbnail" src="../public/dwellane-thumbnail.png" style="view-transition-name: design-dwellane-image" />
         <h1 id="card-dwellane-title" class="heading sm" style="view-transition-name: design-dwellane-title">It's hard to know a neighborhood</h1>
         <div class="badge-group" style="view-transition-name: design-dwellane-badges">
-          <div class="badge">
-            <span>design_services</span>
-            Design System
-          </div>
-          <div class="badge">Startup Company</div>
+          <div class="badge"><span>design_services</span>Design System</div>
+          <div class="badge"><span>rocket_launch</span>Startup</div>
         </div>
       </a>
       <!-- color2 -->
       <a id="card-pls" data-project="pls" class="card color2" href="pls/" data-vt-target="design-pls">
-        <img id="card-pls-image" class="thumbnail" slot="media" src="../public/pls-thumbnail.png" style="view-transition-name: design-pls-image" />
+        <img id="card-pls-image" class="thumbnail" src="../public/pls-thumbnail.png" style="view-transition-name: design-pls-image" />
         <h1 id="card-pls-title" class="heading sm" style="view-transition-name: design-pls-title">Training Materials are unorganized</h1>
         <div class="badge-group" style="view-transition-name: design-pls-badges">
-          <div class="badge">
-            <span>design_services</span>
-            Design System
-          </div>
+          <div class="badge"><span>library_books</span>Content Management</div>
+          <div class="badge"><span>account_tree</span>Information Architecture</div>
         </div>
       </a>
       <!-- color3 -->
       <a id="card-herff-jones" data-project="herff-jones" class="card color3" href="herff-jones/" data-vt-target="design-herff-jones">
-        <img id="card-herff-jones-image" class="thumbnail" slot="media" src="../public/herff-jones-thumbnail.png" style="view-transition-name: design-herff-jones-image" />
+        <img id="card-herff-jones-image" class="thumbnail" src="../public/herff-jones-thumbnail.png" style="view-transition-name: design-herff-jones-image" />
         <h1 id="card-herff-jones-title" class="heading sm" style="view-transition-name: design-herff-jones-title">Graduates need a cap and gown</h1>
         <div class="badge-group" style="view-transition-name: design-herff-jones-badges">
-          <div class="badge">Design System</div>
-          <div class="badge">CMS</div>
+          <div class="badge"><span>shopping_bag</span>E-commerce</div>
+          <div class="badge"><span>design_services</span>Design System</div>
         </div>
       </a>
       <!-- color4 -->
       <a id="card-arvest" data-project="arvest" class="card color4" href="arvest/" data-vt-target="design-arvest">
-        <img id="card-arvest-image" class="thumbnail" slot="media" src="../public/arvest-thumbnail.png" style="view-transition-name: design-arvest-image" />
+        <img id="card-arvest-image" class="thumbnail" src="../public/arvest-thumbnail.png" style="view-transition-name: design-arvest-image" />
         <h1 id="card-arvest-title" class="heading sm" style="view-transition-name: design-arvest-title">The loan process is complicated</h1>
         <div class="badge-group" style="view-transition-name: design-arvest-badges">
-          <div class="badge">
-            <span>account_balance</span>
-            Financial
-          </div>
-          <div class="badge">
-            <span>cloud</span>
-            Salesforce
-          </div>
+          <div class="badge"><span>account_balance</span>Financial Services</div>
+          <div class="badge"><span>domain</span>Enterprise</div>
         </div>
       </a>
     </div>

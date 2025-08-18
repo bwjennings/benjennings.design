@@ -7,21 +7,21 @@ class Badge extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
 
-    // Create the badge element
+    // Badge element
     this.badge = document.createElement('span');
     this.badge.classList.add('badge');
 
-    // Icon element
+    // Icon
     this.iconEl = document.createElement('span');
     this.iconEl.classList.add('icon');
     this.iconEl.style.display = 'none';
 
-    // Compose badge: icon first, then text node (not span)
+    // Order: icon then text
     this.badge.appendChild(this.iconEl);
     this.textNode = document.createTextNode('');
     this.badge.appendChild(this.textNode);
 
-    // Attach stylesheets
+    // Attach styles
     const badgeCss = document.createElement('link');
     badgeCss.setAttribute('rel', 'stylesheet');
     badgeCss.setAttribute('href', '/src/assets/styles/components/badge.css');
@@ -57,7 +57,7 @@ class Badge extends HTMLElement {
   }
 
   connectedCallback() {
-    // Initialize attributes
+    // Init attributes
     this.attributeChangedCallback('icon', null, this.getAttribute('icon'));
     this.attributeChangedCallback('text', null, this.getAttribute('text'));
     this.attributeChangedCallback('variant', null, this.getAttribute('variant'));

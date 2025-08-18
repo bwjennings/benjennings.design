@@ -18,21 +18,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
 
-  <!-- Critical CSS - load first for view-transition-name definitions -->
+  <!-- Critical CSS -->
   <link href="../../src/assets/styles/base/vars.css" rel="stylesheet" />
   <link href="../../src/assets/styles/base/index.css" rel="stylesheet" />
 
-  <!-- Critical JavaScript - theme initialization -->
+  <!-- Theme init -->
   <script src="../../src/scripts/index.js"></script>
 
-  <!-- Web Components - preload then load -->
+  <!-- Web components -->
   <link rel="modulepreload" href="../../src/components/index.js" />
   <script type="module" src="../../src/components/index.js" blocking="render"></script>
 
-  <!-- View transition script - after CSS and components -->
+  <!-- View transitions -->
   <script src="../../src/scripts/view-transition.js"></script>
 
-  <!-- Modern speculation rules for prefetch and prerender -->
+  <!-- Speculation rules -->
   <script type="speculationrules">
     {
       "prefetch": [
@@ -51,7 +51,7 @@
     }
   </script>
 
-  <!-- Icons and Manifest -->
+  <!-- Icons and manifest -->
   <link rel="apple-touch-icon" sizes="180x180" href="../../public/favicons/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="../../public/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../../public/favicons/favicon-16x16.png" />
@@ -66,12 +66,10 @@
       <a href="../" class="button" rel="prev">Back</a>
       <header id="project-header" data-project="pls" class="card post-header color2" style="view-transition-name: design-pls">
       <img id="project-image" class="thumbnail" src="../../public/pls-thumbnail.png" alt="PLS" style="view-transition-name: design-pls-image" />
-      <h1 id="project-title" class="heading" style="view-transition-name: design-pls-title">Training Materials are unorganized</h1>
+      <h1 id="project-title" class="heading" style="view-transition-name: design-pls-title">Law enforcement officers need training materials</h1>
       <div class="badge-group" style="view-transition-name: design-pls-badges">
-        <div class="badge">
-          <span>design_services</span>
-          Design System
-        </div>
+        <div class="badge"><span>library_books</span>Content Management</div>
+        <div class="badge"><span>account_tree</span>Information Architecture</div>
       </div>
       <p class="body lg secondary">Centralizing lessons helped agencies customize content.</p>
     </header>
@@ -102,33 +100,72 @@
           user groups, individual users, courses, and lessons.
         </p>
         <figure>
-          <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450"
-            src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=23175-6870&embed-host=share"
-            ></iframe>
+          <div class="placeholder-image" style="width: 100%; height: 450px; background: #f5f5f5; border: 1px solid #e3e5e5; display: flex; align-items: center; justify-content: center; color: #999;">
+            [Content mapping diagram placeholder]
+          </div>
           <figcaption class="body sm secondary">Content hierarchy mapping for agencies, users, courses, and lessons
           </figcaption>
         </figure>
       </section>
+      
       <section class="section">
         <h2 class="heading sm">Finding the right amount of complexity</h2>
         <p class="body lg">
           This system serves users with different levels of responsibility:
-        <ul>
-          <li>Global Admins – Manage the entire system</li>
+        </p>
+        <ul class="body lg">
+          <li>Global Admins – Manage the entire system.</li>
           <li>Agency Admins – Oversee their own users.</li>
           <li>Individuals – Simply consume content.</li>
         </ul>
-
-        As responsibilities decrease, the interface adjusts, providing robust controls for admins while remaining simple
-        and intuitive for end users.
-        </p>
-      </section>
-      <section class="section">
-        <h2 class="heading sm">The problem</h2>
         <p class="body lg">
-          With their growth, managing and distributing content became increasingly challenging. They needed a more
-          scalable solution to make management easier while also giving agencies more options, like adjusting content to
-          fit their needs.
+          As responsibilities decrease, the interface adjusts, providing robust controls for admins while remaining simple
+          and intuitive for end users.
+        </p>
+
+        <h3 class="heading xs">Example of necessary complexity</h3>
+        <p class="body lg">
+          In this example, a lesson is being created at a global level and these details will appear the same for everyone on the platform.
+        </p>
+        
+        <figure>
+          <div class="placeholder-image" style="width: 100%; height: 400px; background: #f5f5f5; border: 1px solid #e3e5e5; display: flex; align-items: center; justify-content: center; color: #999;">
+            [Global lesson creation interface placeholder]
+          </div>
+        </figure>
+
+        <p class="body lg">
+          That same lesson needs to be customized for an individual agency, allowing changes to due dates,
+          assigned user groups, and other details.
+        </p>
+
+        <p class="body lg">
+          To visually distinguish an instance we introduced this modal pattern to represent an instance of content.
+        </p>
+
+        <figure>
+          <div class="placeholder-image" style="width: 100%; height: 300px; background: #f5f5f5; border: 1px solid #e3e5e5; display: flex; align-items: center; justify-content: center; color: #999;">
+            [Modal pattern for content instance placeholder]
+          </div>
+          <figcaption class="body sm secondary">A global admin changing a lesson inside the Buffalo Police dept.</figcaption>
+        </figure>
+
+        <p class="body lg">
+          From the agency admin's perspective, the complexity is reduced since they only manage a single version of the lesson.
+        </p>
+
+        <figure>
+          <div class="placeholder-image" style="width: 100%; height: 400px; background: #f5f5f5; border: 1px solid #e3e5e5; display: flex; align-items: center; justify-content: center; color: #999;">
+            [Agency admin lesson view placeholder]
+          </div>
+          <figcaption class="body sm secondary">An agency admin's simplified lesson management view</figcaption>
+        </figure>
+      </section>
+
+      <section class="section">
+        <h2 class="heading sm">Other resources</h2>
+        <p class="body lg">
+          I often think about this talk from Config a few years ago about balancing simplicity and business expertise.
         </p>
       </section>
     </div>

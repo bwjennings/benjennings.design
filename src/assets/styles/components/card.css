@@ -2,7 +2,7 @@
   cursor: pointer;
   display: grid;
 
-  /* Configure layout via CSS variables */
+  /* Layout via variables */
   grid-template-columns: var(--card-columns, 1fr);
   grid-template-rows: var(--card-rows, 1fr 1fr auto auto);
   grid-template-areas: var(--card-areas,
@@ -23,9 +23,9 @@
   outline-width: 0px;
   outline-color: var(--color-border-base);
   container-type: inline-size;
-  transition-property: transform, outline;
-  transition-duration: 500ms;
-  transition-timing-function: var(--transition-timing-motion), var(--transition-timing-style);
+  transition-property: transform, outline-width;
+  transition-duration: 200ms;
+  transition-timing-function: var(--transition-timing-motion);
   font-variation-settings: "GRAD" 0;
   color: var(--color-text-primary);
   gap: var(--spacing-xl);
@@ -36,7 +36,7 @@
   justify-content: start;
   justify-items: start;
 
-  /* Improve compositing and reduce paint work during transitions */
+  /* Compositing hints */
   contain: paint;
   will-change: transform, opacity;
 
@@ -53,7 +53,7 @@
     grid-area: media;
   }
 
-  /* Map simple text directly under the card to content */
+  /* Direct child p -> content */
   >p {
     grid-area: content;
     margin: 0;
@@ -63,14 +63,12 @@
 
 
   &:hover {
-    outline: 4px solid var(--color-border-base);
+    outline-width: 12px;
   }
 
   &:active {
     outline-width: 16px;
-    transition-duration: 300ms;
-    perspective: 100px;
-    /* Prefer 2D transform for better performance */
+    
     transform: scale(0.98);
   }
 
@@ -166,7 +164,21 @@
 
 }
 
-/* When a card has no media-like child, collapse the media row */
+/* Disable interactive hover/active on detail pages (post headers) */
+.detail-page .post-header.card {
+  cursor: default;
+}
+
+.detail-page .post-header.card:hover {
+  outline-width: 0px;
+}
+
+.detail-page .post-header.card:active {
+  outline-width: 0px;
+  transform: none;
+}
+
+/* No media: collapse row */
 .card:not(:has(.icon-box, img, .thumbnail, .media)) {
   grid-template-areas: var(--card-areas-no-media,
       "title"
@@ -175,7 +187,7 @@
   grid-template-rows: var(--card-rows-no-media, auto 1fr auto);
 }
 
-/* If there is no content element, remove the content row to avoid empty gaps */
+/* No content: remove row */
 .card:not(:has(.content, > p)) {
   grid-template-areas: var(--card-areas-no-content,
       "title"
@@ -184,7 +196,7 @@
   grid-template-rows: var(--card-rows-no-content, 1fr 1fr auto);
 }
 
-/* If there is neither media nor content, collapse to title + badges only */
+/* Title + badges only */
 .card:not(:has(.icon-box, img, .thumbnail, .media)):not(:has(.content, > p)) {
   grid-template-areas: var(--card-areas-no-media-no-content,
       "title"
@@ -192,7 +204,7 @@
   grid-template-rows: var(--card-rows-no-media-no-content, auto auto);
 }
 
-/* Map common children to named areas so order is controlled in CSS */
+/* Area mapping */
 .card h1,
 .card h2,
 .card h3,
@@ -210,11 +222,11 @@
 .card .badge-group {
   grid-area: badges;
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
   flex-wrap: wrap;
 }
 
-/* Optional plain icon box (non-webcomponent) */
+/* Icon box (non-component) */
 .icon-box {
   grid-area: media;
 }
@@ -229,12 +241,10 @@ p {
 }
 
 .thumbnail {
-  /* Keep thumbnail cropping and centering consistent across views */
+  /* Thumbnail fit */
   object-fit: cover;
   object-position: center;
-  
-  
-  /* Card grid may constrain height; keep a soft cap */
+  /* Thumbnail height cap */
   max-height: 120px;
 
   overflow: hidden;
@@ -248,11 +258,6 @@ p {
   color: var(--color-icon-base-secondary);
   user-select: none;
   -webkit-user-select: none;
-}
-
-::slotted(model-viewer) {
-  width: 100%;
-  height: 100%;
 }
 
 ::slotted(model-viewer) {
@@ -286,33 +291,14 @@ p {
 }
 
 
-::slotted([slot="icon-box"]) {
-  font-variation-settings: 'GRAD' -200, 'FILL' var(--icon-fill);
-  font-family: var(--icon-font-family);
-  color: var(--color-surface-a-secondary);
-  font-size: 50cqw;
-  transition: 200ms var(--transition-timing-style);
-  transition-property: font-variation-settings;
-  rotate: -30deg;
-}
+/* Removed unused slotted styling for non-existent slot "icon-box" */
 
 
+/* Removed invalid nested ::slotted usage */
 
-::slotted(.post-body) {
-  ::slotted(.horizontal) {
-    grid-template-columns: 1fr;
-  }
+/* Removed unused slotted styling for non-existent slot "image" */
 
-}
-
-::slotted([slot="image"]) {
-  width: 100%;
-  height: 400px;
-}
-
-:slotted(model-viewer) {
-  height: 400px;
-}
+/* Removed invalid single-colon :slotted selector */
 
 
 
