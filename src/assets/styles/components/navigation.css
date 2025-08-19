@@ -109,13 +109,13 @@ site-navigation {
   transition-property: background-color, outline-width, outline-color, font-variation-settings;
   outline-width: 0px;
   outline-color: transparent;
-  font-variation-settings: initial;
-  font-variation-settings: "GRAD" 0;
+  /* Default body grade within nav items */
+  
 
   &:hover {
-
-    --icon-grade: 200;
-    font-variation-settings: "GRAD" 200;
+    /* Emphasize icon and body text grade on hover */
+    --icon-grade: var(--icon-grade-emphasis);
+    --text-body-grade: 200;
   }
 
   &:focus-visible {
@@ -134,6 +134,10 @@ site-navigation {
     justify-content: center;
     justify-items: center;
     grid-area: title;
+    /* Smoothly transition body font grade changes */
+    transition-property: font-variation-settings;
+    transition-duration: inherit;
+    transition-timing-function: var(--transition-timing-style);
   }
 
 }
@@ -149,7 +153,8 @@ site-navigation[active-item="item3"] .item3,
 site-navigation[active-item="item4"] .item4,
 site-navigation[active-item="item5"] .item5 {
   transition: none;
-  font-variation-settings: 'GRAD' 100;
+  /* Emphasize body text grade for active item */
+  --text-body-grade: 100;
   color: var(--color-text-primary);
   background: transparent;
   outline-width: 0;

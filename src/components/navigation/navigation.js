@@ -63,28 +63,28 @@ class SiteNavigation extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `
       <section class="sidebar">
-        <h2 class="site-title"><a href="/">Ben Jennings</a></h2>
+        <h2 class="site-title heading sm"><a href="/">Ben Jennings</a></h2>
         <div class="active-box"></div>
         <nav>
           <li><a class="nav-item item1" href="/" style="view-transition-name: home; view-transition-class: nav-item">
               <span class="icon" role="img" aria-hidden="true">waving_hand</span>
-              <span class="title">Home</span>
+              <span class="title body">Home</span>
             </a></li>
           <li><a class="nav-item item2" href="/fundamentals/" style="view-transition-name: fundamentals; view-transition-class: nav-item">
               <span class="icon" role="img" aria-hidden="true">psychology</span>
-              <span class="title">Fundamentals</span>
+              <span class="title body">Fundamentals</span>
             </a></li>
           <li><a class="nav-item item3" href="/designs/" style="view-transition-name: designs; view-transition-class: nav-item">
               <span class="icon" role="img" aria-hidden="true">web</span>
-              <span class="title">Designs</span>
+              <span class="title body">Designs</span>
             </a></li>
           <li><a class="nav-item item4" href="/experiments/" style="view-transition-name: experiments; view-transition-class: nav-item">
               <span class="icon" role="img" aria-hidden="true">experiment</span>
-              <span class="title">Experiments</span>
+              <span class="title body">Experiments</span>
             </a></li>
           <li><a class="nav-item item5" href="/resources/" style="view-transition-name: resources; view-transition-class: nav-item">
               <span class="icon" role="img" aria-hidden="true">folder_open</span>
-              <span class="title">Resources</span>
+              <span class="title body">Resources</span>
             </a></li>
           <div class="nav-background" style="view-transition-name: nav-background; view-transition-class: nav-background"></div>
         </nav>

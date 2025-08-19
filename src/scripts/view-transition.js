@@ -151,7 +151,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const anyAnchor = e.target && (e.target.closest ? e.target.closest('a') : null);
     if (!anyAnchor) return;
 
-    // Back links navigate normally
+    // Back links: use history API when possible
+    const backAnchor = anyAnchor.matches('a[rel="prev"]') ? anyAnchor : null;
+    if (backAnchor) {
+      e.preventDefault();
+      // Check if we have history to go back to
+      if (window.history.length > 1) {
+        // Use history API to go back
+        window.history.back();
+      } else {
+        // Fallback to the original href if no history
+        window.location.href = backAnchor.getAttribute('href');
+      }
+      return;
+    }
 
     // Card click: set name and record
     const cardAnchor = anyAnchor.matches('a[data-vt-target]') ? anyAnchor : null;

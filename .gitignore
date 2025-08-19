@@ -13,3 +13,6 @@ _site/
 # Ruby
 Gemfile.lock
 .bundle/
+
+# Playwright MCP screenshots
+.playwright-mcp/

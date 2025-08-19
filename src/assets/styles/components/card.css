@@ -24,7 +24,7 @@
   outline-color: var(--color-border-base);
   container-type: inline-size;
   transition-property: transform, outline-width;
-  transition-duration: 200ms;
+  transition-duration: 300ms;
   transition-timing-function: var(--transition-timing-motion);
   font-variation-settings: "GRAD" 0;
   color: var(--color-text-primary);
@@ -67,8 +67,8 @@
   }
 
   &:active {
-    outline-width: 16px;
-    
+    outline-width: 0px;
+
     transform: scale(0.98);
   }
 
@@ -164,18 +164,16 @@
 
 }
 
-/* Disable interactive hover/active on detail pages (post headers) */
-.detail-page .post-header.card {
-  cursor: default;
-}
-
-.detail-page .post-header.card:hover {
-  outline-width: 0px;
-}
-
-.detail-page .post-header.card:active {
-  outline-width: 0px;
-  transform: none;
+.post{
+  .card{
+    &:hover {
+      outline-width: 0px;
+    }
+    &:active {
+      outline-width: 0px;
+      transform: none;
+    }
+  }
 }
 
 /* No media: collapse row */

@@ -41,8 +41,8 @@ u {
   font-variation-settings:
     "wdth" var(--text-heading-width),
     "GRAD" var(--text-heading-grade),
-    "XOPQ" 80,
-    "YOPQ" 80;
+    "XOPQ" var(--text-heading-xopq),
+    "YOPQ" var(--text-heading-yopq);
   font-optical-sizing: auto;
   font-style: normal;
 
@@ -82,7 +82,12 @@ u {
   font-size: var(--text-body-md-size);
   line-height: var(--text-body-md-line-height);
   text-wrap: pretty;
-
+  font-variation-settings:
+    "wdth" var(--text-body-width),
+    "GRAD" var(--text-body-grade),
+    "XOPQ" var(--text-body-xopq),
+    "YOPQ" var(--text-body-yopq);
+  
   &.lg {
     font-size: var(--text-body-lg-size);
     line-height: var(--text-body-lg-line-height);

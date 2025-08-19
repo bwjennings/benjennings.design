@@ -5,7 +5,7 @@
 :root {
   view-transition-name: none;
   /* View-transition timing */
-  --transition-duration: 600ms;
+  
 
 }
 
@@ -24,7 +24,7 @@ nav {
 
 ::view-transition {
   /* Mirror variables */
-  --transition-duration: 500ms;
+  --transition-duration: 600ms;
 }
 
 ::view-transition-group(*) {
@@ -106,6 +106,7 @@ html.theme-transition * {
 ::view-transition-new(.card) {
 height: 100%;
 border-radius: 8px;
+
 }
 
 
@@ -153,12 +154,12 @@ border-radius: 8px;
 
   40% {
     opacity: 0;
-    filter: blur(8px);
+    filter: blur(4px);
   }
 
   to {
     opacity: 0;
-    filter: blur(8px);
+    filter: blur(4px);
   }
 }
 
@@ -170,7 +171,7 @@ border-radius: 8px;
   
 
   to {
-    transform: scale(0.95);
+    transform: scale(0.90);
   }
 }
 
@@ -180,7 +181,7 @@ border-radius: 8px;
     filter: blur(8px);
   }
 
-  30% {
+  20% {
     opacity: 0;
     filter: blur(8px);
   }

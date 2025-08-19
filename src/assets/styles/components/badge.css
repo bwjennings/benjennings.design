@@ -27,7 +27,7 @@
             color: var(--color-text-base-b)
         }
     
-        /* Removed invalid ::slotted usage (not in shadow DOM) */
+        
     }
 
     &.primary {
