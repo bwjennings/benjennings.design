@@ -26,27 +26,35 @@ window.themeCache = window.themeCache || {
   }
 };
 
-(function () {
+// Normalize and apply stored theme values
+function applyStoredThemeVars() {
   try {
     const cached = window.themeCache.get();
 
     // Batch updates
     const updates = [];
-    
-    if (cached.theme !== null) {
-      const colorScheme = cached.theme === '' || cached.theme === 'system' ? 'light dark' : cached.theme;
+
+    // Theme: allow 'light' | 'dark' | 'system' | ''
+    if (typeof cached.theme === 'string') {
+      const t = cached.theme.trim();
+      const colorScheme = (t === '' || t === 'system') ? 'light dark' : (t === 'light' || t === 'dark') ? t : 'light dark';
       updates.push(['--current-color-scheme', colorScheme]);
     }
-    if (cached.hue !== null) {
-      updates.push(['--hue-root', cached.hue + 'deg']);
+
+    // Hue: accept numeric strings or values with 'deg'
+    if (cached.hue != null) {
+      const raw = String(cached.hue);
+      const parsed = parseInt(raw, 10);
+      if (!Number.isNaN(parsed)) {
+        const clamped = Math.max(0, Math.min(360, parsed));
+        updates.push(['--hue-root', clamped + 'deg']);
+      }
     }
 
     // Apply updates
     updates.forEach(([property, value]) => {
       document.documentElement.style.setProperty(property, value);
     });
-
-    // Legacy attributes removed
   } catch (e) {
     console.error('Error applying theme preferences:', e);
     // Fallback
@@ -56,4 +64,12 @@ window.themeCache = window.themeCache || {
       console.error('Fallback theme error:', fallbackError);
     }
   }
-})();
+}
+
+// Initial run (eager to avoid flashes)
+(function () { applyStoredThemeVars(); })();
+
+// Re-apply on pageshow (helps with prerender/BFCache restores)
+window.addEventListener('pageshow', () => {
+  try { applyStoredThemeVars(); } catch {}
+});

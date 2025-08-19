@@ -5,21 +5,13 @@
 :root {
   view-transition-name: none;
   /* View-transition timing */
-  
+
 
 }
 
 nav {
   view-transition-name: nav-container;
 }
-
-
-/* Only .nav-background participates */
-
-
-/* match-element is for same-document only */
-
-
 
 
 ::view-transition {
@@ -31,17 +23,16 @@ nav {
   animation-timing-function: var(--transition-timing-motion);
 }
 
-/* Nav highlight timing */
-::view-transition-group(nav-background),
-::view-transition-group(.nav-background) {
-  animation-duration: var(--transition-duration);
+/* Navigation layering via classes */
+::view-transition-group(.nav-active) {
   animation-timing-function: var(--transition-timing-motion);
+  z-index: 1;
 }
 
-::view-transition-old(nav-background),
-::view-transition-new(nav-background),
-::view-transition-old(.nav-background),
-::view-transition-new(.nav-background) {}
+::view-transition-group(.nav-foreground) {
+  animation-timing-function: var(--transition-timing-style);
+  z-index: 2;
+}
 
 main {
   view-transition-name: page;
@@ -104,8 +95,8 @@ html.theme-transition * {
 /* Preserve snapshot alignment */
 ::view-transition-old(.card),
 ::view-transition-new(.card) {
-height: 100%;
-border-radius: 8px;
+  height: 100%;
+  border-radius: 8px;
 
 }
 
@@ -122,7 +113,7 @@ border-radius: 8px;
   animation-duration: var(--transition-duration);
   animation-timing-function: var(--transition-timing-motion);
   isolation: isolate;
-  
+
 }
 
 /* Thumbnail aspect-ratio */
@@ -168,7 +159,7 @@ border-radius: 8px;
     transform: scale(1);
   }
 
-  
+
 
   to {
     transform: scale(0.90);
@@ -197,7 +188,7 @@ border-radius: 8px;
     transform: scale(0.95);
   }
 
-  
+
 
   to {
     transform: scale(1);
@@ -238,8 +229,7 @@ html.restoring ::view-transition-new(root) {
 }
 
 ::view-transition-old(.heading),
-::view-transition-old(.thumbnail)
- {
+::view-transition-old(.thumbnail) {
   animation: card-header-out var(--transition-duration) var(--transition-timing-motion);
 }
 

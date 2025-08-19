@@ -52,10 +52,18 @@ class SiteNavigation extends HTMLElement {
       }
     }
     
-    // Skip if unchanged
+    // Apply attribute for CSS hooks
     if (this.getAttribute('active-item') !== activeItem) {
       this.setAttribute('active-item', activeItem);
     }
+
+    // Ensure only one .active link
+    try {
+      const items = this.querySelectorAll('.nav-item');
+      items.forEach((el) => el.classList.remove('active'));
+      const current = this.querySelector(`.nav-item.${activeItem}`);
+      if (current) current.classList.add('active');
+    } catch {}
   }
 
   createTemplate() {
@@ -64,29 +72,27 @@ class SiteNavigation extends HTMLElement {
     template.innerHTML = `
       <section class="sidebar">
         <h2 class="site-title heading sm"><a href="/">Ben Jennings</a></h2>
-        <div class="active-box"></div>
         <nav>
-          <li><a class="nav-item item1" href="/" style="view-transition-name: home; view-transition-class: nav-item">
+          <li><a class="nav-item item1" href="/">
               <span class="icon" role="img" aria-hidden="true">waving_hand</span>
               <span class="title body">Home</span>
             </a></li>
-          <li><a class="nav-item item2" href="/fundamentals/" style="view-transition-name: fundamentals; view-transition-class: nav-item">
+          <li><a class="nav-item item2" href="/fundamentals/">
               <span class="icon" role="img" aria-hidden="true">psychology</span>
               <span class="title body">Fundamentals</span>
             </a></li>
-          <li><a class="nav-item item3" href="/designs/" style="view-transition-name: designs; view-transition-class: nav-item">
+          <li><a class="nav-item item3" href="/designs/">
               <span class="icon" role="img" aria-hidden="true">web</span>
               <span class="title body">Designs</span>
             </a></li>
-          <li><a class="nav-item item4" href="/experiments/" style="view-transition-name: experiments; view-transition-class: nav-item">
+          <li><a class="nav-item item4" href="/experiments/">
               <span class="icon" role="img" aria-hidden="true">experiment</span>
               <span class="title body">Experiments</span>
             </a></li>
-          <li><a class="nav-item item5" href="/resources/" style="view-transition-name: resources; view-transition-class: nav-item">
+          <li><a class="nav-item item5" href="/resources/">
               <span class="icon" role="img" aria-hidden="true">folder_open</span>
               <span class="title body">Resources</span>
             </a></li>
-          <div class="nav-background" style="view-transition-name: nav-background; view-transition-class: nav-background"></div>
         </nav>
         <site-settings></site-settings>
 

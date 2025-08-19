@@ -135,6 +135,26 @@ template.innerHTML = `
       border-radius: 24px;
     }
     
+    /* Overlay input switch (actual control) */
+    .theme-switch {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      opacity: 0; /* keep it interactive & focusable */
+      z-index: 2; /* ensure it sits above visuals */
+    }
+
+    .theme-switch:focus-visible + .segmented-buttons {
+      outline: 2px solid var(--color-text-base);
+      outline-offset: 2px;
+    }
+
     .segmented-buttons {
       box-sizing: border-box;
       display: flex;
@@ -147,6 +167,7 @@ template.innerHTML = `
       position: relative;
       width: 100%;
       height: 100%;
+      pointer-events: none; /* visuals only; let input capture interactions */
     }
     
     .segmented-button {
@@ -163,7 +184,7 @@ template.innerHTML = `
       height: 39px;
       flex-shrink: 0;
       border: none;
-      cursor: pointer;
+      cursor: default; /* visuals only; input handles interaction */
       background: none;
     }
     
@@ -185,19 +206,36 @@ template.innerHTML = `
     .segmented-button.active .icon {
       color: rgba(255, 255, 255, 0.8);
     }
+
+    /* Active state driven by checkbox state */
+    .segmented-button-group:not(:has(.theme-switch:checked)) .segmented-button[data-theme="light"] {
+      background: var(--color-fill-a);
+    }
+    .segmented-button-group:not(:has(.theme-switch:checked)) .segmented-button[data-theme="light"] .icon {
+      color: rgba(255,255,255,0.8);
+    }
+    .segmented-button-group:has(.theme-switch:checked) .segmented-button[data-theme="dark"] {
+      background: var(--color-fill-a);
+    }
+    .segmented-button-group:has(.theme-switch:checked) .segmented-button[data-theme="dark"] .icon {
+      color: rgba(255,255,255,0.8);
+    }
   </style>
   
   <div class="color-picker">
     <input type="range" class="hue-slider" id="hue-slider" min="0" max="360" step="1" aria-label="Theme Color Hue">
     
     <div class="segmented-button-group">
-      <div class="segmented-buttons">
-        <button class="segmented-button active" data-theme="light">
+      <!-- Real control: checkbox switch for color scheme -->
+      <input class="theme-switch" id="theme-switch" type="checkbox" switch aria-label="Toggle dark mode" />
+      <!-- Visuals only: two-segment UI kept identical -->
+      <div class="segmented-buttons" aria-hidden="true">
+        <div class="segmented-button" data-theme="light">
           <div class="icon">light_mode</div>
-        </button>
-        <button class="segmented-button" data-theme="dark">
+        </div>
+        <div class="segmented-button" data-theme="dark">
           <div class="icon">dark_mode</div>
-        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -209,9 +247,13 @@ class SiteSettings extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.themeChangeHandler = this.themeChangeHandler.bind(this);
+    this.switchChangeHandler = this.switchChangeHandler.bind(this);
     this.hueSliderHandler = this.hueSliderHandler.bind(this);
     this.debouncedHueSliderHandler = this.debounce(this.hueSliderHandler, 5);
     this.throttledUpdateHue = this.throttle(this.updateHue.bind(this), 16); // ~60fps
+    this.saveSettingsSync = this.saveSettingsSync.bind(this);
+    this.currentHue = null;
+    this.currentTheme = null;
   }
 
   // Debounce
@@ -245,27 +287,45 @@ class SiteSettings extends HTMLElement {
     });
   }
 
+  // Safe localStorage save with error handling
+  safeLocalStorageSet(key, value) {
+    try {
+      localStorage.setItem(key, value);
+      return true;
+    } catch (e) {
+      console.warn(`Failed to save ${key} to localStorage:`, e);
+      return false;
+    }
+  }
+
+  // Safe localStorage get with error handling
+  safeLocalStorageGet(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      console.warn(`Failed to read ${key} from localStorage:`, e);
+      return null;
+    }
+  }
+
+  // Synchronous save of current settings (for page unload)
+  saveSettingsSync() {
+    if (this.currentHue !== null) {
+      this.safeLocalStorageSet('brandHue', this.currentHue);
+    }
+    if (this.currentTheme !== null) {
+      this.safeLocalStorageSet('myCustomTheme', this.currentTheme);
+    }
+  }
+
   connectedCallback() {
     // Init controls
-    const themeButtons = this.shadowRoot.querySelectorAll('[data-theme]');
+    const switchInput = this.shadowRoot.getElementById('theme-switch');
     const hueSlider = this.shadowRoot.querySelector('.hue-slider');
     
-    // Bind events
-    themeButtons.forEach(button => {
-      if (button) {
-        button.addEventListener('click', this.themeChangeHandler);
-        button.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.themeChangeHandler(e);
-          }
-        });
-        // Make focusable
-        button.setAttribute('tabindex', '0');
-        button.setAttribute('role', 'button');
-        button.setAttribute('aria-pressed', button.classList.contains('active'));
-      }
-    });
+    if (switchInput) {
+      switchInput.addEventListener('change', this.switchChangeHandler);
+    }
     
     
     if (hueSlider) {
@@ -273,15 +333,20 @@ class SiteSettings extends HTMLElement {
       hueSlider.addEventListener('change', this.hueSliderHandler);
     }
     
-    // Load stored theme
-    const storedTheme = localStorage.getItem("myCustomTheme");
-    if (storedTheme !== null) {
-      this.setActiveTheme(storedTheme);
-      this.updateTheme(storedTheme);
+    // Load stored theme (normalize to 'light' | 'dark' | 'system')
+    const rawTheme = this.safeLocalStorageGet("myCustomTheme");
+    const normalizedTheme = (rawTheme === 'light' || rawTheme === 'dark') ? rawTheme : 'system';
+    if (normalizedTheme !== 'system') {
+      this.setActiveTheme(normalizedTheme);
+      this.updateTheme(normalizedTheme);
+    }
+    // Initialize switch position based on theme
+    if (switchInput) {
+      switchInput.checked = (normalizedTheme === 'dark');
     }
     
     // Initialize hue from storage
-    const storedHue = localStorage.getItem('brandHue');
+    const storedHue = this.safeLocalStorageGet('brandHue');
     const parsedHue = storedHue ? parseInt(storedHue, 10) : null;
     const defaultHue = (!isNaN(parsedHue) && parsedHue >= 0 && parsedHue <= 360) ? parsedHue : 230;
     
@@ -290,17 +355,57 @@ class SiteSettings extends HTMLElement {
     }
     
     this.updateHue(defaultHue);
-    localStorage.setItem('brandHue', defaultHue);
+    this.currentHue = defaultHue;
+    this.safeLocalStorageSet('brandHue', defaultHue);
+
+    // Cross-instance/theme sync listeners
+    this._onGlobalSchemeChange = (e) => {
+      try {
+        const theme = e?.detail;
+        const switchEl = this.shadowRoot.getElementById('theme-switch');
+        if (!switchEl) return;
+        if (theme === 'light' || theme === 'dark') {
+          switchEl.checked = (theme === 'dark');
+          this.setActiveTheme(theme);
+        } else {
+          // Treat others as system
+          switchEl.checked = false;
+        }
+      } catch {}
+    };
+    this._onGlobalHueChange = (e) => {
+      try {
+        const hue = parseInt(e?.detail, 10);
+        const hueSliderEl = this.shadowRoot.querySelector('.hue-slider');
+        if (Number.isFinite(hue) && hueSliderEl) {
+          hueSliderEl.value = hue;
+          this.currentHue = hue;
+          this.updateHue(hue);
+        }
+      } catch {}
+    };
+    window.addEventListener('globalSchemeChange', this._onGlobalSchemeChange);
+    window.addEventListener('globalHueChange', this._onGlobalHueChange);
+
+    // Add mobile-specific lifecycle event listeners
+    window.addEventListener('beforeunload', this.saveSettingsSync);
+    window.addEventListener('pagehide', this.saveSettingsSync);
+    
+    // Also handle visibility change (mobile browsers switching tabs/apps)
+    this.visibilityHandler = () => {
+      if (document.visibilityState === 'hidden') {
+        this.saveSettingsSync();
+      }
+    };
+    document.addEventListener('visibilitychange', this.visibilityHandler);
   }
 
   setActiveTheme(theme) {
-    const themeButtons = this.shadowRoot.querySelectorAll('[data-theme]');
-    themeButtons.forEach(button => {
-      if (button) {
-        const isActive = button.dataset.theme === theme;
-        button.classList.toggle('active', isActive);
-        button.setAttribute('aria-pressed', isActive);
-      }
+    // Keep visual segments in sync as a fallback when :has is unsupported
+    const segments = this.shadowRoot.querySelectorAll('.segmented-button[data-theme]');
+    segments.forEach(seg => {
+      const isActive = seg.getAttribute('data-theme') === theme;
+      seg.classList.toggle('active', isActive);
     });
   }
 
@@ -311,8 +416,11 @@ class SiteSettings extends HTMLElement {
         ? "dark"
         : "light dark";
     
-    // Persist theme
-    localStorage.setItem("myCustomTheme", theme);
+    // Track current theme
+    this.currentTheme = theme;
+    
+    // Persist theme with error handling
+    this.safeLocalStorageSet("myCustomTheme", theme);
 
     // Apply styles
     document.documentElement.style.setProperty("--current-color-scheme", colorScheme);
@@ -320,14 +428,17 @@ class SiteSettings extends HTMLElement {
   }
 
   themeChangeHandler(event) {
-    const theme = event.currentTarget.dataset.theme;
-    if (!theme) return;
+    // Retained for compatibility if needed in future; not used now.
+  }
+
+  switchChangeHandler(e) {
+    const isDark = e.currentTarget.checked;
+    const theme = isDark ? 'dark' : 'light';
 
     // Animate if supported
     const supportsVT = typeof document.startViewTransition === 'function';
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Apply fallback
     const apply = () => {
       this.setActiveTheme(theme);
       this.updateTheme(theme);
@@ -338,17 +449,15 @@ class SiteSettings extends HTMLElement {
       return;
     }
 
-    // Add class
     document.documentElement.classList.add('theme-transition');
     try {
       const transition = document.startViewTransition(() => {
         apply();
       });
-      // Cleanup class
       transition.finished.finally(() => {
         document.documentElement.classList.remove('theme-transition');
       });
-    } catch (e) {
+    } catch (e2) {
       document.documentElement.classList.remove('theme-transition');
       apply();
     }
@@ -358,6 +467,9 @@ class SiteSettings extends HTMLElement {
   hueSliderHandler(event) {
     const hue = parseInt(event.target.value, 10);
     if (!isNaN(hue) && hue >= 0 && hue <= 360) {
+      // Track current hue immediately
+      this.currentHue = hue;
+      
       // Throttle updates
       this.throttledUpdateHue(hue);
       
@@ -366,12 +478,12 @@ class SiteSettings extends HTMLElement {
         window.themeCache.values.hue = hue.toString();
       }
       
-      // Debounce storage + event
+      // Reduced debounce delay for mobile performance (50ms instead of 100ms)
       clearTimeout(this.saveTimeout);
       this.saveTimeout = setTimeout(() => {
-        localStorage.setItem('brandHue', hue);
+        this.safeLocalStorageSet('brandHue', hue);
         window.dispatchEvent(new CustomEvent('globalHueChange', { detail: hue }));
-      }, 100);
+      }, 50);
     }
   }
 
@@ -382,19 +494,34 @@ class SiteSettings extends HTMLElement {
   }
 
   disconnectedCallback() {
-    // Cleanup listeners
-    const themeButtons = this.shadowRoot.querySelectorAll('[data-theme]');
-    const hueSlider = this.shadowRoot.querySelector('.hue-slider');
+    // Save settings one last time before disconnecting
+    this.saveSettingsSync();
     
-    themeButtons.forEach(button => {
-      if (button) {
-        button.removeEventListener('click', this.themeChangeHandler);
-      }
-    });
+    // Clear any pending timeout
+    if (this.saveTimeout) {
+      clearTimeout(this.saveTimeout);
+    }
+    
+    // Cleanup listeners
+    const hueSlider = this.shadowRoot.querySelector('.hue-slider');
+    const switchInput = this.shadowRoot.getElementById('theme-switch');
+    
+    if (switchInput) {
+      switchInput.removeEventListener('change', this.switchChangeHandler);
+    }
     
     if (hueSlider) {
       hueSlider.removeEventListener('input', this.hueSliderHandler);
       hueSlider.removeEventListener('change', this.hueSliderHandler);
+    }
+    
+    // Clean up listeners
+    window.removeEventListener('globalSchemeChange', this._onGlobalSchemeChange);
+    window.removeEventListener('globalHueChange', this._onGlobalHueChange);
+    window.removeEventListener('beforeunload', this.saveSettingsSync);
+    window.removeEventListener('pagehide', this.saveSettingsSync);
+    if (this.visibilityHandler) {
+      document.removeEventListener('visibilitychange', this.visibilityHandler);
     }
   }
 }

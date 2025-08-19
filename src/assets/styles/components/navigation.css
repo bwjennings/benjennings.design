@@ -146,19 +146,22 @@ site-navigation {
 
 
 /* Active item */
-.active,
+/* Active item: owns its highlight and transition pairing */
+.nav-item.active,
 site-navigation[active-item="item1"] .item1,
 site-navigation[active-item="item2"] .item2,
 site-navigation[active-item="item3"] .item3,
 site-navigation[active-item="item4"] .item4,
 site-navigation[active-item="item5"] .item5 {
-  transition: none;
   /* Emphasize body text grade for active item */
   --text-body-grade: 100;
   color: var(--color-text-primary);
-  background: transparent;
+  background-color: var(--color-surface-a);
   outline-width: 0;
   outline-color: transparent;
+  /* View transition: active background/whole-item */
+  view-transition-name: nav-item-active;
+  view-transition-class: nav-active;
 
   .icon {
     font-variation-settings: "FILL" 1, "GRAD" var(--icon-grade-emphasis);
@@ -166,22 +169,10 @@ site-navigation[active-item="item5"] .item5 {
   }
 }
 
-/* Nav background */
-.nav-background {
-  position: absolute;
-  background: var(--color-border-primary);
-  background: var(--color-surface-a);
-  border-radius: var(--radius-md);
-  pointer-events: none;
-  z-index: 0;
-  /* Default position - should be overridden by :has() selectors */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* Hint compositing for smoother transitions */
-  will-change: transform, opacity;
-  contain: paint;
+/* Foreground elements: icon and title participate and layer above */
+.nav-item .icon,
+.nav-item .title {
+  view-transition-class: nav-foreground;
 }
 
 /* Desktop only */
@@ -230,11 +221,6 @@ site-navigation[active-item="item5"] .item5 {
 
   /* Wide container */
   @container navigation (min-width: 451px) {
-    .nav-background {
-      width: 100%;
-      height: 100%;
-    }
-
     .sidebar {
       padding: var(--spacing-lg);
     }
@@ -252,11 +238,7 @@ site-navigation[active-item="item5"] .item5 {
 
 
 
-.active-box {
-  display: none;
-  appearance: none;
-
-}
+/* Removed legacy .active-box */
 
 .item1 {
   grid-area: item1;
@@ -280,50 +262,14 @@ site-navigation[active-item="item5"] .item5 {
 
 
 
-.nav-background {
-
-
-  width: 100%;
-  grid-column: 1;
-  grid-row: var(--nav-background-position, 1);
-  z-index: 1;
-}
-
-/* nav-background position from active-item */
-site-navigation[active-item="item1"] nav {
-  --nav-background-position: 1;
-}
-
-site-navigation[active-item="item2"] nav {
-  --nav-background-position: 2;
-}
-
-site-navigation[active-item="item3"] nav {
-  --nav-background-position: 3;
-}
-
-site-navigation[active-item="item4"] nav {
-  --nav-background-position: 4;
-}
-
-site-navigation[active-item="item5"] nav {
-  --nav-background-position: 5;
-}
+/* Removed legacy floating .nav-background; active item now owns background */
 
 /* Desktop only (non-fixed) */
 @media screen and (min-width: 801px) {
 
   /* Mobile layout (narrow container) */
   @container navigation (max-width: 349px) {
-    .nav-background {
-      grid-row: 1;
-      grid-column: var(--nav-background-position) / span 1;
-      height: calc(100% - 8px);
-      top: 4px;
-      border-radius: 999px;
-      left: var(--nav-bg-left, calc(0 * 20% + 4px));
-      width: var(--nav-bg-width, calc(20% - 8px));
-    }
+    /* No special background element in mobile; active styles remain per item */
   }
 }
 
@@ -380,6 +326,18 @@ nav li:nth-child(5) .nav-item {
   }
 }
 
+/* View-transition pairing for foreground parts */
+nav li:nth-child(1) .icon { view-transition-name: nav-item-1-icon; }
+nav li:nth-child(1) .title { view-transition-name: nav-item-1-title; }
+nav li:nth-child(2) .icon { view-transition-name: nav-item-2-icon; }
+nav li:nth-child(2) .title { view-transition-name: nav-item-2-title; }
+nav li:nth-child(3) .icon { view-transition-name: nav-item-3-icon; }
+nav li:nth-child(3) .title { view-transition-name: nav-item-3-title; }
+nav li:nth-child(4) .icon { view-transition-name: nav-item-4-icon; }
+nav li:nth-child(4) .title { view-transition-name: nav-item-4-title; }
+nav li:nth-child(5) .icon { view-transition-name: nav-item-5-icon; }
+nav li:nth-child(5) .title { view-transition-name: nav-item-5-title; }
+
 /* Mobile grid */
 @media screen and (max-width: 800px) {
   nav li:nth-child(1) {
@@ -408,15 +366,7 @@ nav li:nth-child(5) .nav-item {
   }
 }
 
-nav {
-  li {
-    z-index: 2;
-  }
-
-  .nav-background {
-    z-index: 1;
-  }
-}
+/* No separate nav-background layering; transitions manage stacking */
 
 
 
@@ -560,48 +510,14 @@ nav {
     }
 
     &.active {
-      background-color: transparent;
-      color: var(--color-text-base);
+      background-color: var(--color-surface-a);
+      color: var(--color-text-primary);
     }
   }
 
-  /* Mobile: nav-background via grid */
-  .nav-background {
-
-    height: calc(100% - 8px);
-    top: 4px;
-    left: -4px;
-    width: calc(100% + 8px);
-    grid-row: 1;
-    grid-column: var(--nav-background-position, 1) / span 1;
-    position: absolute;
-
-  }
-
-  /* Fix padding for first item - don't extend left beyond container padding */
-  site-navigation[active-item="item1"] .nav-background {
-    left: 0;
-    width: calc(100% + 4px);
-  }
-
-  /* Fix padding for last item - don't extend right beyond container padding */
-  site-navigation[active-item="item5"] .nav-background {
-    left: -4px;
-    width: calc(100% + 4px);
-  }
 }
 
-/* Desktop: nav-background uses grid-row */
-@media screen and (min-width: 801px) {
-  .nav-background {
-    grid-row: var(--nav-background-position, 1) / span 1;
-    grid-column: 1;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    top: 0;
-  }
-}
+/* Legacy nav-background rules removed; active items handle background */
 
 /* Mobile settings styles - apply globally but only visible on mobile */
 .settings-button {
@@ -751,5 +667,3 @@ nav {
     display: none !important;
   }
 }
-
-/* No custom floating back button styles after revert */
