@@ -187,8 +187,7 @@
   /* Foundations (internal) */
   /* Color base */
 
-  transition-property: --contrast, --text-heading-grade, --text-heading-width,
-    --base-radius;
+  transition-property: --contrast, --text-heading-grade, --text-heading-width;
   --alpha: 0.4;
   --stimulation-level: 1;
   /* Color system */

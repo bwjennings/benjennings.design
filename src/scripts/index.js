@@ -34,11 +34,22 @@ function applyStoredThemeVars() {
     // Batch updates
     const updates = [];
 
-    // Theme: allow 'light' | 'dark' | 'system' | ''
+    // Theme: allow 'light' | 'dark'; if missing/legacy, resolve to current system preference
     if (typeof cached.theme === 'string') {
       const t = cached.theme.trim();
-      const colorScheme = (t === '' || t === 'system') ? 'light dark' : (t === 'light' || t === 'dark') ? t : 'light dark';
-      updates.push(['--current-color-scheme', colorScheme]);
+      const isExplicit = (t === 'light' || t === 'dark');
+      const effective = isExplicit
+        ? t
+        : ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+      // If we had a legacy/non-explicit value, persist the effective explicit theme now
+      if (!isExplicit) {
+        try { localStorage.setItem('myCustomTheme', effective); } catch {}
+        if (window.themeCache && window.themeCache.values) {
+          window.themeCache.values.theme = effective;
+          window.themeCache.lastUpdate = Date.now();
+        }
+      }
+      updates.push(['--current-color-scheme', effective]);
     }
 
     // Hue: accept numeric strings or values with 'deg'
@@ -69,7 +80,8 @@ function applyStoredThemeVars() {
 // Initial run (eager to avoid flashes)
 (function () { applyStoredThemeVars(); })();
 
-// Re-apply on pageshow (helps with prerender/BFCache restores)
-window.addEventListener('pageshow', () => {
-  try { applyStoredThemeVars(); } catch {}
-});
+// Re-apply on visibility and page lifecycle (BFCache/prerender)
+const reapply = () => { try { applyStoredThemeVars(); } catch {} };
+window.addEventListener('pageshow', reapply);
+if ('onpagereveal' in window) window.addEventListener('pagereveal', reapply);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reapply(); });

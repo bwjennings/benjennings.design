@@ -2,12 +2,7 @@
   navigation: auto;
 }
 
-:root {
-  view-transition-name: none;
-  /* View-transition timing */
 
-
-}
 
 nav {
   view-transition-name: nav-container;
@@ -34,6 +29,8 @@ nav {
   z-index: 2;
 }
 
+/* (Theme switch shared elements removed; root-only theme transition retained) */
+
 main {
   view-transition-name: page;
   /* Label for styling */
@@ -57,22 +54,28 @@ html.theme-transition {
   view-transition-name: theme;
 }
 
-::view-transition-group(theme) {
-  animation-duration: 300ms;
-  animation-timing-function: var(--transition-timing-style);
+/* During theme toggle, suppress all other named elements so only a
+   single shared element (the root "theme") is created. */
+html.theme-transition * {
+  view-transition-name: none !important;
 }
 
-
-/* Disable root fade for theme */
+/* Prevent the default root cross-fade from also animating during
+   the theme toggle to avoid duplicate visuals. */
 :root.theme-transition::view-transition-old(root),
 :root.theme-transition::view-transition-new(root) {
   animation: none !important;
 }
 
-/* Limit to root during theme transition */
-html.theme-transition * {
-  view-transition-name: none !important;
+::view-transition-group(theme) {
+  animation-duration: 300ms;
+  animation-timing-function: var(--transition-timing-style);
+  z-index: 0;
+  /* page/root underlays switch parts */
 }
+
+
+
 
 
 
@@ -184,7 +187,7 @@ html.theme-transition * {
 }
 
 @keyframes page-enter-scale {
-  from {
+  50% {
     transform: scale(0.95);
   }
 

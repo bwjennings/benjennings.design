@@ -1,5 +1,5 @@
 // Template
-const template = document.createElement('template');
+const template = document.createElement("template");
 template.innerHTML = `
   <style>
     :host {
@@ -190,6 +190,9 @@ template.innerHTML = `
     
     .segmented-button.active {
       background: var(--color-fill-a);
+      /* View transition class remains in CSS */
+      view-transition-class: nav-active;
+      view-transition-name: theme-active-circle;
     }
     
     .segmented-button .icon {
@@ -207,19 +210,10 @@ template.innerHTML = `
       color: rgba(255, 255, 255, 0.8);
     }
 
-    /* Active state driven by checkbox state */
-    .segmented-button-group:not(:has(.theme-switch:checked)) .segmented-button[data-theme="light"] {
-      background: var(--color-fill-a);
-    }
-    .segmented-button-group:not(:has(.theme-switch:checked)) .segmented-button[data-theme="light"] .icon {
-      color: rgba(255,255,255,0.8);
-    }
-    .segmented-button-group:has(.theme-switch:checked) .segmented-button[data-theme="dark"] {
-      background: var(--color-fill-a);
-    }
-    .segmented-button-group:has(.theme-switch:checked) .segmented-button[data-theme="dark"] .icon {
-      color: rgba(255,255,255,0.8);
-    }
+  
+
+  
+  
   </style>
   
   <div class="color-picker">
@@ -230,10 +224,10 @@ template.innerHTML = `
       <input class="theme-switch" id="theme-switch" type="checkbox" switch aria-label="Toggle dark mode" />
       <!-- Visuals only: two-segment UI kept identical -->
       <div class="segmented-buttons" aria-hidden="true">
-        <div class="segmented-button" data-theme="light">
+        <div class="segmented-button" data-theme="light" part="segment-light segment">
           <div class="icon">light_mode</div>
         </div>
-        <div class="segmented-button" data-theme="dark">
+        <div class="segmented-button" data-theme="dark" part="segment-dark segment">
           <div class="icon">dark_mode</div>
         </div>
       </div>
@@ -246,23 +240,13 @@ class SiteSettings extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.themeChangeHandler = this.themeChangeHandler.bind(this);
     this.switchChangeHandler = this.switchChangeHandler.bind(this);
     this.hueSliderHandler = this.hueSliderHandler.bind(this);
-    this.debouncedHueSliderHandler = this.debounce(this.hueSliderHandler, 5);
     this.throttledUpdateHue = this.throttle(this.updateHue.bind(this), 16); // ~60fps
     this.saveSettingsSync = this.saveSettingsSync.bind(this);
     this.currentHue = null;
     this.currentTheme = null;
-  }
-
-  // Debounce
-  debounce(func, delay) {
-    let timeout;
-    return (...args) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), delay);
-    };
+    this.hueTuningTimeout = null;
   }
 
   // Throttle
@@ -277,14 +261,19 @@ class SiteSettings extends HTMLElement {
     };
   }
 
-  // Batch CSS updates
-  batchCssUpdates(updates) {
-    // rAF timing
-    requestAnimationFrame(() => {
-      updates.forEach(([property, value]) => {
-        document.documentElement.style.setProperty(property, value);
-      });
-    });
+  
+
+  // Temporarily disable CSS transitions during live hue tuning
+  beginHueLiveTuning() {
+    try {
+      document.documentElement.classList.add("hue-live-tuning");
+      if (this.hueTuningTimeout) clearTimeout(this.hueTuningTimeout);
+      // Remove the class shortly after user stops sliding
+      this.hueTuningTimeout = setTimeout(() => {
+        document.documentElement.classList.remove("hue-live-tuning");
+        this.hueTuningTimeout = null;
+      }, 120);
+    } catch {}
   }
 
   // Safe localStorage save with error handling
@@ -311,61 +300,71 @@ class SiteSettings extends HTMLElement {
   // Synchronous save of current settings (for page unload)
   saveSettingsSync() {
     if (this.currentHue !== null) {
-      this.safeLocalStorageSet('brandHue', this.currentHue);
+      this.safeLocalStorageSet("brandHue", this.currentHue);
     }
     if (this.currentTheme !== null) {
-      this.safeLocalStorageSet('myCustomTheme', this.currentTheme);
+      this.safeLocalStorageSet("myCustomTheme", this.currentTheme);
     }
   }
 
   connectedCallback() {
     // Init controls
-    const switchInput = this.shadowRoot.getElementById('theme-switch');
-    const hueSlider = this.shadowRoot.querySelector('.hue-slider');
-    
+    const switchInput = this.shadowRoot.getElementById("theme-switch");
+    const hueSlider = this.shadowRoot.querySelector(".hue-slider");
+
     if (switchInput) {
-      switchInput.addEventListener('change', this.switchChangeHandler);
+      switchInput.addEventListener("change", this.switchChangeHandler);
     }
-    
-    
+
     if (hueSlider) {
-      hueSlider.addEventListener('input', this.hueSliderHandler);
-      hueSlider.addEventListener('change', this.hueSliderHandler);
+      hueSlider.addEventListener("input", this.hueSliderHandler);
+      hueSlider.addEventListener("change", this.hueSliderHandler);
     }
-    
-    // Load stored theme (normalize to 'light' | 'dark' | 'system')
+
+    // Load stored theme (normalize to 'light' | 'dark').
+    // If not set (or legacy/system), resolve to current system preference and persist it
     const rawTheme = this.safeLocalStorageGet("myCustomTheme");
-    const normalizedTheme = (rawTheme === 'light' || rawTheme === 'dark') ? rawTheme : 'system';
-    if (normalizedTheme !== 'system') {
+    let normalizedTheme =
+      rawTheme === "light" || rawTheme === "dark" ? rawTheme : null;
+    if (!normalizedTheme) {
+      const prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      normalizedTheme = prefersDark ? "dark" : "light";
+      // Persist initial explicit choice to avoid cross-page reversals
+      this.setActiveTheme(normalizedTheme);
+      this.updateTheme(normalizedTheme);
+    } else {
       this.setActiveTheme(normalizedTheme);
       this.updateTheme(normalizedTheme);
     }
-    // Initialize switch position based on theme
+    // Initialize switch position based on chosen theme
     if (switchInput) {
-      switchInput.checked = (normalizedTheme === 'dark');
+      switchInput.checked = normalizedTheme === "dark";
     }
-    
+
     // Initialize hue from storage
-    const storedHue = this.safeLocalStorageGet('brandHue');
+    const storedHue = this.safeLocalStorageGet("brandHue");
     const parsedHue = storedHue ? parseInt(storedHue, 10) : null;
-    const defaultHue = (!isNaN(parsedHue) && parsedHue >= 0 && parsedHue <= 360) ? parsedHue : 230;
-    
+    const defaultHue =
+      !isNaN(parsedHue) && parsedHue >= 0 && parsedHue <= 360 ? parsedHue : 230;
+
     if (hueSlider) {
       hueSlider.value = defaultHue;
     }
-    
+
     this.updateHue(defaultHue);
     this.currentHue = defaultHue;
-    this.safeLocalStorageSet('brandHue', defaultHue);
+    this.safeLocalStorageSet("brandHue", defaultHue);
 
     // Cross-instance/theme sync listeners
     this._onGlobalSchemeChange = (e) => {
       try {
         const theme = e?.detail;
-        const switchEl = this.shadowRoot.getElementById('theme-switch');
+        const switchEl = this.shadowRoot.getElementById("theme-switch");
         if (!switchEl) return;
-        if (theme === 'light' || theme === 'dark') {
-          switchEl.checked = (theme === 'dark');
+        if (theme === "light" || theme === "dark") {
+          switchEl.checked = theme === "dark";
           this.setActiveTheme(theme);
         } else {
           // Treat others as system
@@ -376,7 +375,7 @@ class SiteSettings extends HTMLElement {
     this._onGlobalHueChange = (e) => {
       try {
         const hue = parseInt(e?.detail, 10);
-        const hueSliderEl = this.shadowRoot.querySelector('.hue-slider');
+        const hueSliderEl = this.shadowRoot.querySelector(".hue-slider");
         if (Number.isFinite(hue) && hueSliderEl) {
           hueSliderEl.value = hue;
           this.currentHue = hue;
@@ -384,60 +383,73 @@ class SiteSettings extends HTMLElement {
         }
       } catch {}
     };
-    window.addEventListener('globalSchemeChange', this._onGlobalSchemeChange);
-    window.addEventListener('globalHueChange', this._onGlobalHueChange);
+    window.addEventListener("globalSchemeChange", this._onGlobalSchemeChange);
+    window.addEventListener("globalHueChange", this._onGlobalHueChange);
 
     // Add mobile-specific lifecycle event listeners
-    window.addEventListener('beforeunload', this.saveSettingsSync);
-    window.addEventListener('pagehide', this.saveSettingsSync);
-    
+    window.addEventListener("beforeunload", this.saveSettingsSync);
+    window.addEventListener("pagehide", this.saveSettingsSync);
+
     // Also handle visibility change (mobile browsers switching tabs/apps)
     this.visibilityHandler = () => {
-      if (document.visibilityState === 'hidden') {
+      if (document.visibilityState === "hidden") {
         this.saveSettingsSync();
       }
     };
-    document.addEventListener('visibilitychange', this.visibilityHandler);
+    document.addEventListener("visibilitychange", this.visibilityHandler);
   }
 
   setActiveTheme(theme) {
     // Keep visual segments in sync as a fallback when :has is unsupported
-    const segments = this.shadowRoot.querySelectorAll('.segmented-button[data-theme]');
-    segments.forEach(seg => {
-      const isActive = seg.getAttribute('data-theme') === theme;
-      seg.classList.toggle('active', isActive);
+    const segments = this.shadowRoot.querySelectorAll(
+      ".segmented-button[data-theme]"
+    );
+    segments.forEach((seg) => {
+      const isActive = seg.getAttribute("data-theme") === theme;
+      seg.classList.toggle("active", isActive);
     });
   }
 
   updateTheme(theme) {
-    const colorScheme = theme === "light"
-      ? "light"
-      : theme === "dark"
-        ? "dark"
-        : "light dark";
-    
+    const colorScheme =
+      theme === "light" ? "light" : theme === "dark" ? "dark" : "light dark";
+
     // Track current theme
     this.currentTheme = theme;
-    
+
     // Persist theme with error handling
     this.safeLocalStorageSet("myCustomTheme", theme);
+    // Update in-page cache to avoid stale reads during BFCache/pageshow
+    try {
+      if (window.themeCache && window.themeCache.values) {
+        window.themeCache.values.theme = theme;
+        window.themeCache.lastUpdate = Date.now();
+      }
+    } catch {}
 
     // Apply styles
-    document.documentElement.style.setProperty("--current-color-scheme", colorScheme);
-    window.dispatchEvent(new CustomEvent('globalSchemeChange', { detail: theme }));
-  }
-
-  themeChangeHandler(event) {
-    // Retained for compatibility if needed in future; not used now.
+    document.documentElement.style.setProperty(
+      "--current-color-scheme",
+      colorScheme
+    );
+    // Reflect active theme on host for ::part selectors
+    try {
+      this.setAttribute("data-theme", theme);
+    } catch {}
+    window.dispatchEvent(
+      new CustomEvent("globalSchemeChange", { detail: theme })
+    );
   }
 
   switchChangeHandler(e) {
     const isDark = e.currentTarget.checked;
-    const theme = isDark ? 'dark' : 'light';
+    const theme = isDark ? "dark" : "light";
 
     // Animate if supported
-    const supportsVT = typeof document.startViewTransition === 'function';
-    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const supportsVT = typeof document.startViewTransition === "function";
+    const prefersReduced =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const apply = () => {
       this.setActiveTheme(theme);
@@ -449,79 +461,92 @@ class SiteSettings extends HTMLElement {
       return;
     }
 
-    document.documentElement.classList.add('theme-transition');
+    document.documentElement.classList.add("theme-transition");
     try {
       const transition = document.startViewTransition(() => {
         apply();
       });
       transition.finished.finally(() => {
-        document.documentElement.classList.remove('theme-transition');
+        document.documentElement.classList.remove("theme-transition");
       });
     } catch (e2) {
-      document.documentElement.classList.remove('theme-transition');
+      document.documentElement.classList.remove("theme-transition");
       apply();
     }
   }
 
-
   hueSliderHandler(event) {
     const hue = parseInt(event.target.value, 10);
     if (!isNaN(hue) && hue >= 0 && hue <= 360) {
+      // Ensure all elements update instantly without rubber-banding
+      this.beginHueLiveTuning();
       // Track current hue immediately
       this.currentHue = hue;
-      
+
       // Throttle updates
       this.throttledUpdateHue(hue);
-      
+
       // Update cache
       if (window.themeCache) {
         window.themeCache.values.hue = hue.toString();
       }
-      
+
       // Reduced debounce delay for mobile performance (50ms instead of 100ms)
       clearTimeout(this.saveTimeout);
       this.saveTimeout = setTimeout(() => {
-        this.safeLocalStorageSet('brandHue', hue);
-        window.dispatchEvent(new CustomEvent('globalHueChange', { detail: hue }));
+        this.safeLocalStorageSet("brandHue", hue);
+        window.dispatchEvent(
+          new CustomEvent("globalHueChange", { detail: hue })
+        );
       }, 50);
     }
   }
 
   updateHue(hue) {
     if (!isNaN(hue) && hue >= 0 && hue <= 360) {
-      document.documentElement.style.setProperty('--hue-root', `${hue}deg`);
+      document.documentElement.style.setProperty("--hue-root", `${hue}deg`);
     }
   }
 
   disconnectedCallback() {
     // Save settings one last time before disconnecting
     this.saveSettingsSync();
-    
+
     // Clear any pending timeout
     if (this.saveTimeout) {
       clearTimeout(this.saveTimeout);
     }
-    
+    if (this.hueTuningTimeout) {
+      clearTimeout(this.hueTuningTimeout);
+    }
+    // Ensure class is removed on disconnect
+    try {
+      document.documentElement.classList.remove("hue-live-tuning");
+    } catch {}
+
     // Cleanup listeners
-    const hueSlider = this.shadowRoot.querySelector('.hue-slider');
-    const switchInput = this.shadowRoot.getElementById('theme-switch');
-    
+    const hueSlider = this.shadowRoot.querySelector(".hue-slider");
+    const switchInput = this.shadowRoot.getElementById("theme-switch");
+
     if (switchInput) {
-      switchInput.removeEventListener('change', this.switchChangeHandler);
+      switchInput.removeEventListener("change", this.switchChangeHandler);
     }
-    
+
     if (hueSlider) {
-      hueSlider.removeEventListener('input', this.hueSliderHandler);
-      hueSlider.removeEventListener('change', this.hueSliderHandler);
+      hueSlider.removeEventListener("input", this.hueSliderHandler);
+      hueSlider.removeEventListener("change", this.hueSliderHandler);
     }
-    
+
     // Clean up listeners
-    window.removeEventListener('globalSchemeChange', this._onGlobalSchemeChange);
-    window.removeEventListener('globalHueChange', this._onGlobalHueChange);
-    window.removeEventListener('beforeunload', this.saveSettingsSync);
-    window.removeEventListener('pagehide', this.saveSettingsSync);
+    window.removeEventListener(
+      "globalSchemeChange",
+      this._onGlobalSchemeChange
+    );
+    window.removeEventListener("globalHueChange", this._onGlobalHueChange);
+    window.removeEventListener("beforeunload", this.saveSettingsSync);
+    window.removeEventListener("pagehide", this.saveSettingsSync);
     if (this.visibilityHandler) {
-      document.removeEventListener('visibilitychange', this.visibilityHandler);
+      document.removeEventListener("visibilitychange", this.visibilityHandler);
     }
   }
 }
