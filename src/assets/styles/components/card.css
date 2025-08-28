@@ -19,11 +19,17 @@
   border: 1px solid var(--color-border-base);
   border-radius: var(--radius-md);
 
+  @supports (corner-shape: squircle) {
+    corner-shape: squircle;
+    border-radius: 32px;
+  }
+
   outline-style: solid;
   outline-width: 0px;
   outline-color: var(--color-border-base);
   container-type: inline-size;
-  transition-property: transform, outline-width;
+  transition-property: transform,
+  outline-width;
   transition-duration: 300ms;
   transition-timing-function: var(--transition-timing-motion);
   font-variation-settings: "GRAD" 0;
@@ -38,7 +44,8 @@
 
   /* Compositing hints */
   contain: paint;
-  will-change: transform, opacity;
+  will-change: transform,
+  opacity;
 
 
   img {
@@ -68,8 +75,8 @@
 
   &:active {
     outline-width: 0px;
-
-    transform: scale(0.98);
+transition-duration: 400ms;
+    transform: scale(0.95);
   }
 
   &.large {
@@ -164,11 +171,12 @@
 
 }
 
-.post{
-  .card{
+.post {
+  .card {
     &:hover {
       outline-width: 0px;
     }
+
     &:active {
       outline-width: 0px;
       transform: none;

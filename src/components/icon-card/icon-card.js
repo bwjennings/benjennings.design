@@ -114,8 +114,6 @@ template.innerHTML = `
     }
   </style>
   
-  <link href="/src/assets/styles/base/vars.css" rel="stylesheet">
-  
   <div class="icon-card">
     <div class="icon-box">
       <span class="icon" id="icon-display">step</span>

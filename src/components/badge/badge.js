@@ -26,11 +26,7 @@ class Badge extends HTMLElement {
     badgeCss.setAttribute('rel', 'stylesheet');
     badgeCss.setAttribute('href', '/src/assets/styles/components/badge.css');
 
-    const varsCss = document.createElement('link');
-    varsCss.setAttribute('rel', 'stylesheet');
-    varsCss.setAttribute('href', '/src/assets/styles/base/vars.css');
-
-    this.shadowRoot.append(varsCss, badgeCss, this.badge);
+    this.shadowRoot.append(badgeCss, this.badge);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

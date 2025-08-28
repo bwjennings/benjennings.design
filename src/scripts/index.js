@@ -35,13 +35,14 @@ function applyStoredThemeVars() {
     const updates = [];
 
     // Theme: allow 'light' | 'dark'; if missing/legacy, resolve to current system preference
-    if (typeof cached.theme === 'string') {
-      const t = cached.theme.trim();
-      const isExplicit = (t === 'light' || t === 'dark');
+    {
+      const input = typeof cached.theme === 'string' ? cached.theme.trim() : null;
+      const isExplicit = input === 'light' || input === 'dark';
       const effective = isExplicit
-        ? t
+        ? input
         : ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
-      // If we had a legacy/non-explicit value, persist the effective explicit theme now
+
+      // Persist explicit choice if not set or legacy
       if (!isExplicit) {
         try { localStorage.setItem('myCustomTheme', effective); } catch {}
         if (window.themeCache && window.themeCache.values) {
@@ -52,7 +53,7 @@ function applyStoredThemeVars() {
       updates.push(['--current-color-scheme', effective]);
     }
 
-    // Hue: accept numeric strings or values with 'deg'
+    // Hue: accept numeric strings or values with 'deg'; if missing, persist current CSS default
     if (cached.hue != null) {
       const raw = String(cached.hue);
       const parsed = parseInt(raw, 10);
@@ -60,6 +61,19 @@ function applyStoredThemeVars() {
         const clamped = Math.max(0, Math.min(360, parsed));
         updates.push(['--hue-root', clamped + 'deg']);
       }
+    } else {
+      try {
+        const cssHue = getComputedStyle(document.documentElement).getPropertyValue('--hue-root') || '';
+        const parsed = parseInt(cssHue, 10);
+        if (!Number.isNaN(parsed)) {
+          const clamped = Math.max(0, Math.min(360, parsed));
+          try { localStorage.setItem('brandHue', String(clamped)); } catch {}
+          if (window.themeCache && window.themeCache.values) {
+            window.themeCache.values.hue = String(clamped);
+            window.themeCache.lastUpdate = Date.now();
+          }
+        }
+      } catch {}
     }
 
     // Apply updates
@@ -85,3 +99,14 @@ const reapply = () => { try { applyStoredThemeVars(); } catch {} };
 window.addEventListener('pageshow', reapply);
 if ('onpagereveal' in window) window.addEventListener('pagereveal', reapply);
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reapply(); });
+
+// Cross-page sync: reflect changes from other pages/tabs
+window.addEventListener('storage', (e) => {
+  try {
+    if (e && (e.key === 'myCustomTheme' || e.key === 'brandHue')) {
+      // Invalidate cache and re-apply
+      if (window.themeCache) window.themeCache.lastUpdate = 0;
+      applyStoredThemeVars();
+    }
+  } catch {}
+});

@@ -112,14 +112,6 @@ model-viewer {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    --text-heading-grade: 100;
-    --text-body-weight: 450;
-    --base-chroma-base: 2;
-  }
-}
-
 @media screen and (max-height: 700px) {
   .page-title {
     position: initial;
@@ -143,7 +135,8 @@ model-viewer {
 
 body {
   container-name: page;
-  container-type: inline-size;
+  /* Enable style queries so theme follows saved setting */
+  container-type: inline-size style;
 }
 
 /* During history restoration, disable snapping/smooth scrolling

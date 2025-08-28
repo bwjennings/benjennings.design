@@ -11,11 +11,12 @@ nav {
 
 ::view-transition {
   /* Mirror variables */
-  --transition-duration: 600ms;
+  --transition-duration: 1000ms;
 }
 
 ::view-transition-group(*) {
   animation-timing-function: var(--transition-timing-motion);
+
 }
 
 /* Navigation layering via classes */
@@ -23,6 +24,8 @@ nav {
   animation-timing-function: var(--transition-timing-motion);
   z-index: 1;
 }
+
+
 
 ::view-transition-group(.nav-foreground) {
   animation-timing-function: var(--transition-timing-style);
@@ -43,10 +46,6 @@ main {
 
 
 
-::view-transition-old(.title),
-::view-transition-new(.title) {
-  object-position: left;
-}
 
 /* Theme toggle */
 html.theme-transition {
@@ -80,21 +79,35 @@ html.theme-transition * {
 
 
 
-/* Root cross-fade */
+/* Shared animation settings for the page transition pair */
+::view-transition-group(.page) {
+  --vt-visible: 1;
+  --vt-hidden: 0;
+  --vt-blur: 2px;
+  --vt-scale-min: 0.99;
+  /* two animations run in parallel */
+  animation-duration: 300ms, var(--transition-duration);
+  animation-timing-function: var(--transition-timing-style), var(--transition-timing-motion);
+
+
+
+  animation-fill-mode: both, both;
+}
+
+/* Old → exiting */
 ::view-transition-old(.page) {
-  animation:
-    page-exit-opacity-blur var(--transition-duration) var(--transition-timing-style) 0s 1 normal both,
-    page-exit-scale var(--transition-duration) var(--transition-timing-motion) 0s 1 normal both;
+  animation-name: page-exit-opacity-blur, page-exit-scale;
 }
 
+/* New → entering */
 ::view-transition-new(.page) {
-  animation:
-    page-enter-opacity-blur var(--transition-duration) var(--transition-timing-style) 0s 1 normal both,
-    page-enter-scale var(--transition-duration) var(--transition-timing-motion) 0s 1 normal both;
+  animation-name: page-enter-opacity-blur, page-enter-scale;
 }
 
 
-
+::view-transition-group(.nav-active) {
+  will-change: transform, opacity,width,height;
+}
 /* Preserve snapshot alignment */
 ::view-transition-old(.card),
 ::view-transition-new(.card) {
@@ -142,18 +155,14 @@ html.theme-transition * {
 
 @keyframes page-exit-opacity-blur {
   from {
-    opacity: 1;
+    opacity: var(--vt-visible, 1);
     filter: blur(0px);
   }
 
-  40% {
-    opacity: 0;
-    filter: blur(4px);
-  }
-
+  70%,
   to {
-    opacity: 0;
-    filter: blur(4px);
+    opacity: var(--vt-hidden, 0);
+    filter: blur(var(--vt-blur, 4px));
   }
 }
 
@@ -162,36 +171,29 @@ html.theme-transition * {
     transform: scale(1);
   }
 
-
-
   to {
-    transform: scale(0.90);
+    transform: scale(var(--vt-scale-min, 0.99));
   }
 }
 
 @keyframes page-enter-opacity-blur {
-  from {
-    opacity: 0;
-    filter: blur(8px);
-  }
 
-  20% {
-    opacity: 0;
-    filter: blur(8px);
+  from,
+  40% {
+    opacity: var(--vt-hidden, 0);
+    filter: blur(var(--vt-blur, 4px));
   }
 
   to {
-    opacity: 1;
+    opacity: var(--vt-visible, 1);
     filter: blur(0px);
   }
 }
 
 @keyframes page-enter-scale {
   30% {
-    transform: scale(0.95);
+    transform:  scale(var(--vt-scale-min, 0.99));
   }
-
-
 
   to {
     transform: scale(1);
@@ -232,12 +234,14 @@ html.restoring ::view-transition-new(root) {
 }
 
 ::view-transition-old(.heading),
-::view-transition-old(.thumbnail) {
+::view-transition-old(.thumbnail),
+::view-transition-old(.badge-group) {
   animation: card-header-out var(--transition-duration) var(--transition-timing-motion);
 }
 
 ::view-transition-new(.heading),
-::view-transition-new(.thumbnail) {
+::view-transition-new(.thumbnail),
+::view-transition-new(.badge-group) {
   animation: card-header-in var(--transition-duration) var(--transition-timing-motion);
 }
 

@@ -67,6 +67,8 @@ site-navigation {
     margin: 0;
     transform-style: preserve-3d;
 
+   
+
 
     li {
       z-index: 2;
@@ -78,6 +80,8 @@ site-navigation {
       }
     }
   }
+
+
 
   h2 {
     margin: 0px;
@@ -109,8 +113,12 @@ site-navigation {
   transition-property: background-color, outline-width, outline-color, font-variation-settings;
   outline-width: 0px;
   outline-color: transparent;
+
   /* Default body grade within nav items */
-  
+  @supports (corner-shape: squircle) {
+    corner-shape: squircle;
+    border-radius: 32px;
+  }
 
   &:hover {
     /* Emphasize icon and body text grade on hover */
@@ -147,12 +155,7 @@ site-navigation {
 
 /* Active item */
 /* Active item: owns its highlight and transition pairing */
-.nav-item.active,
-site-navigation[active-item="item1"] .item1,
-site-navigation[active-item="item2"] .item2,
-site-navigation[active-item="item3"] .item3,
-site-navigation[active-item="item4"] .item4,
-site-navigation[active-item="item5"] .item5 {
+.nav-item.active {
   /* Emphasize body text grade for active item */
   --text-body-grade: 100;
   color: var(--color-text-primary);
@@ -327,16 +330,45 @@ nav li:nth-child(5) .nav-item {
 }
 
 /* View-transition pairing for foreground parts */
-nav li:nth-child(1) .icon { view-transition-name: nav-item-1-icon; }
-nav li:nth-child(1) .title { view-transition-name: nav-item-1-title; }
-nav li:nth-child(2) .icon { view-transition-name: nav-item-2-icon; }
-nav li:nth-child(2) .title { view-transition-name: nav-item-2-title; }
-nav li:nth-child(3) .icon { view-transition-name: nav-item-3-icon; }
-nav li:nth-child(3) .title { view-transition-name: nav-item-3-title; }
-nav li:nth-child(4) .icon { view-transition-name: nav-item-4-icon; }
-nav li:nth-child(4) .title { view-transition-name: nav-item-4-title; }
-nav li:nth-child(5) .icon { view-transition-name: nav-item-5-icon; }
-nav li:nth-child(5) .title { view-transition-name: nav-item-5-title; }
+nav li:nth-child(1) .icon {
+  view-transition-name: nav-item-1-icon;
+}
+
+nav li:nth-child(1) .title {
+  view-transition-name: nav-item-1-title;
+}
+
+nav li:nth-child(2) .icon {
+  view-transition-name: nav-item-2-icon;
+}
+
+nav li:nth-child(2) .title {
+  view-transition-name: nav-item-2-title;
+}
+
+nav li:nth-child(3) .icon {
+  view-transition-name: nav-item-3-icon;
+}
+
+nav li:nth-child(3) .title {
+  view-transition-name: nav-item-3-title;
+}
+
+nav li:nth-child(4) .icon {
+  view-transition-name: nav-item-4-icon;
+}
+
+nav li:nth-child(4) .title {
+  view-transition-name: nav-item-4-title;
+}
+
+nav li:nth-child(5) .icon {
+  view-transition-name: nav-item-5-icon;
+}
+
+nav li:nth-child(5) .title {
+  view-transition-name: nav-item-5-title;
+}
 
 /* Mobile grid */
 @media screen and (max-width: 800px) {

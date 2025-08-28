@@ -36,24 +36,7 @@ select {
   outline: 4px solid var(--color-border-primary-hover);
 }
 
-/* Skip link */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: var(--color-fill-a);
-  color: var(--color-text-onFill);
-  padding: 8px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: var(--text-body-weight);
-  z-index: 1000;
-  transition: top 0.3s var(--transition-timing-motion);
-}
-
-.skip-link:focus {
-  top: 6px;
-}
+ 
 
 
 
