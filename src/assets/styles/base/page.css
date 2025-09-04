@@ -49,7 +49,7 @@ select {
 
 body {
   -webkit-font-smoothing: antialiased;
-  background: var(--color-surface-page);
+  background-color: var(--color-surface-page);
 }
 
 
@@ -108,24 +108,90 @@ main {
   grid-area: content;
   /* Content controls height */
   /* Let the root (html/body) be the scroller so mobile browsers hide UI */
-  overflow: visible;
-  height: auto;
+  overflow: auto;
+  height: 100%;
 
 
 }
 
 .page-items {
-padding: 4dvw;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-rows: min-content;
-  gap: var(--spacing-xl);
+  padding: 4dvw;
 
+  &.layout-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: min-content;
+    gap: var(--spacing-xl);
+  }
+
+  &.layout-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    max-width: 720px;
+    width: 100%;
+  }
+
+  &.layout-post {
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5dvh;
+    max-width: 120ch;
+    align-items: stretch;
+
+    :is(p,h2) {
+      max-width: 60ch;
+    }
+
+    .button {
+      align-self: start;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+  }
+
+  &.layout-welcome {
+    display: grid;
+    align-self: center;
+    align-items: start;
+    text-align: start;
+    gap: clamp(var(--spacing-xl), 4cqh, var(--spacing-xxxl));
+    padding-top: 14dvh;
+    transform-style: preserve-3d;
+    background-color: var(--color-surface-page);
+    scroll-snap-align: top;
+    z-index: 2;
+    color: var(--color-text-primary);
+    width: 100%;
+    max-width: 700px;
+    top: 0px;
+    height: fit-content;
+
+    .body {
+      max-width: 50ch;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-xl);
+    }
+
+    .heading {
+      text-wrap: balance;
+    }
+  }
 }
 
 .page-title {
   transform-style: preserve-3d;
-  
+  background-color: var(--color-surface-page);
   scroll-snap-align: top;
   z-index: 2;
   margin-top: calc(20cqh - 40px);
@@ -157,32 +223,6 @@ padding: 4dvw;
 }
 
 
-.post {
-
- 
- padding: 4dvw;
- margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 5dvh;
-  max-width: 120ch;
-  align-items: stretch;
-
-  :is(p,h2) {
-    max-width: 60ch;
-  }
-
-  .button{
-    align-self: start;
-  }
-
-  .section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-  }
-
-}
 
 .post-header {
   background-color: var(--color-surface-b);
@@ -327,42 +367,6 @@ figure {
 }
 
 
-.welcome {
-  display: grid;
-  align-self: center;
-  align-items: start;
-  text-align: start;
-  gap: clamp(var(--spacing-xl), 4cqh, var(--spacing-xxxl));
-  padding-top: 14dvh;
-  padding-inline: 4dvw;
-  transform-style: preserve-3d;
-  background-color: var(--color-surface-page);
-  scroll-snap-align: top;
-  z-index: 2;
-  color: var(--color-text-primary);
-  width: 100%;
-  max-width: 700px;
-  top: 0px;
-  height: fit-content;
-
-
-
-  .body {
-    max-width: 50ch;
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-xl);
-  }
-
-  .heading {
-    text-wrap: balance;
-  }
-
-}
 
 
 
@@ -426,9 +430,8 @@ figure {
     padding: calc(0px + env(safe-area-inset-left));
   }
 
-  .welcome {
+  .page-items.layout-welcome {
     padding-top: 10dvh;
-    padding-inline: 4dvw;
     gap: var(--spacing-xl);
   }
 }
@@ -437,3 +440,5 @@ figure {
 .welcome-card {
   margin-top: calc(20cqh - 40px);
 }
+
+

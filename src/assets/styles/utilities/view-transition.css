@@ -11,11 +11,13 @@ nav {
 
 ::view-transition {
   /* Mirror variables */
-  --transition-duration: 784ms;
+  --transition-duration: 800ms;
+  min-height: 100lvh;
 }
 
 ::view-transition-group(*) {
   animation-timing-function: var(--transition-timing-motion);
+
 
 }
 
@@ -123,33 +125,8 @@ html.theme-transition .nav-item .title {
 
 }
 
-/* Shared animation settings for the page transition pair */
-::view-transition-group(.page) {
-  --vt-visible: 1;
-  --vt-hidden: 0;
-  --vt-blur: 2px;
-  --vt-scale-min: 0.9;
-  /* two animations run in parallel */
-  animation-duration: var(--transition-duration);
-  animation-timing-function: var(--transition-timing-style), var(--transition-timing-motion);
-  height: 100%;
-
-  transform-origin: top;
-  animation-fill-mode: both, both;
-}
-
-/* Old → exiting */
-::view-transition-old(.page) {
-  animation-name: page-exit-opacity-blur, page-exit-scale;
 
 
-}
-
-/* New → entering */
-::view-transition-new(.page) {
-  animation-name: page-enter-opacity-blur, page-enter-scale;
-  will-change: transform, opacity;
-}
 
 
 ::view-transition-group(.nav-active) {
@@ -198,75 +175,75 @@ html.theme-transition .nav-item .title {
 
 
 
+::view-transition-group(.page) {
+  --vt-visible: 1;
+  --vt-hidden: 0;
+  --vt-blur: 4px;
+  --vt-scale-min: 0.99;
 
+}
 
+::view-transition-image-pair(.page) {
+  animation-name: page-group-scale;
+  animation-duration: var(--transition-duration) ;
+  animation-timing-function: var(--transition-timing-motion);
+  animation-fill-mode: both;
+  transform-origin: top center;
 
+}
+
+/* Old → exiting (opacity/blur only) */
+::view-transition-old(.page) {
+  animation-name: page-exit-opacity-blur;
+  animation-timing-function: var(--transition-timing-style);
+  animation-duration: calc(var(--transition-duration) * 0.4);
+  animation-fill-mode: both;
+  will-change: opacity, filter;
+}
+
+/* New → entering (opacity/blur only) */
+::view-transition-new(.page) {
+  animation-name: page-enter-opacity-blur;
+  animation-timing-function: var(--transition-timing-style);
+  animation-duration: calc(var(--transition-duration) * 0.8);
+  animation-delay: calc(var(--transition-duration) * 0.2);
+  animation-fill-mode: both;
+  will-change: opacity, filter;
+}
+
+/* Keyframes for opacity/blur only */
 @keyframes page-exit-opacity-blur {
   from {
-    opacity: var(--vt-visible, 1);
+    opacity: 1;
     filter: blur(0px);
   }
 
-  30% {
-    opacity: var(--vt-hidden, 0);
-    filter: blur(var(--vt-blur, 4px));
-  }
-
-  100% {
-    opacity: var(--vt-hidden, 0);
-    filter: blur(var(--vt-blur, 4px));
-  }
-}
-
-@keyframes page-exit-scale {
-  from {
-    transform: scale(1);
-  }
-
-  30% {
-    transform: scale(var(--vt-scale-min, 0.99));
-  }
-
   to {
-    transform: scale(var(--vt-scale-min, 0.99));
+    opacity: 0;
+    filter: blur(4px);
   }
 }
 
 @keyframes page-enter-opacity-blur {
-
-  0% {
+  from {
     opacity: 0;
-    filter: blur(var(--vt-blur, 4px));
+    filter: blur(4px);
   }
-
-  20% {
-    opacity: var(--vt-hidden, 0);
-    filter: blur(var(--vt-blur, 4px));
-  }
-
-  50% {
-    opacity: var(--vt-visible, 1);
-    filter: blur(0px);
-  }
-
 
   to {
-    opacity: var(--vt-visible, 1);
+    opacity: 1;
     filter: blur(0px);
   }
 }
 
-@keyframes page-enter-scale {
-  0% {
-    transform: scale(var(--vt-scale-min, 0.99));
-  }
-
-  20% {
-    transform: scale(var(--vt-scale-min, 0.99));
-  }
-
-  50% {
+/* Single scale animation for the group */
+@keyframes page-group-scale {
+  from {
     transform: scale(1);
+  }
+
+  35% {
+    transform: scale(0.95);
   }
 
   to {
@@ -300,7 +277,8 @@ html.restoring ::view-transition-new(root) {
 
 /* Shared elements */
 ::view-transition-group(.heading) {
-  overflow: visible;
+  overflow: hidden;
+
 }
 
 ::view-transition-group(.thumbnail) {
@@ -311,12 +289,14 @@ html.restoring ::view-transition-new(root) {
 ::view-transition-old(.thumbnail),
 ::view-transition-old(.badge-group) {
   animation: card-header-out var(--transition-duration) var(--transition-timing-motion);
+  animation-fill-mode: forwards;
 }
 
 ::view-transition-new(.heading),
 ::view-transition-new(.thumbnail),
 ::view-transition-new(.badge-group) {
   animation: card-header-in var(--transition-duration) var(--transition-timing-motion);
+  animation-fill-mode: forwards;
 }
 
 

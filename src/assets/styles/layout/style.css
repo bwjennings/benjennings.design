@@ -120,28 +120,8 @@ model-viewer {
 
 
 
-@media screen and (max-width: 600px) {
-  main {
-    scroll-snap-type: y mandatory;
-    overscroll-behavior: contain;
-    scroll-behavior: smooth;
-    scroll-padding: 0;
-
-    * {
-      scroll-snap-align: center;
-    }
-  }
-}
-
 body {
   container-name: page;
   /* Enable style queries so theme follows saved setting */
   container-type: inline-size style;
-}
-
-/* During history restoration, disable snapping/smooth scrolling
-   so the browser can restore the exact scroll position. */
-html.restoring main {
-  scroll-behavior: auto !important;
-  scroll-snap-type: none !important;
 }

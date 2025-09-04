@@ -8,27 +8,27 @@ site-navigation {
 }
 
 /* Each nav list item acts as a size container for its link */
-.sidebar nav li {
+site-navigation nav li {
   container-type: inline-size;
   container-name: navitem;
 }
 
 /* Container queries */
 @container navigation (max-width: 349px) {
-  .sidebar {
+  site-navigation {
     flex-direction: column;
     justify-content: center;
   }
 }
 
 @container navigation (min-width: 350px) {
-  .sidebar {
+  site-navigation {
     flex-direction: column;
     justify-content: flex-start;
   }
 }
 
-.sidebar {
+site-navigation {
 
   scrollbar-width: thin;
   scrollbar-gutter: stable;
@@ -66,7 +66,7 @@ site-navigation {
     grid-area: nav-group;
     list-style-type: none;
     justify-content: flex-start;
-    
+    view-transition-name: nav-container;
     position: relative;
 
     padding: 0;
@@ -166,9 +166,7 @@ site-navigation {
     gap: 2px;
     padding: var(--spacing-sm);
   }
-  nav li .nav-item .title {
-    display: none;
-  }
+
   nav li .nav-item .icon {
     font-size: var(--icon-size-sm);
   }
@@ -252,7 +250,7 @@ site-navigation {
 
 /* Narrow container */
 @container navigation (max-width: 280px) {
-  .sidebar nav {
+  site-navigation nav {
     height: 48px;
   }
 }
@@ -263,14 +261,14 @@ site-navigation {
 
 /* Medium container */
 @container navigation (min-width: 350px) and (max-width: 450px) {
-  .sidebar {
+  site-navigation {
     padding: var(--spacing-md);
   }
 }
 
 /* Wide container */
 @container navigation (min-width: 451px) {
-  .sidebar {
+  site-navigation {
     padding: var(--spacing-lg);
   }
 }
@@ -463,10 +461,12 @@ nav li:nth-child(5) .title {
 
   /* Fixed position */
   site-navigation {
+    
     position: fixed;
-    bottom: calc(0px + env(safe-area-inset-bottom));
-    left: 0;
-    right: 0;
+    bottom: 8px;
+    top: auto;
+    left: 8px;
+    right: 8px;
     z-index: 100;
     display: block;
     /* Remove from grid layout */
@@ -482,10 +482,9 @@ nav li:nth-child(5) .title {
 
 
   /* Mobile nav container */
-  .sidebar {
-
-    height: auto;
-    width: 100%;
+  site-navigation {
+height: 64px;
+    width: auto;
     padding: 0px;
 
     background: transparent;
@@ -497,14 +496,14 @@ nav li:nth-child(5) .title {
   }
 
   /* Hide desktop-only elements */
-  .sidebar .site-title,
-  .sidebar site-settings,
-  .sidebar .divider {
+  site-navigation .site-title,
+  site-navigation site-settings,
+  site-navigation .divider {
     display: none;
   }
 
   /* Mobile nav */
-  .sidebar nav {
+  site-navigation nav {
 
 
     display: grid;
@@ -588,7 +587,7 @@ nav li:nth-child(5) .title {
 
 /* Legacy nav-background rules removed; active items handle background */
 
-/* Settings button: keep fixed in the top-right on all sizes */
+/* Settings button: fixed in the top-right on mobile only */
 .settings-button {
   position: fixed !important;
   top: calc(env(safe-area-inset-top) + 16px);
@@ -727,5 +726,10 @@ nav li:nth-child(5) .title {
 }
 
 /* No overlay needed with native Popover API */
-
-/* Do not hide the settings button/popover on desktop; requested to always be present */
+/* Hide settings trigger/popover on desktop (sidebar visible on left) */
+@media screen and (min-width: 801px) and (min-height: 501px) {
+  .settings-button,
+  .settings-popover {
+    display: none !important;
+  }
+}

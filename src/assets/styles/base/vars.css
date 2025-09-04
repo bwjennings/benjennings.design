@@ -218,7 +218,7 @@
   --color-base-70: oklch(44.6% 52.0% var(--hue-root));
   --color-base-80: oklch(35.7% 32.4% var(--hue-root));
   --color-base-90: oklch(28.3% 15.1% var(--hue-root));
-  --color-base-95: oklch(25.4% 9.6% var(--hue-root));
+  --color-base-95: oklch(20% 9.6% var(--hue-root));
 
   /* Base A hue shift */
   --base-a-hue-shift: 20;
@@ -352,7 +352,7 @@
   --color-border-primary-hover: light-dark(var(--color-neutral-20), var(--color-neutral-60));
   --color-border-secondary: light-dark(var(--color-neutral-10), var(--color-neutral-60));
   --color-border-base: light-dark(var(--color-base-a-10), var(--color-base-a-90));
-  --color-border-base-hover: light-dark(var(--color-base-a-20), var(--color-neutral-60));
+  --color-border-base-hover: light-dark(var(--color-base-a-20), var(--color-base-a-80));
   --color-border-base-secondary: light-dark(var(--color-base-a-10), var(--color-base-a-60));
   --color-border-base-emphasis: light-dark(var(--color-base-a-20), var(--color-base-a-80));
   --color-border-base-b: light-dark(var(--color-base-b-10), var(--color-base-b-90));
@@ -367,26 +367,7 @@
 
 
 
-[data-mode="high-contrast"] {
-  --color-surface-page: light-dark(var(--color-white), var(--color-neutral-95));
-  --color-surface-1: light-dark(var(--color-white), var(--color-neutral-90));
-  --color-surface-2: light-dark(var(--color-white), var(--color-neutral-80));
-  --color-surface-a: light-dark(var(--color-base-a-60), var(--color-base-a-60));
-  --color-surface-a-secondary: light-dark(var(--color-base-a-10), var(--color-base-a-80));
-  --color-fill-a: light-dark(var(--color-base-a-70), var(--color-base-a-60));
-  --color-surface-b: light-dark(var(--color-base-b-50), var(--color-base-b-70));
-  --color-surface-b-secondary: light-dark(var(--color-base-b-10), var(--color-base-b-80));
-  --color-fill-b: light-dark(var(--color-base-b-60), var(--color-base-b-50));
-  --color-surface-backdrop: light-dark(var(--color-neutral-80-alpha), var(--color-neutral-30-alpha));
-  --color-border-primary: light-dark(var(--color-neutral-40), var(--color-neutral-40));
-  --color-border-primary-hover: light-dark(var(--color-neutral-20), var(--color-neutral-70));
-  --color-border-secondary: light-dark(var(--color-neutral-30), var(--color-neutral-50));
-  --color-border-base: light-dark(var(--color-base-a-50), var(--color-base-a-40));
-  --color-border-base-secondary: light-dark(var(--color-base-a-30), var(--color-base-a-60));
-  --color-border-base-emphasis: light-dark(var(--color-base-a-70), var(--color-base-a-60));
-  --color-border-base-hover: light-dark(var(--color-base-a-40), var(--color-base-a-10));
-  --color-border-base-b: light-dark(var(--color-base-b-50), var(--color-base-b-40));
-}
+
 
 @media (prefers-contrast: more) {
   :root {
@@ -403,7 +384,7 @@
     --color-border-primary: light-dark(var(--color-neutral-40), var(--color-neutral-40));
     --color-border-primary-hover: light-dark(var(--color-neutral-20), var(--color-neutral-70));
     --color-border-secondary: light-dark(var(--color-neutral-30), var(--color-neutral-50));
-    --color-border-base: light-dark(var(--color-base-a-50), var(--color-base-a-40));
+    --color-border-base: light-dark(var(--color-base-a-50), var(--color-base-a-90));
     --color-border-base-secondary: light-dark(var(--color-base-a-30), var(--color-base-a-60));
     --color-border-base-emphasis: light-dark(var(--color-base-a-70), var(--color-base-a-60));
     --color-border-base-hover: light-dark(var(--color-base-a-40), var(--color-base-a-10));

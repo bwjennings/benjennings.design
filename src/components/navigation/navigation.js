@@ -84,47 +84,47 @@ class SiteNavigation extends HTMLElement {
   createTemplate() {
     // Template element
     const template = document.createElement('template');
+    // No wrapper: place direct children under <site-navigation>
     template.innerHTML = `
-      <section class="sidebar">
-        <h2 class="site-title heading sm"><a href="/">Ben Jennings</a></h2>
-        <nav>
-          <li><a class="nav-item item1" href="/">
-              <span class="icon" role="img" aria-hidden="true">waving_hand</span>
-              <span class="title body">Home</span>
-            </a></li>
-          <li><a class="nav-item item2" href="/fundamentals/">
-              <span class="icon" role="img" aria-hidden="true">psychology</span>
-              <span class="title body">Fundamentals</span>
-            </a></li>
-          <li><a class="nav-item item3" href="/designs/">
-              <span class="icon" role="img" aria-hidden="true">web</span>
-              <span class="title body">Designs</span>
-            </a></li>
-          <li><a class="nav-item item4" href="/experiments/">
-              <span class="icon" role="img" aria-hidden="true">experiment</span>
-              <span class="title body">Experiments</span>
-            </a></li>
-          <li><a class="nav-item item5" href="/resources/">
-              <span class="icon" role="img" aria-hidden="true">folder_open</span>
-              <span class="title body">Resources</span>
-            </a></li>
-        </nav>
-        <site-settings></site-settings>
+      <h2 class="site-title heading sm"><a href="/">Ben Jennings</a></h2>
+      <nav>
+        <li><a class="nav-item item1" href="/">
+            <span class="icon" role="img" aria-hidden="true">waving_hand</span>
+            <span class="title body">Home</span>
+          </a></li>
+        <li><a class="nav-item item2" href="/fundamentals/">
+            <span class="icon" role="img" aria-hidden="true">psychology</span>
+            <span class="title body">Fundamentals</span>
+          </a></li>
+        <li><a class="nav-item item3" href="/designs/">
+            <span class="icon" role="img" aria-hidden="true">web</span>
+            <span class="title body">Designs</span>
+          </a></li>
+        <li><a class="nav-item item4" href="/experiments/">
+            <span class="icon" role="img" aria-hidden="true">experiment</span>
+            <span class="title body">Experiments</span>
+          </a></li>
+        <li><a class="nav-item item5" href="/resources/">
+            <span class="icon" role="img" aria-hidden="true">folder_open</span>
+            <span class="title body">Resources</span>
+          </a></li>
+      </nav>
+      <site-settings></site-settings>
 
-        <!-- Mobile settings button and popover (declarative, no JS creation) -->
-        <button class="button settings-button" id="mobile-settings-btn"
-          popovertarget="mobile-settings-popover" popovertargetaction="toggle"
-          aria-haspopup="dialog" aria-controls="mobile-settings-popover">
-          <span class="icon">settings</span>
-          <span>Settings</span>
-        </button>
-        <div class="settings-popover" id="mobile-settings-popover" popover="auto">
-          <site-settings id="popover-settings"></site-settings>
-        </div>
-      </section>
+      <!-- Mobile settings button and popover (declarative, no JS creation) -->
+      <button class="button settings-button" id="mobile-settings-btn"
+        popovertarget="mobile-settings-popover" popovertargetaction="toggle"
+        aria-haspopup="dialog" aria-controls="mobile-settings-popover">
+        <span class="icon">settings</span>
+        <span>Settings</span>
+      </button>
+      <div class="settings-popover" id="mobile-settings-popover" popover="auto">
+        <site-settings id="popover-settings"></site-settings>
+      </div>
     `;
-    
-    return template.content.firstElementChild;
+
+    // Return a DocumentFragment so multiple root children are cloned
+    return template.content;
   }
 
   disconnectedCallback() {}

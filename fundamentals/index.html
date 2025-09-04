@@ -33,6 +33,7 @@
   <!-- Critical CSS -->
   <link href="../src/assets/styles/base/vars.css" rel="stylesheet" />
   <link href="../src/assets/styles/base/index.css" rel="stylesheet" />
+  <link href="../src/assets/styles/components/icon.css" rel="stylesheet" />
 
   <!-- Theme init -->
   <script src="../src/scripts/index.js"></script>
@@ -79,48 +80,36 @@
       <p class="body lg secondary">With each project that I work on, I apply these fundamentals</p>
     </header>
     
-    <div class="page-items">
-      <a data-project="simplicity" class="card color1" href="simplicity/" data-vt-target="fundamental-simplicity">
-        <div class="icon-placeholder" style="view-transition-name: fundamental-simplicity-image">
-          <span class="icon xl">step</span>
+    <div class="page-items layout-flex">
+      <section class="fundamental-section">
+        <div class="icon-component" data-style="a">
+          <span class="icon">account_tree</span>
         </div>
-        <h1 class="heading sm" style="view-transition-name: fundamental-simplicity-title">Simplicity is not always the answer</h1>
-        <div class="badge-group" style="view-transition-name: fundamental-simplicity-badges">
-          <div class="badge">
-            <span>account_tree</span>
-            Complexity
-          </div>
-          <div class="badge">Design Philosophy</div>
+        <div class="fundamental-text">
+          <h2 class="heading md">Embrace Complexity</h2>
+          <p class="body sm">Fast doesn't always mean better. While we often measure an experience by the amount of clicks and or visual complexity, oversimplifying can end up frustrating users who need advanced features to work efficiently. Design for the complexity your users actually need, not an arbitrary standard of simplicity.</p>
         </div>
-      </a>
-      
-      <a data-project="user-research" class="card color2" href="user-research/">
-        <div class="icon-placeholder">
-          <span class="icon xl">adaptive_audio_mic</span>
+      </section>
+
+      <section class="fundamental-section">
+        <div class="icon-component" data-style="b">
+          <span class="icon">adaptive_audio_mic</span>
         </div>
-        <h1 class="heading sm">Talk to the right people</h1>
-        <div class="badge-group">
-          <div class="badge">
-            <span>groups</span>
-            User Research
-          </div>
-          <div class="badge">Discovery</div>
+        <div class="fundamental-text">
+          <h2 class="heading md">Talk to the right people</h2>
+          <p class="body sm">I don't design in a vacuum. Product teams have ideas about what users need, and these ideas are good starting points. But the people who use the product every day see things others miss. They know what wastes their time, what actually helps, and what would make their jobs easier. When teams talk directly to users, everyone learns something new. The best designs happen when we combine what teams know about the business with what users know about their daily work.</p>
         </div>
-      </a>
-      
-      <a data-project="developer-experience" class="card color3" href="developer-experience/">
-        <div class="icon-placeholder">
-          <span class="icon xl">integration_instructions</span>
+      </section>
+
+      <section class="fundamental-section">
+        <div class="icon-component" data-style="c">
+          <span class="icon">integration_instructions</span>
         </div>
-        <h1 class="heading sm">Developers need better experiences too</h1>
-        <div class="badge-group">
-          <div class="badge">
-            <span>code</span>
-            Developer Experience
-          </div>
-          <div class="badge">Process</div>
+        <div class="fundamental-text">
+          <h2 class="heading md">Developers need better experiences too</h2>
+          <p class="body sm">We often forget that developers are users too. The tools, systems, and processes they interact with shape the final product just as much as our user-facing designs. When we make their work frustrating or inefficient, it shows up in what we ship. Good design extends to everyone who touches the product.</p>
         </div>
-      </a>
+      </section>
     </div>
   </main>
 </body>
