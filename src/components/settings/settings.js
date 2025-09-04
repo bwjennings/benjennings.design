@@ -302,9 +302,7 @@ class SiteSettings extends HTMLElement {
     if (this.currentHue !== null) {
       this.safeLocalStorageSet("brandHue", this.currentHue);
     }
-    if (this.currentTheme !== null) {
-      this.safeLocalStorageSet("myCustomTheme", this.currentTheme);
-    }
+    // Do not overwrite theme on unload; explicit toggles handle persistence
   }
 
   connectedCallback() {
@@ -321,27 +319,12 @@ class SiteSettings extends HTMLElement {
       hueSlider.addEventListener("change", this.hueSliderHandler);
     }
 
-    // Load stored theme (normalize to 'light' | 'dark').
-    // If not set (or legacy/system), resolve to current system preference and persist it
-    const rawTheme = this.safeLocalStorageGet("myCustomTheme");
-    let normalizedTheme =
-      rawTheme === "light" || rawTheme === "dark" ? rawTheme : null;
-    if (!normalizedTheme) {
-      const prefersDark =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
-      normalizedTheme = prefersDark ? "dark" : "light";
-      // Persist initial explicit choice to avoid cross-page reversals
-      this.setActiveTheme(normalizedTheme);
-      this.updateTheme(normalizedTheme);
-    } else {
-      this.setActiveTheme(normalizedTheme);
-      this.updateTheme(normalizedTheme);
-    }
-    // Initialize switch position based on chosen theme
-    if (switchInput) {
-      switchInput.checked = normalizedTheme === "dark";
-    }
+    // Startup theme: saved preference → OS preference
+    const rawTheme = this.safeLocalStorageGet('myCustomTheme');
+    const effective = (rawTheme === 'dark') ? 'dark' : (rawTheme === 'light') ? 'light'
+      : ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+    this.setActiveTheme(effective);
+    if (switchInput) switchInput.checked = (effective === 'dark');
 
     // Initialize hue from storage
     const storedHue = this.safeLocalStorageGet("brandHue");
@@ -366,6 +349,7 @@ class SiteSettings extends HTMLElement {
         if (theme === "light" || theme === "dark") {
           switchEl.checked = theme === "dark";
           this.setActiveTheme(theme);
+          this.currentTheme = theme;
         } else {
           // Treat others as system
           switchEl.checked = false;
@@ -385,6 +369,8 @@ class SiteSettings extends HTMLElement {
     };
     window.addEventListener("globalSchemeChange", this._onGlobalSchemeChange);
     window.addEventListener("globalHueChange", this._onGlobalHueChange);
+
+    // OS changes are handled centrally by src/scripts/index.js
 
     // Add mobile-specific lifecycle event listeners
     window.addEventListener("beforeunload", this.saveSettingsSync);
@@ -410,22 +396,19 @@ class SiteSettings extends HTMLElement {
     });
   }
 
-  updateTheme(theme) {
+  updateTheme(theme, options = {}) {
+    const persist = options.persist !== false; // default to true
     const colorScheme =
       theme === "light" ? "light" : theme === "dark" ? "dark" : "light dark";
 
     // Track current theme
     this.currentTheme = theme;
 
-    // Persist theme with error handling
-    this.safeLocalStorageSet("myCustomTheme", theme);
-    // Update in-page cache to avoid stale reads during BFCache/pageshow
-    try {
-      if (window.themeCache && window.themeCache.values) {
-        window.themeCache.values.theme = theme;
-        window.themeCache.lastUpdate = Date.now();
-      }
-    } catch {}
+    // Persist theme with error handling (only when requested)
+    if (persist) {
+      this.safeLocalStorageSet("myCustomTheme", theme);
+    }
+    // No-op cache (removed)
 
     // Apply styles
     document.documentElement.style.setProperty(
@@ -452,8 +435,13 @@ class SiteSettings extends HTMLElement {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const apply = () => {
-      this.setActiveTheme(theme);
-      this.updateTheme(theme);
+      // Use central controller if available; fall back to local update
+      if (window.__Theme && typeof window.__Theme.updateMode === 'function') {
+        window.__Theme.updateMode(isDark, true);
+      } else {
+        this.setActiveTheme(theme);
+        this.updateTheme(theme, { persist: true });
+      }
     };
 
     if (!supportsVT || prefersReduced) {
@@ -486,10 +474,7 @@ class SiteSettings extends HTMLElement {
       // Throttle updates
       this.throttledUpdateHue(hue);
 
-      // Update cache
-      if (window.themeCache) {
-        window.themeCache.values.hue = hue.toString();
-      }
+      // No theme cache
 
       // Reduced debounce delay for mobile performance (50ms instead of 100ms)
       clearTimeout(this.saveTimeout);

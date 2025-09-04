@@ -82,12 +82,15 @@ body {
   box-sizing: border-box;
   
   display: grid;
-  grid-template-columns: clamp(350px, 20dvw, 400px) 1fr;
+  grid-template-columns: clamp(200px, 20dvw, 400px) 1fr;
   grid-template-rows: auto minmax(0, 1fr);
   grid-template-areas:
    
     "sidebar content"
   ;
+  /* Fill viewport but allow growth */
+  min-height: 100dvh;
+  overflow: visible;
   perspective: 1500px;
   /* Allow the page to grow with content; body uses this class */
   /* Previously set to 100dvh which capped body height to viewport */
@@ -104,6 +107,7 @@ body {
 main {
   grid-area: content;
   /* Content controls height */
+  /* Let the root (html/body) be the scroller so mobile browsers hide UI */
   overflow: visible;
   height: auto;
 
@@ -367,10 +371,8 @@ figure {
 
 @media screen and (max-width: 800px), (max-height: 500px) {
   body {
-    min-height: 100dvh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
+  
+   
     transform: none;
   }
 
@@ -378,8 +380,9 @@ figure {
     padding: 12px;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
-    padding-bottom: 0;
-    overflow: scroll;
+    /* Ensure content isn't obscured by the fixed bottom navigation on mobile */
+    padding-bottom: calc(64px + env(safe-area-inset-bottom) + var(--spacing-md));
+    
    
     
   }
@@ -391,16 +394,11 @@ figure {
 
 
   .page-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
-    grid-template-areas:
-      
-      "content"
-      "sidebar"
-    ;
-    max-height: none;
-    /* No perspective on mobile */
-    perspective: none;
+     min-height: 100lvh;
+     display: block;
+     max-height: none;
+     /* No perspective on mobile */
+     perspective: none;
   }
 
 
@@ -425,7 +423,7 @@ figure {
 
   /* Match mobile padding with page-title */
   .page-items {
-    padding: 4dvw;
+    padding: calc(0px + env(safe-area-inset-left));
   }
 
   .welcome {

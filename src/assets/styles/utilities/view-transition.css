@@ -11,7 +11,7 @@ nav {
 
 ::view-transition {
   /* Mirror variables */
-  --transition-duration: 1000ms;
+  --transition-duration: 784ms;
 }
 
 ::view-transition-group(*) {
@@ -22,6 +22,7 @@ nav {
 /* Navigation layering via classes */
 ::view-transition-group(.nav-active) {
   animation-timing-function: var(--transition-timing-motion);
+
   z-index: 1;
 }
 
@@ -59,25 +60,68 @@ html.theme-transition * {
   view-transition-name: none !important;
 }
 
+/* While theme view-transition runs, suppress regular CSS transitions on
+   nav items so they don't appear to animate at a different rate than
+   the single root snapshot animation. */
+html.theme-transition .nav-item,
+html.theme-transition .nav-item .icon,
+html.theme-transition .nav-item .title {
+  transition: none !important;
+}
+
 /* Prevent the default root cross-fade from also animating during
    the theme toggle to avoid duplicate visuals. */
 :root.theme-transition::view-transition-old(root),
 :root.theme-transition::view-transition-new(root) {
+
   animation: none !important;
 }
 
 ::view-transition-group(theme) {
-  animation-duration: 300ms;
+  animation-duration: var(--transition-duration);
+
   animation-timing-function: var(--transition-timing-style);
   z-index: 0;
   /* page/root underlays switch parts */
 }
 
+::view-transition-old(theme) {
+  animation-name: page-theme-old;
+
+}
+
+::view-transition-new(theme) {
+  animation-name: page-theme-new;
+  mix-blend-mode: saturation;
+}
+
+@keyframes page-theme-old {
+
+  from {
+    filter: blur(0px);
+    opacity: 1;
+  }
+
+  to {
+    filter: blur(0px);
+    opacity: 0;
+  }
+}
+
+@keyframes page-theme-new {
+  from {
+    filter: blur(0px);
+    opacity: 0;
+  }
 
 
+  to {
+    filter: blur(0px);
+    opacity: 1;
+  }
 
 
-
+}
 
 /* Shared animation settings for the page transition pair */
 ::view-transition-group(.page) {
@@ -88,28 +132,30 @@ html.theme-transition * {
   /* two animations run in parallel */
   animation-duration: var(--transition-duration);
   animation-timing-function: var(--transition-timing-style), var(--transition-timing-motion);
+  height: 100%;
 
-
-
+  transform-origin: top;
   animation-fill-mode: both, both;
 }
 
 /* Old → exiting */
 ::view-transition-old(.page) {
   animation-name: page-exit-opacity-blur, page-exit-scale;
-  transform-origin: top center;
+
+
 }
 
 /* New → entering */
 ::view-transition-new(.page) {
   animation-name: page-enter-opacity-blur, page-enter-scale;
-  transform-origin: top center;
+  will-change: transform, opacity;
 }
 
 
 ::view-transition-group(.nav-active) {
-  will-change: transform, opacity,width,height;
+  will-change: transform, opacity, width, height;
 }
+
 /* Preserve snapshot alignment */
 ::view-transition-old(.card),
 ::view-transition-new(.card) {
@@ -161,11 +207,12 @@ html.theme-transition * {
     filter: blur(0px);
   }
 
-  30%{
+  30% {
     opacity: var(--vt-hidden, 0);
     filter: blur(var(--vt-blur, 4px));
   }
-  100%{
+
+  100% {
     opacity: var(--vt-hidden, 0);
     filter: blur(var(--vt-blur, 4px));
   }
@@ -175,7 +222,8 @@ html.theme-transition * {
   from {
     transform: scale(1);
   }
-   30% {
+
+  30% {
     transform: scale(var(--vt-scale-min, 0.99));
   }
 
@@ -190,15 +238,17 @@ html.theme-transition * {
     opacity: 0;
     filter: blur(var(--vt-blur, 4px));
   }
+
   20% {
     opacity: var(--vt-hidden, 0);
     filter: blur(var(--vt-blur, 4px));
   }
- 50% {
+
+  50% {
     opacity: var(--vt-visible, 1);
     filter: blur(0px);
   }
-  
+
 
   to {
     opacity: var(--vt-visible, 1);
@@ -208,17 +258,19 @@ html.theme-transition * {
 
 @keyframes page-enter-scale {
   0% {
-    transform:  scale3d(0.98,0.98,1);
+    transform: scale(var(--vt-scale-min, 0.99));
   }
+
   20% {
-    transform:  scale3d(0.98,0.98,1);
+    transform: scale(var(--vt-scale-min, 0.99));
   }
+
   50% {
-    transform: scale3d(1,1,1);
+    transform: scale(1);
   }
 
   to {
-    transform: scale3d(1,1,1);
+    transform: scale(1);
   }
 }
 

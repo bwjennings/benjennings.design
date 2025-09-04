@@ -17,23 +17,35 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD,XOPQ,YOPQ@8..144,25..151,100..1000,-200..150,80,80&display=swap&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,400..700,1,-50..200&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD,XOPQ,YOPQ@8..144,25..151,100..1000,-200..150,80,80&display=swap&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,400..700,1,-50..200&display=swap"
+    rel="stylesheet">
+
   <title>Ben Jennings</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  
+
+  <!-- Early theme (pre-CSS) -->
+  <script>
+    (function () {
+      try {
+        var raw = localStorage.getItem('myCustomTheme');
+        var eff = (raw === 'dark') ? 'dark' : (raw === 'light') ? 'light' : ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+        document.documentElement.style.setProperty('--current-color-scheme', eff);
+      } catch (e) { }
+    })();
+  </script>
   <!-- Critical CSS - load first for view-transition-name definitions -->
   <link href="../src/assets/styles/base/vars.css" rel="stylesheet" />
   <link href="../src/assets/styles/base/index.css" rel="stylesheet" />
-  
+
   <!-- Critical JavaScript - theme initialization -->
   <script src="../src/scripts/index.js"></script>
 
   <!-- Web Components - preload then load -->
   <link rel="modulepreload" href="../src/components/index.js" />
   <script type="module" src="../src/components/index.js" blocking="render"></script>
-  
+
   <!-- View transition script - after CSS and components -->
   <script defer src="../src/scripts/view-transition.js"></script>
 
@@ -65,25 +77,27 @@
 </head>
 
 <body id="page-container" class="page-container">
-    
-    <site-navigation active-item="item5"></site-navigation>
 
-    <main>
-      <header class="page-title">
-        <h1 class="heading">Resources</h1>
-        <p class="body lg secondary">Feel free to explore these files to get a better sense of how I work</p>
-      </header>
+  <site-navigation active-item="item5"></site-navigation>
 
-      <div class="page-items flex">
-        <resource-card icon="demography" title="Figma File" description="Explore the designs to this website"
-          button-text="Go to Figma" button-url="https://example.com/javascript-guide"></resource-card>
+  <main>
+    <header class="page-title">
+      <h1 class="heading">Resources</h1>
+      <p class="body lg secondary">Feel free to explore these files to get a better sense of how I work</p>
+    </header>
 
-        <resource-card icon="deployed_code" title="Github Repo"
-          description="Inspect the code that I (and AI) wrote for this website" button-text="Go to Github"
-          button-url="https://github.com/bwjennings/benjennings.design"></resource-card>
+    <div class="page-items flex">
+      <resource-card style="a" icon="demography" title="Figma File" description="Explore the designs to this website"
+        button-text="Go to Figma" button-url="https://example.com/javascript-guide"></resource-card>
+      <resource-card style="b" icon="deployed_code" title="Github Repo"
+        description="Inspect the code that I (and AI) wrote for this website" button-text="Go to Github"
+        button-url="https://github.com/bwjennings/benjennings.design"></resource-card>
 
-      </div>
-    </main>
+      <resource-card style="c" icon="deployed_code" title="Github Repo"
+        description="Inspect the code that I (and AI) wrote for this website" button-text="Go to Github"
+        button-url="https://github.com/bwjennings/benjennings.design"></resource-card>
+    </div>
+  </main>
 </body>
 
 </html>

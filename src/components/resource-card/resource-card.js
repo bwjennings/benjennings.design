@@ -16,105 +16,138 @@
         }
         .resource-card {
           display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          height: 100%;
-          background: var(--color-surface-b);
-          border: 1px solid var(--color-border-primary);
-          border-radius:var(--radius-md);
-          container-type: inline-size;
-          transition: outline 300ms var(--transition-timing-style),
-            font-variation-settings 300ms var(--transition-timing-style);
-          font-variation-settings: "GRAD" 0;
-          color: var(--color-text-primary);
-          overflow: hidden;
-          outline-offset: 0px;
-          anchor-name: --card;
-        }
-        .iconbox {
-          --animation-position: 0;
-          font-variation-settings: 'GRAD' -200, 'FILL' var(--icon-fill);
-          font-family: var(--icon-font-family);
-          width:15cqw;
-          text-align: center;
-          font-variation-settings: 'FILL' var(--icon-fill), 'wght' var(--icon-weight-lg), 'GRAD' var(--icon-grade-emphasis);
-          overflow: hidden;
-          aspect-ratio: 1 / 1;
-          display: flex;
-          align-self: stretch;
-          background: var(--color-surface-c);
-          flex-direction: column;
-          justify-content: center;
           align-items: center;
-          color: var(--color-icon-base-c);
-          user-select: none;
-          -webkit-user-select: none;
-          container-name:iconbox;
-          container-type:inline-size;
-                    max-height:150px;
-
-
-          
-}
-          @container (max-width: 450px) {
-          .iconbox{
- display:none
-      }
-        }
-       .content-area {
-          display: flex;
-          flex: 1 0 0;
-          padding: 24px;
-          align-items: center;
+          justify-content: flex-start;
           gap: 16px;
-          min-width:200px
-}
-        .title-group {
-          flex: 1 0 0; 
+          padding: 16px;
+          border-radius: 32px;
+          box-sizing: border-box;
+          height: 100%;
+          overflow: hidden;
+          position: relative;
+        }
+        
+        /* Card style variants */
+        .resource-card[data-style="a"] {
+          background: var(--color-surface-a, #b8eaff);
+        }
+        .resource-card[data-style="b"] {
+          background: var(--color-surface-b, #c6e5ff);
+        }
+        .resource-card[data-style="c"] {
+          background: var(--color-surface-c, #d6dfff);
+        }
+        .resource-card[data-style="d"] {
+          background: var(--color-surface-d, #e6daff);
+        }
+
+        .icon {
+          font-family: 'Material Symbols Sharp', sans-serif;
+          font-size: 40.26px;
+          line-height: 0;
+          font-style: normal;
+          font-weight: 400;
+          flex-shrink: 0;
+          position: relative;
+          text-wrap: nowrap;
+        }
+        
+        /* Icon colors per style */
+        .resource-card[data-style="a"] .icon {
+          color: var(--color-icon-base, #64a1ff);
+        }
+        .resource-card[data-style="b"] .icon {
+          color: var(--color-icon-base-b, #8b75ee);
+        }
+        .resource-card[data-style="c"] .icon {
+          color: var(--color-icon-base-c, #ab69dc);
+        }
+        .resource-card[data-style="d"] .icon {
+          color: var(--color-icon-base-d, #c35fc0);
+        }
+
+        .content {
           display: flex;
-          gap:2px;
           flex-direction: column;
-}
+          align-items: flex-start;
+          justify-content: center;
+          flex: 1 0 0;
+          min-width: 150px;
+          min-height: 1px;
+          font-family: 'Roboto Flex', sans-serif;
+          line-height: 0;
+          font-style: normal;
+          position: relative;
+        }
 
-        .iconbox span {
-          line-height: 100%;
-          rotate: -20deg;
-          opacity: 0.5;
-          animation: iconAnimate 5s var(--transition-timing-motion) infinite alternate;
-          font-weight: var(--icon-weight-lg);
-          font-size: 130cqw;
+        .title {
+          font-size: 30.21px;
+          line-height: 1.1;
+          font-weight: 500;
+          width: 100%;
+          position: relative;
+          flex-shrink: 0;
+        }
+        
+        .description {
+          font-size: 10.24px;
+          line-height: 12.8px;
+          font-weight: 450;
+          width: 100%;
+          position: relative;
+          flex-shrink: 0;
+        }
 
+        /* Text colors per style */
+        .resource-card[data-style="a"] .title {
+          color: var(--color-text-base, #212f40);
+        }
+        .resource-card[data-style="a"] .description {
+          color: var(--color-text-base-secondary, #282d40);
+        }
+        .resource-card[data-style="b"] .title,
+        .resource-card[data-style="b"] .description {
+          color: var(--color-text-base-b, #282d40);
+        }
+        .resource-card[data-style="c"] .title,
+        .resource-card[data-style="c"] .description {
+          color: var(--color-text-base-c, #2f2a3e);
+        }
+        .resource-card[data-style="d"] .title,
+        .resource-card[data-style="d"] .description {
+          color: var(--color-text-base-d, #34283b);
+        }
+
+
+        .hidden {
+          display: none;
         }
       
- 
       </style>
       <link rel="stylesheet" href="/src/assets/styles/components/button.css">
-      <div class="resource-card">
-            <div class="iconbox">
-              <span>demography</span>
-            </div>
-            <div class="content-area">
-              <div class="title-group">
-                <div class="heading sm">Title</div>
-                <div class="body secondary description">Description</div>
-              </div>
-              <button part="button" class="button">
-                <div class="icon">link</div>
-                <span class="button-text">Download</span>
-              </button>
-            </div>
-          </div>
+      <div class="resource-card" data-style="a">
+        <div class="icon">demography</div>
+        <div class="content">
+          <div class="title">Title</div>
+          <div class="description">Description</div>
+        </div>
+        <button class="button secondary">
+          <div class="icon">download</div>
+          <span>Download</span>
+        </button>
+      </div>
         `;
     
         // Attach template
         shadow.appendChild(template.content.cloneNode(true));
     
         // Cache refs
-        this.boxIconElement = shadow.querySelector('.iconbox span');
-        this.titleElement = shadow.querySelector('.heading.sm');
+        this.cardElement = shadow.querySelector('.resource-card');
+        this.iconElement = shadow.querySelector('.icon');
+        this.titleElement = shadow.querySelector('.title');
         this.descriptionElement = shadow.querySelector('.description');
         this.buttonElement = shadow.querySelector('.button');
-        this.buttonTextElement = shadow.querySelector('.button-text');
+        this.buttonTextElement = shadow.querySelector('.button span');
         this.buttonIconElement = shadow.querySelector('.button .icon');
     
         // Button click
@@ -129,14 +162,14 @@
       }
     
       static get observedAttributes() {
-        return ['icon', 'title', 'description', 'button-text', 'button-url'];
+        return ['icon', 'title', 'description', 'button-text', 'button-url', 'style', 'show-description'];
       }
     
       attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
           case 'icon':
-            if (this.boxIconElement) {
-              this.boxIconElement.textContent = newValue;
+            if (this.iconElement) {
+              this.iconElement.textContent = newValue;
             }
             break;
           case 'title':
@@ -157,13 +190,27 @@
           case 'button-url':
             // Handled in click
             break;
+          case 'style':
+            if (this.cardElement && newValue && ['a', 'b', 'c', 'd'].includes(newValue)) {
+              this.cardElement.setAttribute('data-style', newValue);
+            }
+            break;
+          case 'show-description':
+            if (this.descriptionElement) {
+              if (newValue === 'false') {
+                this.descriptionElement.classList.add('hidden');
+              } else {
+                this.descriptionElement.classList.remove('hidden');
+              }
+            }
+            break;
         }
       }
     
       connectedCallback() {
         // Init from attributes
-        if (this.hasAttribute('icon') && this.boxIconElement) {
-          this.boxIconElement.textContent = this.getAttribute('icon');
+        if (this.hasAttribute('icon') && this.iconElement) {
+          this.iconElement.textContent = this.getAttribute('icon');
         }
         if (this.hasAttribute('title') && this.titleElement) {
           this.titleElement.textContent = this.getAttribute('title');
@@ -173,6 +220,17 @@
         }
         if (this.hasAttribute('button-text') && this.buttonTextElement) {
           this.buttonTextElement.textContent = this.getAttribute('button-text');
+        }
+        if (this.hasAttribute('style') && this.cardElement) {
+          const style = this.getAttribute('style');
+          if (['a', 'b', 'c', 'd'].includes(style)) {
+            this.cardElement.setAttribute('data-style', style);
+          }
+        }
+        if (this.hasAttribute('show-description') && this.descriptionElement) {
+          if (this.getAttribute('show-description') === 'false') {
+            this.descriptionElement.classList.add('hidden');
+          }
         }
       }
     }

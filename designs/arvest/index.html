@@ -18,6 +18,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
 
+  <!-- Early theme (pre-CSS) -->
+  <script>
+    (function () {
+      try {
+        var raw = localStorage.getItem('myCustomTheme');
+        var eff = (raw === 'dark') ? 'dark' : (raw === 'light') ? 'light' : ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+        document.documentElement.style.setProperty('--current-color-scheme', eff);
+      } catch (e) { }
+    })();
+  </script>
+
   <!-- Critical CSS -->
   <link href="../../src/assets/styles/base/vars.css" rel="stylesheet" />
   <link href="../../src/assets/styles/base/index.css" rel="stylesheet" />

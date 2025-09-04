@@ -1,112 +1,80 @@
-// Theme cache
-window.themeCache = window.themeCache || {
-  lastUpdate: 0,
-  values: {},
-  isValid() {
-    // 1000ms cache TTL
-    return Date.now() - this.lastUpdate < 1000;
-  },
-  update() {
-    try {
-      this.values = {
-        theme: localStorage.getItem('myCustomTheme'),
-        hue: localStorage.getItem('brandHue')
-      };
-      this.lastUpdate = Date.now();
-    } catch (e) {
-      console.error('Error reading theme from localStorage:', e);
-      this.values = {};
-    }
-  },
-  get() {
-    if (!this.isValid()) {
-      this.update();
-    }
-    return this.values;
-  }
-};
+// Theme controller following the decision tree
+(function () {
+  const STORAGE_KEY = 'myCustomTheme'; // 'dark' | 'light'
 
-// Normalize and apply stored theme values
-function applyStoredThemeVars() {
+  const getStored = () => {
+    try { return localStorage.getItem(STORAGE_KEY); } catch { return null; }
+  };
+  const setStored = (val) => {
+    try { localStorage.setItem(STORAGE_KEY, val); } catch {}
+  };
+  const clearStored = () => {
+    try { localStorage.removeItem(STORAGE_KEY); } catch {}
+  };
+  const osPrefersDark = () => {
+    try { return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); } catch { return false; }
+  };
+  const apply = (theme) => {
+    try { document.documentElement.style.setProperty('--current-color-scheme', theme); } catch {}
+    try { window.dispatchEvent(new CustomEvent('globalSchemeChange', { detail: theme })); } catch {}
+  };
+  const computeInitial = () => {
+    const saved = getStored();
+    if (saved === 'dark') return 'dark';
+    if (saved === 'light') return 'light';
+    return osPrefersDark() ? 'dark' : 'light';
+  };
+
+  // Public API
+  const state = { theme: computeInitial() };
+  apply(state.theme);
+
+  const updateMode = (dark, persist) => {
+    state.theme = dark ? 'dark' : 'light';
+    apply(state.theme);
+    if (persist) setStored(state.theme);
+  };
+
+  const toggleAndPersist = () => {
+    updateMode(!(state.theme === 'dark'), true);
+  };
+
+  // Expose
+  window.__Theme = {
+    get: () => state.theme,
+    updateMode, // (boolean isDark, boolean persist)
+    toggleAndPersist,
+  };
+
+  // A) Re-apply on lifecycle
+  const reapply = () => {
+    const next = computeInitial();
+    if (next !== state.theme) {
+      state.theme = next;
+      apply(state.theme);
+    }
+  };
+  window.addEventListener('pageshow', reapply);
+  if ('onpagereveal' in window) window.addEventListener('pagereveal', reapply);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reapply(); });
+
+  // B) When the OS theme changes: set and clear saved preference
   try {
-    const cached = window.themeCache.get();
-
-    // Batch updates
-    const updates = [];
-
-    // Theme: allow 'light' | 'dark'; if missing/legacy, resolve to current system preference
-    {
-      const input = typeof cached.theme === 'string' ? cached.theme.trim() : null;
-      const isExplicit = input === 'light' || input === 'dark';
-      const effective = isExplicit
-        ? input
-        : ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
-
-      // Persist explicit choice if not set or legacy
-      if (!isExplicit) {
-        try { localStorage.setItem('myCustomTheme', effective); } catch {}
-        if (window.themeCache && window.themeCache.values) {
-          window.themeCache.values.theme = effective;
-          window.themeCache.lastUpdate = Date.now();
-        }
-      }
-      updates.push(['--current-color-scheme', effective]);
-    }
-
-    // Hue: accept numeric strings or values with 'deg'; if missing, persist current CSS default
-    if (cached.hue != null) {
-      const raw = String(cached.hue);
-      const parsed = parseInt(raw, 10);
-      if (!Number.isNaN(parsed)) {
-        const clamped = Math.max(0, Math.min(360, parsed));
-        updates.push(['--hue-root', clamped + 'deg']);
-      }
-    } else {
-      try {
-        const cssHue = getComputedStyle(document.documentElement).getPropertyValue('--hue-root') || '';
-        const parsed = parseInt(cssHue, 10);
-        if (!Number.isNaN(parsed)) {
-          const clamped = Math.max(0, Math.min(360, parsed));
-          try { localStorage.setItem('brandHue', String(clamped)); } catch {}
-          if (window.themeCache && window.themeCache.values) {
-            window.themeCache.values.hue = String(clamped);
-            window.themeCache.lastUpdate = Date.now();
-          }
-        }
-      } catch {}
-    }
-
-    // Apply updates
-    updates.forEach(([property, value]) => {
-      document.documentElement.style.setProperty(property, value);
-    });
-  } catch (e) {
-    console.error('Error applying theme preferences:', e);
-    // Fallback
-    try {
-      document.documentElement.style.setProperty('--current-color-scheme', 'light dark');
-    } catch (fallbackError) {
-      console.error('Fallback theme error:', fallbackError);
-    }
-  }
-}
-
-// Initial run (eager to avoid flashes)
-(function () { applyStoredThemeVars(); })();
-
-// Re-apply on visibility and page lifecycle (BFCache/prerender)
-const reapply = () => { try { applyStoredThemeVars(); } catch {} };
-window.addEventListener('pageshow', reapply);
-if ('onpagereveal' in window) window.addEventListener('pagereveal', reapply);
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reapply(); });
-
-// Cross-page sync: reflect changes from other pages/tabs
-window.addEventListener('storage', (e) => {
-  try {
-    if (e && (e.key === 'myCustomTheme' || e.key === 'brandHue')) {
-      // Invalidate cache and re-apply
-      if (window.themeCache) window.themeCache.lastUpdate = 0;
-      applyStoredThemeVars();
+    const mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql && mql.addEventListener) {
+      mql.addEventListener('change', () => {
+        state.theme = mql.matches ? 'dark' : 'light';
+        apply(state.theme);
+        clearStored(); // Remove any saved preference so OS controls it
+      });
     }
   } catch {}
-});
+
+  // Cross-tab sync
+  window.addEventListener('storage', (e) => {
+    if (!e) return;
+    if (e.key === STORAGE_KEY) {
+      reapply();
+    }
+  });
+})();

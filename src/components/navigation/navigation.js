@@ -37,6 +37,21 @@ class SiteNavigation extends HTMLElement {
   deferredSetup() {
     // Update active state
     this.updateActiveState();
+
+    // Ensure settings button and popover are attached to <body>
+    // so their fixed positioning is relative to the viewport,
+    // not the bottom-fixed navigation container.
+    try {
+      const btn = this.querySelector('#mobile-settings-btn');
+      const pop = this.querySelector('#mobile-settings-popover');
+
+      if (btn && btn.ownerDocument?.body && btn.parentElement !== btn.ownerDocument.body) {
+        btn.ownerDocument.body.appendChild(btn);
+      }
+      if (pop && pop.ownerDocument?.body && pop.parentElement !== pop.ownerDocument.body) {
+        pop.ownerDocument.body.appendChild(pop);
+      }
+    } catch {}
   }
 
   updateActiveState() {
