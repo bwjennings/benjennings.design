@@ -20,10 +20,10 @@ figma.connect(
         "accent-3": "accent-3",
       }),
     },
-    example: (props) => html`<ben-badge 
-      text="${props.text}"
-      ${props.icon ? `icon="${props.icon}"` : ''}
-      ${props.variant !== 'default' ? `variant="${props.variant}"` : ''}
-    ></ben-badge>`,
+    example: (props) => html`<ben-badge
+        icon="${props.icon}"
+        text="${props.text}"
+        variant="${props.variant}"
+      ></ben-badge>`,
   },
 )

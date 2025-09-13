@@ -10,9 +10,11 @@ figma.connect(
       text: figma.string("Text"),
         variant: figma.enum("variant", {
         Default: "default",
-        accent: "accent",
-        "accent 2": "accent-2",
-        "accent 3": "accent-3",
+        Primary: "primary",
+        Secondary: "secondary",
+        "Accent 1": "accent-1",
+        "Accent 2": "accent-2",
+        "Accent 3": "accent-3",
       }),
     },
     example: (props) =>

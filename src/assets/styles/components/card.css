@@ -30,8 +30,8 @@
   container-type: inline-size;
   transition-property: transform,
   outline-width;
-  transition-duration: 600ms;
-  transition-timing-function: var(--transition-timing-motion);
+  transition-duration: var(--transition-timing-motion-duration);
+  transition-timing-function: var(--transition-timing-bounce);
   font-variation-settings: "GRAD" 0;
   color: var(--color-text-primary);
   gap: var(--spacing-xl);
@@ -219,6 +219,7 @@
 .card h6 {
   grid-area: title;
   margin: 0;
+  justify-self: stretch;
 }
 
 .card .content {

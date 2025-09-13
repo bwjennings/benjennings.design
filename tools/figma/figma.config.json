@@ -1,7 +1,7 @@
 {
   "codeConnect": {
      
-    "include": ["assets/**/*.js", "assets/**/*.ts", "assets/**/*.jsx", "assets/**/*.tsx"],
+    "include": ["assets/**/*.js", "assets/**/*.ts", "assets/**/*.jsx", "assets/**/*.tsx", "src/**/*.js", "src/**/*.ts", "src/**/*.jsx", "src/**/*.tsx", "tools/figma/**/*.figma.ts"],
     "label": "HTML",
     "parser": "html"
   }

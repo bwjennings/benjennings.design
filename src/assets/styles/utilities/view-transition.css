@@ -1,13 +1,7 @@
+/* Base configuration */
 @view-transition {
   navigation: auto;
 }
-
-
-
-nav {
-  view-transition-name: nav-container;
-}
-
 
 ::view-transition {
   /* Mirror variables */
@@ -15,28 +9,38 @@ nav {
   min-height: 100lvh;
 }
 
+/* Global group defaults */
+::view-transition-group(*) {
+  animation-duration: var(--transition-duration);
+  animation-timing-function: var(--transition-timing-motion);
+  isolation: isolate;
+}
+
 ::view-transition-group(*) {
   animation-timing-function: var(--transition-timing-motion);
+}
 
-
+/* Navigation */
+nav {
+  view-transition-name: nav-container;
 }
 
 /* Navigation layering via classes */
 ::view-transition-group(.nav-active) {
   animation-timing-function: var(--transition-timing-motion);
-
   z-index: 1;
 }
 
-
+::view-transition-group(.nav-active) {
+  will-change: transform, opacity, width, height;
+}
 
 ::view-transition-group(.nav-foreground) {
   animation-timing-function: var(--transition-timing-style);
   z-index: 2;
 }
 
-/* (Theme switch shared elements removed; root-only theme transition retained) */
-
+/* Page */
 main {
   view-transition-name: page;
   /* Label for styling */
@@ -46,11 +50,188 @@ main {
   will-change: opacity, transform;
 }
 
+::view-transition-group(.page) {
+  --vt-visible: 1;
+  --vt-hidden: 0;
+  --vt-blur: 4px;
+  --vt-scale-min: 0.99;
+}
+
+::view-transition-image-pair(.page) {
+  
+  transform-origin: top center;
+}
+
+/* Single scale animation for the group */
+@keyframes page-group-scale {
+  from {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(0.98);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Old → exiting (opacity/blur only) */
+::view-transition-old(.page) {
+  animation-name: page-exit-opacity-blur, page-exit-scale;
+  animation-timing-function: var(--transition-timing-scale);
+  animation-duration: calc(var(--transition-timing-scale-duration) * 0.8);
+  animation-fill-mode: both;
+   transform-origin: top center;
+  will-change: opacity, filter;
+}
+
+/* New → entering (opacity/blur only) */
+::view-transition-new(.page) {
+  animation-name: page-enter-opacity-blur, page-enter-scale;
+  animation-timing-function: var(--transition-timing-scale);
+  animation-duration: calc(var(--transition-timing-scale-duration) * 0.8);
+  animation-delay: calc(var(--transition-timing-scale-duration) * 0.1);
+  animation-fill-mode: both;
+   transform-origin: top center;
+  will-change: opacity, filter;
+}
+
+/* Keyframes for opacity/blur only */
+@keyframes page-exit-opacity-blur {
+  from {
+    filter: blur(0px) opacity(1);
+  }
+
+  to {
+    filter: blur(8px) opacity(0);
+  }
+}
+
+@keyframes page-enter-opacity-blur {
+  from {
+    filter: blur(8px) opacity(0);
+  }
+
+  to {
+    filter: blur(0px) opacity(1);
+  }
+}
+
+@keyframes page-enter-scale {
+  from {
+    transform: scale(0.95);
+  }
+
+  
+
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes page-exit-scale {
+  from {
+    transform: scale(1);
+  }
 
 
+  to {
+    transform: scale(0.95);
+  }
+}
 
+/* Shared elements */
+::view-transition-group(.card),
+::view-transition-group(.heading),
+::view-transition-group(.thumbnail),
+::view-transition-group(.badge-group) {
+  animation-duration: 600ms;
+
+  overflow: clip;
+}
+
+/* Preserve snapshot alignment */
+::view-transition-old(.card),
+::view-transition-new(.card) {
+  height: 100%;
+  border-radius: 8px;
+}
+
+::view-transition-group(.heading) {
+  overflow: clip;
+
+}
+
+/* Thumbnail aspect-ratio */
+::view-transition-group(.thumbnail) {
+  overflow: clip;
+}
+
+::view-transition-old(.thumbnail),
+::view-transition-new(.thumbnail) {
+  height: 100%;
+  object-position: 50%;
+  object-fit: cover;
+}
+
+::view-transition-old(.heading),
+::view-transition-old(.badge-group) {
+  animation: card-header-out var(--transition-duration) var(--transition-timing-motion);
+  animation-fill-mode: forwards;
+  height: 100%;
+  width: auto;
+  /* object-fit: none; */
+  object-position: left;
+}
+
+::view-transition-new(.heading),
+::view-transition-new(.badge-group) {
+  animation: card-header-in var(--transition-duration) var(--transition-timing-motion);
+  animation-fill-mode: forwards;
+  height: 100%;
+  /* object-fit: none; */
+  object-position: left;
+  width: auto;
+}
+
+/* Card→Header keyframes */
+@keyframes card-header-out {
+  from {
+    opacity: 1;
+    filter: blur(0px);
+  }
+
+  40% {
+    opacity: 0;
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+@keyframes card-header-in {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+  }
+
+  60% {
+    opacity: 1;
+    ;
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
 
 /* Theme toggle */
+/* (Theme switch shared elements removed; root-only theme transition retained) */
 html.theme-transition {
   /* Temporary root name */
   view-transition-name: theme;
@@ -125,134 +306,8 @@ html.theme-transition .nav-item .title {
 
 }
 
-
-
-
-
-::view-transition-group(.nav-active) {
-  will-change: transform, opacity, width, height;
-}
-
-/* Preserve snapshot alignment */
-::view-transition-old(.card),
-::view-transition-new(.card) {
-  height: 100%;
-  border-radius: 8px;
-
-}
-
-
-
-
-
-
-
-
-
-
-::view-transition-group(*) {
-  animation-duration: var(--transition-duration);
-  animation-timing-function: var(--transition-timing-motion);
-  isolation: isolate;
-
-}
-
-/* Thumbnail aspect-ratio */
-::view-transition-group(.thumbnail) {
-  overflow: clip;
-}
-
-::view-transition-old(.thumbnail),
-::view-transition-new(.thumbnail) {
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
-  height: 100%;
-}
-
-
-
-
-
-
-::view-transition-group(.page) {
-  --vt-visible: 1;
-  --vt-hidden: 0;
-  --vt-blur: 4px;
-  --vt-scale-min: 0.99;
-
-}
-
-::view-transition-image-pair(.page) {
-  animation-name: page-group-scale;
-  animation-duration: var(--transition-duration) ;
-  animation-timing-function: var(--transition-timing-motion);
-  animation-fill-mode: both;
-  transform-origin: top center;
-
-}
-
-/* Old → exiting (opacity/blur only) */
-::view-transition-old(.page) {
-  animation-name: page-exit-opacity-blur;
-  animation-timing-function: var(--transition-timing-style);
-  animation-duration: calc(var(--transition-duration) * 0.4);
-  animation-fill-mode: both;
-  will-change: opacity, filter;
-}
-
-/* New → entering (opacity/blur only) */
-::view-transition-new(.page) {
-  animation-name: page-enter-opacity-blur;
-  animation-timing-function: var(--transition-timing-style);
-  animation-duration: calc(var(--transition-duration) * 0.8);
-  animation-delay: calc(var(--transition-duration) * 0.2);
-  animation-fill-mode: both;
-  will-change: opacity, filter;
-}
-
-/* Keyframes for opacity/blur only */
-@keyframes page-exit-opacity-blur {
-  from {
-    opacity: 1;
-    filter: blur(0px);
-  }
-
-  to {
-    opacity: 0;
-    filter: blur(4px);
-  }
-}
-
-@keyframes page-enter-opacity-blur {
-  from {
-    opacity: 0;
-    filter: blur(4px);
-  }
-
-  to {
-    opacity: 1;
-    filter: blur(0px);
-  }
-}
-
-/* Single scale animation for the group */
-@keyframes page-group-scale {
-  from {
-    transform: scale(1);
-  }
-
-  35% {
-    transform: scale(0.95);
-  }
-
-  to {
-    transform: scale(1);
-  }
-}
-
+/* Overrides */
 /* Mobile override removed */
-
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -271,66 +326,4 @@ html.theme-transition .nav-item .title {
 html.restoring ::view-transition-old(root),
 html.restoring ::view-transition-new(root) {
   animation: none !important;
-}
-
-
-
-/* Shared elements */
-::view-transition-group(.heading) {
-  overflow: hidden;
-
-}
-
-::view-transition-group(.thumbnail) {
-  overflow: clip;
-}
-
-::view-transition-old(.heading),
-::view-transition-old(.thumbnail),
-::view-transition-old(.badge-group) {
-  animation: card-header-out var(--transition-duration) var(--transition-timing-motion);
-  animation-fill-mode: forwards;
-}
-
-::view-transition-new(.heading),
-::view-transition-new(.thumbnail),
-::view-transition-new(.badge-group) {
-  animation: card-header-in var(--transition-duration) var(--transition-timing-motion);
-  animation-fill-mode: forwards;
-}
-
-
-/* Card→Header keyframes */
-@keyframes card-header-out {
-  from {
-    opacity: 1;
-    filter: blur(0px);
-  }
-
-  40% {
-    opacity: 0;
-    filter: blur(8px);
-  }
-
-  to {
-    opacity: 0;
-    filter: blur(8px);
-  }
-}
-
-@keyframes card-header-in {
-  from {
-    opacity: 0;
-    filter: blur(8px);
-  }
-
-  60% {
-    opacity: 1;
-    ;
-  }
-
-  to {
-    opacity: 1;
-    filter: blur(0px);
-  }
 }

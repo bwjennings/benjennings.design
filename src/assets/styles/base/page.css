@@ -205,8 +205,6 @@ main {
   grid-column: 1 / -1;
   grid-template-rows: subgrid;
   grid-area: header;
-
-  max-width: 1200px;
   position: sticky;
   top: 0px;
   padding: 4dvw;
@@ -425,9 +423,12 @@ figure {
     padding: 4dvw;
   }
 
-  /* Match mobile padding with page-title */
+  /* Match mobile padding with page-title and ensure gutters */
   .page-items {
-    padding: calc(0px + env(safe-area-inset-left));
+    /* Base gutter on small screens + account for safe-area */
+    padding: 4dvw;
+    padding-left: calc(4dvw + env(safe-area-inset-left));
+    padding-right: calc(4dvw + env(safe-area-inset-right));
   }
 
   .page-items.layout-welcome {
@@ -440,5 +441,4 @@ figure {
 .welcome-card {
   margin-top: calc(20cqh - 40px);
 }
-
 
