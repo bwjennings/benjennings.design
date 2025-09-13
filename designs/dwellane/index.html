@@ -12,6 +12,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD,XOPQ,YOPQ@8..144,25..151,100..1000,-200..150,80,80&display=swap&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,400..700,1,-50..200&display=swap" rel="stylesheet" />
+  <link rel="dns-prefetch" href="https://embed.figma.com" />
+  <link rel="preconnect" href="https://embed.figma.com" crossorigin />
+  <link rel="preconnect" href="https://www.figma.com" crossorigin />
+  <link rel="preconnect" href="https://static.figma.com" crossorigin />
 
   <title>Ben Jennings</title>
   <meta charset="UTF-8" />
@@ -41,6 +45,8 @@
 
   <!-- View transitions -->
   <script defer src="../../src/scripts/view-transition.js"></script>
+  <!-- Lazy embeds (Figma, etc.) -->
+  <script defer src="../../src/scripts/embeds.js"></script>
 
   <!-- Speculation rules -->
   <script type="speculationrules">
@@ -93,7 +99,17 @@
         </p>
       </section>
       <figure>
-        <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=37700-28232&embed-host=share&footer=false" ></iframe> <figcaption class="body sm secondary">
+        <iframe
+          style="border: 1px solid rgba(0, 0, 0, 0.1);"
+          width="800"
+          height="450"
+          title="Dwellane design system (Figma)"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="fullscreen"
+          data-embed="figma"
+          data-src="https://embed.figma.com/design/YY1gZoLcBXAtiDy1LeDWW0/cards?m=auto&node-id=37700-28232&embed-host=share&footer=false"></iframe>
+        <figcaption class="body sm secondary">
           A peek at the Dwellane design system in Figma.
         </figcaption>
     </div>

@@ -1,7 +1,7 @@
 @property --hue-root {
   syntax: "<angle>";
   initial-value: 210deg;
-  inherits: false;
+  inherits: true;
 }
 
 @property --base-radius {

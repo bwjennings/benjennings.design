@@ -4,13 +4,21 @@
 
   /* Layout via variables */
   grid-template-columns: var(--card-columns, 1fr);
-  grid-template-rows: var(--card-rows, 1fr 1fr auto auto);
-  grid-template-areas: var(--card-areas,
-
+  grid-template-rows: var(--card-rows, 1fr 1fr auto fit-content);
+  grid-template-areas: 
       "title"
       "media"
       "badges"
-      "content");
+      "content";
+
+      &:not(:has(p)) {
+        grid-template-areas: var(--card-areas-no-media,
+          "title"
+      "media"
+      "badges");
+        
+      }
+
   height: 100%;
   /* min-height: 300px; */
 
@@ -184,31 +192,10 @@
   }
 }
 
-/* No media: collapse row */
-.card:not(:has(.icon-box, img, .thumbnail, .media)) {
-  grid-template-areas: var(--card-areas-no-media,
-      "title"
-      "content"
-      "badges");
-  grid-template-rows: var(--card-rows-no-media, auto 1fr auto);
-}
 
-/* No content: remove row */
-.card:not(:has(.content, > p)) {
-  grid-template-areas: var(--card-areas-no-content,
-      "title"
-      "media"
-      "badges");
-  grid-template-rows: var(--card-rows-no-content, 1fr 1fr auto);
-}
 
-/* Title + badges only */
-.card:not(:has(.icon-box, img, .thumbnail, .media)):not(:has(.content, > p)) {
-  grid-template-areas: var(--card-areas-no-media-no-content,
-      "title"
-      "badges");
-  grid-template-rows: var(--card-rows-no-media-no-content, auto auto);
-}
+
+
 
 /* Area mapping */
 .card h1,
