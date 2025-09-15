@@ -115,8 +115,8 @@ site-navigation {
   border: 1px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition-timing-function: var(--transition-timing-style);
-  transition-duration: 400ms;
+  transition-timing-function: var(--transition-timing-bounce);
+  transition-duration: var(--duration-bounce);
   transition-property: background-color, outline-width, outline-color, font-variation-settings;
   outline-width: 0px;
   outline-color: transparent;
@@ -562,7 +562,7 @@ height: 64px;
       backface-visibility: hidden;
       contain: paint;
       /* No font-variation animation */
-      transition: color 200ms var(--transition-timing-style);
+      transition: color var(--duration-style) var(--transition-timing-style);
     }
 
     .title {

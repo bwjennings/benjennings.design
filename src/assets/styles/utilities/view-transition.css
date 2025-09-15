@@ -5,13 +5,13 @@
 
 ::view-transition {
   /* Mirror variables */
-  --transition-duration: 800ms;
+  --duration-motion: var(--duration-slow);
   min-height: 100lvh;
 }
 
 /* Global group defaults */
 ::view-transition-group(*) {
-  animation-duration: var(--transition-duration);
+  animation-duration: var(--duration-motion);
   animation-timing-function: var(--transition-timing-motion);
   isolation: isolate;
 }
@@ -55,12 +55,19 @@ main {
   --vt-hidden: 0;
   --vt-blur: 4px;
   --vt-scale-min: 0.99;
+  animation: none;
+
+ 
 }
 
 ::view-transition-image-pair(.page) {
   
-  transform-origin: top center;
+ 
+  transform-origin: center;
+    height: 100%;
+    overflow: clip;
 }
+
 
 /* Single scale animation for the group */
 @keyframes page-group-scale {
@@ -80,21 +87,23 @@ main {
 /* Old → exiting (opacity/blur only) */
 ::view-transition-old(.page) {
   animation-name: page-exit-opacity-blur, page-exit-scale;
-  animation-timing-function: var(--transition-timing-scale);
-  animation-duration: calc(var(--transition-timing-scale-duration) * 0.8);
+  animation-timing-function: var(--transition-timing-motion);
+  animation-duration: calc(var(--duration-motion) * 0.7);
   animation-fill-mode: both;
-   transform-origin: top center;
+   transform-origin:  top center;
   will-change: opacity, filter;
+  
 }
 
 /* New → entering (opacity/blur only) */
 ::view-transition-new(.page) {
   animation-name: page-enter-opacity-blur, page-enter-scale;
-  animation-timing-function: var(--transition-timing-scale);
-  animation-duration: calc(var(--transition-timing-scale-duration) * 0.8);
-  animation-delay: calc(var(--transition-timing-scale-duration) * 0.1);
+  animation-timing-function: var(--transition-timing-motion);
+  animation-duration: calc(var(--duration-motion) * 0.7);
+  animation-delay: calc(var(--duration-motion) * 0.2);
   animation-fill-mode: both;
    transform-origin: top center;
+   
   will-change: opacity, filter;
 }
 
@@ -105,13 +114,13 @@ main {
   }
 
   to {
-    filter: blur(8px) opacity(0);
+    filter: blur(2px) opacity(0);
   }
 }
 
 @keyframes page-enter-opacity-blur {
   from {
-    filter: blur(8px) opacity(0);
+    filter: blur(2px) opacity(0);
   }
 
   to {
@@ -121,7 +130,7 @@ main {
 
 @keyframes page-enter-scale {
   from {
-    transform: scale(0.95);
+    transform: scale(0.95) ;
   }
 
   
@@ -137,7 +146,7 @@ main {
 
 
   to {
-    transform: scale(0.95);
+    transform: scale(0.95) ;
   }
 }
 
@@ -177,7 +186,7 @@ main {
 
 ::view-transition-old(.heading),
 ::view-transition-old(.badge-group) {
-  animation: card-header-out var(--transition-duration) var(--transition-timing-motion);
+  animation: card-header-out var(--duration-motion) var(--transition-timing-motion);
   animation-fill-mode: forwards;
   height: 100%;
   width: auto;
@@ -187,7 +196,7 @@ main {
 
 ::view-transition-new(.heading),
 ::view-transition-new(.badge-group) {
-  animation: card-header-in var(--transition-duration) var(--transition-timing-motion);
+  animation: card-header-in var(--duration-motion) var(--transition-timing-motion);
   animation-fill-mode: forwards;
   height: 100%;
   /* object-fit: none; */
@@ -261,7 +270,7 @@ html.theme-transition .nav-item .title {
 }
 
 ::view-transition-group(theme) {
-  animation-duration: var(--transition-duration);
+  animation-duration: var(--duration-motion);
 
   animation-timing-function: var(--transition-timing-style);
   z-index: 0;

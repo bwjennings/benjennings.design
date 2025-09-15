@@ -11,7 +11,7 @@
   container-name: icon;
   container-type: inline-size;
 
-  
+
 
   & .icon {
     font-family: var(--icon-font-family);
@@ -49,13 +49,18 @@
 @keyframes grow {
   from {
     transform: translateY(10dvh);
-    filter: blur(24px) hue-rotate(50deg);
+    filter: blur(0px) hue-rotate(50deg);
+    --icon-grade: -50;
+   
+    
 
   }
 
   to {
     transform: translateY(0);
     filter: blur(0) hue-rotate(0);
-
+    --icon-grade: 200;
+   
+  
   }
 }

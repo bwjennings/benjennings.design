@@ -37,13 +37,13 @@
 
 @property --text-body-xopq {
   syntax: "<number>";
-  initial-value: 80;
+  initial-value: 120;
   inherits: true;
 }
 
 @property --text-body-yopq {
   syntax: "<number>";
-  initial-value: 80;
+  initial-value: 120;
   inherits: true;
 }
 
@@ -64,12 +64,29 @@
   initial-value: 115;
   inherits: true;
 }
+@property --icon-fill {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: true;
+}
 
 
 
 @property --transition-timing-style {
   syntax: "<easing-function>";
   initial-value: cubic-bezier(.43, .37, .6, .97);
+  inherits: true;
+}
+
+@property --transition-timing-motion {
+  syntax: "<easing-function>";
+  initial-value: linear(0, 0.0009 0.4%, 0.0052 1.01%, 0.0192 2.02%, 0.0454, 0.0791 4.44%, 0.161 6.85%, 0.367 12.3%, 0.4676 15.12%, 0.5641, 0.6474 21.17%, 0.7217, 0.7823 27.62%, 0.8337 31.05%, 0.8563 32.86%, 0.878, 0.8966 36.89%, 0.9141 39.11%, 0.9299, 0.943 43.95%, 0.9545, 0.9638 49.19%, 0.9791 55.44%, 0.9889 62.5%, 0.995 71.17%, 0.9983 82.66%, 0.9997 100%);
+  inherits: true;
+}
+
+@property --transition-timing-bounce {
+  syntax: "<easing-function>";
+  initial-value: linear(0, 0.0018, 0.0069 1.16%, 0.0262 2.32%, 0.0642, 0.1143 5.23%, 0.2244 7.84%, 0.5881 15.68%, 0.6933, 0.7839, 0.8591, 0.9191 26.13%, 0.9693, 1.0044 31.93%, 1.0234, 1.0358 36.58%, 1.0434 39.19%, 1.046 42.39%, 1.0446 44.71%, 1.0404 47.61%, 1.0118 61.84%, 1.0028 69.39%, 0.9981 80.42%, 0.9991 99.87%);
   inherits: true;
 }
 
@@ -109,14 +126,25 @@
   --font-size-9: clamp(3.815rem, 3.302vi + 2.989rem, 5.961rem);
   --font-size-10: clamp(4.768rem, 4.888vi + 3.546rem, 7.946rem);
 
+--font-size-1: clamp(0.64rem, calc(0.411vi + 0.558rem), 0.928rem);
+--font-size-2: clamp(0.8rem, calc(0.514vi + 0.697rem), 1.16rem);
+--font-size-3: clamp(1rem, calc(0.643vi + 0.871rem), 1.45rem);
+--font-size-4: clamp(1.25rem, calc(0.804vi + 1.089rem), 1.813rem);
+--font-size-5: clamp(1.563rem, calc(1.004vi + 1.362rem), 2.266rem);
+--font-size-6: clamp(1.953rem, calc(1.256vi + 1.702rem), 2.832rem);
+--font-size-7: clamp(2.441rem, calc(1.569vi + 2.128rem), 3.54rem);
+--font-size-8: clamp(3.052rem, calc(1.962vi + 2.659rem), 4.425rem);
+--font-size-9: clamp(3.815rem, calc(2.452vi + 3.324rem), 5.531rem);
+--font-size-10: clamp(4.768rem, calc(3.065vi + 4.155rem), 6.914rem);
   /* Heading text */
 
   --text-heading-font-family: "Roboto Flex";
   --text-heading-grade: 120;
   --text-heading-weight: 550;
-  --text-heading-width: 115;
-  --text-heading-xopq: 80;
-  --text-heading-yopq: 80;
+  --text-heading-width: 110;
+  --text-heading-xopq: 90;
+  --text-heading-yopq: 90
+  ;
 
   --text-heading-xl-line-height: 110%;
   --text-heading-xl-size: var(--font-size-10);
@@ -144,9 +172,9 @@
   --text-body-sm-line-height: var(--font-size-3);
   --text-body-xs-size: var(--font-size-1);
   --text-body-xs-line-height: var(--font-size-2);
-  --text-body-xopq: 80;
-  --text-body-yopq: 80;
-  --text-body-width: 100;
+  --text-body-xopq: 100;
+  --text-body-yopq: 90;
+  --text-body-width: 90;
   --text-body-grade: 0;
 
   /* Icon settings */
@@ -162,46 +190,25 @@
   --icon-grade: 0;
   --icon-grade-emphasis: 100;
 
-  /* Animation */
-  --amplitude: 1;
-  --damping: 2;
-  --frequency: 8;
-  --duration: 1s;
+  /* Motion durations */
 
-  /* Timing tokens */
-  --timing-duration: 784ms;
-  --transition-timing-motion-duration: 400ms;
+  
+  --duration-fast: 150ms;
+  --duration-standard: 400ms;
+  --duration-slow: 800ms;
+
+  
+  --duration-style: var(--duration-fast);
+  --duration-motion: var(--duration-standard);
+  --duration-bounce: var(--duration-standard);
   --transition-timing-bounce: linear(0, 0.0018, 0.0069 1.16%, 0.0262 2.32%, 0.0642, 0.1143 5.23%, 0.2244 7.84%, 0.5881 15.68%, 0.6933, 0.7839, 0.8591, 0.9191 26.13%, 0.9693, 1.0044 31.93%, 1.0234, 1.0358 36.58%, 1.0434 39.19%, 1.046 42.39%, 1.0446 44.71%, 1.0404 47.61%, 1.0118 61.84%, 1.0028 69.39%, 0.9981 80.42%, 0.9991 99.87%);
 
   --transition-timing-motion: linear(0, 0.0009 0.4%, 0.0052 1.01%, 0.0192 2.02%, 0.0454, 0.0791 4.44%, 0.161 6.85%, 0.367 12.3%, 0.4676 15.12%, 0.5641, 0.6474 21.17%, 0.7217, 0.7823 27.62%, 0.8337 31.05%, 0.8563 32.86%, 0.878, 0.8966 36.89%, 0.9141 39.11%, 0.9299, 0.943 43.95%, 0.9545, 0.9638 49.19%, 0.9791 55.44%, 0.9889 62.5%, 0.995 71.17%, 0.9983 82.66%, 0.9997 100%);
 
-  /* --transition-timing-motion:ease-out; */
-  --spring-duration: 0.8300s;
-
-
-  --transition-timing-scale-duration: 784ms;
-  --transition-timing-scale: linear(0, 0.0009 0.4%, 0.0052 1.01%, 0.0192 2.02%, 0.0454, 0.0791 4.44%, 0.161 6.85%, 0.367 12.3%, 0.4676 15.12%, 0.5641, 0.6474 21.17%, 0.7217, 0.7823 27.62%, 0.8337 31.05%, 0.8563 32.86%, 0.878, 0.8966 36.89%, 0.9141 39.11%, 0.9299, 0.943 43.95%, 0.9545, 0.9638 49.19%, 0.9791 55.44%, 0.9889 62.5%, 0.995 71.17%, 0.9983 82.66%, 0.9997 100%);
-
   --transition-timing-style: cubic-bezier(.43, .37, .6, .97);
-  --spring-easing: linear(0, 0.0018, 0.0069 1.16%, 0.0259 2.31%, 0.0634, 0.1128 5.2%, 0.221 7.81%, 0.5775 15.61%, 0.6913 18.51%, 0.7788, 0.8514, 0.9095 26.31%, 0.9586, 0.9934 32.1%, 1.0126 34.41%, 1.0268 37.01%, 1.0354 39.9%, 1.0384 43.08%, 1.0353 47.71%, 1.0123 61.59%, 1.0029 70.56%, 0.9988 81.54%, 0.9992 99.76%);
-  --spring-duration: 0.8317s;
-  /* Spring animation durations */
-  --spring-duration-subtle: 250ms;
-  --spring-duration-snappy: 400ms;
-  --spring-duration-bouncy: 650ms;
-  --spring-duration-wobbly: 1050ms;
-  --spring-duration-smooth: 500ms;
+  
 
-  /* Spring animation timing functions */
-  --spring-timing-subtle: linear(0, 0.6796, 1.0326, 1.0275, 1.0011, 0.9981, 0.9997, 1);
-  --spring-timing-snappy: linear(0, 0.005, 0.013, 0.023, 0.036 1.9%, 0.071, 0.118 4.1%, 0.163 5%, 0.22 6.1%,
-      0.469 10.8%, 0.582 13%, 0.639, 0.69, 0.737, 0.78, 0.821, 0.859, 0.892, 0.922,
-      0.948, 0.97, 0.989, 1.005 27.8%, 1.014, 1.021, 1.028, 1.033, 1.036, 1.039,
-      1.041 35.3% 36.6%, 1.04 38.7%, 1.036 41%, 1.018 49.8%, 1.01 54%, 1.005 57.9%,
-      1.001 62.1%, 0.999 66.7%, 0.998 72.3%, 1);
-  --spring-timing-bouncy: linear(0, 0.1162, 0.3622, 0.6245, 0.8404, 0.9868, 1.0661, 1.0937, 1.0885, 1.0672, 1.042, 1.02, 1.0043, 0.9952, 0.9914, 0.9913, 0.993, 0.9954, 0.9976, 0.9993, 1.0003, 1);
-  --spring-timing-wobbly: linear(0, 0.0726, 0.2529, 0.4862, 0.7259, 0.9371, 1.0986, 1.2019, 1.2488, 1.2485, 1.2141, 1.1597, 1.0983, 1.0403, 0.9928, 0.9595, 0.9409, 0.9356, 0.9406, 0.9524, 0.9675, 0.983, 0.9964, 1.0067, 1.0132, 1.0161, 1.016, 1.0137, 1.0101, 1.0062, 1.0025, 0.9994, 0.9973, 0.9962, 1);
-  --spring-timing-smooth: linear(0, 0.3892, 0.921, 1.1515, 1.1295, 1.037, 0.9817, 0.9751, 0.9892, 1.0011, 1, 1.0026, 1.0003, 0.9993, 0.9994, 0.9998, 1);
+  
 
 
   /* Foundations (internal) */

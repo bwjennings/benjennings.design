@@ -38,7 +38,7 @@
   container-type: inline-size;
   transition-property: transform,
   outline-width;
-  transition-duration: var(--transition-timing-motion-duration);
+  transition-duration: var(--duration-bounce);
   transition-timing-function: var(--transition-timing-bounce);
   font-variation-settings: "GRAD" 0;
   color: var(--color-text-primary);

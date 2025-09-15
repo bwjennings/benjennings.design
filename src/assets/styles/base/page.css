@@ -7,7 +7,7 @@
   scrollbar-width: thin;
   scrollbar-color: var(--color-border-primary) var(--color-surface-page);
 
-
+scrollbar-gutter: stable;
 }
 
 :is(a) {
@@ -97,6 +97,7 @@ body {
   max-height: none;
   /* lock container to viewport height */
   container-type: inline-size;
+    
 
 
 
@@ -106,6 +107,7 @@ body {
 
 main {
   grid-area: content;
+
   /* Content controls height */
 
 
@@ -198,7 +200,7 @@ main {
   background-color: var(--color-surface-page);
   scroll-snap-align: top;
   z-index: 2;
-  margin-top: calc(20cqh - 40px);
+  margin-top: calc(10cqh - 40px);
   color: var(--color-text-primary);
   display: flex;
   gap: var(--spacing-md);
@@ -209,8 +211,7 @@ main {
   grid-column: 1 / -1;
   grid-template-rows: subgrid;
   grid-area: header;
-  position: sticky;
-  top: 0px;
+ 
   padding: 4dvw;
   scroll-padding: var(--spacing-xl);
   border-bottom: 1px solid var(--color-border-primary);
