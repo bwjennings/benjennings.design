@@ -14,9 +14,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,GRAD,XOPQ,YOPQ@8..144,25..151,100..1000,-200..150,80,80&display=swap&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,400..700,1,-50..200&display=swap" rel="stylesheet">
 
-  <title>Ben Jennings</title>
+  <title>Design Simplicity in Practice – Ben Jennings</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+  <meta name="description"
+    content="How Ben Jennings balances simplicity with clarity, ensuring complex product workflows remain powerful and intuitive." />
+  <link rel="canonical" href="https://benjennings.design/fundamentals/simplicity/" />
+  <meta property="og:title" content="Design Simplicity in Practice – Ben Jennings" />
+  <meta property="og:description"
+    content="Ben Jennings shares how he approaches simplicity without sacrificing capability when designing complex software." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://benjennings.design/fundamentals/simplicity/" />
+  <meta property="og:image" content="https://benjennings.design/public/favicons/thumbnail.svg" />
+  <meta property="og:site_name" content="Ben Jennings" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Design Simplicity in Practice – Ben Jennings" />
+  <meta name="twitter:description"
+    content="Learn how Ben Jennings keeps enterprise software approachable while preserving the features experts need." />
+  <meta name="twitter:image" content="https://benjennings.design/public/favicons/thumbnail.svg" />
 
   <!-- Early theme (pre-CSS) -->
   <script>
@@ -44,21 +59,27 @@
   <script defer src="../../src/scripts/view-transition.js"></script>
 
   <!-- Speculation rules -->
-  <script type="speculationrules">
-    {
-      "prefetch": [
-        {
-          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
-          "eagerness": "moderate"
-        }
-      ],
-      "prerender": [
-        {
-          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
-          "eagerness": "conservative",
-          "referrer_policy": "same-origin"
-        }
-      ]
+  <script>
+    if ('speculationRules' in HTMLScriptElement.prototype) {
+      const rules = {
+        prefetch: [
+          {
+            urls: ['../../index.html', '../../designs/', '../../fundamentals/', '../../experiments/', '../../resources/'],
+            eagerness: 'moderate'
+          }
+        ],
+        prerender: [
+          {
+            urls: ['../../index.html', '../../designs/', '../../fundamentals/', '../../experiments/', '../../resources/'],
+            eagerness: 'conservative',
+            referrer_policy: 'same-origin'
+          }
+        ]
+      };
+      const script = document.createElement('script');
+      script.type = 'speculationrules';
+      script.textContent = JSON.stringify(rules);
+      document.head.appendChild(script);
     }
   </script>
 

@@ -6,12 +6,16 @@
 ::view-transition {
   /* Mirror variables */
   --duration-motion: var(--duration-slow);
-  min-height: 100lvh;
+  height: 200lvh;
+}
+::view-transition-group(root){
+  height: 100%;
 }
 
 /* Global group defaults */
 ::view-transition-group(*) {
   animation-duration: var(--duration-motion);
+  animation-duration: 1s;
   animation-timing-function: var(--transition-timing-motion);
   isolation: isolate;
 }

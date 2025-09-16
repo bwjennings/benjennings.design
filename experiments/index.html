@@ -12,7 +12,6 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-PLX2X0J846");
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,16 +21,33 @@
       rel="stylesheet"
     />
 
-    <title>Ben Jennings</title>
+    <title>Experiments &amp; Prototypes – Ben Jennings</title>
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="A collection of projects by Ben Jennings"
+      content="Experiments from Ben Jennings exploring new interactions, 3D workflows, and emerging tooling before they ship to production."
     />
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1, viewport-fit=cover"
     />
+    <link rel="canonical" href="https://benjennings.design/experiments/" />
+    <meta property="og:title" content="Experiments &amp; Prototypes – Ben Jennings" />
+    <meta
+      property="og:description"
+      content="A playground where Ben Jennings tries new ideas across 3D, motion, and product concepts before they land in production."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://benjennings.design/experiments/" />
+    <meta property="og:image" content="https://benjennings.design/public/spline-thumbnail.svg" />
+    <meta property="og:site_name" content="Ben Jennings" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Experiments &amp; Prototypes – Ben Jennings" />
+    <meta
+      name="twitter:description"
+      content="Explore Ben Jennings' prototypes and experiments that test new patterns before they reach client work."
+    />
+    <meta name="twitter:image" content="https://benjennings.design/public/spline-thumbnail.svg" />
     <!-- Early theme (pre-CSS) -->
     <script>
       (function () {
@@ -56,33 +72,39 @@
     <!-- View transition script - after CSS and components -->
     <script defer src="../src/scripts/view-transition.js"></script>
 
-  <!-- Speculation rules -->
-  <script type="speculationrules">
-    {
-      "prefetch": [
-        {
-          "urls": [
-            "../index.html",
-            "../designs/",
-            "../fundamentals/",
-            "../resources/",
-            "spline/",
-            "spline-2/",
-            "digital-frame/"
-          ],
-          "eagerness": "moderate"
-        }
-      ],
-      "prerender": [
-        {
-          "where": { "href_matches": "^/(index\\.html|designs/|fundamentals/|resources/)" },
-          "eagerness": "conservative"
-        },
-        {
-          "where": { "href_matches": "/experiments/(spline|spline-2|digital-frame)/" },
-          "eagerness": "moderate"
-        }
-      ]
+    <!-- Speculation rules -->
+    <script>
+    if ('speculationRules' in HTMLScriptElement.prototype) {
+      const rules = {
+        prefetch: [
+          {
+            urls: [
+              '../index.html',
+              '../designs/',
+              '../fundamentals/',
+              '../resources/',
+              'spline/',
+              'spline-2/',
+              'digital-frame/'
+            ],
+            eagerness: 'moderate'
+          }
+        ],
+        prerender: [
+          {
+            where: { href_matches: '^/(index\\.html|designs/|fundamentals/|resources/)' },
+            eagerness: 'conservative'
+          },
+          {
+            where: { href_matches: '/experiments/(spline|spline-2|digital-frame)/' },
+            eagerness: 'moderate'
+          }
+        ]
+      };
+      const script = document.createElement('script');
+      script.type = 'speculationrules';
+      script.textContent = JSON.stringify(rules);
+      document.head.appendChild(script);
     }
   </script>
 
@@ -105,11 +127,6 @@
       href="../public/favicons/favicon-16x16.png"
     />
     <link rel="manifest" href="../public/site.webmanifest" />
-    <script
-      type="module"
-      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
-      render="blocking"
-    ></script>
     <style>
     
     </style>

@@ -1,13 +1,28 @@
 /** View transition helpers */
 document.addEventListener('DOMContentLoaded', () => {
-  try {
-    if (!(window.CSS && CSS.supports && CSS.supports('view-transition-name', 'page'))) {
-      console.warn('View Transitions not fully supported');
-    }
-  } catch {}
+  const supportsViewTransitions = typeof document.startViewTransition === 'function';
 
-  // Scroll restoration
+  const handleFallbackBackLink = (event) => {
+    if ((typeof event.button === 'number' && event.button > 0) || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const anchor = event.target && event.target.closest ? event.target.closest('a') : null;
+    if (!anchor) return;
+    if (anchor.matches('a[rel="prev"]')) {
+      event.preventDefault();
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        const href = anchor.getAttribute('href');
+        if (href) window.location.href = href;
+      }
+    }
+  };
+
+  // Scroll restoration for back/forward cache
   try { if ('scrollRestoration' in history) history.scrollRestoration = 'auto'; } catch {}
+
+  if (!supportsViewTransitions) {
+    document.addEventListener('click', handleFallbackBackLink, true);
+  }
 
   // Detail header: persist vt name and state
   try {
@@ -261,39 +276,70 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch {}
 
-    const vt = getVtFromState() || sessionStorage.getItem('lastVtName');
-    const cards = document.querySelectorAll('a[data-vt-target]');
-    const onListing = cards.length > 0;
-
-    if (onListing) {
-      // No vt: clear card names
-      if (!vt) {
-        cards.forEach((a) => {
-          a.style.removeProperty('view-transition-name');
-          a.style.removeProperty('view-transition-class');
-          applyCardPartNames(a, a.getAttribute('data-vt-target'), false);
-        });
-      }
-      // With vt: keep target named
-      else {
-        const target = Array.from(cards).find(a => a.getAttribute('data-vt-target') === vt);
-        cards.forEach((a) => {
-          const key = a.getAttribute('data-vt-target');
-          const active = a === target;
-          if (!active) {
-            a.style.removeProperty('view-transition-name');
-            a.style.removeProperty('view-transition-class');
-          }
-          applyCardPartNames(a, key, active);
-        });
-        if (target) {
-          target.style.setProperty('view-transition-name', vt);
-          target.style.setProperty('view-transition-class', 'card');
+    const applyTransitionState = () => {
+      try {
+        let vtKey = getVtFromState();
+        if (!vtKey) {
+          try { vtKey = sessionStorage.getItem('lastVtName'); } catch {}
         }
+
+        const cards = document.querySelectorAll('a[data-vt-target]');
+        const onListing = cards.length > 0;
+
+        if (onListing) {
+          // No vt: clear card names
+          if (!vtKey) {
+            cards.forEach((a) => {
+              a.style.removeProperty('view-transition-name');
+              a.style.removeProperty('view-transition-class');
+              applyCardPartNames(a, a.getAttribute('data-vt-target'), false);
+            });
+          }
+          // With vt: keep target named
+          else {
+            const target = Array.from(cards).find(a => a.getAttribute('data-vt-target') === vtKey);
+            cards.forEach((a) => {
+              const key = a.getAttribute('data-vt-target');
+              const active = a === target;
+              if (!active) {
+                a.style.removeProperty('view-transition-name');
+                a.style.removeProperty('view-transition-class');
+              }
+              applyCardPartNames(a, key, active);
+            });
+            if (target) {
+              target.style.setProperty('view-transition-name', vtKey);
+              target.style.setProperty('view-transition-class', 'card');
+            }
+          }
+        } else {
+          // Detail pages: keep header names
+        }
+      } catch {}
+    };
+
+    if (isRevealEvent && e?.viewTransition) {
+      // Ensure names are ready for the incoming snapshot
+      applyTransitionState();
+
+      const afterPromise = e.viewTransition.ready || e.viewTransition.finished;
+      if (afterPromise && typeof afterPromise.then === 'function') {
+        afterPromise.then(() => {
+          try {
+            if ('requestAnimationFrame' in window) {
+              requestAnimationFrame(() => applyTransitionState());
+            } else {
+              applyTransitionState();
+            }
+          } catch {
+            applyTransitionState();
+          }
+        }, () => applyTransitionState());
+        return;
       }
-    } else {
-      // Detail pages: keep header names
     }
+
+    applyTransitionState();
   };
 
   // Use pagereveal if available

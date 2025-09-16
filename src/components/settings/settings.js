@@ -214,7 +214,8 @@ template.innerHTML = `
 
   
   
-  </style>
+  
+</style>
   
   <div class="color-picker">
     <input type="range" class="hue-slider" id="hue-slider" min="0" max="360" step="1" aria-label="Theme Color Hue">
@@ -516,7 +517,6 @@ class SiteSettings extends HTMLElement {
     if (switchInput) {
       switchInput.removeEventListener("change", this.switchChangeHandler);
     }
-
     if (hueSlider) {
       hueSlider.removeEventListener("input", this.hueSliderHandler);
       hueSlider.removeEventListener("change", this.hueSliderHandler);

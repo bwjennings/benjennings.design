@@ -17,9 +17,24 @@
   <link rel="preconnect" href="https://www.figma.com" crossorigin />
   <link rel="preconnect" href="https://static.figma.com" crossorigin />
 
-  <title>Ben Jennings</title>
+  <title>Building a Referral Ecosystem for Dwellane – Ben Jennings</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+  <meta name="description"
+    content="Ben Jennings helped Dwellane create a referral ecosystem that aligned agents, lenders, and homebuyers around one cohesive workflow." />
+  <link rel="canonical" href="https://benjennings.design/designs/dwellane/" />
+  <meta property="og:title" content="Building a Referral Ecosystem for Dwellane – Ben Jennings" />
+  <meta property="og:description"
+    content="Learn how Ben Jennings defined Dwellane's referral experience, helping teams collaborate through a single shared platform." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://benjennings.design/designs/dwellane/" />
+  <meta property="og:image" content="https://benjennings.design/public/dwellane-thumbnail.png" />
+  <meta property="og:site_name" content="Ben Jennings" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Building a Referral Ecosystem for Dwellane – Ben Jennings" />
+  <meta name="twitter:description"
+    content="Case study: designing Dwellane's referral platform so real estate pros and buyers stay aligned." />
+  <meta name="twitter:image" content="https://benjennings.design/public/dwellane-thumbnail.png" />
 
   <!-- Early theme (pre-CSS) -->
   <script>
@@ -49,21 +64,27 @@
   <script defer src="../../src/scripts/embeds.js"></script>
 
   <!-- Speculation rules -->
-  <script type="speculationrules">
-    {
-      "prefetch": [
-        {
-          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
-          "eagerness": "moderate"
-        }
-      ],
-      "prerender": [
-        {
-          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
-          "eagerness": "conservative",
-          "referrer_policy": "same-origin"
-        }
-      ]
+  <script>
+    if ('speculationRules' in HTMLScriptElement.prototype) {
+      const rules = {
+        prefetch: [
+          {
+            urls: ['../../index.html', '../../designs/', '../../fundamentals/', '../../experiments/', '../../resources/'],
+            eagerness: 'moderate'
+          }
+        ],
+        prerender: [
+          {
+            urls: ['../../index.html', '../../designs/', '../../fundamentals/', '../../experiments/', '../../resources/'],
+            eagerness: 'conservative',
+            referrer_policy: 'same-origin'
+          }
+        ]
+      };
+      const script = document.createElement('script');
+      script.type = 'speculationrules';
+      script.textContent = JSON.stringify(rules);
+      document.head.appendChild(script);
     }
   </script>
 

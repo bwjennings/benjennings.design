@@ -126,15 +126,15 @@
       </style>
       <link rel="stylesheet" href="/src/assets/styles/components/button.css">
       <div class="resource-card" data-style="a">
-        <div class="icon">demography</div>
+        <div class="icon" aria-hidden="true">demography</div>
         <div class="content">
           <div class="title">Title</div>
           <div class="description">Description</div>
         </div>
-        <button class="button secondary">
-          <div class="icon">download</div>
-          <span>Download</span>
-        </button>
+        <a class="button secondary resource-action">
+          <span class="icon" aria-hidden="true">download</span>
+          <span class="label">Download</span>
+        </a>
       </div>
         `;
     
@@ -146,21 +146,11 @@
         this.iconElement = shadow.querySelector('.icon');
         this.titleElement = shadow.querySelector('.title');
         this.descriptionElement = shadow.querySelector('.description');
-        this.buttonElement = shadow.querySelector('.button');
-        this.buttonTextElement = shadow.querySelector('.button span');
-        this.buttonIconElement = shadow.querySelector('.button .icon');
-    
-        // Button click
-        if (this.buttonElement) {
-          this.buttonElement.addEventListener('click', () => {
-            const url = this.getAttribute('button-url');
-            if (url) {
-              window.location.href = url;
-            }
-          });
-        }
+        this.linkElement = shadow.querySelector('.resource-action');
+        this.buttonTextElement = shadow.querySelector('.resource-action .label');
+        this.buttonIconElement = shadow.querySelector('.resource-action .icon');
       }
-    
+
       static get observedAttributes() {
         return ['icon', 'title', 'description', 'button-text', 'button-url', 'style', 'show-description'];
       }
@@ -188,7 +178,17 @@
             }
             break;
           case 'button-url':
-            // Handled in click
+            if (this.linkElement) {
+              if (newValue) {
+                this.linkElement.setAttribute('href', newValue);
+                this.linkElement.removeAttribute('aria-disabled');
+                this.linkElement.tabIndex = 0;
+              } else {
+                this.linkElement.removeAttribute('href');
+                this.linkElement.setAttribute('aria-disabled', 'true');
+                this.linkElement.tabIndex = -1;
+              }
+            }
             break;
           case 'style':
             if (this.cardElement && newValue && ['a', 'b', 'c', 'd'].includes(newValue)) {
@@ -220,6 +220,18 @@
         }
         if (this.hasAttribute('button-text') && this.buttonTextElement) {
           this.buttonTextElement.textContent = this.getAttribute('button-text');
+        }
+        if (this.linkElement) {
+          const url = this.getAttribute('button-url');
+          if (url) {
+            this.linkElement.setAttribute('href', url);
+            this.linkElement.removeAttribute('aria-disabled');
+            this.linkElement.tabIndex = 0;
+          } else {
+            this.linkElement.removeAttribute('href');
+            this.linkElement.setAttribute('aria-disabled', 'true');
+            this.linkElement.tabIndex = -1;
+          }
         }
         if (this.hasAttribute('style') && this.cardElement) {
           const style = this.getAttribute('style');

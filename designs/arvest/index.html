@@ -18,9 +18,24 @@
   <link rel="preconnect" href="https://www.figma.com" crossorigin />
   <link rel="preconnect" href="https://static.figma.com" crossorigin />
 
-  <title>Ben Jennings</title>
+  <title>Untangling the Loan Process at Arvest – Ben Jennings</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+  <meta name="description"
+    content="Ben Jennings redesigned Arvest's Salesforce loan workflow so officers could manage complex cases in one intuitive system." />
+  <link rel="canonical" href="https://benjennings.design/designs/arvest/" />
+  <meta property="og:title" content="Untangling the Loan Process at Arvest – Ben Jennings" />
+  <meta property="og:description"
+    content="See how Ben Jennings unified Arvest's loan officer tools inside Salesforce to remove friction and speed up lending." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://benjennings.design/designs/arvest/" />
+  <meta property="og:image" content="https://benjennings.design/public/arvest-thumbnail.png" />
+  <meta property="og:site_name" content="Ben Jennings" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Untangling the Loan Process at Arvest – Ben Jennings" />
+  <meta name="twitter:description"
+    content="A case study on redesigning Arvest's loan officer experience to make complex banking work manageable." />
+  <meta name="twitter:image" content="https://benjennings.design/public/arvest-thumbnail.png" />
 
   <!-- Early theme (pre-CSS) -->
   <script>
@@ -50,21 +65,27 @@
   <script defer src="../../src/scripts/embeds.js"></script>
 
   <!-- Speculation rules -->
-  <script type="speculationrules">
-    {
-      "prefetch": [
-        {
-          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
-          "eagerness": "moderate"
-        }
-      ],
-      "prerender": [
-        {
-          "urls": ["../../index.html", "../../designs/", "../../fundamentals/", "../../experiments/", "../../resources/"],
-          "eagerness": "conservative",
-          "referrer_policy": "same-origin"
-        }
-      ]
+  <script>
+    if ('speculationRules' in HTMLScriptElement.prototype) {
+      const rules = {
+        prefetch: [
+          {
+            urls: ['../../index.html', '../../designs/', '../../fundamentals/', '../../experiments/', '../../resources/'],
+            eagerness: 'moderate'
+          }
+        ],
+        prerender: [
+          {
+            urls: ['../../index.html', '../../designs/', '../../fundamentals/', '../../experiments/', '../../resources/'],
+            eagerness: 'conservative',
+            referrer_policy: 'same-origin'
+          }
+        ]
+      };
+      const script = document.createElement('script');
+      script.type = 'speculationrules';
+      script.textContent = JSON.stringify(rules);
+      document.head.appendChild(script);
     }
   </script>
 

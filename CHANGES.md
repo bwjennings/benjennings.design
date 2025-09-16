@@ -1,3 +1,10 @@
+Production readiness updates (2025-09-15)
+
+- Moved experimental-only Web Components (`icon-card`, `copy-button`, `simple-card`) under `sandbox/components/` so they no longer ship with the production bundle.
+- Added sitemap (`/sitemap.xml`), robots policy (`/robots.txt`), and a custom `404.html` for better crawlability and user fallbacks.
+- Updated the web manifest with canonical icon paths, maskable icon support, and brand metadata.
+- Expanded social metadata coverage (OG/Twitter) across all pages.
+
 Cleanup summary (2025-08-11)
 
 - Removed legacy components: `theme-control`, `theme-slider`, and `color-changer` (unused, overlapping with `site-settings`).

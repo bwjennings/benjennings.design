@@ -1,10 +1,11 @@
 {
-    "name": "cards",
-    "short_name": "ben",
+    "name": "Ben Jennings",
+    "short_name": "Ben",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#005EFF",
-    "description": "A set of things made by Ben",
+    "theme_color": "#005EFF",
+    "description": "Portfolio and resources from product designer and researcher Ben Jennings.",
     "shortcuts": [
         {
           "name": "Designs",
@@ -21,14 +22,20 @@
       ],
     "icons": [
         {
-            "src": "/public/favicons/android-chrome-192x192.png",
+            "src": "/favicons/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/public/favicons/android-chrome-512x512.png",
+            "src": "/favicons/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
+        },
+        {
+            "src": "/favicons/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
         }
     ]
     
